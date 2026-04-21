@@ -1,0 +1,1352 @@
+{
+  "Header": {
+    "nav": { "home": "Accueil", "platform": "Plateforme", "solutions": "Solutions", "resources": "Ressources", "company": "Entreprise" },
+    "megaMenu": {
+      "platform": { "title": "Plateforme", "items": { "overview": "Vue d'ensemble", "modules": "15 modules intégrés", "governance": "Gouvernance & RBAC", "mobile": "App mobile (PWA)" } },
+      "solutions": { "title": "Solutions", "items": { "services": "Services ITAD", "process": "Processus ITAD", "security": "Sécurité & effacement", "impact": "Impact environnemental" } },
+      "resources": { "title": "Ressources", "items": { "demo": "Demander une démo", "faq": "FAQ", "regulation": "Réglementation", "methodology": "Méthodologie" } },
+      "company": { "title": "Entreprise", "items": { "whyGtc": "Pourquoi GreenTechCycle ?", "journey": "Parcours client", "ecosystem": "Écosystème", "careers": "Carrières" } }
+    },
+    "cta": "Demander une démo",
+    "languageSwitch": "EN"
+  },
+  "TrustBar": {
+    "text": "R2v3 • ISO 14001 • NIST 800-88 • Conforme RGPD & CSRD"
+  },
+  "Footer": {
+    "tagline": "Votre partenaire de confiance pour la gestion responsable et sécurisée de vos actifs informatiques en fin de vie. Certifié R2, e-Stewards et ISO 14001.",
+    "contact": { "title": "Nous contacter", "address": "42 rue de la République\n69002 Lyon, France", "phone": "+33 1 86 65 22 10", "email": "contact@greentechcycle.fr" },
+    "cta": "Demander un devis",
+    "columns": {
+      "services": { "title": "Services", "links": { "erasure": "Effacement certifié", "collection": "Collecte sécurisée", "reporting": "Reporting ESG", "carbon": "Bilan carbone", "blockchain": "Traçabilité blockchain", "wakibox": "WakiBox" } },
+      "company": { "title": "Entreprise", "links": { "whyGtc": "Pourquoi GTC ?", "journey": "Parcours client", "ecosystem": "Écosystème", "careers": "Carrières", "impact": "Impact", "contact": "Contact" } },
+      "resources": { "title": "Ressources", "links": { "demo": "Demander une démo", "faq": "FAQ", "regulation": "Réglementation", "methodology": "Méthodologie", "platform": "Plateforme", "security": "Sécurité" } },
+      "legal": { "title": "Légal", "links": { "mentions": "Mentions légales", "privacy": "Politique de confidentialité", "terms": "CGU", "cookies": "Politique de cookies" } }
+    },
+    "newsletter": { "title": "Newsletter", "placeholder": "Votre email professionnel", "cta": "S'inscrire" },
+    "copyright": "© 2026 GreenTechCycle. Tous droits réservés. — SIREN 912 345 678.",
+    "bottomLinks": { "legal": "Mentions légales", "privacy": "Confidentialité", "cookies": "Cookies" }
+  },
+  "CookieBanner": {
+    "title": "Préférences de cookies",
+    "description": "Nous utilisons des cookies pour améliorer votre expérience. Vous pouvez personnaliser vos préférences ci-dessous.",
+    "categories": {
+      "necessary": { "title": "Strictement nécessaires", "desc": "Indispensables au fonctionnement du site" },
+      "analytics": { "title": "Analytiques", "desc": "Nous aident à améliorer le site" },
+      "functional": { "title": "Fonctionnels", "desc": "Fonctionnalités améliorées (chat, préférences)" },
+      "marketing": { "title": "Marketing", "desc": "Suivi publicitaire et retargeting" }
+    },
+    "acceptAll": "Tout accepter",
+    "rejectAll": "Tout refuser",
+    "customize": "Personnaliser",
+    "save": "Enregistrer mes préférences",
+    "link": "Politique de cookies"
+  },
+  "StickyCTA": {
+    "text": "Demander un audit gratuit"
+  },
+  "Home": {
+    "hero": {
+      "title": "Plateforme ITAD unifiée",
+      "subtitle": "Effacement certifié, traçabilité blockchain et reporting CSRD dans un seul outil.",
+      "cta1": "Demander une démo",
+      "cta2": "Voir la plateforme"
+    },
+    "urgency": {
+      "text": "CSRD en vigueur — Votre ITAD est-elle conforme ?"
+    },
+    "trust": {
+      "text": "R2v3 • ISO 14001 • NIST 800-88 • Conforme RGPD & CSRD"
+    },
+    "stats": {
+      "title": "Le marché ITAD en chiffres",
+      "items": {
+        "stat1": {
+          "value": "78%",
+          "label": "des ETI sans traçabilité ITAD"
+        },
+        "stat2": {
+          "value": "50M",
+          "label": "tonnes de déchets IT/an en Europe"
+        },
+        "stat3": {
+          "value": "3,2Md€",
+          "label": "marché ITAD européen en 2025"
+        },
+        "stat4": {
+          "value": "67%",
+          "label": "des DSI veulent un outil unifié"
+        }
+      }
+    },
+    "howItWorks": {
+      "title": "Comment ça marche",
+      "subtitle": "4 étapes pour une ITAD maîtrisée",
+      "steps": [
+        {
+          "title": "Audit",
+          "desc": "Inventaire complet de votre parc IT et évaluation des risques"
+        },
+        {
+          "title": "Collecte",
+          "desc": "Enlèvement sécurisé sur site avec chain of custody"
+        },
+        {
+          "title": "Traitement",
+          "desc": "Effacement certifié NIST 800-88, reconditionnement ou recyclage"
+        },
+        {
+          "title": "Rapport",
+          "desc": "Certificats, bilan carbone et reporting CSRD automatisé"
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "Ils nous font confiance",
+      "items": [
+        {
+          "quote": "GreenTechCycle a transformé notre gestion ITAD. Nous avons enfin une traçabilité complète et des rapports CSRD automatisés.",
+          "name": "Marie Dupont",
+          "role": "DSI",
+          "company": "Nexteam Group"
+        },
+        {
+          "quote": "Le bilan carbone automatique nous a permis de réduire notre empreinte IT de 40% en un an. Un ROI immédiat.",
+          "name": "Thomas Martin",
+          "role": "RSE Manager",
+          "company": "Visiativ"
+        },
+        {
+          "quote": "L'effacement certifié avec certificat sous 24h nous a permis de sécuriser nos processus et rassurer nos auditeurs.",
+          "name": "Sophie Bernard",
+          "role": "DAF",
+          "company": "Exotrail"
+        }
+      ]
+    },
+    "counters": {
+      "title": "GreenTechCycle en chiffres",
+      "items": {
+        "companies": {
+          "value": "150",
+          "suffix": "+",
+          "label": "entreprises accompagnées"
+        },
+        "equipment": {
+          "value": "12000",
+          "suffix": "+",
+          "label": "équipements traités"
+        },
+        "satisfaction": {
+          "value": "98",
+          "suffix": "%",
+          "label": "taux de satisfaction"
+        },
+        "co2": {
+          "value": "45",
+          "suffix": "T",
+          "label": "CO₂ évitées"
+        }
+      }
+    },
+    "press": {
+      "title": "Ils parlent de nous",
+      "outlets": ["Les Échos", "BFM Business", "L'Usine Digitale", "GreenBiz", "01net", "ZDNet"]
+    },
+    "finalCTA": {
+      "title": "Prêt à unifier votre ITAD ?",
+      "subtitle": "Demandez un audit gratuit et découvrez comment GreenTechCycle peut transformer votre gestion des actifs IT.",
+      "cta": "Demander un audit gratuit"
+    }
+  },
+  "Services": {
+    "hero": {
+      "title": "Nos services ITAD",
+      "subtitle": "6 services intégrés pour une gestion complète de vos actifs IT en fin de vie"
+    },
+    "items": [
+      {
+        "id": "effacement",
+        "title": "Effacement certifié",
+        "subtitle": "NIST 800-88 • DoD 5220.22-M",
+        "engagement": "Certificat sous 24h",
+        "description": "Effacement logiciel et destruction physique certifiés, conformes aux normes les plus strictes. Chaque opération génère un certificat individuel avec hash de vérification.",
+        "features": [
+          "Effacement 3 passes selon NIST 800-88",
+          "Destruction physique certifiée (broyage, démagnétisation)",
+          "Certificat individuel par actif avec hash SHA-256",
+          "Traçabilité complète de la chaîne d'effacement",
+          "Support de tous les types de médias (HDD, SSD, bandes)",
+          "Rapport consolidé pour les auditeurs"
+        ]
+      },
+      {
+        "id": "collecte",
+        "title": "Collecte sécurisée sur site",
+        "subtitle": "Logistique certifiée",
+        "engagement": "Intervention sous 48h",
+        "description": "Collecte sécurisée directement dans vos locaux avec chain of custody ininterrompue. Véhicules tracés GPS et personnel habilité.",
+        "features": [
+          "Intervention sur site sous 48h partout en France",
+          "Véhicules sécurisés avec tracking GPS temps réel",
+          "Personnel habilité et assermenté",
+          "Scellés numérotés et PV de prise en charge",
+          "Conditionnement anti-choc et antistatique",
+          "Assurance tous risques transport"
+        ]
+      },
+      {
+        "id": "reporting",
+        "title": "Reporting ESG & CSRD",
+        "subtitle": "Conforme ESRS E5",
+        "engagement": "Export automatique",
+        "description": "Génération automatique de rapports conformes aux exigences CSRD/ESRS. Données prêtes pour intégration dans votre rapport extra-financier.",
+        "features": [
+          "Rapports conformes ESRS E5 (économie circulaire)",
+          "Export PDF, Word et Excel par rôle",
+          "Données carbone scope 1, 2 et 3",
+          "Indicateurs CSRD pré-calculés",
+          "Historique et comparaison N-1",
+          "API d'export vers vos outils de reporting"
+        ]
+      },
+      {
+        "id": "carbone",
+        "title": "Bilan carbone IT",
+        "subtitle": "Méthodologie Boavizta • ADEME",
+        "engagement": "Calcul automatique",
+        "description": "Calcul automatique de l'empreinte carbone de votre parc IT en fin de vie. Méthodologie certifiée basée sur les référentiels Boavizta et ADEME.",
+        "features": [
+          "Calcul automatique via API Boavizta",
+          "Scopes 1, 2 et 3 du GHG Protocol",
+          "Émissions évitées par le réemploi",
+          "Facteurs d'émission ADEME actualisés",
+          "Dashboard temps réel des métriques carbone",
+          "Export pour bilan GES réglementaire"
+        ]
+      },
+      {
+        "id": "blockchain",
+        "title": "Traçabilité blockchain",
+        "subtitle": "Chain of custody certifiée",
+        "engagement": "Preuve immuable",
+        "description": "Chaque étape du cycle de vie de vos actifs est enregistrée sur blockchain, garantissant une traçabilité inaltérable et vérifiable par des tiers.",
+        "features": [
+          "Enregistrement immuable de chaque étape",
+          "Chain of custody bout en bout",
+          "Vérification par QR code pour les auditeurs",
+          "Horodatage certifié eIDAS",
+          "Preuve de conformité RGPD",
+          "Dashboard de suivi temps réel"
+        ]
+      },
+      {
+        "id": "wakibox",
+        "title": "WakiBox",
+        "subtitle": "Bornes IoT de collecte intelligente",
+        "engagement": "Monitoring temps réel",
+        "description": "Bornes de collecte connectées installées dans vos locaux. Détection automatique des dépôts, pesée intégrée et alertes de remplissage.",
+        "features": [
+          "Borne de collecte connectée plug-and-play",
+          "Détection automatique des dépôts par RFID",
+          "Pesée intégrée et classification automatique",
+          "Alertes de remplissage en temps réel",
+          "Dashboard de suivi par site",
+          "Gamification pour encourager le réemploi"
+        ]
+      }
+    ]
+  },
+  "Process": {
+    "hero": {
+      "title": "Processus ITAD",
+      "subtitle": "Un workflow en 7 étapes pour une gestion maîtrisée de bout en bout"
+    },
+    "steps": [
+      {
+        "number": "01",
+        "title": "Audit de parc",
+        "description": "Inventaire exhaustif de vos actifs IT : type, âge, état, données sensibles. Évaluation des risques et recommandations personnalisées."
+      },
+      {
+        "number": "02",
+        "title": "Collecte sécurisée",
+        "description": "Enlèvement sur site avec personnel habilité. Scellés numérotés, PV de prise en charge et tracking GPS du transport."
+      },
+      {
+        "number": "03",
+        "title": "Transport sécurisé",
+        "description": "Véhicules dédiés avec géolocalisation temps réel. Conditionnement anti-choc et assurance tous risques."
+      },
+      {
+        "number": "04",
+        "title": "Effacement certifié",
+        "description": "Effacement logiciel NIST 800-88 ou destruction physique. Certificat individuel par actif avec hash de vérification."
+      },
+      {
+        "number": "05",
+        "title": "Reconditionnement",
+        "description": "Diagnostic complet, remise à niveau et tests de conformité. Les équipements éligibles sont préparés pour une seconde vie."
+      },
+      {
+        "number": "06",
+        "title": "Revalorisation",
+        "description": "Revente sur le marché du reconditionné, don associatif ou recyclage certifié. Maximisation de la valeur résiduelle."
+      },
+      {
+        "number": "07",
+        "title": "Certificat & Reporting",
+        "description": "Certificats d'effacement, bordereau de suivi des déchets, bilan carbone et rapport CSRD. Tout est documenté et auditable."
+      }
+    ]
+  },
+  "Platform": {
+    "hero": {
+      "title": "La plateforme GreenTechCycle",
+      "subtitle": "15 modules intégrés pour piloter votre ITAD de bout en bout"
+    },
+    "modules": {
+      "title": "Modules",
+      "items": [
+        "Inventaire & audit de parc",
+        "Planification des collectes",
+        "Suivi logistique temps réel",
+        "Effacement & certificats",
+        "Reconditionnement & tests",
+        "Valorisation & revente",
+        "Bilan carbone automatique",
+        "Reporting CSRD/ESG",
+        "Traçabilité blockchain",
+        "Gestion documentaire",
+        "Facturation & avoir",
+        "Gouvernance & RBAC",
+        "API & intégrations",
+        "Dashboard & KPIs",
+        "App mobile PWA"
+      ]
+    },
+    "governance": {
+      "title": "Gouvernance & sécurité",
+      "subtitle": "Contrôle d'accès granulaire et validation multi-niveaux",
+      "features": [
+        "Principe des 4 yeux pour les opérations critiques",
+        "RBAC avec 5 rôles : Admin, Manager, Opérateur, Auditeur, Lecteur",
+        "Journalisation complète de toutes les actions",
+        "SSO SAML/OIDC intégré",
+        "Authentification MFA obligatoire"
+      ]
+    },
+    "reporting": {
+      "title": "Reporting multi-format",
+      "subtitle": "Des rapports adaptés à chaque rôle",
+      "formats": [
+        "PDF synthétique pour la direction",
+        "Word détaillé pour les auditeurs",
+        "Excel brut pour les analystes",
+        "API JSON pour les systèmes tiers"
+      ]
+    },
+    "mobile": {
+      "title": "App mobile PWA",
+      "subtitle": "Accédez à la plateforme depuis le terrain",
+      "features": [
+        "Scan QR code des actifs",
+        "Photos et commentaires terrain",
+        "Validation des opérations en mobilité",
+        "Mode hors-ligne avec synchronisation",
+        "Notifications push temps réel"
+      ]
+    }
+  },
+  "WhyGTC": {
+    "hero": {
+      "title": "Pourquoi GreenTechCycle ?",
+      "subtitle": "Passez de 4 outils fragmentés à 1 plateforme unifiée"
+    },
+    "before": {
+      "title": "Avant : 4 outils fragmentés",
+      "items": [
+        "ITAM (gestion d'actifs)",
+        "Outil d'effacement séparé",
+        "Tableur carbone manuel",
+        "Conformité sur documents Word"
+      ]
+    },
+    "after": {
+      "title": "Après : 1 plateforme GTC",
+      "items": [
+        "Inventaire + effacement + carbone + conformité",
+        "Traçabilité blockchain bout en bout",
+        "Reporting CSRD automatisé",
+        "Un seul dashboard pour tous les rôles"
+      ]
+    },
+    "benefits": {
+      "title": "Les bénéfices concrets",
+      "items": [
+        {
+          "title": "Gain de temps",
+          "desc": "Réduction de 60% du temps administratif ITAD"
+        },
+        {
+          "title": "Conformité garantie",
+          "desc": "100% conforme CSRD, RGPD, NIS2 et DORA"
+        },
+        {
+          "title": "Visibilité totale",
+          "desc": "Traçabilité de chaque actif de l'audit au certificat"
+        },
+        {
+          "title": "ROI mesurable",
+          "desc": "Valorisation des actifs et réduction des coûts de 40%"
+        }
+      ]
+    }
+  },
+  "ClientJourney": {
+    "hero": {
+      "title": "Parcours client",
+      "subtitle": "De l'audit initial au reporting continu, nous vous accompagnons à chaque étape"
+    },
+    "steps": [
+      {
+        "number": "1",
+        "title": "Audit gratuit",
+        "description": "Diagnostic complet de votre parc IT et de vos processus ITAD actuels. Identification des risques et opportunités d'optimisation.",
+        "duration": "1 à 2 semaines"
+      },
+      {
+        "number": "2",
+        "title": "Proposition sur-mesure",
+        "description": "Plan d'action personnalisé avec chiffrage détaillé, calendrier de déploiement et estimation du ROI.",
+        "duration": "48h après audit"
+      },
+      {
+        "number": "3",
+        "title": "Déploiement plateforme",
+        "description": "Configuration de la plateforme, intégration avec vos outils existants (ServiceNow, GLPI, etc.) et formation des équipes.",
+        "duration": "2 à 4 semaines"
+      },
+      {
+        "number": "4",
+        "title": "Interventions terrain",
+        "description": "Collectes sécurisées, effacement certifié et reconditionnement. Suivi en temps réel depuis la plateforme.",
+        "duration": "En continu"
+      },
+      {
+        "number": "5",
+        "title": "Reporting continu",
+        "description": "Rapports CSRD automatisés, bilan carbone mis à jour et certificats disponibles en temps réel sur la plateforme.",
+        "duration": "En continu"
+      }
+    ]
+  },
+  "Ecosystem": {
+    "hero": {
+      "title": "Écosystème & intégrations",
+      "subtitle": "GreenTechCycle s'intègre nativement avec vos outils existants"
+    },
+    "integrations": {
+      "title": "Intégrations natives",
+      "items": [
+        {
+          "name": "ServiceNow",
+          "desc": "Synchronisation bi-directionnelle des actifs IT et tickets ITAD"
+        },
+        {
+          "name": "GLPI",
+          "desc": "Import automatique de l'inventaire et mise à jour du statut"
+        },
+        {
+          "name": "Microsoft Intune",
+          "desc": "Détection des actifs à décommissionner et wipe distant"
+        },
+        {
+          "name": "JAMF",
+          "desc": "Gestion du cycle de vie des appareils Apple"
+        },
+        {
+          "name": "SAP",
+          "desc": "Intégration comptable et suivi des immobilisations"
+        }
+      ]
+    },
+    "api": {
+      "title": "API ouverte",
+      "subtitle": "REST API documentée pour des intégrations sur-mesure",
+      "features": [
+        "API REST v2 avec documentation OpenAPI",
+        "Webhooks pour événements temps réel",
+        "SDK Python et JavaScript disponibles",
+        "Rate limiting et authentification OAuth2",
+        "Sandbox de test disponible"
+      ]
+    },
+    "sso": {
+      "title": "Authentification",
+      "subtitle": "SSO entreprise et gestion d'identité",
+      "features": [
+        "SAML 2.0 (Azure AD, Okta, OneLogin)",
+        "OIDC (Google Workspace, Keycloak)",
+        "SCIM pour provisioning automatique",
+        "MFA obligatoire pour les opérations sensibles"
+      ]
+    }
+  },
+  "Regulation": {
+    "hero": {
+      "title": "Réglementation",
+      "subtitle": "Comprendre les obligations qui impactent votre ITAD"
+    },
+    "timeline": [
+      {
+        "name": "CSRD",
+        "date": "En vigueur",
+        "status": "active",
+        "description": "Corporate Sustainability Reporting Directive — Obligation de reporting extra-financier incluant la gestion des déchets électroniques et l'économie circulaire.",
+        "itadImpact": "Traçabilité obligatoire des actifs IT en fin de vie, reporting des émissions scope 3 liées au matériel.",
+        "sanctions": "Sanctions financières et responsabilité des dirigeants en cas de non-conformité."
+      },
+      {
+        "name": "NIS2",
+        "date": "2024",
+        "status": "active",
+        "description": "Directive sur la sécurité des réseaux et systèmes d'information — Extension du périmètre aux ETI et renforcement des obligations de sécurité.",
+        "itadImpact": "Effacement certifié obligatoire pour les entités essentielles et importantes. Notification des incidents liés aux données.",
+        "sanctions": "Jusqu'à 10M€ ou 2% du CA mondial pour les entités essentielles."
+      },
+      {
+        "name": "DORA",
+        "date": "2025",
+        "status": "upcoming",
+        "description": "Digital Operational Resilience Act — Résilience opérationnelle numérique pour le secteur financier.",
+        "itadImpact": "Gestion des risques liés aux prestataires ITAD. Audit et tests réguliers des processus de destruction.",
+        "sanctions": "Sanctions administratives pouvant atteindre 1% du CA quotidien moyen."
+      },
+      {
+        "name": "AI Act",
+        "date": "2026",
+        "status": "upcoming",
+        "description": "Règlement européen sur l'intelligence artificielle — Encadrement des systèmes d'IA selon leur niveau de risque.",
+        "itadImpact": "Gestion du cycle de vie des systèmes d'IA embarqués dans le matériel IT. Traçabilité des données d'entraînement.",
+        "sanctions": "Jusqu'à 35M€ ou 7% du CA mondial pour les violations les plus graves."
+      }
+    ]
+  },
+  "Methodology": {
+    "hero": {
+      "title": "Méthodologie",
+      "subtitle": "Nos référentiels et méthodes pour une ITAD d'excellence"
+    },
+    "carbon": {
+      "title": "Méthodologie carbone",
+      "subtitle": "Calcul d'impact environnemental certifié",
+      "description": "Notre calcul d'empreinte carbone s'appuie sur les référentiels Boavizta et ADEME, couvrant les scopes 1, 2 et 3 du GHG Protocol.",
+      "items": [
+        "API Boavizta pour les facteurs d'émission des équipements IT",
+        "Base carbone ADEME pour les facteurs d'émission transport et énergie",
+        "Scope 1 : émissions directes (transport de collecte)",
+        "Scope 2 : émissions indirectes (énergie des centres de traitement)",
+        "Scope 3 : émissions évitées (réemploi vs fabrication neuve)",
+        "Méthodologie auditée annuellement par un tiers indépendant"
+      ]
+    },
+    "erasure": {
+      "title": "Méthodologie d'effacement",
+      "subtitle": "Conformité NIST 800-88 rev. 1",
+      "levels": [
+        {
+          "name": "Clear",
+          "desc": "Écrasement simple — pour données non sensibles"
+        },
+        {
+          "name": "Purge",
+          "desc": "Écrasement multi-passes — pour données confidentielles"
+        },
+        {
+          "name": "Destroy",
+          "desc": "Destruction physique — pour données classifiées"
+        }
+      ],
+      "description": "Chaque niveau d'effacement est appliqué selon la classification de sensibilité des données, conformément aux recommandations NIST 800-88 révision 1."
+    },
+    "valuation": {
+      "title": "Méthodologie de valorisation",
+      "subtitle": "Grille de cotation transparente",
+      "criteria": [
+        "État cosmétique (A/B/C/D)",
+        "Performance technique (benchmarks)",
+        "Compatibilité logicielle (OS supporté)",
+        "Autonomie batterie (pour portables)",
+        "Ancienneté du modèle",
+        "Demande marché du reconditionné"
+      ],
+      "description": "Chaque actif est évalué selon une grille de cotation objective et transparente, permettant de maximiser la valeur résiduelle."
+    }
+  },
+  "Demo": {
+    "hero": {
+      "title": "Demander une démo",
+      "subtitle": "Découvrez la plateforme GreenTechCycle en action"
+    },
+    "video": {
+      "title": "Vidéo de présentation",
+      "placeholder": "Vidéo bientôt disponible"
+    },
+    "screenshots": {
+      "title": "Aperçu de la plateforme",
+      "items": [
+        "Dashboard principal",
+        "Module d'effacement",
+        "Reporting CSRD",
+        "Traçabilité blockchain",
+        "Bilan carbone"
+      ]
+    },
+    "form": {
+      "title": "Planifier votre démo",
+      "subtitle": "Remplissez le formulaire et notre équipe vous contactera sous 24h",
+      "fields": {
+        "name": "Nom complet",
+        "company": "Entreprise",
+        "email": "Email professionnel",
+        "phone": "Téléphone",
+        "equipment": "Nombre d'équipements IT",
+        "message": "Message (optionnel)"
+      },
+      "equipmentOptions": [
+        "Moins de 100",
+        "100 à 500",
+        "500 à 2 000",
+        "2 000 à 10 000",
+        "Plus de 10 000"
+      ],
+      "submit": "Demander ma démo",
+      "success": "Merci ! Notre équipe vous contactera sous 24h."
+    }
+  },
+  "Security": {
+    "hero": {
+      "title": "Sécurité",
+      "subtitle": "Une approche sécurité de bout en bout pour protéger vos données"
+    },
+    "levels": {
+      "title": "5 niveaux d'effacement",
+      "items": [
+        {
+          "level": "1",
+          "name": "Suppression standard",
+          "desc": "Suppression des fichiers et formatage rapide. Adapté aux données non sensibles internes.",
+          "norm": "Aucune norme spécifique"
+        },
+        {
+          "level": "2",
+          "name": "Écrasement simple",
+          "desc": "Une passe d'écrasement avec vérification. Pour données à faible sensibilité.",
+          "norm": "NIST 800-88 Clear"
+        },
+        {
+          "level": "3",
+          "name": "Écrasement multi-passes",
+          "desc": "3 passes d'écrasement avec patterns alternés et vérification complète.",
+          "norm": "NIST 800-88 Purge / DoD 5220.22-M"
+        },
+        {
+          "level": "4",
+          "name": "Effacement cryptographique",
+          "desc": "Destruction des clés de chiffrement rendant les données irrécupérables. Idéal pour SSD.",
+          "norm": "NIST 800-88 Purge (crypto)"
+        },
+        {
+          "level": "5",
+          "name": "Destruction physique",
+          "desc": "Broyage, démagnétisation ou incinération certifiée. Pour données classifiées défense.",
+          "norm": "NIST 800-88 Destroy"
+        }
+      ]
+    },
+    "chainOfCustody": {
+      "title": "Chain of custody",
+      "subtitle": "Traçabilité ininterrompue de la collecte au certificat",
+      "steps": [
+        "Prise en charge avec PV signé",
+        "Scellé numéroté apposé",
+        "Transport GPS tracé",
+        "Réception et vérification des scellés",
+        "Traitement avec vidéo-surveillance",
+        "Certificat d'effacement émis",
+        "Enregistrement blockchain"
+      ]
+    },
+    "certifications": {
+      "title": "Nos certifications",
+      "items": [
+        "R2v3 (Responsible Recycling)",
+        "ISO 14001 (Management environnemental)",
+        "ISO 27001 (Sécurité de l'information)",
+        "e-Stewards",
+        "Qualiopi (formation)"
+      ]
+    },
+    "architecture": {
+      "title": "Architecture de sécurité GTC",
+      "items": [
+        "Hébergement EU (France) — OVHcloud SecNumCloud",
+        "Chiffrement AES-256 au repos et TLS 1.3 en transit",
+        "WAF et protection DDoS",
+        "Sauvegardes chiffrées multi-sites",
+        "Tests d'intrusion annuels par cabinet indépendant",
+        "SOC 2 Type II en cours d'obtention"
+      ]
+    }
+  },
+  "Impact": {
+    "hero": {
+      "title": "Impact environnemental",
+      "subtitle": "Mesurez et réduisez l'empreinte carbone de votre parc IT"
+    },
+    "metrics": {
+      "title": "Nos métriques clés",
+      "items": [
+        {
+          "value": "45T",
+          "label": "CO₂ évitées en 2025"
+        },
+        {
+          "value": "72%",
+          "label": "taux de réemploi"
+        },
+        {
+          "value": "98%",
+          "label": "taux de valorisation"
+        },
+        {
+          "value": "0%",
+          "label": "mise en décharge"
+        }
+      ]
+    },
+    "calculator": {
+      "title": "Calculateur d'impact",
+      "subtitle": "Estimez l'impact environnemental de votre décommissionnement IT",
+      "equipmentLabel": "Nombre d'équipements",
+      "equipmentPlaceholder": "Ex : 500",
+      "results": {
+        "co2": "Tonnes CO₂ évitées",
+        "reuse": "Taux de réemploi estimé",
+        "value": "Valeur résiduelle estimée"
+      },
+      "calculate": "Calculer mon impact",
+      "note": "Estimation basée sur nos données moyennes. Contactez-nous pour un calcul personnalisé."
+    },
+    "csrd": {
+      "title": "Reporting CSRD",
+      "subtitle": "Des données prêtes pour votre rapport extra-financier",
+      "features": [
+        "Indicateurs ESRS E5 pré-calculés",
+        "Historique sur 3 ans minimum",
+        "Export multi-format (PDF, Excel, API)",
+        "Comparaison avec les benchmarks sectoriels",
+        "Validation par notre équipe ESG"
+      ]
+    }
+  },
+  "Contact": {
+    "hero": {
+      "title": "Contactez-nous",
+      "subtitle": "Notre équipe vous répond sous 24h"
+    },
+    "form": {
+      "name": "Nom complet",
+      "email": "Email professionnel",
+      "company": "Entreprise",
+      "phone": "Téléphone",
+      "type": "Objet",
+      "typeOptions": {
+        "quote": "Demande de devis",
+        "info": "Demande d'information",
+        "partnership": "Partenariat",
+        "other": "Autre"
+      },
+      "message": "Votre message",
+      "submit": "Envoyer le message",
+      "success": "Message envoyé ! Nous vous répondrons sous 24h."
+    },
+    "info": {
+      "address": "42 rue de la République\n69002 Lyon, France",
+      "phone": "+33 1 86 65 22 10",
+      "email": "contact@greentechcycle.fr"
+    },
+    "crisp": {
+      "placeholder": "Chat en direct — Configuration Crisp requise"
+    }
+  },
+  "FAQ": {
+    "hero": {
+      "title": "Questions fréquentes",
+      "subtitle": "Réponses aux questions les plus courantes, organisées par profil"
+    },
+    "tabs": {
+      "dsi": "DSI / RSSI",
+      "rse": "RSE",
+      "daf": "DAF",
+      "compliance": "Compliance"
+    },
+    "dsi": [
+      {
+        "q": "Quelles normes d'effacement utilisez-vous ?",
+        "a": "Nous appliquons les normes NIST 800-88 rev.1 (Clear, Purge, Destroy) et DoD 5220.22-M. Chaque opération génère un certificat individuel avec hash SHA-256."
+      },
+      {
+        "q": "Comment garantissez-vous la chaîne de traçabilité ?",
+        "a": "Chaque actif est tracé de bout en bout : PV de prise en charge, scellés numérotés, transport GPS, vidéo-surveillance du traitement et enregistrement blockchain."
+      },
+      {
+        "q": "La plateforme est-elle compatible avec notre ITSM ?",
+        "a": "Oui, nous proposons des intégrations natives avec ServiceNow, GLPI, Intune et JAMF. Notre API REST permet également des intégrations sur-mesure."
+      },
+      {
+        "q": "Où sont hébergées nos données ?",
+        "a": "Toutes les données sont hébergées en France chez OVHcloud (qualification SecNumCloud). Chiffrement AES-256 au repos et TLS 1.3 en transit."
+      },
+      {
+        "q": "Quel est le SLA de la plateforme ?",
+        "a": "Nous garantissons un SLA de 99,9% de disponibilité avec support prioritaire 24/7 pour les incidents critiques."
+      },
+      {
+        "q": "Comment gérez-vous les équipements sous garantie constructeur ?",
+        "a": "Nous vérifions systématiquement le statut de garantie et proposons un retour constructeur quand c'est pertinent, avant tout traitement ITAD."
+      },
+      {
+        "q": "Pouvez-vous intervenir sur plusieurs sites ?",
+        "a": "Oui, nous intervenons sur l'ensemble du territoire français et dans 12 pays européens. La plateforme gère le multi-site nativement."
+      },
+      {
+        "q": "Comment fonctionne le RBAC de la plateforme ?",
+        "a": "5 rôles prédéfinis (Admin, Manager, Opérateur, Auditeur, Lecteur) avec principe des 4 yeux pour les opérations sensibles. Personnalisation possible."
+      }
+    ],
+    "rse": [
+      {
+        "q": "Comment calculez-vous le bilan carbone ?",
+        "a": "Via l'API Boavizta et les facteurs d'émission ADEME. Nous couvrons les scopes 1 (transport), 2 (énergie) et 3 (émissions évitées par le réemploi)."
+      },
+      {
+        "q": "Les données sont-elles compatibles CSRD ?",
+        "a": "Oui, nos rapports sont conformes aux normes ESRS, notamment E5 (économie circulaire). Export automatique dans les formats requis."
+      },
+      {
+        "q": "Quel est le taux de réemploi moyen ?",
+        "a": "En moyenne, 72% des équipements collectés sont reconditionnés et réemployés. Le reste est recyclé dans des filières certifiées."
+      },
+      {
+        "q": "Proposez-vous des dons associatifs ?",
+        "a": "Oui, nous travaillons avec un réseau d'associations partenaires. Les équipements reconditionnés peuvent être fléchés vers le don avec reçu fiscal."
+      },
+      {
+        "q": "Comment mesurez-vous les émissions évitées ?",
+        "a": "En comparant l'impact carbone du réemploi vs la fabrication d'un équipement neuf, selon la méthodologie Boavizta certifiée."
+      },
+      {
+        "q": "Fournissez-vous un rapport d'impact annuel ?",
+        "a": "Oui, chaque client reçoit un rapport d'impact annuel détaillé avec métriques carbone, taux de réemploi, et contribution aux ODD."
+      }
+    ],
+    "daf": [
+      {
+        "q": "Quel est le modèle de tarification ?",
+        "a": "Tarification à l'actif traité avec dégressivité par volume. Pas de frais de setup ni d'abonnement caché. Devis personnalisé sous 48h."
+      },
+      {
+        "q": "Y a-t-il une valeur de reprise des équipements ?",
+        "a": "Oui, les équipements reconditionnables génèrent une valeur de reprise qui vient en déduction de la facture. En moyenne, 15 à 30% de la valeur résiduelle."
+      },
+      {
+        "q": "Comment gérez-vous la facturation ?",
+        "a": "Facturation mensuelle détaillée par site et par type d'opération. Export comptable compatible SAP, Sage et Cegid."
+      },
+      {
+        "q": "Quel est le ROI moyen constaté ?",
+        "a": "Nos clients constatent un ROI moyen de 200% sur 12 mois, grâce à la valorisation des actifs et la réduction des coûts opérationnels."
+      },
+      {
+        "q": "Proposez-vous un engagement contractuel ?",
+        "a": "Contrats flexibles de 12 à 36 mois avec clause de sortie. Possibilité de commencer par un pilote de 3 mois sans engagement."
+      }
+    ],
+    "compliance": [
+      {
+        "q": "Êtes-vous conforme RGPD ?",
+        "a": "Oui, en tant que sous-traitant au sens du RGPD. DPA disponible, registre des traitements à jour, DPO désigné et certifications à l'appui."
+      },
+      {
+        "q": "Comment prouvez-vous la destruction des données ?",
+        "a": "Certificat d'effacement individuel par actif avec hash SHA-256, horodatage eIDAS et enregistrement blockchain pour preuve irréfutable."
+      },
+      {
+        "q": "Êtes-vous auditable ?",
+        "a": "Oui, nous facilitons les audits : accès plateforme en lecture seule pour les auditeurs, rapports pré-formatés et accompagnement dédié."
+      },
+      {
+        "q": "Quid de la conformité NIS2 ?",
+        "a": "Notre processus d'effacement certifié répond aux exigences NIS2 pour les entités essentielles et importantes. Documentation de conformité disponible."
+      },
+      {
+        "q": "Comment gérez-vous les transferts de données hors UE ?",
+        "a": "Aucun transfert hors UE. Hébergement France, sous-traitants européens exclusivement, conformité RGPD garantie contractuellement."
+      }
+    ]
+  },
+  "Careers": {
+    "hero": {
+      "title": "Rejoignez-nous",
+      "subtitle": "Participez à la révolution de l'ITAD durable"
+    },
+    "mission": {
+      "title": "Notre mission",
+      "description": "Chez GreenTechCycle, nous croyons qu'une gestion responsable des actifs IT est possible sans compromis sur la sécurité ni la performance. Nous construisons la plateforme qui rend l'ITAD simple, traçable et vertueuse."
+    },
+    "values": {
+      "title": "Nos valeurs",
+      "items": [
+        {
+          "title": "Impact",
+          "desc": "Chaque ligne de code, chaque intervention terrain a un impact mesurable sur l'environnement."
+        },
+        {
+          "title": "Transparence",
+          "desc": "Traçabilité totale, données ouvertes, communication sincère avec nos clients et entre nous."
+        },
+        {
+          "title": "Excellence",
+          "desc": "Certifications, normes, audits : nous visons l'excellence opérationnelle au quotidien."
+        },
+        {
+          "title": "Innovation",
+          "desc": "Blockchain, IoT, IA : nous repoussons les limites de ce que l'ITAD peut être."
+        }
+      ]
+    },
+    "spontaneous": {
+      "title": "Candidature spontanée",
+      "description": "Aucune offre ne correspond à votre profil ? Envoyez-nous votre candidature spontanée.",
+      "cta": "Envoyer ma candidature",
+      "email": "recrutement@greentechcycle.fr"
+    }
+  },
+  "Legal": {
+    "mentions": {
+      "title": "Mentions légales",
+      "content": {
+        "editor": {
+          "title": "Éditeur du site",
+          "text": "GreenTechCycle SAS au capital de 50 000 €\nSIREN : 912 345 678\nRCS Lyon B 912 345 678\nSiège social : 42 rue de la République, 69002 Lyon, France\nDirecteur de la publication : Jean-Marc Duval, Président\nTéléphone : +33 1 86 65 22 10\nEmail : contact@greentechcycle.fr"
+        },
+        "hosting": {
+          "title": "Hébergement",
+          "text": "OVHcloud SAS\n2 rue Kellermann, 59100 Roubaix, France\nSIREN : 424 761 419\nTéléphone : 1007\nSite web : www.ovhcloud.com"
+        },
+        "ip": {
+          "title": "Propriété intellectuelle",
+          "text": "L'ensemble du contenu de ce site (textes, images, vidéos, logos, marques) est protégé par le droit de la propriété intellectuelle. Toute reproduction, représentation ou diffusion, totale ou partielle, sans autorisation préalable écrite de GreenTechCycle est interdite."
+        },
+        "liability": {
+          "title": "Responsabilité",
+          "text": "GreenTechCycle s'efforce d'assurer l'exactitude des informations publiées sur ce site mais ne saurait être tenue responsable des erreurs, omissions ou résultats obtenus suite à l'utilisation de ces informations."
+        }
+      }
+    },
+    "cgu": {
+      "title": "Conditions Générales d'Utilisation",
+      "content": {
+        "object": {
+          "title": "Article 1 — Objet",
+          "text": "Les présentes Conditions Générales d'Utilisation (CGU) ont pour objet de définir les modalités d'accès et d'utilisation du site web greentechcycle.fr et de la plateforme GreenTechCycle."
+        },
+        "access": {
+          "title": "Article 2 — Accès au site",
+          "text": "Le site est accessible gratuitement à tout utilisateur disposant d'un accès Internet. L'accès à la plateforme GreenTechCycle nécessite la création d'un compte utilisateur soumis à validation."
+        },
+        "account": {
+          "title": "Article 3 — Compte utilisateur",
+          "text": "L'utilisateur s'engage à fournir des informations exactes lors de la création de son compte. Il est responsable de la confidentialité de ses identifiants et de toute activité effectuée depuis son compte."
+        },
+        "usage": {
+          "title": "Article 4 — Utilisation du service",
+          "text": "L'utilisateur s'engage à utiliser la plateforme conformément à sa destination et aux lois en vigueur. Toute utilisation abusive, frauduleuse ou contraire aux bonnes pratiques pourra entraîner la suspension du compte."
+        },
+        "ip": {
+          "title": "Article 5 — Propriété intellectuelle",
+          "text": "L'ensemble des éléments de la plateforme (code, design, contenus, marques) sont la propriété exclusive de GreenTechCycle. L'utilisateur dispose d'un droit d'utilisation limité à l'usage de la plateforme dans le cadre de son contrat."
+        },
+        "liability": {
+          "title": "Article 6 — Responsabilité",
+          "text": "GreenTechCycle met en œuvre tous les moyens raisonnables pour assurer la disponibilité et la sécurité de la plateforme. La responsabilité de GreenTechCycle est limitée aux dommages directs et prévisibles."
+        },
+        "termination": {
+          "title": "Article 7 — Résiliation",
+          "text": "GreenTechCycle se réserve le droit de suspendre ou résilier l'accès à la plateforme en cas de violation des présentes CGU, après notification préalable sauf en cas d'urgence."
+        },
+        "law": {
+          "title": "Article 8 — Droit applicable",
+          "text": "Les présentes CGU sont régies par le droit français. Tout litige sera soumis à la compétence exclusive des tribunaux de Lyon."
+        }
+      }
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "content": {
+        "intro": {
+          "title": "Introduction",
+          "text": "GreenTechCycle SAS (ci-après « GreenTechCycle ») s'engage à protéger la vie privée des utilisateurs de son site web et de sa plateforme. La présente politique décrit les données personnelles collectées et leur traitement."
+        },
+        "controller": {
+          "title": "Responsable du traitement",
+          "text": "GreenTechCycle SAS\n42 rue de la République, 69002 Lyon\nDPO : dpo@greentechcycle.fr"
+        },
+        "data": {
+          "title": "Données collectées",
+          "text": "Nous collectons les données suivantes :\n• Données d'identification : nom, prénom, email, téléphone\n• Données professionnelles : entreprise, fonction, secteur\n• Données de connexion : adresse IP, logs d'accès, cookies\n• Données d'utilisation : actions sur la plateforme, préférences"
+        },
+        "purpose": {
+          "title": "Finalités du traitement",
+          "text": "Vos données sont traitées pour :\n• La fourniture et l'amélioration de nos services\n• La gestion de la relation client\n• L'envoi de communications commerciales (avec consentement)\n• Le respect de nos obligations légales\n• La sécurité de la plateforme"
+        },
+        "legal": {
+          "title": "Base légale",
+          "text": "Le traitement de vos données repose sur :\n• L'exécution du contrat (fourniture du service)\n• Le consentement (cookies, newsletter)\n• L'intérêt légitime (sécurité, amélioration du service)\n• L'obligation légale (conservation comptable)"
+        },
+        "retention": {
+          "title": "Durée de conservation",
+          "text": "• Données clients actifs : durée du contrat + 3 ans\n• Prospects : 3 ans après le dernier contact\n• Données de connexion : 12 mois\n• Données comptables : 10 ans"
+        },
+        "rights": {
+          "title": "Vos droits",
+          "text": "Conformément au RGPD, vous disposez des droits suivants :\n• Droit d'accès à vos données\n• Droit de rectification\n• Droit à l'effacement\n• Droit à la portabilité\n• Droit d'opposition\n• Droit à la limitation du traitement\n\nPour exercer vos droits : dpo@greentechcycle.fr"
+        },
+        "cookies": {
+          "title": "Cookies",
+          "text": "Consultez notre politique de cookies dédiée pour plus d'informations sur l'utilisation des cookies."
+        },
+        "transfers": {
+          "title": "Transferts de données",
+          "text": "Aucune donnée n'est transférée hors de l'Union européenne. Nos sous-traitants sont tous situés dans l'UE et soumis à des clauses contractuelles strictes."
+        },
+        "update": {
+          "title": "Mise à jour",
+          "text": "Cette politique peut être mise à jour. La date de dernière mise à jour est indiquée en haut de page. Dernière mise à jour : avril 2026."
+        }
+      }
+    },
+    "cookies": {
+      "title": "Politique de cookies",
+      "content": {
+        "intro": {
+          "title": "Qu'est-ce qu'un cookie ?",
+          "text": "Un cookie est un petit fichier texte déposé sur votre terminal lors de la visite d'un site web. Il permet au site de mémoriser des informations sur votre visite."
+        },
+        "categories": {
+          "title": "Catégories de cookies",
+          "necessary": {
+            "title": "Cookies strictement nécessaires",
+            "text": "Indispensables au fonctionnement du site. Ils ne peuvent pas être désactivés. Exemples : session, préférences de langue, sécurité."
+          },
+          "analytics": {
+            "title": "Cookies analytiques",
+            "text": "Nous permettent de mesurer l'audience du site et d'améliorer son fonctionnement. Outil utilisé : Matomo (hébergé en France)."
+          },
+          "functional": {
+            "title": "Cookies fonctionnels",
+            "text": "Permettent d'améliorer votre expérience (chat en direct Crisp, préférences d'affichage). Désactivables sans impact sur le fonctionnement de base."
+          },
+          "marketing": {
+            "title": "Cookies marketing",
+            "text": "Utilisés pour le suivi publicitaire et le retargeting. Déposés uniquement avec votre consentement explicite."
+          }
+        },
+        "management": {
+          "title": "Gestion de vos préférences",
+          "text": "Vous pouvez modifier vos préférences à tout moment en cliquant sur le lien « Gestion des cookies » en bas de page ou via les paramètres de votre navigateur."
+        },
+        "duration": {
+          "title": "Durée de conservation",
+          "text": "Les cookies sont conservés pour une durée maximale de 13 mois conformément aux recommandations de la CNIL."
+        }
+      }
+    }
+  },
+  "NotFound": {
+    "title": "Page introuvable",
+    "subtitle": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "cta": "Retour à l'accueil",
+    "links": {
+      "services": "Nos services",
+      "contact": "Nous contacter",
+      "demo": "Demander une démo"
+    }
+  },
+  "ExitPopup": {
+    "title": "Recevez notre guide gratuit",
+    "subtitle": "Le guide complet de l'ITAD conforme CSRD — 40 pages de bonnes pratiques.",
+    "placeholder": "Votre email professionnel",
+    "cta": "Recevoir le guide",
+    "dismiss": "Non merci"
+  },
+  "UseCases": {
+    "hero": {
+      "title": "Cas d'usages",
+      "subtitle": "Des scénarios concrets pour comprendre comment GreenTechCycle transforme votre ITAD"
+    },
+    "cases": [
+      {
+        "id": "migration-windows",
+        "tag": "Migration",
+        "title": "La migration Windows : 500 postes dans un entrepôt",
+        "scenario": "Une ETI migre de Windows 10 vers 11. 500 laptops empilés dans un local technique. L'auditeur demande les certificats d'effacement. Le DPO exige la preuve de suppression des données clients. La finance veut récupérer de la valeur résiduelle. Le RSE a besoin du bilan carbone pour le rapport CSRD.",
+        "stakeholders": "DSI, RSSI/DPO, DAF, RSE, Services généraux",
+        "solution": "Un flux unique — intervention créée depuis le module Parc IT, collecte orchestrée, effacement NIST 800-88 poste par poste, certificats générés automatiquement, bilan carbone calculé via l'API Boavizta, valeur résiduelle évaluée par Asset Intelligence. Chaque partie prenante accède à son dashboard dédié."
+      },
+      {
+        "id": "data-breach",
+        "tag": "Sécurité",
+        "title": "Le cauchemar post-data breach",
+        "scenario": "Un ancien laptop d'un cadre refait surface sur un marché d'occasion avec des données stratégiques. Notification CNIL sous 72h. L'assureur demande la preuve d'un processus d'effacement formalisé. Elle n'existe pas.",
+        "stakeholders": "DPO, RSSI, Juridique, Direction Générale",
+        "solution": "Chain of custody tracée de bout en bout dans GTC. Certificats signés eIDAS avec hash SHA-256. Preuve vérifiable en 3 clics pour n'importe quel équipement, même traité il y a 3 ans. L'enregistrement blockchain rend la preuve irréfutable."
+      },
+      {
+        "id": "rapport-csrd",
+        "tag": "CSRD",
+        "title": "Le rapport CSRD : 3 semaines de calvaire",
+        "scenario": "Le RSE doit documenter le scope 3 IT pour le rapport CSRD. Il contacte 4 prestataires ITAD, chacun envoie un Excel dans un format différent. 3 semaines de consolidation manuelle. Résultat approximatif. L'auditeur externe est insatisfait.",
+        "stakeholders": "RSE, Contrôle de gestion, DSI, Auditeur externe",
+        "solution": "Bilan carbone automatique via l'API Boavizta, export CSRD conforme ESRS E5 en 15 minutes. Données auditables, méthodologie documentée, historique sur 3 ans. L'auditeur valide en une session."
+      },
+      {
+        "id": "multi-sites",
+        "tag": "Multi-sites",
+        "title": "Le multi-sites : 15 agences, 15 façons de faire",
+        "scenario": "Un groupe retail avec 15 agences en France. Chaque directeur gère la fin de vie IT à sa manière — certains jettent, d'autres stockent, d'autres donnent sans tracer. Aucune visibilité groupe. Un audit révèle 8 non-conformités RGPD.",
+        "stakeholders": "DSI groupe, 15 directeurs d'agence, Compliance, Achats, Logistique",
+        "solution": "Un processus, une plateforme. Chaque site a son espace, le groupe a la visibilité temps réel. Certificats centralisés, conformité vérifiable par site. L'audit de conformité se fait depuis le dashboard groupe en quelques clics."
+      },
+      {
+        "id": "cfo-valeur",
+        "tag": "Valorisation",
+        "title": "Le CFO qui découvre qu'il jette de l'argent",
+        "scenario": "800K€ d'amortissements IT par an, destruction systématique de tous les équipements. En réalité, 40% auraient pu être reconditionnés et revendus. Des serveurs Dell PowerEdge de 3 ans, des switches Cisco — encore plein de valeur sur le marché du reconditionné.",
+        "stakeholders": "DAF, DSI, Achats, Comptabilité",
+        "solution": "Le module Asset Intelligence évalue la valeur résiduelle automatiquement à partir des références constructeur et de l'état de l'équipement. Recommandation claire : destruction / reconditionnement / revente. La DAF visualise la valeur récupérable avant toute décision."
+      },
+      {
+        "id": "nis2",
+        "tag": "NIS2",
+        "title": "La conformité NIS2 sous pression",
+        "scenario": "NIS2 est en vigueur. Le RSSI doit prouver à la Direction Générale la maîtrise du décommissionnement IT. Il a un fichier Excel et des certificats papier dans un tiroir. L'ANSSI peut auditer à tout moment.",
+        "stakeholders": "RSSI, DSI, Compliance, Direction Générale",
+        "solution": "La plateforme GTC EST la preuve. Inventaire temps réel, décommissionnement tracé étape par étape, certificats signés numériquement, matrice de conformité couvrant 22 normes et réglementations. Audit ANSSI préparé en 10 minutes."
+      },
+      {
+        "id": "wakibox-campus",
+        "tag": "WakiBox",
+        "title": "Déploiement WakiBox sur un campus",
+        "scenario": "Un campus d'entreprise de 3 000 collaborateurs veut faciliter la collecte du matériel IT obsolète. Les équipements traînent dans les tiroirs ou finissent à la poubelle. Aucune traçabilité.",
+        "stakeholders": "DSI, Services généraux, RSE, Collaborateurs",
+        "solution": "Déploiement de 10 bornes WakiBox IoT aux points stratégiques du campus. Collecte intelligente avec détection RFID, monitoring temps réel du remplissage, classification automatique des déchets IT. Gamification pour encourager les dépôts. Le RSE suit l'impact carbone en temps réel."
+      }
+    ],
+    "unified": {
+      "title": "Pourquoi une plateforme tout-en-un ?",
+      "subtitle": "Comparez : 4 outils fragmentés vs 1 plateforme unifiée",
+      "comparison": {
+        "headers": { "criteria": "Critère", "fragmented": "4 outils séparés", "gtc": "GreenTechCycle" },
+        "rows": [
+          { "criteria": "Dashboards", "fragmented": "4 dashboards différents", "gtc": "1 dashboard unifié" },
+          { "criteria": "Authentification", "fragmented": "4 logins, 4 mots de passe", "gtc": "1 SSO unique" },
+          { "criteria": "Reporting", "fragmented": "4 formats incompatibles", "gtc": "1 export multi-format" },
+          { "criteria": "Données", "fragmented": "Aucune interconnexion", "gtc": "Flux intégré bout en bout" },
+          { "criteria": "Coût total", "fragmented": "Snipe-IT + Blancco + Greenly + Vanta", "gtc": "1 licence, tout inclus" },
+          { "criteria": "Temps admin", "fragmented": "Triple saisie, consolidation manuelle", "gtc": "Saisie unique, automatisation" }
+        ]
+      }
+    },
+    "cta": {
+      "title": "Vous vous reconnaissez dans un de ces scénarios ?",
+      "subtitle": "Demandez un audit gratuit et découvrez comment GreenTechCycle peut résoudre votre problème.",
+      "button": "Demander un audit gratuit"
+    }
+  },
+  "Sectors": {
+    "finance": {
+      "hero": {
+        "title": "ITAD pour le secteur financier",
+        "subtitle": "DORA, PCI-DSS, ACPR/AMF — sécurisez le décommissionnement de vos actifs IT critiques"
+      },
+      "context": {
+        "title": "Contexte",
+        "description": "Le secteur financier traite les données les plus sensibles : positions de trading, données clients, informations réglementaires. DORA impose depuis 2025 une résilience opérationnelle numérique, incluant la maîtrise de la chaîne de sous-traitance ITAD. Les régulateurs ACPR et AMF exigent une traçabilité sans faille."
+      },
+      "regulations": {
+        "title": "Réglementations applicables",
+        "items": ["DORA (Digital Operational Resilience Act)", "PCI-DSS v4.0", "ACPR / AMF", "RGPD renforcé", "NIS2 (entités essentielles)", "Bâle III/IV (risque opérationnel)"]
+      },
+      "challenges": {
+        "title": "Défis typiques",
+        "items": [
+          "Données ultra-sensibles : trading, clients, compliance",
+          "Effacement haute sécurité avec validation 4-eyes obligatoire",
+          "Audit trail complet exigé par les régulateurs",
+          "Gestion multi-entités (filiales, succursales)",
+          "Prestataires ITAD soumis aux mêmes exigences DORA",
+          "Délais de rétention réglementaires complexes"
+        ]
+      },
+      "solution": {
+        "title": "Comment GTC répond",
+        "items": [
+          "Effacement certifié NIST 800-88 Purge/Destroy avec double validation",
+          "Principe des 4 yeux intégré pour chaque opération critique",
+          "Chain of custody blockchain de bout en bout",
+          "Matrice de conformité DORA + PCI-DSS pré-configurée",
+          "Reporting auditeur avec export dédié régulateurs",
+          "Qualification prestataire ITAD conforme DORA article 28"
+        ]
+      },
+      "cta": {
+        "title": "Sécurisez votre ITAD financière",
+        "button": "Demander un audit DORA"
+      }
+    },
+    "sante": {
+      "hero": {
+        "title": "ITAD pour le secteur santé",
+        "subtitle": "HDS, données patients, CNIL — protégez les données de santé de bout en bout"
+      },
+      "context": {
+        "title": "Contexte",
+        "description": "Les établissements de santé gèrent des données patients particulièrement sensibles. La certification HDS (Hébergeur de Données de Santé) encadre strictement le traitement de ces données, y compris leur destruction. La CNIL est particulièrement vigilante sur ce secteur, avec des contrôles réguliers et des sanctions renforcées."
+      },
+      "regulations": {
+        "title": "Réglementations applicables",
+        "items": ["Certification HDS", "RGPD — données de santé (art. 9)", "Code de la santé publique", "CNIL — référentiel santé", "NIS2 (secteur santé = entité essentielle)", "ANS — cadre de sécurité SI santé"]
+      },
+      "challenges": {
+        "title": "Défis typiques",
+        "items": [
+          "Données patients : dossiers médicaux, imagerie, résultats de laboratoire",
+          "Destruction physique obligatoire pour certains supports (CD, bandes, disques)",
+          "Traçabilité réglementaire exigée par la CNIL et les ARS",
+          "Équipements médicaux connectés avec données embarquées",
+          "Multi-sites : CHU, cliniques, EHPAD, cabinets",
+          "Budget IT contraint et matériel vieillissant"
+        ]
+      },
+      "solution": {
+        "title": "Comment GTC répond",
+        "items": [
+          "Effacement et destruction physique certifiés pour tous types de supports",
+          "Certificats conformes aux exigences HDS et CNIL",
+          "Traçabilité complète pour les audits ARS et CNIL",
+          "Gestion des équipements médicaux connectés (IoMT)",
+          "Dashboard multi-établissements pour les GHT",
+          "Valorisation des équipements reconditionnables en circuit solidaire"
+        ]
+      },
+      "cta": {
+        "title": "Protégez les données de santé",
+        "button": "Demander un audit HDS"
+      }
+    },
+    "industrie": {
+      "hero": {
+        "title": "ITAD pour l'industrie",
+        "subtitle": "Automates, SCADA, IoT industriel — gérez le cycle de vie de vos équipements IT/OT"
+      },
+      "context": {
+        "title": "Contexte",
+        "description": "L'industrie utilise un mélange d'IT classique et d'OT (Operational Technology) : automates programmables, systèmes SCADA, capteurs IoT. Ces équipements ont des cycles de vie longs (10-20 ans) et contiennent souvent des données de production sensibles. Le scope 3 IT est particulièrement lourd dans l'industrie manufacturière."
+      },
+      "regulations": {
+        "title": "Réglementations applicables",
+        "items": ["NIS2 (secteur industriel = entité importante)", "CSRD / ESRS E5 (économie circulaire)", "WEEE / DEEE", "IEC 62443 (cybersécurité industrielle)", "ISO 14001 (management environnemental)", "Directive machines 2023/1230"]
+      },
+      "challenges": {
+        "title": "Défis typiques",
+        "items": [
+          "Flottes hétérogènes : automates, SCADA, HMI, PC industriels",
+          "Équipements EOSL (End of Service Life) sans support constructeur",
+          "Scope 3 carbone lourd (équipements volumineux, métaux rares)",
+          "Cycles de vie longs : 10 à 20 ans",
+          "Matériel spécialisé difficile à reconditionner",
+          "Données de production et propriété intellectuelle embarquées"
+        ]
+      },
+      "solution": {
+        "title": "Comment GTC répond",
+        "items": [
+          "Inventaire IT/OT unifié avec gestion des automates et SCADA",
+          "Effacement adapté aux supports industriels (mémoires flash, PLC)",
+          "Bilan carbone précis incluant les équipements lourds via Boavizta",
+          "Gestion du cycle EOSL avec alertes et plan de remplacement",
+          "Recyclage certifié des métaux rares et composants spécialisés",
+          "Reporting CSRD/ESRS E5 automatisé pour le scope 3 industriel"
+        ]
+      },
+      "cta": {
+        "title": "Optimisez votre ITAD industrielle",
+        "button": "Demander un audit industriel"
+      }
+    },
+    "public": {
+      "hero": {
+        "title": "ITAD pour le secteur public",
+        "subtitle": "Marchés publics, NF X50-140, RGPD renforcé — transparence et conformité pour les collectivités"
+      },
+      "context": {
+        "title": "Contexte",
+        "description": "Le secteur public (collectivités, administrations, établissements publics) est soumis à des obligations renforcées de transparence, de conformité RGPD et de respect des marchés publics. La norme NF X50-140 encadre spécifiquement la gestion des DEEE. Les cahiers des charges sont stricts et les procédures d'achat encadrées par le code de la commande publique."
+      },
+      "regulations": {
+        "title": "Réglementations applicables",
+        "items": ["RGPD renforcé (responsabilité publique)", "NF X50-140 (gestion des DEEE)", "Directive WEEE / DEEE", "Code de la commande publique", "NIS2 (administrations = entités essentielles)", "Loi AGEC (anti-gaspillage, économie circulaire)"]
+      },
+      "challenges": {
+        "title": "Défis typiques",
+        "items": [
+          "Marchés publics : cahiers des charges stricts, mise en concurrence",
+          "Obligation de transparence et de traçabilité renforcée",
+          "RGPD avec responsabilité accrue des agents publics",
+          "Parc IT hétérogène et vieillissant",
+          "Budget limité, besoin de valorisation maximale",
+          "Obligation de réemploi et dons aux associations (loi AGEC)"
+        ]
+      },
+      "solution": {
+        "title": "Comment GTC répond",
+        "items": [
+          "Plateforme conforme aux exigences des marchés publics",
+          "Reporting transparent et auditable pour la Cour des comptes",
+          "Certificats RGPD conformes aux recommandations CNIL secteur public",
+          "Valorisation maximale avec circuit de réemploi solidaire",
+          "Conformité NF X50-140 et WEEE/DEEE automatisée",
+          "Dashboard adapté aux collectivités avec suivi budgétaire"
+        ]
+      },
+      "cta": {
+        "title": "Structurez votre ITAD publique",
+        "button": "Demander un audit collectivité"
+      }
+    },
+    "common": {
+      "context": "Contexte",
+      "regulations": "Réglementations",
+      "challenges": "Défis",
+      "solution": "Notre réponse",
+      "stakeholders": "Parties prenantes",
+      "scenarioLabel": "Scénario",
+      "solutionLabel": "Avec GreenTechCycle",
+      "otherSectors": "Découvrir les autres secteurs",
+      "backToUseCases": "Voir les cas d'usages"
+    }
+  }
+}

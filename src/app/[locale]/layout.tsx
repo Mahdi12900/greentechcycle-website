@@ -1,0 +1,136 @@
+import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import TrustBar from "@/components/TrustBar";
+import CookieBanner from "@/components/CookieBanner";
+import StickyCTA from "@/components/StickyCTA";
+import ExitPopup from "@/components/ExitPopup";
+import SchemaOrg from "@/components/SchemaOrg";
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export const metadata: Metadata = {
+  title: {
+    default: "GreenTechCycle | Plateforme ITAD unifiée",
+    template: "%s | GreenTechCycle",
+  },
+  description:
+    "GreenTechCycle, plateforme ITAD unifiée. Effacement certifié, traçabilité blockchain, reporting ESG/CSRD et bilan carbone pour une gestion responsable de vos actifs IT.",
+  keywords: [
+    "ITAD",
+    "effacement certifié",
+    "NIST 800-88",
+    "traçabilité blockchain",
+    "reporting CSRD",
+    "bilan carbone IT",
+    "économie circulaire",
+    "reconditionnement IT",
+    "R2v3",
+    "ISO 14001",
+    "RGPD",
+    "France",
+    "recyclage IT",
+    "DEEE",
+    "NIS2",
+    "gestion actifs IT",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "GreenTechCycle",
+    title: "GreenTechCycle | Plateforme ITAD unifiée",
+    description:
+      "Effacement certifié, traçabilité blockchain et reporting CSRD. La plateforme qui unifie votre ITAD.",
+    images: [
+      {
+        url: "/images/hero-dashboard.jpg",
+        width: 1200,
+        height: 630,
+        alt: "GreenTechCycle - Plateforme ITAD unifiée",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "GreenTechCycle | Plateforme ITAD unifiée",
+    description:
+      "Effacement certifié, traçabilité blockchain et reporting CSRD. La plateforme qui unifie votre ITAD.",
+    images: ["/images/hero-dashboard.jpg"],
+  },
+  robots: { index: true, follow: true },
+  metadataBase: new URL("https://greentechcycle.fr"),
+  alternates: {
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
+  },
+};
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const messages = await getMessages();
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "GreenTechCycle",
+    url: "https://greentechcycle.fr",
+    logo: "https://greentechcycle.fr/images/logo.png",
+    description:
+      "Plateforme ITAD unifiée : effacement certifié, traçabilité blockchain, reporting ESG/CSRD et bilan carbone pour la gestion responsable des actifs IT.",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "FR",
+    },
+    sameAs: [],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      availableLanguage: ["French", "English"],
+    },
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "GreenTechCycle",
+    url: "https://greentechcycle.fr",
+    description:
+      "Plateforme ITAD unifiée pour la gestion responsable des actifs IT en fin de vie.",
+    inLanguage: ["fr", "en"],
+    publisher: {
+      "@type": "Organization",
+      name: "GreenTechCycle",
+    },
+  };
+
+  return (
+    <html lang={locale}>
+      <body className="font-sans">
+        <SchemaOrg data={organizationSchema} />
+        <SchemaOrg data={websiteSchema} />
+        <NextIntlClientProvider messages={messages}>
+          <Header />
+          <TrustBar />
+          <main className="pt-[calc(4rem+1.75rem)] lg:pt-[calc(5rem+1.75rem)]">{children}</main>
+          <Footer />
+          <CookieBanner />
+          <StickyCTA />
+          <ExitPopup />
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
+}
