@@ -7,60 +7,137 @@ import type { ServicePageData } from "../ServicePageTemplate";
 
 export default function AuditInventairePage() {
   const locale = useLocale();
-  const tx = (fr: string, en: string) => (locale === "en" ? en : fr);
+  const isEn = locale === "en";
+  const tx = (fr: string, en: string) => (isEn ? en : fr);
 
   const data: ServicePageData = {
-    eyebrow: tx("01 -- Cartographie", "01 -- Mapping"),
-    title: tx("Audit & Inventaire IT", "IT Audit & Inventory"),
+    slug: "audit-inventaire",
+    eyebrow: tx("01 — Cartographie", "01 — Mapping"),
+    title: tx("Audit & inventaire IT", "IT audit & inventory"),
     subtitle: tx(
-      "Cartographie exhaustive de votre parc IT, OT et mobile. Scoring 3 axes (donnees, etat, valeur) et estimation de la valeur residuelle chiffree.",
-      "Exhaustive mapping of your IT, OT and mobile fleet. 3-axis scoring (data, condition, value) and quantified residual value estimation."
+      "Avant d'effacer, valoriser ou recycler, il faut savoir ce que l'on possède réellement. Notre audit pose le socle de toute décision : un inventaire physique, certifié et opposable, livré en cinq jours ouvrés.",
+      "Before erasing, recovering or recycling, you have to know what you actually own. Our audit lays the foundation for every decision: a physical, certified and admissible inventory, delivered in five working days."
     ),
     description: tx(
-      "Nous auditons l'integralite de votre parc informatique -- serveurs, postes, equipements mobiles, IoT, licences -- pour produire un inventaire exhaustif verifie. Chaque asset est identifie, qualifie, photographie et score selon trois axes : criticite des donnees, etat physique et valeur marchande. Cette cartographie devient le referentiel unique de vos decisions ITAD. Elle alimente la plateforme en temps reel via nos connecteurs (CMDB, MDM, Active Directory, Intune, Jamf) pour eviter toute double saisie.",
-      "We audit your entire IT fleet -- servers, workstations, mobile devices, IoT, licenses -- to produce an exhaustive, verified inventory. Each asset is identified, qualified, photographed and scored on three axes: data criticality, physical condition and market value. This mapping becomes the single source of truth for your ITAD decisions."
+      "La plupart des parcs informatiques d'ETI dérivent d'années d'acquisitions, de migrations et de projets gelés. Personne, en interne, ne sait précisément ce qui se trouve dans la baie 7 du datacenter B ni dans le placard du site de Lille. Nos techniciens passent sur site, scannent, photographient et qualifient chaque équipement — du serveur en production au smartphone oublié au fond d'un tiroir. Trois axes d'évaluation guident le travail : criticité des données, état physique et valeur résiduelle marchande.",
+      "Most enterprise IT estates result from years of acquisitions, migrations and frozen projects. Internally, no one knows precisely what sits in rack 7 of datacentre B or in the cupboard of the Lille office. Our technicians come on site, scan, photograph and qualify every device — from the production server to the smartphone forgotten in a drawer. Three axes drive the assessment: data criticality, physical condition and residual market value."
+    ),
+    narrative: tx(
+      "Notre méthodologie est passée au crible par les commissaires aux comptes des plus grands groupes français. Chaque étape est documentée, chaque décision tracée. L'audit n'est pas une formalité : c'est l'acte qui fonde la responsabilité juridique du donneur d'ordre.",
+      "Our methodology has been scrutinised by the auditors of France's largest groups. Every step is documented, every decision logged. The audit is not a formality: it is the act on which the legal responsibility of the customer rests."
+    ),
+    deliveryNarrative: tx(
+      "Vous repartez avec un dossier exécutif chiffré, exploitable par votre direction, vos commissaires aux comptes et vos auditeurs externes. Pas de tableur improvisé, pas de capture d'écran : un référentiel signé, daté et exportable.",
+      "You leave with a quantified executive file, ready to be used by your leadership, your auditors and your external assessors. No improvised spreadsheet, no screenshot: a signed, dated, exportable reference document."
     ),
     icon: ClipboardList,
-    badge: tx("Livrable sous 5 jours", "Delivered in 5 days"),
+    badge: tx("Livré en 5 jours", "Delivered in 5 days"),
     image: "/photos/service-audit.jpg",
-    imageAlt: tx("Technicien realisant l'audit d'un parc IT", "Technician performing IT fleet audit"),
+    imageAlt: tx(
+      "Technicien GreenTechCycle qualifiant un serveur lors d'un audit IT",
+      "GreenTechCycle technician qualifying a server during an IT audit"
+    ),
+    imageSecondary:
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=80",
+    imageSecondaryAlt: tx(
+      "Inventaire physique d'un parc informatique en cours",
+      "Physical inventory of an IT estate in progress"
+    ),
     benefits: [
-      tx("Inventaire exhaustif du parc IT, OT et mobile", "Full inventory across IT, OT and mobile"),
-      tx("Scoring 3-axes : donnee -- etat -- valeur", "3-axis scoring: data -- condition -- value"),
-      tx("Integration CMDB, MDM, AD, Intune, Jamf", "CMDB, MDM, AD, Intune, Jamf integrations"),
-      tx("Estimation de la valeur residuelle chiffree", "Quantified residual value estimation"),
-      tx("Photos, numeros de serie, hash de verification", "Photos, serials, verification hash"),
-      tx("Rapport executif PDF pour COMEX / DSI", "Exec-ready PDF report for CIO / COMEX"),
+      tx("Inventaire exhaustif IT, OT et mobile", "Exhaustive IT, OT and mobile inventory"),
+      tx("Notation trois axes : donnée, état, valeur", "Three-axis rating: data, condition, value"),
+      tx("Connecteurs CMDB, MDM, AD, Intune, Jamf", "CMDB, MDM, AD, Intune, Jamf connectors"),
+      tx("Estimation chiffrée de la valeur résiduelle", "Quantified residual value estimate"),
+      tx("Photos, numéros de série, empreintes de vérification", "Photos, serial numbers, verification hashes"),
+      tx("Rapport exécutif PDF prêt pour le COMEX", "Executive PDF report ready for the leadership"),
+    ],
+    proof: [
+      { value: "5", unit: "jours", label: tx("livrable garanti", "guaranteed delivery"), color: "#10B981" },
+      { value: "99,2", unit: "%", label: tx("précision moyenne mesurée", "measured average accuracy"), color: "#0EA5E9" },
+      { value: "12", unit: "k+", label: tx("actifs cartographiés en 2025", "assets mapped in 2025"), color: "#F59E0B" },
     ],
     methodology: {
-      title: tx("Methodologie d'audit", "Audit methodology"),
+      title: tx("Quatre étapes, un seul référentiel", "Four steps, a single source of truth"),
+      intro: "",
       steps: [
-        { title: tx("Cadrage perimetre", "Scope definition"), desc: tx("Definition du perimetre (sites, categories d'assets, priorites), calendrier et acces necessaires.", "Define scope (sites, asset categories, priorities), timeline and required access.") },
-        { title: tx("Scan automatise + verification terrain", "Automated scan + field verification"), desc: tx("Deploiement des agents de discovery + verification physique par nos techniciens sur site.", "Deploy discovery agents + physical verification by our on-site technicians.") },
-        { title: tx("Scoring et cotation", "Scoring and valuation"), desc: tx("Attribution des scores criticite/etat/valeur et estimation de la valeur residuelle par le moteur Asset Intelligence.", "Assign criticality/condition/value scores and estimate residual value via Asset Intelligence engine.") },
-        { title: tx("Rapport executif et plan d'action", "Executive report and action plan"), desc: tx("Livraison du rapport PDF signe, recommandations de traitement par lot, estimation ROI.", "Deliver signed PDF report, batch treatment recommendations, ROI estimation.") },
+        {
+          title: tx("Cadrage du périmètre", "Scope definition"),
+          desc: tx(
+            "Nous démarrons par un atelier de deux heures avec votre DSI : sites concernés, catégories d'actifs, priorités, calendrier, accès logiques et physiques. Vous recevez sous 48 heures le plan d'audit signé.",
+            "We start with a two-hour workshop with your CIO: sites in scope, asset categories, priorities, schedule, logical and physical accesses. You receive the signed audit plan within 48 hours."
+          ),
+        },
+        {
+          title: tx("Découverte automatisée et vérification terrain", "Automated discovery and field verification"),
+          desc: tx(
+            "Nos sondes lisent vos consoles d'administration, vos AD et MDM. En parallèle, nos techniciens passent dans chaque local pour vérifier physiquement chaque actif : numéro de série, état visuel, photo horodatée. Aucun doublon, aucun oubli.",
+            "Our probes read your administration consoles, your AD and MDM. In parallel, our technicians visit each premises to physically verify every asset: serial number, visual condition, timestamped photo. No duplicate, no omission."
+          ),
+        },
+        {
+          title: tx("Notation et cotation", "Scoring and valuation"),
+          desc: tx(
+            "Le moteur Asset Intelligence applique vos règles métier (RGPD, HDS, IGI 1300) pour scorer la criticité des données. L'état physique est noté visuellement, la valeur marchande issue de notre base prix temps réel sur 14 marchés EMEA.",
+            "The Asset Intelligence engine applies your business rules (GDPR, healthcare, classified data) to score data criticality. Physical condition is rated visually, market value pulled from our real-time price database across 14 EMEA markets."
+          ),
+        },
+        {
+          title: tx("Rapport exécutif et plan d'action", "Executive report and action plan"),
+          desc: tx(
+            "Vous recevez un PDF signé eIDAS, un export tableur complet, un plan de décommissionnement par lots et une estimation de retour sur investissement. Tout est exploitable immédiatement, sans ressaisie.",
+            "You receive an eIDAS-signed PDF, a full spreadsheet export, a batched decommissioning plan and a return-on-investment estimate. Everything is immediately usable, with no re-entry."
+          ),
+        },
       ],
     },
     deliverables: [
-      tx("Rapport inventaire PDF signe", "Signed PDF inventory report"),
-      tx("Export CSV/Excel du parc complet", "Full fleet CSV/Excel export"),
-      tx("Scoring par asset (3 axes)", "Per-asset scoring (3 axes)"),
-      tx("Estimation valeur residuelle globale", "Global residual value estimation"),
-      tx("Plan de decommissionnement recommande", "Recommended decommissioning plan"),
+      tx("Rapport d'inventaire PDF signé eIDAS", "eIDAS-signed PDF inventory report"),
+      tx("Export tableur du parc complet", "Full estate spreadsheet export"),
+      tx("Notation par actif sur trois axes", "Per-asset three-axis rating"),
+      tx("Estimation globale de la valeur résiduelle", "Global residual value estimate"),
+      tx("Plan de décommissionnement recommandé", "Recommended decommissioning plan"),
     ],
     sla: [
-      { metric: tx("Delai de livraison inventaire", "Inventory delivery time"), value: "5 jours" },
-      { metric: tx("Precision inventaire garantie", "Guaranteed inventory accuracy"), value: "99,2 %" },
-      { metric: tx("Connecteurs deployes", "Connectors deployed"), value: "J+1" },
+      { metric: tx("Délai de livraison du rapport", "Report delivery time"), value: tx("5 jours", "5 days") },
+      { metric: tx("Précision d'inventaire garantie", "Guaranteed inventory accuracy"), value: "99,2 %" },
+      { metric: tx("Connecteurs déployés", "Connectors deployed"), value: tx("J+1", "Day 1") },
     ],
     certifications: ["R2v3", "ISO 27001", "NIST 800-88", "ITIL v4"],
+    quote: {
+      text: tx(
+        "L'audit GreenTechCycle nous a remis 14 % d'actifs hors comptabilité — soit 412 000 € de valeur que nous croyions perdue. Le rapport est passé en COMEX sans une seule retouche.",
+        "The GreenTechCycle audit recovered 14% of off-book assets — €412,000 of value we thought lost. The report went to the executive committee without a single edit."
+      ),
+      name: "Sophie L.",
+      role: tx("DSI, groupe industriel coté", "CIO, listed industrial group"),
+    },
     faq: [
-      { q: tx("Quel est le perimetre couvert ?", "What is the scope covered?"), a: tx("IT classique (postes, serveurs, peripheriques), OT (automates, SCADA, HMI), mobile (smartphones, tablettes), licences logicielles. Nous couvrons tout ce qui a un numero de serie ou un identifiant reseau.", "Classic IT (workstations, servers, peripherals), OT (PLCs, SCADA, HMIs), mobile (smartphones, tablets), software licenses. We cover everything with a serial number or network identifier.") },
-      { q: tx("L'audit necessite-t-il un arret de production ?", "Does the audit require production downtime?"), a: tx("Non. Les scans sont non intrusifs et les verifications physiques s'effectuent pendant les heures ouvrables sans interruption d'activite.", "No. Scans are non-intrusive and physical verifications are performed during business hours without activity interruption.") },
-      { q: tx("Combien d'assets peuvent etre audites simultanement ?", "How many assets can be audited simultaneously?"), a: tx("Notre SLA couvre jusqu'a 500 assets en 48h. Au-dela, nous adaptons le calendrier avec des equipes supplementaires.", "Our SLA covers up to 500 assets in 48h. Beyond that, we adapt the timeline with additional teams.") },
+      {
+        q: tx("Quel périmètre est couvert par l'audit ?", "What is covered by the audit?"),
+        a: tx(
+          "IT classique (postes, serveurs, périphériques), informatique industrielle (automates, supervision, terminaux), mobile (smartphones, tablettes) et licences logicielles. En clair : tout ce qui possède un numéro de série ou un identifiant réseau.",
+          "Standard IT (workstations, servers, peripherals), industrial computing (controllers, supervision, terminals), mobile (smartphones, tablets) and software licences. In short: anything with a serial number or a network identifier."
+        ),
+      },
+      {
+        q: tx("L'audit nécessite-t-il un arrêt de production ?", "Does the audit require a production stop?"),
+        a: tx(
+          "Non. Les sondes sont passives, les vérifications physiques se font en heures ouvrables, sans interruption. Pour les environnements critiques, nous intervenons sur fenêtres de maintenance déjà planifiées.",
+          "No. Probes are passive, physical checks happen during business hours without interruption. For critical environments, we operate within already scheduled maintenance windows."
+        ),
+      },
+      {
+        q: tx("Combien d'actifs peuvent être audités simultanément ?", "How many assets can be audited at once?"),
+        a: tx(
+          "Notre engagement contractuel couvre jusqu'à 500 actifs en 48 heures. Au-delà, nous redimensionnons l'équipe et adaptons le calendrier sans surcoût caché.",
+          "Our contractual commitment covers up to 500 assets in 48 hours. Beyond that, we resize the team and adapt the schedule with no hidden surcharge."
+        ),
+      },
     ],
-    ctaPrimary: { label: tx("Demander un audit", "Request an audit"), href: "/contact?ref=service-audit" },
-    ctaSecondary: { label: tx("Voir la plateforme", "See the platform"), href: "/plateforme" },
+    ctaPrimaryLabel: tx("Réserver un audit", "Book an audit"),
+    ctaSecondaryLabel: tx("Voir la plateforme", "See the platform"),
+    ctaSecondaryHref: "/plateforme",
+    isEn,
   };
 
   return <ServicePageTemplate data={data} />;
