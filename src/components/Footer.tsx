@@ -69,10 +69,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 pb-14 mb-14 border-b border-white/10">
           <div>
             <Link href="/" className="inline-flex items-center gap-2.5 group">
-              <Image src="/logo-mono-white.svg" alt="GreenTechCycle" width={40} height={40} className="h-10 w-auto" />
-              <span className="text-2xl font-bold text-white">
-                GreenTech<span className="text-accent">Cycle</span>
-              </span>
+              <Image src="/logo/logo-mono-white.svg" alt="GreenTechCycle" width={200} height={40} className="h-10 w-auto" />
             </Link>
             <p className="mt-5 text-sm leading-relaxed text-gray-400 max-w-md">{t("tagline")}</p>
             <div className="mt-6 flex flex-wrap gap-2.5">

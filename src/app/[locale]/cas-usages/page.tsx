@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
 import {
@@ -51,7 +52,16 @@ export default function UseCasesPage() {
   return (
     <main className="min-h-screen">
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-primary via-primary/95 to-secondary py-24 lg:py-32 overflow-hidden">
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        <Image
+          src="/images/unsplash/two-engineers.jpg"
+          alt="Deux ingénieurs GreenTechCycle analysant un cas d'usage client"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#047857]/90 via-[#047857]/85 to-[#1E40AF]/90" />
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5" />
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>

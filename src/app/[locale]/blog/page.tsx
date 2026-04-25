@@ -60,7 +60,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
       <SchemaOrg data={schemaData} />
       <main className="min-h-screen">
         {/* Hero */}
-        <section className="relative bg-gradient-to-br from-[#0D503C] to-[#1E3A5F] py-24 md:py-32">
+        <section className="relative bg-gradient-to-br from-[#047857] to-[#1E40AF] py-24 md:py-32">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(16,185,129,0.15),_transparent_50%)]" />
           <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs items={breadcrumbs} dark />
@@ -92,7 +92,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                       <div className="absolute top-4 left-4">
-                        <span className="bg-[#10B981] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                        <span className="bg-[#047857] text-white text-xs font-semibold px-3 py-1 rounded-full">
                           {article.category}
                         </span>
                       </div>
@@ -114,7 +114,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                       </span>
                     </div>
                     <Link href={`/${locale}/blog/${article.slug}`}>
-                      <h2 className="text-lg font-bold text-[#0F172A] mb-2 hover:text-[#0D503C] transition-colors line-clamp-2">
+                      <h2 className="text-lg font-bold text-[#0F172A] mb-2 hover:text-[#047857] transition-colors line-clamp-2">
                         {article.title}
                       </h2>
                     </Link>
@@ -123,7 +123,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                     </p>
                     <Link
                       href={`/${locale}/blog/${article.slug}`}
-                      className="inline-flex items-center gap-1 text-[#0D503C] font-semibold text-sm hover:text-[#10B981] transition-colors"
+                      className="inline-flex items-center gap-1 text-[#047857] font-semibold text-sm hover:text-[#047857] transition-colors"
                     >
                       Lire l&apos;article
                       <ArrowRight className="h-4 w-4" />

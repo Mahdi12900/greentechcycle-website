@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import {
   ArrowRight,
@@ -22,6 +23,7 @@ import {
   StaggerItem,
   ScaleIn,
 } from "@/components/motion";
+import RelatedArticles from "@/components/RelatedArticles";
 
 
 const integrations = [
@@ -128,7 +130,16 @@ export default function EcosystemPage({
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-dark via-secondary to-primary py-24 lg:py-32 overflow-hidden">
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        <Image
+          src="/images/unsplash/server-technician.jpg"
+          alt="Technicien GreenTechCycle intégrant la plateforme au data center client"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0F172A]/92 via-[#1E40AF]/88 to-[#047857]/90" />
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-20 w-96 h-96 bg-primary rounded-full blur-3xl" />
@@ -340,6 +351,14 @@ export default function EcosystemPage({
           </FadeIn>
         </div>
       </section>
+
+      <RelatedArticles
+        keywords={["nis2", "cybersécurité", "sécurité"]}
+        title="Écosystème & cybersécurité : aller plus loin"
+        subtitle="Les intégrations IT impliquent de nouveaux défis de sécurité. Découvrez nos analyses NIS2, RGPD et effacement certifié."
+        limit={3}
+        tone="light"
+      />
     </main>
   );
 }

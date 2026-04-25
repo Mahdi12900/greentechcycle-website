@@ -1,0 +1,38 @@
+<svg width="680" height="400" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="orbM" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0F172A" stop-opacity="0"/>
+      <stop offset="20%" stop-color="#0F172A" stop-opacity="1"/>
+      <stop offset="80%" stop-color="#0F172A" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(340,150)">
+    <ellipse cx="0" cy="0" rx="110" ry="28" fill="none" stroke="url(#orbM)" stroke-width="2.5"/>
+    <ellipse cx="0" cy="0" rx="110" ry="28" fill="none" stroke="url(#orbM)" stroke-width="2.5" transform="rotate(60)"/>
+    <ellipse cx="0" cy="0" rx="110" ry="28" fill="none" stroke="url(#orbM)" stroke-width="2.5" transform="rotate(-60)"/>
+
+    <g transform="rotate(0)">
+      <circle cx="110" cy="0" r="6" fill="#0F172A"/>
+      <circle cx="110" cy="0" r="12" fill="none" stroke="#0F172A" stroke-width="1" opacity="0.25"/>
+    </g>
+    <g transform="rotate(60)">
+      <circle cx="110" cy="0" r="6" fill="#0F172A"/>
+      <circle cx="110" cy="0" r="12" fill="none" stroke="#0F172A" stroke-width="1" opacity="0.25"/>
+    </g>
+    <g transform="rotate(-60)">
+      <circle cx="110" cy="0" r="6" fill="#0F172A"/>
+      <circle cx="110" cy="0" r="12" fill="none" stroke="#0F172A" stroke-width="1" opacity="0.25"/>
+    </g>
+
+    <circle cx="0" cy="0" r="22" fill="#0F172A"/>
+    <circle cx="-5" cy="-6" r="4" fill="#F8FAFC" opacity="0.9"/>
+  </g>
+
+  <text x="340" y="295" text-anchor="middle" font-family="Inter, 'Helvetica Neue', sans-serif"
+        font-size="42" font-weight="700" fill="#0F172A" letter-spacing="-1.2">GreenTechCycle</text>
+
+  <text x="340" y="322" text-anchor="middle" font-family="'JetBrains Mono', 'Courier New', monospace"
+        font-size="11" font-weight="400" fill="#475569" letter-spacing="3">THE ENTERPRISE DECISION PLATFORM</text>
+</svg>

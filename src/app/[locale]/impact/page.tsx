@@ -13,6 +13,8 @@ import {
   FileText,
   CheckCircle2,
 } from "lucide-react";
+import RelatedArticles from "@/components/RelatedArticles";
+import CtaSection from "@/components/CtaSection";
 
 export default function ImpactPage() {
   const t = useTranslations("Impact");
@@ -192,6 +194,25 @@ export default function ImpactPage() {
           </div>
         </div>
       </section>
+
+      <RelatedArticles
+        keywords={["CSRD", "économie circulaire", "DEEE", "carbone"]}
+        title="Décarbonisation & économie circulaire"
+        subtitle="Nos analyses pour intégrer l'ITAD dans votre stratégie ESG, CSRD et économie circulaire."
+        limit={3}
+        tone="light"
+      />
+
+      <CtaSection
+        title="Calculez votre impact en 10 minutes"
+        subtitle="Obtenez un bilan personnalisé : tonnes de CO₂eq évitées, valeur résiduelle récupérée et équivalents sociaux."
+        primaryLabel="Lancer la simulation"
+        primaryHref="/contact"
+        secondaryLabel="Télécharger le rapport ESG"
+        secondaryHref="/demo"
+        variant="download"
+        tone="gradient"
+      />
     </main>
   );
 }

@@ -2,8 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import { ChevronDown, HelpCircle, Sparkles, Users, TrendingUp, Shield } from "lucide-react";
 import { useState } from "react";
+import RelatedArticles from "@/components/RelatedArticles";
+import CtaSection from "@/components/CtaSection";
 
 const TABS = ["dsi", "rse", "daf", "compliance"] as const;
 
@@ -19,6 +21,13 @@ export default function FAQPage() {
     rse: t("tabs.rse"),
     daf: t("tabs.daf"),
     compliance: t("tabs.compliance"),
+  };
+
+  const tabIcons: Record<TabKey, typeof Users> = {
+    dsi: Users,
+    rse: Sparkles,
+    daf: TrendingUp,
+    compliance: Shield,
   };
 
   const questions = t.raw(activeTab) as Array<{ q: string; a: string }>;
@@ -60,19 +69,23 @@ export default function FAQPage() {
           {/* Tab Navigation */}
           <FadeIn>
             <div className="flex flex-wrap justify-center gap-2 mb-12">
-              {TABS.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => handleTabChange(tab)}
-                  className={`px-6 py-3 rounded-full font-medium text-sm md:text-base transition-all ${
-                    activeTab === tab
-                      ? "bg-primary text-white shadow-lg shadow-primary/25"
-                      : "bg-white text-dark/70 hover:bg-primary/5 hover:text-primary border border-gray-200"
-                  }`}
-                >
-                  {tabLabels[tab]}
-                </button>
-              ))}
+              {TABS.map((tab) => {
+                const TabIcon = tabIcons[tab];
+                return (
+                  <button
+                    key={tab}
+                    onClick={() => handleTabChange(tab)}
+                    className={`inline-flex items-center gap-2 px-5 md:px-6 py-3 rounded-full font-medium text-sm md:text-base transition-all ${
+                      activeTab === tab
+                        ? "bg-primary text-white shadow-lg shadow-primary/25"
+                        : "bg-white text-dark/70 hover:bg-primary/5 hover:text-primary border border-gray-200"
+                    }`}
+                  >
+                    <TabIcon className="h-4 w-4" />
+                    {tabLabels[tab]}
+                  </button>
+                );
+              })}
             </div>
           </FadeIn>
 
@@ -111,6 +124,24 @@ export default function FAQPage() {
           </StaggerContainer>
         </div>
       </section>
+
+      <RelatedArticles
+        title="Articles recommandés"
+        subtitle="Approfondissez vos questions avec nos guides sur la conformité, la sécurité et l'économie circulaire IT."
+        limit={3}
+        tone="light"
+      />
+
+      <CtaSection
+        title="Votre question n'est pas dans la FAQ ?"
+        subtitle="Notre équipe d'experts ITAD répond sous 24h à toutes vos questions spécifiques."
+        primaryLabel="Poser ma question"
+        primaryHref="/contact"
+        secondaryLabel="Planifier une démo"
+        secondaryHref="/demo"
+        variant="contact"
+        tone="dark"
+      />
     </main>
   );
 }

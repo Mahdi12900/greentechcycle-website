@@ -87,7 +87,7 @@ export default async function BlogArticlePage({
       url: "https://greentechcycle.fr",
       logo: {
         "@type": "ImageObject",
-        url: "https://greentechcycle.fr/images/logo.png",
+        url: "https://greentechcycle.fr/logo/logo-primary.svg",
       },
     },
     mainEntityOfPage: {
@@ -104,12 +104,12 @@ export default async function BlogArticlePage({
       <SchemaOrg data={schemaData} />
       <main className="min-h-screen">
         {/* Hero */}
-        <section className="relative bg-gradient-to-br from-[#0D503C] to-[#1E3A5F] py-20 md:py-28">
+        <section className="relative bg-gradient-to-br from-[#047857] to-[#1E40AF] py-20 md:py-28">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(16,185,129,0.15),_transparent_50%)]" />
           <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs items={breadcrumbs} dark />
             <div className="max-w-3xl">
-              <span className="inline-block bg-[#10B981] text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">
+              <span className="inline-block bg-[#047857] text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">
                 {article.category}
               </span>
               <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
@@ -155,7 +155,7 @@ export default async function BlogArticlePage({
 
               {/* Content */}
               <div
-                className="prose prose-lg prose-slate max-w-none prose-headings:text-[#0F172A] prose-headings:font-bold prose-a:text-[#0D503C] prose-a:no-underline hover:prose-a:underline prose-strong:text-[#0F172A] prose-li:text-gray-700"
+                className="prose prose-lg prose-slate max-w-none prose-headings:text-[#0F172A] prose-headings:font-bold prose-a:text-[#047857] prose-a:no-underline hover:prose-a:underline prose-strong:text-[#0F172A] prose-li:text-gray-700"
                 dangerouslySetInnerHTML={{ __html: content }}
               />
 
@@ -163,13 +163,13 @@ export default async function BlogArticlePage({
               <div className="flex items-center justify-between mt-12 pt-8 border-t border-gray-200">
                 <Link
                   href={`/${locale}/blog`}
-                  className="inline-flex items-center gap-2 text-[#0D503C] font-semibold hover:text-[#10B981] transition-colors"
+                  className="inline-flex items-center gap-2 text-[#047857] font-semibold hover:text-[#047857] transition-colors"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Retour au blog
                 </Link>
                 <button
-                  className="inline-flex items-center gap-2 text-gray-500 hover:text-[#0D503C] transition-colors"
+                  className="inline-flex items-center gap-2 text-gray-500 hover:text-[#047857] transition-colors"
                   aria-label="Partager cet article"
                 >
                   <Share2 className="h-4 w-4" />
@@ -191,7 +191,7 @@ export default async function BlogArticlePage({
                   href={`/${locale}/blog/${rel.slug}`}
                   className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow"
                 >
-                  <span className="text-xs font-semibold text-[#10B981]">{rel.category}</span>
+                  <span className="text-xs font-semibold text-[#047857]">{rel.category}</span>
                   <h3 className="text-lg font-bold text-[#0F172A] mt-2 line-clamp-2">{rel.title}</h3>
                   <p className="text-sm text-gray-600 mt-2 line-clamp-2">{rel.description}</p>
                 </Link>

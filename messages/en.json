@@ -403,60 +403,257 @@
   },
   "Platform": {
     "hero": {
-      "title": "The GreenTechCycle Platform",
-      "subtitle": "15 integrated modules to manage your ITAD end-to-end"
-    },
-    "modules": {
-      "title": "Modules",
-      "items": [
-        "Asset inventory & audit",
-        "Collection planning",
-        "Real-time logistics tracking",
-        "Erasure & certificates",
-        "Refurbishment & testing",
-        "Value recovery & resale",
-        "Automatic carbon assessment",
-        "CSRD/ESG reporting",
-        "Blockchain traceability",
-        "Document management",
-        "Invoicing & credits",
-        "Governance & RBAC",
-        "API & integrations",
-        "Dashboard & KPIs",
-        "Mobile PWA app"
+      "eyebrow": "Unified ITAD platform",
+      "title": "One platform for your entire ITAD lifecycle",
+      "subtitle": "Inventory, erase, trace, recover value and report from a single source of truth. From pickup to CSRD certificate — no rekeying, no silos, no blind spots.",
+      "ctaPrimary": "Request a demo",
+      "ctaSecondary": "See the platform in action",
+      "badges": [
+        "ISO 27001",
+        "NIST 800-88",
+        "GDPR · NIS2 · DORA",
+        "R2v3 · ISO 14001"
       ]
     },
-    "governance": {
-      "title": "Governance & Security",
-      "subtitle": "Granular access control and multi-level validation",
-      "features": [
-        "4-eyes principle for critical operations",
-        "RBAC with 5 roles: Admin, Manager, Operator, Auditor, Reader",
-        "Complete logging of all actions",
-        "Integrated SAML/OIDC SSO",
-        "Mandatory MFA authentication"
+    "unified": {
+      "eyebrow": "The concept",
+      "title": "No more silos. One connected platform.",
+      "subtitle": "Most ITAD teams juggle 4 to 6 tools: ITAM, carbon spreadsheets, erasure software, compliance docs. GreenTechCycle replaces them with a single platform where every module feeds the next in real time.",
+      "before": {
+        "title": "Before · Fragmented tools",
+        "items": [
+          "ITAM & CMDB for inventory",
+          "Separate erasure software",
+          "Excel spreadsheet for carbon",
+          "Word documents for compliance",
+          "Email & phone for logistics",
+          "Manual PDFs for reporting"
+        ]
+      },
+      "after": {
+        "title": "With GreenTechCycle · Unified platform",
+        "items": [
+          "Unified, always-updated inventory & audit",
+          "NIST / DoD certified erasure built-in",
+          "Automated Scope 1/2/3 carbon assessment",
+          "GDPR, NIS2, DORA, CSRD compliance in continuous",
+          "Traced logistics and chain of custody",
+          "Multi-role reporting, exported in 1 click"
+        ]
+      },
+      "kpis": [
+        { "value": "-65%", "label": "admin time" },
+        { "value": "100%", "label": "asset-level traceability" },
+        { "value": "1", "label": "single source of truth" }
       ]
+    },
+    "workflow": {
+      "eyebrow": "End-to-end journey",
+      "title": "Your ITAD lifecycle, orchestrated in 6 connected steps",
+      "subtitle": "Every module triggers the next. Data flows automatically, responsibilities are tracked, exports are ready for your auditors.",
+      "steps": [
+        {
+          "number": "01",
+          "title": "Inventory & Audit",
+          "description": "Automatic fleet discovery, CMDB/ITAM import, field audit via QR scan. Every asset is photographed, timestamped and linked to its business owner.",
+          "highlights": ["CSV / API import", "QR scan & photos", "Guided physical audit"]
+        },
+        {
+          "number": "02",
+          "title": "Scoring & Assessment",
+          "description": "Automatic scoring of residual value, cyber risk and carbon footprint. The platform computes a decision score for every asset.",
+          "highlights": ["Residual value", "Vulnerability score", "Estimated CO₂ impact"]
+        },
+        {
+          "number": "03",
+          "title": "ITAD Decision",
+          "description": "Refurbish, resell, recycle or destroy: the platform recommends the best channel for every asset based on your policies and ESG goals.",
+          "highlights": ["Refurbish", "Resell / donate", "Recycle or destroy"]
+        },
+        {
+          "number": "04",
+          "title": "Traceability & Compliance",
+          "description": "Timestamped chain of custody, NIST 800-88 certified erasure, digital seals and destruction proofs. Every action is logged.",
+          "highlights": ["Chain of custody", "Certified erasure", "Signed proofs"]
+        },
+        {
+          "number": "05",
+          "title": "Reporting",
+          "description": "Role-specific reports: CIO, CISO, CFO, ESG. CSRD, Scope 1/2/3 carbon, R2v3 certificates, all exportable in 1 click.",
+          "highlights": ["CIO · CISO · ESG", "CSRD & Scope 3", "1-click export"]
+        },
+        {
+          "number": "06",
+          "title": "Continuous Monitoring",
+          "description": "Real-time dashboard, drift alerts, KPI tracking and continuous improvement. ITAD becomes pilotable, not just documented.",
+          "highlights": ["Real-time KPIs", "Alerts & SLAs", "Continuous improvement"]
+        }
+      ]
+    },
+    "security": {
+      "eyebrow": "Governance & Security",
+      "title": "Designed for CISOs and auditors",
+      "subtitle": "Automated cyber risk audit, military-grade certified erasure, multi-framework compliance: everything is built-in, nothing needs to be rekeyed.",
+      "pillars": [
+        {
+          "title": "Cyber risk audit",
+          "description": "Per-asset vulnerability scoring, detection of data exposure risks and prioritization of ITAD flows based on criticality.",
+          "features": [
+            "Vulnerability score per device",
+            "Residual sensitive data detection",
+            "Automatic prioritization of critical flows",
+            "SIEM and GRC tool integration"
+          ]
+        },
+        {
+          "title": "Certified erasure",
+          "description": "Cryptographic and logical erasure compliant with NIST 800-88 Rev.1, DoD 5220.22-M and IEEE 2883. Signed certificate generated for every drive.",
+          "features": [
+            "NIST 800-88 Rev.1 (Clear / Purge / Destroy)",
+            "DoD 5220.22-M (3 passes)",
+            "IEEE 2883 for SSD/NVMe",
+            "Signed certificate with hash and timestamp"
+          ]
+        },
+        {
+          "title": "Regulatory compliance",
+          "description": "GDPR, NIS2, DORA, ISO 27001: the platform maintains a live compliance matrix and generates the evidence your auditors expect.",
+          "features": [
+            "GDPR · record keeping and DPIA",
+            "NIS2 · risk management measures",
+            "DORA · IT operational resilience",
+            "ISO 27001 · ISMS and A controls"
+          ]
+        },
+        {
+          "title": "ESG & Sustainability audit",
+          "description": "ISO 14001, Scope 1/2/3 carbon assessment, destruction certificates and circular economy indicators, ready for your CSRD reporting.",
+          "features": [
+            "ISO 14001 · documented EMS",
+            "Scope 1/2/3 · ADEME factors",
+            "Reuse and recovery rates",
+            "R2v3 and WEEE certificates"
+          ]
+        }
+      ],
+      "certifications": [
+        "ISO 27001",
+        "NIST 800-88",
+        "DoD 5220.22-M",
+        "IEEE 2883",
+        "ISO 14001",
+        "R2v3",
+        "GDPR",
+        "NIS2",
+        "DORA"
+      ],
+      "timeline": {
+        "title": "From pickup to certificate, fully auditable",
+        "steps": [
+          "Sealed pickup · GPS proof",
+          "Reception · weigh-in and photo",
+          "NIST erasure · signed hash",
+          "Certificate · signature + timestamp",
+          "Auditor dossier filed"
+        ]
+      }
+    },
+    "recycling": {
+      "eyebrow": "Recycling & Value Recovery",
+      "title": "Turn IT end-of-life into measurable value",
+      "subtitle": "The platform routes every asset to the channel that maximizes value — for your budget and for the planet. Circular economy, concretely.",
+      "flow": [
+        {
+          "title": "Assess",
+          "description": "Analyze market residual value, functional condition and reuse potential for every asset."
+        },
+        {
+          "title": "Refurbish",
+          "description": "Functional testing, cosmetic restoration, system reinstallation and compliance checks before resale."
+        },
+        {
+          "title": "Resell or donate",
+          "description": "Internal marketplace, B2B resale, donations to charities or reintroduction to internal fleet at lower cost."
+        },
+        {
+          "title": "Responsible recycling",
+          "description": "Accredited WEEE channel for non-reusable assets: dismantling, sorting and raw material traceability."
+        }
+      ],
+      "kpis": [
+        { "value": "72%", "label": "Average reuse rate observed" },
+        { "value": "€380", "label": "Average value recovered per workstation" },
+        { "value": "45T", "label": "CO₂ avoided in 2025 (GTC clients)" },
+        { "value": "100%", "label": "Accredited and traced WEEE channels" }
+      ],
+      "cta": "Estimate my fleet's recovery potential"
     },
     "reporting": {
-      "title": "Multi-format Reporting",
-      "subtitle": "Reports tailored to each role",
-      "formats": [
-        "Executive PDF summary",
-        "Detailed Word for auditors",
-        "Raw Excel for analysts",
-        "JSON API for third-party systems"
-      ]
+      "eyebrow": "Multi-role reporting",
+      "title": "One report for each stakeholder, in one click",
+      "subtitle": "No more manual consolidation. The platform aggregates data and generates the report each team expects, with the right level of detail and the right format.",
+      "useCases": [
+        {
+          "role": "For the CIO",
+          "title": "Fleet status & cost avoidance",
+          "description": "Live inventory, end-of-life assets, refurbishment budget vs new purchase, residual value captured.",
+          "metrics": ["Costs avoided", "End-of-life fleet", "Refurb ROI"]
+        },
+        {
+          "role": "For the CISO",
+          "title": "Risk audit & erasure proofs",
+          "description": "Per-asset risk score, NIST/DoD certificates, audit log, NIS2 and DORA matrix ready for the auditor.",
+          "metrics": ["At-risk assets", "Certificates generated", "NIS2 compliance"]
+        },
+        {
+          "role": "For ESG / Sustainability",
+          "title": "Carbon footprint & CSRD",
+          "description": "Scope 1/2/3 computed from actual flows, recovery rate, CSRD ESRS E5 reporting and ISO 14001 indicators.",
+          "metrics": ["Scope 3 avoided", "Reuse rate", "CSRD ESRS E5"]
+        },
+        {
+          "role": "For the CFO",
+          "title": "Finance & asset value recovery",
+          "description": "Resale revenue, credits generated, remaining depreciation, disposal provision and P&L impact.",
+          "metrics": ["Resale revenue", "Credits", "P&L impact"]
+        }
+      ],
+      "formats": ["Executive PDF", "Word for auditors", "Excel data", "JSON API"],
+      "dashboardTitle": "Reporting dashboard",
+      "dashboardSubtitle": "A single workspace, tailored by role",
+      "exportLabel": "Export in 1 click"
     },
     "mobile": {
-      "title": "Mobile PWA App",
-      "subtitle": "Access the platform from the field",
+      "eyebrow": "Mobile application",
+      "title": "Your field teams, connected in real time",
+      "subtitle": "The GreenTechCycle mobile app puts the platform in your technicians' pockets. Scan, input, photos, signatures: everything flows back instantly, even offline.",
       "features": [
-        "QR code asset scanning",
-        "Field photos and comments",
-        "Mobile operation validation",
-        "Offline mode with sync",
-        "Real-time push notifications"
-      ]
+        {
+          "title": "QR & barcode scan",
+          "description": "Identify an asset in 2 seconds, access its full history and update its status from the field."
+        },
+        {
+          "title": "Guided interventions",
+          "description": "Dynamic checklists, mandatory photos, digital signatures: every intervention is tracked and compliant."
+        },
+        {
+          "title": "Push notifications",
+          "description": "New pickups, pending approvals, SLA alerts: your technicians never miss what matters."
+        },
+        {
+          "title": "Offline mode",
+          "description": "Warehouses without network, sensitive areas: the app works offline and syncs as soon as connection is back."
+        }
+      ],
+      "tagline": "Already used by 800+ field technicians",
+      "storeApple": "Download on the App Store",
+      "storeGoogle": "Get it on Google Play"
+    },
+    "cta": {
+      "title": "Ready to unify your ITAD?",
+      "subtitle": "Talk to a GreenTechCycle expert — personalized demo, fleet assessment and deployment plan in 20 minutes.",
+      "primary": "Request a demo",
+      "secondary": "Talk to an expert"
     }
   },
   "WhyGTC": {

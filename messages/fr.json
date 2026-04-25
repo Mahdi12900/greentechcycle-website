@@ -302,60 +302,257 @@
   },
   "Platform": {
     "hero": {
-      "title": "La plateforme GreenTechCycle",
-      "subtitle": "15 modules intégrés pour piloter votre ITAD de bout en bout"
-    },
-    "modules": {
-      "title": "Modules",
-      "items": [
-        "Inventaire & audit de parc",
-        "Planification des collectes",
-        "Suivi logistique temps réel",
-        "Effacement & certificats",
-        "Reconditionnement & tests",
-        "Valorisation & revente",
-        "Bilan carbone automatique",
-        "Reporting CSRD/ESG",
-        "Traçabilité blockchain",
-        "Gestion documentaire",
-        "Facturation & avoir",
-        "Gouvernance & RBAC",
-        "API & intégrations",
-        "Dashboard & KPIs",
-        "App mobile PWA"
+      "eyebrow": "Plateforme ITAD unifiée",
+      "title": "Une seule plateforme pour tout votre cycle ITAD",
+      "subtitle": "Inventoriez, effacez, tracez, valorisez et reportez depuis une source unique de vérité. De la collecte au certificat CSRD, sans ressaisie, sans silo, sans angle mort.",
+      "ctaPrimary": "Demander une démo",
+      "ctaSecondary": "Voir la plateforme en action",
+      "badges": [
+        "ISO 27001",
+        "NIST 800-88",
+        "RGPD · NIS2 · DORA",
+        "R2v3 · ISO 14001"
       ]
     },
-    "governance": {
-      "title": "Gouvernance & sécurité",
-      "subtitle": "Contrôle d'accès granulaire et validation multi-niveaux",
-      "features": [
-        "Principe des 4 yeux pour les opérations critiques",
-        "RBAC avec 5 rôles : Admin, Manager, Opérateur, Auditeur, Lecteur",
-        "Journalisation complète de toutes les actions",
-        "SSO SAML/OIDC intégré",
-        "Authentification MFA obligatoire"
+    "unified": {
+      "eyebrow": "Le concept",
+      "title": "Fini les silos. Une seule plateforme connectée.",
+      "subtitle": "La plupart des équipes ITAD jonglent avec 4 à 6 outils : ITAM, tableur carbone, logiciel d'effacement, documents de conformité. GreenTechCycle les remplace par une plateforme unique, où chaque module alimente le suivant en temps réel.",
+      "before": {
+        "title": "Avant · Outils fragmentés",
+        "items": [
+          "ITAM & CMDB pour l'inventaire",
+          "Logiciel d'effacement séparé",
+          "Tableur Excel pour le bilan carbone",
+          "Documents Word pour la conformité",
+          "Email & téléphone pour la logistique",
+          "PDF manuels pour le reporting"
+        ]
+      },
+      "after": {
+        "title": "Avec GreenTechCycle · Plateforme unifiée",
+        "items": [
+          "Inventaire & audit unifiés et mis à jour",
+          "Effacement certifié NIST / DoD intégré",
+          "Bilan carbone Scope 1/2/3 automatisé",
+          "Conformité RGPD, NIS2, DORA, CSRD en continu",
+          "Logistique et chain of custody tracés",
+          "Reporting multi-rôle exporté en 1 clic"
+        ]
+      },
+      "kpis": [
+        { "value": "-65%", "label": "temps administratif" },
+        { "value": "100%", "label": "traçabilité actif par actif" },
+        { "value": "1", "label": "source unique de vérité" }
       ]
+    },
+    "workflow": {
+      "eyebrow": "Parcours de bout en bout",
+      "title": "Votre cycle ITAD, orchestré en 6 étapes connectées",
+      "subtitle": "Chaque module déclenche le suivant. Les données circulent automatiquement, les responsabilités sont tracées, les exports sont prêts pour vos auditeurs.",
+      "steps": [
+        {
+          "number": "01",
+          "title": "Inventaire & Audit",
+          "description": "Découverte automatique du parc, import CMDB/ITAM, audit terrain via scan QR. Chaque actif est photographié, horodaté et associé à son propriétaire métier.",
+          "highlights": ["Import CSV / API", "Scan QR & photos", "Audit physique guidé"]
+        },
+        {
+          "number": "02",
+          "title": "Évaluation & Scoring",
+          "description": "Notation automatique de la valeur résiduelle, du risque cyber et de l'empreinte carbone. La plateforme calcule un score décisionnel par actif.",
+          "highlights": ["Valeur résiduelle", "Score vulnérabilité", "Impact CO₂ estimé"]
+        },
+        {
+          "number": "03",
+          "title": "Décision ITAD",
+          "description": "Reconditionner, valoriser, recycler ou détruire : la plateforme propose la meilleure filière pour chaque actif selon vos politiques et objectifs RSE.",
+          "highlights": ["Reconditionner", "Revendre / donner", "Recycler ou détruire"]
+        },
+        {
+          "number": "04",
+          "title": "Traçabilité & Conformité",
+          "description": "Chain of custody horodatée, effacement certifié NIST 800-88, scellés numériques et preuves de destruction. Chaque manipulation est journalisée.",
+          "highlights": ["Chain of custody", "Effacement certifié", "Preuves signées"]
+        },
+        {
+          "number": "05",
+          "title": "Reporting",
+          "description": "Rapports adaptés à chaque rôle : DSI, RSSI, DAF, direction RSE. CSRD, bilan carbone Scope 1/2/3, certificats R2v3, le tout exportable en 1 clic.",
+          "highlights": ["DSI · RSSI · RSE", "CSRD & Scope 3", "Export 1 clic"]
+        },
+        {
+          "number": "06",
+          "title": "Suivi continu",
+          "description": "Dashboard temps réel, alertes de dérive, suivi des KPI et amélioration continue. Votre ITAD devient pilotable, pas seulement documenté.",
+          "highlights": ["KPI temps réel", "Alertes & SLA", "Amélioration continue"]
+        }
+      ]
+    },
+    "security": {
+      "eyebrow": "Gouvernance & Sécurité",
+      "title": "Une plateforme pensée pour les RSSI et les auditeurs",
+      "subtitle": "Audit de risque cyber automatisé, effacement certifié aux standards militaires, conformité multi-référentiels : tout est intégré, rien n'est à ressaisir.",
+      "pillars": [
+        {
+          "title": "Audit de risque cyber",
+          "description": "Scoring de vulnérabilité par actif, détection des risques d'exposition de données et priorisation des traitements ITAD selon la criticité.",
+          "features": [
+            "Score de vulnérabilité par équipement",
+            "Détection des données sensibles résiduelles",
+            "Priorisation automatique des flux critiques",
+            "Intégration SIEM et outils GRC"
+          ]
+        },
+        {
+          "title": "Effacement certifié",
+          "description": "Effacement cryptographique et logique conforme NIST 800-88 Rev.1, DoD 5220.22-M et IEEE 2883. Certificat signé généré pour chaque disque.",
+          "features": [
+            "NIST 800-88 Rev.1 (Clear / Purge / Destroy)",
+            "DoD 5220.22-M (3 passes)",
+            "IEEE 2883 pour SSD/NVMe",
+            "Certificat signé avec hash et horodatage"
+          ]
+        },
+        {
+          "title": "Conformité réglementaire",
+          "description": "RGPD, NIS2, DORA, ISO 27001 : la plateforme maintient une matrice de conformité vivante et génère les preuves attendues par vos auditeurs.",
+          "features": [
+            "RGPD · tenue du registre et DPIA",
+            "NIS2 · mesures de gestion des risques",
+            "DORA · résilience opérationnelle IT",
+            "ISO 27001 · ISMS et contrôles A"
+          ]
+        },
+        {
+          "title": "Audit RSE & ESG",
+          "description": "ISO 14001, bilan carbone Scope 1/2/3, certificats de destruction et indicateurs d'économie circulaire, prêts pour votre reporting CSRD.",
+          "features": [
+            "ISO 14001 · SME documenté",
+            "Scope 1/2/3 · facteurs ADEME",
+            "Taux de réemploi et valorisation",
+            "Certificats R2v3 et BSD DEEE"
+          ]
+        }
+      ],
+      "certifications": [
+        "ISO 27001",
+        "NIST 800-88",
+        "DoD 5220.22-M",
+        "IEEE 2883",
+        "ISO 14001",
+        "R2v3",
+        "RGPD",
+        "NIS2",
+        "DORA"
+      ],
+      "timeline": {
+        "title": "De la collecte au certificat, tout est auditable",
+        "steps": [
+          "Collecte scellée · preuve GPS",
+          "Réception · pesée et photo",
+          "Effacement NIST · hash signé",
+          "Certificat · signature + horodatage",
+          "Dépôt dossier auditeur"
+        ]
+      }
+    },
+    "recycling": {
+      "eyebrow": "Recyclage & Valorisation",
+      "title": "Transformez votre fin de vie IT en valeur mesurable",
+      "subtitle": "La plateforme oriente chaque actif vers la filière qui maximise la valeur — pour votre budget et pour la planète. Économie circulaire, concrètement.",
+      "flow": [
+        {
+          "title": "Évaluer",
+          "description": "Analyse de la valeur résiduelle marché, état fonctionnel et potentiel de réemploi pour chaque actif."
+        },
+        {
+          "title": "Reconditionner",
+          "description": "Tests fonctionnels, remise en état cosmétique, réinstallation système et mise en conformité avant revente."
+        },
+        {
+          "title": "Revendre ou donner",
+          "description": "Marketplace interne, revente B2B, don à des associations ou réinjection dans le parc interne à moindre coût."
+        },
+        {
+          "title": "Recycler responsable",
+          "description": "Filière agréée DEEE pour les actifs non réemployables : démantèlement, tri et traçabilité des matières premières."
+        }
+      ],
+      "kpis": [
+        { "value": "72%", "label": "Taux de réemploi moyen constaté" },
+        { "value": "380 €", "label": "Valeur récupérée par poste en moyenne" },
+        { "value": "45T", "label": "CO₂ évitées en 2025 (clients GTC)" },
+        { "value": "100%", "label": "Filières DEEE agréées et tracées" }
+      ],
+      "cta": "Calculer le potentiel de valorisation de mon parc"
     },
     "reporting": {
-      "title": "Reporting multi-format",
-      "subtitle": "Des rapports adaptés à chaque rôle",
-      "formats": [
-        "PDF synthétique pour la direction",
-        "Word détaillé pour les auditeurs",
-        "Excel brut pour les analystes",
-        "API JSON pour les systèmes tiers"
-      ]
+      "eyebrow": "Reporting multi-rôle",
+      "title": "Un rapport pour chaque interlocuteur, en un clic",
+      "subtitle": "Plus besoin de consolider manuellement. La plateforme agrège les données et génère le rapport attendu par chaque métier, avec le bon niveau de détail et le bon format.",
+      "useCases": [
+        {
+          "role": "Pour le DSI",
+          "title": "État du parc & coûts évités",
+          "description": "Inventaire dynamique, actifs en fin de vie, budget reconditionnement vs achat neuf, valeur résiduelle capturée.",
+          "metrics": ["Coûts évités", "Parc en fin de vie", "ROI reconditionnement"]
+        },
+        {
+          "role": "Pour le RSSI",
+          "title": "Audit de risque & preuves d'effacement",
+          "description": "Score de risque par actif, certificats NIST/DoD, journal d'audit, matrice NIS2 et DORA prête pour l'auditeur.",
+          "metrics": ["Actifs à risque", "Certificats générés", "Conformité NIS2"]
+        },
+        {
+          "role": "Pour la RSE / ESG",
+          "title": "Bilan carbone & CSRD",
+          "description": "Scope 1/2/3 calculé à partir des flux réels, taux de valorisation, reporting CSRD ESRS E5 et indicateurs ISO 14001.",
+          "metrics": ["Scope 3 évité", "Taux de réemploi", "CSRD ESRS E5"]
+        },
+        {
+          "role": "Pour la DAF",
+          "title": "Finance & valorisation d'actifs",
+          "description": "Revenus de revente, avoirs générés, amortissements restants, provision de sortie et impact P&L.",
+          "metrics": ["Revenus de revente", "Avoirs", "Impact P&L"]
+        }
+      ],
+      "formats": ["PDF Exécutif", "Word Auditeur", "Excel Données", "API JSON"],
+      "dashboardTitle": "Dashboard reporting",
+      "dashboardSubtitle": "Un espace unique, personnalisé par rôle",
+      "exportLabel": "Exporter en 1 clic"
     },
     "mobile": {
-      "title": "App mobile PWA",
-      "subtitle": "Accédez à la plateforme depuis le terrain",
+      "eyebrow": "Application mobile",
+      "title": "Vos équipes terrain, connectées en temps réel",
+      "subtitle": "L'app mobile GreenTechCycle met la plateforme dans la poche de vos techniciens. Scan, saisie, photos, signatures : tout remonte instantanément, même hors-ligne.",
       "features": [
-        "Scan QR code des actifs",
-        "Photos et commentaires terrain",
-        "Validation des opérations en mobilité",
-        "Mode hors-ligne avec synchronisation",
-        "Notifications push temps réel"
-      ]
+        {
+          "title": "Scan QR & code-barres",
+          "description": "Identifiez un actif en 2 secondes, accédez à son historique complet et mettez à jour son statut sur le terrain."
+        },
+        {
+          "title": "Interventions guidées",
+          "description": "Check-lists dynamiques, photos obligatoires, signatures électroniques : chaque intervention est tracée et conforme."
+        },
+        {
+          "title": "Notifications push",
+          "description": "Nouvelles collectes, validations en attente, alertes SLA : vos techniciens ne manquent rien d'important."
+        },
+        {
+          "title": "Mode hors-ligne",
+          "description": "Entrepôts sans réseau, zones sensibles : l'app fonctionne hors-ligne et synchronise dès que la connexion revient."
+        }
+      ],
+      "tagline": "Déjà utilisée par 800+ techniciens terrain",
+      "storeApple": "Disponible sur l'App Store",
+      "storeGoogle": "Disponible sur Google Play"
+    },
+    "cta": {
+      "title": "Prêt à unifier votre ITAD ?",
+      "subtitle": "Parlez à un expert GreenTechCycle — démo personnalisée, évaluation de votre parc et plan de déploiement en 20 minutes.",
+      "primary": "Demander une démo",
+      "secondary": "Parler à un expert"
     }
   },
   "WhyGTC": {

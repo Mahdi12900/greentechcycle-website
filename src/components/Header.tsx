@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import { Menu, X, ChevronDown, Globe, Leaf, Recycle } from "lucide-react";
+import { Menu, X, ChevronDown, Globe } from "lucide-react";
 import Image from "next/image";
 
 export default function Header() {
@@ -74,10 +74,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <Image src="/logo.svg" alt="GreenTechCycle" width={36} height={36} className="h-9 w-auto" />
-            <span className="text-xl font-bold text-primary">
-              GreenTech<span className="text-accent">Cycle</span>
-            </span>
+            <Image src="/logo/logo-horizontal.svg" alt="GreenTechCycle" width={200} height={40} className="h-10 w-auto" priority />
           </Link>
 
           {/* Desktop nav with mega-menus */}

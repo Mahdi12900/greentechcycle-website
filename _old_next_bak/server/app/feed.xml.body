@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GreenTechCycle Blog - ITAD &amp; Recyclage IT</title>
+    <link>https://greentechcycle.fr/fr/blog</link>
+    <description>Articles et guides sur l'ITAD, le recyclage IT, la conformité CSRD/NIS2 et l'économie circulaire pour les entreprises.</description>
+    <language>fr</language>
+    <lastBuildDate>Tue, 21 Apr 2026 09:35:38 GMT</lastBuildDate>
+    <atom:link href="https://greentechcycle.fr/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://greentechcycle.fr/images/logo.png</url>
+      <title>GreenTechCycle</title>
+      <link>https://greentechcycle.fr</link>
+    </image>
+    <item>
+      <title><![CDATA[CSRD et ITAD : comment intégrer la gestion des actifs IT dans votre reporting ESG]]></title>
+      <link>https://greentechcycle.fr/fr/blog/csrd-et-itad-reporting-esg-actifs-it</link>
+      <guid isPermaLink="true">https://greentechcycle.fr/fr/blog/csrd-et-itad-reporting-esg-actifs-it</guid>
+      <description><![CDATA[Découvrez comment la directive CSRD impacte la gestion de vos actifs IT en fin de vie et comment l'ITAD s'intègre dans votre stratégie de reporting ESG.]]></description>
+      <pubDate>Sun, 15 Mar 2026 00:00:00 GMT</pubDate>
+      <category>Réglementation</category>
+      <author>contact@greentechcycle.fr (GreenTechCycle)</author>
+    </item>
+    <item>
+      <title><![CDATA[Sécurité des données en fin de vie : protéger vos informations lors du décommissionnement IT]]></title>
+      <link>https://greentechcycle.fr/fr/blog/securite-donnees-fin-de-vie-equipements-it</link>
+      <guid isPermaLink="true">https://greentechcycle.fr/fr/blog/securite-donnees-fin-de-vie-equipements-it</guid>
+      <description><![CDATA[Guide complet sur la sécurisation des données lors du retrait des équipements IT. Méthodes d'effacement certifié NIST 800-88 et bonnes pratiques RGPD.]]></description>
+      <pubDate>Sun, 22 Mar 2026 00:00:00 GMT</pubDate>
+      <category>Sécurité</category>
+      <author>contact@greentechcycle.fr (GreenTechCycle)</author>
+    </item>
+    <item>
+      <title><![CDATA[NIS2 et conformité IT : obligations pour la gestion de votre infrastructure informatique]]></title>
+      <link>https://greentechcycle.fr/fr/blog/nis2-compliance-it-infrastructure</link>
+      <guid isPermaLink="true">https://greentechcycle.fr/fr/blog/nis2-compliance-it-infrastructure</guid>
+      <description><![CDATA[La directive NIS2 renforce les exigences de cybersécurité. Découvrez ses implications pour la gestion du cycle de vie de vos actifs IT et la conformité ITAD.]]></description>
+      <pubDate>Wed, 01 Apr 2026 00:00:00 GMT</pubDate>
+      <category>Conformité</category>
+      <author>contact@greentechcycle.fr (GreenTechCycle)</author>
+    </item>
+    <item>
+      <title><![CDATA[Économie circulaire IT en entreprise : du reconditionnement à la valorisation des actifs]]></title>
+      <link>https://greentechcycle.fr/fr/blog/economie-circulaire-it-entreprise</link>
+      <guid isPermaLink="true">https://greentechcycle.fr/fr/blog/economie-circulaire-it-entreprise</guid>
+      <description><![CDATA[Comment mettre en place une stratégie d'économie circulaire pour vos équipements IT. Reconditionnement, réemploi et valorisation pour réduire votre empreinte carbone.]]></description>
+      <pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate>
+      <category>Durabilité</category>
+      <author>contact@greentechcycle.fr (GreenTechCycle)</author>
+    </item>
+    <item>
+      <title><![CDATA[Guide DEEE : réglementation et obligations pour les entreprises en 2026]]></title>
+      <link>https://greentechcycle.fr/fr/blog/guide-deee-reglementation-entreprise</link>
+      <guid isPermaLink="true">https://greentechcycle.fr/fr/blog/guide-deee-reglementation-entreprise</guid>
+      <description><![CDATA[Tout savoir sur la réglementation DEEE en France. Obligations des entreprises, filières de traitement, sanctions et bonnes pratiques pour la gestion des déchets électroniques.]]></description>
+      <pubDate>Wed, 15 Apr 2026 00:00:00 GMT</pubDate>
+      <category>Réglementation</category>
+      <author>contact@greentechcycle.fr (GreenTechCycle)</author>
+    </item>
+  </channel>
+</rss>

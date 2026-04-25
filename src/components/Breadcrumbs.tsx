@@ -14,7 +14,7 @@ interface BreadcrumbsProps {
 export default function Breadcrumbs({ items, dark = false }: BreadcrumbsProps) {
   const textColor = dark ? "text-gray-300" : "text-gray-600";
   const activeColor = dark ? "text-white" : "text-[#0F172A]";
-  const hoverColor = dark ? "hover:text-white" : "hover:text-[#0D503C]";
+  const hoverColor = dark ? "hover:text-white" : "hover:text-[#047857]";
   const separatorColor = dark ? "text-gray-500" : "text-gray-400";
 
   const schemaData = {

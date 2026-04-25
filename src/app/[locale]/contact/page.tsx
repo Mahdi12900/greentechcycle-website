@@ -5,7 +5,8 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { FadeIn, ScaleIn } from "@/components/motion";
 import Image from "next/image";
-import { MapPin, Phone, Mail, Send, CheckCircle2, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Send, CheckCircle2, MessageCircle, Clock, Shield, Leaf } from "lucide-react";
+import RelatedArticles from "@/components/RelatedArticles";
 
 export default function ContactPage() {
   const t = useTranslations("Contact");
@@ -130,6 +131,36 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Trust strip */}
+      <section className="py-14 bg-white border-y border-gray-100">
+        <div className="container-max mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { icon: Clock, title: "Réponse sous 24h", desc: "Notre équipe revient vers vous dans un jour ouvré." },
+              { icon: Shield, title: "Confidentialité garantie", desc: "Vos informations restent strictement privées (RGPD)." },
+              { icon: Leaf, title: "Impact mesurable", desc: "Reporting CSRD et bilan carbone dès le premier projet." },
+            ].map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="flex items-start gap-4 p-5 rounded-2xl bg-gradient-to-br from-primary-50/50 to-white border border-primary/10">
+                <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-primary text-white flex items-center justify-center shadow-md shadow-primary/20">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-1">{title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <RelatedArticles
+        title="Avant de nous contacter, découvrez nos ressources"
+        subtitle="Articles et guides autour de la décarbonisation, de la gestion des actifs IT et de la cybersécurité."
+        limit={3}
+        tone="light"
+      />
     </>
   );
 }

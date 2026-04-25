@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import {
   FadeIn,
@@ -18,6 +19,8 @@ import {
   Clock,
   CheckCircle,
 } from "lucide-react";
+import RelatedArticles from "@/components/RelatedArticles";
+import CtaSection from "@/components/CtaSection";
 
 export default function ClientJourneyPage({
   params,
@@ -45,7 +48,16 @@ export default function ClientJourneyPage({
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-primary/95 to-secondary py-24 lg:py-32 overflow-hidden">
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        <Image
+          src="/images/unsplash/corporate-meeting.jpg"
+          alt="Réunion de cadrage client GreenTechCycle"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#047857]/90 via-[#047857]/85 to-[#1E40AF]/90" />
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5" />
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
@@ -159,6 +171,24 @@ export default function ClientJourneyPage({
           </div>
         </div>
       </section>
+
+      <RelatedArticles
+        title="Ressources pour votre parcours"
+        subtitle="Articles pratiques pour préparer chaque étape : audit, sécurité des données, reporting ESG et conformité."
+        limit={3}
+        tone="light"
+      />
+
+      <CtaSection
+        title="Prêt à démarrer votre parcours ?"
+        subtitle="Notre équipe vous accompagne à chaque étape, de l'audit initial au reporting final de votre projet ITAD."
+        primaryLabel="Planifier un appel"
+        primaryHref="/contact"
+        secondaryLabel="Demander une démo"
+        secondaryHref="/demo"
+        variant="call"
+        tone="dark"
+      />
     </main>
   );
 }

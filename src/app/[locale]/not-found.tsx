@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Home, Briefcase, Mail, Monitor } from "lucide-react";
+import Image from "next/image";
 
 export default function NotFound() {
   const t = useTranslations("NotFound");
@@ -16,8 +17,8 @@ export default function NotFound() {
       <div className="container-max max-w-2xl text-center">
         {/* Logo */}
         <div className="mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10">
-            <span className="text-4xl font-bold text-primary">G</span>
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 p-3">
+            <Image src="/icon-only.svg" alt="GreenTechCycle" width={56} height={56} className="w-full h-full" />
           </div>
         </div>
 

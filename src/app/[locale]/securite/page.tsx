@@ -17,6 +17,8 @@ import {
   Server,
   ChevronRight,
 } from "lucide-react";
+import RelatedArticles from "@/components/RelatedArticles";
+import CtaSection from "@/components/CtaSection";
 
 export default function SecurityPage({
   params,
@@ -175,6 +177,25 @@ export default function SecurityPage({
           </StaggerContainer>
         </div>
       </section>
+
+      <RelatedArticles
+        categories={["Sécurité", "Conformité"]}
+        title="Analyses cybersécurité & conformité"
+        subtitle="NIS2, effacement NIST 800-88, RGPD : approfondissez les sujets clés de la sécurité des données en fin de vie IT."
+        limit={3}
+        tone="light"
+      />
+
+      <CtaSection
+        title="Protégez vos données jusqu'à la dernière étape"
+        subtitle="Audit de sécurité gratuit, certificats d'effacement conformes NIST 800-88, traçabilité complète. Parlons de votre besoin."
+        primaryLabel="Télécharger le guide sécurité"
+        primaryHref="/contact"
+        secondaryLabel="Demander un audit"
+        secondaryHref="/demo"
+        variant="download"
+        tone="dark"
+      />
     </main>
   );
 }

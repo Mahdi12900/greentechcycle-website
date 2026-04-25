@@ -9,6 +9,7 @@ import CookieBanner from "@/components/CookieBanner";
 import StickyCTA from "@/components/StickyCTA";
 import ExitPopup from "@/components/ExitPopup";
 import SchemaOrg from "@/components/SchemaOrg";
+import SalesAssistantWidget from "@/components/SalesAssistantWidget";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -21,6 +22,10 @@ export const metadata: Metadata = {
   },
   description:
     "GreenTechCycle, plateforme ITAD unifiée. Effacement certifié, traçabilité blockchain, reporting ESG/CSRD et bilan carbone pour une gestion responsable de vos actifs IT.",
+  icons: {
+    icon: { url: "/favicon.svg", type: "image/svg+xml" },
+    apple: "/icon.svg",
+  },
   keywords: [
     "ITAD",
     "effacement certifié",
@@ -48,7 +53,7 @@ export const metadata: Metadata = {
       "Effacement certifié, traçabilité blockchain et reporting CSRD. La plateforme qui unifie votre ITAD.",
     images: [
       {
-        url: "/images/hero-dashboard.jpg",
+        url: "/images/unsplash/team-collab.jpg",
         width: 1200,
         height: 630,
         alt: "GreenTechCycle - Plateforme ITAD unifiée",
@@ -60,7 +65,7 @@ export const metadata: Metadata = {
     title: "GreenTechCycle | Plateforme ITAD unifiée",
     description:
       "Effacement certifié, traçabilité blockchain et reporting CSRD. La plateforme qui unifie votre ITAD.",
-    images: ["/images/hero-dashboard.jpg"],
+    images: ["/images/unsplash/team-collab.jpg"],
   },
   robots: { index: true, follow: true },
   metadataBase: new URL("https://greentechcycle.fr"),
@@ -87,7 +92,7 @@ export default async function LocaleLayout({
     "@type": "Organization",
     name: "GreenTechCycle",
     url: "https://greentechcycle.fr",
-    logo: "https://greentechcycle.fr/images/logo.png",
+    logo: "https://greentechcycle.fr/logo/logo-primary.svg",
     description:
       "Plateforme ITAD unifiée : effacement certifié, traçabilité blockchain, reporting ESG/CSRD et bilan carbone pour la gestion responsable des actifs IT.",
     address: {
@@ -118,6 +123,10 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/icon.svg" />
+      </head>
       <body className="font-sans">
         <SchemaOrg data={organizationSchema} />
         <SchemaOrg data={websiteSchema} />
@@ -129,6 +138,7 @@ export default async function LocaleLayout({
           <CookieBanner />
           <StickyCTA />
           <ExitPopup />
+          <SalesAssistantWidget />
         </NextIntlClientProvider>
       </body>
     </html>

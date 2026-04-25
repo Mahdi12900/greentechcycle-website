@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import {
   FadeIn,
@@ -17,6 +18,8 @@ import {
   ShieldCheck,
   Leaf,
 } from "lucide-react";
+import RelatedArticles from "@/components/RelatedArticles";
+import CtaSection from "@/components/CtaSection";
 
 export default function WhyGTCPage({
   params,
@@ -123,8 +126,63 @@ export default function WhyGTCPage({
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Team / Expertise Section */}
       <section className="py-20 lg:py-28 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <FadeIn direction="left">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/unsplash/diverse-team.jpg"
+                  alt="Équipe diverse GreenTechCycle autour d'une table de travail"
+                  fill
+                  loading="lazy"
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#047857]/30 to-transparent" />
+              </div>
+            </FadeIn>
+            <FadeIn direction="right">
+              <div>
+                <p className="text-sm font-semibold tracking-widest text-accent uppercase mb-3">
+                  L'équipe GreenTechCycle
+                </p>
+                <h2 className="text-3xl md:text-4xl font-bold text-dark mb-6 tracking-tight">
+                  Des experts ITAD engagés à vos côtés
+                </h2>
+                <p className="text-lg text-dark/70 leading-relaxed mb-6">
+                  Ingénieurs R2v3, auditeurs CSRD, techniciens habilités NIST 800-88&nbsp;:
+                  notre équipe pluridisciplinaire accompagne chaque étape du cycle de vie
+                  de vos actifs IT — de la collecte sécurisée au reporting ESG.
+                </p>
+                <ul className="space-y-3 mb-8">
+                  {[
+                    "Interlocuteur dédié par compte",
+                    "Techniciens habilités sur site en France",
+                    "Support juridique & conformité CSRD/NIS2",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                      <span className="text-dark/80">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-accent/40 hover:-translate-y-0.5"
+                >
+                  Parler à un expert
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 lg:py-28 bg-light">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center mb-16">
@@ -160,6 +218,24 @@ export default function WhyGTCPage({
           </StaggerContainer>
         </div>
       </section>
+
+      <RelatedArticles
+        title="Pourquoi choisir un partenaire certifié ?"
+        subtitle="Nos dernières analyses sur la conformité, la sécurité et la circularité IT, pour éclairer votre décision."
+        limit={3}
+        tone="light"
+      />
+
+      <CtaSection
+        title="Faites le choix d'un ITAD à forte valeur ajoutée"
+        subtitle="Discutons de votre parc IT : notre équipe propose un audit gratuit et un plan de décommissionnement sous 48h."
+        primaryLabel="Demander un audit gratuit"
+        primaryHref="/contact"
+        secondaryLabel="Voir notre démo"
+        secondaryHref="/demo"
+        variant="audit"
+        tone="dark"
+      />
     </main>
   );
 }

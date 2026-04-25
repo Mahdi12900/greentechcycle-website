@@ -3,7 +3,8 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/motion";
-import { Target, Eye, Award, Lightbulb, Mail, ArrowRight } from "lucide-react";
+import { Target, Eye, Award, Lightbulb, Mail, ArrowRight, Sparkles, Heart, Rocket } from "lucide-react";
+import RelatedArticles from "@/components/RelatedArticles";
 
 export default function CareersPage() {
   const t = useTranslations("Careers");
@@ -18,15 +19,21 @@ export default function CareersPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-primary to-dark py-24 md:py-32">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+      <section className="relative bg-gradient-to-br from-primary via-dark to-secondary py-24 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(16,185,129,0.18),_transparent_55%)]" />
+        <div className="absolute -top-20 -right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute -bottom-20 -left-20 w-[28rem] h-[28rem] bg-secondary/20 rounded-full blur-3xl animate-pulse-slower" />
         <div className="container-max mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs font-medium tracking-wider uppercase mb-6">
+                <Rocket className="h-4 w-4 text-accent" />
+                Nous recrutons
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
                 {t("hero.title")}
               </h1>
-              <p className="text-lg md:text-xl text-white/80">
+              <p className="text-lg md:text-xl text-white/80 leading-relaxed">
                 {t("hero.subtitle")}
               </p>
             </div>
@@ -113,19 +120,44 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-primary to-secondary">
-        <div className="container-max mx-auto px-4 text-center">
+      <RelatedArticles
+        title="Explorez notre vision"
+        subtitle="Nos publications sur la décarbonisation IT, l'économie circulaire et la conformité reflètent la culture GreenTechCycle."
+        limit={3}
+        tone="light"
+      />
+
+      {/* Final CTA */}
+      <section className="relative py-20 md:py-24 bg-gradient-to-br from-primary via-dark to-secondary overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(16,185,129,0.12),_transparent_55%)]" />
+        <div className="absolute -top-10 -left-10 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="container-max mx-auto px-4 text-center relative z-10">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-accent text-white mb-6 shadow-lg shadow-accent/30">
+              <Heart className="h-7 w-7" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
               {t("hero.title")}
             </h2>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-primary font-semibold px-8 py-4 rounded-lg hover:bg-white/90 transition-all shadow-lg"
-            >
-              {t("spontaneous.cta")}
-            </Link>
+            <p className="text-white/75 max-w-2xl mx-auto mb-8">
+              Rejoignez une équipe engagée pour transformer la gestion des actifs IT en levier de décarbonisation.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href={`mailto:${t("spontaneous.email")}`}
+                className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-600 text-white font-semibold px-8 py-4 rounded-xl transition-all shadow-lg shadow-accent/30 hover:-translate-y-0.5"
+              >
+                <Mail className="h-5 w-5" />
+                {t("spontaneous.cta")}
+              </a>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white/40 hover:border-white/80 text-white font-semibold px-8 py-4 rounded-xl transition-all hover:bg-white/10 backdrop-blur-sm"
+              >
+                <Sparkles className="h-5 w-5" />
+                Contacter les RH
+              </Link>
+            </div>
           </FadeIn>
         </div>
       </section>

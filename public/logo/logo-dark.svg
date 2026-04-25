@@ -1,0 +1,61 @@
+<svg width="680" height="420" viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="orb1d" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34D399" stop-opacity="0"/>
+      <stop offset="20%" stop-color="#34D399" stop-opacity="1"/>
+      <stop offset="80%" stop-color="#34D399" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#34D399" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="orb2d" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#60A5FA" stop-opacity="0"/>
+      <stop offset="20%" stop-color="#60A5FA" stop-opacity="1"/>
+      <stop offset="80%" stop-color="#60A5FA" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#60A5FA" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="orb3d" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22D3EE" stop-opacity="0"/>
+      <stop offset="20%" stop-color="#22D3EE" stop-opacity="1"/>
+      <stop offset="80%" stop-color="#22D3EE" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#22D3EE" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="nucleusD" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#A7F3D0"/>
+      <stop offset="55%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#065F46"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="680" height="420" fill="#022C22"/>
+
+  <g transform="translate(340,150)">
+    <ellipse cx="0" cy="0" rx="110" ry="28" fill="none" stroke="url(#orb1d)" stroke-width="2.5"/>
+    <ellipse cx="0" cy="0" rx="110" ry="28" fill="none" stroke="url(#orb2d)" stroke-width="2.5" transform="rotate(60)"/>
+    <ellipse cx="0" cy="0" rx="110" ry="28" fill="none" stroke="url(#orb3d)" stroke-width="2.5" transform="rotate(-60)"/>
+
+    <g transform="rotate(0)">
+      <circle cx="110" cy="0" r="6" fill="#34D399"/>
+      <circle cx="110" cy="0" r="12" fill="none" stroke="#34D399" stroke-width="1" opacity="0.35"/>
+    </g>
+    <g transform="rotate(60)">
+      <circle cx="110" cy="0" r="6" fill="#60A5FA"/>
+      <circle cx="110" cy="0" r="12" fill="none" stroke="#60A5FA" stroke-width="1" opacity="0.35"/>
+    </g>
+    <g transform="rotate(-60)">
+      <circle cx="110" cy="0" r="6" fill="#22D3EE"/>
+      <circle cx="110" cy="0" r="12" fill="none" stroke="#22D3EE" stroke-width="1" opacity="0.35"/>
+    </g>
+
+    <circle cx="0" cy="0" r="22" fill="#ECFDF5"/>
+    <circle cx="0" cy="0" r="19" fill="url(#nucleusD)"/>
+    <circle cx="-5" cy="-6" r="4" fill="#ECFDF5" opacity="0.9"/>
+  </g>
+
+  <text x="340" y="315" text-anchor="middle" font-family="Inter, 'Helvetica Neue', sans-serif"
+        font-size="56" font-weight="800" fill="#ECFDF5" letter-spacing="-1"><tspan fill="#34D399">G</tspan>TC</text>
+
+  <text x="340" y="348" text-anchor="middle" font-family="Inter, 'Helvetica Neue', sans-serif"
+        font-size="15" font-weight="500" fill="#CBD5E1" letter-spacing="0.3">Green<tspan fill="#34D399" font-weight="700">Tech</tspan>Cycle</text>
+
+  <text x="340" y="385" text-anchor="middle" font-family="'JetBrains Mono', 'Courier New', monospace"
+        font-size="10" font-weight="500" fill="#94A3B8" letter-spacing="4">ITAD · SECU · UNIFIED PLATFORM</text>
+</svg>
