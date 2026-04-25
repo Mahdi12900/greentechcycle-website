@@ -155,7 +155,7 @@ export default function MethodologyPage() {
       proofs: tx("PV de décision co-signé, traçabilité des approbations, log horodaté", "Co-signed decision minutes, approval traceability, timestamped log"),
       sla: tx("100% des décisions validées 4-eyes · Signature eIDAS qualifiée", "100% decisions 4-eyes validated · Qualified eIDAS signature"),
       details: [
-        tx("Workflow d'approbation configurable par rôle", "Role-configurable approval workflow"),
+        tx("Parcours d'approbation configurable par rôle", "Role-configurable approval workflow"),
         tx("Signature électronique eIDAS qualifiée", "Qualified eIDAS electronic signature"),
         tx("Archivage probatoire 10 ans", "10-year probative archiving"),
         tx("Escalade automatique si asset critique (C3/C4)", "Automatic escalation for critical assets (C3/C4)"),
@@ -169,9 +169,9 @@ export default function MethodologyPage() {
       accent: "text-amber-700",
       bg: "bg-amber-50",
       border: "border-amber-200",
-      title: tx("Secure Logistics", "Secure Logistics"),
+      title: tx("Logistique sécurisée", "Secure Logistics"),
       description: tx(
-        "Transport sécurisé avec scellés numérotés inviolables, tracking GPS temps réel, plaques et chauffeurs enregistrés. Assurance spécifique valeur déclarée. Chain of custody physique documentée à chaque transfert.",
+        "Transport sécurisé avec scellés numérotés inviolables, suivi GPS temps réel, plaques et chauffeurs enregistrés. Assurance spécifique valeur déclarée. Chaîne de traçabilité physique documentée à chaque transfert.",
         "Secure transport with tamper-proof numbered seals, real-time GPS tracking, registered plates and drivers. Specific declared value insurance. Physical chain of custody documented at every transfer."
       ),
       inputs: tx("Plan d'action validé, liste de colisage, périmètre de collecte", "Validated action plan, packing list, collection scope"),
@@ -269,9 +269,9 @@ export default function MethodologyPage() {
       accent: "text-cyan-700",
       bg: "bg-cyan-50",
       border: "border-cyan-200",
-      title: tx("Continuous Monitoring", "Continuous Monitoring"),
+      title: tx("Supervision continue", "Continuous Monitoring"),
       description: tx(
-        "Dashboard temps réel avec KPIs live. Alertes proactives sur anomalies. Veille réglementaire automatique : dès qu'une nouvelle norme sort, nous mettons à jour vos workflows. Scoring continu du parc restant.",
+        "Tableau de bord temps réel avec KPI en direct. Alertes proactives sur anomalies. Veille réglementaire automatique : dès qu'une nouvelle norme sort, nous mettons à jour vos parcours. Notation continue du parc restant.",
         "Real-time dashboard with live KPIs. Proactive anomaly alerts. Automatic regulatory monitoring: when a new standard is released, we update your workflows. Continuous scoring of remaining fleet."
       ),
       inputs: tx("Données historiques, parc résiduel client, flux réglementaire", "Historical data, client residual fleet, regulatory feed"),
@@ -508,10 +508,10 @@ export default function MethodologyPage() {
             <div className="max-w-3xl mx-auto text-center mb-14">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-700 text-xs font-semibold uppercase tracking-widest mb-4">
                 <Brain className="w-3.5 h-3.5" />
-                {tx("Roadmap technologique", "Technology roadmap")}
+                {tx("Feuille de route technologique", "Technology roadmap")}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                {tx("Roadmap technologique 2026 / 2027", "Technology roadmap 2026 / 2027")}
+                {tx("Feuille de route technologique 2026 / 2027", "Technology roadmap 2026 / 2027")}
               </h2>
               <p className="text-lg text-slate-600">
                 {tx(
@@ -568,7 +568,7 @@ export default function MethodologyPage() {
               </h2>
               <p className="text-lg text-slate-300">
                 {tx(
-                  "Chaque SLA est mesuré en continu sur le dashboard client et garanti contractuellement.",
+                  "Chaque SLA est mesuré en continu sur le tableau de bord client et garanti contractuellement.",
                   "Every SLA is continuously measured on the client dashboard and contractually guaranteed."
                 )}
               </p>

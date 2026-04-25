@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "ITAD Secteur Finance | Conformité et sécurité bancaire",
   description:
-    "Solutions ITAD pour le secteur financier : effacement certifié conforme DORA, traçabilité bancaire, gestion sécurisée des actifs IT et reporting réglementaire.",
+    "Solutions ITAD pour le secteur financier : effacement certifié conforme DORA, traçabilité bancaire, gestion sécurisée des actifs IT et comptes-rendus réglementaires.",
   keywords: ["ITAD finance", "banque", "DORA", "conformité bancaire", "sécurité données financières"],
   openGraph: {
     title: "ITAD Secteur Finance | GreenTechCycle",

@@ -346,7 +346,7 @@
       "before": {
         "label": "Sans plateforme unifiée",
         "items": [
-          "4 prestataires distincts (collecte, effacement, recyclage, reporting)",
+          "4 prestataires distincts (collecte, effacement, recyclage, comptes-rendus)",
           "Excel de réconciliation manuel — 11 jours-homme par exercice CSRD",
           "Certificats papier disséminés, traçabilité impossible à reconstituer en audit",
           "0 cotation marché reconditionné · revente au scrap métal",
@@ -540,7 +540,7 @@
         "description": "Collecte sécurisée directement dans vos locaux avec chain of custody ininterrompue. Véhicules tracés GPS et personnel habilité.",
         "features": [
           "Intervention sur site sous 48h partout en France",
-          "Véhicules sécurisés avec tracking GPS temps réel",
+          "Véhicules sécurisés avec suivi GPS temps réel",
           "Personnel habilité et assermenté",
           "Scellés numérotés et PV de prise en charge",
           "Conditionnement anti-choc et antistatique",
@@ -559,7 +559,7 @@
           "Données carbone scope 1, 2 et 3",
           "Indicateurs CSRD pré-calculés",
           "Historique et comparaison N-1",
-          "API d'export vers vos outils de reporting"
+          "API d'export vers vos outils de comptes-rendus"
         ]
       },
       {
@@ -573,7 +573,7 @@
           "Scopes 1, 2 et 3 du GHG Protocol",
           "Émissions évitées par le réemploi",
           "Facteurs d'émission ADEME actualisés",
-          "Dashboard temps réel des métriques carbone",
+          "Tableau de bord temps réel des métriques carbone",
           "Export pour bilan GES réglementaire"
         ]
       },
@@ -589,22 +589,22 @@
           "Vérification par QR code pour les auditeurs",
           "Horodatage certifié eIDAS",
           "Preuve de conformité RGPD",
-          "Dashboard de suivi temps réel"
+          "Tableau de bord de suivi temps réel"
         ]
       },
       {
         "id": "wakibox",
         "title": "WakiBox",
         "subtitle": "Bornes IoT de collecte intelligente",
-        "engagement": "Monitoring temps réel",
+        "engagement": "Supervision temps réel",
         "description": "Bornes de collecte connectées installées dans vos locaux. Détection automatique des dépôts, pesée intégrée et alertes de remplissage.",
         "features": [
-          "Borne de collecte connectée plug-and-play",
+          "Borne de collecte connectée prête à l'emploi",
           "Détection automatique des dépôts par RFID",
           "Pesée intégrée et classification automatique",
           "Alertes de remplissage en temps réel",
-          "Dashboard de suivi par site",
-          "Gamification pour encourager le réemploi"
+          "Tableau de bord de suivi par site",
+          "Ludification pour encourager le réemploi"
         ]
       }
     ]
@@ -612,7 +612,7 @@
   "Process": {
     "hero": {
       "title": "Processus ITAD",
-      "subtitle": "Un workflow en 7 étapes pour une gestion maîtrisée de bout en bout"
+      "subtitle": "Un parcours en 7 étapes pour une gestion maîtrisée de bout en bout"
     },
     "steps": [
       {
@@ -623,7 +623,7 @@
       {
         "number": "02",
         "title": "Collecte sécurisée",
-        "description": "Enlèvement sur site avec personnel habilité. Scellés numérotés, PV de prise en charge et tracking GPS du transport."
+        "description": "Enlèvement sur site avec personnel habilité. Scellés numérotés, PV de prise en charge et suivi GPS du transport."
       },
       {
         "number": "03",
@@ -647,7 +647,7 @@
       },
       {
         "number": "07",
-        "title": "Certificat & Reporting",
+        "title": "Certificat & restitution",
         "description": "Certificats d'effacement, bordereau de suivi des déchets, bilan carbone et rapport CSRD. Tout est documenté et auditable."
       }
     ]
@@ -829,7 +829,7 @@
         {
           "slug": "audit-decommissionnement",
           "name": "Mission de décommissionnement complète",
-          "pitch": "Vous avez une vague Windows 11, une fermeture de site ou une refonte de parc à mener. Nous orchestrons collecte, effacement, valorisation et reporting réglementaire de bout en bout.",
+          "pitch": "Vous avez une vague Windows 11, une fermeture de site ou une refonte de parc à mener. Nous orchestrons collecte, effacement, valorisation et comptes-rendus réglementaires de bout en bout.",
           "duration": "Sur mesure · à partir de 6 semaines",
           "price": "Devis sous 5 jours ouvrés"
         }
@@ -1044,7 +1044,7 @@
   "ClientJourney": {
     "hero": {
       "title": "Parcours client",
-      "subtitle": "De l'audit initial au reporting continu, nous vous accompagnons à chaque étape"
+      "subtitle": "De l'audit initial à la restitution continue, nous vous accompagnons à chaque étape"
     },
     "steps": [
       {
@@ -1073,7 +1073,7 @@
       },
       {
         "number": "5",
-        "title": "Reporting continu",
+        "title": "Restitution continue",
         "description": "Rapports CSRD automatisés, bilan carbone mis à jour et certificats disponibles en temps réel sur la plateforme.",
         "duration": "En continu"
       }
@@ -1141,8 +1141,8 @@
         "name": "CSRD",
         "date": "En vigueur",
         "status": "active",
-        "description": "Corporate Sustainability Reporting Directive — Obligation de reporting extra-financier incluant la gestion des déchets électroniques et l'économie circulaire.",
-        "itadImpact": "Traçabilité obligatoire des actifs IT en fin de vie, reporting des émissions scope 3 liées au matériel.",
+        "description": "Corporate Sustainability Reporting Directive — Obligation de comptes-rendus extra-financiers incluant la gestion des déchets électroniques et l'économie circulaire.",
+        "itadImpact": "Traçabilité obligatoire des actifs IT en fin de vie, comptes-rendus des émissions scope 3 liées au matériel.",
         "sanctions": "Sanctions financières et responsabilité des dirigeants en cas de non-conformité."
       },
       {
@@ -1234,7 +1234,7 @@
     "screenshots": {
       "title": "Aperçu de la plateforme",
       "items": [
-        "Dashboard principal",
+        "Tableau de bord principal",
         "Module d'effacement",
         "Reporting CSRD",
         "Traçabilité blockchain",
@@ -1399,7 +1399,7 @@
         {
           "value": "10 %",
           "title": "Croissance annuelle des émissions du numérique en France",
-          "desc": "Sans politique de circularité, les émissions du numérique tertiaire pourraient tripler d'ici 2050. La directive CSRD ESRS E5 fait de la circularité un enjeu de reporting opposable.",
+          "desc": "Sans politique de circularité, les émissions du numérique tertiaire pourraient tripler d'ici 2050. La directive CSRD ESRS E5 fait de la circularité un enjeu de comptes-rendus opposables.",
           "source": "ADEME-ARCEP 2023, Trajectoires d'évolution du numérique"
         }
       ],
@@ -1733,7 +1733,7 @@
           "scope": "Premier rapport ESRS E5 — deadline J-90",
           "metric": "100 % datapoints E5-4 / E5-5 livrés",
           "money": "Audit KPMG validé sans réserve",
-          "context": "Onboarding GTC en 60 jours, réconciliation chain of custody sur 18 sites européens, export iXBRL conforme ESEF.",
+          "context": "Intégration GTC en 60 jours, réconciliation chaîne de traçabilité sur 18 sites européens, export iXBRL conforme ESEF.",
           "ctaLabel": "Voir le cas Industrie",
           "ctaHref": "/cas-usages"
         }
@@ -2284,7 +2284,7 @@
         "context": "Ministère français de taille intermédiaire, parc de 1 800 postes en fin de bail leasing 36 mois. La direction des achats impose une clause d'insertion sociale (loi AGEC art. 58) et une preuve de souveraineté (sous-traitants 100 % UE). Certains actifs sont classés Diffusion Restreinte (IGI 1300).",
         "problem": "Concilier trois exigences contradictoires : valoriser financièrement le parc, garantir la souveraineté des données, respecter la clause sociale ESS. Les prestataires habituels échouent sur au moins un des trois critères.",
         "stakeholders": "Secrétariat général, RSSI, DPO ministériel, Direction des achats, Direction du numérique, Atelier ESS partenaire",
-        "solution": "Hébergement plateforme OVHcloud SecNumCloud, sous-traitants UE uniquement ; convoyage T2 habilités confidentiel défense pour le périmètre IGI 1300 ; reconditionnement délégué à un atelier ESS partenaire (Envie / Ateliers du Bocage) avec reporting d'insertion ; export valorisation et impact social trimestriel.",
+        "solution": "Hébergement plateforme OVHcloud SecNumCloud, sous-traitants UE uniquement ; convoyage T2 habilités confidentiel défense pour le périmètre IGI 1300 ; reconditionnement délégué à un atelier ESS partenaire (Envie / Ateliers du Bocage) avec comptes-rendus d'insertion ; export valorisation et impact social trimestriel.",
         "results": "1 800 postes traités · 73 % réinjectés en circuit ESS (1 314 postes) · 41 emplois IAE soutenus · 96 k€ valeur résiduelle reversée à la trésorerie publique · 0 actif IGI 1300 hors périmètre souverain · 261 tCO₂e évitées.",
         "testimonialQuote": "Nous avons coché les trois cases : souveraineté, valorisation, insertion. Aucun autre prestataire n'a su nous le proposer.",
         "testimonialRole": "Secrétaire général adjoint, Ministère français",
@@ -2326,7 +2326,7 @@
         "context": "Opérateur télécom français, fermeture programmée d'un site colocation : 12 racks complets, 1 100 serveurs (Dell PowerEdge R740/R750, HPE ProLiant Gen10), 220 switches Cisco Nexus, 60 baies SAN. Tous les actifs ont entre 3 et 5 ans, valeur résiduelle marché reconditionné estimée à 600 k€+.",
         "problem": "Effacer les SSD/HDD selon NIST 800-88 Purge, démonter les racks sans dégrader les composants revendables, certifier la chaîne pour rassurer l'acheteur reconditionneur, optimiser le calendrier face à un coût d'occupation datacenter de 18 k€/mois.",
         "stakeholders": "DSI Infrastructure, Achats, DAF, Asset manager IT, RSSI, Logistique",
-        "solution": "Pro Service Asset Intelligence pour cotation marché reconditionné EMEA ; effacement NIST 800-88 Purge en zone scellée ; démontage rack à rack avec inventaire SKU ; chaîne de garde eIDAS ; mise en marché via réseau reconditionneurs partenaires ; reporting financier par lot pour la DAF.",
+        "solution": "Pro Service Asset Intelligence pour cotation marché reconditionné EMEA ; effacement NIST 800-88 Purge en zone scellée ; démontage rack à rack avec inventaire SKU ; chaîne de garde eIDAS ; mise en marché via réseau reconditionneurs partenaires ; comptes-rendus financiers par lot pour la DAF.",
         "results": "1 100 serveurs + 220 switches + 60 baies SAN traités en 24 jours · 638 k€ valeur résiduelle récupérée (vs 78 k€ scrap métal) · 1 247 tCO₂e évitées (réemploi vs neuf) · 36 k€ d'économie occupation datacenter.",
         "testimonialQuote": "GTC nous a remboursé l'opération et a généré 560 k€ de cash net. Notre DAF demande à généraliser la méthode à toutes nos fermetures de sites.",
         "testimonialRole": "Asset Manager IT, Opérateur télécom français",
@@ -2358,9 +2358,9 @@
         },
         "rows": [
           {
-            "criteria": "Dashboards",
-            "fragmented": "4 dashboards différents",
-            "gtc": "1 dashboard unifié"
+            "criteria": "Tableaux de bord",
+            "fragmented": "4 tableaux de bord différents",
+            "gtc": "1 tableau de bord unifié"
           },
           {
             "criteria": "Authentification",
@@ -2368,7 +2368,7 @@
             "gtc": "1 SSO unique"
           },
           {
-            "criteria": "Reporting",
+            "criteria": "Restitution",
             "fragmented": "4 formats incompatibles",
             "gtc": "1 export multi-format"
           },
@@ -2436,7 +2436,7 @@
           "Principe des 4 yeux intégré pour chaque opération critique",
           "Chain of custody blockchain de bout en bout",
           "Matrice de conformité DORA + PCI-DSS pré-configurée",
-          "Reporting auditeur avec export dédié régulateurs",
+          "Restitution auditeur avec export dédié régulateurs",
           "Qualification prestataire ITAD conforme DORA article 28"
         ]
       },
@@ -2483,7 +2483,7 @@
           "Certificats conformes aux exigences HDS et CNIL",
           "Traçabilité complète pour les audits ARS et CNIL",
           "Gestion des équipements médicaux connectés (IoMT)",
-          "Dashboard multi-établissements pour les GHT",
+          "Tableau de bord multi-établissements pour les GHT",
           "Valorisation des équipements reconditionnables en circuit solidaire"
         ]
       },
@@ -2574,11 +2574,11 @@
         "title": "Comment GTC répond",
         "items": [
           "Plateforme conforme aux exigences des marchés publics",
-          "Reporting transparent et auditable pour la Cour des comptes",
+          "Restitution transparente et auditable pour la Cour des comptes",
           "Certificats RGPD conformes aux recommandations CNIL secteur public",
           "Valorisation maximale avec circuit de réemploi solidaire",
           "Conformité NF X50-140 et WEEE/DEEE automatisée",
-          "Dashboard adapté aux collectivités avec suivi budgétaire"
+          "Tableau de bord adapté aux collectivités avec suivi budgétaire"
         ]
       },
       "cta": {
@@ -3084,7 +3084,7 @@
             "Alerte automatique quand WakiBox atteint 80% de remplissage",
             "Tournées de collecte optimisées — 1 passage / magasin / trimestre maximum",
             "Certificat DEEE centralisé par magasin et par référence article",
-            "Dashboard ROI temps réel : tCO2e, €/magasin, taux récupération"
+            "Tableau de bord ROI temps réel : tCO2e, €/magasin, taux récupération"
           ],
           "results": [
             "12 t/an de DEEE IT collectées et valorisées (zéro décharge illégale)",
@@ -3145,7 +3145,7 @@
             "Accompagnement RSSI pendant l'inspection — expert GTC présent J-1 à J+4"
           ],
           "results": [
-            "Audit ACPR réussi en 4 jours (benchmark sectoriel : 3 semaines en moyenne)",
+            "Audit ACPR réussi en 4 jours (référence sectorielle : 3 semaines en moyenne)",
             "0 écart documentaire constaté par les inspecteurs ACPR",
             "Chaîne de custody produite en 72h pour 8 500 équipements recensés",
             "Zéro sanction — conformité DORA Art. 9 validée par les auditeurs",
@@ -3716,7 +3716,7 @@
         {
           "slug": "formation-equipes",
           "name": "Formation tri DEEE des équipes",
-          "why": "Onboarding office managers, brief sécurité batteries lithium",
+          "why": "Intégration des responsables de bureau, brief sécurité batteries lithium",
           "price": "450 € / 2 heures"
         }
       ],
@@ -3966,7 +3966,29 @@
       "rapport-csrd-dedie": "Option · Compte-rendu CSRD dédié",
       "kit-comm-customise": "Option · Kit communication personnalisé",
       "audit-deee": "Option · Audit DEEE sur site",
-      "formation-equipes": "Option · Formation tri DEEE des équipes"
+      "formation-equipes": "Option · Formation tri DEEE des équipes",
+      "waki-box-addon-collecte": "Option · Collecte d'urgence 24 heures",
+      "waki-box-addon-animation": "Option · Animation Semaine du recyclage",
+      "waki-box-addon-csrd": "Option · Compte-rendu CSRD dédié",
+      "waki-box-addon-kit": "Option · Kit communication personnalisé",
+      "waki-box-addon-audit": "Option · Audit DEEE sur site",
+      "waki-box-addon-formation": "Option · Formation tri DEEE des équipes",
+      "audit-inventaire": "Service · Audit et inventaire de parc IT",
+      "effacement-securise": "Service · Effacement sécurisé NIST 800-88",
+      "reconditionnement-valorisation": "Service · Reconditionnement et valorisation",
+      "recyclage-deee": "Service · Recyclage DEEE certifié",
+      "cybersecurite": "Service · Cybersécurité ITAD",
+      "cybersecurite-itad": "Service · Cybersécurité ITAD",
+      "wakibox": "Service · Bornes WakiBox connectées",
+      "plateforme-demo": "Démonstration · Plateforme GreenTechCycle",
+      "demo-plateforme": "Démonstration · Plateforme GreenTechCycle",
+      "contact-general": "Demande de contact général",
+      "audit-decommissionnement": "Atelier · Audit de décommissionnement",
+      "methodologie-csrd": "Documentation · Méthodologie CSRD",
+      "esrs-pack": "Pack · Restitution ESRS E5",
+      "csrd-pack": "Pack · Reporting CSRD complet",
+      "audit-blanc-itad": "Atelier · Audit blanc ITAD",
+      "plateforme-info": "Documentation · Plateforme GreenTechCycle"
     }
   }
 }

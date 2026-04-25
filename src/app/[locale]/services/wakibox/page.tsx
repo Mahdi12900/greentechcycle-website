@@ -15,7 +15,7 @@ export default function WakiBoxPage() {
     eyebrow: tx("06 — Collecte connectée", "06 — Connected collection"),
     title: "WakiBox",
     subtitle: tx(
-      "Une borne installée dans le hall, et la collecte se fait toute seule. Détection automatique par RFID, pesée intégrée, alerte de remplissage en temps réel et un brin de gamification — pour multiplier par trois le geste utile.",
+      "Une borne installée dans le hall, et la collecte se fait toute seule. Détection automatique par RFID, pesée intégrée, alerte de remplissage en temps réel et un brin de ludification — pour multiplier par trois le geste utile.",
       "A kiosk in your lobby, and collection happens on its own. Automatic RFID detection, integrated weighing, real-time fill alerts and a touch of gamification — to triple the useful gesture."
     ),
     description: tx(
@@ -27,7 +27,7 @@ export default function WakiBoxPage() {
       "WakiBox has been rolled out in less than four weeks across a network of 142 stores. Here is how it is installed, connected and put into service — without blocking your internal IT teams."
     ),
     deliveryNarrative: tx(
-      "Vous recevez les bornes installées et configurées, une console de pilotage par site, un rapport de flux par période, et l'ensemble des données de gamification. Tout est exploitable par vos directions RSE et logistique sans intervention IT.",
+      "Vous recevez les bornes installées et configurées, une console de pilotage par site, un rapport de flux par période, et l'ensemble des données de ludification. Tout est exploitable par vos directions RSE et logistique sans intervention IT.",
       "You receive installed and configured kiosks, a per-site monitoring console, a per-period flow report, and the full gamification dataset. Everything is usable by your sustainability and logistics teams without IT involvement."
     ),
     icon: Cpu,

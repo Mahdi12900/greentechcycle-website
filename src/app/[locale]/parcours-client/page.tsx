@@ -174,14 +174,14 @@ export default function ClientJourneyPage({
 
       <RelatedArticles
         title="Ressources pour votre parcours"
-        subtitle="Articles pratiques pour préparer chaque étape : audit, sécurité des données, reporting ESG et conformité."
+        subtitle="Articles pratiques pour préparer chaque étape : audit, sécurité des données, comptes-rendus ESG et conformité."
         limit={3}
         tone="light"
       />
 
       <CtaSection
         title="Prêt à démarrer votre parcours ?"
-        subtitle="Notre équipe vous accompagne à chaque étape, de l'audit initial au reporting final de votre projet ITAD."
+        subtitle="Notre équipe vous accompagne à chaque étape, de l'audit initial à la restitution finale de votre projet ITAD."
         primaryLabel="Planifier un appel"
         primaryHref="/contact"
         secondaryLabel="Demander une démo"

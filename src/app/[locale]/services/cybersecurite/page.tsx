@@ -33,10 +33,10 @@ export default function CybersecuritePage() {
     icon: Shield,
     badge: tx("Niveau Défense", "Defence-grade"),
     image:
-      "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=80",
     imageAlt: tx(
-      "Salle d'effacement sécurisée sous vidéosurveillance",
-      "Secure erasure room under video surveillance"
+      "Salle de supervision cybersécurité sous éclairage tamisé",
+      "Cybersecurity supervision room under low-key lighting"
     ),
     imageSecondary:
       "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=1600&q=80",

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Parcours client | De l'audit à la valorisation de vos actifs IT",
   description:
-    "Suivez le parcours client GreenTechCycle : audit initial, planification, collecte sécurisée, traitement certifié et reporting. Un accompagnement de bout en bout.",
+    "Suivez le parcours client GreenTechCycle : audit initial, planification, collecte sécurisée, traitement certifié et restitution. Un accompagnement de bout en bout.",
   keywords: ["parcours client ITAD", "accompagnement IT", "audit parc informatique", "collecte sécurisée"],
   openGraph: {
     title: "Parcours client | GreenTechCycle",

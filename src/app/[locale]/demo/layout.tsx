@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Démo | Découvrez la plateforme ITAD en action",
   description:
-    "Réservez une démonstration personnalisée de la plateforme GreenTechCycle. Découvrez le tableau de bord ITAD, la traçabilité blockchain et le reporting ESG en temps réel.",
+    "Réservez une démonstration personnalisée de la plateforme GreenTechCycle. Découvrez le tableau de bord ITAD, la traçabilité blockchain et le comptes-rendus ESG en temps réel.",
   keywords: ["démo ITAD", "démonstration plateforme", "essai gratuit", "tableau de bord ITAD"],
   openGraph: {
     title: "Réservez une démo | GreenTechCycle",
-    description: "Démonstration personnalisée de la plateforme ITAD avec traçabilité blockchain et reporting ESG.",
+    description: "Démonstration personnalisée de la plateforme ITAD avec traçabilité blockchain et comptes-rendus ESG.",
     type: "website",
   },
   twitter: {

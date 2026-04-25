@@ -9,10 +9,12 @@ import ReservationForm from "@/components/reservation/ReservationForm";
 import { ChevronLeft, ShieldCheck, Clock, Mail } from "lucide-react";
 
 const KNOWN_OFFERS = new Set([
+  // Plans Waki Box
   "waki-box-essentiel",
   "waki-box-confort",
   "waki-box-premium",
   "waki-box-pilote",
+  // Options Waki Box (slugs historiques)
   "box-supplementaire",
   "collecte-urgence",
   "animation-semaine-recyclage",
@@ -20,6 +22,32 @@ const KNOWN_OFFERS = new Set([
   "kit-comm-customise",
   "audit-deee",
   "formation-equipes",
+  // Options Waki Box (slugs canoniques whitelist agent)
+  "waki-box-addon-collecte",
+  "waki-box-addon-animation",
+  "waki-box-addon-csrd",
+  "waki-box-addon-kit",
+  "waki-box-addon-audit",
+  "waki-box-addon-formation",
+  // Services ITAD
+  "audit-inventaire",
+  "effacement-securise",
+  "reconditionnement-valorisation",
+  "recyclage-deee",
+  "cybersecurite",
+  "cybersecurite-itad",
+  "wakibox",
+  // Plateforme et contact
+  "plateforme-demo",
+  "demo-plateforme",
+  "contact-general",
+  // Slugs historiques (impact, pourquoi-gtc)
+  "audit-decommissionnement",
+  "methodologie-csrd",
+  "esrs-pack",
+  "csrd-pack",
+  "audit-blanc-itad",
+  "plateforme-info",
 ]);
 
 function ReserverInner() {

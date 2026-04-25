@@ -153,10 +153,10 @@ export default function ServicesPage() {
       badge: tx("100 % traçable", "100% traceable"),
       icon: Recycle,
       image:
-        "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
       imageAlt: tx(
-        "Démantèlement de cartes électroniques en filière DEEE",
-        "Electronic boards dismantled in a WEEE channel"
+        "Carte électronique en gros plan prête au démantèlement DEEE",
+        "Close-up of an electronic board ready for WEEE dismantling"
       ),
       bookLabel: tx("Réserver une collecte", "Book a collection"),
       proof: [
@@ -182,10 +182,10 @@ export default function ServicesPage() {
       badge: tx("Niveau Défense", "Defence-grade"),
       icon: Shield,
       image:
-        "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
       imageAlt: tx(
-        "Salle d'effacement sécurisée sous vidéosurveillance",
-        "Secure erasure room under video surveillance"
+        "Console cryptographique de supervision cybersécurité",
+        "Cryptographic supervision console for cybersecurity"
       ),
       bookLabel: tx("Réserver un audit sécurité", "Book a security review"),
       proof: [

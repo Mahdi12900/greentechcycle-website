@@ -140,11 +140,11 @@ const TIERS: Tier[] = [
 
 const FEATURE_LABEL_FR: Record<string, string> = {
   continuous_scans: "Scans continus IA (M1/M2/M3/M4)",
-  multi_axis_dashboard: "Dashboard multi-axes (cyber/carbone/finance/lifecycle)",
+  multi_axis_dashboard: "Tableau de bord multi-axes (cyber/carbone/finance/cycle de vie)",
   ai_reports: "Rapports IA automatisés (exécutif/technique/compliance)",
   monthly_summary: "Synthèse mensuelle",
   rgpd_essentials: "Conformité RGPD Essentials",
-  human_validation: "Validation humaine des findings critiques",
+  human_validation: "Validation humaine des constats critiques",
   signed_annual_report: "Rapport annuel signé eIDAS",
   dpo_consult_4h_month: "DPO externe — 4h / mois",
   quarterly_review: "Revue trimestrielle",

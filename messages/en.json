@@ -3966,7 +3966,29 @@
       "rapport-csrd-dedie": "Add-on · Dedicated CSRD report",
       "kit-comm-customise": "Add-on · Custom communication kit",
       "audit-deee": "Add-on · On-site WEEE audit",
-      "formation-equipes": "Add-on · WEEE sorting training"
+      "formation-equipes": "Add-on · WEEE sorting training",
+      "waki-box-addon-collecte": "Add-on · 24-hour emergency collection",
+      "waki-box-addon-animation": "Add-on · Recycling Week activation",
+      "waki-box-addon-csrd": "Add-on · Dedicated CSRD report",
+      "waki-box-addon-kit": "Add-on · Custom communication kit",
+      "waki-box-addon-audit": "Add-on · On-site WEEE audit",
+      "waki-box-addon-formation": "Add-on · WEEE sorting training",
+      "audit-inventaire": "Service · IT fleet audit and inventory",
+      "effacement-securise": "Service · NIST 800-88 secure erasure",
+      "reconditionnement-valorisation": "Service · Refurbishment and recovery",
+      "recyclage-deee": "Service · Certified WEEE recycling",
+      "cybersecurite": "Service · ITAD cybersecurity",
+      "cybersecurite-itad": "Service · ITAD cybersecurity",
+      "wakibox": "Service · WakiBox connected kiosks",
+      "plateforme-demo": "Demo · GreenTechCycle platform",
+      "demo-plateforme": "Demo · GreenTechCycle platform",
+      "contact-general": "General contact request",
+      "audit-decommissionnement": "Workshop · Decommissioning audit",
+      "methodologie-csrd": "Documentation · CSRD methodology",
+      "esrs-pack": "Pack · ESRS E5 deliverable",
+      "csrd-pack": "Pack · Full CSRD reporting",
+      "audit-blanc-itad": "Workshop · ITAD mock audit",
+      "plateforme-info": "Documentation · GreenTechCycle platform"
     }
   }
 }

@@ -45,7 +45,7 @@ const integrations = [
     name: "Microsoft Intune",
     icon: RefreshCw,
     description:
-      "Détection automatique des appareils en fin de vie, désenrôlement sécurisé et reporting de conformité.",
+      "Détection automatique des appareils en fin de vie, désenrôlement sécurisé et comptes-rendus de conformité.",
     features: ["Device detection", "Auto-unenroll", "Compliance reports"],
   },
   {

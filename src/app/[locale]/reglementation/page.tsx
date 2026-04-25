@@ -242,7 +242,7 @@ export default function RegulationPage() {
           keyFigure: tx("Jusqu'à 500K$/mois de non-conformité", "Up to $500K/month of non-compliance"),
           subFigure: tx("Révocation de l'agrément Visa/Mastercard", "Visa/Mastercard accreditation revocation"),
           gtcHelp: tx(
-            "Workflow dédié PCI-DSS avec validation QSA fournie, certificats d'effacement AES-256 par support.",
+            "Parcours dédié PCI-DSS avec validation QSA fournie, certificats d'effacement AES-256 par support.",
             "Dedicated PCI-DSS workflow with QSA validation, AES-256 erasure certificates per media."
           ),
         },
@@ -653,7 +653,7 @@ export default function RegulationPage() {
           keyFigure: tx("5K-100K$/mois en amendes", "$5K-100K/month in fines"),
           subFigure: tx("+ révocation agrément Visa/MC", "+ Visa/MC accreditation revocation"),
           gtcHelp: tx(
-            "Destruction certifiée des TPE et serveurs de paiement, workflow PCI-DSS automatisé, rapport QSA-ready.",
+            "Destruction certifiée des TPE et serveurs de paiement, parcours PCI-DSS automatisé, rapport QSA-ready.",
             "Certified POS and payment server destruction, automated PCI-DSS workflow, QSA-ready report."
           ),
         },
@@ -737,7 +737,7 @@ export default function RegulationPage() {
       bgColor: "bg-emerald-50",
       borderColor: "border-emerald-200",
       description: tx(
-        "Reporting extra-financier obligatoire avec double matérialité. ESRS E1 (climat), E5 (économie circulaire), S1 (main d'œuvre). L'ITAD contribue directement aux indicateurs E5 (taux de réemploi, tonnages recyclés) et E1 (CO₂ évité). Tiers-attestation obligatoire.",
+        "Comptes-rendus extra-financiers obligatoires avec double matérialité. ESRS E1 (climat), E5 (économie circulaire), S1 (main d'œuvre). L'ITAD contribue directement aux indicateurs E5 (taux de réemploi, tonnages recyclés) et E1 (CO₂ évité). Tiers-attestation obligatoire.",
         "Mandatory non-financial reporting with double materiality. ESRS E1 (climate), E5 (circular economy), S1 (workforce). ITAD directly contributes to E5 indicators (reuse rate, recycled tonnage) and E1 (avoided CO₂). Third-party attestation required."
       ),
       keyFigure: tx("50 000 entreprises UE concernées", "50,000 EU companies concerned"),
@@ -835,7 +835,7 @@ export default function RegulationPage() {
     {
       date: tx("Jan 2026", "Jan 2026"),
       title: "CSRD v3",
-      impact: tx("PME cotées > 10 salariés soumises au reporting extra-financier", "Listed SMEs > 10 employees subject to non-financial reporting"),
+      impact: tx("PME cotées > 10 salariés soumises aux comptes-rendus extra-financiers", "Listed SMEs > 10 employees subject to non-financial reporting"),
       business: tx("50 000 entreprises — Mettez en place votre reporting ESRS E5 maintenant", "50,000 companies — Set up your ESRS E5 reporting now"),
     },
     {
@@ -899,7 +899,7 @@ export default function RegulationPage() {
       id: "energie",
       icon: Zap,
       color: "from-amber-500 to-yellow-600",
-      title: tx("Challenge énergétique", "Energy challenge"),
+      title: tx("Défi énergétique", "Energy challenge"),
       items: [
         {
           title: tx("Data centers : 2-3% de la consommation mondiale", "Data centers: 2-3% of global consumption"),
@@ -985,7 +985,7 @@ export default function RegulationPage() {
     { name: "ADEME", desc: tx("Facteurs d'émission, bilans carbone reconditionnement", "Emission factors, refurbishment carbon assessments") },
     { name: "CNIL / EDPB", desc: tx("Statistiques amendes RGPD — 4,5Md€ cumulés", "GDPR fine statistics — €4.5B cumulative") },
     { name: "IEA", desc: tx("International Energy Agency — consommation énergétique data centers", "International Energy Agency — data center energy consumption") },
-    { name: "NIST", desc: tx("Frameworks cybersécurité, standards post-quantum PQC 2024", "Cybersecurity frameworks, post-quantum PQC standards 2024") },
+    { name: "NIST", desc: tx("Référentiels cybersécurité, standards post-quantum PQC 2024", "Cybersecurity frameworks, post-quantum PQC standards 2024") },
   ];
 
   // ---------- Value proposition ----------
@@ -993,7 +993,7 @@ export default function RegulationPage() {
     {
       icon: Workflow,
       title: tx("Plateforme unifiée", "Unified platform"),
-      text: tx("Réponse à la fragmentation des outils : un seul outil pour inventaire, scoring, destruction, certification et reporting.", "Answer to tool fragmentation: one tool for inventory, scoring, destruction, certification and reporting."),
+      text: tx("Réponse à la fragmentation des outils : un seul outil pour inventaire, notation, destruction, certification et restitution.", "Answer to tool fragmentation: one tool for inventory, scoring, destruction, certification and reporting."),
     },
     {
       icon: LinkIcon,
@@ -1018,7 +1018,7 @@ export default function RegulationPage() {
     {
       icon: Shield,
       title: tx("Multi-standard", "Multi-standard"),
-      text: tx("Réponse à la complexité : NIST, DoD, IEEE, RGPD, NIS2, CSRD couverts dans un workflow unique et certifié.", "Answer to complexity: NIST, DoD, IEEE, GDPR, NIS2, CSRD covered in a single certified workflow."),
+      text: tx("Réponse à la complexité : NIST, DoD, IEEE, RGPD, NIS2, CSRD couverts dans un parcours unique et certifié.", "Answer to complexity: NIST, DoD, IEEE, GDPR, NIS2, CSRD covered in a single certified workflow."),
     },
   ];
 
@@ -1629,7 +1629,7 @@ export default function RegulationPage() {
               },
               {
                 slug: "csrd-et-itad-reporting-esg-actifs-it",
-                title: tx("CSRD & ITAD : intégrer l'IT au reporting ESG", "CSRD & ITAD: embedding IT into ESG reporting"),
+                title: tx("CSRD & ITAD : intégrer l'IT aux comptes-rendus ESG", "CSRD & ITAD: embedding IT into ESG reporting"),
                 excerpt: tx("Comment contribuer aux indicateurs ESRS E1 et E5 avec votre programme ITAD : CO₂ évité, taux de réemploi, bilan matière.", "How to contribute to ESRS E1 and E5 indicators with your ITAD program: avoided CO₂, reuse rate, material balance."),
                 icon: Leaf,
                 color: "from-emerald-500 to-teal-600",

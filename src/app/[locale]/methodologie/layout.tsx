@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Méthodologie | Approche certifiée pour l'ITAD",
   description:
-    "Notre méthodologie ITAD certifiée : processus qualité ISO 14001, effacement NIST 800-88, traçabilité blockchain et reporting conforme aux standards internationaux.",
+    "Notre méthodologie ITAD certifiée : processus qualité ISO 14001, effacement NIST 800-88, traçabilité blockchain et comptes-rendus conformes aux standards internationaux.",
   keywords: ["méthodologie ITAD", "ISO 14001", "NIST 800-88", "processus qualité", "standards internationaux"],
   openGraph: {
     title: "Méthodologie ITAD | GreenTechCycle",
