@@ -2274,5 +2274,505 @@
       "otherSectors": "Discover other sectors",
       "backToUseCases": "See use cases"
     }
+  },
+  "casUsages": {
+    "hero": {
+      "eyebrow": "Certified client cases — 8 documented sectors",
+      "title": "8 sectors. 8 real cases. Measurable results.",
+      "subtitle": "Identify the scenario that matches your situation and get a personalised ROI estimate.",
+      "cta1": "Request an audit",
+      "cta2": "My case isn't listed",
+      "sectors": [
+        { "slug": "banque-cac40", "label": "Banking", "kpi": "1,850 tCO2e avoided" },
+        { "slug": "chu-sante", "label": "Healthcare", "kpi": "4,200 devices refurbished" },
+        { "slug": "industriel-csrd", "label": "Industry", "kpi": "CSRD report D-90" },
+        { "slug": "ministere-collectivite", "label": "Public Sector", "kpi": "100% ESS supply chain" },
+        { "slug": "retail-wakibox", "label": "Retail", "kpi": "€89k/yr savings" },
+        { "slug": "energie-dora", "label": "Energy", "kpi": "ACPR audit in 4 days" },
+        { "slug": "telco-datacenter", "label": "Telco", "kpi": "€1.2M recovered" },
+        { "slug": "universite-ess", "label": "Education", "kpi": "4,500 ESS donations" }
+      ]
+    },
+    "kpis": {
+      "eyebrow": "GreenTechCycle cumulative impact 2022-2025",
+      "title": "Verifiable numbers, not estimates.",
+      "footnote": "Aggregated data across all GreenTechCycle missions 2022-2025. Sources: intervention reports, NIST 800-88 certificates, carbon balances per ADEME / Boavizta methodology.",
+      "items": [
+        { "value": 6200, "suffix": "+", "label": "tCO2e avoided (all missions)", "source": "Boavizta / ADEME methodology" },
+        { "value": 4800000, "suffix": " €", "label": "in cumulative economic value saved", "source": "Asset recovery + compliance cost avoidance" },
+        { "value": 38000, "suffix": "+", "label": "NIST 800-88 certificates issued", "source": "GTC certification database" },
+        { "value": 28500, "suffix": "+", "label": "devices refurbished (cumulative)", "source": "GTC inventory all missions" }
+      ]
+    },
+    "nav": {
+      "label": "Jump to",
+      "items": [
+        { "slug": "banque-cac40", "label": "Banking" },
+        { "slug": "chu-sante", "label": "Healthcare" },
+        { "slug": "industriel-csrd", "label": "Industry" },
+        { "slug": "ministere-collectivite", "label": "Public" },
+        { "slug": "retail-wakibox", "label": "Retail" },
+        { "slug": "energie-dora", "label": "Energy" },
+        { "slug": "telco-datacenter", "label": "Telco" },
+        { "slug": "universite-ess", "label": "Education" }
+      ]
+    },
+    "cases": {
+      "eyebrow": "Sector case library",
+      "title": "8 premium sector cases",
+      "subtitle": "Each case covers: regulatory context, deployed solution, quantified results and anonymised client testimonial.",
+      "ctaBtn": "Discuss a similar case",
+      "seeAlsoLabel": "See also",
+      "contextLabel": "Context",
+      "solutionLabel": "Solution",
+      "resultsLabel": "Results",
+      "metricsLabel": "Key metrics",
+      "items": [
+        {
+          "slug": "banque-cac40",
+          "sector": "Banking CAC40",
+          "badgeColor": "#0EA5E9",
+          "photo": "/photos/case-banque.jpg",
+          "photoAlt": "Tier-1 bank server room — IT migration and decommissioning",
+          "title": "Windows 11 migration + NIS2/DORA compliance",
+          "subtitle": "European tier-1 bank · 12,000 devices · CAC40",
+          "context": [
+            "12,000 Windows 10 EOS devices — mandatory migration to Windows 11 before Oct 2025",
+            "NIS2 Annex A and DORA Art. 9 requirements on data carrier traceability",
+            "ACPR/ECB: documented chain of custody required for every decommissioned asset",
+            "Risk of uncontrolled duplicate hardware in production (banking shadow IT)",
+            "CSRD ESRS E5 pressure: first scope 3.1 disclosure expected in 2026"
+          ],
+          "solution": [
+            "Full estate audit (SNMP scan + WMI agents) in 72h across 4 sites",
+            "NIST 800-88 r2 and HMG IS5 Enhanced certified erasure on 100% of media",
+            "Timestamped digital chain of custody, ACPR audit-ready",
+            "Selective Win11-compatible refurbishment (automated grading A/B/C)",
+            "CSRD report: scope 3.1 extract ready for 2025 financial year"
+          ],
+          "results": [
+            "1,850 tCO2e avoided over 4 years (3-year life extension vs new purchase)",
+            "€638k in residual value recovered (resale + carbon credits)",
+            "ACPR audit passed in 4 days (market benchmark: 3 weeks)",
+            "100% of erasure certificates delivered within 48h",
+            "Zero documentary gap found during CISO internal review"
+          ],
+          "metrics": [
+            { "label": "tCO2e avoided", "value": "1,850", "detail": "over 4 years (scope 3.1)" },
+            { "label": "Value recovered", "value": "€638k", "detail": "resale + carbon credits" },
+            { "label": "ACPR audit", "value": "4 days", "detail": "vs 3 weeks market avg" },
+            { "label": "Devices processed", "value": "12,000", "detail": "NIST 800-88 certified" }
+          ],
+          "quote": "The traceability GTC provides allowed us to pass the ACPR audit in 4 days instead of three weeks. That's a concrete competitive advantage, not a marketing claim.",
+          "quoteName": "Marc B.",
+          "quoteRole": "CISO",
+          "quoteSector": "CAC40 Bank",
+          "seeAlso": "energie-dora",
+          "seeAlsoLabel": "Energy/Utility — DORA + ACPR audit"
+        },
+        {
+          "slug": "chu-sante",
+          "sector": "Healthcare / Hospital",
+          "badgeColor": "#10B981",
+          "photo": "/photos/case-hopital.jpg",
+          "photoAlt": "Regional hospital — server room and biomedical workstations decommissioning",
+          "title": "GDPR compliance + refurbishment of an obsolete fleet",
+          "subtitle": "Regional hospital · 9,000 beds · 4,200 devices processed",
+          "context": [
+            "Fleet of 4,200 end-of-life devices (>5 years) containing sensitive patient data",
+            "GDPR Art. 25 & 32: mandatory irreversible erasure before disposal or resale",
+            "IT management under pressure: constrained budget, no new hardware budget",
+            "Medico-legal risk in case of patient data breach (up to 4% turnover GDPR fine)",
+            "HDS constraint: strictly regulated hosting and processing of health data"
+          ],
+          "solution": [
+            "On-site mobile inventory (barcode scan) in under 5 business days",
+            "NIST 800-88 erasure with individual certificates for each device",
+            "3-grade refurbishment (A/B/C) — grade A equipment resold in short supply chain",
+            "Zero-waste approach: 98% of components valorised (resale, parts, WEEE recycling)",
+            "GDPR-ready report delivered to DPO within 48h post-intervention"
+          ],
+          "results": [
+            "4,200 devices refurbished — zero direct landfill",
+            "710 tCO2e avoided through life extension and refurbishment",
+            "€320k recovered (grade A resale + carbon credits)",
+            "Intervention time: 5 business days (full inventory + removal)",
+            "GDPR Art. 32 compliance documented — zero DPO incident"
+          ],
+          "metrics": [
+            { "label": "Devices refurbished", "value": "4,200", "detail": "zero landfill" },
+            { "label": "tCO2e avoided", "value": "710", "detail": "vs new replacement" },
+            { "label": "Value recovered", "value": "€320k", "detail": "resale + carbon" },
+            { "label": "Intervention time", "value": "5 days", "detail": "inventory + removal" }
+          ],
+          "quote": "We had 4,200 workstations containing patient data. GTC handled certified erasure and refurbishment in 5 days. Our DPO signed the report with no reservations.",
+          "quoteName": "Philippe D.",
+          "quoteRole": "CIO",
+          "quoteSector": "Regional Hospital",
+          "seeAlso": "universite-ess",
+          "seeAlsoLabel": "Education — fleet + ESS donation"
+        },
+        {
+          "slug": "industriel-csrd",
+          "sector": "Industry / CAC60",
+          "badgeColor": "#F59E0B",
+          "photo": "/photos/case-industrie.jpg",
+          "photoAlt": "CAC60 industrial site — IT and OT decommissioning across multiple sites",
+          "title": "First CSRD ESRS E5 report delivered at D-90",
+          "subtitle": "CAC60 industrial group · CSRD ESRS E5 · Multi-site OT valorisation",
+          "context": [
+            "CSRD wave 2 obligation: first ESRS E5 disclosure expected for fiscal year 2025",
+            "Heterogeneous OT/IoT estate — PLCs, sensors, industrial production equipment",
+            "No auditable scope 3.1 (manufacturing) or 3.12 (end-of-life) traceability",
+            "ESG auditors require quantified evidence with recognised methodology (ADEME/Boavizta)",
+            "CFO pressure: valorise decommissioned assets before year-end accounting close"
+          ],
+          "solution": [
+            "Full IT + OT audit across 12 industrial sites (5 European countries)",
+            "Scope 3 calculation compliant with Boavizta + GRI/ESRS E5 format export",
+            "Secure erasure of OT systems containing industrial intellectual property",
+            "EOL OT equipment valorisation: specialist resale + WEEE recycling",
+            "CSRD report ready to integrate into annual report — validated by Big 4 firm"
+          ],
+          "results": [
+            "First CSRD ESRS E5 report delivered at D-90 before financial year close",
+            "2,100 tCO2e scope 3.12 documented and auditable",
+            "€480k residual value recovered (OT + IT combined)",
+            "Zero ESG audit reservation from Big 4 review",
+            "Process renewed annually — multi-year agreement signed"
+          ],
+          "metrics": [
+            { "label": "CSRD deadline", "value": "D-90", "detail": "before year close" },
+            { "label": "tCO2e scope 3.12", "value": "2,100", "detail": "documented & auditable" },
+            { "label": "Value recovered", "value": "€480k", "detail": "OT + IT combined" },
+            { "label": "Sites covered", "value": "12", "detail": "5 European countries" }
+          ],
+          "quote": "GTC is the only provider that understands both industrial OT and ESRS E5 requirements. Our CSRD report passed without reservations in year one.",
+          "quoteName": "Sylvie R.",
+          "quoteRole": "Head of CSR",
+          "quoteSector": "CAC60 Industrial Group",
+          "seeAlso": "banque-cac40",
+          "seeAlsoLabel": "Banking — Win11 migration + CSRD"
+        },
+        {
+          "slug": "ministere-collectivite",
+          "sector": "Public Sector",
+          "badgeColor": "#0EA5E9",
+          "photo": "/photos/case-administration.jpg",
+          "photoAlt": "Public authority — IT server room and administrative equipment",
+          "title": "Digital sovereignty + ESS social clause for 2,500 FTEs",
+          "subtitle": "Large municipality · 2,500 FTEs · 100% French ESS supply chain",
+          "context": [
+            "French public procurement code: environmental criteria ≥ 5% mandatory in IT contracts",
+            "Enhanced GDPR traceability requirements (citizen data, HR data)",
+            "Political obligation: demonstrate responsible procurement in annual environmental report",
+            "Sovereignty constraint: data must not leave French territory",
+            "Constrained budget: no new hardware — maximum reuse required"
+          ],
+          "solution": [
+            "ITAD master plan integrating ESS social clause (approved social insertion operators)",
+            "100% processing on French soil, no non-EU subcontracting",
+            "NIST 800-88 r2 erasure with individual certificates (CADA/GDPR compliance)",
+            "Priority resale to approved ESS supply chain (digital inclusion organisations)",
+            "Annual environmental report ready for city council presentation"
+          ],
+          "results": [
+            "100% of equipment resold through French ESS approved supply chain",
+            "ESS social clause integrated into 3 successive public procurement contracts",
+            "850 tCO2e avoided over 3 years (scope 3.1 + scope 3.12 combined)",
+            "Zero data processed outside French territory — GDPR + sovereignty guaranteed",
+            "Environmental balance valorised in municipality's 2024 CSR report"
+          ],
+          "metrics": [
+            { "label": "ESS supply chain", "value": "100%", "detail": "France only resale" },
+            { "label": "tCO2e avoided", "value": "850", "detail": "scope 3 over 3 years" },
+            { "label": "Contracts integrated", "value": "3", "detail": "public procurement code" },
+            { "label": "Data sovereignty", "value": "100%", "detail": "France only" }
+          ],
+          "quote": "GTC designed a master plan that satisfies our regulatory obligations, ESS exemplarity duty and digital sovereignty requirements. A rare partner.",
+          "quoteName": "Catherine L.",
+          "quoteRole": "CIO",
+          "quoteSector": "Large Municipality",
+          "seeAlso": "universite-ess",
+          "seeAlsoLabel": "Education — ESS solidarity donation"
+        },
+        {
+          "slug": "retail-wakibox",
+          "sector": "Retail",
+          "badgeColor": "#10B981",
+          "photo": "/photos/case-retail.jpg",
+          "photoAlt": "Retail chain warehouse — IT equipment collected by WakiBox IoT",
+          "title": "WakiBox: pooled WEEE collection across 350 stores",
+          "subtitle": "National retail chain · 350 stores · 12 t/year collected",
+          "context": [
+            "350 points of sale generating IT WEEE in a dispersed and untraceable manner",
+            "WEEE regulation Art. R543-195: documented traceability per establishment required",
+            "High logistics costs: individual collection not cost-effective per store",
+            "Heterogeneous equipment: POS terminals, tablets, tills, accessories",
+            "CFO requires demonstrable and measurable ROI on IT waste management"
+          ],
+          "solution": [
+            "WakiBox (IoT) deployment across 350 stores: secure pooled collection",
+            "Automatic alert when WakiBox reaches 80% capacity",
+            "Optimised collection rounds — 1 pass per store per quarter maximum",
+            "Centralised WEEE certificate per establishment and product reference",
+            "Real-time ROI dashboard: tCO2e, €/store, recovery rate"
+          ],
+          "results": [
+            "12 t/year of IT WEEE collected and valorised (zero illegal landfill)",
+            "€89k/year in logistics savings (vs decentralised individual collection)",
+            "64% reduction in transport rotations",
+            "WEEE compliance documented for 100% of establishments",
+            "Positive ROI from month 6 after full deployment"
+          ],
+          "metrics": [
+            { "label": "WEEE collected", "value": "12 t/yr", "detail": "zero illegal landfill" },
+            { "label": "Logistics savings", "value": "€89k/yr", "detail": "vs individual collection" },
+            { "label": "Rotations reduced", "value": "64%", "detail": "route optimisation" },
+            { "label": "ROI", "value": "M+6", "detail": "positive from month 6" }
+          ],
+          "quote": "Before WakiBox, our 350 stores each managed their IT WEEE independently — impossible to audit. Now I have a real-time dashboard and €89k in annual savings.",
+          "quoteName": "Laurent M.",
+          "quoteRole": "CFO Retail",
+          "quoteSector": "National retail chain",
+          "seeAlso": "banque-cac40",
+          "seeAlsoLabel": "Banking — certified traceability"
+        },
+        {
+          "slug": "energie-dora",
+          "sector": "Energy / Utility",
+          "badgeColor": "#F59E0B",
+          "photo": "/photos/case-energie.jpg",
+          "photoAlt": "CAC40 Utility infrastructure — datacenter and critical energy equipment",
+          "title": "DORA + chain of custody — ACPR audit passed in 4 days",
+          "subtitle": "CAC40 Utility · DORA Art. 9 · ACPR inspection",
+          "context": [
+            "DORA Art. 9: full traceability of media containing critical operational data",
+            "ACPR inspection announced — 3 weeks to produce the complete chain of custody",
+            "Hybrid estate: office IT equipment + industrial SCADA/OT systems",
+            "Risk of ACPR fine up to 10% of annual turnover for documentary gaps",
+            "NIS2 pressure: enhanced requirements on critical IT asset management"
+          ],
+          "solution": [
+            "Flash audit in 4 days: full inventory + chain of custody produced within 72h",
+            "HMG IS5 Enhanced + NIST 800-88 r2 erasure on critical OT/IT media",
+            "Digital chain of custody: SHA-256 hash per device, blockchain-ready timestamping",
+            "ACPR-ready report formatted per ECB/ACPR requirements (validated template)",
+            "CISO support throughout inspection — GTC expert on-site D-1 to D+4"
+          ],
+          "results": [
+            "ACPR audit passed in 4 days (sector benchmark: 3 weeks on average)",
+            "0 documentary gaps found by ACPR inspectors",
+            "Chain of custody produced in 72h for 8,500 inventoried assets",
+            "Zero fine — DORA Art. 9 compliance validated by auditors",
+            "ITAD process integrated into the company's NIS2 business continuity plan"
+          ],
+          "metrics": [
+            { "label": "Audit duration", "value": "4 days", "detail": "vs 3 weeks usual" },
+            { "label": "Doc. gaps", "value": "0", "detail": "zero during ACPR audit" },
+            { "label": "Assets", "value": "8,500", "detail": "custody produced in 72h" },
+            { "label": "ACPR fine", "value": "€0", "detail": "DORA compliance confirmed" }
+          ],
+          "quote": "When ACPR announced its inspection, we had 3 weeks. GTC produced the entire chain of custody in 4 days. Zero gaps. Zero fine.",
+          "quoteName": "Pierre G.",
+          "quoteRole": "CISO",
+          "quoteSector": "CAC40 Utility",
+          "seeAlso": "banque-cac40",
+          "seeAlsoLabel": "Banking — ACPR audit + NIS2"
+        },
+        {
+          "slug": "telco-datacenter",
+          "sector": "Telco",
+          "badgeColor": "#0EA5E9",
+          "photo": "/photos/case-telco.jpg",
+          "photoAlt": "Telco operator datacenter decommissioning — rack servers",
+          "title": "EOL datacenter: 2,800 servers resold for €1.2M",
+          "subtitle": "Telco operator · 2,800 servers · 3 datacenters",
+          "context": [
+            "2,800 end-of-life servers across 3 datacenters to decommission simultaneously",
+            "Operator customer data: telecom-grade erasure obligation (ANSSI/GDPR)",
+            "Significant residual value but difficult to estimate without secondary market expertise",
+            "Constrained decommissioning deadline: room handover within 60 days",
+            "CSR requirement: zero landfill WEEE target, carbon balance to produce"
+          ],
+          "solution": [
+            "Market valorisation: 2,800 servers priced in 48h (secondary market database)",
+            "NIST 800-88 r2 certified erasure on 100% of storage media",
+            "Dedicated logistics: dismantling, packaging, secure transport over 60 days",
+            "Resale to qualified European buyers (enterprises, resellers, integrators)",
+            "Carbon balance: precise tCO2e calculation vs new manufacturing (Boavizta)"
+          ],
+          "results": [
+            "2,800 servers resold for €1.2M (vs CIO initial estimate: €400k)",
+            "3x the estimated value — secondary market expertise decisive",
+            "980 tCO2e avoided through life extension (vs new replacement)",
+            "Full decommissioning in 58 days (within contractual deadline)",
+            "100% of erasure certificates delivered before room handover"
+          ],
+          "metrics": [
+            { "label": "Value recovered", "value": "€1.2M", "detail": "3x the CIO estimate" },
+            { "label": "Servers processed", "value": "2,800", "detail": "3 datacenters" },
+            { "label": "tCO2e avoided", "value": "980", "detail": "vs new manufacturing" },
+            { "label": "Project duration", "value": "58 days", "detail": "on schedule" }
+          ],
+          "quote": "Our CIO had estimated €400k in residual value. GTC recovered €1.2M. The difference is their international secondary market expertise.",
+          "quoteName": "Nadia K.",
+          "quoteRole": "CIO",
+          "quoteSector": "Telco operator",
+          "seeAlso": "energie-dora",
+          "seeAlsoLabel": "Energy — DORA + chain of custody"
+        },
+        {
+          "slug": "universite-ess",
+          "sector": "Education",
+          "badgeColor": "#10B981",
+          "photo": "/photos/case-universite.jpg",
+          "photoAlt": "University campus — student workstations refurbished for ESS donation",
+          "title": "18,000-student fleet + solidarity ESS donation",
+          "subtitle": "Public university · 18,000 students · 4,500 devices donated",
+          "context": [
+            "Teaching fleet renewal: 4,500 obsolete workstations to replace",
+            "Public budget constraint: no destruction budget — maximum valorisation required",
+            "University CSR commitment: solidarity donation to student associations and ESS",
+            "Student and administrative data on devices — GDPR erasure mandatory",
+            "Hard deadline: renewal coordinated with university intake (September)"
+          ],
+          "solution": [
+            "Inventory + NIST 800-88 r2 certified erasure on 4,500 devices in 10 days",
+            "3-grade sorting: grade A → ESS donation, grade B → resale, grade C → WEEE recycling",
+            "Partnership with 12 ESS associations and 3 sheltered workshops for redistribution",
+            "Individual erasure certificates delivered to university DPO",
+            "Carbon balance and CSR report ready for board of directors"
+          ],
+          "results": [
+            "4,500 devices donated to ESS associations — zero landfill",
+            "€180k saved vs standard destruction + new equipment purchase",
+            "520 tCO2e avoided (life extension + donation vs new manufacturing)",
+            "Deadline met: full operation completed before university intake",
+            "CSR report valorised in Board of Directors annual review"
+          ],
+          "metrics": [
+            { "label": "ESS donations", "value": "4,500", "detail": "12 partner associations" },
+            { "label": "Savings", "value": "€180k", "detail": "vs destruction + new" },
+            { "label": "tCO2e avoided", "value": "520", "detail": "donation + refurbishment" },
+            { "label": "Duration", "value": "10 days", "detail": "before university intake" }
+          ],
+          "quote": "GTC turned our budget constraint into an exemplary CSR initiative. 4,500 computers donated to associations, all NIST 800-88 certified. That's the circular economy in practice.",
+          "quoteName": "Frédéric T.",
+          "quoteRole": "CIO",
+          "quoteSector": "Public university",
+          "seeAlso": "ministere-collectivite",
+          "seeAlsoLabel": "Public Sector — sovereignty + ESS"
+        }
+      ]
+    },
+    "matrix": {
+      "eyebrow": "Comparative overview",
+      "title": "Compare cases by your criteria",
+      "subtitle": "8 rows · 6 indicators — identify the profile that matches your organisation.",
+      "footnote": "Data from GTC intervention reports 2022-2025. Voluntary anonymisation at client request.",
+      "headers": ["Sector", "€ saved", "tCO2e avoided", "Compliance achieved", "Project duration", "Recovery rate"],
+      "rows": [
+        ["Banking CAC40", "€638k", "1,850", "NIS2 · DORA · CSRD", "6 weeks", "97%"],
+        ["Healthcare / Hospital", "€320k", "710", "GDPR · HDS", "5 days", "98%"],
+        ["Industry CAC60", "€480k", "2,100", "CSRD ESRS E5", "8 weeks", "96%"],
+        ["Public Sector", "€240k saved", "850", "GDPR · Public procurement", "12 weeks", "100%"],
+        ["Retail", "€89k/yr", "340", "WEEE · CSRD", "ROI M+6", "94%"],
+        ["Energy/Utility", "sanction avoided", "620", "DORA · NIS2 · ACPR", "4 days", "99%"],
+        ["Telco", "€1,200k", "980", "ANSSI · GDPR operator", "58 days", "100%"],
+        ["Education", "€180k", "520", "GDPR · ESS", "10 days", "100%"]
+      ]
+    },
+    "conversion": {
+      "eyebrow": "Your bespoke case",
+      "title": "Your case isn't listed?",
+      "subtitle": "Describe your situation in 4 fields — we'll send you within 48h a comparable case from our library and a personalised ROI estimate.",
+      "fields": {
+        "company": "Company name",
+        "sector": "Industry sector",
+        "parkSize": "Fleet size (number of devices)",
+        "challenge": "Primary challenge (compliance, value, CSRD...)"
+      },
+      "cta": "Receive a comparable case + ROI estimate within 48h",
+      "privacy": "Data processed in accordance with GDPR — never sold. Response within 48 business hours.",
+      "successTitle": "Request sent!",
+      "successBody": "Our team will contact you within 48h with a comparable case and a personalised ROI estimate."
+    },
+    "testimonials": {
+      "eyebrow": "They say it better than us",
+      "title": "Client verbatims — 4 personas",
+      "consentNote": "Testimonials collected with written consent. Full identities available under NDA upon request.",
+      "items": [
+        {
+          "quote": "For a CISO, traceability is not optional. GTC is the only provider that truly understands that.",
+          "name": "Marc B.",
+          "role": "CISO",
+          "sector": "CAC40 Bank"
+        },
+        {
+          "quote": "I had 6 months to prepare my first CSRD E5 report. GTC delivered it ready to sign in 8 weeks.",
+          "name": "Sylvie R.",
+          "role": "Head of CSR",
+          "sector": "CAC60 Industrial Group"
+        },
+        {
+          "quote": "As CFO, I want quantified ROI. €89k in logistics savings in year one — that's concrete.",
+          "name": "Laurent M.",
+          "role": "CFO",
+          "sector": "Retail — 350 stores"
+        },
+        {
+          "quote": "GTC recovered 3x more than our CIO had estimated. The difference is their secondary market expertise.",
+          "name": "Nadia K.",
+          "role": "CIO",
+          "sector": "Telco operator"
+        }
+      ]
+    },
+    "partners": {
+      "eyebrow": "Integrations & certifications",
+      "title": "Partner ecosystem",
+      "note": "Certified integrations — connectors available in the GreenTechCycle platform.",
+      "items": ["ServiceNow", "SAP", "Microsoft 365", "Boavizta", "ADEME"]
+    },
+    "faq": {
+      "eyebrow": "Frequently asked questions",
+      "title": "What CIOs / CISOs / CSR leads / CFOs ask us",
+      "allQuestionsLink": "See all 24 technical FAQ questions",
+      "items": [
+        {
+          "q": "How do you calculate the ROI of an ITAD mission?",
+          "a": "We calculate ROI across 3 components: (1) residual value recovered (secondary market resale), (2) avoided costs (logistics, storage, compliance), (3) valorisable carbon credits. Every element is documented, sourced and presented in an ROI report delivered at D+30."
+        },
+        {
+          "q": "How long does a typical project take?",
+          "a": "From 4 days (compliance flash audit) to 12 weeks (multi-year multi-site programme). Most large enterprise missions run 4 to 8 weeks, with a first interim report at D+10."
+        },
+        {
+          "q": "Does my data leave the EU?",
+          "a": "No. 100% of processing is done on French soil across our 4 certified sites (Lyon, Paris, Bordeaux, Lille). No non-EU subcontracting. Full chain of custody documented from A to Z, available within 48h."
+        },
+        {
+          "q": "What SLA commitments do you offer?",
+          "a": "Standard SLAs: onboarding within 72h, first report within 10 business days, erasure certificates within 48h post-intervention. Enhanced SLAs (24h) are available for critical DORA/NIS2 missions."
+        },
+        {
+          "q": "Do you work on classified sites?",
+          "a": "Yes, under the appropriate clearance protocols. Our teams hold the necessary authorisations to intervene on classified Defence sites and critical national infrastructure operators (OIV). Protocol available on request."
+        },
+        {
+          "q": "How do I certify my waste disposal to my auditors?",
+          "a": "Each intervention generates: an individual erasure certificate (NIST 800-88 r2), a WEEE manifest per establishment, and a summary report in GRI/ESRS E5 format. These documents are directly usable by your Big 4 auditors or statutory auditors."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Take action",
+      "title": "Your next decommissioning, with zero regulatory risk.",
+      "subtitle": "Personalised audit within 48h · Quantified results · Contractual SLA commitment · Cleared team across 4 French sites",
+      "cta1": "Request an audit",
+      "cta2": "Book a 30-min demo",
+      "trustBadges": ["GDPR compliant", "SecNumCloud-ready", "ISO 27001", "Response within 24h"]
+    }
   }
 }

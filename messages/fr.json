@@ -2136,5 +2136,505 @@
       "otherSectors": "Découvrir les autres secteurs",
       "backToUseCases": "Voir les cas d'usages"
     }
+  },
+  "casUsages": {
+    "hero": {
+      "eyebrow": "Cas clients certifiés — 8 secteurs documentés",
+      "title": "8 secteurs. 8 cas réels. Des résultats chiffrés.",
+      "subtitle": "Identifiez le scénario qui ressemble au vôtre et obtenez une estimation ROI personnalisée.",
+      "cta1": "Demander un audit",
+      "cta2": "Mon cas n'est pas listé",
+      "sectors": [
+        { "slug": "banque-cac40", "label": "Banque", "kpi": "1 850 tCO2e évitées" },
+        { "slug": "chu-sante", "label": "Santé", "kpi": "4 200 postes reconditionnés" },
+        { "slug": "industriel-csrd", "label": "Industrie", "kpi": "Rapport CSRD J-90" },
+        { "slug": "ministere-collectivite", "label": "Public", "kpi": "100% filière ESS" },
+        { "slug": "retail-wakibox", "label": "Retail", "kpi": "89 k€/an économisés" },
+        { "slug": "energie-dora", "label": "Énergie", "kpi": "Audit ACPR en 4 jours" },
+        { "slug": "telco-datacenter", "label": "Telco", "kpi": "1,2 M€ récupérés" },
+        { "slug": "universite-ess", "label": "Éducation", "kpi": "4 500 dons ESS" }
+      ]
+    },
+    "kpis": {
+      "eyebrow": "Impact cumulé GreenTechCycle 2022-2025",
+      "title": "Des chiffres vérifiables, pas des estimations.",
+      "footnote": "Données agrégées sur l'ensemble des missions GreenTechCycle 2022-2025. Sources : rapports d'intervention, certificats NIST 800-88, bilans CO2 conformes méthodologie ADEME / Boavizta.",
+      "items": [
+        { "value": 6200, "suffix": "+", "label": "tCO2e évitées (cumul toutes missions)", "source": "Méthodologie Boavizta / ADEME" },
+        { "value": 4800000, "suffix": " €", "label": "de valeur économisée cumulée", "source": "Valorisation + évitement coûts conformité" },
+        { "value": 38000, "suffix": "+", "label": "certificats NIST 800-88 émis", "source": "Base de données certifications GTC" },
+        { "value": 28500, "suffix": "+", "label": "postes reconditionnés (cumul)", "source": "Inventaire GTC toutes missions" }
+      ]
+    },
+    "nav": {
+      "label": "Aller directement à",
+      "items": [
+        { "slug": "banque-cac40", "label": "Banque" },
+        { "slug": "chu-sante", "label": "Santé" },
+        { "slug": "industriel-csrd", "label": "Industrie" },
+        { "slug": "ministere-collectivite", "label": "Public" },
+        { "slug": "retail-wakibox", "label": "Retail" },
+        { "slug": "energie-dora", "label": "Énergie" },
+        { "slug": "telco-datacenter", "label": "Telco" },
+        { "slug": "universite-ess", "label": "Éducation" }
+      ]
+    },
+    "cases": {
+      "eyebrow": "Bibliothèque de cas sectoriels",
+      "title": "8 cas sectoriels premium",
+      "subtitle": "Chaque cas reprend : contexte réglementaire, solution déployée, résultats chiffrés et témoignage client anonymisé.",
+      "ctaBtn": "Discuter d'un cas similaire",
+      "seeAlsoLabel": "Voir aussi",
+      "contextLabel": "Contexte",
+      "solutionLabel": "Solution",
+      "resultsLabel": "Résultats",
+      "metricsLabel": "Métriques clés",
+      "items": [
+        {
+          "slug": "banque-cac40",
+          "sector": "Banque CAC40",
+          "badgeColor": "#0EA5E9",
+          "photo": "/photos/case-banque.jpg",
+          "photoAlt": "Salle informatique d'une banque de premier rang — migration et décommissionnement",
+          "title": "Migration Windows 11 + mise en conformité NIS2/DORA",
+          "subtitle": "Banque européenne tier-1 · 12 000 postes · CAC40",
+          "context": [
+            "12 000 postes Windows 10 EOS — obligation de migration Windows 11 avant oct. 2025",
+            "Exigences NIS2 Annexe A et DORA Art. 9 sur la traçabilité des supports de données",
+            "ACPR/BCE : chaîne de garde documentée pour chaque matériel sorti de production",
+            "Risque de double emploi matériel non contrôlé (shadow IT bancaire)",
+            "Pression CSRD ESRS E5 : première publication scope 3.1 attendue en 2026"
+          ],
+          "solution": [
+            "Audit exhaustif du parc (scan SNMP + agents WMI) en 72h sur 4 sites",
+            "Effacement certifié NIST 800-88 r2 et HMG IS5 Enhanced sur 100% des supports",
+            "Chaîne de garde numérique horodatée, piste d'audit ACPR-ready",
+            "Reconditionnement sélectif Win11-compatible (tri automatisé par grade A/B/C)",
+            "Rapport CSRD : extraction scope 3.1 prête à l'emploi pour l'exercice 2025"
+          ],
+          "results": [
+            "1 850 tCO2e évitées sur 4 ans (prolongation de vie 3 ans vs remplacement neuf)",
+            "638 k€ de valeur résiduelle récupérée (revente + crédit carbone)",
+            "Audit ACPR passé en 4 jours (vs 3 semaines en moyenne sur le marché)",
+            "100% des certificats d'effacement transmis en moins de 48h",
+            "Zéro écart documentaire lors du contrôle interne CISO"
+          ],
+          "metrics": [
+            { "label": "tCO2e évitées", "value": "1 850", "detail": "sur 4 ans (scope 3.1)" },
+            { "label": "Valeur récupérée", "value": "638 k€", "detail": "revente + crédit carbone" },
+            { "label": "Durée audit ACPR", "value": "4 jours", "detail": "vs 3 sem. marché" },
+            { "label": "Postes traités", "value": "12 000", "detail": "certifiés NIST 800-88" }
+          ],
+          "quote": "La traçabilité que GTC fournit nous a permis de passer l'audit ACPR en 4 jours au lieu de trois semaines. C'est un avantage compétitif concret, pas un argument marketing.",
+          "quoteName": "Marc B.",
+          "quoteRole": "RSSI",
+          "quoteSector": "Banque CAC40",
+          "seeAlso": "energie-dora",
+          "seeAlsoLabel": "Énergie/Utility — DORA + audit ACPR"
+        },
+        {
+          "slug": "chu-sante",
+          "sector": "Santé / CHU",
+          "badgeColor": "#10B981",
+          "photo": "/photos/case-hopital.jpg",
+          "photoAlt": "CHU régional — salle de serveurs et postes biomédicaux en décommissionnement",
+          "title": "RGPD + reconditionnement d'une flotte obsolète en CHU",
+          "subtitle": "CHU régional · 9 000 lits · 4 200 postes traités",
+          "context": [
+            "Flotte de 4 200 postes en fin de vie (>5 ans) contenant des données patients sensibles",
+            "RGPD Art. 25 & 32 : obligation d'effacement irréversible avant cession ou recyclage",
+            "Direction SI sous pression : budget restreint, pas de budget remplacement à neuf",
+            "Risque médico-légal en cas de fuite de données patients (jusqu'à 4% CA RGPD)",
+            "Contrainte HDS : hébergement et traitement données de santé strictement réglementé"
+          ],
+          "solution": [
+            "Inventaire mobile sur site (scan code-barres) en moins de 5 jours ouvrés",
+            "Effacement NIST 800-88 avec certificats individuels pour chaque poste",
+            "Reconditionnement en 3 grades (A/B/C) — matériels grade A revendus en circuit court",
+            "Démarche zéro déchet : 98% des composants valorisés (revente, pièces, recyclage DEEE)",
+            "Reporting RGPD clé-en-main transmis au DPO dans les 48h post-intervention"
+          ],
+          "results": [
+            "4 200 postes reconditionnés — zéro mise en décharge directe",
+            "710 tCO2e évitées grâce à la prolongation de vie et au reconditionnement",
+            "320 k€ récupérés (revente matériels grade A + crédit carbone)",
+            "Délai d'intervention : 5 jours ouvrés (inventaire complet + évacuation)",
+            "Conformité RGPD Art. 32 documentée — zéro incident DPO"
+          ],
+          "metrics": [
+            { "label": "Postes reconditionnés", "value": "4 200", "detail": "zéro décharge" },
+            { "label": "tCO2e évitées", "value": "710", "detail": "vs remplacement neuf" },
+            { "label": "Valeur récupérée", "value": "320 k€", "detail": "revente + carbone" },
+            { "label": "Délai intervention", "value": "5 jours", "detail": "inventaire + évacuation" }
+          ],
+          "quote": "Nous avions 4 200 postes contenant des données patients. GTC a géré l'effacement certifié et le reconditionnement en 5 jours. Notre DPO a signé le rapport sans réserve.",
+          "quoteName": "Philippe D.",
+          "quoteRole": "DSI",
+          "quoteSector": "CHU Régional",
+          "seeAlso": "universite-ess",
+          "seeAlsoLabel": "Éducation — flotte + don ESS"
+        },
+        {
+          "slug": "industriel-csrd",
+          "sector": "Industrie / CAC60",
+          "badgeColor": "#F59E0B",
+          "photo": "/photos/case-industrie.jpg",
+          "photoAlt": "Site industriel CAC60 — parc informatique et OT en décommissionnement",
+          "title": "Premier rapport CSRD ESRS E5 livré à J-90 de clôture",
+          "subtitle": "Industriel CAC60 · CSRD ESRS E5 · Valorisation OT multi-sites",
+          "context": [
+            "Obligation CSRD vague 2 : première publication ESRS E5 attendue pour exercice 2025",
+            "Parc OT/IoT hétérogène — automates industriels, capteurs, équipements de production",
+            "Absence de traçabilité scope 3.1 (fabrication) et scope 3.12 (fin de vie) auditables",
+            "Auditeurs ESG exigent preuves chiffrées avec méthodologie reconnue (ADEME/Boavizta)",
+            "Pression DAF : valoriser les actifs déclassés avant clôture comptable annuelle"
+          ],
+          "solution": [
+            "Audit complet parc IT + OT sur 12 sites industriels (5 pays Europe)",
+            "Calcul scope 3 conforme Boavizta + export format GRI/ESRS E5",
+            "Effacement sécurisé des systèmes OT contenant propriété intellectuelle industrielle",
+            "Valorisation des équipements OT EOL : revente spécialiste + recyclage WEEE",
+            "Rapport CSRD prêt à intégrer le rapport annuel — validé par cabinet Big 4"
+          ],
+          "results": [
+            "Premier rapport CSRD ESRS E5 livré à J-90 de clôture d'exercice",
+            "2 100 tCO2e scope 3.12 documentées et auditables",
+            "480 k€ de valeur résiduelle récupérée (OT + IT combinés)",
+            "Zéro réserve d'audit ESG lors de la revue Big 4",
+            "Processus reconduit chaque année — engagement pluriannuel signé"
+          ],
+          "metrics": [
+            { "label": "Délai CSRD", "value": "J-90", "detail": "avant clôture exercice" },
+            { "label": "tCO2e scope 3.12", "value": "2 100", "detail": "documentées auditables" },
+            { "label": "Valeur récupérée", "value": "480 k€", "detail": "OT + IT combinés" },
+            { "label": "Sites couverts", "value": "12", "detail": "5 pays Europe" }
+          ],
+          "quote": "GTC est le seul prestataire qui comprend à la fois l'OT industriel et les exigences ESRS E5. Notre rapport CSRD est passé sans réserve dès la première année.",
+          "quoteName": "Sylvie R.",
+          "quoteRole": "Directrice RSE",
+          "quoteSector": "Industriel CAC60",
+          "seeAlso": "banque-cac40",
+          "seeAlsoLabel": "Banque — migration Win11 + CSRD"
+        },
+        {
+          "slug": "ministere-collectivite",
+          "sector": "Secteur Public",
+          "badgeColor": "#0EA5E9",
+          "photo": "/photos/case-administration.jpg",
+          "photoAlt": "Collectivité publique — salle informatique et équipements administratifs",
+          "title": "Souveraineté numérique + clause sociale ESS sur 2 500 ETP",
+          "subtitle": "Grande collectivité · 2 500 ETP · 100% filière française ESS",
+          "context": [
+            "Obligation code de la commande publique : critères environnementaux ≥ 5% dans les marchés IT",
+            "Exigence traçabilité RGPD renforcée (données usagers, données RH administratives)",
+            "Pression politique : valoriser les achats responsables dans le bilan environnemental",
+            "Contrainte souveraineté : données ne doivent pas quitter le territoire national",
+            "Budget contraint : pas de remplacement à neuf — réemploi maximal exigé"
+          ],
+          "solution": [
+            "Schéma directeur ITAD intégrant clause sociale ESS (opérateurs d'insertion agréés)",
+            "100% du traitement réalisé sur sol français, sans sous-traitance hors UE",
+            "Effacement NIST 800-88 r2 avec certificats individuels (conformité CADA/RGPD)",
+            "Revente prioritaire à filière ESS agréée (structures d'insertion numérique)",
+            "Rapport annuel bilan environnemental prêt pour le conseil municipal"
+          ],
+          "results": [
+            "100% des matériels revendus en filière française ESS agréée",
+            "Clause sociale ESS intégrée dans 3 marchés publics successifs",
+            "850 tCO2e évitées sur 3 ans (scope 3.1 + scope 3.12 combinés)",
+            "Zéro donnée traitée hors sol français — conformité RGPD et souveraineté",
+            "Bilan environnemental valorisé dans le rapport RSE collectivité 2024"
+          ],
+          "metrics": [
+            { "label": "Filière ESS", "value": "100%", "detail": "revente France uniquement" },
+            { "label": "tCO2e évitées", "value": "850", "detail": "scope 3 sur 3 ans" },
+            { "label": "Marchés intégrés", "value": "3", "detail": "code commande publique" },
+            { "label": "Souveraineté", "value": "100%", "detail": "données France uniquement" }
+          ],
+          "quote": "GTC a conçu avec nous un schéma directeur qui satisfait nos obligations réglementaires, notre devoir d'exemplarité ESS et notre souveraineté numérique. Un partenaire rare.",
+          "quoteName": "Catherine L.",
+          "quoteRole": "DSI",
+          "quoteSector": "Grande Mairie",
+          "seeAlso": "universite-ess",
+          "seeAlsoLabel": "Éducation — don solidaire ESS"
+        },
+        {
+          "slug": "retail-wakibox",
+          "sector": "Retail",
+          "badgeColor": "#10B981",
+          "photo": "/photos/case-retail.jpg",
+          "photoAlt": "Entrepôt enseigne retail — équipements IT collectés par WakiBox IoT",
+          "title": "WakiBox : collecte mutualisée DEEE sur 350 magasins",
+          "subtitle": "Enseigne nationale · 350 magasins · 12 t/an collectées",
+          "context": [
+            "350 points de vente générant du DEEE IT de façon dispersée et non traçable",
+            "Obligation DEEE art. R543-195 : traçabilité documentée par établissement requise",
+            "Coûts logistiques élevés : collecte individuelle non rentable par magasin",
+            "Hétérogénéité des équipements : terminaux PDV, tablettes, caisses, accessoires",
+            "DAF exige un ROI démontrable et mesurable sur la gestion des déchets IT"
+          ],
+          "solution": [
+            "Déploiement WakiBox (IoT) dans 350 magasins : collecte mutualisée sécurisée",
+            "Alerte automatique quand WakiBox atteint 80% de remplissage",
+            "Tournées de collecte optimisées — 1 passage / magasin / trimestre maximum",
+            "Certificat DEEE centralisé par magasin et par référence article",
+            "Dashboard ROI temps réel : tCO2e, €/magasin, taux récupération"
+          ],
+          "results": [
+            "12 t/an de DEEE IT collectées et valorisées (zéro décharge illégale)",
+            "89 k€/an d'économies logistiques (vs collecte individuelle décentralisée)",
+            "64% de réduction du nombre de rotations transport",
+            "Conformité DEEE documentée pour 100% des établissements",
+            "ROI positif dès le 6e mois après déploiement complet"
+          ],
+          "metrics": [
+            { "label": "DEEE collectés", "value": "12 t/an", "detail": "zéro décharge illégale" },
+            { "label": "Éco. logistique", "value": "89 k€/an", "detail": "vs collecte individuelle" },
+            { "label": "Rotations réduites", "value": "64%", "detail": "optimisation tournées" },
+            { "label": "ROI", "value": "M+6", "detail": "positif dès le 6e mois" }
+          ],
+          "quote": "Avant WakiBox, nos 350 magasins géraient leurs DEEE IT chacun de leur côté — impossible à auditer. Aujourd'hui, j'ai un tableau de bord en temps réel et 89 k€ d'économies par an.",
+          "quoteName": "Laurent M.",
+          "quoteRole": "DAF Retail",
+          "quoteSector": "Enseigne nationale",
+          "seeAlso": "banque-cac40",
+          "seeAlsoLabel": "Banque — traçabilité certifiée"
+        },
+        {
+          "slug": "energie-dora",
+          "sector": "Énergie / Utility",
+          "badgeColor": "#F59E0B",
+          "photo": "/photos/case-energie.jpg",
+          "photoAlt": "Infrastructure Utility CAC40 — datacenter et équipements critiques énergie",
+          "title": "DORA + chain of custody — audit ACPR réussi en 4 jours",
+          "subtitle": "Utility CAC40 · DORA Art. 9 · Contrôle ACPR",
+          "context": [
+            "DORA Art. 9 : traçabilité complète des supports contenant données opérationnelles critiques",
+            "Contrôle ACPR annoncé — délai de 3 semaines pour produire la chaîne de custody",
+            "Parc hybride : équipements IT bureau + équipements SCADA/OT industriels",
+            "Risque de sanction ACPR jusqu'à 10% du CA annuel en cas d'écart documentaire",
+            "Pression NIS2 : renforcement des exigences sur la gestion des actifs IT critiques"
+          ],
+          "solution": [
+            "Audit flash en 4 jours : inventaire complet + chaîne de custody produite sous 72h",
+            "Effacement HMG IS5 Enhanced + NIST 800-88 r2 sur supports critiques OT/IT",
+            "Chain of custody numérique : hash SHA-256 par support, horodatage blockchain-ready",
+            "Rapport ACPR-ready formaté selon exigences BCE/ACPR (template validé inspecteurs)",
+            "Accompagnement RSSI pendant l'inspection — expert GTC présent J-1 à J+4"
+          ],
+          "results": [
+            "Audit ACPR réussi en 4 jours (benchmark sectoriel : 3 semaines en moyenne)",
+            "0 écart documentaire constaté par les inspecteurs ACPR",
+            "Chaîne de custody produite en 72h pour 8 500 équipements recensés",
+            "Zéro sanction — conformité DORA Art. 9 validée par les auditeurs",
+            "Processus ITAD intégré dans le plan de continuité NIS2 de l'entreprise"
+          ],
+          "metrics": [
+            { "label": "Durée audit", "value": "4 jours", "detail": "vs 3 sem. habituellement" },
+            { "label": "Écarts docs", "value": "0", "detail": "zéro lors inspection ACPR" },
+            { "label": "Équipements", "value": "8 500", "detail": "custody produite en 72h" },
+            { "label": "Sanction ACPR", "value": "0 €", "detail": "conformité DORA validée" }
+          ],
+          "quote": "Quand l'ACPR a annoncé son contrôle, nous avions 3 semaines. GTC a produit l'intégralité de la chaîne de custody en 4 jours. Zéro écart. Zéro sanction.",
+          "quoteName": "Pierre G.",
+          "quoteRole": "RSSI",
+          "quoteSector": "Utility CAC40",
+          "seeAlso": "banque-cac40",
+          "seeAlsoLabel": "Banque — audit ACPR + NIS2"
+        },
+        {
+          "slug": "telco-datacenter",
+          "sector": "Telco",
+          "badgeColor": "#0EA5E9",
+          "photo": "/photos/case-telco.jpg",
+          "photoAlt": "Datacenter opérateur Telco en décommissionnement — serveurs rack",
+          "title": "Datacenter EOL : 2 800 serveurs revendus pour 1,2 M€",
+          "subtitle": "Opérateur Telco · 2 800 serveurs · 3 datacenters",
+          "context": [
+            "2 800 serveurs en fin de vie dans 3 datacenters à décommissionner simultanément",
+            "Données clients opérateur : obligation effacement grade télécom (ANSSI/RGPD)",
+            "Valeur résiduelle importante mais difficile à estimer sans expertise marché secondaire",
+            "Délai de décommissionnement contraint : libération des salles sous 60 jours",
+            "Contrainte RSE : objectif zéro DEEE en décharge, bilan carbone à produire"
+          ],
+          "solution": [
+            "Valorisation marché : cotation des 2 800 serveurs en 48h (base prix marché secondaire)",
+            "Effacement certifié NIST 800-88 r2 sur 100% des supports de stockage",
+            "Logistique dédiée : démontage, conditionnement, transport sécurisé en 60 jours",
+            "Revente à réseau acheteurs qualifiés européens (entreprises, revendeurs, intégrateurs)",
+            "Bilan carbone : calcul précis tCO2e évitées vs fabrication neuf (Boavizta)"
+          ],
+          "results": [
+            "2 800 serveurs revendus pour 1,2 M€ (vs estimation initiale DSI : 400 k€)",
+            "3x la valeur estimée — expertise marché secondaire internationale décisive",
+            "980 tCO2e évitées grâce à la prolongation de vie (vs remplacement neuf)",
+            "Décommissionnement complet en 58 jours (dans les délais contractuels)",
+            "100% des certificats d'effacement transmis avant libération des salles"
+          ],
+          "metrics": [
+            { "label": "Valeur récupérée", "value": "1,2 M€", "detail": "3x l'estimation DSI" },
+            { "label": "Serveurs traités", "value": "2 800", "detail": "3 datacenters" },
+            { "label": "tCO2e évitées", "value": "980", "detail": "vs fabrication neuf" },
+            { "label": "Durée projet", "value": "58 jours", "detail": "dans les délais" }
+          ],
+          "quote": "Notre DSI avait estimé 400 k€ de valeur résiduelle. GTC en a récupéré 1,2 M€. La différence, c'est leur connaissance du marché secondaire international.",
+          "quoteName": "Nadia K.",
+          "quoteRole": "DSI",
+          "quoteSector": "Opérateur Telco",
+          "seeAlso": "energie-dora",
+          "seeAlsoLabel": "Énergie — DORA + chain of custody"
+        },
+        {
+          "slug": "universite-ess",
+          "sector": "Éducation",
+          "badgeColor": "#10B981",
+          "photo": "/photos/case-universite.jpg",
+          "photoAlt": "Campus universitaire — postes étudiants reconditionnés pour don ESS",
+          "title": "Flotte 18 000 étudiants + don solidaire ESS",
+          "subtitle": "Université publique · 18 000 étudiants · 4 500 postes donnés",
+          "context": [
+            "Renouvellement de flotte pédagogique : 4 500 postes obsolètes à remplacer",
+            "Contrainte budget public : pas de budget destruction — valorisation maximale exigée",
+            "Engagement RSE université : don solidaire aux associations étudiantes et filière ESS",
+            "Données étudiants et administratives sur les supports — effacement RGPD obligatoire",
+            "Délai impératif : renouvellement coordonné avec la rentrée universitaire (septembre)"
+          ],
+          "solution": [
+            "Inventaire + effacement certifié NIST 800-88 r2 sur 4 500 postes en 10 jours",
+            "Tri en 3 grades : grade A → don ESS, grade B → revente, grade C → recyclage DEEE",
+            "Partenariat avec 12 associations ESS et 3 ESAT pour la redistribution solidaire",
+            "Certificats d'effacement individuels transmis au DPO de l'université",
+            "Bilan carbone et rapport RSE prêt pour le conseil d'administration"
+          ],
+          "results": [
+            "4 500 postes donnés à des associations ESS — zéro mise en décharge",
+            "180 k€ économisés vs destruction classique + achat équipements neufs",
+            "520 tCO2e évitées (prolongation de vie + don vs fabrication neuf)",
+            "Délai tenu : opération complète avant rentrée universitaire",
+            "Rapport RSE valorisé dans le bilan annuel du Conseil d'Administration"
+          ],
+          "metrics": [
+            { "label": "Postes donnés ESS", "value": "4 500", "detail": "12 associations partenaires" },
+            { "label": "Économies", "value": "180 k€", "detail": "vs destruction + neuf" },
+            { "label": "tCO2e évitées", "value": "520", "detail": "don + reconditionnement" },
+            { "label": "Délai", "value": "10 jours", "detail": "avant rentrée universitaire" }
+          ],
+          "quote": "GTC a transformé notre contrainte budgétaire en démarche RSE exemplaire. 4 500 ordinateurs redonnés à des associations, le tout certifié NIST 800-88. C'est l'économie circulaire concrète.",
+          "quoteName": "Frédéric T.",
+          "quoteRole": "DSI",
+          "quoteSector": "Université publique",
+          "seeAlso": "ministere-collectivite",
+          "seeAlsoLabel": "Secteur Public — souveraineté + ESS"
+        }
+      ]
+    },
+    "matrix": {
+      "eyebrow": "Vue synthétique comparative",
+      "title": "Comparez les cas par vos critères",
+      "subtitle": "8 lignes · 6 indicateurs — repérez le profil qui correspond à votre organisation.",
+      "footnote": "Données issues des rapports d'intervention GTC 2022-2025. Anonymisation volontaire à la demande des donneurs d'ordre.",
+      "headers": ["Secteur", "Économies €", "tCO2e évitées", "Conformité atteinte", "Durée projet", "Taux récupération"],
+      "rows": [
+        ["Banque CAC40", "638 k€", "1 850", "NIS2 · DORA · CSRD", "6 semaines", "97%"],
+        ["Santé / CHU", "320 k€", "710", "RGPD · HDS", "5 jours", "98%"],
+        ["Industrie CAC60", "480 k€", "2 100", "CSRD ESRS E5", "8 semaines", "96%"],
+        ["Secteur Public", "240 k€ éco.", "850", "RGPD · Commande pub.", "12 semaines", "100%"],
+        ["Retail", "89 k€/an", "340", "DEEE · CSRD", "ROI M+6", "94%"],
+        ["Énergie/Utility", "évitement sanction", "620", "DORA · NIS2 · ACPR", "4 jours", "99%"],
+        ["Telco", "1 200 k€", "980", "ANSSI · RGPD opérateur", "58 jours", "100%"],
+        ["Éducation", "180 k€", "520", "RGPD · ESS", "10 jours", "100%"]
+      ]
+    },
+    "conversion": {
+      "eyebrow": "Votre cas sur-mesure",
+      "title": "Votre cas n'est pas listé ?",
+      "subtitle": "Décrivez votre situation en 4 champs — nous vous adressons sous 48h un cas comparable issu de notre bibliothèque et une estimation ROI personnalisée.",
+      "fields": {
+        "company": "Nom de l'entreprise",
+        "sector": "Secteur d'activité",
+        "parkSize": "Taille du parc (nombre de postes)",
+        "challenge": "Défi principal (conformité, valeur, CSRD...)"
+      },
+      "cta": "Recevoir un cas comparable + ROI estimé sous 48h",
+      "privacy": "Données traitées conformément au RGPD — aucune revente. Réponse sous 48h ouvrées.",
+      "successTitle": "Demande envoyée !",
+      "successBody": "Notre équipe vous contacte sous 48h avec un cas comparable et une estimation ROI personnalisée."
+    },
+    "testimonials": {
+      "eyebrow": "Ils en parlent mieux que nous",
+      "title": "Verbatims clients — 4 personas",
+      "consentNote": "Témoignages recueillis avec accord écrit des personnes concernées. Identités complètes disponibles sous NDA à la demande.",
+      "items": [
+        {
+          "quote": "Pour un RSSI, la traçabilité n'est pas optionnelle. GTC est le seul prestataire qui comprend ça vraiment.",
+          "name": "Marc B.",
+          "role": "RSSI",
+          "sector": "Banque CAC40"
+        },
+        {
+          "quote": "J'avais 6 mois pour préparer mon premier rapport CSRD E5. GTC l'a livré prêt à signer en 8 semaines.",
+          "name": "Sylvie R.",
+          "role": "Directrice RSE",
+          "sector": "Industrie CAC60"
+        },
+        {
+          "quote": "En tant que DAF, je veux du ROI chiffré. 89 k€ d'économies logistiques dès la première année, c'est du concret.",
+          "name": "Laurent M.",
+          "role": "DAF",
+          "sector": "Retail 350 magasins"
+        },
+        {
+          "quote": "GTC a récupéré 3 fois plus que ce que notre DSI avait estimé. La différence, c'est leur expertise marché secondaire.",
+          "name": "Nadia K.",
+          "role": "DSI",
+          "sector": "Opérateur Telco"
+        }
+      ]
+    },
+    "partners": {
+      "eyebrow": "Intégrations & certifications",
+      "title": "Écosystème partenaires",
+      "note": "Intégrations certifiées — connecteurs disponibles dans la plateforme GreenTechCycle.",
+      "items": ["ServiceNow", "SAP", "Microsoft 365", "Boavizta", "ADEME"]
+    },
+    "faq": {
+      "eyebrow": "Questions fréquentes",
+      "title": "Ce que les DSI / RSSI / RSE / DAF nous demandent",
+      "allQuestionsLink": "Voir les 24 questions de la FAQ technique",
+      "items": [
+        {
+          "q": "Comment chiffrez-vous le ROI d'une mission ITAD ?",
+          "a": "Nous calculons le ROI en 3 composantes : (1) valeur résiduelle récupérée (revente marché secondaire), (2) coûts évités (logistique, stockage, conformité), (3) crédit carbone valorisable. Chaque élément est documenté, sourcé et présenté dans un rapport ROI remis à J+30."
+        },
+        {
+          "q": "Combien de temps dure un projet type ?",
+          "a": "De 4 jours (audit flash conformité) à 12 semaines (programme pluriannuel multi-sites). La majorité des missions grandes entreprises se déroulent en 4 à 8 semaines, avec un premier rapport intermédiaire à J+10."
+        },
+        {
+          "q": "Mes données quittent-elles l'UE ?",
+          "a": "Non. 100% du traitement est réalisé sur sol français, dans nos 4 sites certifiés (Lyon, Paris, Bordeaux, Lille). Aucune sous-traitance hors UE. Chaîne de custody documentée de A à Z, disponible en 48h."
+        },
+        {
+          "q": "Quels engagements SLA proposez-vous ?",
+          "a": "Nos SLA standards : prise en charge sous 72h, premier rapport sous 10 jours ouvrés, certificats d'effacement sous 48h post-intervention. Des SLA renforcés (24h) sont disponibles pour les missions critiques DORA/NIS2."
+        },
+        {
+          "q": "Travaillez-vous sur des sites classifiés ?",
+          "a": "Oui, sous protocole avec les habilitations requises. Nos équipes disposent des autorisations nécessaires pour intervenir sur les sites classifiés Défense et les opérateurs d'importance vitale (OIV). Protocole sur demande."
+        },
+        {
+          "q": "Comment certifier mes déchets auprès de mes auditeurs ?",
+          "a": "Chaque intervention génère : un certificat d'effacement individuel (NIST 800-88 r2), un bordereau DEEE par établissement, et un rapport de synthèse format GRI/ESRS E5. Ces documents sont directement utilisables par vos auditeurs Big 4 ou commissaires aux comptes."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Passez à l'action",
+      "title": "Votre prochain décommissionnement, sans risque réglementaire.",
+      "subtitle": "Audit personnalisé sous 48h · Résultats chiffrés · Engagement contractuel SLA · Équipe habilités sur 4 sites France",
+      "cta1": "Demander un audit",
+      "cta2": "Réserver une démo 30 min",
+      "trustBadges": ["Conforme RGPD", "SecNumCloud-ready", "ISO 27001", "Réponse sous 24h"]
+    }
   }
 }
