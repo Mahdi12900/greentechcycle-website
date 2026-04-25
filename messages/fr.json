@@ -2666,5 +2666,308 @@
       "role": "RSSI, Banque européenne tier-1",
       "consentNote": "Témoignage recueilli avec accord écrit. Identité complète disponible sous NDA à la demande."
     }
+  },
+  "wakiBox": {
+    "urgency": "Programme pilote ouvert · 3 premiers signataires · Setup offert",
+    "urgencyCta": "Candidater au pilote",
+    "hero": {
+      "eyebrow": "Waki Box · v1.0 · Avril 2026",
+      "headline": "La box DEEE qui pense à votre place.",
+      "subtitle": "Une box connectée installée dans vos bureaux, des capteurs qui détectent les batteries lithium, et une plateforme qui transforme chaque collecte en preuve de conformité REP DEEE et en données ESRS E5 mappées au gramme près.",
+      "subtitleSecond": "Plus de feuilles Excel approximatives, plus de prestataires passifs : un service vivant, mesuré, prêt à passer en compte-rendu CSRD sans retraitement.",
+      "cta1": "Réserver une démo",
+      "cta2": "Candidater au pilote",
+      "scrollCta": "Découvrir les plans",
+      "photoAlt": "Bureau professionnel équipé d'une borne de collecte DEEE intelligente"
+    },
+    "kpis": {
+      "items": [
+        { "value": 5, "suffix": " kg", "label": "DEEE par collaborateur et par an", "source": "Estimation moyenne tertiaire France 2024" },
+        { "value": 100, "suffix": " %", "label": "Conforme à la filière REP DEEE", "source": "Convention éco-organismes agréés" },
+        { "value": 6, "suffix": "", "label": "Disclosures ESRS E5 mappés (E5-1 à E5-6)", "source": "EFRAG · normes CSRD juillet 2023" },
+        { "value": 1, "suffix": " g", "label": "Précision de pesée par flux trié", "source": "Capteurs intégrés Waki Box" }
+      ],
+      "footnote": "Données issues du référentiel Waki Box v1.0 et des règles de calcul publiées par l'ADEME et EFRAG."
+    },
+    "problem": {
+      "eyebrow": "Le constat",
+      "title": "Pourquoi les bornes de collecte traditionnelles ne suffisent plus.",
+      "body": "Corepile, Screlec, Batribox ou Élise rendent un service utile : ils retirent les déchets. Mais ils ne mesurent rien d'exploitable. Pas de pesée par flux, pas de remontée temps réel, pas de mapping CSRD, et un compte-rendu trimestriel agrégé qui n'aide ni le DAF, ni le RSE, ni le DSI à justifier quoi que ce soit. Vos collaborateurs jettent à l'aveugle, vos auditeurs vous demandent des preuves, et personne n'a la donnée fiable qui réconcilie les deux mondes.",
+      "bodySecond": "Waki Box renverse le rapport : c'est la box qui produit la preuve, pas vous. Capteurs de pesée, détection de batteries lithium, traçabilité par flux, plateforme connectée, exports ESRS E5 prêts à intégrer dans le compte-rendu de durabilité. La conformité devient passive, mesurée, sans charge mentale supplémentaire pour l'office manager."
+    },
+    "promise": {
+      "eyebrow": "5 promesses en 1 service",
+      "title": "Une box, cinq objectifs alignés.",
+      "subtitle": "Conçue pour que la même action quotidienne — déposer un câble, une pile, un chargeur — alimente cinq chantiers stratégiques de l'entreprise sans friction.",
+      "items": [
+        { "label": "Conformité REP DEEE", "title": "Filière agréée, registre tenu", "body": "Chaque collecte est rattachée à un éco-organisme agréé. Le bordereau de suivi de déchet est généré automatiquement, archivé sur la plateforme et opposable en cas de contrôle." },
+        { "label": "Sécurité bâtiment", "title": "Détection des batteries lithium à risque", "body": "Capteurs thermiques et de gaz intégrés : les piles lithium gonflées ou en surchauffe sont identifiées avant qu'elles ne deviennent un risque incendie pour vos locaux." },
+        { "label": "Compte-rendu ESG", "title": "Données mesurées, pas estimées", "body": "Pesée par flux au gramme près, horodatage, géolocalisation par site. Vos chiffres ESG sont traçables, vérifiables, défendables face à un commissaire aux comptes." },
+        { "label": "Engagement collaborateurs", "title": "Un geste utile, visible, gratifiant", "body": "Affichage des kilos collectés, des équivalents CO₂ évités, des associations bénéficiaires. Les équipes voient l'impact de leur geste — la collecte devient un rituel d'équipe." },
+        { "label": "Préparation CSRD", "title": "Mapping E5-1 à E5-6 prêt à l'emploi", "body": "Les exports correspondent ligne à ligne aux disclosures ESRS E5 (ressources entrantes, sortantes, économie circulaire). Aucun retraitement nécessaire pour le compte-rendu de durabilité." }
+      ],
+      "photoAlt": "Équipe RSE consultant un tableau de bord de collecte DEEE en temps réel"
+    },
+    "plans": {
+      "eyebrow": "Trois plans, trois maturités",
+      "title": "Le plan qui correspond à votre trajectoire.",
+      "subtitle": "Que vous soyez une TPE qui découvre la conformité DEEE ou un grand groupe en pleine montée CSRD, Waki Box s'adapte au volume, au niveau de pilotage et au degré d'intégration souhaité.",
+      "popular": "Le plus populaire",
+      "monthly": "/ mois HT",
+      "setup": "Frais de mise en service",
+      "engagement": "Engagement",
+      "ctaReserve": "Réserver ce plan",
+      "items": [
+        {
+          "slug": "waki-box-essentiel",
+          "name": "Essentiel",
+          "audience": "TPE & PME · 10 à 50 collaborateurs",
+          "price": "39 €",
+          "setupValue": "150 €",
+          "engagementValue": "12 mois",
+          "tagline": "Démarrer la conformité DEEE proprement, sans complexité.",
+          "features": [
+            "1 borne Waki Box installée et entretenue",
+            "Collecte sur demande dès remplissage",
+            "Plateforme basique · 1 utilisateur",
+            "Compte-rendu trimestriel par e-mail",
+            "Bordereau de suivi de déchet automatisé",
+            "Filière REP DEEE garantie"
+          ]
+        },
+        {
+          "slug": "waki-box-confort",
+          "name": "Confort",
+          "audience": "PME & ETI · 50 à 300 collaborateurs",
+          "price": "79 €",
+          "setupValue": "290 €",
+          "engagementValue": "12 mois",
+          "tagline": "Le standard pour les organisations qui préparent la CSRD.",
+          "features": [
+            "Jusqu'à 3 bornes Waki Box multi-flux",
+            "Tous flux acceptés : piles, batteries, câbles, ampoules, accessoires",
+            "Plateforme complète · jusqu'à 5 utilisateurs",
+            "Compte-rendu mensuel détaillé par flux et par site",
+            "Export ESRS E5 (E5-1 à E5-6) en un clic",
+            "Alertes temps réel : box pleine, batterie lithium détectée, anomalie"
+          ]
+        },
+        {
+          "slug": "waki-box-premium",
+          "name": "Premium",
+          "audience": "ETI & grands comptes · 300 collaborateurs et plus",
+          "price": "à partir de 149 €",
+          "setupValue": "490 € par borne",
+          "engagementValue": "24 mois",
+          "tagline": "Multi-sites, intégré au système d'information, accompagné.",
+          "features": [
+            "Bornes Waki Box illimitées, multi-sites",
+            "Plateforme complète · utilisateurs illimités, gestion multi-sites",
+            "Responsable de compte attribué",
+            "Intégration ERP / SIRH / outil RSE par interface API dédiée",
+            "Engagement de service collecte sous 48 heures ouvrées",
+            "Compte-rendu CSRD personnalisé et restitution annuelle direction"
+          ]
+        }
+      ]
+    },
+    "pilot": {
+      "eyebrow": "Programme pilote · ouvert jusqu'à épuisement",
+      "title": "Trois premières entreprises. Un témoignage. Un tarif fondateur.",
+      "body": "Nous lançons Waki Box auprès de trois entreprises pilotes choisies sur dossier. En échange d'un témoignage public à six mois, vous bénéficiez du setup offert et d'un abonnement à 19 € HT par mois pendant six mois — soit moins de la moitié du plan Essentiel. Au-delà, vous basculez automatiquement sur l'offre publique du plan choisi, sans surprise.",
+      "bullets": [
+        "Setup et installation totalement offerts",
+        "19 € HT par mois pendant 6 mois (au lieu de 39 € à 79 €)",
+        "Accompagnement direct par l'équipe fondatrice",
+        "Témoignage écrit ou vidéo à six mois en contrepartie"
+      ],
+      "cta": "Candidater au pilote",
+      "footnote": "3 places disponibles. Sélection sur dossier. Réponse sous 5 jours ouvrés."
+    },
+    "addons": {
+      "eyebrow": "Options à la carte",
+      "title": "Compléter votre plan, sans tout repenser.",
+      "subtitle": "Une logique modulaire : votre plan couvre 90 % du besoin, ces options répondent aux 10 % spécifiques (événement, audit, multi-sites, sur-mesure CSRD).",
+      "ctaReserve": "Réserver",
+      "headerOption": "Option",
+      "headerWhy": "Quand l'activer",
+      "headerPrice": "Tarif HT",
+      "items": [
+        { "slug": "box-supplementaire", "name": "Borne Waki Box supplémentaire", "why": "Site additionnel ou flux séparé batteries / petits DEEE", "price": "29 € / mois" },
+        { "slug": "collecte-urgence", "name": "Collecte d'urgence sous 24 heures", "why": "Saturation imprévue, déménagement, incident batterie", "price": "90 € par collecte" },
+        { "slug": "animation-semaine-recyclage", "name": "Animation Semaine du recyclage", "why": "Sensibilisation collaborateurs, semaine européenne du développement durable", "price": "350 € / jour" },
+        { "slug": "rapport-csrd-dedie", "name": "Compte-rendu CSRD dédié", "why": "Restitution annuelle écrite, mappée ESRS E5, prête direction", "price": "490 € / an" },
+        { "slug": "kit-comm-customise", "name": "Kit communication personnalisé", "why": "Affichage aux couleurs de votre marque, signalétique sur mesure", "price": "290 € · à la livraison" },
+        { "slug": "audit-deee", "name": "Audit DEEE sur site", "why": "État des lieux complet avant déploiement multi-sites", "price": "1 500 € / jour" },
+        { "slug": "formation-equipes", "name": "Formation tri DEEE des équipes", "why": "Onboarding office managers, brief sécurité batteries lithium", "price": "450 € / 2 heures" }
+      ],
+      "footnote": "Toutes les options sont activables à tout moment, sans modification du contrat principal."
+    },
+    "flows": {
+      "eyebrow": "Flux acceptés et flux exclus",
+      "title": "Ce que la box prend, ce qu'elle ne prend pas.",
+      "intro": "Waki Box est conçue pour les petits DEEE diffus du tertiaire : ce que vos collaborateurs vident de leurs tiroirs sans savoir où le mettre. Pour tout ce qui contient des données — ordinateurs, serveurs, smartphones professionnels — la box n'est pas le bon outil : c'est notre offre ITAD distincte qui prend le relais avec effacement certifié NIST 800-88.",
+      "acceptedTitle": "Flux acceptés dans la Waki Box",
+      "accepted": [
+        "Piles alcalines, salines, boutons",
+        "Batteries portables Li-ion (téléphones, claviers, souris, jouets connectés)",
+        "Câbles USB, HDMI, Ethernet, alimentations",
+        "Chargeurs, blocs d'alimentation, adaptateurs",
+        "Ampoules LED, néons, fluocompactes",
+        "Accessoires : casques filaires, écouteurs, télécommandes",
+        "Cartouches d'encre et toners de bureautique"
+      ],
+      "excludedTitle": "Flux exclus · relèvent de l'offre ITAD GreenTechCycle",
+      "excluded": [
+        "Smartphones et tablettes professionnels",
+        "Ordinateurs portables et postes fixes",
+        "Serveurs, baies, équipements de salle technique",
+        "Équipements réseau actifs (commutateurs, pare-feu, points d'accès)",
+        "Supports de stockage (disques durs, SSD, bandes, clés USB)"
+      ],
+      "linkLabel": "Voir l'offre ITAD avec effacement certifié",
+      "linkHref": "/services/effacement-securise"
+    },
+    "faq": {
+      "eyebrow": "Questions fréquentes",
+      "title": "Tout ce que vous voulez savoir avant de signer.",
+      "items": [
+        { "q": "Que se passe-t-il concrètement le jour de la collecte ?", "a": "Notre transporteur agréé passe sur créneau convenu, pèse chaque flux devant vous, scanne les étiquettes, signe le bordereau de suivi de déchet et repart. La collecte dure entre 10 et 25 minutes selon le volume. Tout est mis à jour sur votre plateforme dans l'heure." },
+        { "q": "Comment fonctionnent les capteurs intégrés à la box ?", "a": "Trois capteurs : pesée par compartiment, sonde thermique, détection de gaz d'électrolyte. Une batterie lithium qui chauffe ou gonfle déclenche une alerte e-mail à votre office manager et un appel automatique à notre astreinte sécurité." },
+        { "q": "Quelles données sont remontées sur la plateforme ?", "a": "Poids par flux et par jour, taux de remplissage, événements sécurité, équivalent CO₂ évité, valeur matière récupérée, mapping ESRS E5 par disclosure. Toutes les données sont exportables au format CSV, Excel et XBRL CSRD." },
+        { "q": "Que devient concrètement le déchet après la collecte ?", "a": "Tri sur notre site agréé, traçabilité par lot, orientation vers la filière REP DEEE selon le flux. Aucune incinération sans valorisation, aucune sortie hors Union européenne pour les flux dangereux. Les certificats de fin de vie sont émis dans les 21 jours." },
+        { "q": "Comment résilier le contrat si le service ne convient pas ?", "a": "Période d'essai de 30 jours sans frais. Au-delà, préavis de 60 jours sur les plans Essentiel et Confort, 90 jours sur Premium. Aucune indemnité de sortie, restitution simple de la borne par notre transporteur." },
+        { "q": "Le service est-il vraiment compatible CSRD et ESRS E5 ?", "a": "Oui. Le mapping est documenté ligne à ligne avec les disclosures E5-1 (ressources entrantes), E5-2 (sorties), E5-3 (politiques), E5-4 (actions), E5-5 (objectifs) et E5-6 (montants financiers). Validé en revue par deux cabinets Big 4." },
+        { "q": "Combien de temps faut-il pour déployer Waki Box dans nos locaux ?", "a": "Plan Essentiel : 5 jours ouvrés entre signature et première collecte. Plan Confort : 10 jours pour 3 bornes. Plan Premium multi-sites : 4 à 6 semaines selon le nombre de sites et l'intégration au système d'information." },
+        { "q": "Peut-on tester avant de s'engager ?", "a": "Oui. Le programme pilote permet 6 mois à tarif fondateur. Hors pilote, nous proposons une démonstration produit en visio de 30 minutes et la visite d'un client de référence sur Lyon ou Paris." }
+      ]
+    },
+    "finalQuote": {
+      "eyebrow": "Vision",
+      "text": "La conformité DEEE n'est pas un coût caché de fin de mois. Bien instrumentée, c'est la preuve la plus accessible que vous avez engagé votre entreprise dans la transition. Waki Box rend cette preuve mesurable, défendable, partageable.",
+      "name": "Mahdi Khelifi",
+      "role": "Fondateur, GreenTechCycle"
+    },
+    "finalCta": {
+      "eyebrow": "Passer à l'action",
+      "title": "Réservez la box, ou candidatez au pilote.",
+      "subtitle": "Une démo pour comprendre. Un pilote pour démarrer fort. Dans les deux cas, une équipe humaine qui répond sous 24 heures ouvrées.",
+      "cta1": "Réserver une démo",
+      "cta2": "Candidater au pilote",
+      "trustBadges": ["Setup en 5 jours", "Sans engagement les 30 premiers jours", "Données hébergées en France", "Filière REP DEEE garantie"]
+    }
+  },
+  "reserver": {
+    "meta": {
+      "title": "Réserver · GreenTechCycle",
+      "description": "Réservez une démo, un plan Waki Box ou une option à la carte. Réponse personnalisée sous 24 heures ouvrées."
+    },
+    "hero": {
+      "eyebrowDefault": "Réservation qualifiée",
+      "headlineDefault": "Réserver une démo GreenTechCycle.",
+      "subtitleDefault": "Quelques informations pour qu'un responsable Waki Box ou ITAD vous rappelle avec une proposition adaptée à votre secteur, votre taille et votre niveau de maturité conformité.",
+      "headlinePrefix": "Réserver le plan ",
+      "pilotHeadline": "Candidater au programme pilote Waki Box.",
+      "pilotSubtitle": "Trois places. Une candidature courte. Une réponse sous cinq jours ouvrés. Setup offert et abonnement à 19 € HT par mois pendant six mois en échange d'un témoignage public.",
+      "addonHeadline": "Réserver une option à la carte.",
+      "addonSubtitle": "Précisez le contexte d'activation et le site concerné. Nous revenons vers vous avec un devis sous 24 heures ouvrées."
+    },
+    "form": {
+      "step1Title": "Vos coordonnées",
+      "step2Title": "Votre organisation",
+      "step3Title": "Votre besoin",
+      "step4Title": "Créneaux préférés",
+      "labels": {
+        "name": "Nom complet",
+        "email": "E-mail professionnel",
+        "phone": "Téléphone direct",
+        "company": "Entreprise",
+        "size": "Taille de l'organisation",
+        "persona": "Votre fonction",
+        "sites": "Site ou sites concernés",
+        "needs": "Volumes estimés ou besoins spécifiques",
+        "message": "Message libre (facultatif)",
+        "slots": "Choisissez jusqu'à trois créneaux",
+        "consent": "J'accepte que GreenTechCycle utilise ces informations pour me recontacter."
+      },
+      "placeholders": {
+        "name": "Prénom et nom",
+        "email": "vous@entreprise.fr",
+        "phone": "+33 6 …",
+        "company": "Raison sociale",
+        "sites": "Lyon siège, Paris La Défense, Lille…",
+        "needs": "Volumes, contraintes, calendrier, environnement IT…",
+        "message": "Tout élément utile à la prise de contact"
+      },
+      "sizes": [
+        { "value": "tpe", "label": "TPE · moins de 50 collaborateurs" },
+        { "value": "pme", "label": "PME · 50 à 250 collaborateurs" },
+        { "value": "eti", "label": "ETI · 250 à 5 000 collaborateurs" },
+        { "value": "grand-compte", "label": "Grand compte · 5 000 collaborateurs et plus" }
+      ],
+      "personas": [
+        { "value": "office-manager", "label": "Office manager · services généraux" },
+        { "value": "rse", "label": "Responsable RSE · développement durable" },
+        { "value": "dsi", "label": "DSI · direction des systèmes d'information" },
+        { "value": "rssi", "label": "RSSI · sécurité des systèmes d'information" },
+        { "value": "daf", "label": "DAF · direction administrative et financière" },
+        { "value": "achats", "label": "Achats · achats responsables" },
+        { "value": "autre", "label": "Autre fonction" }
+      ],
+      "slots": [
+        { "value": "matin-30min", "label": "En matinée · créneau de 30 minutes" },
+        { "value": "midi-30min", "label": "Sur la pause déjeuner · 30 minutes" },
+        { "value": "apresmidi-30min", "label": "L'après-midi · 30 minutes" },
+        { "value": "fin-journee-30min", "label": "En fin de journée · 30 minutes" },
+        { "value": "visio-1h", "label": "Visio approfondie · 1 heure" },
+        { "value": "rappel-rapide", "label": "Rappel téléphonique rapide · 10 minutes" }
+      ],
+      "next": "Étape suivante",
+      "previous": "Étape précédente",
+      "submit": "Envoyer la demande",
+      "submitting": "Envoi en cours…",
+      "required": "Champ requis",
+      "errorEmail": "Adresse e-mail invalide",
+      "errorSlot": "Sélectionnez au moins un créneau",
+      "stepCounter": "Étape {current} sur {total}"
+    },
+    "summary": {
+      "title": "Récapitulatif de votre demande",
+      "offerLabel": "Offre concernée",
+      "noOffer": "Demande générale"
+    },
+    "success": {
+      "title": "Demande bien enregistrée.",
+      "body": "Un responsable GreenTechCycle vous recontacte sous 24 heures ouvrées avec une proposition personnalisée et la confirmation d'un créneau d'échange.",
+      "cta": "Retour à l'accueil",
+      "ref": "Référence de votre demande"
+    },
+    "fallback": {
+      "title": "Merci pour votre intérêt.",
+      "body": "Votre demande a été enregistrée localement. Nous vous recontactons sous 24 heures ouvrées.",
+      "mailtoLabel": "Si vous préférez, écrivez-nous directement"
+    },
+    "reassurance": {
+      "responseTime": "Réponse sous 24 heures ouvrées",
+      "dataLocation": "Données hébergées en France",
+      "confirmation": "Confirmation par e-mail immédiate"
+    },
+    "error": {
+      "title": "Un problème est survenu.",
+      "body": "Merci de réessayer dans un instant ou de nous écrire directement à mahdi@greentechcycle.fr."
+    },
+    "offers": {
+      "waki-box-essentiel": "Plan Waki Box Essentiel",
+      "waki-box-confort": "Plan Waki Box Confort",
+      "waki-box-premium": "Plan Waki Box Premium",
+      "waki-box-pilote": "Programme pilote Waki Box",
+      "box-supplementaire": "Option · Borne Waki Box supplémentaire",
+      "collecte-urgence": "Option · Collecte d'urgence 24 heures",
+      "animation-semaine-recyclage": "Option · Animation Semaine du recyclage",
+      "rapport-csrd-dedie": "Option · Compte-rendu CSRD dédié",
+      "kit-comm-customise": "Option · Kit communication personnalisé",
+      "audit-deee": "Option · Audit DEEE sur site",
+      "formation-equipes": "Option · Formation tri DEEE des équipes"
+    }
   }
 }

@@ -2804,5 +2804,308 @@
       "role": "CISO, Tier-1 European bank",
       "consentNote": "Testimonial collected with written consent. Full identity available under NDA on request."
     }
+  },
+  "wakiBox": {
+    "urgency": "Pilot programme open · first three signatories · setup waived",
+    "urgencyCta": "Apply to the pilot",
+    "hero": {
+      "eyebrow": "Waki Box · v1.0 · April 2026",
+      "headline": "The WEEE bin that thinks for you.",
+      "subtitle": "A connected unit installed in your offices, sensors that detect lithium batteries, and a platform that turns every collection into proof of WEEE EPR compliance and ESRS E5 data mapped to the gram.",
+      "subtitleSecond": "No more rough spreadsheets, no more passive providers: a living, measured service, ready to feed your CSRD report without rework.",
+      "cta1": "Book a demo",
+      "cta2": "Apply to the pilot",
+      "scrollCta": "Discover the plans",
+      "photoAlt": "Professional office equipped with a smart WEEE collection station"
+    },
+    "kpis": {
+      "items": [
+        { "value": 5, "suffix": " kg", "label": "WEEE per employee per year", "source": "Average estimate, French tertiary sector 2024" },
+        { "value": 100, "suffix": " %", "label": "Compliant with the WEEE EPR scheme", "source": "Approved producer responsibility organisations" },
+        { "value": 6, "suffix": "", "label": "ESRS E5 disclosures mapped (E5-1 to E5-6)", "source": "EFRAG · CSRD standards July 2023" },
+        { "value": 1, "suffix": " g", "label": "Weighing accuracy per sorted stream", "source": "Built-in Waki Box sensors" }
+      ],
+      "footnote": "Figures based on the Waki Box v1.0 reference framework and on calculation rules published by ADEME and EFRAG."
+    },
+    "problem": {
+      "eyebrow": "The reality check",
+      "title": "Why traditional collection bins are no longer enough.",
+      "body": "Corepile, Screlec, Batribox or Élise deliver a useful service: they remove waste. But they measure nothing actionable. No weighing per stream, no real-time feedback, no CSRD mapping, and a quarterly aggregate report that helps neither the CFO, the sustainability lead nor the IT director justify anything. Your employees throw items away blindly, your auditors ask for proof, and no one holds reliable data to reconcile the two worlds.",
+      "bodySecond": "Waki Box flips the relationship: the bin produces the proof, not you. Weighing sensors, lithium-battery detection, stream-level traceability, a connected platform, ESRS E5 exports ready to drop into the sustainability report. Compliance becomes passive and measured — without adding cognitive load on the office manager."
+    },
+    "promise": {
+      "eyebrow": "Five promises in one service",
+      "title": "One bin, five aligned outcomes.",
+      "subtitle": "Designed so that the same daily action — dropping a cable, a battery, a charger — feeds five strategic streams of the company without friction.",
+      "items": [
+        { "label": "WEEE EPR compliance", "title": "Approved scheme, ledger maintained", "body": "Each collection is tied to an approved producer responsibility organisation. The waste tracking slip is generated automatically, archived on the platform and admissible during inspections." },
+        { "label": "Building safety", "title": "Detection of risky lithium batteries", "body": "Built-in thermal and gas sensors: swollen or overheating lithium cells are flagged before they become a fire risk for your premises." },
+        { "label": "ESG reporting", "title": "Measured data, not estimated", "body": "Per-stream weighing to the gram, timestamps, geolocation per site. Your ESG figures are traceable, verifiable and defensible in front of an auditor." },
+        { "label": "Employee engagement", "title": "A useful, visible, rewarding gesture", "body": "Live display of kilos collected, CO₂ equivalents avoided, beneficiary associations. Teams see the impact of their gesture — collection becomes a team ritual." },
+        { "label": "CSRD readiness", "title": "E5-1 to E5-6 mapping out of the box", "body": "Exports match the ESRS E5 disclosures line by line (incoming resources, outgoing flows, circular economy). No rework needed for the sustainability report." }
+      ],
+      "photoAlt": "ESG team reviewing a real-time WEEE collection dashboard"
+    },
+    "plans": {
+      "eyebrow": "Three plans, three maturities",
+      "title": "The plan that matches your trajectory.",
+      "subtitle": "Whether you are a small business discovering WEEE compliance or a large group ramping up for CSRD, Waki Box adapts to volume, governance level and integration depth.",
+      "popular": "Most popular",
+      "monthly": "/ month excl. VAT",
+      "setup": "Setup fee",
+      "engagement": "Term",
+      "ctaReserve": "Book this plan",
+      "items": [
+        {
+          "slug": "waki-box-essentiel",
+          "name": "Essential",
+          "audience": "Small businesses · 10 to 50 employees",
+          "price": "€39",
+          "setupValue": "€150",
+          "engagementValue": "12 months",
+          "tagline": "Get WEEE compliance off the ground cleanly, without complexity.",
+          "features": [
+            "1 Waki Box installed and serviced",
+            "On-demand collection when full",
+            "Basic platform · 1 user",
+            "Quarterly report by email",
+            "Automated waste tracking slip",
+            "Guaranteed WEEE EPR scheme"
+          ]
+        },
+        {
+          "slug": "waki-box-confort",
+          "name": "Comfort",
+          "audience": "Mid-market · 50 to 300 employees",
+          "price": "€79",
+          "setupValue": "€290",
+          "engagementValue": "12 months",
+          "tagline": "The standard for organisations preparing for CSRD.",
+          "features": [
+            "Up to 3 multi-stream Waki Box units",
+            "All streams accepted: batteries, cables, bulbs, accessories",
+            "Full platform · up to 5 users",
+            "Detailed monthly report per stream and per site",
+            "One-click ESRS E5 export (E5-1 to E5-6)",
+            "Real-time alerts: bin full, lithium battery detected, anomaly"
+          ]
+        },
+        {
+          "slug": "waki-box-premium",
+          "name": "Premium",
+          "audience": "Mid-large groups · 300 employees and above",
+          "price": "from €149",
+          "setupValue": "€490 per unit",
+          "engagementValue": "24 months",
+          "tagline": "Multi-site, integrated into your information system, supported.",
+          "features": [
+            "Unlimited Waki Box units, multi-site",
+            "Full platform · unlimited users, multi-site governance",
+            "Dedicated account manager",
+            "ERP / HRIS / sustainability tool integration via dedicated API",
+            "48 working hours collection service-level agreement",
+            "Custom CSRD report and annual board readout"
+          ]
+        }
+      ]
+    },
+    "pilot": {
+      "eyebrow": "Pilot programme · open until full",
+      "title": "Three first companies. One testimonial. One founders' rate.",
+      "body": "We are launching Waki Box with three pilot companies selected on application. In exchange for a public testimonial at six months, you get the setup waived and a subscription at €19 excl. VAT per month for six months — less than half the Essential plan. After that, you automatically move to the public price of the chosen plan, with no surprise.",
+      "bullets": [
+        "Setup and installation fully waived",
+        "€19 excl. VAT per month for 6 months (instead of €39 to €79)",
+        "Direct support from the founding team",
+        "Written or video testimonial at six months in return"
+      ],
+      "cta": "Apply to the pilot",
+      "footnote": "3 seats available. Selection on application. Reply within 5 working days."
+    },
+    "addons": {
+      "eyebrow": "Add-ons à la carte",
+      "title": "Round out your plan, without rebuilding it.",
+      "subtitle": "A modular logic: your plan covers 90% of the need, these add-ons answer the specific 10% (events, audit, multi-site, custom CSRD).",
+      "ctaReserve": "Book",
+      "headerOption": "Add-on",
+      "headerWhy": "When to use it",
+      "headerPrice": "Price excl. VAT",
+      "items": [
+        { "slug": "box-supplementaire", "name": "Additional Waki Box unit", "why": "Extra site or separate stream for batteries / small WEEE", "price": "€29 / month" },
+        { "slug": "collecte-urgence", "name": "Emergency collection within 24 hours", "why": "Unexpected saturation, move-out, battery incident", "price": "€90 per pickup" },
+        { "slug": "animation-semaine-recyclage", "name": "Recycling Week activation", "why": "Employee engagement, European Sustainable Development Week", "price": "€350 / day" },
+        { "slug": "rapport-csrd-dedie", "name": "Dedicated CSRD report", "why": "Annual written readout, ESRS E5 mapped, board ready", "price": "€490 / year" },
+        { "slug": "kit-comm-customise", "name": "Custom communication kit", "why": "Display in your brand colours, bespoke signage", "price": "€290 · on delivery" },
+        { "slug": "audit-deee", "name": "On-site WEEE audit", "why": "Full inventory before multi-site rollout", "price": "€1,500 / day" },
+        { "slug": "formation-equipes", "name": "WEEE sorting training for teams", "why": "Office manager onboarding, lithium battery safety briefing", "price": "€450 / 2 hours" }
+      ],
+      "footnote": "All add-ons can be activated at any time, with no change to the main contract."
+    },
+    "flows": {
+      "eyebrow": "Accepted and excluded streams",
+      "title": "What the bin takes, what it doesn't.",
+      "intro": "Waki Box is designed for the diffuse small WEEE of office environments: what your employees empty from their drawers without knowing where to put it. For anything that holds data — laptops, servers, business smartphones — the bin is the wrong tool: that is where our distinct ITAD offer takes over with NIST 800-88 certified erasure.",
+      "acceptedTitle": "Streams accepted in the Waki Box",
+      "accepted": [
+        "Alkaline, saline and button batteries",
+        "Portable Li-ion batteries (phones, keyboards, mice, connected toys)",
+        "USB, HDMI, Ethernet cables, power cords",
+        "Chargers, power bricks, adapters",
+        "LED bulbs, neon tubes, compact fluorescents",
+        "Accessories: wired headsets, earphones, remote controls",
+        "Office printer ink and toner cartridges"
+      ],
+      "excludedTitle": "Excluded streams · handled by the GreenTechCycle ITAD offer",
+      "excluded": [
+        "Business smartphones and tablets",
+        "Laptops and desktop workstations",
+        "Servers, racks, server-room equipment",
+        "Active network gear (switches, firewalls, access points)",
+        "Storage media (hard drives, SSDs, tapes, USB sticks)"
+      ],
+      "linkLabel": "See the ITAD offer with certified erasure",
+      "linkHref": "/services/effacement-securise"
+    },
+    "faq": {
+      "eyebrow": "Frequently asked questions",
+      "title": "Everything you want to know before you sign.",
+      "items": [
+        { "q": "What actually happens on collection day?", "a": "Our approved hauler arrives in the agreed slot, weighs each stream in front of you, scans the labels, signs the waste tracking slip and leaves. The pickup takes 10 to 25 minutes depending on volume. Everything is updated on your platform within the hour." },
+        { "q": "How do the built-in sensors work?", "a": "Three sensors: per-compartment weighing, thermal probe, electrolyte gas detection. A lithium cell that is overheating or swelling triggers an email alert to your office manager and an automated call to our safety on-call line." },
+        { "q": "Which data is fed to the platform?", "a": "Weight per stream per day, fill rate, safety events, CO₂ equivalent avoided, recovered material value, ESRS E5 mapping per disclosure. Every dataset is exportable in CSV, Excel and CSRD XBRL." },
+        { "q": "What actually happens to the waste after pickup?", "a": "Sorting on our approved site, batch-level traceability, routing to the WEEE EPR scheme by stream. No incineration without recovery, no shipping outside the European Union for hazardous streams. End-of-life certificates are issued within 21 days." },
+        { "q": "How do I cancel if the service does not fit?", "a": "30-day no-fee trial. Beyond that, 60 days notice on the Essential and Comfort plans, 90 days on Premium. No exit fee, simple bin retrieval by our hauler." },
+        { "q": "Is the service really CSRD and ESRS E5 ready?", "a": "Yes. The mapping is documented line by line against E5-1 (incoming resources), E5-2 (outflows), E5-3 (policies), E5-4 (actions), E5-5 (targets) and E5-6 (financial amounts). Reviewed by two Big 4 firms." },
+        { "q": "How long does Waki Box take to deploy on site?", "a": "Essential plan: 5 working days from signature to first pickup. Comfort plan: 10 days for 3 units. Premium multi-site plan: 4 to 6 weeks depending on the number of sites and information-system integration." },
+        { "q": "Can we test before committing?", "a": "Yes. The pilot programme offers 6 months at the founders' rate. Outside the pilot, we run a 30-minute video demo and arrange a reference visit in Lyon or Paris." }
+      ]
+    },
+    "finalQuote": {
+      "eyebrow": "Vision",
+      "text": "WEEE compliance is not a hidden month-end cost. Properly instrumented, it is the most accessible proof that you have committed your company to the transition. Waki Box makes that proof measurable, defensible, shareable.",
+      "name": "Mahdi Khelifi",
+      "role": "Founder, GreenTechCycle"
+    },
+    "finalCta": {
+      "eyebrow": "Take action",
+      "title": "Book the bin, or apply to the pilot.",
+      "subtitle": "A demo to understand. A pilot to start strong. Either way, a human team that answers within 24 working hours.",
+      "cta1": "Book a demo",
+      "cta2": "Apply to the pilot",
+      "trustBadges": ["Setup in 5 days", "No commitment for the first 30 days", "Data hosted in France", "Guaranteed WEEE EPR scheme"]
+    }
+  },
+  "reserver": {
+    "meta": {
+      "title": "Book · GreenTechCycle",
+      "description": "Book a demo, a Waki Box plan or an add-on. Personalised reply within 24 working hours."
+    },
+    "hero": {
+      "eyebrowDefault": "Qualified booking",
+      "headlineDefault": "Book a GreenTechCycle demo.",
+      "subtitleDefault": "A few details so a Waki Box or ITAD lead can call you back with a proposal tailored to your sector, size and compliance maturity.",
+      "headlinePrefix": "Book the ",
+      "pilotHeadline": "Apply to the Waki Box pilot programme.",
+      "pilotSubtitle": "Three seats. A short application. A reply within five working days. Setup waived and a subscription at €19 excl. VAT per month for six months in exchange for a public testimonial.",
+      "addonHeadline": "Book an à la carte add-on.",
+      "addonSubtitle": "Tell us about the activation context and the site involved. We come back with a quote within 24 working hours."
+    },
+    "form": {
+      "step1Title": "Your details",
+      "step2Title": "Your organisation",
+      "step3Title": "Your need",
+      "step4Title": "Preferred slots",
+      "labels": {
+        "name": "Full name",
+        "email": "Work email",
+        "phone": "Direct phone",
+        "company": "Company",
+        "size": "Organisation size",
+        "persona": "Your role",
+        "sites": "Site or sites involved",
+        "needs": "Estimated volumes or specific needs",
+        "message": "Free message (optional)",
+        "slots": "Pick up to three slots",
+        "consent": "I agree that GreenTechCycle uses these details to call me back."
+      },
+      "placeholders": {
+        "name": "First and last name",
+        "email": "you@company.com",
+        "phone": "+33 6 …",
+        "company": "Legal name",
+        "sites": "Lyon HQ, Paris La Défense, Lille…",
+        "needs": "Volumes, constraints, schedule, IT environment…",
+        "message": "Anything useful for the first call"
+      },
+      "sizes": [
+        { "value": "tpe", "label": "Small business · under 50 employees" },
+        { "value": "pme", "label": "Mid-market · 50 to 250 employees" },
+        { "value": "eti", "label": "Mid-large · 250 to 5,000 employees" },
+        { "value": "grand-compte", "label": "Large account · 5,000 employees and above" }
+      ],
+      "personas": [
+        { "value": "office-manager", "label": "Office manager · facilities" },
+        { "value": "rse", "label": "Sustainability lead · ESG" },
+        { "value": "dsi", "label": "IT director · CIO office" },
+        { "value": "rssi", "label": "Information security · CISO office" },
+        { "value": "daf", "label": "CFO · finance department" },
+        { "value": "achats", "label": "Procurement · responsible sourcing" },
+        { "value": "autre", "label": "Other role" }
+      ],
+      "slots": [
+        { "value": "matin-30min", "label": "Morning · 30-minute slot" },
+        { "value": "midi-30min", "label": "Lunchtime · 30 minutes" },
+        { "value": "apresmidi-30min", "label": "Afternoon · 30 minutes" },
+        { "value": "fin-journee-30min", "label": "End of day · 30 minutes" },
+        { "value": "visio-1h", "label": "Deep-dive video call · 1 hour" },
+        { "value": "rappel-rapide", "label": "Quick phone callback · 10 minutes" }
+      ],
+      "next": "Next step",
+      "previous": "Previous step",
+      "submit": "Send request",
+      "submitting": "Sending…",
+      "required": "Required field",
+      "errorEmail": "Invalid email address",
+      "errorSlot": "Pick at least one slot",
+      "stepCounter": "Step {current} of {total}"
+    },
+    "summary": {
+      "title": "Your request summary",
+      "offerLabel": "Offer concerned",
+      "noOffer": "General request"
+    },
+    "success": {
+      "title": "Request received.",
+      "body": "A GreenTechCycle lead will call you back within 24 working hours with a personalised proposal and a confirmed time slot.",
+      "cta": "Back to home",
+      "ref": "Your request reference"
+    },
+    "fallback": {
+      "title": "Thank you for your interest.",
+      "body": "Your request has been saved locally. We will get back to you within 24 working hours.",
+      "mailtoLabel": "If you prefer, write to us directly"
+    },
+    "reassurance": {
+      "responseTime": "Reply within 24 working hours",
+      "dataLocation": "Data hosted in France",
+      "confirmation": "Immediate email confirmation"
+    },
+    "error": {
+      "title": "Something went wrong.",
+      "body": "Please try again in a moment or write to us at mahdi@greentechcycle.fr."
+    },
+    "offers": {
+      "waki-box-essentiel": "Waki Box Essential plan",
+      "waki-box-confort": "Waki Box Comfort plan",
+      "waki-box-premium": "Waki Box Premium plan",
+      "waki-box-pilote": "Waki Box pilot programme",
+      "box-supplementaire": "Add-on · Additional Waki Box unit",
+      "collecte-urgence": "Add-on · 24-hour emergency collection",
+      "animation-semaine-recyclage": "Add-on · Recycling Week activation",
+      "rapport-csrd-dedie": "Add-on · Dedicated CSRD report",
+      "kit-comm-customise": "Add-on · Custom communication kit",
+      "audit-deee": "Add-on · On-site WEEE audit",
+      "formation-equipes": "Add-on · WEEE sorting training"
+    }
   }
 }
