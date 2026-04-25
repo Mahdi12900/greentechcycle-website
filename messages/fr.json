@@ -2635,6 +2635,36 @@
       "cta1": "Demander un audit",
       "cta2": "Réserver une démo 30 min",
       "trustBadges": ["Conforme RGPD", "SecNumCloud-ready", "ISO 27001", "Réponse sous 24h"]
+    },
+    "editorialHero": {
+      "headline": "12 000 postes. 4 ans. 1 850 tonnes de CO₂ évitées.",
+      "subtitle": "Comment une banque CAC40 a transformé sa contrainte de migration Windows 11 en levier CSRD — et passé son audit ACPR en 4 jours au lieu de trois semaines.",
+      "scrollCta": "Voir les 8 cas sectoriels",
+      "cta1": "Demander un audit",
+      "cta2": "Réserver une démo 30 min",
+      "featuredLabel": "Cas featured — Banque CAC40",
+      "featuredMeta": "Marc B. · RSSI · Banque européenne tier-1"
+    },
+    "editorialIntro": {
+      "headline": "Chaque transformation IT cache une décision stratégique.",
+      "text": "Voici 8 fois où GreenTechCycle a transformé une contrainte réglementaire en avantage compétitif — pour des DSI, RSSI, DAF et responsables RSE qui avaient mieux à faire que subir leur parc en fin de vie.",
+      "cta": "Identifier mon profil"
+    },
+    "editorialBodies": {
+      "banque-cac40": "En 2023, une banque européenne tier-1 fait face à l'inévitable : 12 000 postes Windows 10 doivent migrer avant la fin du support, sous la double contrainte NIS2 et DORA. Chaque support sortant de production représente un risque documentaire, un angle d'attaque potentiel lors du prochain contrôle ACPR. GreenTechCycle a intégré la chaîne ITAD au cœur du plan de migration — transformant une pression réglementaire en avantage mesurable : 638 k€ récupérés, 1 850 tCO2e évitées.",
+      "chu-sante": "Un CHU de 9 000 lits accumule depuis cinq ans une flotte de 4 200 postes en fin de vie, portant des données patients soumises au secret médical et aux exigences RGPD les plus strictes. La DSI n'a ni budget pour du matériel neuf, ni tolérance pour un incident de fuite. GreenTechCycle a déployé en 5 jours ouvrés un protocole d'effacement certifié NIST 800-88 — redonnant une seconde vie à chaque machine en circuit court. Le DPO a signé le rapport sans réserve.",
+      "industriel-csrd": "Un industriel du CAC60 doit publier son premier rapport CSRD ESRS E5 pour l'exercice 2025, avec des auditeurs Big 4 exigeant des preuves chiffrées et une traçabilité scope 3 irréprochable. Sur 12 sites en 5 pays, les équipements OT constituent à la fois un risque — propriété intellectuelle industrielle — et une opportunité : valeur résiduelle non provisionnée. GreenTechCycle a livré le rapport CSRD à J-90 de clôture, validé sans réserve dès la première itération.",
+      "ministere-collectivite": "Une grande mairie de 2 500 ETP navigue entre triple contrainte : code de la commande publique imposant des critères environnementaux ≥ 5%, obligation RGPD sur les données administratives, et exigence politique d'exemplarité en matière d'achat responsable. GreenTechCycle a conçu le premier schéma directeur ITAD intégrant une clause sociale ESS agréée — 100% des équipements revendus en filière française, zéro donnée traitée hors sol national.",
+      "retail-wakibox": "Gérer les déchets IT de 350 magasins dispersés sur tout le territoire, c'est un défi logistique autant qu'une obligation réglementaire. Avant WakiBox, chaque point de vente gérait ses équipements en fin de vie de manière informelle — rendant tout audit DEEE impossible. GreenTechCycle a industrialisé la collecte avec ses boîtiers IoT intelligents, transformant le chaos en processus traçable, avec un ROI positif dès le sixième mois et 89 k€ d'économies logistiques annuelles.",
+      "energie-dora": "Quand l'ACPR annonce un contrôle DORA, le compte à rebours démarre. Trois semaines : c'est le délai habituel pour produire une chaîne de custody sur un parc hybride IT/OT d'une utility CAC40. GreenTechCycle l'a fait en 4 jours — non par miracle, mais par méthode : procédure d'audit flash rodée, templates ACPR-ready, et expert GTC présent de J-1 à J+4 aux côtés du RSSI. Zéro écart documentaire. Zéro sanction.",
+      "telco-datacenter": "Trois datacenters à décommissionner en 60 jours. 2 800 serveurs. Des données clients d'opérateur télécom sous exigences ANSSI. Et une DSI qui avait provisionné 400 k€ de valeur résiduelle — soit trois fois moins que ce que GreenTechCycle allait réellement récupérer. La différence, c'est l'expertise marché secondaire international : réseau d'acheteurs qualifiés européens, valorisation à la cotation en temps réel, exécution dans les délais contractuels.",
+      "universite-ess": "4 500 postes pédagogiques à décommissionner avant la rentrée universitaire, avec des données étudiants à effacer et un budget public qui n'autorise pas la destruction. GreenTechCycle a organisé en 10 jours l'effacement certifié NIST 800-88, le tri en 3 grades et le don solidaire à 12 associations ESS partenaires — transformant une contrainte budgétaire en acte concret d'économie circulaire. 520 tCO2e évitées. 4 500 ordinateurs redonnés."
+    },
+    "editorialFinalQuote": {
+      "text": "Sans GreenTechCycle, notre plan de migration NIS2 aurait pris 18 mois et coûté 600 k€. Ils l'ont livré en 4 mois pour 220 k€, avec 1 850 tonnes de CO₂ évitées en bonus.",
+      "name": "Marc B.",
+      "role": "RSSI, Banque européenne tier-1",
+      "consentNote": "Témoignage recueilli avec accord écrit. Identité complète disponible sous NDA à la demande."
     }
   }
 }

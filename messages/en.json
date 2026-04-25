@@ -2773,6 +2773,36 @@
       "cta1": "Request an audit",
       "cta2": "Book a 30-min demo",
       "trustBadges": ["GDPR compliant", "SecNumCloud-ready", "ISO 27001", "Response within 24h"]
+    },
+    "editorialHero": {
+      "headline": "12,000 devices. 4 years. 1,850 tonnes of CO₂ avoided.",
+      "subtitle": "How a CAC40 bank turned its Windows 11 migration constraint into a CSRD lever — and passed its ACPR audit in 4 days instead of three weeks.",
+      "scrollCta": "See all 8 sector cases",
+      "cta1": "Request an audit",
+      "cta2": "Book a 30-min demo",
+      "featuredLabel": "Featured case — CAC40 Bank",
+      "featuredMeta": "Marc B. · CISO · Tier-1 European bank"
+    },
+    "editorialIntro": {
+      "headline": "Every IT transformation hides a strategic decision.",
+      "text": "Here are 8 times GreenTechCycle turned a regulatory constraint into a competitive advantage — for CIOs, CISOs, CFOs and sustainability directors who had better things to do than manage end-of-life IT.",
+      "cta": "Find my profile"
+    },
+    "editorialBodies": {
+      "banque-cac40": "In 2023, a tier-1 European bank faced the inevitable: 12,000 Windows 10 devices had to migrate before end of support, under the dual constraints of NIS2 and DORA. Every device leaving production represented a documentary risk, a potential attack surface for the next ACPR inspection. GreenTechCycle integrated the ITAD chain into the core of the migration plan — turning regulatory pressure into measurable advantage: €638k recovered, 1,850 tCO2e avoided.",
+      "chu-sante": "A 9,000-bed university hospital had accumulated a fleet of 4,200 end-of-life devices over five years, carrying patient data subject to medical confidentiality and the strictest GDPR requirements. The IT department had neither budget for new equipment nor tolerance for a data breach. GreenTechCycle deployed a NIST 800-88 certified erasure protocol within 5 working days — giving each machine a second life through a local supply chain. The DPO signed the report without reservation.",
+      "industriel-csrd": "A CAC60 industrial group needed to publish its first CSRD ESRS E5 report for fiscal year 2025, with Big 4 auditors demanding quantified evidence and irreproachable scope 3 traceability. Across 12 sites in 5 countries, OT equipment represented both a risk — industrial intellectual property — and an opportunity: unprovisioned residual value. GreenTechCycle delivered the CSRD report D-90 before year-end, validated without reservation on the first iteration.",
+      "ministere-collectivite": "A large municipality with 2,500 FTEs navigated a triple constraint: public procurement code requiring environmental criteria ≥5%, GDPR obligations on administrative data, and political demands for exemplary responsible purchasing. GreenTechCycle designed the first ITAD master plan integrating an approved ESS social clause — 100% of equipment resold through French supply chains, zero data processed outside national territory.",
+      "retail-wakibox": "Managing IT waste from 350 stores scattered across the country is both a logistical challenge and a regulatory obligation. Before WakiBox, each point of sale managed end-of-life equipment informally — making any WEEE audit impossible. GreenTechCycle industrialised collection with its smart IoT units, turning chaos into a traceable process, with a positive ROI from the sixth month and €89k in annual logistics savings.",
+      "energie-dora": "When the ACPR announces a DORA inspection, the countdown begins. Three weeks: that's the typical timeframe to produce a full chain of custody for a hybrid IT/OT fleet at a CAC40 utility. GreenTechCycle did it in 4 days — not by magic, but by method: battle-tested flash audit procedure, ACPR-ready templates, and a GTC expert on-site from D-1 to D+4 alongside the CISO. Zero documentary discrepancy. Zero penalty.",
+      "telco-datacenter": "Three data centres to decommission in 60 days. 2,800 servers. Telecom operator customer data under ANSSI requirements. And an IT director who had provisioned €400k in residual value — three times less than what GreenTechCycle would actually recover. The difference is international secondary market expertise: a network of qualified European buyers, real-time market pricing, and on-time execution.",
+      "universite-ess": "4,500 teaching devices to decommission before the start of the academic year, with student data to erase and a public budget that didn't allow for destruction. GreenTechCycle organised in 10 days the certified NIST 800-88 erasure, grading into 3 categories, and donation to 12 ESS partner associations — turning a budget constraint into a concrete circular economy initiative. 520 tCO2e avoided. 4,500 computers given to students who needed them."
+    },
+    "editorialFinalQuote": {
+      "text": "Without GreenTechCycle, our NIS2 migration plan would have taken 18 months and cost €600k. They delivered it in 4 months for €220k, with 1,850 tonnes of CO₂ avoided as a bonus.",
+      "name": "Marc B.",
+      "role": "CISO, Tier-1 European bank",
+      "consentNote": "Testimonial collected with written consent. Full identity available under NDA on request."
     }
   }
 }
