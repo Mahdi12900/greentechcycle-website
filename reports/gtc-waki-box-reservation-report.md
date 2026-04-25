@@ -2,6 +2,7 @@
 
 Date : 2026-04-25
 Branche : `main`
+Commit : `6405092`
 Stack : Next.js 14.2.21 · App Router · next-intl · Tailwind 3.4
 
 ## 1. Périmètre livré
