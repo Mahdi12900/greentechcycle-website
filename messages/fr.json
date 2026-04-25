@@ -1,12 +1,73 @@
 {
   "Header": {
-    "nav": { "home": "Accueil", "platform": "Plateforme", "solutions": "Solutions", "sectors": "Secteurs", "resources": "Ressources", "company": "Entreprise" },
+    "nav": {
+      "home": "Accueil",
+      "platform": "Plateforme",
+      "solutions": "Solutions",
+      "sectors": "Secteurs",
+      "resources": "Ressources",
+      "company": "Entreprise"
+    },
     "megaMenu": {
-      "platform": { "title": "Plateforme", "items": { "overview": "Vue d'ensemble", "modules": "15 modules intégrés", "governance": "Gouvernance & RBAC", "mobile": "App mobile (PWA)", "pricing": "Tarifs Pro Services" } },
-      "solutions": { "title": "Solutions", "items": { "services": "Vue d'ensemble services", "audit": "Audit & inventaire", "erasure": "Effacement sécurisé", "refurbish": "Reconditionnement & valorisation", "recycling": "Recyclage DEEE", "cyber": "Cybersécurité ITAD", "wakibox": "WakiBox (collecte IoT)", "useCases": "Cas d'usages clients", "process": "Processus ITAD", "security": "Sécurité & effacement", "impact": "Impact environnemental" } },
-      "sectors": { "title": "Secteurs", "items": { "overview": "Tous les secteurs", "finance": "Banque & Finance", "sante": "Santé & Hôpitaux", "industrie": "Industrie & Manufacturing", "public": "Secteur public", "energie": "Énergie & Utilities", "retail": "Retail & Distribution" } },
-      "resources": { "title": "Ressources", "items": { "demo": "Demander une démo", "faq": "FAQ", "regulation": "Réglementation", "methodology": "Méthodologie", "process": "Processus ITAD", "security": "Sécurité & effacement", "impact": "Impact environnemental" } },
-      "company": { "title": "Entreprise", "items": { "whyGtc": "Pourquoi GreenTechCycle ?", "journey": "Parcours client", "ecosystem": "Écosystème", "careers": "Carrières" } }
+      "platform": {
+        "title": "Plateforme",
+        "items": {
+          "overview": "Vue d'ensemble",
+          "modules": "15 modules intégrés",
+          "governance": "Gouvernance & RBAC",
+          "mobile": "App mobile (PWA)",
+          "pricing": "Tarifs Pro Services"
+        }
+      },
+      "solutions": {
+        "title": "Solutions",
+        "items": {
+          "services": "Vue d'ensemble services",
+          "audit": "Audit & inventaire",
+          "erasure": "Effacement sécurisé",
+          "refurbish": "Reconditionnement & valorisation",
+          "recycling": "Recyclage DEEE",
+          "cyber": "Cybersécurité ITAD",
+          "wakibox": "WakiBox (collecte IoT)",
+          "useCases": "Cas d'usages clients",
+          "process": "Processus ITAD",
+          "security": "Sécurité & effacement",
+          "impact": "Impact environnemental"
+        }
+      },
+      "sectors": {
+        "title": "Secteurs",
+        "items": {
+          "overview": "Tous les secteurs",
+          "finance": "Banque & Finance",
+          "sante": "Santé & Hôpitaux",
+          "industrie": "Industrie & Manufacturing",
+          "public": "Secteur public",
+          "energie": "Énergie & Utilities",
+          "retail": "Retail & Distribution"
+        }
+      },
+      "resources": {
+        "title": "Ressources",
+        "items": {
+          "demo": "Demander une démo",
+          "faq": "FAQ",
+          "regulation": "Réglementation",
+          "methodology": "Méthodologie",
+          "process": "Processus ITAD",
+          "security": "Sécurité & effacement",
+          "impact": "Impact environnemental"
+        }
+      },
+      "company": {
+        "title": "Entreprise",
+        "items": {
+          "whyGtc": "Pourquoi GreenTechCycle ?",
+          "journey": "Parcours client",
+          "ecosystem": "Écosystème",
+          "careers": "Carrières"
+        }
+      }
     },
     "cta": "Demander une démo",
     "languageSwitch": "EN"
@@ -16,27 +77,104 @@
   },
   "Footer": {
     "tagline": "Votre partenaire de confiance pour la gestion responsable et sécurisée de vos actifs informatiques en fin de vie. Certifié R2, e-Stewards et ISO 14001.",
-    "contact": { "title": "Nous contacter", "address": "42 rue de la République\n69002 Lyon, France", "phone": "+33 1 86 65 22 10", "email": "contact@greentechcycle.fr" },
+    "contact": {
+      "title": "Nous contacter",
+      "address": "42 rue de la République\n69002 Lyon, France",
+      "phone": "+33 1 86 65 22 10",
+      "email": "contact@greentechcycle.fr"
+    },
     "cta": "Demander un devis",
     "columns": {
-      "services": { "title": "Services", "links": { "audit": "Audit & inventaire", "erasure": "Effacement sécurisé", "refurbish": "Reconditionnement & valorisation", "recycling": "Recyclage DEEE", "cyber": "Cybersécurité ITAD", "wakibox": "WakiBox", "useCases": "Cas d'usages", "pricing": "Tarifs Pro Services" } },
-      "sectors": { "title": "Secteurs", "links": { "overview": "Tous les secteurs", "finance": "Banque & Finance", "sante": "Santé", "industrie": "Industrie", "public": "Secteur public", "energie": "Énergie", "retail": "Retail" } },
-      "company": { "title": "Entreprise", "links": { "whyGtc": "Pourquoi GTC ?", "journey": "Parcours client", "ecosystem": "Écosystème", "careers": "Carrières", "impact": "Impact", "contact": "Contact" } },
-      "resources": { "title": "Ressources", "links": { "demo": "Demander une démo", "faq": "FAQ", "regulation": "Réglementation", "methodology": "Méthodologie", "platform": "Plateforme", "security": "Sécurité", "process": "Processus ITAD" } },
-      "legal": { "title": "Légal", "links": { "mentions": "Mentions légales", "privacy": "Politique de confidentialité", "terms": "CGU", "cookies": "Politique de cookies" } }
+      "services": {
+        "title": "Services",
+        "links": {
+          "audit": "Audit & inventaire",
+          "erasure": "Effacement sécurisé",
+          "refurbish": "Reconditionnement & valorisation",
+          "recycling": "Recyclage DEEE",
+          "cyber": "Cybersécurité ITAD",
+          "wakibox": "WakiBox",
+          "useCases": "Cas d'usages",
+          "pricing": "Tarifs Pro Services"
+        }
+      },
+      "sectors": {
+        "title": "Secteurs",
+        "links": {
+          "overview": "Tous les secteurs",
+          "finance": "Banque & Finance",
+          "sante": "Santé",
+          "industrie": "Industrie",
+          "public": "Secteur public",
+          "energie": "Énergie",
+          "retail": "Retail"
+        }
+      },
+      "company": {
+        "title": "Entreprise",
+        "links": {
+          "whyGtc": "Pourquoi GTC ?",
+          "journey": "Parcours client",
+          "ecosystem": "Écosystème",
+          "careers": "Carrières",
+          "impact": "Impact",
+          "contact": "Contact"
+        }
+      },
+      "resources": {
+        "title": "Ressources",
+        "links": {
+          "demo": "Demander une démo",
+          "faq": "FAQ",
+          "regulation": "Réglementation",
+          "methodology": "Méthodologie",
+          "platform": "Plateforme",
+          "security": "Sécurité",
+          "process": "Processus ITAD"
+        }
+      },
+      "legal": {
+        "title": "Légal",
+        "links": {
+          "mentions": "Mentions légales",
+          "privacy": "Politique de confidentialité",
+          "terms": "CGU",
+          "cookies": "Politique de cookies"
+        }
+      }
     },
-    "newsletter": { "title": "Newsletter", "placeholder": "Votre email professionnel", "cta": "S'inscrire" },
+    "newsletter": {
+      "title": "Newsletter",
+      "placeholder": "Votre email professionnel",
+      "cta": "S'inscrire"
+    },
     "copyright": "© 2026 GreenTechCycle. Tous droits réservés. — SIREN 912 345 678.",
-    "bottomLinks": { "legal": "Mentions légales", "privacy": "Confidentialité", "cookies": "Cookies" }
+    "bottomLinks": {
+      "legal": "Mentions légales",
+      "privacy": "Confidentialité",
+      "cookies": "Cookies"
+    }
   },
   "CookieBanner": {
     "title": "Préférences de cookies",
     "description": "Nous utilisons des cookies pour améliorer votre expérience. Vous pouvez personnaliser vos préférences ci-dessous.",
     "categories": {
-      "necessary": { "title": "Strictement nécessaires", "desc": "Indispensables au fonctionnement du site" },
-      "analytics": { "title": "Analytiques", "desc": "Nous aident à améliorer le site" },
-      "functional": { "title": "Fonctionnels", "desc": "Fonctionnalités améliorées (chat, préférences)" },
-      "marketing": { "title": "Marketing", "desc": "Suivi publicitaire et retargeting" }
+      "necessary": {
+        "title": "Strictement nécessaires",
+        "desc": "Indispensables au fonctionnement du site"
+      },
+      "analytics": {
+        "title": "Analytiques",
+        "desc": "Nous aident à améliorer le site"
+      },
+      "functional": {
+        "title": "Fonctionnels",
+        "desc": "Fonctionnalités améliorées (chat, préférences)"
+      },
+      "marketing": {
+        "title": "Marketing",
+        "desc": "Suivi publicitaire et retargeting"
+      }
     },
     "acceptAll": "Tout accepter",
     "rejectAll": "Tout refuser",
@@ -113,10 +251,22 @@
       "title": "La seule plateforme qui unifie ITAD, cybersécurité, conformité CSRD et économie circulaire — sur un seul tableau de bord, opéré par une équipe ESS française.",
       "body": "Chez nous, le RSSI, le DSI, la Direction RSE et le DAF lisent le même chiffre, dans la même heure, depuis la même interface. Pas de réconciliation Excel entre quatre prestataires. Pas de retard de clôture CSRD. Pas de réserve sur l'audit ACPR.",
       "pillars": [
-        { "label": "ITAD opéré", "desc": "4 sites France · 38 techniciens habilités" },
-        { "label": "Cyber-effacement", "desc": "NIST 800-88 rev2 · HMG IS5 · validation 4-eyes" },
-        { "label": "Conformité CSRD", "desc": "11 / 16 data points ESRS E5 · audit ISAE 3410-ready" },
-        { "label": "Économie circulaire", "desc": "Filière ESS partenaire · R2v3 · taux réemploi 73 %" }
+        {
+          "label": "ITAD opéré",
+          "desc": "4 sites France · 38 techniciens habilités"
+        },
+        {
+          "label": "Cyber-effacement",
+          "desc": "NIST 800-88 rev2 · HMG IS5 · validation 4-eyes"
+        },
+        {
+          "label": "Conformité CSRD",
+          "desc": "11 / 16 data points ESRS E5 · audit ISAE 3410-ready"
+        },
+        {
+          "label": "Économie circulaire",
+          "desc": "Filière ESS partenaire · R2v3 · taux réemploi 73 %"
+        }
       ],
       "diagramCenter": "GreenTechCycle",
       "diagramCenterSub": "Plateforme unifiée"
@@ -503,337 +653,392 @@
     ]
   },
   "Platform": {
+    "urgency": {
+      "text": "Démo personnalisée sous 5 jours ouvrés · accès auditeur livré sous 24 h."
+    },
     "hero": {
-      "eyebrow": "Plateforme ITAD unifiée",
-      "title": "Une seule plateforme pour tout votre cycle ITAD",
-      "subtitle": "Inventoriez, effacez, tracez, valorisez et reportez depuis une source unique de vérité. De la collecte au certificat CSRD, sans ressaisie, sans silo, sans angle mort.",
-      "ctaPrimary": "Demander une démo",
-      "ctaSecondary": "Voir la plateforme en action",
-      "badges": [
-        "ISO 27001",
-        "NIST 800-88",
-        "RGPD · NIS2 · DORA",
-        "R2v3 · ISO 14001"
-      ]
-    },
-    "unified": {
-      "eyebrow": "Le concept",
-      "title": "Fini les silos. Une seule plateforme connectée.",
-      "subtitle": "La plupart des équipes ITAD jonglent avec 4 à 6 outils : ITAM, tableur carbone, logiciel d'effacement, documents de conformité. GreenTechCycle les remplace par une plateforme unique, où chaque module alimente le suivant en temps réel.",
-      "before": {
-        "title": "Avant · Outils fragmentés",
-        "items": [
-          "ITAM & CMDB pour l'inventaire",
-          "Logiciel d'effacement séparé",
-          "Tableur Excel pour le bilan carbone",
-          "Documents Word pour la conformité",
-          "Email & téléphone pour la logistique",
-          "PDF manuels pour le reporting"
-        ]
-      },
-      "after": {
-        "title": "Avec GreenTechCycle · Plateforme unifiée",
-        "items": [
-          "Inventaire & audit unifiés et mis à jour",
-          "Effacement certifié NIST / DoD intégré",
-          "Bilan carbone Scope 1/2/3 automatisé",
-          "Conformité RGPD, NIS2, DORA, CSRD en continu",
-          "Logistique et chain of custody tracés",
-          "Reporting multi-rôle exporté en 1 clic"
-        ]
-      },
-      "kpis": [
-        { "value": "-65%", "label": "temps administratif" },
-        { "value": "100%", "label": "traçabilité actif par actif" },
-        { "value": "1", "label": "source unique de vérité" }
-      ]
-    },
-    "workflow": {
-      "eyebrow": "Parcours de bout en bout",
-      "title": "Votre cycle ITAD, orchestré en 6 étapes connectées",
-      "subtitle": "Chaque module déclenche le suivant. Les données circulent automatiquement, les responsabilités sont tracées, les exports sont prêts pour vos auditeurs.",
-      "steps": [
+      "eyebrow": "Plateforme ITAD pour grands comptes",
+      "title": "La plateforme qui transforme votre fin de vie IT en preuve auditable.",
+      "subtitle": "Une seule chaîne, de l'inventaire au certificat. Vos auditeurs reçoivent en deux clics ce que vos équipes mettaient des semaines à reconstituer.",
+      "cta1": "Réserver une démo",
+      "cta2": "Suivre le parcours",
+      "scrollLabel": "Découvrir le parcours",
+      "floatQuote": "On a connecté la plateforme à notre CMDB un mardi. Le vendredi, l'auditeur ACPR avait déjà extrait son dossier seul.",
+      "floatName": "Marc B.",
+      "floatRole": "RSSI · banque CAC 40",
+      "proofs": [
         {
-          "number": "01",
-          "title": "Inventaire & Audit",
-          "description": "Découverte automatique du parc, import CMDB/ITAM, audit terrain via scan QR. Chaque actif est photographié, horodaté et associé à son propriétaire métier.",
-          "highlights": ["Import CSV / API", "Scan QR & photos", "Audit physique guidé"]
+          "value": "4",
+          "unit": "j",
+          "label": "réponse audit moyenne",
+          "color": "#10B981"
         },
         {
-          "number": "02",
-          "title": "Évaluation & Scoring",
-          "description": "Notation automatique de la valeur résiduelle, du risque cyber et de l'empreinte carbone. La plateforme calcule un score décisionnel par actif.",
-          "highlights": ["Valeur résiduelle", "Score vulnérabilité", "Impact CO₂ estimé"]
+          "value": "638",
+          "unit": "k€",
+          "label": "valeur moyenne récupérée",
+          "color": "#0EA5E9"
         },
         {
-          "number": "03",
-          "title": "Décision ITAD",
-          "description": "Reconditionner, valoriser, recycler ou détruire : la plateforme propose la meilleure filière pour chaque actif selon vos politiques et objectifs RSE.",
-          "highlights": ["Reconditionner", "Revendre / donner", "Recycler ou détruire"]
-        },
-        {
-          "number": "04",
-          "title": "Traçabilité & Conformité",
-          "description": "Chain of custody horodatée, effacement certifié NIST 800-88, scellés numériques et preuves de destruction. Chaque manipulation est journalisée.",
-          "highlights": ["Chain of custody", "Effacement certifié", "Preuves signées"]
-        },
-        {
-          "number": "05",
-          "title": "Reporting",
-          "description": "Rapports adaptés à chaque rôle : DSI, RSSI, DAF, direction RSE. CSRD, bilan carbone Scope 1/2/3, certificats R2v3, le tout exportable en 1 clic.",
-          "highlights": ["DSI · RSSI · RSE", "CSRD & Scope 3", "Export 1 clic"]
-        },
-        {
-          "number": "06",
-          "title": "Suivi continu",
-          "description": "Dashboard temps réel, alertes de dérive, suivi des KPI et amélioration continue. Votre ITAD devient pilotable, pas seulement documenté.",
-          "highlights": ["KPI temps réel", "Alertes & SLA", "Amélioration continue"]
+          "value": "100",
+          "unit": "%",
+          "label": "actifs tracés un par un",
+          "color": "#F59E0B"
         }
       ]
     },
-    "security": {
-      "eyebrow": "Gouvernance & Sécurité",
-      "title": "Une plateforme pensée pour les RSSI et les auditeurs",
-      "subtitle": "Audit de risque cyber automatisé, effacement certifié aux standards militaires, conformité multi-référentiels : tout est intégré, rien n'est à ressaisir.",
-      "pillars": [
-        {
-          "title": "Audit de risque cyber",
-          "description": "Scoring de vulnérabilité par actif, détection des risques d'exposition de données et priorisation des traitements ITAD selon la criticité.",
-          "features": [
-            "Score de vulnérabilité par équipement",
-            "Détection des données sensibles résiduelles",
-            "Priorisation automatique des flux critiques",
-            "Intégration SIEM et outils GRC"
-          ]
-        },
-        {
-          "title": "Effacement certifié",
-          "description": "Effacement cryptographique et logique conforme NIST 800-88 Rev.1, DoD 5220.22-M et IEEE 2883. Certificat signé généré pour chaque disque.",
-          "features": [
-            "NIST 800-88 Rev.1 (Clear / Purge / Destroy)",
-            "DoD 5220.22-M (3 passes)",
-            "IEEE 2883 pour SSD/NVMe",
-            "Certificat signé avec hash et horodatage"
-          ]
-        },
-        {
-          "title": "Conformité réglementaire",
-          "description": "RGPD, NIS2, DORA, ISO 27001 : la plateforme maintient une matrice de conformité vivante et génère les preuves attendues par vos auditeurs.",
-          "features": [
-            "RGPD · tenue du registre et DPIA",
-            "NIS2 · mesures de gestion des risques",
-            "DORA · résilience opérationnelle IT",
-            "ISO 27001 · ISMS et contrôles A"
-          ]
-        },
-        {
-          "title": "Audit RSE & ESG",
-          "description": "ISO 14001, bilan carbone Scope 1/2/3, certificats de destruction et indicateurs d'économie circulaire, prêts pour votre reporting CSRD.",
-          "features": [
-            "ISO 14001 · SME documenté",
-            "Scope 1/2/3 · facteurs ADEME",
-            "Taux de réemploi et valorisation",
-            "Certificats R2v3 et BSD DEEE"
-          ]
-        }
-      ],
-      "certifications": [
-        "ISO 27001",
-        "NIST 800-88",
-        "DoD 5220.22-M",
-        "IEEE 2883",
-        "ISO 14001",
-        "R2v3",
-        "RGPD",
-        "NIS2",
-        "DORA"
-      ],
-      "timeline": {
-        "title": "De la collecte au certificat, tout est auditable",
-        "steps": [
-          "Collecte scellée · preuve GPS",
-          "Réception · pesée et photo",
-          "Effacement NIST · hash signé",
-          "Certificat · signature + horodatage",
-          "Dépôt dossier auditeur"
+    "promise": {
+      "eyebrow": "Notre promesse",
+      "title": "Vous décidez, la plateforme prouve.",
+      "body1": "Vos directions informatiques, sécurité et finances passent leurs journées à reconstruire des preuves. Numéro de série retrouvé à la main, certificat d'effacement perdu dans un courriel, écart d'inventaire débattu en réunion. Pendant ce temps, l'échéance régulatoire avance.",
+      "body2": "Notre plateforme ne remplace pas vos prestataires terrain : elle les orchestre. Chaque actif entre par une seule porte, suit un parcours codé et ressort sous la forme d'un dossier que vos auditeurs reconnaissent. Pas de tableau croisé, pas de ressaisie, pas d'angle mort."
+    },
+    "chapters": [
+      {
+        "slug": "ingestion",
+        "eyebrow": "Étape 01 · Ingestion",
+        "title": "Vos sources existantes deviennent une seule vérité.",
+        "body": "Vos référentiels d'actifs, vos exports CMDB, vos remontées MDM, vos tableurs de gestion de parc : la plateforme les avale et les réconcilie. Chaque écart est signalé, chaque doublon est résolu, chaque actif fantôme est démasqué. La direction informatique reprend la main sur un parc qu'elle croyait connaître.",
+        "photo": "/photos/server-technician.jpg",
+        "photoAlt": "Technicien GreenTechCycle scannant un actif IT en salle serveur, traçabilité de bout en bout",
+        "proofLabel": "Réconciliation moyenne",
+        "proofValue": "99,2 %",
+        "proofDetail": "Mesuré sur 14 833 actifs, 41 missions grands comptes (2024)",
+        "bullets": [
+          "Connecteurs natifs ServiceNow, GLPI, Intune, JAMF, EasyVista",
+          "Import par lots, par interface ou par scan douchette terrain",
+          "Détection automatique des incohérences et des actifs orphelins"
+        ]
+      },
+      {
+        "slug": "audit",
+        "eyebrow": "Étape 02 · Audit",
+        "title": "Chaque actif révèle son risque, sa valeur, son impact.",
+        "body": "À l'arrivée d'un actif, la plateforme pose trois questions et y répond seule. Quel risque cyber pèse encore sur ce disque ? Quelle valeur résiduelle peut-on récupérer sur le marché secondaire ? Quel sera l'évitement carbone si on prolonge sa vie ? Le tableau qui s'affiche sert à la fois aux décisions de la direction informatique, du RSSI et de la direction RSE.",
+        "photo": "/photos/hp-rssi-boardroom.jpg",
+        "photoAlt": "Direction sécurité examinant le tableau de bord de risque actif par actif",
+        "proofLabel": "Couverture du parc audité",
+        "proofValue": "100 %",
+        "proofDetail": "Score risque, valeur, carbone calculé pour chaque actif éligible",
+        "bullets": [
+          "Score de vulnérabilité résiduelle par disque et par OS",
+          "Cotation marché secondaire mise à jour chaque semaine",
+          "Empreinte carbone calculée selon les facteurs ADEME Base Empreinte v23"
+        ]
+      },
+      {
+        "slug": "decision",
+        "eyebrow": "Étape 03 · Décision",
+        "title": "La plateforme propose. Vos politiques tranchent.",
+        "body": "Reconditionner, revendre, donner, recycler ou détruire : la plateforme suggère la meilleure orientation au regard de vos politiques internes — sensibilité des données, engagement de souveraineté, calendrier réglementaire, taux de réemploi visé. Vous validez d'un clic. Le motif de la décision est journalisé, opposable, exportable.",
+        "photo": "/photos/hp-dsi-strategy.jpg",
+        "photoAlt": "Direction informatique arbitrant la fin de vie d'un parc d'actifs sur la plateforme",
+        "proofLabel": "Taux de réemploi moyen",
+        "proofValue": "72 %",
+        "proofDetail": "Versus 32 % constatés en circuit court DEEE professionnel standard",
+        "bullets": [
+          "Moteur de règles paramétrable par sensibilité, secteur, site",
+          "Validation à quatre yeux pour les décisions à enjeu",
+          "Motif de décision journalisé pour chaque actif sortant"
+        ]
+      },
+      {
+        "slug": "tracabilite",
+        "eyebrow": "Étape 04 · Traçabilité",
+        "title": "De la collecte au certificat, plus rien ne se perd.",
+        "body": "Le scellé numéroté est apposé chez vous, le transport est suivi, l'effacement est filmé, le certificat est signé eIDAS et horodaté. Si un auditeur vous demande la chaîne de custody d'un actif précis, vous la sortez en moins d'une minute. Pas en trois semaines, pas en passant par six interlocuteurs.",
+        "photo": "/photos/hp-audit-signature.jpg",
+        "photoAlt": "Signature électronique d'un certificat d'effacement après contrôle qualité",
+        "proofLabel": "Délai certificat signé",
+        "proofValue": "24 h",
+        "proofDetail": "Engagement contractuel après réception en plateau de traitement",
+        "bullets": [
+          "Effacement NIST 800-88 rev. 1 (Clear, Purge, Destroy) selon la sensibilité",
+          "Vidéo-surveillance horodatée du plateau de traitement",
+          "Certificats signés eIDAS, scellement cryptographique conservé dix ans"
+        ]
+      },
+      {
+        "slug": "restitution",
+        "eyebrow": "Étape 05 · Restitution",
+        "title": "Un dossier par interlocuteur, prêt sans relecture.",
+        "body": "La direction informatique reçoit son tableau de bord d'écarts, le RSSI sa matrice de preuves, la direction financière son extrait comptable, la direction RSE son volet ESRS E5. Chaque format est aligné sur ce que vos auditeurs et commissaires aux comptes attendent. La plateforme ne génère pas du papier : elle livre des dossiers exploitables.",
+        "photo": "/photos/impact-dashboard.jpg",
+        "photoAlt": "Tableau de bord de restitution multi-rôle de la plateforme GreenTechCycle",
+        "proofLabel": "Formats de restitution prêts",
+        "proofValue": "12",
+        "proofDetail": "Dont CSRD ESRS E5, NIS2, DORA, ISO 27001 annexe A et bilan carbone",
+        "bullets": [
+          "Tableau de bord exécutif filtré par rôle, site, périmètre",
+          "Extraits comptables compatibles SAP, Sage, Cegid",
+          "Accès auditeur en lecture seule, livré sous 24 heures"
         ]
       }
+    ],
+    "editorialQuote": {
+      "quote": "Avant la plateforme, on dépensait l'énergie d'une équipe entière à fabriquer la preuve. Aujourd'hui, on dépense cette énergie à prendre des décisions.",
+      "name": "Hélène D.",
+      "role": "Directrice informatique · groupe industriel coté"
     },
-    "recycling": {
-      "eyebrow": "Recyclage & Valorisation",
-      "title": "Transformez votre fin de vie IT en valeur mesurable",
-      "subtitle": "La plateforme oriente chaque actif vers la filière qui maximise la valeur — pour votre budget et pour la planète. Économie circulaire, concrètement.",
-      "flow": [
+    "liveProofs": {
+      "assets": {
+        "value": "84000",
+        "suffix": "+",
+        "label": "actifs orchestrés sur la plateforme",
+        "source": "Cumul missions GTC, mars 2026"
+      },
+      "value": {
+        "value": "12",
+        "suffix": " M€",
+        "label": "valeur récupérée pour nos clients",
+        "source": "Cumul valorisation 2024-2025"
+      },
+      "carbon": {
+        "value": "6200",
+        "suffix": " t",
+        "label": "tonnes de CO₂e évitées (Scope 3)",
+        "source": "Méthode Boavizta + ADEME v23"
+      },
+      "audit": {
+        "value": "38000",
+        "suffix": "+",
+        "label": "certificats NIST 800-88 émis",
+        "source": "Plateforme GreenTechCycle"
+      }
+    },
+    "offers": {
+      "eyebrow": "Trois portes d'entrée",
+      "title": "Choisissez la première étape qui colle à votre calendrier.",
+      "subtitle": "Chaque parcours commence par une réservation. Nous validons le périmètre ensemble avant le moindre engagement contractuel.",
+      "reserveLabel": "Réserver",
+      "items": [
         {
-          "title": "Évaluer",
-          "description": "Analyse de la valeur résiduelle marché, état fonctionnel et potentiel de réemploi pour chaque actif."
+          "slug": "demo-plateforme",
+          "name": "Démo guidée de la plateforme",
+          "pitch": "Quarante-cinq minutes en visioconférence, sur vos cas réels. Nous montons un parcours d'actif fictif depuis l'ingestion jusqu'au certificat, avec votre direction informatique et votre RSSI dans la salle.",
+          "duration": "45 min · visioconférence",
+          "price": "Sans engagement"
         },
         {
-          "title": "Reconditionner",
-          "description": "Tests fonctionnels, remise en état cosmétique, réinstallation système et mise en conformité avant revente."
+          "slug": "audit-blanc-itad",
+          "name": "Audit blanc d'un site pilote",
+          "pitch": "Nous prenons un site représentatif, nous y branchons la plateforme et nous restituons sous deux semaines un état des écarts, un potentiel de valorisation et une feuille de route opérationnelle.",
+          "duration": "2 semaines · site pilote",
+          "price": "Forfait 9 800 € HT"
         },
         {
-          "title": "Revendre ou donner",
-          "description": "Marketplace interne, revente B2B, don à des associations ou réinjection dans le parc interne à moindre coût."
-        },
-        {
-          "title": "Recycler responsable",
-          "description": "Filière agréée DEEE pour les actifs non réemployables : démantèlement, tri et traçabilité des matières premières."
+          "slug": "audit-decommissionnement",
+          "name": "Mission de décommissionnement complète",
+          "pitch": "Vous avez une vague Windows 11, une fermeture de site ou une refonte de parc à mener. Nous orchestrons collecte, effacement, valorisation et reporting réglementaire de bout en bout.",
+          "duration": "Sur mesure · à partir de 6 semaines",
+          "price": "Devis sous 5 jours ouvrés"
         }
-      ],
-      "kpis": [
-        { "value": "72%", "label": "Taux de réemploi moyen constaté" },
-        { "value": "380 €", "label": "Valeur récupérée par poste en moyenne" },
-        { "value": "45T", "label": "CO₂ évitées en 2025 (clients GTC)" },
-        { "value": "100%", "label": "Filières DEEE agréées et tracées" }
-      ],
-      "cta": "Calculer le potentiel de valorisation de mon parc"
+      ]
     },
-    "reporting": {
-      "eyebrow": "Reporting multi-rôle",
-      "title": "Un rapport pour chaque interlocuteur, en un clic",
-      "subtitle": "Plus besoin de consolider manuellement. La plateforme agrège les données et génère le rapport attendu par chaque métier, avec le bon niveau de détail et le bon format.",
-      "useCases": [
+    "faq": {
+      "eyebrow": "Questions fréquentes des directions",
+      "title": "Ce que les directions informatiques demandent avant de signer.",
+      "items": [
         {
-          "role": "Pour le DSI",
-          "title": "État du parc & coûts évités",
-          "description": "Inventaire dynamique, actifs en fin de vie, budget reconditionnement vs achat neuf, valeur résiduelle capturée.",
-          "metrics": ["Coûts évités", "Parc en fin de vie", "ROI reconditionnement"]
+          "q": "Combien de temps pour brancher la plateforme à notre référentiel d'actifs ?",
+          "a": "Comptez deux à cinq jours pour les connecteurs natifs ServiceNow, GLPI, Intune et JAMF. Pour un référentiel maison, l'équipe d'intégration livre un connecteur sur mesure en deux à trois semaines."
         },
         {
-          "role": "Pour le RSSI",
-          "title": "Audit de risque & preuves d'effacement",
-          "description": "Score de risque par actif, certificats NIST/DoD, journal d'audit, matrice NIS2 et DORA prête pour l'auditeur.",
-          "metrics": ["Actifs à risque", "Certificats générés", "Conformité NIS2"]
+          "q": "Où sont hébergées nos données et qui peut y accéder ?",
+          "a": "Hébergement OVHcloud qualifié SecNumCloud, en France métropolitaine. Aucun sous-traitant hors Union européenne. Chiffrement AES-256 au repos, TLS 1.3 en transit. Accès interne tracé et soumis au principe des quatre yeux pour les opérations sensibles."
         },
         {
-          "role": "Pour la RSE / ESG",
-          "title": "Bilan carbone & CSRD",
-          "description": "Scope 1/2/3 calculé à partir des flux réels, taux de valorisation, reporting CSRD ESRS E5 et indicateurs ISO 14001.",
-          "metrics": ["Scope 3 évité", "Taux de réemploi", "CSRD ESRS E5"]
+          "q": "Quel niveau d'effacement appliquez-vous selon la sensibilité ?",
+          "a": "Trois niveaux NIST 800-88 rev. 1 — Clear, Purge, Destroy — appliqués selon la classification de vos données. Pour les supports SSD et NVMe, nous appliquons IEEE 2883. Chaque opération produit un certificat signé eIDAS conservé dix ans."
         },
         {
-          "role": "Pour la DAF",
-          "title": "Finance & valorisation d'actifs",
-          "description": "Revenus de revente, avoirs générés, amortissements restants, provision de sortie et impact P&L.",
-          "metrics": ["Revenus de revente", "Avoirs", "Impact P&L"]
+          "q": "Comment l'auditeur accède-t-il aux preuves le jour J ?",
+          "a": "Vos auditeurs reçoivent un accès en lecture seule, scopé à leur périmètre, livré sous 24 heures. Ils peuvent consulter, filtrer et exporter sans dépendre de vos équipes internes. Tout accès est journalisé et révocable d'un clic."
         }
-      ],
-      "formats": ["PDF Exécutif", "Word Auditeur", "Excel Données", "API JSON"],
-      "dashboardTitle": "Dashboard reporting",
-      "dashboardSubtitle": "Un espace unique, personnalisé par rôle",
-      "exportLabel": "Exporter en 1 clic"
+      ]
     },
-    "mobile": {
-      "eyebrow": "Application mobile",
-      "title": "Vos équipes terrain, connectées en temps réel",
-      "subtitle": "L'app mobile GreenTechCycle met la plateforme dans la poche de vos techniciens. Scan, saisie, photos, signatures : tout remonte instantanément, même hors-ligne.",
-      "features": [
-        {
-          "title": "Scan QR & code-barres",
-          "description": "Identifiez un actif en 2 secondes, accédez à son historique complet et mettez à jour son statut sur le terrain."
-        },
-        {
-          "title": "Interventions guidées",
-          "description": "Check-lists dynamiques, photos obligatoires, signatures électroniques : chaque intervention est tracée et conforme."
-        },
-        {
-          "title": "Notifications push",
-          "description": "Nouvelles collectes, validations en attente, alertes SLA : vos techniciens ne manquent rien d'important."
-        },
-        {
-          "title": "Mode hors-ligne",
-          "description": "Entrepôts sans réseau, zones sensibles : l'app fonctionne hors-ligne et synchronise dès que la connexion revient."
-        }
-      ],
-      "tagline": "Déjà utilisée par 800+ techniciens terrain",
-      "storeApple": "Disponible sur l'App Store",
-      "storeGoogle": "Disponible sur Google Play"
+    "conversion": {
+      "eyebrow": "Avant l'échéance",
+      "title": "Trois minutes pour caler une démo, trois semaines pour livrer un dossier auditable.",
+      "subtitle": "Vous indiquez votre besoin et votre calendrier. Nous revenons vers vous sous 24 heures ouvrées avec une démo personnalisée et un plan d'attaque concret.",
+      "cta1": "Réserver une démo",
+      "cta2": "Poser une question d'abord"
     },
-    "cta": {
-      "title": "Prêt à unifier votre ITAD ?",
-      "subtitle": "Parlez à un expert GreenTechCycle — démo personnalisée, évaluation de votre parc et plan de déploiement en 20 minutes.",
-      "primary": "Demander une démo",
-      "secondary": "Parler à un expert"
+    "finalCta": {
+      "eyebrow": "Passer à l'action",
+      "title": "Votre prochain audit ne devrait pas mobiliser une équipe pendant trois semaines.",
+      "subtitle": "Soumettez-nous votre périmètre et votre échéance. Nous calons une session de cadrage sous cinq jours ouvrés et vous repartez avec un plan d'orchestration concret.",
+      "cta1": "Réserver le cadrage",
+      "cta2": "Voir nos cas clients",
+      "trust1": "Souveraineté française · OVHcloud SecNumCloud",
+      "trust2": "Certificats signés eIDAS conservés 10 ans",
+      "trust3": "0 % décharge · engagement contractuel R2v3"
     }
   },
   "WhyGTC": {
-    "hero": {
-      "title": "Pourquoi GreenTechCycle ?",
-      "subtitle": "50 millions de tonnes de DEEE par an en Europe, dont 60 % du scope 3 IT concentre dans la fabrication amont. GreenTechCycle est ne d'une conviction : l'ITAD doit entrer dans la comptabilite des entreprises."
+    "urgency": {
+      "text": "Notre bilan carbone scope 1+2+3 publié chaque année · trajectoire SBTi 1,5 °C engagée."
     },
-    "mission": {
-      "eyebrow": "Notre raison d'etre",
-      "title": "Faire entrer l'ITAD dans la comptabilite des entreprises",
-      "paragraphs": [
-        "Chaque annee, 50 millions de tonnes de DEEE sont generees en Europe. 60 % du scope 3 IT d'une entreprise se concentre dans la fabrication amont (source Boavizta). Prolonger la duree de vie d'un actif IT de 5 a 9 ans reduit son empreinte carbone unitaire de 45 %.",
-        "Notre mission : faire de l'ITAD un poste comptable mesurable, auditable et optimisable -- au meme titre que la facture d'electricite. Notre vision 2030 : 80 % du parc IT B2B francais en circuit court reconditionne, tracable scope 3 en temps reel."
-      ]
+    "hero": {
+      "eyebrow": "Le manifeste",
+      "figure": "50 millions",
+      "title": "de tonnes de déchets électroniques par an en Europe. Nous refusons que la prochaine décennie ressemble à la précédente.",
+      "subtitle": "GreenTechCycle est née d'une conviction inconfortable : la fin de vie informatique ne mérite plus d'être traitée comme un coût caché. Elle doit entrer dans la comptabilité des entreprises au même titre qu'une facture d'électricité.",
+      "cta1": "Réserver un échange",
+      "cta2": "Lire le manifeste",
+      "source": "Sources : Eurostat 2024, ADEME Évaluation environnementale du numérique en France 2024.",
+      "scrollLabel": "Lire la suite"
+    },
+    "manifesto": {
+      "eyebrow": "Notre raison d'être",
+      "title": "Faire entrer la fin de vie informatique dans la comptabilité réelle des entreprises.",
+      "body1": "Pendant vingt ans, la fin de vie informatique a été traitée comme une corvée. On la signait au bas d'un bordereau, on la confiait à un transporteur, on espérait qu'aucun disque dur ne réapparaisse. Cette époque touche à sa fin. Le régulateur exige des preuves, les commissaires aux comptes inspectent les écritures et les directions générales découvrent que ce poste pèse réellement sur le bilan carbone du groupe.",
+      "body2": "Nous avons fondé GreenTechCycle parce que personne, en 2021, ne proposait à ces directions une chaîne complète, opposable et lisible. Pas un acteur du recyclage qui s'invente une couche logicielle, pas une plateforme logicielle sans terrain. Une vraie chaîne, du scellé apposé chez vous au certificat conservé dix ans, opérée par des équipes qui assument leurs résultats.",
+      "body3": "Notre objectif à 2030 est limpide : 80 % du parc informatique professionnel français doit passer par un circuit court reconditionné, traçable et auditable. Pas comme une option militante, comme un standard de gestion."
     },
     "founder": {
       "eyebrow": "Le mot du fondateur",
-      "title": "Un ingenieur passe par la cybersecurite bancaire",
-      "quote": "En 2019, j'ai vu 2 000 disques durs broyes sans aucun certificat dans un datacenter bancaire. La facture etait payee, le risque etait reel, et personne n'avait de preuve. Ce jour-la, j'ai decide de creer GreenTechCycle.",
-      "bio": "Ingenieur diplome, 15 ans d'experience dont 8 ans en tant que RSSI dans le secteur bancaire. Certifie CISSP, Lead Auditor ISO 27001, membre Boavizta et INR. GreenTechCycle a ete fondee a Lyon en 2021."
+      "title": "Une décision prise dans un sous-sol bancaire en 2019.",
+      "quote": "J'ai vu ce jour-là deux mille disques durs broyés sans le moindre certificat. La facture était payée, le risque était bien réel et personne dans la pièce ne pouvait produire la preuve que ces données ne réapparaîtraient pas. C'est de cette colère qu'est née GreenTechCycle.",
+      "name": "Mahdi A.",
+      "role": "Fondateur · ancien RSSI bancaire",
+      "bio": "Ingénieur diplômé, quinze ans d'expérience dont huit comme responsable de la sécurité des systèmes d'information dans la banque. Certifié CISSP et auditeur principal ISO 27001. Membre actif des associations Boavizta et Institut du Numérique Responsable. GreenTechCycle a été fondée à Lyon en 2021."
     },
-    "values": {
-      "eyebrow": "Nos convictions",
-      "title": "5 convictions qui structurent chaque decision",
-      "items": [
-        {
-          "title": "Souverainete numerique",
-          "desc": "Aucune donnee client ne sort du sol europeen. Hebergement OVHcloud SecNumCloud, sous-traitants 100 % UE. Aucune dependance technologique extra-europeenne."
-        },
-        {
-          "title": "Sobriete mesuree",
-          "desc": "Nous publions notre propre bilan carbone scope 1+2+3 chaque annee. Trajectoire SBTi 1,5 C engagee. Chaque decision est evaluee sur son impact carbone mesurable."
-        },
-        {
-          "title": "Inclusion sociale",
-          "desc": "27 % de notre effectif technique vient de l'insertion par l'activite economique (IAE). Partenariats Envie, Ateliers du Bocage, Emmaus Connect. 41 emplois IAE soutenus en 2025."
-        },
-        {
-          "title": "Transparence et preuve",
-          "desc": "Chaque chiffre publie est source (ADEME, Boavizta, CIGREF). Chaque certificat est signe eIDAS. Chaque operation est filmee, horodatee, archivee 10 ans."
-        },
-        {
-          "title": "Excellence operationnelle",
-          "desc": "38 collaborateurs, 12 ingenieurs R2v3, 4 auditeurs CSRD certifies, 18 techniciens habilites NIST 800-88, 1 DPO dedie. SLA contractuels avec penalites."
-        }
-      ]
-    },
+    "convictions": [
+      {
+        "slug": "souverainete",
+        "eyebrow": "Conviction 01 · Souveraineté",
+        "title": "Aucune donnée client ne sort du sol européen.",
+        "body": "Nous avons fait ce choix dès le premier jour, avant que cela devienne une exigence contractuelle. Nos serveurs sont chez OVHcloud qualifié SecNumCloud, nos sous-traitants sont européens, nos sauvegardes sont chiffrées et stockées en France. Quand un grand compte nous demande où vivent ses données, la réponse tient en une phrase et en un schéma d'architecture.",
+        "proofValue": "100 %",
+        "proofLabel": "Hébergement et sous-traitants UE",
+        "proofDetail": "Aucune dépendance technologique extra-européenne",
+        "photo": "/photos/hp-datacenter-green.jpg",
+        "photoAlt": "Salle d'hébergement souverain en France utilisée par GreenTechCycle",
+        "bullets": [
+          "Hébergement OVHcloud qualifié SecNumCloud, France métropolitaine",
+          "Sous-traitants exclusivement implantés dans l'Union européenne",
+          "Aucun transfert de données client vers des juridictions extra-européennes"
+        ]
+      },
+      {
+        "slug": "preuve",
+        "eyebrow": "Conviction 02 · Preuve avant promesse",
+        "title": "Chaque chiffre publié est sourcé, chaque opération est filmée.",
+        "body": "Nous publions notre bilan carbone scope 1+2+3 chaque année, audité par un cabinet tiers. Nous ne reprenons aucun chiffre marketing : ADEME, Boavizta, CIGREF, INR sont nos seules sources. Nos plateaux de traitement sont sous vidéo-surveillance horodatée, nos certificats sont signés eIDAS et conservés dix ans. Si vous n'arrivez pas à reconstituer une opération, nous ne l'avons pas bien faite.",
+        "proofValue": "10 ans",
+        "proofLabel": "Conservation des preuves",
+        "proofDetail": "Vidéos, registres, certificats signés eIDAS",
+        "photo": "/photos/hp-audit-signature.jpg",
+        "photoAlt": "Signature électronique horodatée d'un certificat d'effacement chez GreenTechCycle",
+        "bullets": [
+          "Bilan carbone scope 1+2+3 publié chaque année et audité",
+          "Vidéo-surveillance horodatée de l'ensemble des plateaux de traitement",
+          "Certificats signés eIDAS, hash cryptographique, archivage décennal"
+        ]
+      },
+      {
+        "slug": "inclusion",
+        "eyebrow": "Conviction 03 · Inclusion",
+        "title": "Vingt-sept pour cent de notre effectif technique vient de l'insertion.",
+        "body": "Le tri d'un disque dur, la révision d'un poste portable, l'apposition d'un scellé numéroté : ces gestes ne s'apprennent pas sur les bancs d'une école d'ingénieurs. Nous formons des opérateurs et des opératrices issus des structures d'insertion par l'activité économique, en partenariat avec Envie, les Ateliers du Bocage et Emmaüs Connect. Nos équipes terrain sont à la fois plus stables et plus précises que la moyenne du secteur.",
+        "proofValue": "41",
+        "proofLabel": "Emplois IAE soutenus en 2025",
+        "proofDetail": "Partenariats Envie, Ateliers du Bocage, Emmaüs Connect",
+        "photo": "/photos/diverse-team.jpg",
+        "photoAlt": "Équipe terrain GreenTechCycle issue de parcours d'insertion par l'activité économique",
+        "bullets": [
+          "27 % de l'effectif technique recruté via l'insertion par l'activité économique",
+          "Programme de qualification interne avec validation par certification reconnue",
+          "Suivi individuel sur dix-huit mois avec un référent métier dédié"
+        ]
+      },
+      {
+        "slug": "sobriete",
+        "eyebrow": "Conviction 04 · Sobriété mesurée",
+        "title": "Prolonger la vie d'un poste de cinq à neuf ans réduit son empreinte de 45 %.",
+        "body": "Quand nous parlons de sobriété, nous ne parlons pas d'éteindre les écrans le soir. Nous parlons d'allonger la durée d'usage des équipements, parce que c'est là que se joue 78 % de l'empreinte carbone d'un actif informatique. Chaque décision interne — recrutement, achat, déplacement — est évaluée à l'aune de son impact carbone mesurable. Nous appliquons à nous-mêmes ce que nous proposons à nos clients.",
+        "proofValue": "44 €",
+        "proofLabel": "Coût marginal d'évitement par tCO₂e",
+        "proofDetail": "À comparer aux 75 € constatés sur le marché EU ETS en 2025",
+        "photo": "/photos/ewaste-recycling.jpg",
+        "photoAlt": "Atelier de reconditionnement GreenTechCycle prolongeant la vie utile des équipements informatiques",
+        "bullets": [
+          "Trajectoire SBTi 1,5 °C engagée et publiquement opposable",
+          "Bilan carbone d'entreprise mis à jour chaque année avec audit tiers",
+          "Critères carbone intégrés à chaque décision interne d'investissement"
+        ]
+      },
+      {
+        "slug": "excellence",
+        "eyebrow": "Conviction 05 · Excellence opérationnelle",
+        "title": "Trente-huit personnes, douze ingénieurs, un directeur de la protection des données.",
+        "body": "Nous avons choisi de rester une équipe humaine de taille maîtrisée et de la composer de profils que nos clients reconnaissent : ingénieurs R2v3, auditeurs CSRD, techniciens habilités NIST 800-88, directeur de la protection des données dédié. Tous nos engagements de service sont contractualisés avec des pénalités. Nous préférons décliner une mission plutôt que de tirer sur la qualité.",
+        "proofValue": "99,9 %",
+        "proofLabel": "Disponibilité contractualisée",
+        "proofDetail": "Engagement de service avec pénalités automatiques",
+        "photo": "/photos/team-collab.jpg",
+        "photoAlt": "Équipe pluridisciplinaire GreenTechCycle réunie en revue de mission",
+        "bullets": [
+          "12 ingénieurs certifiés R2v3 et 4 auditeurs CSRD intégrés à l'équipe",
+          "18 techniciens habilités NIST 800-88 et plateaux sous vidéo-surveillance",
+          "Directeur de la protection des données et délégué sécurité dédiés à plein temps"
+        ]
+      }
+    ],
     "commitments": {
-      "eyebrow": "Engagements concrets",
-      "title": "Ce que nous faisons differemment",
-      "items": [
-        { "metric": "99,2 %", "label": "precision inventaire moyenne (n=14 833 assets, 41 missions)" },
-        { "metric": "24 h", "label": "delai certificat d'effacement signe eIDAS" },
-        { "metric": "72 %", "label": "taux de reemploi (vs 32 % circuit standard DEEE pro)" },
-        { "metric": "44 EUR/tCO2e", "label": "cout marginal d'evitement (vs 75 EUR EU ETS)" },
-        { "metric": "0 %", "label": "mise en decharge (engagement contractuel R2v3)" },
-        { "metric": "10 ans", "label": "archivage des preuves (video, registres, certificats)" }
-      ]
-    },
-    "benefits": {
-      "title": "Les benefices concrets",
+      "eyebrow": "Engagements opposables",
+      "title": "Six chiffres qui résument ce que nous nous engageons à tenir.",
       "items": [
         {
-          "title": "Gain de temps",
-          "desc": "Reduction de 60 % du temps administratif ITAD"
+          "metric": "99,2",
+          "suffix": "%",
+          "label": "précision moyenne d'inventaire",
+          "source": "Mesuré sur 14 833 actifs, 41 missions grands comptes"
         },
         {
-          "title": "Conformite garantie",
-          "desc": "100 % conforme CSRD, RGPD, NIS2 et DORA"
+          "metric": "24",
+          "suffix": "h",
+          "label": "délai d'émission d'un certificat signé eIDAS",
+          "source": "Engagement contractuel, après réception en plateau"
         },
         {
-          "title": "Visibilite totale",
-          "desc": "Tracabilite de chaque actif de l'audit au certificat"
+          "metric": "72",
+          "suffix": "%",
+          "label": "taux de réemploi des actifs collectés",
+          "source": "À comparer à 32 % en circuit DEEE professionnel standard"
         },
         {
-          "title": "ROI mesurable",
-          "desc": "Valorisation des actifs et reduction des couts de 40 %"
+          "metric": "44",
+          "suffix": " €",
+          "label": "coût marginal d'évitement par tCO₂e",
+          "source": "Versus 75 € constatés sur le marché EU ETS 2025"
+        },
+        {
+          "metric": "0",
+          "suffix": "%",
+          "label": "mise en décharge des actifs reçus",
+          "source": "Engagement contractuel R2v3 pour chaque mission"
+        },
+        {
+          "metric": "10",
+          "suffix": " ans",
+          "label": "archivage des preuves opérationnelles",
+          "source": "Vidéos, registres, certificats signés eIDAS"
         }
       ]
+    },
+    "editorialQuote": {
+      "quote": "Quand un fournisseur publie son bilan carbone audité avant qu'on le demande, on sait qu'on est dans la bonne maison.",
+      "name": "Pierre L.",
+      "role": "Directeur RSE · groupe énergéticien européen"
+    },
+    "conversion": {
+      "eyebrow": "Échanger sans engagement",
+      "title": "Vous voulez voir si nos convictions tiennent debout chez nous comme chez vous.",
+      "subtitle": "Une heure de visioconférence avec notre équipe suffit pour confronter votre contexte à notre méthode et repartir avec un avis franc sur le chemin à parcourir.",
+      "cta1": "Réserver une heure d'échange",
+      "cta2": "Lire nos cas clients"
     }
   },
   "ClientJourney": {
@@ -1134,17 +1339,42 @@
     }
   },
   "Impact": {
-    "breadcrumb": { "home": "Accueil", "current": "Impact carbone" },
+    "breadcrumb": {
+      "home": "Accueil",
+      "current": "Impact carbone"
+    },
     "hero": {
       "eyebrow": "Bilan carbone IT — méthodologie auditable",
       "title": "L'impact carbone du numérique d'entreprise : mesurer, réduire, prouver",
       "subtitle": "Conforme GHG Protocol, ADEME Bilan Carbone v8, ISO 14064-1, ISO 14067 et ESRS E5. Données opposables, sources publiques, mapping CSRD direct.",
-      "chips": ["GHG Protocol", "ADEME Base Empreinte v23", "ISO 14064-1", "ISO 14067", "ESRS E5"],
+      "chips": [
+        "GHG Protocol",
+        "ADEME Base Empreinte v23",
+        "ISO 14064-1",
+        "ISO 14067",
+        "ESRS E5"
+      ],
       "kpis": [
-        { "value": "78 %", "label": "des émissions IT proviennent de la fabrication des équipements", "source": "ADEME, Évaluation environnementale du numérique en France 2024" },
-        { "value": "169 kgCO₂e", "label": "économisés par laptop reconditionné (vs neuf)", "source": "ADEME Base Empreinte v23 + Boavizta Datavizta 2024" },
-        { "value": "21 %", "label": "de la consommation électrique tertiaire imputable au numérique", "source": "ADEME 2023, Étude consommation des bureaux" },
-        { "value": "2,5 %", "label": "de l'empreinte carbone française portée par le numérique", "source": "ADEME-ARCEP 2022, Évaluation environnementale du numérique" }
+        {
+          "value": "78 %",
+          "label": "des émissions IT proviennent de la fabrication des équipements",
+          "source": "ADEME, Évaluation environnementale du numérique en France 2024"
+        },
+        {
+          "value": "169 kgCO₂e",
+          "label": "économisés par laptop reconditionné (vs neuf)",
+          "source": "ADEME Base Empreinte v23 + Boavizta Datavizta 2024"
+        },
+        {
+          "value": "21 %",
+          "label": "de la consommation électrique tertiaire imputable au numérique",
+          "source": "ADEME 2023, Étude consommation des bureaux"
+        },
+        {
+          "value": "2,5 %",
+          "label": "de l'empreinte carbone française portée par le numérique",
+          "source": "ADEME-ARCEP 2022, Évaluation environnementale du numérique"
+        }
       ],
       "ctaPrimary": "Calculer votre bilan IT",
       "ctaSecondary": "Recevoir notre méthodologie PDF"
@@ -1185,29 +1415,82 @@
       "scopeTitle": "Scopes GHG Protocol couverts",
       "scopeIntro": "Conformément au GHG Protocol Corporate Standard et au Scope 3 Standard, GTC mesure et reporte les catégories Scope 3 pertinentes pour les actifs IT du donneur d'ordre.",
       "scopes": [
-        { "code": "Scope 3.1", "title": "Achats de biens & services", "desc": "Émissions amont liées à la fabrication des équipements IT achetés (laptops, desktops, écrans, serveurs, mobiles). Calcul par actif via FE ADEME / Boavizta. Méthode hybrid spend-based + activity-based selon disponibilité des données." },
-        { "code": "Scope 3.11", "title": "Utilisation des produits vendus", "desc": "Pour les flottes en location-financement ou as-a-service, émissions liées à la consommation énergétique pendant la phase d'usage. Mix électrique RTE 2024 (52 gCO₂/kWh), prorata heures fonctionnement réelles." },
-        { "code": "Scope 3.12", "title": "Traitement en fin de vie", "desc": "Émissions liées au transport, à la dépollution, au démantèlement et à la valorisation matière. GTC fournit le périmètre complet cradle-to-grave, y compris l'évitement (-) lié au réemploi vs production de matière vierge." }
+        {
+          "code": "Scope 3.1",
+          "title": "Achats de biens & services",
+          "desc": "Émissions amont liées à la fabrication des équipements IT achetés (laptops, desktops, écrans, serveurs, mobiles). Calcul par actif via FE ADEME / Boavizta. Méthode hybrid spend-based + activity-based selon disponibilité des données."
+        },
+        {
+          "code": "Scope 3.11",
+          "title": "Utilisation des produits vendus",
+          "desc": "Pour les flottes en location-financement ou as-a-service, émissions liées à la consommation énergétique pendant la phase d'usage. Mix électrique RTE 2024 (52 gCO₂/kWh), prorata heures fonctionnement réelles."
+        },
+        {
+          "code": "Scope 3.12",
+          "title": "Traitement en fin de vie",
+          "desc": "Émissions liées au transport, à la dépollution, au démantèlement et à la valorisation matière. GTC fournit le périmètre complet cradle-to-grave, y compris l'évitement (-) lié au réemploi vs production de matière vierge."
+        }
       ],
       "frameworksTitle": "Référentiels appliqués",
       "frameworks": [
-        { "name": "GHG Protocol Corporate Standard + Scope 3 Standard", "desc": "WRI/WBCSD, révision 2015. Cadre comptable carbone international." },
-        { "name": "ADEME Bilan Carbone® v8.7", "desc": "Méthode officielle française, intégration des facteurs d'émission Base Empreinte v23 (publication mai 2024)." },
-        { "name": "ISO 14064-1:2018", "desc": "Spécification pour la quantification et la déclaration des émissions et suppressions de GES au niveau organisationnel." },
-        { "name": "ISO 14067:2018", "desc": "Empreinte carbone des produits — exigences pour la quantification (ACV produit)." },
-        { "name": "Boavizta API v1.4", "desc": "Méthodologie ouverte d'évaluation environnementale des équipements numériques. Intégrée nativement à nos calculs." },
-        { "name": "NEGAOCTET", "desc": "Référentiel d'évaluation environnementale des services numériques (ADEME / ARCEP)." },
-        { "name": "INR Référentiel GES Numérique 2022", "desc": "Institut du Numérique Responsable, méthodologie de mesure secteur." }
+        {
+          "name": "GHG Protocol Corporate Standard + Scope 3 Standard",
+          "desc": "WRI/WBCSD, révision 2015. Cadre comptable carbone international."
+        },
+        {
+          "name": "ADEME Bilan Carbone® v8.7",
+          "desc": "Méthode officielle française, intégration des facteurs d'émission Base Empreinte v23 (publication mai 2024)."
+        },
+        {
+          "name": "ISO 14064-1:2018",
+          "desc": "Spécification pour la quantification et la déclaration des émissions et suppressions de GES au niveau organisationnel."
+        },
+        {
+          "name": "ISO 14067:2018",
+          "desc": "Empreinte carbone des produits — exigences pour la quantification (ACV produit)."
+        },
+        {
+          "name": "Boavizta API v1.4",
+          "desc": "Méthodologie ouverte d'évaluation environnementale des équipements numériques. Intégrée nativement à nos calculs."
+        },
+        {
+          "name": "NEGAOCTET",
+          "desc": "Référentiel d'évaluation environnementale des services numériques (ADEME / ARCEP)."
+        },
+        {
+          "name": "INR Référentiel GES Numérique 2022",
+          "desc": "Institut du Numérique Responsable, méthodologie de mesure secteur."
+        }
       ],
       "boundaryTitle": "Frontière de système — cradle-to-grave",
       "boundaryDesc": "Notre périmètre couvre les cinq étapes de l'ACV : extraction matières premières (cradle), fabrication & assemblage, distribution, utilisation, fin de vie (grave). L'allocation circulaire suit la méthode Boavizta : un actif reconditionné n'est pas re-comptabilisé en Scope 3.1 chez le second utilisateur (évitement de double-comptage validé par ISO 14067 §7.4).",
       "indicatorsTitle": "Indicateurs livrés par GTC",
       "indicators": [
-        { "label": "Émissions GES", "unit": "kgCO₂e", "desc": "Potentiel de réchauffement global 100 ans, AR6 GIEC" },
-        { "label": "Énergie primaire", "unit": "kWh PE", "desc": "Cumul énergie fossile + nucléaire + renouvelable" },
-        { "label": "Eau prélevée", "unit": "L", "desc": "Empreinte eau cycle de vie, méthode Water Scarcity Footprint" },
-        { "label": "Ressources abiotiques", "unit": "g éq. Sb", "desc": "Épuisement des ressources minérales et fossiles, méthode CML 2002" },
-        { "label": "DEEE générés / évités", "unit": "kg", "desc": "Tonnage déchets d'équipements électriques et électroniques évités via réemploi" }
+        {
+          "label": "Émissions GES",
+          "unit": "kgCO₂e",
+          "desc": "Potentiel de réchauffement global 100 ans, AR6 GIEC"
+        },
+        {
+          "label": "Énergie primaire",
+          "unit": "kWh PE",
+          "desc": "Cumul énergie fossile + nucléaire + renouvelable"
+        },
+        {
+          "label": "Eau prélevée",
+          "unit": "L",
+          "desc": "Empreinte eau cycle de vie, méthode Water Scarcity Footprint"
+        },
+        {
+          "label": "Ressources abiotiques",
+          "unit": "g éq. Sb",
+          "desc": "Épuisement des ressources minérales et fossiles, méthode CML 2002"
+        },
+        {
+          "label": "DEEE générés / évités",
+          "unit": "kg",
+          "desc": "Tonnage déchets d'équipements électriques et électroniques évités via réemploi"
+        }
       ]
     },
     "calculator": {
@@ -1247,14 +1530,63 @@
       "eyebrow": "Section 5",
       "title": "Comparatif neuf vs reconditionné — données vérifiées",
       "lead": "Six catégories d'équipements, cinq indicateurs environnementaux. Toutes les valeurs proviennent de l'ADEME Base Empreinte v23, de Boavizta Datavizta v1.4 et de l'étude HOP 2023 sur la durabilité des équipements numériques.",
-      "headers": ["Catégorie", "Neuf — kgCO₂e", "Reconditionné — kgCO₂e", "Économie %", "Eau (L)", "DEEE (kg) évités"],
+      "headers": [
+        "Catégorie",
+        "Neuf — kgCO₂e",
+        "Reconditionné — kgCO₂e",
+        "Économie %",
+        "Eau (L)",
+        "DEEE (kg) évités"
+      ],
       "rows": [
-        { "category": "Laptop 14\" — gamme pro", "newCo2": "169", "refurbCo2": "17", "savings": "90 %", "water": "190", "weee": "2,1" },
-        { "category": "Desktop tour", "newCo2": "265", "refurbCo2": "30", "savings": "89 %", "water": "240", "weee": "8,5" },
-        { "category": "Écran 24\" LED", "newCo2": "357", "refurbCo2": "41", "savings": "88 %", "water": "320", "weee": "5,2" },
-        { "category": "Serveur 1U", "newCo2": "1 500", "refurbCo2": "150", "savings": "90 %", "water": "1 850", "weee": "15,0" },
-        { "category": "Switch 48 ports", "newCo2": "432", "refurbCo2": "58", "savings": "87 %", "water": "510", "weee": "4,8" },
-        { "category": "Smartphone", "newCo2": "57", "refurbCo2": "6", "savings": "89 %", "water": "85", "weee": "0,2" }
+        {
+          "category": "Laptop 14\" — gamme pro",
+          "newCo2": "169",
+          "refurbCo2": "17",
+          "savings": "90 %",
+          "water": "190",
+          "weee": "2,1"
+        },
+        {
+          "category": "Desktop tour",
+          "newCo2": "265",
+          "refurbCo2": "30",
+          "savings": "89 %",
+          "water": "240",
+          "weee": "8,5"
+        },
+        {
+          "category": "Écran 24\" LED",
+          "newCo2": "357",
+          "refurbCo2": "41",
+          "savings": "88 %",
+          "water": "320",
+          "weee": "5,2"
+        },
+        {
+          "category": "Serveur 1U",
+          "newCo2": "1 500",
+          "refurbCo2": "150",
+          "savings": "90 %",
+          "water": "1 850",
+          "weee": "15,0"
+        },
+        {
+          "category": "Switch 48 ports",
+          "newCo2": "432",
+          "refurbCo2": "58",
+          "savings": "87 %",
+          "water": "510",
+          "weee": "4,8"
+        },
+        {
+          "category": "Smartphone",
+          "newCo2": "57",
+          "refurbCo2": "6",
+          "savings": "89 %",
+          "water": "85",
+          "weee": "0,2"
+        }
       ],
       "footnoteTitle": "Encadré méthodologie",
       "footnoteBody": "Les FE neuf intègrent extraction + fabrication + transport + emballage. Les FE reconditionné intègrent collecte, diagnostic, effacement (NIST 800-88), remise en état, packaging, redistribution. La phase d'usage est calculée séparément (cat. 3.11) selon le mix électrique RTE 2024 (52 gCO₂/kWh). Les volumes d'eau et DEEE sont issus de Boavizta API v1.4 (méthode Datavizta) et de l'étude HOP 2023 — Halte à l'Obsolescence Programmée, Le Coût environnemental d'un téléphone, transposée aux autres catégories par règle de proportionnalité masse.",
@@ -1271,14 +1603,56 @@
       "eyebrow": "Section 6",
       "title": "Mapping CSRD ESRS E5 — Économie circulaire",
       "lead": "GreenTechCycle fournit nativement les preuves opposables couvrant les datapoints E5-1 à E5-6 du standard ESRS E5 (Resource use and Circular economy). Chaque KPI est livré avec sa preuve documentaire, son format export, et son échéance réglementaire.",
-      "headers": ["Datapoint ESRS E5", "Intitulé", "Preuve livrée par GTC", "Format export", "Échéance"],
+      "headers": [
+        "Datapoint ESRS E5",
+        "Intitulé",
+        "Preuve livrée par GTC",
+        "Format export",
+        "Échéance"
+      ],
       "rows": [
-        { "code": "E5-1", "name": "Politiques liées à l'utilisation des ressources & économie circulaire", "evidence": "Charte ITAD circulaire, procédure de qualification fournisseur, gouvernance documentée", "format": "PDF + DOCX", "deadline": "2025 (FY2024)" },
-        { "code": "E5-2", "name": "Actions et ressources liées à l'utilisation des ressources & économie circulaire", "evidence": "Registre des actifs reconditionnés, certificats de réemploi, KPI mensuels", "format": "PDF + Excel + API", "deadline": "2025 (FY2024)" },
-        { "code": "E5-3", "name": "Cibles relatives à l'utilisation des ressources & économie circulaire", "evidence": "Objectifs chiffrés réemploi/valorisation par site, trajectoire SBTi alignée", "format": "PDF + Excel", "deadline": "2025 (FY2024)" },
-        { "code": "E5-4", "name": "Flux de ressources entrants", "evidence": "Volumes (tonnes / unités) actifs IT collectés, taux matière recyclée incorporée", "format": "Excel + API + XBRL", "deadline": "2026 (FY2025)" },
-        { "code": "E5-5", "name": "Flux de ressources sortants — produits & matériaux", "evidence": "Tonnages réemploi, valorisation matière, élimination ; chain of custody horodatée", "format": "Excel + API + iXBRL", "deadline": "2026 (FY2025)" },
-        { "code": "E5-6", "name": "Effets financiers anticipés des risques & opportunités liés à l'économie circulaire", "evidence": "Valorisation résiduelle, coût marginal d'évitement, exposition CSRD", "format": "PDF + Excel", "deadline": "2028 (FY2027 — si grandes entreprises non UE)" }
+        {
+          "code": "E5-1",
+          "name": "Politiques liées à l'utilisation des ressources & économie circulaire",
+          "evidence": "Charte ITAD circulaire, procédure de qualification fournisseur, gouvernance documentée",
+          "format": "PDF + DOCX",
+          "deadline": "2025 (FY2024)"
+        },
+        {
+          "code": "E5-2",
+          "name": "Actions et ressources liées à l'utilisation des ressources & économie circulaire",
+          "evidence": "Registre des actifs reconditionnés, certificats de réemploi, KPI mensuels",
+          "format": "PDF + Excel + API",
+          "deadline": "2025 (FY2024)"
+        },
+        {
+          "code": "E5-3",
+          "name": "Cibles relatives à l'utilisation des ressources & économie circulaire",
+          "evidence": "Objectifs chiffrés réemploi/valorisation par site, trajectoire SBTi alignée",
+          "format": "PDF + Excel",
+          "deadline": "2025 (FY2024)"
+        },
+        {
+          "code": "E5-4",
+          "name": "Flux de ressources entrants",
+          "evidence": "Volumes (tonnes / unités) actifs IT collectés, taux matière recyclée incorporée",
+          "format": "Excel + API + XBRL",
+          "deadline": "2026 (FY2025)"
+        },
+        {
+          "code": "E5-5",
+          "name": "Flux de ressources sortants — produits & matériaux",
+          "evidence": "Tonnages réemploi, valorisation matière, élimination ; chain of custody horodatée",
+          "format": "Excel + API + iXBRL",
+          "deadline": "2026 (FY2025)"
+        },
+        {
+          "code": "E5-6",
+          "name": "Effets financiers anticipés des risques & opportunités liés à l'économie circulaire",
+          "evidence": "Valorisation résiduelle, coût marginal d'évitement, exposition CSRD",
+          "format": "PDF + Excel",
+          "deadline": "2028 (FY2027 — si grandes entreprises non UE)"
+        }
       ],
       "exportTitle": "Exports XBRL / iXBRL",
       "exportDesc": "Nos exports respectent le format ESEF (European Single Electronic Format) et la taxonomie ESRS XBRL publiée par l'EFRAG. Compatibles avec les outils de consolidation extra-financière (Tennaxia, Greenly, Sweep, Workiva).",
@@ -1290,18 +1664,45 @@
       "lead": "Une mesure carbone n'a de valeur opposable que si elle s'appuie sur des standards d'audit reconnus. GTC s'aligne sur les méthodologies de référence en sécurité des données, en mesure environnementale et en circularité.",
       "methodsTitle": "Méthodologies appliquées",
       "methods": [
-        { "name": "NIST 800-88 Rev.1", "desc": "Standard d'effacement sécurisé des données (Clear / Purge / Destroy). Garantit la chain of custody jusqu'au reconditionnement." },
-        { "name": "ADEME Bilan Carbone® v8.7", "desc": "Méthode française officielle de comptabilité carbone, mai 2024." },
-        { "name": "ISO 14064-1:2018", "desc": "Quantification et déclaration des émissions GES au niveau organisationnel — exigences auditables." },
-        { "name": "GHG Protocol Corporate Standard", "desc": "Cadre international WRI/WBCSD, scopes 1/2/3 et catégorisation Scope 3." },
-        { "name": "ISO 14067:2018", "desc": "Empreinte carbone produit — exigences ACV pour la quantification." }
+        {
+          "name": "NIST 800-88 Rev.1",
+          "desc": "Standard d'effacement sécurisé des données (Clear / Purge / Destroy). Garantit la chain of custody jusqu'au reconditionnement."
+        },
+        {
+          "name": "ADEME Bilan Carbone® v8.7",
+          "desc": "Méthode française officielle de comptabilité carbone, mai 2024."
+        },
+        {
+          "name": "ISO 14064-1:2018",
+          "desc": "Quantification et déclaration des émissions GES au niveau organisationnel — exigences auditables."
+        },
+        {
+          "name": "GHG Protocol Corporate Standard",
+          "desc": "Cadre international WRI/WBCSD, scopes 1/2/3 et catégorisation Scope 3."
+        },
+        {
+          "name": "ISO 14067:2018",
+          "desc": "Empreinte carbone produit — exigences ACV pour la quantification."
+        }
       ],
       "ecosystemTitle": "Écosystème & alliances",
       "ecosystem": [
-        { "name": "Boavizta", "desc": "Membre, contributeur API et données ouvertes." },
-        { "name": "Institut du Numérique Responsable (INR)", "desc": "Référentiel GES numérique 2022, charte numérique responsable." },
-        { "name": "R2v3 (Responsible Recycling)", "desc": "Standard SERI pour le recyclage responsable des équipements électroniques." },
-        { "name": "WEEELABEX", "desc": "Standard européen de traitement des DEEE, audité annuellement." }
+        {
+          "name": "Boavizta",
+          "desc": "Membre, contributeur API et données ouvertes."
+        },
+        {
+          "name": "Institut du Numérique Responsable (INR)",
+          "desc": "Référentiel GES numérique 2022, charte numérique responsable."
+        },
+        {
+          "name": "R2v3 (Responsible Recycling)",
+          "desc": "Standard SERI pour le recyclage responsable des équipements électroniques."
+        },
+        {
+          "name": "WEEELABEX",
+          "desc": "Standard européen de traitement des DEEE, audité annuellement."
+        }
       ]
     },
     "cases": {
@@ -1343,11 +1744,36 @@
       "title": "Ressources & téléchargements",
       "lead": "Documentation technique opposable, modèles de rapport, articles de fond pour vos équipes RSE, achats responsables et compliance.",
       "items": [
-        { "title": "Méthodologie carbone GTC (PDF, 22 p.)", "desc": "Frontière de système, facteurs d'émission, méthode d'allocation circulaire, conformité ISO 14064-1.", "label": "Télécharger", "href": "/contact?reason=methodologie" },
-        { "title": "Tableau facteurs d'émission ADEME 2024 (XLSX)", "desc": "Extraction Base Empreinte v23 commentée, applicable parc IT entreprise.", "label": "Télécharger", "href": "/contact?reason=ademe-fe" },
-        { "title": "Article — Scope 3 catégorie 11 IT : méthodes & pièges", "desc": "Comprendre la phase d'usage des actifs en location et as-a-service.", "label": "Lire l'article", "href": "/blog" },
-        { "title": "Webinaire — CSRD ESRS E5 pour les DSI (replay)", "desc": "Comment livrer les datapoints E5-1 à E5-6 sans surcharger vos équipes IT.", "label": "Voir le replay", "href": "/contact?reason=webinaire-esrs" },
-        { "title": "Audit carbone IT — workshop gratuit (1h)", "desc": "Diagnostic personnalisé de votre parc, livrable PDF synthétique.", "label": "Réserver", "href": "/demo" }
+        {
+          "title": "Méthodologie carbone GTC (PDF, 22 p.)",
+          "desc": "Frontière de système, facteurs d'émission, méthode d'allocation circulaire, conformité ISO 14064-1.",
+          "label": "Télécharger",
+          "href": "/contact?reason=methodologie"
+        },
+        {
+          "title": "Tableau facteurs d'émission ADEME 2024 (XLSX)",
+          "desc": "Extraction Base Empreinte v23 commentée, applicable parc IT entreprise.",
+          "label": "Télécharger",
+          "href": "/contact?reason=ademe-fe"
+        },
+        {
+          "title": "Article — Scope 3 catégorie 11 IT : méthodes & pièges",
+          "desc": "Comprendre la phase d'usage des actifs en location et as-a-service.",
+          "label": "Lire l'article",
+          "href": "/blog"
+        },
+        {
+          "title": "Webinaire — CSRD ESRS E5 pour les DSI (replay)",
+          "desc": "Comment livrer les datapoints E5-1 à E5-6 sans surcharger vos équipes IT.",
+          "label": "Voir le replay",
+          "href": "/contact?reason=webinaire-esrs"
+        },
+        {
+          "title": "Audit carbone IT — workshop gratuit (1h)",
+          "desc": "Diagnostic personnalisé de votre parc, livrable PDF synthétique.",
+          "label": "Réserver",
+          "href": "/demo"
+        }
       ]
     },
     "midCta": {
@@ -1368,33 +1794,102 @@
     "relatedSubtitle": "Nos analyses pour intégrer l'ITAD dans votre stratégie ESG, CSRD et économie circulaire."
   },
   "Contact": {
+    "urgency": {
+      "text": "Réponse personnalisée sous 24 h ouvrées · accusé de réception immédiat."
+    },
     "hero": {
-      "title": "Contactez-nous",
-      "subtitle": "Notre équipe vous répond sous 24h"
+      "eyebrow": "Parler à un humain",
+      "title": "Décrivez-nous votre échéance, nous revenons avec un plan, pas avec un argumentaire.",
+      "subtitle": "Notre équipe ne pratique ni les présentations à rallonge, ni les démos génériques. Vous indiquez votre contexte, votre calendrier et votre offre cible : nous calons une session adaptée sous 24 heures ouvrées.",
+      "trust1": "Réponse sous 24 h ouvrées",
+      "trust2": "Données traitées en France · RGPD",
+      "trust3": "Pré-remplissage par offre concernée",
+      "scrollLabel": "Aller au formulaire",
+      "floatQuote": "Premier appel un mardi à 11 h, réponse cadrée le mercredi à 9 h. C'est rare et c'est précieux.",
+      "floatName": "Sophie R.",
+      "floatRole": "Directrice achats responsables · ETI cotée"
     },
     "form": {
-      "name": "Nom complet",
-      "email": "Email professionnel",
-      "company": "Entreprise",
-      "phone": "Téléphone",
-      "type": "Objet",
-      "typeOptions": {
-        "quote": "Demande de devis",
-        "info": "Demande d'information",
-        "partnership": "Partenariat",
-        "other": "Autre"
-      },
-      "message": "Votre message",
-      "submit": "Envoyer le message",
-      "success": "Message envoyé ! Nous vous répondrons sous 24h."
+      "eyebrow": "Formulaire qualifié",
+      "title": "Cinq champs pour qu'on prépare la bonne réponse.",
+      "subtitle": "Plus le périmètre est précis, plus notre première réponse est utile. Si vous arrivez d'une offre précise, elle est déjà sélectionnée pour vous.",
+      "selectedOfferLabel": "Offre concernée",
+      "nextStepLabel": "Étape suivante chez nous",
+      "consent": "J'accepte que GreenTechCycle utilise ces informations pour me recontacter. Aucune transmission à un tiers, conservation limitée à la durée du contact commercial.",
+      "submit": "Envoyer la demande",
+      "successTitle": "Demande bien enregistrée.",
+      "successBody": "Un membre de notre équipe vous recontacte sous 24 heures ouvrées avec une proposition adaptée à votre périmètre et la confirmation d'un premier créneau d'échange.",
+      "fields": {
+        "offer": "Offre concernée",
+        "name": "Nom et prénom",
+        "email": "Adresse électronique professionnelle",
+        "company": "Entreprise",
+        "role": "Votre fonction",
+        "roleOther": "Autre fonction",
+        "fleet": "Taille du parc informatique",
+        "fleetSmall": "Moins de 500 postes",
+        "fleetLarge": "Plus de 20 000 postes",
+        "timeline": "Échéance visée",
+        "timelineNow": "Immédiate",
+        "timeline13": "Sous 1 à 3 mois",
+        "timeline36": "Sous 3 à 6 mois",
+        "timelineExplore": "Exploration sans calendrier ferme",
+        "phone": "Téléphone direct",
+        "message": "Précisez votre contexte",
+        "messagePlaceholder": "Périmètre, calendrier, contraintes réglementaires, environnement informatique en place…"
+      }
     },
+    "offers": [
+      {
+        "slug": "audit-decommissionnement",
+        "name": "Mission de décommissionnement complète",
+        "pitch": "Vous orchestrez une vague Windows 11, une fermeture de site ou une refonte de parc et vous voulez livrer un dossier auditable de bout en bout.",
+        "duration": "Sur mesure · à partir de 6 semaines",
+        "nextStep": "Notre équipe revient sous 24 h ouvrées avec un cadrage de mission et une session de scoping pré-réservée."
+      },
+      {
+        "slug": "demo-plateforme",
+        "name": "Démo guidée de la plateforme",
+        "pitch": "Quarante-cinq minutes en visioconférence pour suivre un actif depuis l'ingestion jusqu'au certificat, sur un cas qui ressemble au vôtre.",
+        "duration": "45 min · visioconférence",
+        "nextStep": "Vous recevez sous 24 h ouvrées trois créneaux de démo et l'agenda précis de la session."
+      },
+      {
+        "slug": "audit-blanc-itad",
+        "name": "Audit blanc d'un site pilote",
+        "pitch": "Un site représentatif, deux semaines d'observation, un rapport d'écarts, un potentiel de valorisation et une feuille de route.",
+        "duration": "2 semaines · forfait 9 800 € HT",
+        "nextStep": "Nous calons une session de cadrage sous 5 jours ouvrés pour valider le périmètre et la date d'engagement."
+      },
+      {
+        "slug": "esrs-pack",
+        "name": "Pack restitution ESRS E5",
+        "pitch": "Un échantillon de restitution CSRD ESRS E5 à partager avec votre direction RSE et votre commissaire aux comptes pour valider le format attendu.",
+        "duration": "Livré sous 5 jours ouvrés",
+        "nextStep": "Vous recevez l'échantillon par voie sécurisée et un créneau de présentation avec notre auditeur principal."
+      },
+      {
+        "slug": "plateforme-info",
+        "name": "Échange ouvert sur la plateforme",
+        "pitch": "Vous avez une question précise sur l'architecture, les intégrations, l'hébergement souverain ou la gouvernance. Nous y répondons sans détour.",
+        "duration": "30 min · visioconférence",
+        "nextStep": "Notre équipe technique vous propose un créneau de réponse personnalisé sous 24 h ouvrées."
+      }
+    ],
     "info": {
+      "eyebrow": "Voies directes",
+      "title": "Si vous préférez écrire ou téléphoner avant de remplir un formulaire.",
+      "body": "Notre équipe répond personnellement aux courriels et aux appels — pas de standard automatisé, pas d'attribution aléatoire. Nous prenons en charge les demandes urgentes et confidentielles avec la même réactivité que les demandes formelles.",
       "address": "42 rue de la République\n69002 Lyon, France",
       "phone": "+33 1 86 65 22 10",
       "email": "contact@greentechcycle.fr"
     },
-    "crisp": {
-      "placeholder": "Chat en direct — Configuration Crisp requise"
+    "conversion": {
+      "eyebrow": "Et si vous n'êtes pas pressé",
+      "title": "Vous pouvez aussi explorer notre matière publique avant de nous écrire.",
+      "subtitle": "Nos cas clients détaillent ce que nous avons livré pour des banques, des hôpitaux et des industriels. Notre page plateforme déroule notre méthode étape par étape.",
+      "cta1": "Voir nos cas clients",
+      "cta2": "Découvrir la plateforme"
     }
   },
   "FAQ": {
@@ -1856,14 +2351,42 @@
       "title": "Pourquoi une plateforme tout-en-un ?",
       "subtitle": "Comparez : 4 outils fragmentés vs 1 plateforme unifiée",
       "comparison": {
-        "headers": { "criteria": "Critère", "fragmented": "4 outils séparés", "gtc": "GreenTechCycle" },
+        "headers": {
+          "criteria": "Critère",
+          "fragmented": "4 outils séparés",
+          "gtc": "GreenTechCycle"
+        },
         "rows": [
-          { "criteria": "Dashboards", "fragmented": "4 dashboards différents", "gtc": "1 dashboard unifié" },
-          { "criteria": "Authentification", "fragmented": "4 logins, 4 mots de passe", "gtc": "1 SSO unique" },
-          { "criteria": "Reporting", "fragmented": "4 formats incompatibles", "gtc": "1 export multi-format" },
-          { "criteria": "Données", "fragmented": "Aucune interconnexion", "gtc": "Flux intégré bout en bout" },
-          { "criteria": "Coût total", "fragmented": "Snipe-IT + Blancco + Greenly + Vanta", "gtc": "1 licence, tout inclus" },
-          { "criteria": "Temps admin", "fragmented": "Triple saisie, consolidation manuelle", "gtc": "Saisie unique, automatisation" }
+          {
+            "criteria": "Dashboards",
+            "fragmented": "4 dashboards différents",
+            "gtc": "1 dashboard unifié"
+          },
+          {
+            "criteria": "Authentification",
+            "fragmented": "4 logins, 4 mots de passe",
+            "gtc": "1 SSO unique"
+          },
+          {
+            "criteria": "Reporting",
+            "fragmented": "4 formats incompatibles",
+            "gtc": "1 export multi-format"
+          },
+          {
+            "criteria": "Données",
+            "fragmented": "Aucune interconnexion",
+            "gtc": "Flux intégré bout en bout"
+          },
+          {
+            "criteria": "Coût total",
+            "fragmented": "Snipe-IT + Blancco + Greenly + Vanta",
+            "gtc": "1 licence, tout inclus"
+          },
+          {
+            "criteria": "Temps admin",
+            "fragmented": "Triple saisie, consolidation manuelle",
+            "gtc": "Saisie unique, automatisation"
+          }
         ]
       }
     },
@@ -1886,7 +2409,14 @@
       },
       "regulations": {
         "title": "Réglementations applicables",
-        "items": ["DORA (Digital Operational Resilience Act)", "PCI-DSS v4.0", "ACPR / AMF", "RGPD renforcé", "NIS2 (entités essentielles)", "Bâle III/IV (risque opérationnel)"]
+        "items": [
+          "DORA (Digital Operational Resilience Act)",
+          "PCI-DSS v4.0",
+          "ACPR / AMF",
+          "RGPD renforcé",
+          "NIS2 (entités essentielles)",
+          "Bâle III/IV (risque opérationnel)"
+        ]
       },
       "challenges": {
         "title": "Défis typiques",
@@ -1926,7 +2456,14 @@
       },
       "regulations": {
         "title": "Réglementations applicables",
-        "items": ["Certification HDS", "RGPD — données de santé (art. 9)", "Code de la santé publique", "CNIL — référentiel santé", "NIS2 (secteur santé = entité essentielle)", "ANS — cadre de sécurité SI santé"]
+        "items": [
+          "Certification HDS",
+          "RGPD — données de santé (art. 9)",
+          "Code de la santé publique",
+          "CNIL — référentiel santé",
+          "NIS2 (secteur santé = entité essentielle)",
+          "ANS — cadre de sécurité SI santé"
+        ]
       },
       "challenges": {
         "title": "Défis typiques",
@@ -1966,7 +2503,14 @@
       },
       "regulations": {
         "title": "Réglementations applicables",
-        "items": ["NIS2 (secteur industriel = entité importante)", "CSRD / ESRS E5 (économie circulaire)", "WEEE / DEEE", "IEC 62443 (cybersécurité industrielle)", "ISO 14001 (management environnemental)", "Directive machines 2023/1230"]
+        "items": [
+          "NIS2 (secteur industriel = entité importante)",
+          "CSRD / ESRS E5 (économie circulaire)",
+          "WEEE / DEEE",
+          "IEC 62443 (cybersécurité industrielle)",
+          "ISO 14001 (management environnemental)",
+          "Directive machines 2023/1230"
+        ]
       },
       "challenges": {
         "title": "Défis typiques",
@@ -2006,7 +2550,14 @@
       },
       "regulations": {
         "title": "Réglementations applicables",
-        "items": ["RGPD renforcé (responsabilité publique)", "NF X50-140 (gestion des DEEE)", "Directive WEEE / DEEE", "Code de la commande publique", "NIS2 (administrations = entités essentielles)", "Loi AGEC (anti-gaspillage, économie circulaire)"]
+        "items": [
+          "RGPD renforcé (responsabilité publique)",
+          "NF X50-140 (gestion des DEEE)",
+          "Directive WEEE / DEEE",
+          "Code de la commande publique",
+          "NIS2 (administrations = entités essentielles)",
+          "Loi AGEC (anti-gaspillage, économie circulaire)"
+        ]
       },
       "challenges": {
         "title": "Défis typiques",
@@ -2046,7 +2597,15 @@
       },
       "regulations": {
         "title": "Réglementations applicables",
-        "items": ["NIS2 (OSE — secteur énergie)", "Code de l'énergie L142-1 et suivants", "Référentiel RTE / ENEDIS sécurité OT", "IGI 1300 (Diffusion Restreinte)", "DORA (entités trading énergie)", "CSRD / ESRS E5 et E1 (climat)", "ISO/IEC 62443 (cybersécurité OT)"]
+        "items": [
+          "NIS2 (OSE — secteur énergie)",
+          "Code de l'énergie L142-1 et suivants",
+          "Référentiel RTE / ENEDIS sécurité OT",
+          "IGI 1300 (Diffusion Restreinte)",
+          "DORA (entités trading énergie)",
+          "CSRD / ESRS E5 et E1 (climat)",
+          "ISO/IEC 62443 (cybersécurité OT)"
+        ]
       },
       "challenges": {
         "title": "Défis typiques",
@@ -2086,7 +2645,14 @@
       },
       "regulations": {
         "title": "Réglementations applicables",
-        "items": ["PCI-DSS v4.0 (req. 9 & 12)", "RGPD — données transactionnelles", "DEEE / WEEE (Directive 2012/19/UE)", "Loi AGEC (anti-gaspillage)", "CSRD / ESRS E5 (économie circulaire)", "Code de la consommation (réemploi)"]
+        "items": [
+          "PCI-DSS v4.0 (req. 9 & 12)",
+          "RGPD — données transactionnelles",
+          "DEEE / WEEE (Directive 2012/19/UE)",
+          "Loi AGEC (anti-gaspillage)",
+          "CSRD / ESRS E5 (économie circulaire)",
+          "Code de la consommation (réemploi)"
+        ]
       },
       "challenges": {
         "title": "Défis typiques",
@@ -2145,14 +2711,46 @@
       "cta1": "Demander un audit",
       "cta2": "Mon cas n'est pas listé",
       "sectors": [
-        { "slug": "banque-cac40", "label": "Banque", "kpi": "1 850 tCO2e évitées" },
-        { "slug": "chu-sante", "label": "Santé", "kpi": "4 200 postes reconditionnés" },
-        { "slug": "industriel-csrd", "label": "Industrie", "kpi": "Rapport CSRD J-90" },
-        { "slug": "ministere-collectivite", "label": "Public", "kpi": "100% filière ESS" },
-        { "slug": "retail-wakibox", "label": "Retail", "kpi": "89 k€/an économisés" },
-        { "slug": "energie-dora", "label": "Énergie", "kpi": "Audit ACPR en 4 jours" },
-        { "slug": "telco-datacenter", "label": "Telco", "kpi": "1,2 M€ récupérés" },
-        { "slug": "universite-ess", "label": "Éducation", "kpi": "4 500 dons ESS" }
+        {
+          "slug": "banque-cac40",
+          "label": "Banque",
+          "kpi": "1 850 tCO2e évitées"
+        },
+        {
+          "slug": "chu-sante",
+          "label": "Santé",
+          "kpi": "4 200 postes reconditionnés"
+        },
+        {
+          "slug": "industriel-csrd",
+          "label": "Industrie",
+          "kpi": "Rapport CSRD J-90"
+        },
+        {
+          "slug": "ministere-collectivite",
+          "label": "Public",
+          "kpi": "100% filière ESS"
+        },
+        {
+          "slug": "retail-wakibox",
+          "label": "Retail",
+          "kpi": "89 k€/an économisés"
+        },
+        {
+          "slug": "energie-dora",
+          "label": "Énergie",
+          "kpi": "Audit ACPR en 4 jours"
+        },
+        {
+          "slug": "telco-datacenter",
+          "label": "Telco",
+          "kpi": "1,2 M€ récupérés"
+        },
+        {
+          "slug": "universite-ess",
+          "label": "Éducation",
+          "kpi": "4 500 dons ESS"
+        }
       ]
     },
     "kpis": {
@@ -2160,23 +2758,67 @@
       "title": "Des chiffres vérifiables, pas des estimations.",
       "footnote": "Données agrégées sur l'ensemble des missions GreenTechCycle 2022-2025. Sources : rapports d'intervention, certificats NIST 800-88, bilans CO2 conformes méthodologie ADEME / Boavizta.",
       "items": [
-        { "value": 6200, "suffix": "+", "label": "tCO2e évitées (cumul toutes missions)", "source": "Méthodologie Boavizta / ADEME" },
-        { "value": 4800000, "suffix": " €", "label": "de valeur économisée cumulée", "source": "Valorisation + évitement coûts conformité" },
-        { "value": 38000, "suffix": "+", "label": "certificats NIST 800-88 émis", "source": "Base de données certifications GTC" },
-        { "value": 28500, "suffix": "+", "label": "postes reconditionnés (cumul)", "source": "Inventaire GTC toutes missions" }
+        {
+          "value": 6200,
+          "suffix": "+",
+          "label": "tCO2e évitées (cumul toutes missions)",
+          "source": "Méthodologie Boavizta / ADEME"
+        },
+        {
+          "value": 4800000,
+          "suffix": " €",
+          "label": "de valeur économisée cumulée",
+          "source": "Valorisation + évitement coûts conformité"
+        },
+        {
+          "value": 38000,
+          "suffix": "+",
+          "label": "certificats NIST 800-88 émis",
+          "source": "Base de données certifications GTC"
+        },
+        {
+          "value": 28500,
+          "suffix": "+",
+          "label": "postes reconditionnés (cumul)",
+          "source": "Inventaire GTC toutes missions"
+        }
       ]
     },
     "nav": {
       "label": "Aller directement à",
       "items": [
-        { "slug": "banque-cac40", "label": "Banque" },
-        { "slug": "chu-sante", "label": "Santé" },
-        { "slug": "industriel-csrd", "label": "Industrie" },
-        { "slug": "ministere-collectivite", "label": "Public" },
-        { "slug": "retail-wakibox", "label": "Retail" },
-        { "slug": "energie-dora", "label": "Énergie" },
-        { "slug": "telco-datacenter", "label": "Telco" },
-        { "slug": "universite-ess", "label": "Éducation" }
+        {
+          "slug": "banque-cac40",
+          "label": "Banque"
+        },
+        {
+          "slug": "chu-sante",
+          "label": "Santé"
+        },
+        {
+          "slug": "industriel-csrd",
+          "label": "Industrie"
+        },
+        {
+          "slug": "ministere-collectivite",
+          "label": "Public"
+        },
+        {
+          "slug": "retail-wakibox",
+          "label": "Retail"
+        },
+        {
+          "slug": "energie-dora",
+          "label": "Énergie"
+        },
+        {
+          "slug": "telco-datacenter",
+          "label": "Telco"
+        },
+        {
+          "slug": "universite-ess",
+          "label": "Éducation"
+        }
       ]
     },
     "cases": {
@@ -2220,10 +2862,26 @@
             "Zéro écart documentaire lors du contrôle interne CISO"
           ],
           "metrics": [
-            { "label": "tCO2e évitées", "value": "1 850", "detail": "sur 4 ans (scope 3.1)" },
-            { "label": "Valeur récupérée", "value": "638 k€", "detail": "revente + crédit carbone" },
-            { "label": "Durée audit ACPR", "value": "4 jours", "detail": "vs 3 sem. marché" },
-            { "label": "Postes traités", "value": "12 000", "detail": "certifiés NIST 800-88" }
+            {
+              "label": "tCO2e évitées",
+              "value": "1 850",
+              "detail": "sur 4 ans (scope 3.1)"
+            },
+            {
+              "label": "Valeur récupérée",
+              "value": "638 k€",
+              "detail": "revente + crédit carbone"
+            },
+            {
+              "label": "Durée audit ACPR",
+              "value": "4 jours",
+              "detail": "vs 3 sem. marché"
+            },
+            {
+              "label": "Postes traités",
+              "value": "12 000",
+              "detail": "certifiés NIST 800-88"
+            }
           ],
           "quote": "La traçabilité que GTC fournit nous a permis de passer l'audit ACPR en 4 jours au lieu de trois semaines. C'est un avantage compétitif concret, pas un argument marketing.",
           "quoteName": "Marc B.",
@@ -2262,10 +2920,26 @@
             "Conformité RGPD Art. 32 documentée — zéro incident DPO"
           ],
           "metrics": [
-            { "label": "Postes reconditionnés", "value": "4 200", "detail": "zéro décharge" },
-            { "label": "tCO2e évitées", "value": "710", "detail": "vs remplacement neuf" },
-            { "label": "Valeur récupérée", "value": "320 k€", "detail": "revente + carbone" },
-            { "label": "Délai intervention", "value": "5 jours", "detail": "inventaire + évacuation" }
+            {
+              "label": "Postes reconditionnés",
+              "value": "4 200",
+              "detail": "zéro décharge"
+            },
+            {
+              "label": "tCO2e évitées",
+              "value": "710",
+              "detail": "vs remplacement neuf"
+            },
+            {
+              "label": "Valeur récupérée",
+              "value": "320 k€",
+              "detail": "revente + carbone"
+            },
+            {
+              "label": "Délai intervention",
+              "value": "5 jours",
+              "detail": "inventaire + évacuation"
+            }
           ],
           "quote": "Nous avions 4 200 postes contenant des données patients. GTC a géré l'effacement certifié et le reconditionnement en 5 jours. Notre DPO a signé le rapport sans réserve.",
           "quoteName": "Philippe D.",
@@ -2304,10 +2978,26 @@
             "Processus reconduit chaque année — engagement pluriannuel signé"
           ],
           "metrics": [
-            { "label": "Délai CSRD", "value": "J-90", "detail": "avant clôture exercice" },
-            { "label": "tCO2e scope 3.12", "value": "2 100", "detail": "documentées auditables" },
-            { "label": "Valeur récupérée", "value": "480 k€", "detail": "OT + IT combinés" },
-            { "label": "Sites couverts", "value": "12", "detail": "5 pays Europe" }
+            {
+              "label": "Délai CSRD",
+              "value": "J-90",
+              "detail": "avant clôture exercice"
+            },
+            {
+              "label": "tCO2e scope 3.12",
+              "value": "2 100",
+              "detail": "documentées auditables"
+            },
+            {
+              "label": "Valeur récupérée",
+              "value": "480 k€",
+              "detail": "OT + IT combinés"
+            },
+            {
+              "label": "Sites couverts",
+              "value": "12",
+              "detail": "5 pays Europe"
+            }
           ],
           "quote": "GTC est le seul prestataire qui comprend à la fois l'OT industriel et les exigences ESRS E5. Notre rapport CSRD est passé sans réserve dès la première année.",
           "quoteName": "Sylvie R.",
@@ -2346,10 +3036,26 @@
             "Bilan environnemental valorisé dans le rapport RSE collectivité 2024"
           ],
           "metrics": [
-            { "label": "Filière ESS", "value": "100%", "detail": "revente France uniquement" },
-            { "label": "tCO2e évitées", "value": "850", "detail": "scope 3 sur 3 ans" },
-            { "label": "Marchés intégrés", "value": "3", "detail": "code commande publique" },
-            { "label": "Souveraineté", "value": "100%", "detail": "données France uniquement" }
+            {
+              "label": "Filière ESS",
+              "value": "100%",
+              "detail": "revente France uniquement"
+            },
+            {
+              "label": "tCO2e évitées",
+              "value": "850",
+              "detail": "scope 3 sur 3 ans"
+            },
+            {
+              "label": "Marchés intégrés",
+              "value": "3",
+              "detail": "code commande publique"
+            },
+            {
+              "label": "Souveraineté",
+              "value": "100%",
+              "detail": "données France uniquement"
+            }
           ],
           "quote": "GTC a conçu avec nous un schéma directeur qui satisfait nos obligations réglementaires, notre devoir d'exemplarité ESS et notre souveraineté numérique. Un partenaire rare.",
           "quoteName": "Catherine L.",
@@ -2388,10 +3094,26 @@
             "ROI positif dès le 6e mois après déploiement complet"
           ],
           "metrics": [
-            { "label": "DEEE collectés", "value": "12 t/an", "detail": "zéro décharge illégale" },
-            { "label": "Éco. logistique", "value": "89 k€/an", "detail": "vs collecte individuelle" },
-            { "label": "Rotations réduites", "value": "64%", "detail": "optimisation tournées" },
-            { "label": "ROI", "value": "M+6", "detail": "positif dès le 6e mois" }
+            {
+              "label": "DEEE collectés",
+              "value": "12 t/an",
+              "detail": "zéro décharge illégale"
+            },
+            {
+              "label": "Éco. logistique",
+              "value": "89 k€/an",
+              "detail": "vs collecte individuelle"
+            },
+            {
+              "label": "Rotations réduites",
+              "value": "64%",
+              "detail": "optimisation tournées"
+            },
+            {
+              "label": "ROI",
+              "value": "M+6",
+              "detail": "positif dès le 6e mois"
+            }
           ],
           "quote": "Avant WakiBox, nos 350 magasins géraient leurs DEEE IT chacun de leur côté — impossible à auditer. Aujourd'hui, j'ai un tableau de bord en temps réel et 89 k€ d'économies par an.",
           "quoteName": "Laurent M.",
@@ -2430,10 +3152,26 @@
             "Processus ITAD intégré dans le plan de continuité NIS2 de l'entreprise"
           ],
           "metrics": [
-            { "label": "Durée audit", "value": "4 jours", "detail": "vs 3 sem. habituellement" },
-            { "label": "Écarts docs", "value": "0", "detail": "zéro lors inspection ACPR" },
-            { "label": "Équipements", "value": "8 500", "detail": "custody produite en 72h" },
-            { "label": "Sanction ACPR", "value": "0 €", "detail": "conformité DORA validée" }
+            {
+              "label": "Durée audit",
+              "value": "4 jours",
+              "detail": "vs 3 sem. habituellement"
+            },
+            {
+              "label": "Écarts docs",
+              "value": "0",
+              "detail": "zéro lors inspection ACPR"
+            },
+            {
+              "label": "Équipements",
+              "value": "8 500",
+              "detail": "custody produite en 72h"
+            },
+            {
+              "label": "Sanction ACPR",
+              "value": "0 €",
+              "detail": "conformité DORA validée"
+            }
           ],
           "quote": "Quand l'ACPR a annoncé son contrôle, nous avions 3 semaines. GTC a produit l'intégralité de la chaîne de custody en 4 jours. Zéro écart. Zéro sanction.",
           "quoteName": "Pierre G.",
@@ -2472,10 +3210,26 @@
             "100% des certificats d'effacement transmis avant libération des salles"
           ],
           "metrics": [
-            { "label": "Valeur récupérée", "value": "1,2 M€", "detail": "3x l'estimation DSI" },
-            { "label": "Serveurs traités", "value": "2 800", "detail": "3 datacenters" },
-            { "label": "tCO2e évitées", "value": "980", "detail": "vs fabrication neuf" },
-            { "label": "Durée projet", "value": "58 jours", "detail": "dans les délais" }
+            {
+              "label": "Valeur récupérée",
+              "value": "1,2 M€",
+              "detail": "3x l'estimation DSI"
+            },
+            {
+              "label": "Serveurs traités",
+              "value": "2 800",
+              "detail": "3 datacenters"
+            },
+            {
+              "label": "tCO2e évitées",
+              "value": "980",
+              "detail": "vs fabrication neuf"
+            },
+            {
+              "label": "Durée projet",
+              "value": "58 jours",
+              "detail": "dans les délais"
+            }
           ],
           "quote": "Notre DSI avait estimé 400 k€ de valeur résiduelle. GTC en a récupéré 1,2 M€. La différence, c'est leur connaissance du marché secondaire international.",
           "quoteName": "Nadia K.",
@@ -2514,10 +3268,26 @@
             "Rapport RSE valorisé dans le bilan annuel du Conseil d'Administration"
           ],
           "metrics": [
-            { "label": "Postes donnés ESS", "value": "4 500", "detail": "12 associations partenaires" },
-            { "label": "Économies", "value": "180 k€", "detail": "vs destruction + neuf" },
-            { "label": "tCO2e évitées", "value": "520", "detail": "don + reconditionnement" },
-            { "label": "Délai", "value": "10 jours", "detail": "avant rentrée universitaire" }
+            {
+              "label": "Postes donnés ESS",
+              "value": "4 500",
+              "detail": "12 associations partenaires"
+            },
+            {
+              "label": "Économies",
+              "value": "180 k€",
+              "detail": "vs destruction + neuf"
+            },
+            {
+              "label": "tCO2e évitées",
+              "value": "520",
+              "detail": "don + reconditionnement"
+            },
+            {
+              "label": "Délai",
+              "value": "10 jours",
+              "detail": "avant rentrée universitaire"
+            }
           ],
           "quote": "GTC a transformé notre contrainte budgétaire en démarche RSE exemplaire. 4 500 ordinateurs redonnés à des associations, le tout certifié NIST 800-88. C'est l'économie circulaire concrète.",
           "quoteName": "Frédéric T.",
@@ -2533,16 +3303,79 @@
       "title": "Comparez les cas par vos critères",
       "subtitle": "8 lignes · 6 indicateurs — repérez le profil qui correspond à votre organisation.",
       "footnote": "Données issues des rapports d'intervention GTC 2022-2025. Anonymisation volontaire à la demande des donneurs d'ordre.",
-      "headers": ["Secteur", "Économies €", "tCO2e évitées", "Conformité atteinte", "Durée projet", "Taux récupération"],
+      "headers": [
+        "Secteur",
+        "Économies €",
+        "tCO2e évitées",
+        "Conformité atteinte",
+        "Durée projet",
+        "Taux récupération"
+      ],
       "rows": [
-        ["Banque CAC40", "638 k€", "1 850", "NIS2 · DORA · CSRD", "6 semaines", "97%"],
-        ["Santé / CHU", "320 k€", "710", "RGPD · HDS", "5 jours", "98%"],
-        ["Industrie CAC60", "480 k€", "2 100", "CSRD ESRS E5", "8 semaines", "96%"],
-        ["Secteur Public", "240 k€ éco.", "850", "RGPD · Commande pub.", "12 semaines", "100%"],
-        ["Retail", "89 k€/an", "340", "DEEE · CSRD", "ROI M+6", "94%"],
-        ["Énergie/Utility", "évitement sanction", "620", "DORA · NIS2 · ACPR", "4 jours", "99%"],
-        ["Telco", "1 200 k€", "980", "ANSSI · RGPD opérateur", "58 jours", "100%"],
-        ["Éducation", "180 k€", "520", "RGPD · ESS", "10 jours", "100%"]
+        [
+          "Banque CAC40",
+          "638 k€",
+          "1 850",
+          "NIS2 · DORA · CSRD",
+          "6 semaines",
+          "97%"
+        ],
+        [
+          "Santé / CHU",
+          "320 k€",
+          "710",
+          "RGPD · HDS",
+          "5 jours",
+          "98%"
+        ],
+        [
+          "Industrie CAC60",
+          "480 k€",
+          "2 100",
+          "CSRD ESRS E5",
+          "8 semaines",
+          "96%"
+        ],
+        [
+          "Secteur Public",
+          "240 k€ éco.",
+          "850",
+          "RGPD · Commande pub.",
+          "12 semaines",
+          "100%"
+        ],
+        [
+          "Retail",
+          "89 k€/an",
+          "340",
+          "DEEE · CSRD",
+          "ROI M+6",
+          "94%"
+        ],
+        [
+          "Énergie/Utility",
+          "évitement sanction",
+          "620",
+          "DORA · NIS2 · ACPR",
+          "4 jours",
+          "99%"
+        ],
+        [
+          "Telco",
+          "1 200 k€",
+          "980",
+          "ANSSI · RGPD opérateur",
+          "58 jours",
+          "100%"
+        ],
+        [
+          "Éducation",
+          "180 k€",
+          "520",
+          "RGPD · ESS",
+          "10 jours",
+          "100%"
+        ]
       ]
     },
     "conversion": {
@@ -2595,7 +3428,13 @@
       "eyebrow": "Intégrations & certifications",
       "title": "Écosystème partenaires",
       "note": "Intégrations certifiées — connecteurs disponibles dans la plateforme GreenTechCycle.",
-      "items": ["ServiceNow", "SAP", "Microsoft 365", "Boavizta", "ADEME"]
+      "items": [
+        "ServiceNow",
+        "SAP",
+        "Microsoft 365",
+        "Boavizta",
+        "ADEME"
+      ]
     },
     "faq": {
       "eyebrow": "Questions fréquentes",
@@ -2634,7 +3473,12 @@
       "subtitle": "Audit personnalisé sous 48h · Résultats chiffrés · Engagement contractuel SLA · Équipe habilités sur 4 sites France",
       "cta1": "Demander un audit",
       "cta2": "Réserver une démo 30 min",
-      "trustBadges": ["Conforme RGPD", "SecNumCloud-ready", "ISO 27001", "Réponse sous 24h"]
+      "trustBadges": [
+        "Conforme RGPD",
+        "SecNumCloud-ready",
+        "ISO 27001",
+        "Réponse sous 24h"
+      ]
     },
     "editorialHero": {
       "headline": "12 000 postes. 4 ans. 1 850 tonnes de CO₂ évitées.",
@@ -2682,10 +3526,30 @@
     },
     "kpis": {
       "items": [
-        { "value": 5, "suffix": " kg", "label": "DEEE par collaborateur et par an", "source": "Estimation moyenne tertiaire France 2024" },
-        { "value": 100, "suffix": " %", "label": "Conforme à la filière REP DEEE", "source": "Convention éco-organismes agréés" },
-        { "value": 6, "suffix": "", "label": "Disclosures ESRS E5 mappés (E5-1 à E5-6)", "source": "EFRAG · normes CSRD juillet 2023" },
-        { "value": 1, "suffix": " g", "label": "Précision de pesée par flux trié", "source": "Capteurs intégrés Waki Box" }
+        {
+          "value": 5,
+          "suffix": " kg",
+          "label": "DEEE par collaborateur et par an",
+          "source": "Estimation moyenne tertiaire France 2024"
+        },
+        {
+          "value": 100,
+          "suffix": " %",
+          "label": "Conforme à la filière REP DEEE",
+          "source": "Convention éco-organismes agréés"
+        },
+        {
+          "value": 6,
+          "suffix": "",
+          "label": "Disclosures ESRS E5 mappés (E5-1 à E5-6)",
+          "source": "EFRAG · normes CSRD juillet 2023"
+        },
+        {
+          "value": 1,
+          "suffix": " g",
+          "label": "Précision de pesée par flux trié",
+          "source": "Capteurs intégrés Waki Box"
+        }
       ],
       "footnote": "Données issues du référentiel Waki Box v1.0 et des règles de calcul publiées par l'ADEME et EFRAG."
     },
@@ -2700,11 +3564,31 @@
       "title": "Une box, cinq objectifs alignés.",
       "subtitle": "Conçue pour que la même action quotidienne — déposer un câble, une pile, un chargeur — alimente cinq chantiers stratégiques de l'entreprise sans friction.",
       "items": [
-        { "label": "Conformité REP DEEE", "title": "Filière agréée, registre tenu", "body": "Chaque collecte est rattachée à un éco-organisme agréé. Le bordereau de suivi de déchet est généré automatiquement, archivé sur la plateforme et opposable en cas de contrôle." },
-        { "label": "Sécurité bâtiment", "title": "Détection des batteries lithium à risque", "body": "Capteurs thermiques et de gaz intégrés : les piles lithium gonflées ou en surchauffe sont identifiées avant qu'elles ne deviennent un risque incendie pour vos locaux." },
-        { "label": "Compte-rendu ESG", "title": "Données mesurées, pas estimées", "body": "Pesée par flux au gramme près, horodatage, géolocalisation par site. Vos chiffres ESG sont traçables, vérifiables, défendables face à un commissaire aux comptes." },
-        { "label": "Engagement collaborateurs", "title": "Un geste utile, visible, gratifiant", "body": "Affichage des kilos collectés, des équivalents CO₂ évités, des associations bénéficiaires. Les équipes voient l'impact de leur geste — la collecte devient un rituel d'équipe." },
-        { "label": "Préparation CSRD", "title": "Mapping E5-1 à E5-6 prêt à l'emploi", "body": "Les exports correspondent ligne à ligne aux disclosures ESRS E5 (ressources entrantes, sortantes, économie circulaire). Aucun retraitement nécessaire pour le compte-rendu de durabilité." }
+        {
+          "label": "Conformité REP DEEE",
+          "title": "Filière agréée, registre tenu",
+          "body": "Chaque collecte est rattachée à un éco-organisme agréé. Le bordereau de suivi de déchet est généré automatiquement, archivé sur la plateforme et opposable en cas de contrôle."
+        },
+        {
+          "label": "Sécurité bâtiment",
+          "title": "Détection des batteries lithium à risque",
+          "body": "Capteurs thermiques et de gaz intégrés : les piles lithium gonflées ou en surchauffe sont identifiées avant qu'elles ne deviennent un risque incendie pour vos locaux."
+        },
+        {
+          "label": "Compte-rendu ESG",
+          "title": "Données mesurées, pas estimées",
+          "body": "Pesée par flux au gramme près, horodatage, géolocalisation par site. Vos chiffres ESG sont traçables, vérifiables, défendables face à un commissaire aux comptes."
+        },
+        {
+          "label": "Engagement collaborateurs",
+          "title": "Un geste utile, visible, gratifiant",
+          "body": "Affichage des kilos collectés, des équivalents CO₂ évités, des associations bénéficiaires. Les équipes voient l'impact de leur geste — la collecte devient un rituel d'équipe."
+        },
+        {
+          "label": "Préparation CSRD",
+          "title": "Mapping E5-1 à E5-6 prêt à l'emploi",
+          "body": "Les exports correspondent ligne à ligne aux disclosures ESRS E5 (ressources entrantes, sortantes, économie circulaire). Aucun retraitement nécessaire pour le compte-rendu de durabilité."
+        }
       ],
       "photoAlt": "Équipe RSE consultant un tableau de bord de collecte DEEE en temps réel"
     },
@@ -2793,13 +3677,48 @@
       "headerWhy": "Quand l'activer",
       "headerPrice": "Tarif HT",
       "items": [
-        { "slug": "box-supplementaire", "name": "Borne Waki Box supplémentaire", "why": "Site additionnel ou flux séparé batteries / petits DEEE", "price": "29 € / mois" },
-        { "slug": "collecte-urgence", "name": "Collecte d'urgence sous 24 heures", "why": "Saturation imprévue, déménagement, incident batterie", "price": "90 € par collecte" },
-        { "slug": "animation-semaine-recyclage", "name": "Animation Semaine du recyclage", "why": "Sensibilisation collaborateurs, semaine européenne du développement durable", "price": "350 € / jour" },
-        { "slug": "rapport-csrd-dedie", "name": "Compte-rendu CSRD dédié", "why": "Restitution annuelle écrite, mappée ESRS E5, prête direction", "price": "490 € / an" },
-        { "slug": "kit-comm-customise", "name": "Kit communication personnalisé", "why": "Affichage aux couleurs de votre marque, signalétique sur mesure", "price": "290 € · à la livraison" },
-        { "slug": "audit-deee", "name": "Audit DEEE sur site", "why": "État des lieux complet avant déploiement multi-sites", "price": "1 500 € / jour" },
-        { "slug": "formation-equipes", "name": "Formation tri DEEE des équipes", "why": "Onboarding office managers, brief sécurité batteries lithium", "price": "450 € / 2 heures" }
+        {
+          "slug": "box-supplementaire",
+          "name": "Borne Waki Box supplémentaire",
+          "why": "Site additionnel ou flux séparé batteries / petits DEEE",
+          "price": "29 € / mois"
+        },
+        {
+          "slug": "collecte-urgence",
+          "name": "Collecte d'urgence sous 24 heures",
+          "why": "Saturation imprévue, déménagement, incident batterie",
+          "price": "90 € par collecte"
+        },
+        {
+          "slug": "animation-semaine-recyclage",
+          "name": "Animation Semaine du recyclage",
+          "why": "Sensibilisation collaborateurs, semaine européenne du développement durable",
+          "price": "350 € / jour"
+        },
+        {
+          "slug": "rapport-csrd-dedie",
+          "name": "Compte-rendu CSRD dédié",
+          "why": "Restitution annuelle écrite, mappée ESRS E5, prête direction",
+          "price": "490 € / an"
+        },
+        {
+          "slug": "kit-comm-customise",
+          "name": "Kit communication personnalisé",
+          "why": "Affichage aux couleurs de votre marque, signalétique sur mesure",
+          "price": "290 € · à la livraison"
+        },
+        {
+          "slug": "audit-deee",
+          "name": "Audit DEEE sur site",
+          "why": "État des lieux complet avant déploiement multi-sites",
+          "price": "1 500 € / jour"
+        },
+        {
+          "slug": "formation-equipes",
+          "name": "Formation tri DEEE des équipes",
+          "why": "Onboarding office managers, brief sécurité batteries lithium",
+          "price": "450 € / 2 heures"
+        }
       ],
       "footnote": "Toutes les options sont activables à tout moment, sans modification du contrat principal."
     },
@@ -2832,14 +3751,38 @@
       "eyebrow": "Questions fréquentes",
       "title": "Tout ce que vous voulez savoir avant de signer.",
       "items": [
-        { "q": "Que se passe-t-il concrètement le jour de la collecte ?", "a": "Notre transporteur agréé passe sur créneau convenu, pèse chaque flux devant vous, scanne les étiquettes, signe le bordereau de suivi de déchet et repart. La collecte dure entre 10 et 25 minutes selon le volume. Tout est mis à jour sur votre plateforme dans l'heure." },
-        { "q": "Comment fonctionnent les capteurs intégrés à la box ?", "a": "Trois capteurs : pesée par compartiment, sonde thermique, détection de gaz d'électrolyte. Une batterie lithium qui chauffe ou gonfle déclenche une alerte e-mail à votre office manager et un appel automatique à notre astreinte sécurité." },
-        { "q": "Quelles données sont remontées sur la plateforme ?", "a": "Poids par flux et par jour, taux de remplissage, événements sécurité, équivalent CO₂ évité, valeur matière récupérée, mapping ESRS E5 par disclosure. Toutes les données sont exportables au format CSV, Excel et XBRL CSRD." },
-        { "q": "Que devient concrètement le déchet après la collecte ?", "a": "Tri sur notre site agréé, traçabilité par lot, orientation vers la filière REP DEEE selon le flux. Aucune incinération sans valorisation, aucune sortie hors Union européenne pour les flux dangereux. Les certificats de fin de vie sont émis dans les 21 jours." },
-        { "q": "Comment résilier le contrat si le service ne convient pas ?", "a": "Période d'essai de 30 jours sans frais. Au-delà, préavis de 60 jours sur les plans Essentiel et Confort, 90 jours sur Premium. Aucune indemnité de sortie, restitution simple de la borne par notre transporteur." },
-        { "q": "Le service est-il vraiment compatible CSRD et ESRS E5 ?", "a": "Oui. Le mapping est documenté ligne à ligne avec les disclosures E5-1 (ressources entrantes), E5-2 (sorties), E5-3 (politiques), E5-4 (actions), E5-5 (objectifs) et E5-6 (montants financiers). Validé en revue par deux cabinets Big 4." },
-        { "q": "Combien de temps faut-il pour déployer Waki Box dans nos locaux ?", "a": "Plan Essentiel : 5 jours ouvrés entre signature et première collecte. Plan Confort : 10 jours pour 3 bornes. Plan Premium multi-sites : 4 à 6 semaines selon le nombre de sites et l'intégration au système d'information." },
-        { "q": "Peut-on tester avant de s'engager ?", "a": "Oui. Le programme pilote permet 6 mois à tarif fondateur. Hors pilote, nous proposons une démonstration produit en visio de 30 minutes et la visite d'un client de référence sur Lyon ou Paris." }
+        {
+          "q": "Que se passe-t-il concrètement le jour de la collecte ?",
+          "a": "Notre transporteur agréé passe sur créneau convenu, pèse chaque flux devant vous, scanne les étiquettes, signe le bordereau de suivi de déchet et repart. La collecte dure entre 10 et 25 minutes selon le volume. Tout est mis à jour sur votre plateforme dans l'heure."
+        },
+        {
+          "q": "Comment fonctionnent les capteurs intégrés à la box ?",
+          "a": "Trois capteurs : pesée par compartiment, sonde thermique, détection de gaz d'électrolyte. Une batterie lithium qui chauffe ou gonfle déclenche une alerte e-mail à votre office manager et un appel automatique à notre astreinte sécurité."
+        },
+        {
+          "q": "Quelles données sont remontées sur la plateforme ?",
+          "a": "Poids par flux et par jour, taux de remplissage, événements sécurité, équivalent CO₂ évité, valeur matière récupérée, mapping ESRS E5 par disclosure. Toutes les données sont exportables au format CSV, Excel et XBRL CSRD."
+        },
+        {
+          "q": "Que devient concrètement le déchet après la collecte ?",
+          "a": "Tri sur notre site agréé, traçabilité par lot, orientation vers la filière REP DEEE selon le flux. Aucune incinération sans valorisation, aucune sortie hors Union européenne pour les flux dangereux. Les certificats de fin de vie sont émis dans les 21 jours."
+        },
+        {
+          "q": "Comment résilier le contrat si le service ne convient pas ?",
+          "a": "Période d'essai de 30 jours sans frais. Au-delà, préavis de 60 jours sur les plans Essentiel et Confort, 90 jours sur Premium. Aucune indemnité de sortie, restitution simple de la borne par notre transporteur."
+        },
+        {
+          "q": "Le service est-il vraiment compatible CSRD et ESRS E5 ?",
+          "a": "Oui. Le mapping est documenté ligne à ligne avec les disclosures E5-1 (ressources entrantes), E5-2 (sorties), E5-3 (politiques), E5-4 (actions), E5-5 (objectifs) et E5-6 (montants financiers). Validé en revue par deux cabinets Big 4."
+        },
+        {
+          "q": "Combien de temps faut-il pour déployer Waki Box dans nos locaux ?",
+          "a": "Plan Essentiel : 5 jours ouvrés entre signature et première collecte. Plan Confort : 10 jours pour 3 bornes. Plan Premium multi-sites : 4 à 6 semaines selon le nombre de sites et l'intégration au système d'information."
+        },
+        {
+          "q": "Peut-on tester avant de s'engager ?",
+          "a": "Oui. Le programme pilote permet 6 mois à tarif fondateur. Hors pilote, nous proposons une démonstration produit en visio de 30 minutes et la visite d'un client de référence sur Lyon ou Paris."
+        }
       ]
     },
     "finalQuote": {
@@ -2854,7 +3797,12 @@
       "subtitle": "Une démo pour comprendre. Un pilote pour démarrer fort. Dans les deux cas, une équipe humaine qui répond sous 24 heures ouvrées.",
       "cta1": "Réserver une démo",
       "cta2": "Candidater au pilote",
-      "trustBadges": ["Setup en 5 jours", "Sans engagement les 30 premiers jours", "Données hébergées en France", "Filière REP DEEE garantie"]
+      "trustBadges": [
+        "Setup en 5 jours",
+        "Sans engagement les 30 premiers jours",
+        "Données hébergées en France",
+        "Filière REP DEEE garantie"
+      ]
     }
   },
   "reserver": {
@@ -2900,27 +3848,78 @@
         "message": "Tout élément utile à la prise de contact"
       },
       "sizes": [
-        { "value": "tpe", "label": "TPE · moins de 50 collaborateurs" },
-        { "value": "pme", "label": "PME · 50 à 250 collaborateurs" },
-        { "value": "eti", "label": "ETI · 250 à 5 000 collaborateurs" },
-        { "value": "grand-compte", "label": "Grand compte · 5 000 collaborateurs et plus" }
+        {
+          "value": "tpe",
+          "label": "TPE · moins de 50 collaborateurs"
+        },
+        {
+          "value": "pme",
+          "label": "PME · 50 à 250 collaborateurs"
+        },
+        {
+          "value": "eti",
+          "label": "ETI · 250 à 5 000 collaborateurs"
+        },
+        {
+          "value": "grand-compte",
+          "label": "Grand compte · 5 000 collaborateurs et plus"
+        }
       ],
       "personas": [
-        { "value": "office-manager", "label": "Office manager · services généraux" },
-        { "value": "rse", "label": "Responsable RSE · développement durable" },
-        { "value": "dsi", "label": "DSI · direction des systèmes d'information" },
-        { "value": "rssi", "label": "RSSI · sécurité des systèmes d'information" },
-        { "value": "daf", "label": "DAF · direction administrative et financière" },
-        { "value": "achats", "label": "Achats · achats responsables" },
-        { "value": "autre", "label": "Autre fonction" }
+        {
+          "value": "office-manager",
+          "label": "Office manager · services généraux"
+        },
+        {
+          "value": "rse",
+          "label": "Responsable RSE · développement durable"
+        },
+        {
+          "value": "dsi",
+          "label": "DSI · direction des systèmes d'information"
+        },
+        {
+          "value": "rssi",
+          "label": "RSSI · sécurité des systèmes d'information"
+        },
+        {
+          "value": "daf",
+          "label": "DAF · direction administrative et financière"
+        },
+        {
+          "value": "achats",
+          "label": "Achats · achats responsables"
+        },
+        {
+          "value": "autre",
+          "label": "Autre fonction"
+        }
       ],
       "slots": [
-        { "value": "matin-30min", "label": "En matinée · créneau de 30 minutes" },
-        { "value": "midi-30min", "label": "Sur la pause déjeuner · 30 minutes" },
-        { "value": "apresmidi-30min", "label": "L'après-midi · 30 minutes" },
-        { "value": "fin-journee-30min", "label": "En fin de journée · 30 minutes" },
-        { "value": "visio-1h", "label": "Visio approfondie · 1 heure" },
-        { "value": "rappel-rapide", "label": "Rappel téléphonique rapide · 10 minutes" }
+        {
+          "value": "matin-30min",
+          "label": "En matinée · créneau de 30 minutes"
+        },
+        {
+          "value": "midi-30min",
+          "label": "Sur la pause déjeuner · 30 minutes"
+        },
+        {
+          "value": "apresmidi-30min",
+          "label": "L'après-midi · 30 minutes"
+        },
+        {
+          "value": "fin-journee-30min",
+          "label": "En fin de journée · 30 minutes"
+        },
+        {
+          "value": "visio-1h",
+          "label": "Visio approfondie · 1 heure"
+        },
+        {
+          "value": "rappel-rapide",
+          "label": "Rappel téléphonique rapide · 10 minutes"
+        }
       ],
       "next": "Étape suivante",
       "previous": "Étape précédente",

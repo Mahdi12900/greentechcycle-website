@@ -178,46 +178,43 @@ export default function ImpactPage() {
       <SchemaOrg data={breadcrumbSchema} />
 
       {/* =====================================================================
-          SECTION 1 — HERO
+          SECTION 1 — HERO ÉDITORIAL — split sombre + photo droite
           ===================================================================== */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#022C22] via-[#0F172A] to-[#1E40AF] text-white">
-        <Image
-          src="/photos/impact-sustainability.jpg"
-          alt="Forêt et écosystème naturel — empreinte carbone du numérique d'entreprise"
-          fill
-          priority
-          className="object-cover opacity-25 mix-blend-luminosity"
-          sizes="100vw"
+      <section
+        className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
+        aria-labelledby="impact-hero"
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 12% 10%, rgba(16,185,129,0.18) 0%, transparent 60%)",
+          }}
         />
-        <div className="absolute inset-0">
-          <div className="absolute -top-32 -right-24 w-[640px] h-[640px] bg-primary/30 rounded-full blur-3xl" />
-          <div className="absolute -bottom-32 -left-24 w-[520px] h-[520px] bg-secondary/30 rounded-full blur-3xl" />
-          <svg
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full opacity-[0.05]"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <pattern
-                id="impact-hero-grid"
-                width="48"
-                height="48"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M 48 0 L 0 0 0 48"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="1"
-                />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#impact-hero-grid)" />
-          </svg>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 88% 90%, rgba(34,197,94,0.10) 0%, transparent 55%)",
+          }}
+        />
+
+        {/* Numéro fantôme XXL */}
+        <div
+          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
+          style={{
+            fontSize: "clamp(8rem, 22vw, 18rem)",
+            color: "rgba(255,255,255,0.04)",
+            right: "0.5rem",
+            bottom: "-0.1em",
+          }}
+          aria-hidden="true"
+        >
+          78
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 pt-10 pb-20 md:pt-14 md:pb-24">
-          <div className="text-white/80">
+        <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-16 pb-12 lg:py-20">
+          <div className="text-white/80 mb-6">
             <Breadcrumbs
               dark
               items={[
@@ -228,75 +225,88 @@ export default function ImpactPage() {
           </div>
 
           <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-medium uppercase tracking-wider text-primary-200 mb-5">
-              <Leaf className="w-3.5 h-3.5" />
-              {t("hero.eyebrow")}
-            </span>
-          </FadeIn>
+            <div className="flex items-center gap-3 mb-8">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
+                <span
+                  className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
+                  style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
+                />
+                {t("hero.eyebrow")}
+              </span>
+            </div>
 
-          <FadeIn delay={0.05}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight max-w-5xl">
+            <h1
+              id="impact-hero"
+              className="text-white font-black tracking-tight mb-6"
+              style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
+            >
               {t("hero.title")}
             </h1>
-          </FadeIn>
 
-          <FadeIn delay={0.1}>
-            <p className="mt-5 text-lg md:text-xl text-white/80 max-w-3xl leading-relaxed">
+            <p className="text-gray-300 text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-8">
               {t("hero.subtitle")}
             </p>
-          </FadeIn>
 
-          <FadeIn delay={0.15}>
-            <div className="mt-7 flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-8">
               {heroChips.map((chip) => (
                 <span
                   key={chip}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-medium text-white/90 backdrop-blur-sm"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/15 text-[11px] font-medium text-gray-300"
                 >
-                  <CheckCircle2 className="w-3.5 h-3.5 text-primary-300" />
+                  <CheckCircle2 className="w-3 h-3 text-[#10B981]" />
                   {chip}
                 </span>
               ))}
             </div>
-          </FadeIn>
 
-          <FadeIn delay={0.2}>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <Link
                 href="#calculator"
-                className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-600 text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
               >
                 {t("hero.ctaPrimary")}
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/contact?reason=methodologie"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white/40 hover:border-white/80 text-white hover:bg-white/10 font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 backdrop-blur-sm"
+                href="/reserver?offre=methodologie-csrd"
+                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
               >
-                <Download className="w-5 h-5" />
+                <Download className="w-4 h-4" />
                 {t("hero.ctaSecondary")}
               </Link>
             </div>
-          </FadeIn>
 
-          {/* KPIs band */}
-          <StaggerContainer className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {heroKpis.map((kpi, i) => (
-              <StaggerItem key={i}>
-                <div className="h-full bg-white/5 backdrop-blur border border-white/15 rounded-2xl p-5 hover:bg-white/10 transition-colors">
-                  <div className="text-2xl md:text-3xl font-bold text-primary-200 mb-1">
-                    {kpi.value}
+            <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-2xl">
+              {heroKpis.map((kpi, i) => (
+                <StaggerItem key={i}>
+                  <div className="h-full bg-white/[0.04] backdrop-blur border border-white/10 rounded-xl p-4">
+                    <div className="text-xl md:text-2xl font-black text-[#10B981] mb-1 tracking-tight tabular-nums">
+                      {kpi.value}
+                    </div>
+                    <p className="text-[11px] text-gray-300 leading-snug mb-2">
+                      {kpi.label}
+                    </p>
+                    <p className="text-[9px] text-gray-500 italic leading-snug">
+                      {kpi.source}
+                    </p>
                   </div>
-                  <p className="text-sm text-white/85 leading-snug mb-3">
-                    {kpi.label}
-                  </p>
-                  <p className="text-[11px] text-white/50 italic leading-snug">
-                    Source : {kpi.source}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </FadeIn>
+        </div>
+
+        <div className="relative w-full lg:w-[45%] min-h-[42vh] lg:min-h-0 overflow-hidden flex-shrink-0">
+          <Image
+            src="/photos/impact-sustainability.jpg"
+            alt="Forêt et infrastructure énergétique — symbole de la décarbonation du numérique d'entreprise"
+            fill
+            priority
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 45vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/85 via-[#0F172A]/25 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F172A]/55 to-transparent" />
         </div>
       </section>
 
@@ -532,7 +542,7 @@ export default function ImpactPage() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  href="/contact?reason=esrs-sample"
+                  href="/reserver?offre=esrs-pack"
                   className="inline-flex items-center justify-center gap-2 border-2 border-primary/30 text-primary hover:bg-primary hover:text-white font-semibold px-6 py-3 rounded-xl transition-colors whitespace-nowrap"
                 >
                   <Download className="w-4 h-4" />
@@ -725,7 +735,7 @@ export default function ImpactPage() {
                 </p>
               </div>
               <Link
-                href="/contact?reason=esrs-sample"
+                href="/reserver?offre=esrs-pack"
                 className="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-5 py-3 rounded-xl transition-colors whitespace-nowrap"
               >
                 <Download className="w-4 h-4" />
@@ -932,9 +942,9 @@ export default function ImpactPage() {
         title={t("finalCta.title")}
         subtitle={t("finalCta.subtitle")}
         primaryLabel={t("finalCta.primary")}
-        primaryHref="/demo"
+        primaryHref="/reserver?offre=audit-decommissionnement"
         secondaryLabel={t("finalCta.secondary")}
-        secondaryHref="/contact?reason=csrd-pack"
+        secondaryHref="/reserver?offre=csrd-pack"
         variant="audit"
         tone="gradient"
       />
