@@ -87,7 +87,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={data.ctaPrimary.href}
-                  className="inline-flex items-center gap-2 bg-[#047857] hover:bg-[#059669] text-white font-semibold px-6 py-3.5 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3.5 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg"
                 >
                   {data.ctaPrimary.label}
                   <ArrowRight className="h-4 w-4" />

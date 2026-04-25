@@ -54,6 +54,18 @@ const caseColors = [
   "bg-pink-500/10 text-pink-600 border-pink-200",
 ];
 
+// One unique sectoral photo per case (no duplicates across the site)
+const caseImages: { src: string; alt: string }[] = [
+  { src: "/photos/case-banque.jpg", alt: "Salle de marche bancaire avec ecrans de trading" },
+  { src: "/photos/case-hopital.jpg", alt: "Couloir hospitalier et infrastructure IT medicale" },
+  { src: "/photos/case-industrie.jpg", alt: "Ligne de production industrielle avec systemes OT" },
+  { src: "/photos/case-administration.jpg", alt: "Batiment administratif et secteur public" },
+  { src: "/photos/case-retail.jpg", alt: "Point de vente retail multi-sites" },
+  { src: "/photos/case-energie.jpg", alt: "Installations energetiques et reseau de distribution" },
+  { src: "/photos/case-telco.jpg", alt: "Datacenter telco avec baies serveurs" },
+  { src: "/photos/case-universite.jpg", alt: "Etudiants equipes de laptops sur un campus" },
+];
+
 export default function UseCasesPage() {
   const t = useTranslations("UseCases");
 
@@ -75,8 +87,8 @@ export default function UseCasesPage() {
       {/* Hero */}
       <section className="relative py-24 lg:py-32 overflow-hidden">
         <Image
-          src="/images/unsplash/two-engineers.jpg"
-          alt="Consultants GreenTechCycle analysant des cas d'usages ITAD"
+          src="/photos/team-workshop.jpg"
+          alt="Workshop GreenTechCycle analysant des cas d'usages ITAD sectoriels"
           fill
           priority
           className="object-cover"
@@ -125,6 +137,19 @@ export default function UseCasesPage() {
                     id={useCase.id}
                     className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden"
                   >
+                    {/* Sectoral cover photo (unique per case) */}
+                    <div className="relative w-full aspect-[16/7] bg-gray-100">
+                      <Image
+                        src={caseImages[index % caseImages.length].src}
+                        alt={caseImages[index % caseImages.length].alt}
+                        fill
+                        loading="lazy"
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 1024px"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" aria-hidden="true" />
+                    </div>
+
                     {/* Header */}
                     <div className="bg-gradient-to-r from-gray-50 to-white px-6 md:px-8 py-5 border-b border-gray-100">
                       <div className="flex flex-wrap items-center gap-3 mb-2">
@@ -228,7 +253,7 @@ export default function UseCasesPage() {
                       <div className="pt-2">
                         <Link
                           href={`/contact?ref=usecase-${useCase.ctaSlug}`}
-                          className="inline-flex items-center gap-2 bg-[#047857] hover:bg-[#059669] text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg text-sm"
+                          className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg text-sm"
                         >
                           {labels.discussCase}
                           <ArrowRight className="h-4 w-4" />

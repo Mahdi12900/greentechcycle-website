@@ -22,7 +22,7 @@ export default function EffacementSecurisePage() {
     ),
     icon: ShieldCheck,
     badge: tx("Certificat sous 24h", "Certificate within 24h"),
-    image: "/images/unsplash/hands-electronics.jpg",
+    image: "/photos/service-effacement.jpg",
     imageAlt: tx("Operateur effacant un disque selon NIST 800-88", "Operator wiping a disk using NIST 800-88"),
     benefits: [
       tx("Methodologie NIST 800-88 (Clear -- Purge -- Destroy)", "NIST 800-88 methodology (Clear -- Purge -- Destroy)"),

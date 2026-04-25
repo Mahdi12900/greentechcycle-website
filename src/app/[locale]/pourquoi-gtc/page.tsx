@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import {
   FadeIn,
@@ -52,7 +53,16 @@ export default function WhyGTCPage() {
   return (
     <main className="min-h-screen">
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-primary via-primary/95 to-secondary py-24 lg:py-32 overflow-hidden">
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        <Image
+          src="/photos/team-workshop.jpg"
+          alt="Atelier collaboratif GreenTechCycle sur la transformation ITAD responsable"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/85 to-secondary/90" />
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5" />
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
@@ -102,17 +112,29 @@ export default function WhyGTCPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-[#0F172A] mb-8 tracking-tight">
                 {t("founder.title")}
               </h2>
-              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 md:p-10">
-                <div className="relative mb-6">
-                  <Quote className="h-10 w-10 text-[#047857]/15 absolute -top-2 -left-2" aria-hidden="true" />
-                  <p className="text-xl md:text-2xl text-[#0F172A] font-medium leading-relaxed italic pl-8">
-                    {t("founder.quote")}
-                  </p>
+              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden grid md:grid-cols-[220px_1fr] gap-0">
+                <div className="relative aspect-[3/4] md:aspect-auto md:h-full bg-gray-100">
+                  <Image
+                    src="/photos/founder-portrait.jpg"
+                    alt="Portrait du fondateur de GreenTechCycle"
+                    fill
+                    loading="lazy"
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 220px"
+                  />
                 </div>
-                <div className="border-t border-gray-100 pt-6">
-                  <p className="text-gray-600 leading-relaxed">
-                    {t("founder.bio")}
-                  </p>
+                <div className="p-8 md:p-10">
+                  <div className="relative mb-6">
+                    <Quote className="h-10 w-10 text-[#047857]/15 absolute -top-2 -left-2" aria-hidden="true" />
+                    <p className="text-xl md:text-2xl text-[#0F172A] font-medium leading-relaxed italic pl-8">
+                      {t("founder.quote")}
+                    </p>
+                  </div>
+                  <div className="border-t border-gray-100 pt-6">
+                    <p className="text-gray-600 leading-relaxed">
+                      {t("founder.bio")}
+                    </p>
+                  </div>
                 </div>
               </div>
             </FadeIn>

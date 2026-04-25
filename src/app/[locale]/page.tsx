@@ -15,10 +15,10 @@ export default function HomePage() {
 
   const stepIcons = [FileCheck, Truck, Shield, BarChart3];
   const stepImages = [
-    { src: "/images/unsplash/two-engineers.jpg", alt: "Deux ingénieurs collaborant sur l'inventaire des actifs IT" },
-    { src: "/images/unsplash/tech-datacenter.jpg", alt: "Technicien en data center pour la collecte sécurisée" },
-    { src: "/images/unsplash/hands-electronics.jpg", alt: "Mains sur carte électronique pour l'effacement certifié" },
-    { src: "/images/unsplash/corporate-meeting.jpg", alt: "Analyse et reporting ESG/CSRD en équipe" },
+    { src: "/images/meeting.jpg", alt: "Workshop de cadrage pour l'inventaire des actifs IT" },
+    { src: "/photos/tech-datacenter.jpg", alt: "Technicien en data center pour la collecte sécurisée" },
+    { src: "/photos/hands-electronics.jpg", alt: "Mains sur carte électronique pour l'effacement certifié" },
+    { src: "/photos/impact-dashboard.jpg", alt: "Analyse et reporting ESG/CSRD sur tableau de bord" },
   ];
 
   return (
@@ -34,7 +34,7 @@ export default function HomePage() {
       {/* Hero Section — real team photo + overlay */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden">
         <Image
-          src="/images/unsplash/team-collab.jpg"
+          src="/photos/team-collab.jpg"
           alt="Équipe GreenTechCycle collaborant sur la gestion responsable des actifs IT"
           fill
           priority
@@ -64,7 +64,7 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-[#047857] hover:bg-[#059669] text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#047857]/40 hover:-translate-y-0.5 text-base md:text-lg"
+                  className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#047857]/40 hover:-translate-y-0.5 text-base md:text-lg"
                 >
                   {t("hero.cta1")}
                   <ArrowRight className="h-5 w-5" />
@@ -109,31 +109,20 @@ export default function HomePage() {
             </div>
           </FadeIn>
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <StaggerItem>
-              <div className="bg-gradient-to-br from-[#F8FAFC] to-white border border-gray-100 rounded-2xl p-8 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                <p className="text-4xl md:text-5xl font-bold text-[#047857] mb-2 tracking-tight">{t("stats.items.stat1.value")}</p>
-                <p className="text-gray-600 text-sm">{t("stats.items.stat1.label")}</p>
-              </div>
-            </StaggerItem>
-            <StaggerItem>
-              <div className="bg-gradient-to-br from-[#F8FAFC] to-white border border-gray-100 rounded-2xl p-8 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                <p className="text-4xl md:text-5xl font-bold text-[#047857] mb-2 tracking-tight">{t("stats.items.stat2.value")}</p>
-                <p className="text-gray-600 text-sm">{t("stats.items.stat2.label")}</p>
-              </div>
-            </StaggerItem>
-            <StaggerItem>
-              <div className="bg-gradient-to-br from-[#F8FAFC] to-white border border-gray-100 rounded-2xl p-8 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                <p className="text-4xl md:text-5xl font-bold text-[#047857] mb-2 tracking-tight">{t("stats.items.stat3.value")}</p>
-                <p className="text-gray-600 text-sm">{t("stats.items.stat3.label")}</p>
-              </div>
-            </StaggerItem>
-            <StaggerItem>
-              <div className="bg-gradient-to-br from-[#F8FAFC] to-white border border-gray-100 rounded-2xl p-8 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                <p className="text-4xl md:text-5xl font-bold text-[#047857] mb-2 tracking-tight">{t("stats.items.stat4.value")}</p>
-                <p className="text-gray-600 text-sm">{t("stats.items.stat4.label")}</p>
-              </div>
-            </StaggerItem>
+            {(["stat1", "stat2", "stat3", "stat4"] as const).map((k) => (
+              <StaggerItem key={k}>
+                <div className="bg-gradient-to-br from-[#F8FAFC] to-white border border-gray-100 rounded-2xl p-8 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                  <p className="text-4xl md:text-5xl font-bold text-[#047857] mb-2 tracking-tight">{t(`stats.items.${k}.value`)}</p>
+                  <p className="text-gray-600 text-sm flex-1">{t(`stats.items.${k}.label`)}</p>
+                  <p className="mt-4 pt-3 border-t border-gray-100 text-[11px] leading-snug text-gray-500 italic">{t(`stats.items.${k}.source`)}</p>
+                </div>
+              </StaggerItem>
+            ))}
           </StaggerContainer>
+          <p className="mt-8 text-center text-xs text-gray-500 italic max-w-3xl mx-auto">
+            {t("stats.sourcesLabel")} : CIGREF, ADEME, Gartner, Capgemini Research Institute, Boavizta — toutes les sources sont consultables sur demande à{" "}
+            <a href="mailto:contact@greentechcycle.fr" className="underline decoration-dotted hover:text-[#047857]">contact@greentechcycle.fr</a>.
+          </p>
         </div>
       </section>
 
@@ -199,6 +188,7 @@ export default function HomePage() {
                 Témoignages
               </p>
               <h2 className="text-3xl md:text-5xl font-bold text-[#0F172A] mb-4 tracking-tight">{t("testimonials.title")}</h2>
+              <p className="text-sm text-gray-500 italic max-w-2xl mx-auto">{t("testimonials.anonymizedNote")}</p>
             </div>
           </FadeIn>
           <div className="grid lg:grid-cols-[1fr_320px] gap-10 max-w-6xl mx-auto items-start">
@@ -224,7 +214,7 @@ export default function HomePage() {
             <FadeIn direction="right" className="hidden lg:block">
               <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[3/4]">
                 <Image
-                  src="/images/unsplash/diverse-team.jpg"
+                  src="/images/team.jpg"
                   alt="Équipe diverse GreenTechCycle"
                   fill
                   loading="lazy"
@@ -296,6 +286,7 @@ export default function HomePage() {
               </ScaleIn>
             </StaggerItem>
           </StaggerContainer>
+          <p className="mt-10 text-center text-xs text-white/70 italic max-w-3xl mx-auto px-4">{t("counters.footnote")}</p>
         </div>
       </section>
 
@@ -325,7 +316,7 @@ export default function HomePage() {
       {/* Final CTA — with real human photo */}
       <section className="py-28 relative overflow-hidden">
         <Image
-          src="/images/unsplash/server-technician.jpg"
+          src="/photos/server-technician.jpg"
           alt="Technicien GreenTechCycle intervenant sur infrastructure serveur"
           fill
           loading="lazy"
@@ -342,7 +333,7 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-[#047857] hover:bg-[#059669] text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#047857]/40 hover:-translate-y-0.5 text-lg"
+                  className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#047857]/40 hover:-translate-y-0.5 text-lg"
                 >
                   {t("finalCTA.cta")}
                   <ArrowRight className="h-5 w-5" />
@@ -392,7 +383,7 @@ function VideoSection() {
               aria-label="Accéder à la démo GreenTechCycle"
             >
               <Image
-                src="/images/unsplash/corporate-meeting.jpg"
+                src="/photos/diverse-team.jpg"
                 alt="Présentation de la plateforme GreenTechCycle en réunion"
                 fill
                 loading="lazy"

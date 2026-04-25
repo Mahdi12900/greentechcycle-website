@@ -45,7 +45,14 @@
     "link": "Politique de cookies"
   },
   "StickyCTA": {
-    "text": "Demander un audit gratuit"
+    "text": "Demander un audit gratuit",
+    "default": "Demander un audit gratuit",
+    "impact": "Estimer mon scope 3 IT en 10 min",
+    "audit": "Auditer mon parc IT",
+    "expert": "Parler a un expert ITAD",
+    "quote": "Demander un devis sous 48h",
+    "compliance": "Recevoir le memo conformite",
+    "demo": "Reserver une demo de la plateforme"
   },
   "Home": {
     "hero": {
@@ -55,7 +62,7 @@
       "cta2": "Voir la plateforme"
     },
     "urgency": {
-      "text": "CSRD : 1ʳᵉ publication ESRS E5 due au 30 juin 2026 pour les ETI cotées. Vérifiez vos données ITAD avant clôture exercice."
+      "text": "CSRD vague 2 : 1ʳᵉ publication ESRS E5 (exercice 2025) attendue d'ici juin 2026 pour les grandes entreprises et ETI cotées (>250 ETP). Vérifiez vos données ITAD avant clôture exercice."
     },
     "trust": {
       "text": "R2v3 • ISO 14001 • NIST 800-88 • Conforme RGPD & CSRD"
@@ -1513,7 +1520,19 @@
     "subtitle": "Le guide complet de l'ITAD conforme CSRD — 40 pages de bonnes pratiques.",
     "placeholder": "Votre email professionnel",
     "cta": "Recevoir le guide",
-    "dismiss": "Non merci"
+    "dismiss": "Non merci",
+    "impactTitle": "Méthodologie GHG IT (PDF, 22 p.)",
+    "impactSubtitle": "Calcul Scope 3 catégorie 11, facteurs ADEME Base Empreinte v23, mapping ESRS E5 — recevez le document de référence GreenTechCycle.",
+    "impactCta": "Recevoir la méthodologie",
+    "regulationTitle": "Mémo conformité ITAD 2026",
+    "regulationSubtitle": "DORA, NIS2, CSRD, DEEE pro : les échéances, articles, sanctions et data points en 6 pages opérationnelles.",
+    "regulationCta": "Recevoir le mémo",
+    "useCasesTitle": "12 scénarios ITAD sectoriels (PDF)",
+    "useCasesSubtitle": "Banque, santé, industrie, public, retail, énergie, telco, université — chiffres récupérés et tCO₂e évitées par cas.",
+    "useCasesCta": "Recevoir les cas",
+    "servicesTitle": "Comparatif des 6 services GTC",
+    "servicesSubtitle": "Effacement, collecte, reconditionnement, recyclage, cybersécurité, WakiBox — SLA contractuels et certifications par service.",
+    "servicesCta": "Recevoir le comparatif"
   },
   "UseCases": {
     "hero": {

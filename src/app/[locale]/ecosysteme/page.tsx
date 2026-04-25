@@ -132,7 +132,7 @@ export default function EcosystemPage({
       {/* Hero Section */}
       <section className="relative py-24 lg:py-32 overflow-hidden">
         <Image
-          src="/images/unsplash/server-technician.jpg"
+          src="/photos/server-technician.jpg"
           alt="Technicien GreenTechCycle intégrant la plateforme au data center client"
           fill
           priority

@@ -53,7 +53,7 @@ export const metadata: Metadata = {
       "Effacement certifié, traçabilité blockchain et reporting CSRD. La plateforme qui unifie votre ITAD.",
     images: [
       {
-        url: "/images/unsplash/team-collab.jpg",
+        url: "/photos/team-collab.jpg",
         width: 1200,
         height: 630,
         alt: "GreenTechCycle - Plateforme ITAD unifiée",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     title: "GreenTechCycle | Plateforme ITAD unifiée",
     description:
       "Effacement certifié, traçabilité blockchain et reporting CSRD. La plateforme qui unifie votre ITAD.",
-    images: ["/images/unsplash/team-collab.jpg"],
+    images: ["/photos/team-collab.jpg"],
   },
   robots: { index: true, follow: true },
   metadataBase: new URL("https://greentechcycle.fr"),

@@ -24,7 +24,7 @@ export const blogArticles: BlogArticle[] = [
     updatedAt: "2026-04-10",
     readingTime: "8 min",
     category: "Réglementation",
-    image: "/images/hero-dashboard.jpg",
+    image: "/photos/blog-csrd.jpg",
     imageAlt: "Tableau de bord de reporting ESG pour la gestion des actifs IT",
   },
   {
@@ -38,7 +38,7 @@ export const blogArticles: BlogArticle[] = [
     updatedAt: "2026-04-08",
     readingTime: "10 min",
     category: "Sécurité",
-    image: "/images/hero-dashboard.jpg",
+    image: "/photos/blog-securite.jpg",
     imageAlt: "Processus d'effacement sécurisé des données sur équipements IT",
   },
   {
@@ -52,7 +52,7 @@ export const blogArticles: BlogArticle[] = [
     updatedAt: "2026-04-15",
     readingTime: "9 min",
     category: "Conformité",
-    image: "/images/hero-dashboard.jpg",
+    image: "/photos/blog-nis2.jpg",
     imageAlt: "Schéma de conformité NIS2 pour l'infrastructure IT",
   },
   {
@@ -66,7 +66,7 @@ export const blogArticles: BlogArticle[] = [
     updatedAt: "2026-04-18",
     readingTime: "9 min",
     category: "Durabilité",
-    image: "/images/hero-dashboard.jpg",
+    image: "/photos/blog-economie-circulaire.jpg",
     imageAlt: "Cycle de vie circulaire des équipements IT en entreprise",
   },
   {
@@ -80,7 +80,7 @@ export const blogArticles: BlogArticle[] = [
     updatedAt: "2026-04-20",
     readingTime: "11 min",
     category: "Réglementation",
-    image: "/images/hero-dashboard.jpg",
+    image: "/photos/blog-deee.jpg",
     imageAlt: "Infographie sur la réglementation DEEE pour les entreprises",
   },
 ];

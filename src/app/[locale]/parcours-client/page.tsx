@@ -50,7 +50,7 @@ export default function ClientJourneyPage({
       {/* Hero Section */}
       <section className="relative py-24 lg:py-32 overflow-hidden">
         <Image
-          src="/images/unsplash/corporate-meeting.jpg"
+          src="/photos/corporate-meeting.jpg"
           alt="Réunion de cadrage client GreenTechCycle"
           fill
           priority

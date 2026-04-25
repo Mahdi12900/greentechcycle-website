@@ -22,7 +22,7 @@ export default function ReconditionnementPage() {
     ),
     icon: RefreshCcw,
     badge: tx("+40 % valeur recuperee", "+40% recovered value"),
-    image: "/images/unsplash/two-engineers.jpg",
+    image: "/photos/service-reconditionnement.jpg",
     imageAlt: tx("Ingenieurs inspectant des equipements avant reconditionnement", "Engineers inspecting equipment before refurbishment"),
     benefits: [
       tx("Grading qualite A / B / C norme", "Standardized A / B / C quality grading"),

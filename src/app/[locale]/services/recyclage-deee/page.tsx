@@ -22,7 +22,7 @@ export default function RecyclageDEEEPage() {
     ),
     icon: Recycle,
     badge: tx("100 % tracable", "100% traceable"),
-    image: "/images/unsplash/ewaste-recycling.jpg",
+    image: "/images/recycling.jpg",
     imageAlt: tx("Recyclage d'equipements electroniques en filiere DEEE", "Certified WEEE electronics recycling"),
     benefits: [
       tx("Conformite DEEE / REP integrale", "Full WEEE / EPR compliance"),

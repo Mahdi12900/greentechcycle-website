@@ -172,7 +172,7 @@ export default function ServicesPage() {
         tx("Photos, numéros de série, hash de vérification", "Photos, serials, verification hash"),
         tx("Rapport exécutif PDF pour COMEX / DSI", "Exec-ready PDF report for CIO / COMEX"),
       ],
-      image: "/images/unsplash/server-technician.jpg",
+      image: "/photos/service-audit.jpg",
       imageAlt: tx(
         "Technicien réalisant l'audit d'un parc IT en data center",
         "Technician performing IT fleet audit in data center"
@@ -201,7 +201,7 @@ export default function ServicesPage() {
         tx("Certificat signé + hash SHA-256 par asset", "Signed certificate + SHA-256 hash per asset"),
         tx("Destruction physique si irrécupérable", "Physical destruction if unrecoverable"),
       ],
-      image: "/images/unsplash/hands-electronics.jpg",
+      image: "/photos/service-effacement.jpg",
       imageAlt: tx(
         "Opérateur effaçant un disque selon la méthodologie NIST 800-88",
         "Operator wiping a disk using NIST 800-88 methodology"
@@ -230,7 +230,7 @@ export default function ServicesPage() {
         tx("Rapport trimestriel des flux et prix obtenus", "Quarterly report on flows and sale prices"),
         tx("Mesure du CO₂ évité par réemploi", "Measurement of CO₂ avoided through reuse"),
       ],
-      image: "/images/unsplash/two-engineers.jpg",
+      image: "/photos/service-reconditionnement.jpg",
       imageAlt: tx(
         "Ingénieurs inspectant des équipements IT avant reconditionnement",
         "Engineers inspecting IT equipment before refurbishment"
@@ -259,7 +259,7 @@ export default function ServicesPage() {
         tx("Alimentation automatique ESRS E5 / CSRD", "Automatic ESRS E5 / CSRD feed"),
         tx("Bordereau de suivi des déchets (BSD) numérisé", "Digital waste tracking slip (BSD)"),
       ],
-      image: "/images/unsplash/ewaste-recycling.jpg",
+      image: "/photos/ewaste-recycling.jpg",
       imageAlt: tx(
         "Recyclage d'équipements électroniques en filière DEEE certifiée",
         "Certified WEEE electronics recycling"
@@ -288,7 +288,7 @@ export default function ServicesPage() {
         tx("Certificat nominatif opposable", "Named legally admissible certificate"),
         tx("Conforme RGPD · NIS2 · ANSSI", "GDPR · NIS2 · ANSSI compliant"),
       ],
-      image: "/images/unsplash/tech-datacenter.jpg",
+      image: "/images/recycling.jpg",
       imageAlt: tx(
         "Opérateur supervisant une opération de destruction certifiée",
         "Operator supervising a certified destruction operation"
@@ -317,7 +317,7 @@ export default function ServicesPage() {
         tx("Alertes sur dérive de score", "Alerts on score drift"),
         tx("Export CSV · API · Webhook", "CSV · API · Webhook export"),
       ],
-      image: "/images/unsplash/corporate-meeting.jpg",
+      image: "/photos/impact-dashboard.jpg",
       imageAlt: tx(
         "Analyste visualisant le scoring de risque du parc IT sur la plateforme",
         "Analyst reviewing IT fleet risk scoring on the platform"
@@ -346,7 +346,7 @@ export default function ServicesPage() {
         tx("Coût par user / par site / par BU", "Cost per user / site / BU"),
         tx("ROI moyen : 18-24 % dès l'année 1", "Average ROI: 18-24% in year 1"),
       ],
-      image: "/images/unsplash/diverse-team.jpg",
+      image: "/images/team.jpg",
       imageAlt: tx(
         "Équipe consultant la vue unifiée des licences et devices sur la plateforme",
         "Team reviewing unified licenses and devices view on platform"
@@ -494,7 +494,7 @@ export default function ServicesPage() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center gap-2 bg-[#047857] hover:bg-[#059669] text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#047857]/30 hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#047857]/30 hover:-translate-y-0.5"
                 >
                   {tx("Réserver une démo", "Book a demo")}
                   <ArrowRight className="h-4 w-4" />
@@ -628,7 +628,7 @@ export default function ServicesPage() {
                         <div className="flex flex-wrap gap-3">
                           <Link
                             href="/contact"
-                            className="inline-flex items-center gap-2 bg-[#047857] hover:bg-[#0B4633] text-white font-semibold px-5 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                            className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-5 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg"
                           >
                             {svc.ctaLabel}
                             <ArrowRight className="h-4 w-4" />
@@ -723,7 +723,7 @@ export default function ServicesPage() {
                   <div className="relative">
                     <div className="relative aspect-[4/5] rounded-3xl overflow-hidden ring-1 ring-white/10 shadow-[0_30px_80px_-20px_rgba(16,185,129,0.25)]">
                       <Image
-                        src="/images/unsplash/server-technician.jpg"
+                        src="/images/cybersecurity.jpg"
                         alt={tx(
                           "Opérateur ITAD certifié sous vidéosurveillance en zone sécurisée",
                           "Certified ITAD operator under video surveillance in a secure zone"
@@ -948,7 +948,7 @@ export default function ServicesPage() {
                   </div>
                   <Link
                     href="/demo"
-                    className="inline-flex items-center gap-2 bg-[#047857] hover:bg-[#059669] text-white font-semibold px-5 py-3 rounded-xl transition whitespace-nowrap"
+                    className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-5 py-3 rounded-xl transition whitespace-nowrap"
                   >
                     {tx("Voir un dossier type", "See a sample file")}
                     <ArrowRight className="h-4 w-4" />
@@ -1903,7 +1903,7 @@ export default function ServicesPage() {
                 <div className="flex flex-wrap gap-3 justify-center">
                   <Link
                     href="/demo"
-                    className="inline-flex items-center gap-2 bg-[#047857] hover:bg-[#059669] text-white font-semibold px-6 py-3.5 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#047857]/30"
+                    className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3.5 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#047857]/30"
                   >
                     {tx("Demander l'audit blanc", "Request the blind audit")}
                     <ArrowRight className="h-5 w-5" />
@@ -2128,7 +2128,7 @@ export default function ServicesPage() {
               </div>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-[#047857] hover:bg-[#059669] text-white font-semibold px-5 py-3 rounded-xl transition whitespace-nowrap"
+                className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-5 py-3 rounded-xl transition whitespace-nowrap"
               >
                 {tx("Demander un connecteur", "Request a connector")}
                 <ArrowRight className="h-4 w-4" />
@@ -2182,7 +2182,7 @@ export default function ServicesPage() {
                     </p>
                     <a
                       href={m.mailto}
-                      className="inline-flex items-center justify-center gap-2 w-full py-3 bg-[#047857] hover:bg-[#0B4633] text-white font-semibold rounded-xl transition"
+                      className="inline-flex items-center justify-center gap-2 w-full py-3 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold rounded-xl transition"
                     >
                       {m.cta}
                       <ArrowRight className="h-4 w-4" />
@@ -2284,7 +2284,7 @@ export default function ServicesPage() {
                   </p>
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 bg-[#047857] hover:bg-[#059669] text-white font-semibold px-6 py-3 rounded-xl transition whitespace-nowrap"
+                    className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3 rounded-xl transition whitespace-nowrap"
                   >
                     {tx("Envoyer", "Send")}
                     <Send className="h-4 w-4" />
@@ -2337,7 +2337,7 @@ export default function ServicesPage() {
               <div className="flex flex-wrap gap-3 justify-center">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center gap-2 bg-[#047857] hover:bg-[#059669] text-white font-semibold px-7 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#047857]/30"
+                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#047857]/30"
                 >
                   {tx("Réserver 20 min avec un expert", "Book 20 min with an expert")}
                   <ArrowRight className="h-5 w-5" />

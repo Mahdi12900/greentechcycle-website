@@ -22,7 +22,7 @@ export default function WakiBoxPage() {
     ),
     icon: Cpu,
     badge: tx("Monitoring temps reel", "Real-time monitoring"),
-    image: "/images/unsplash/tech-datacenter.jpg",
+    image: "/photos/service-wakibox.jpg",
     imageAlt: tx("Borne WakiBox de collecte connectee", "Connected WakiBox collection kiosk"),
     benefits: [
       tx("Borne de collecte connectee plug-and-play", "Plug-and-play connected collection kiosk"),

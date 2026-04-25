@@ -28,9 +28,9 @@ const sectorDefs: SectorDef[] = [
   { key: "finance", href: "/secteurs/finance", icon: Building2, image: "/images/servers.jpg", color: "bg-blue-500/10 text-blue-600" },
   { key: "sante", href: "/secteurs/sante", icon: Heart, image: "/images/hospital.jpg", color: "bg-red-500/10 text-red-600" },
   { key: "industrie", href: "/secteurs/industrie", icon: Factory, image: "/images/industry.jpg", color: "bg-amber-500/10 text-amber-600" },
-  { key: "public", href: "/secteurs/public", icon: Landmark, image: "/images/office.jpg", color: "bg-purple-500/10 text-purple-600" },
+  { key: "public", href: "/secteurs/public", icon: Landmark, image: "/photos/case-administration.jpg", color: "bg-purple-500/10 text-purple-600" },
   { key: "energie", href: "/secteurs/energie", icon: Zap, image: "/images/datacenter.jpg", color: "bg-emerald-500/10 text-emerald-600" },
-  { key: "retail", href: "/secteurs/retail", icon: ShoppingCart, image: "/images/office.jpg", color: "bg-teal-500/10 text-teal-600" },
+  { key: "retail", href: "/secteurs/retail", icon: ShoppingCart, image: "/photos/sector-retail.jpg", color: "bg-teal-500/10 text-teal-600" },
 ];
 
 function SectorCard({ sector }: { sector: SectorDef }) {

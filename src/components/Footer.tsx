@@ -17,12 +17,26 @@ export default function Footer() {
     {
       title: t("columns.services.title"),
       links: [
-        { name: t("columns.services.links.erasure"), href: "/services#effacement" },
-        { name: t("columns.services.links.collection"), href: "/services#collecte" },
-        { name: t("columns.services.links.reporting"), href: "/services#reporting" },
-        { name: t("columns.services.links.carbon"), href: "/services#carbone" },
-        { name: t("columns.services.links.blockchain"), href: "/services#blockchain" },
-        { name: t("columns.services.links.wakibox"), href: "/services#wakibox" },
+        { name: t("columns.services.links.audit"), href: "/services/audit-inventaire" },
+        { name: t("columns.services.links.erasure"), href: "/services/effacement-securise" },
+        { name: t("columns.services.links.refurbish"), href: "/services/reconditionnement-valorisation" },
+        { name: t("columns.services.links.recycling"), href: "/services/recyclage-deee" },
+        { name: t("columns.services.links.cyber"), href: "/services/cybersecurite" },
+        { name: t("columns.services.links.wakibox"), href: "/services/wakibox" },
+        { name: t("columns.services.links.useCases"), href: "/cas-usages" },
+        { name: t("columns.services.links.pricing"), href: "/tarifs" },
+      ],
+    },
+    {
+      title: t("columns.sectors.title"),
+      links: [
+        { name: t("columns.sectors.links.overview"), href: "/secteurs" },
+        { name: t("columns.sectors.links.finance"), href: "/secteurs/finance" },
+        { name: t("columns.sectors.links.sante"), href: "/secteurs/sante" },
+        { name: t("columns.sectors.links.industrie"), href: "/secteurs/industrie" },
+        { name: t("columns.sectors.links.public"), href: "/secteurs/public" },
+        { name: t("columns.sectors.links.energie"), href: "/secteurs/energie" },
+        { name: t("columns.sectors.links.retail"), href: "/secteurs/retail" },
       ],
     },
     {
@@ -45,6 +59,7 @@ export default function Footer() {
         { name: t("columns.resources.links.methodology"), href: "/methodologie" },
         { name: t("columns.resources.links.platform"), href: "/plateforme" },
         { name: t("columns.resources.links.security"), href: "/securite" },
+        { name: t("columns.resources.links.process"), href: "/processus-itad" },
       ],
     },
     {
@@ -126,8 +141,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 4-column links */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-10">
+        {/* 5-column links */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10">
           {columns.map((col) => (
             <div key={col.title}>
               <h4 className="text-xs font-bold text-white uppercase tracking-[0.15em] mb-5">{col.title}</h4>

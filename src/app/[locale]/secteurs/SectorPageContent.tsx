@@ -29,7 +29,7 @@ const sectorImages: Record<SectorKey, { src: string; alt: string }> = {
   industrie: { src: "/images/industry.jpg", alt: "Site industriel et gestion des actifs technologiques" },
   public: { src: "/images/office.jpg", alt: "Administration publique et conformite IT" },
   energie: { src: "/images/datacenter.jpg", alt: "Infrastructure critique energetique et systemes OT" },
-  retail: { src: "/images/office.jpg", alt: "Point de vente retail et gestion des actifs IT" },
+  retail: { src: "/photos/sector-retail.jpg", alt: "Point de vente retail et gestion des actifs IT" },
 };
 
 export default function SectorPageContent({ sector }: { sector: SectorKey }) {

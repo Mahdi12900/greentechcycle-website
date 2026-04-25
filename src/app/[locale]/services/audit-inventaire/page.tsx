@@ -22,7 +22,7 @@ export default function AuditInventairePage() {
     ),
     icon: ClipboardList,
     badge: tx("Livrable sous 5 jours", "Delivered in 5 days"),
-    image: "/images/unsplash/server-technician.jpg",
+    image: "/photos/service-audit.jpg",
     imageAlt: tx("Technicien realisant l'audit d'un parc IT", "Technician performing IT fleet audit"),
     benefits: [
       tx("Inventaire exhaustif du parc IT, OT et mobile", "Full inventory across IT, OT and mobile"),

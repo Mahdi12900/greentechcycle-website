@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import {
   FadeIn,
@@ -180,6 +181,14 @@ export default function ImpactPage() {
           SECTION 1 — HERO
           ===================================================================== */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#022C22] via-[#0F172A] to-[#1E40AF] text-white">
+        <Image
+          src="/photos/impact-sustainability.jpg"
+          alt="Forêt et écosystème naturel — empreinte carbone du numérique d'entreprise"
+          fill
+          priority
+          className="object-cover opacity-25 mix-blend-luminosity"
+          sizes="100vw"
+        />
         <div className="absolute inset-0">
           <div className="absolute -top-32 -right-24 w-[640px] h-[640px] bg-primary/30 rounded-full blur-3xl" />
           <div className="absolute -bottom-32 -left-24 w-[520px] h-[520px] bg-secondary/30 rounded-full blur-3xl" />

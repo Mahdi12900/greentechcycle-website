@@ -124,7 +124,7 @@ export default function PlatformPage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-secondary py-24 lg:py-32">
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="/images/unsplash/tech-datacenter.jpg"
+            src="/photos/tech-datacenter.jpg"
             alt=""
             fill
             priority
@@ -563,7 +563,7 @@ export default function PlatformPage() {
       >
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="/images/unsplash/ewaste-recycling.jpg"
+            src="/photos/ewaste-recycling.jpg"
             alt=""
             fill
             className="object-cover"

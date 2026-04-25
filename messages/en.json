@@ -183,7 +183,14 @@
     "link": "Cookie policy"
   },
   "StickyCTA": {
-    "text": "Request a free audit"
+    "text": "Request a free audit",
+    "default": "Request a free audit",
+    "impact": "Estimate my IT scope 3 in 10 min",
+    "audit": "Audit my IT fleet",
+    "expert": "Talk to an ITAD expert",
+    "quote": "Get a quote within 48h",
+    "compliance": "Get the compliance memo",
+    "demo": "Book a platform demo"
   },
   "Home": {
     "hero": {
@@ -193,7 +200,7 @@
       "cta2": "See the platform"
     },
     "urgency": {
-      "text": "CSRD: first ESRS E5 disclosure due 30 June 2026 for listed mid-cap groups. Audit your ITAD data before fiscal year close."
+      "text": "CSRD wave 2: first ESRS E5 disclosure (FY2025) expected by June 2026 for large companies and listed mid-caps (>250 FTE). Audit your ITAD data before fiscal year close."
     },
     "trust": {
       "text": "R2v3 \u2022 ISO 14001 \u2022 NIST 800-88 \u2022 GDPR & CSRD Compliant"
@@ -1651,7 +1658,19 @@
     "subtitle": "The complete guide to CSRD-compliant ITAD \u2014 40 pages of best practices.",
     "placeholder": "Your professional email",
     "cta": "Get the guide",
-    "dismiss": "No thanks"
+    "dismiss": "No thanks",
+    "impactTitle": "IT GHG methodology (PDF, 22 p.)",
+    "impactSubtitle": "Scope 3 cat. 11 calculation, ADEME Base Empreinte v23 emission factors, ESRS E5 mapping \u2014 receive the GreenTechCycle reference document.",
+    "impactCta": "Get the methodology",
+    "regulationTitle": "ITAD compliance memo 2026",
+    "regulationSubtitle": "DORA, NIS2, CSRD, WEEE pro: deadlines, articles, sanctions and data points in 6 operational pages.",
+    "regulationCta": "Get the memo",
+    "useCasesTitle": "12 sectoral ITAD scenarios (PDF)",
+    "useCasesSubtitle": "Banking, healthcare, industry, public, retail, energy, telco, university \u2014 recovered figures and avoided tCO\u2082e per case.",
+    "useCasesCta": "Get the cases",
+    "servicesTitle": "Comparison of GTC's 6 services",
+    "servicesSubtitle": "Erasure, collection, refurbishment, recycling, cybersecurity, WakiBox \u2014 contractual SLAs and certifications per service.",
+    "servicesCta": "Get the comparison"
   },
   "UseCases": {
     "hero": {
