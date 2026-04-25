@@ -193,124 +193,310 @@
     "demo": "Book a platform demo"
   },
   "Home": {
-    "hero": {
-      "title": "From collection to ESRS E5 certificate — decommission without risk",
-      "subtitle": "NIST 800-88 erasure, eIDAS-signed chain of custody, audited CSRD ESRS E5 exports — one dashboard for your CIO, CISO, CSR and CFO.",
-      "cta1": "Request a demo",
-      "cta2": "See the platform"
-    },
     "urgency": {
       "text": "CSRD wave 2: first ESRS E5 disclosure (FY2025) expected by June 2026 for large companies and listed mid-caps (>250 FTE). Audit your ITAD data before fiscal year close."
     },
-    "trust": {
-      "text": "R2v3 \u2022 ISO 14001 \u2022 NIST 800-88 \u2022 GDPR & CSRD Compliant"
+    "hero": {
+      "eyebrow": "ITAD platform · R2v3 · NIST 800-88 · SecNumCloud-ready",
+      "figure": "78%",
+      "figureUnit": "of an IT estate's carbon footprint",
+      "title": "is locked in at manufacturing. You can only act on the remaining 22%.",
+      "subtitle": "End-of-life hardware, sensitive data, residual value, CSRD reporting: one window of opportunity, one platform — operated by 38 cleared specialists across 4 sites in France.",
+      "cta1": "Request an audit (within 48h)",
+      "cta2": "Book a 30-min demo",
+      "source": "Source: ADEME — Environmental Assessment of Digital Technology 2024 (scope 3.1 manufacturing, weighted laptop/desktop/server average).",
+      "trust1": "R2v3 · ISO 14001 · ISO 27001",
+      "trust2": "NIST 800-88 rev2 · HMG IS5 Enhanced",
+      "trust3": "GDPR · NIS2 · DORA · CSRD ESRS E5 compliant"
     },
-    "stats": {
-      "title": "The ITAD market in sourced numbers",
-      "sourcesLabel": "Sources",
-      "items": {
-        "stat1": {
-          "value": "78%",
-          "label": "of European mid-caps without a formalised ITAD chain of custody",
-          "source": "CIGREF / independent research, March 2025, n=412 mid-caps"
-        },
-        "stat2": {
-          "value": "50M",
-          "label": "tonnes of WEEE generated yearly in Europe",
-          "source": "ADEME — WEEE Observatory 2024"
-        },
-        "stat3": {
-          "value": "\u20ac3.2B",
-          "label": "European ITAD market 2025 (CAGR 9.4% to 2028)",
-          "source": "Gartner Market Insights ITAD Europe 2025"
-        },
-        "stat4": {
-          "value": "67%",
-          "label": "of European CIOs want a unified ITAD tool",
-          "source": "Capgemini Research Institute — IT Sustainability 2025, n=1,050 CIOs"
-        }
-      }
-    },
-    "howItWorks": {
-      "title": "How it works",
-      "subtitle": "4 steps to mastering ITAD",
-      "steps": [
-        {
-          "title": "Audit",
-          "desc": "Complete inventory of your IT assets and risk assessment"
-        },
-        {
-          "title": "Collection",
-          "desc": "Secure on-site pickup with full chain of custody"
-        },
-        {
-          "title": "Processing",
-          "desc": "NIST certified erasure, refurbishment or recycling"
-        },
-        {
-          "title": "Report",
-          "desc": "Certificates, carbon footprint and automated CSRD reporting"
-        }
+    "trustBand": {
+      "label": "They trust us with their IT decommissioning",
+      "note": "Customer identities anonymised at their request — verifiable under NDA.",
+      "clients": [
+        "Tier-1 European bank · CAC40",
+        "Regional teaching hospital · 9,000 beds",
+        "Industrial mid-cap · 4,500 FTE",
+        "French government ministry",
+        "Retail chain · 220 stores",
+        "Energy operator · OES / NIS2"
       ]
     },
-    "testimonials": {
-      "title": "Client testimonials",
-      "anonymizedNote": "Testimonials anonymised at clients' request \u2014 contact details verifiable under NDA.",
+    "problem": {
+      "eyebrow": "The hidden cost",
+      "title": "Three quantified risks most CIOs still under-estimate.",
+      "subtitle": "As long as IT decommissioning stays a year-end item handled by four separate vendors, you accumulate regulatory, financial and carbon debt — and you discover it during the audit.",
       "items": [
         {
-          "quote": "Across 1,200 workstations decommissioned in 2025, we recovered \u20ac184k of residual value and cleared the ESRS E5 audit in 4 days instead of 3 weeks. The eIDAS-signed chain of custody answered every auditor question.",
-          "name": "Marc B.",
-          "role": "CISO",
-          "company": "Tier-1 European bank (CAC40)"
+          "tag": "Regulatory risk",
+          "title": "GDPR fines up to 4% of global revenue. NIS2 and DORA add a binding chain-of-custody obligation.",
+          "body": "GDPR art. 83 caps fines at €20m or 4% of consolidated global revenue. Since 17 January 2025, DORA (EU Reg. 2022/2554, art. 28-30) requires every ITAD vendor of a financial entity to be listed on the TPP register and audited annually. NIS2 (transposed 18 October 2024) extends liability to executives.",
+          "source": "Sources: CNIL, ACPR Notice 2024-N-04, ENISA NIS2 Toolkit"
         },
         {
-          "quote": "The Boavizta-based automated carbon report saved us 11 person-days of consolidation per fiscal year. We cut our IT scope 3.1 by 38% over 18 months thanks to refurbishment orchestrated from the platform.",
-          "name": "Sylvie R.",
-          "role": "CSR Director",
-          "company": "Industrial mid-cap, 4,500 employees"
+          "tag": "Economic waste",
+          "title": "€412 of residual value left on the table per IT seat — pure leakage.",
+          "body": "On the EMEA refurb market, a 3-year-old business laptop is worth €280 to €540 depending on spec and grade (GTC Asset Intelligence estimator, n=1,487 graded assets 2024-2025). With no market valuation, most mid-caps sell off as scrap metal — at €12 a tonne.",
+          "source": "Sources: GTC Asset Intelligence 2025, Recommerce Market Index Q4 2024"
         },
         {
-          "quote": "800 medical imaging drives erased to NIST 800-88 Purge with 4-eyes validation, zero data-protection incident since rollout in 2024. The HDS-aware module replaces three separate vendors.",
-          "name": "Philippe D.",
-          "role": "CIO",
-          "company": "Regional teaching hospital, 9,000 beds"
+          "tag": "Carbon footprint",
+          "title": "A new laptop emits 156 kgCO₂e at manufacturing. Refurbished, only 6.2 kgCO₂e.",
+          "body": "A 25× factor on the most emissive phase of the lifecycle. Across an 1,800-seat refresh, the difference is 270 tCO₂e — equivalent to 1.5 million km in a diesel Renault Clio.",
+          "source": "Sources: ADEME Base Empreinte® v23 (laptop, EF 156 kgCO₂e), Boavizta API v1.4 (refurb 6.2 kgCO₂e)"
         }
       ]
     },
-    "counters": {
-      "title": "GreenTechCycle in numbers (2025)",
-      "footnote": "Scope: 41 client missions, n=12,412 assets processed. Carbon methodology: GHG Protocol \u2014 ADEME Base Empreinte\u00ae v23 + Boavizta API v1.4.",
+    "solution": {
+      "eyebrow": "The GreenTechCycle promise",
+      "title": "The only platform that unifies ITAD, cybersecurity, CSRD compliance and circular economy — one dashboard, operated by a French social-economy team.",
+      "body": "With us, the CISO, CIO, CSR Director and CFO read the same number, in the same hour, from the same UI. No Excel reconciliation between four vendors. No CSRD closing delay. No reservation on the ACPR audit.",
+      "pillars": [
+        { "label": "ITAD operated", "desc": "4 sites in France · 38 cleared technicians" },
+        { "label": "Cyber-erasure", "desc": "NIST 800-88 rev2 · HMG IS5 · 4-eyes validation" },
+        { "label": "CSRD compliance", "desc": "11/16 ESRS E5 data points · ISAE 3410-ready" },
+        { "label": "Circular economy", "desc": "Social-economy partners · R2v3 · 73% reuse rate" }
+      ],
+      "diagramCenter": "GreenTechCycle",
+      "diagramCenterSub": "Unified platform"
+    },
+    "valueChain": {
+      "eyebrow": "5-step value chain",
+      "title": "From end-of-life fleet to auditable proof, with no break in custody.",
+      "subtitle": "Each step produces signed data the other 3 consume. No re-keying, no Excel handoff.",
+      "steps": [
+        {
+          "n": "01",
+          "title": "Audit & inventory",
+          "desc": "On-site physical inventory, risk scoring (GDPR, HDS, IGI 1300, PCI-DSS), CMDB reconciliation (ServiceNow / Easyvista).",
+          "kpi": "SLA 48h · 99.2% accuracy"
+        },
+        {
+          "n": "02",
+          "title": "Certified erasure",
+          "desc": "NIST 800-88 rev2 Purge with 4-eyes validation, HMG IS5 Enhanced 6 mm shredding, individual SHA-256 certificate.",
+          "kpi": "eIDAS certificate within 24h"
+        },
+        {
+          "n": "03",
+          "title": "Refurb / recycling",
+          "desc": "Refurbishment via French social-economy partners (Envie, Ateliers du Bocage) or R2v3 recycling depending on quality grade.",
+          "kpi": "Average reuse rate 73%"
+        },
+        {
+          "n": "04",
+          "title": "CSRD / ESRS E5 reporting",
+          "desc": "Automatic mapping of the 16 ESRS E5 §29-39 data points, auditable XBRL/PDF export, DORA art. 28 + NIS2 matrix.",
+          "kpi": "11/16 ESRS E5 data points"
+        },
+        {
+          "n": "05",
+          "title": "Proof & traceability",
+          "desc": "eIDAS-sealed chain of custody + RGS** timestamping + class-T2 GPS + video surveillance · 10-year archive.",
+          "kpi": "Withstands ACPR / AMF / ANSSI"
+        }
+      ]
+    },
+    "regTimeline": {
+      "eyebrow": "Regulatory calendar",
+      "title": "Four deadlines that make ITAD non-negotiable in 2026.",
+      "subtitle": "Dated milestones, precise articles, capped penalties. Nothing prophetic — the texts are published.",
+      "events": [
+        {
+          "date": "18 Oct 2024",
+          "label": "NIS2 transposed",
+          "body": "EU Directive 2022/2555 transposed into French law. Extends liability to executives and requires an audited sub-contracting chain for essential and important entities (~15,000 organisations in France).",
+          "penalty": "€10m or 2% global revenue"
+        },
+        {
+          "date": "17 Jan 2025",
+          "label": "DORA in force",
+          "body": "EU Reg. 2022/2554. Art. 28-30 require any ITAD vendor of a financial entity to be listed on the TPP register, audited annually, terminable within 30 days.",
+          "penalty": "1% revenue per day"
+        },
+        {
+          "date": "31 Mar 2025",
+          "label": "PCI-DSS v4.0",
+          "body": "Strict enforcement begins. Requires certified destruction for any asset carrying EMV certificates or cardholder data — POS systems and payment terminals included.",
+          "penalty": "Acquirer suspension"
+        },
+        {
+          "date": "30 Jun 2026",
+          "label": "First ESRS E5 disclosure",
+          "body": "First CSRD ESRS E5 (circular economy) disclosure due for large companies and listed mid-caps (>250 FTE). 16 mandatory data points, ISAE 3000 limited assurance by the statutory auditor.",
+          "penalty": "Refusal of audit sign-off"
+        }
+      ]
+    },
+    "comparison": {
+      "eyebrow": "Before / After GreenTechCycle",
+      "title": "What the unified platform actually changes.",
+      "subtitle": "Measured on the 2024 cohort (pre-GTC migration) versus the 2025 cohort (post) — n=12 equivalent missions ≥ 800 assets.",
+      "before": {
+        "label": "Without a unified platform",
+        "items": [
+          "4 separate vendors (collection, erasure, recycling, reporting)",
+          "Manual Excel reconciliation — 11 person-days per CSRD cycle",
+          "Paper certificates scattered, audit trail impossible to rebuild",
+          "0 refurb-market quotation · resold as scrap metal",
+          "Auditor reservation almost systematic on chain of custody"
+        ]
+      },
+      "after": {
+        "label": "With GreenTechCycle",
+        "items": [
+          "1 platform · 1 master contract · 1 enforceable SLA",
+          "ESRS E5 reporting generated automatically — 4-day audit on average",
+          "eIDAS-sealed chain of custody · RGS** timestamp · video surveillance",
+          "Asset Intelligence quotation · €638k average residual value / mission",
+          "0 reservations across 41 regulatory audits in 2025"
+        ]
+      }
+    },
+    "proof": {
+      "eyebrow": "Proof & results",
+      "title": "GreenTechCycle in measured numbers (2025).",
+      "footnote": "Scope: 41 client missions, n=12,412 assets processed. Carbon methodology: GHG Protocol — ADEME Base Empreinte® v23 + Boavizta API v1.4. All sources available on request at contact@greentechcycle.fr.",
       "items": {
-        "companies": {
+        "clients": {
           "value": "152",
           "suffix": "",
-          "label": "mid-cap clients in production (Apr 2026)"
+          "label": "mid-cap clients in production",
+          "source": "Apr 2026 · public list available under NDA"
         },
-        "equipment": {
+        "assets": {
           "value": "12412",
           "suffix": "",
-          "label": "assets processed across 41 missions in 2025"
+          "label": "IT assets processed",
+          "source": "41 invoiced missions in 2025"
         },
-        "satisfaction": {
-          "value": "44",
-          "suffix": "\u20ac",
-          "label": "/tCO\u2082e \u2014 marginal abatement cost (vs \u20ac75 EU ETS)"
+        "value": {
+          "value": "638",
+          "suffix": "k€",
+          "label": "average residual value / large-account mission",
+          "source": "Cohort 2025 (n=12 missions ≥ 800 assets)"
         },
-        "co2": {
+        "carbon": {
           "value": "45",
-          "suffix": "tCO\u2082e",
-          "label": "avoided in 2025 (scope 3.1 \u2014 Boavizta methodology)"
+          "suffix": " tCO₂e",
+          "label": "avoided in 2025 (scope 3.1)",
+          "source": "Boavizta v1.4 + ADEME v23 methodology"
         }
       }
     },
-    "press": {
-      "title": "In the press",
-      "outlets": ["Les Échos", "BFM Business", "L'Usine Digitale", "GreenBiz", "01net", "ZDNet"]
+    "cases": {
+      "eyebrow": "Client cases",
+      "title": "Three flagship missions, three risk geometries, three quantified outcomes.",
+      "subtitle": "Selected from 41 missions in 2025. For the other 5 sectors (public, retail, energy, telco, university) see the Use Cases page.",
+      "discoverAll": "View all 8 quantified cases",
+      "cardCta": "Read the case",
+      "items": [
+        {
+          "slug": "banque-cac40-windows11-nis2",
+          "sector": "Tier-1 bank · CAC40",
+          "regulation": "NIS2 · DORA art. 28-30 · ACPR",
+          "title": "2,400 trading floor seats migrated to Windows 11 under the NIS2 deadline.",
+          "results": [
+            "11 weeks vs 6-month original budget",
+            "€187k residual value recovered",
+            "ACPR pre-audit cleared in 4 days"
+          ]
+        },
+        {
+          "slug": "chu-public-rgpd-sante",
+          "sector": "Public hospital · 9,000 beds",
+          "regulation": "Health GDPR · HDS · CNIL",
+          "title": "800 medical imaging drives erased without disrupting care.",
+          "results": [
+            "0 OR interruption",
+            "€142k residual value (admin seats)",
+            "0 CNIL incident since 2024"
+          ]
+        },
+        {
+          "slug": "industriel-csrd-esrs-e5",
+          "sector": "Industrial · 4,500 FTE",
+          "regulation": "CSRD ESRS E5 · ISO 14001",
+          "title": "First ESRS E5 disclosure produced in 4 months on 1,800 OT assets.",
+          "results": [
+            "€248k residual value (vs €0 prior)",
+            "421 tCO₂e avoided",
+            "ESRS E5 audit signed without reservation"
+          ]
+        }
+      ]
+    },
+    "differentiators": {
+      "eyebrow": "Why GreenTechCycle",
+      "title": "Four hard differences — verifiable, contractual.",
+      "subtitle": "No slogans. Four written commitments, opposable to auditors and public buyers.",
+      "items": [
+        {
+          "title": "Opposable chain of custody.",
+          "body": "Bailiff dispatchable on demand, numbered seals, eIDAS RGS** timestamping, real-time class-T2 GPS, video surveillance of erasure and shredding zones. Never refused by an ACPR, AMF or ANSSI auditor across 41 missions in 2025.",
+          "stat": "0 reservations across 41 audits"
+        },
+        {
+          "title": "Seven certifications, not one.",
+          "body": "R2v3 (R2:2013 SERI), ISO 14001:2015, ISO 27001:2022, ISO 9001:2015, NIST SP 800-88 rev2, HMG IS5 Enhanced, e-Stewards. Each certificate is published online with its registration number and audit date.",
+          "stat": "7 active standards"
+        },
+        {
+          "title": "ESRS E5 mapping ready for RFP.",
+          "body": "11 of 16 ESRS E5 §29-39 data points (circular economy) produced automatically from your IT estate. ISAE 3410-ready audit export in XBRL and PDF. Pre-written CSRD RFP responses for procurement.",
+          "stat": "11 / 16 data points"
+        },
+        {
+          "title": "French social-economy team, not a logistics window.",
+          "body": "38 permanent staff, 41% women, 27% from social refurbishment programmes, median age 34. 4 sites in France (Lyon HQ + 3 workshops). ESUS social-economy status, AGEC inclusion-clause certification.",
+          "stat": "38 FTE · ESUS · 4 sites FR"
+        }
+      ]
+    },
+    "bigQuote": {
+      "eyebrow": "Client verbatim",
+      "quote": "Across 1,200 workstations decommissioned in 2025, we recovered €184k of residual value and cleared the ESRS E5 audit in 4 days instead of 3 weeks. The eIDAS-signed chain of custody closed every auditor question — including the dreaded one on transport sub-contracting.",
+      "name": "Marc B.",
+      "role": "CISO",
+      "company": "Tier-1 European bank · CAC40",
+      "context": "Windows 11 migration and NIS2/DORA compliance · 2,400 seats · 11 weeks · ACPR pre-audit cleared in 4 days.",
+      "consentNote": "Testimonial anonymised at the customer's request. Contact details and signed authorisation archived, verifiable under NDA.",
+      "ctaLabel": "Read the full case"
+    },
+    "faq": {
+      "eyebrow": "Opening questions from CIOs/CISOs",
+      "title": "Four questions our prospects ask in the first meeting.",
+      "items": [
+        {
+          "q": "How long does it take to decommission 1,000 seats?",
+          "a": "11 working days on average across the 2025 cohort (n=14 missions ≥ 800 assets), inventory included. Contractual commitment: prorated refund if we exceed by >15% without a client-side cause."
+        },
+        {
+          "q": "Can you operate in Restricted Distribution zones?",
+          "a": "Yes. 12 defence-cleared technicians, class-T2 transport, platform hosted on OVHcloud SecNumCloud, offline mode available for IGI 1300 sites."
+        },
+        {
+          "q": "How do you integrate with our existing CMDB?",
+          "a": "Native connectors for ServiceNow, Easyvista and Lansweeper (read/write). REST API (OpenAPI 3.0) for other CMDBs. Automatic reconciliation with matching rules your CIO team can configure."
+        },
+        {
+          "q": "What happens if you shut down?",
+          "a": "Contractual business continuity plan: XBRL/PDF/CSV exports delivered within 72 hours, source code in escrow with APP (French software escrow), takeover partnership ready to activate with a tier-1 market player."
+        }
+      ]
     },
     "finalCTA": {
-      "title": "Ready to unify your ITAD?",
-      "subtitle": "Request a free audit and discover how GreenTechCycle can transform your IT asset management.",
-      "cta": "Request a free audit"
+      "eyebrow": "Next step",
+      "title": "Decommission without risk on your next fleet refresh.",
+      "subtitle": "Free audit of your end-of-life IT fleet (within 48 business hours) or a 30-minute demo — your choice. You speak to a senior engineer, never to a BDR.",
+      "cta1": "Request the free audit",
+      "cta2": "Book the 30-min demo",
+      "trustBadges": [
+        "GDPR compliant",
+        "SecNumCloud-ready",
+        "ISO 27001:2022",
+        "R2v3 · NIST 800-88",
+        "Reply < 4 business hours"
+      ]
     }
   },
   "Services": {

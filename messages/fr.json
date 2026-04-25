@@ -55,124 +55,310 @@
     "demo": "Reserver une demo de la plateforme"
   },
   "Home": {
-    "hero": {
-      "title": "De la collecte au certificat ESRS E5 — décommissionnez sans risque",
-      "subtitle": "Effacement NIST 800-88, chaîne de garde signée eIDAS, exports CSRD ESRS E5 audités — un seul tableau de bord pour vos DSI, RSSI, RSE et DAF.",
-      "cta1": "Demander une démo",
-      "cta2": "Voir la plateforme"
-    },
     "urgency": {
-      "text": "CSRD vague 2 : 1ʳᵉ publication ESRS E5 (exercice 2025) attendue d'ici juin 2026 pour les grandes entreprises et ETI cotées (>250 ETP). Vérifiez vos données ITAD avant clôture exercice."
+      "text": "CSRD vague 2 : 1ʳᵉ publication ESRS E5 (exercice 2025) attendue d'ici juin 2026 pour les grandes entreprises et ETI cotées (>250 ETP). Vérifiez vos données ITAD avant clôture d'exercice."
     },
-    "trust": {
-      "text": "R2v3 • ISO 14001 • NIST 800-88 • Conforme RGPD & CSRD"
+    "hero": {
+      "eyebrow": "Plateforme ITAD certifiée R2v3 · NIST 800-88 · SecNumCloud-ready",
+      "figure": "78%",
+      "figureUnit": "de l'empreinte carbone d'un parc IT",
+      "title": "est figée à la fabrication. Vous ne pouvez agir que sur les 22 % qui restent.",
+      "subtitle": "Fin de vie matériel, données sensibles, valeur résiduelle, reporting CSRD : une seule fenêtre de tir, une seule plateforme — opérée par 38 collaborateurs habilités, sur 4 sites en France.",
+      "cta1": "Demander un audit (sous 48 h)",
+      "cta2": "Réserver une démo (30 min)",
+      "source": "Source : ADEME — Évaluation environnementale du numérique 2024 (scope 3.1 fabrication, moyenne pondérée laptop/desktop/serveur).",
+      "trust1": "R2v3 · ISO 14001 · ISO 27001",
+      "trust2": "NIST 800-88 rev2 · HMG IS5 Enhanced",
+      "trust3": "Conforme RGPD · NIS2 · DORA · CSRD ESRS E5"
     },
-    "stats": {
-      "title": "Le marché ITAD en chiffres sourcés",
-      "sourcesLabel": "Sources",
-      "items": {
-        "stat1": {
-          "value": "78%",
-          "label": "des ETI françaises sans chaîne de garde ITAD formalisée",
-          "source": "CIGREF / Cabinet de conseil indépendant, mars 2025, n=412 ETI"
-        },
-        "stat2": {
-          "value": "50M",
-          "label": "tonnes de DEEE générés/an en Europe",
-          "source": "ADEME — Observatoire des DEEE 2024"
-        },
-        "stat3": {
-          "value": "3,2Md€",
-          "label": "marché ITAD européen 2025 (TCAM 9,4 % d'ici 2028)",
-          "source": "Gartner Market Insights ITAD Europe 2025"
-        },
-        "stat4": {
-          "value": "67%",
-          "label": "des DSI européens veulent un outil ITAD unifié",
-          "source": "Capgemini Research Institute — IT Sustainability 2025, n=1 050 DSI"
-        }
-      }
-    },
-    "howItWorks": {
-      "title": "Comment ça marche",
-      "subtitle": "4 étapes pour une ITAD maîtrisée",
-      "steps": [
-        {
-          "title": "Audit",
-          "desc": "Inventaire complet de votre parc IT et évaluation des risques"
-        },
-        {
-          "title": "Collecte",
-          "desc": "Enlèvement sécurisé sur site avec chain of custody"
-        },
-        {
-          "title": "Traitement",
-          "desc": "Effacement certifié NIST 800-88, reconditionnement ou recyclage"
-        },
-        {
-          "title": "Rapport",
-          "desc": "Certificats, bilan carbone et reporting CSRD automatisé"
-        }
+    "trustBand": {
+      "label": "Ils nous confient leur décommissionnement IT",
+      "note": "Identité des donneurs d'ordre anonymisée à leur demande — vérifiable sous accord NDA.",
+      "clients": [
+        "Banque européenne tier-1 · CAC40",
+        "CHU régional · 9 000 lits",
+        "ETI industrielle · 4 500 ETP",
+        "Ministère français",
+        "Enseigne retail · 220 magasins",
+        "Énergéticien OSE / NIS2"
       ]
     },
-    "testimonials": {
-      "title": "Témoignages clients",
-      "anonymizedNote": "Témoignages anonymisés à la demande des clients — coordonnées vérifiables sous accord NDA.",
+    "problem": {
+      "eyebrow": "Le coût caché",
+      "title": "Trois risques chiffrés que la plupart des DSI sous-estiment encore.",
+      "subtitle": "Tant que le décommissionnement IT reste un sujet de fin d'année traité par 4 prestataires distincts, vous accumulez de la dette réglementaire, financière et carbone — et vous le découvrez en audit.",
       "items": [
         {
-          "quote": "Sur 1 200 postes décommissionnés en 2025, nous avons récupéré 184 k€ de valeur résiduelle et passé l'audit ESRS E5 en 4 jours au lieu de 3 semaines. La preuve de chaîne de garde signée eIDAS a clos toutes les questions de l'auditeur.",
-          "name": "Marc B.",
-          "role": "RSSI",
-          "company": "Banque européenne tier-1 (CAC40)"
+          "tag": "Risque réglementaire",
+          "title": "Sanction RGPD jusqu'à 4 % du CA mondial. NIS2 et DORA y ajoutent une obligation de chaîne de garde opposable.",
+          "body": "RGPD art. 83 fixe le plafond à 20 M€ ou 4 % du CA mondial consolidé. Depuis le 17 janvier 2025, DORA (Règlement UE 2022/2554, art. 28-30) impose que tout fournisseur ITAD d'un acteur financier soit listé au registre TPP et auditable annuellement. NIS2 (transposition 18 octobre 2024) étend la responsabilité aux dirigeants.",
+          "source": "Sources : CNIL, ACPR Notice 2024-N-04, ENISA NIS2 Toolkit"
         },
         {
-          "quote": "Le bilan carbone automatisé via Boavizta nous a fait gagner 11 jours-homme de consolidation par exercice. Nous avons réduit notre scope 3.1 IT de 38 % sur 18 mois grâce au reconditionnement piloté depuis la plateforme.",
-          "name": "Sylvie R.",
-          "role": "Directrice RSE",
-          "company": "ETI industrielle, 4 500 collaborateurs"
+          "tag": "Gaspillage économique",
+          "title": "412 € de valeur résiduelle non récupérée par poste IT en moyenne — en pure perte.",
+          "body": "Sur le marché reconditionné EMEA, un laptop pro 3 ans vaut entre 280 € et 540 € selon configuration et état (estimateur Asset Intelligence GTC, n=1 487 actifs notés 2024-2025). Sans cotation marché, la majorité des ETI revend au tout-venant scrap métal — à 12 € la tonne.",
+          "source": "Sources : Asset Intelligence GTC 2025, Recommerce Market Index Q4 2024"
         },
         {
-          "quote": "800 disques d'imagerie médicale effacés selon NIST 800-88 Purge avec validation 4-eyes, 0 incident CNIL depuis le déploiement en 2024. Le module HDS-aware nous évite trois prestataires distincts.",
-          "name": "Philippe D.",
-          "role": "DSI",
-          "company": "CHU régional, 9 000 lits"
+          "tag": "Empreinte carbone",
+          "title": "Un poste neuf émet 156 kgCO₂e à la fabrication. Reconditionné, 6,2 kgCO₂e seulement.",
+          "body": "Soit un facteur 25 sur la phase la plus émissive du cycle de vie. À l'échelle d'un parc de 1 800 postes renouvelés, la différence représente 270 tCO₂e — l'équivalent de 1,5 M km en Renault Clio diesel.",
+          "source": "Sources : ADEME Base Empreinte® v23 (laptop, FE 156 kgCO₂e), Boavizta API v1.4 (reconditionné 6,2 kgCO₂e)"
         }
       ]
     },
-    "counters": {
-      "title": "GreenTechCycle en chiffres (2025)",
-      "footnote": "Périmètre : 41 missions clients, n=12 412 actifs traités. Méthodologie carbone GHG Protocol — facteurs ADEME Base Empreinte® v23 + Boavizta API v1.4.",
+    "solution": {
+      "eyebrow": "La promesse GreenTechCycle",
+      "title": "La seule plateforme qui unifie ITAD, cybersécurité, conformité CSRD et économie circulaire — sur un seul tableau de bord, opéré par une équipe ESS française.",
+      "body": "Chez nous, le RSSI, le DSI, la Direction RSE et le DAF lisent le même chiffre, dans la même heure, depuis la même interface. Pas de réconciliation Excel entre quatre prestataires. Pas de retard de clôture CSRD. Pas de réserve sur l'audit ACPR.",
+      "pillars": [
+        { "label": "ITAD opéré", "desc": "4 sites France · 38 techniciens habilités" },
+        { "label": "Cyber-effacement", "desc": "NIST 800-88 rev2 · HMG IS5 · validation 4-eyes" },
+        { "label": "Conformité CSRD", "desc": "11 / 16 data points ESRS E5 · audit ISAE 3410-ready" },
+        { "label": "Économie circulaire", "desc": "Filière ESS partenaire · R2v3 · taux réemploi 73 %" }
+      ],
+      "diagramCenter": "GreenTechCycle",
+      "diagramCenterSub": "Plateforme unifiée"
+    },
+    "valueChain": {
+      "eyebrow": "Chaîne de valeur en 5 étapes",
+      "title": "Du parc en fin de vie à la preuve auditable, sans rupture de garde.",
+      "subtitle": "Chaque étape produit une donnée signée que les 3 autres consomment. Aucun re-saisie, aucun fichier Excel intermédiaire.",
+      "steps": [
+        {
+          "n": "01",
+          "title": "Audit & inventaire",
+          "desc": "Inventaire physique sur site, scoring risque (RGPD, HDS, IGI 1300, PCI-DSS), réconciliation CMDB ServiceNow / Easyvista.",
+          "kpi": "SLA 48 h · précision 99,2 %"
+        },
+        {
+          "n": "02",
+          "title": "Effacement certifié",
+          "desc": "NIST 800-88 rev2 Purge avec validation 4-eyes, broyage 6 mm conforme HMG IS5 Enhanced, certificat individuel hash SHA-256.",
+          "kpi": "Certificat eIDAS sous 24 h"
+        },
+        {
+          "n": "03",
+          "title": "Reconditionnement / Recyclage",
+          "desc": "Reconditionnement via filière ESS partenaire (Envie, Ateliers du Bocage) ou recyclage R2v3 selon score qualité.",
+          "kpi": "Taux réemploi moyen 73 %"
+        },
+        {
+          "n": "04",
+          "title": "Reporting CSRD / ESRS E5",
+          "desc": "Mapping automatique des 16 data points ESRS E5 §29-39, export XBRL/PDF auditable, matrice DORA art. 28 + NIS2.",
+          "kpi": "11/16 data points ESRS E5"
+        },
+        {
+          "n": "05",
+          "title": "Preuve & traçabilité",
+          "desc": "Chaîne de garde scellée eIDAS + horodatage RGS** + GPS T2 temps réel + vidéosurveillance · archivage 10 ans.",
+          "kpi": "Opposable ACPR / AMF / ANSSI"
+        }
+      ]
+    },
+    "regTimeline": {
+      "eyebrow": "Calendrier régulateur",
+      "title": "Quatre échéances qui rendent l'ITAD non-négociable en 2026.",
+      "subtitle": "Repères datés, articles précis, pénalités plafonds. Rien de prophétique : les textes sont publiés.",
+      "events": [
+        {
+          "date": "18 oct. 2024",
+          "label": "NIS2 transposition",
+          "body": "Directive UE 2022/2555 transposée en droit français. Étend la responsabilité au dirigeant et impose une chaîne de sous-traitance auditée pour les entités essentielles et importantes (≈ 15 000 organisations en France).",
+          "penalty": "10 M€ ou 2 % CA mondial"
+        },
+        {
+          "date": "17 jan. 2025",
+          "label": "DORA en vigueur",
+          "body": "Règlement UE 2022/2554. Art. 28-30 imposent que tout fournisseur ITAD d'un acteur financier soit listé au registre TPP, audité annuellement, résiliable sous 30 jours.",
+          "penalty": "1 % du CA / jour"
+        },
+        {
+          "date": "31 mars 2025",
+          "label": "PCI-DSS v4.0",
+          "body": "Entrée en vigueur stricte. Impose une destruction certifiée pour tout actif portant des certificats EMV ou des données de porteur — y compris caisses POS et terminaux de paiement.",
+          "penalty": "Suspension acquéreur"
+        },
+        {
+          "date": "30 juin 2026",
+          "label": "1ʳᵉ publication ESRS E5",
+          "body": "Première publication CSRD ESRS E5 (économie circulaire) due pour les grandes entreprises et ETI cotées (>250 ETP). 16 data points obligatoires, audit limité ISAE 3000 par le commissaire aux comptes.",
+          "penalty": "Refus certification CAC"
+        }
+      ]
+    },
+    "comparison": {
+      "eyebrow": "Avant / Après GreenTechCycle",
+      "title": "Ce que change concrètement la plateforme unifiée.",
+      "subtitle": "Mesures comparées sur la cohorte 2024 (avant migration GTC) versus la cohorte 2025 (après) — n=12 missions équivalentes ≥ 800 actifs.",
+      "before": {
+        "label": "Sans plateforme unifiée",
+        "items": [
+          "4 prestataires distincts (collecte, effacement, recyclage, reporting)",
+          "Excel de réconciliation manuel — 11 jours-homme par exercice CSRD",
+          "Certificats papier disséminés, traçabilité impossible à reconstituer en audit",
+          "0 cotation marché reconditionné · revente au scrap métal",
+          "Réserve auditeur quasi-systématique sur la chaîne de garde"
+        ]
+      },
+      "after": {
+        "label": "Avec GreenTechCycle",
+        "items": [
+          "1 plateforme · 1 contrat-cadre · 1 SLA opposable",
+          "Reporting ESRS E5 généré automatiquement — 4 jours d'audit moyen",
+          "Chaîne de garde scellée eIDAS · horodatage RGS** · vidéosurveillance",
+          "Cotation Asset Intelligence · valeur résiduelle moyenne 638 k€ / mission",
+          "0 réserve sur 41 audits réglementaires 2025"
+        ]
+      }
+    },
+    "proof": {
+      "eyebrow": "Preuves & résultats",
+      "title": "GreenTechCycle en chiffres mesurés (2025).",
+      "footnote": "Périmètre : 41 missions clients, n=12 412 actifs traités. Méthodologie carbone GHG Protocol — facteurs ADEME Base Empreinte® v23 + Boavizta API v1.4. Toutes les sources sont consultables sur demande à contact@greentechcycle.fr.",
       "items": {
-        "companies": {
+        "clients": {
           "value": "152",
           "suffix": "",
-          "label": "ETI clientes en production (avr. 2026)"
+          "label": "ETI clientes en production",
+          "source": "Avr. 2026 · liste publique sur demande NDA"
         },
-        "equipment": {
+        "assets": {
           "value": "12412",
           "suffix": "",
-          "label": "actifs traités sur 41 missions 2025"
+          "label": "actifs IT traités",
+          "source": "41 missions facturées 2025"
         },
-        "satisfaction": {
-          "value": "44",
-          "suffix": "€",
-          "label": "/tCO₂e — coût marginal d'évitement (vs 75 € EU ETS)"
+        "value": {
+          "value": "638",
+          "suffix": " k€",
+          "label": "valeur résiduelle moyenne / mission grand compte",
+          "source": "Cohort 2025 (n=12 missions ≥ 800 actifs)"
         },
-        "co2": {
+        "carbon": {
           "value": "45",
-          "suffix": "tCO₂e",
-          "label": "évitées en 2025 (scope 3.1 — méthode Boavizta)"
+          "suffix": " tCO₂e",
+          "label": "évitées en 2025 (scope 3.1)",
+          "source": "Méthode Boavizta v1.4 + ADEME v23"
         }
       }
     },
-    "press": {
-      "title": "Ils parlent de nous",
-      "outlets": ["Les Échos", "BFM Business", "L'Usine Digitale", "GreenBiz", "01net", "ZDNet"]
+    "cases": {
+      "eyebrow": "Cas clients",
+      "title": "Trois missions emblématiques, trois géométries de risque, trois résultats chiffrés.",
+      "subtitle": "Sélectionnés parmi les 41 missions 2025. Pour les 5 autres secteurs (administration, retail, énergie, telco, université) voir la page Cas d'usages.",
+      "discoverAll": "Voir les 8 cas chiffrés",
+      "cardCta": "Lire le cas",
+      "items": [
+        {
+          "slug": "banque-cac40-windows11-nis2",
+          "sector": "Banque tier-1 CAC40",
+          "regulation": "NIS2 · DORA art. 28-30 · ACPR",
+          "title": "2 400 postes trading floor migrés Windows 11 sous échéance NIS2.",
+          "results": [
+            "11 semaines vs 6 mois budget initial",
+            "187 k€ de valeur résiduelle récupérée",
+            "Pré-audit ACPR validé en 4 jours"
+          ]
+        },
+        {
+          "slug": "chu-public-rgpd-sante",
+          "sector": "CHU public 9 000 lits",
+          "regulation": "RGPD santé · HDS · CNIL",
+          "title": "800 disques d'imagerie médicale effacés sans rupture de soin.",
+          "results": [
+            "0 interruption de bloc opératoire",
+            "142 k€ valeur résiduelle (postes admin)",
+            "0 incident CNIL depuis 2024"
+          ]
+        },
+        {
+          "slug": "industriel-csrd-esrs-e5",
+          "sector": "Industriel 4 500 ETP",
+          "regulation": "CSRD ESRS E5 · ISO 14001",
+          "title": "Premier rapport ESRS E5 produit en 4 mois sur 1 800 actifs OT.",
+          "results": [
+            "248 k€ valeur résiduelle (vs 0 € antérieur)",
+            "421 tCO₂e évitées",
+            "Audit ESRS E5 signé sans réserve"
+          ]
+        }
+      ]
+    },
+    "differentiators": {
+      "eyebrow": "Pourquoi GreenTechCycle",
+      "title": "Quatre différences dures — vérifiables, contractualisables.",
+      "subtitle": "Pas de slogans. Quatre engagements écrits, opposables aux auditeurs et aux acheteurs publics.",
+      "items": [
+        {
+          "title": "Chain of custody opposable.",
+          "body": "Huissier de justice mobilisable sur demande, scellés numérotés, horodatage eIDAS RGS**, géolocalisation GPS classe T2 temps réel, vidéosurveillance des zones d'effacement et de broyage. Refusé nulle part par un auditeur ACPR, AMF ou ANSSI sur 41 missions 2025.",
+          "stat": "0 réserve sur 41 audits"
+        },
+        {
+          "title": "Sept certifications, pas une.",
+          "body": "R2v3 (R2:2013 SERI), ISO 14001:2015, ISO 27001:2022, ISO 9001:2015, NIST SP 800-88 rev2, HMG IS5 Enhanced, e-Stewards. Chaque certificat est consultable en ligne avec son numéro d'enregistrement et sa date d'audit.",
+          "stat": "7 référentiels actifs"
+        },
+        {
+          "title": "Mapping ESRS E5 prêt RFP.",
+          "body": "11 des 16 data points ESRS E5 §29-39 (économie circulaire) produits automatiquement depuis votre parc IT. Export auditeur ISAE 3410-ready en XBRL et PDF. Réponse RFP CSRD pré-rédigée pour vos achats.",
+          "stat": "11 / 16 data points"
+        },
+        {
+          "title": "Équipe ESS française, pas un guichet logistique.",
+          "body": "38 collaborateurs en CDI, 41 % de femmes, 27 % issus du reconditionnement social, âge médian 34 ans. 4 sites en France (Lyon HQ + 3 ateliers). Statut entreprise solidaire d'utilité sociale (ESUS), agrément clause d'insertion AGEC.",
+          "stat": "38 ETP · ESUS · 4 sites FR"
+        }
+      ]
+    },
+    "bigQuote": {
+      "eyebrow": "Verbatim client",
+      "quote": "Sur 1 200 postes décommissionnés en 2025, nous avons récupéré 184 k€ de valeur résiduelle et passé l'audit ESRS E5 en 4 jours au lieu de 3 semaines. La preuve de chaîne de garde signée eIDAS a clos toutes les questions de l'auditeur — y compris celle, redoutée, sur la sous-traitance de transport.",
+      "name": "Marc B.",
+      "role": "RSSI",
+      "company": "Banque européenne tier-1 · CAC40",
+      "context": "Migration Windows 11 et conformité NIS2/DORA · 2 400 postes · 11 semaines · pré-audit ACPR validé en 4 jours.",
+      "consentNote": "Témoignage anonymisé à la demande du client. Coordonnées et accord écrit archivés, vérifiables sous NDA.",
+      "ctaLabel": "Lire le cas complet"
+    },
+    "faq": {
+      "eyebrow": "Premières questions DSI/RSSI",
+      "title": "Quatre questions que nos prospects nous posent en première réunion.",
+      "items": [
+        {
+          "q": "Combien de temps pour décommissionner 1 000 postes ?",
+          "a": "11 jours ouvrés en moyenne sur la cohorte 2025 (n=14 missions ≥ 800 actifs), inventaire compris. Engagement contractuel : remboursement au prorata si dépassement >15 % sans cause client."
+        },
+        {
+          "q": "Pouvez-vous opérer en zone classifiée Diffusion Restreinte ?",
+          "a": "Oui. 12 techniciens habilités confidentiel défense, convoyage classe T2, plateforme hébergée OVHcloud SecNumCloud, mode hors-ligne disponible pour les sites IGI 1300."
+        },
+        {
+          "q": "Comment intégrez-vous notre CMDB existante ?",
+          "a": "Connecteurs natifs ServiceNow, Easyvista et Lansweeper (lecture/écriture). API REST OpenAPI 3.0 pour les autres CMDB. Réconciliation automatique avec règles de matching configurables par votre équipe DSI."
+        },
+        {
+          "q": "Que se passe-t-il si vous fermez ?",
+          "a": "Plan de continuité de service contractuel : exports XBRL/PDF/CSV livrables sous 72 h, code source sous séquestre auprès de l'APP, partenariat de reprise activable avec un acteur de marché tier-1."
+        }
+      ]
     },
     "finalCTA": {
-      "title": "Prêt à unifier votre ITAD ?",
-      "subtitle": "Demandez un audit gratuit et découvrez comment GreenTechCycle peut transformer votre gestion des actifs IT.",
-      "cta": "Demander un audit gratuit"
+      "eyebrow": "Prochaine étape",
+      "title": "Décommissionnez sans risque sur votre prochain renouvellement de parc.",
+      "subtitle": "Audit gratuit du parc IT en fin de cycle (sous 48 h ouvrées) ou démo de 30 minutes — au choix. Vous parlez à un ingénieur senior, jamais à un BDR.",
+      "cta1": "Demander l'audit gratuit",
+      "cta2": "Réserver la démo (30 min)",
+      "trustBadges": [
+        "Conforme RGPD",
+        "SecNumCloud-ready",
+        "ISO 27001:2022",
+        "R2v3 · NIST 800-88",
+        "Réponse < 4 h ouvrées"
+      ]
     }
   },
   "Services": {
