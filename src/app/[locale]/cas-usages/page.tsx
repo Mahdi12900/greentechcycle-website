@@ -6,48 +6,69 @@ import { Link } from "@/i18n/navigation";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
 import {
   ArrowRight,
-  Monitor,
-  ShieldAlert,
-  FileBarChart,
   Building2,
-  Banknote,
-  Lock,
-  Cpu,
+  Heart,
+  Factory,
+  Landmark,
+  ShoppingCart,
+  Zap,
+  Radio,
+  GraduationCap,
   Users,
+  Quote,
+  Target,
+  AlertTriangle,
   CheckCircle2,
-  X,
-  Lightbulb,
+  BarChart3,
 } from "lucide-react";
+import CtaSection from "@/components/CtaSection";
+import type { ComponentType } from "react";
 
-const caseIcons = [Monitor, ShieldAlert, FileBarChart, Building2, Banknote, Lock, Cpu];
+type CaseData = {
+  id: string;
+  sectorBadge: string;
+  regulation: string;
+  title: string;
+  context: string;
+  problem: string;
+  stakeholders: string;
+  solution: string;
+  results: string;
+  testimonialQuote: string;
+  testimonialRole: string;
+  ctaSlug: string;
+};
+
+const caseIcons: ComponentType<{ className?: string }>[] = [
+  Building2, Heart, Factory, Landmark, ShoppingCart, Zap, Radio, GraduationCap,
+];
+
 const caseColors = [
-  "bg-blue-500/10 text-blue-600",
-  "bg-red-500/10 text-red-600",
-  "bg-emerald-500/10 text-emerald-600",
-  "bg-purple-500/10 text-purple-600",
-  "bg-amber-500/10 text-amber-600",
-  "bg-indigo-500/10 text-indigo-600",
-  "bg-teal-500/10 text-teal-600",
+  "bg-blue-500/10 text-blue-600 border-blue-200",
+  "bg-red-500/10 text-red-600 border-red-200",
+  "bg-amber-500/10 text-amber-600 border-amber-200",
+  "bg-purple-500/10 text-purple-600 border-purple-200",
+  "bg-teal-500/10 text-teal-600 border-teal-200",
+  "bg-emerald-500/10 text-emerald-600 border-emerald-200",
+  "bg-indigo-500/10 text-indigo-600 border-indigo-200",
+  "bg-pink-500/10 text-pink-600 border-pink-200",
 ];
 
 export default function UseCasesPage() {
   const t = useTranslations("UseCases");
-  const ts = useTranslations("Sectors.common");
 
-  const cases = t.raw("cases") as Array<{
-    id: string;
-    tag: string;
-    title: string;
-    scenario: string;
-    stakeholders: string;
-    solution: string;
-  }>;
-
-  const comparisonRows = t.raw("unified.comparison.rows") as Array<{
-    criteria: string;
-    fragmented: string;
-    gtc: string;
-  }>;
+  const cases = t.raw("cases") as CaseData[];
+  const labels = {
+    sector: t("labels.sector"),
+    regulation: t("labels.regulation"),
+    context: t("labels.context"),
+    problem: t("labels.problem"),
+    stakeholders: t("labels.stakeholders"),
+    solution: t("labels.solution"),
+    results: t("labels.results"),
+    testimonial: t("labels.testimonial"),
+    discussCase: t("labels.discussCase"),
+  };
 
   return (
     <main className="min-h-screen">
@@ -55,80 +76,107 @@ export default function UseCasesPage() {
       <section className="relative py-24 lg:py-32 overflow-hidden">
         <Image
           src="/images/unsplash/two-engineers.jpg"
-          alt="Deux ingénieurs GreenTechCycle analysant un cas d'usage client"
+          alt="Consultants GreenTechCycle analysant des cas d'usages ITAD"
           fill
           priority
           className="object-cover"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-[#047857]/90 via-[#047857]/85 to-[#1E40AF]/90" />
-        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5" />
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
                 {t("hero.title")}
               </h1>
-              <p className="text-xl md:text-2xl text-white/80 leading-relaxed">
+              <p className="text-xl md:text-2xl text-white/80 leading-relaxed mb-10">
                 {t("hero.subtitle")}
               </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-[#047857] font-semibold px-8 py-4 rounded-xl hover:bg-gray-100 transition-all"
+                >
+                  {t("hero.cta")}
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+                <Link
+                  href="/contact?ref=usecase-unlisted"
+                  className="inline-flex items-center justify-center gap-2 border-2 border-white/40 hover:border-white/80 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-all backdrop-blur-sm"
+                >
+                  {t("hero.ctaSecondary")}
+                </Link>
+              </div>
             </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* Use Cases */}
+      {/* Cases */}
       <section className="py-20 lg:py-28">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto space-y-16">
             {cases.map((useCase, index) => {
-              const Icon = caseIcons[index] || Monitor;
-              const color = caseColors[index] || caseColors[0];
+              const Icon = caseIcons[index % caseIcons.length];
+              const color = caseColors[index % caseColors.length];
               return (
                 <FadeIn key={useCase.id}>
-                  <div
+                  <article
                     id={useCase.id}
                     className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden"
                   >
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-gray-50 to-white px-8 py-6 border-b border-gray-100">
-                      <div className="flex items-center gap-4">
-                        <div className={`w-12 h-12 rounded-xl ${color} flex items-center justify-center`}>
-                          <Icon className="w-6 h-6" />
+                    <div className="bg-gradient-to-r from-gray-50 to-white px-6 md:px-8 py-5 border-b border-gray-100">
+                      <div className="flex flex-wrap items-center gap-3 mb-2">
+                        <div className={`w-10 h-10 rounded-xl ${color.split(" ").slice(0, 2).join(" ")} flex items-center justify-center`}>
+                          <Icon className="w-5 h-5" />
                         </div>
-                        <div>
-                          <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-1">
-                            {useCase.tag}
-                          </span>
-                          <h2 className="text-xl md:text-2xl font-bold text-dark">
-                            {useCase.title}
-                          </h2>
-                        </div>
+                        <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+                          {useCase.sectorBadge}
+                        </span>
+                        <span className="inline-flex items-center px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold">
+                          {useCase.regulation}
+                        </span>
                       </div>
+                      <h2 className="text-lg md:text-xl font-bold text-[#0F172A]">
+                        {useCase.title}
+                      </h2>
                     </div>
 
-                    <div className="p-8 space-y-6">
-                      {/* Scenario */}
+                    <div className="p-6 md:p-8 space-y-6">
+                      {/* Context */}
                       <div>
-                        <h3 className="text-sm font-semibold text-dark/50 uppercase tracking-wider mb-2">
-                          {ts("scenarioLabel")}
+                        <h3 className="text-xs font-semibold text-[#0F172A]/50 uppercase tracking-wider mb-2 flex items-center gap-2">
+                          <Target className="w-4 h-4" />
+                          {labels.context}
                         </h3>
-                        <p className="text-gray-700 leading-relaxed">
-                          {useCase.scenario}
+                        <p className="text-gray-700 leading-relaxed text-sm">
+                          {useCase.context}
+                        </p>
+                      </div>
+
+                      {/* Problem */}
+                      <div className="bg-red-50/50 rounded-xl p-5 border border-red-100">
+                        <h3 className="text-xs font-semibold text-red-600 uppercase tracking-wider mb-2 flex items-center gap-2">
+                          <AlertTriangle className="w-4 h-4" />
+                          {labels.problem}
+                        </h3>
+                        <p className="text-gray-700 leading-relaxed text-sm">
+                          {useCase.problem}
                         </p>
                       </div>
 
                       {/* Stakeholders */}
                       <div>
-                        <h3 className="text-sm font-semibold text-dark/50 uppercase tracking-wider mb-2 flex items-center gap-2">
+                        <h3 className="text-xs font-semibold text-[#0F172A]/50 uppercase tracking-wider mb-2 flex items-center gap-2">
                           <Users className="w-4 h-4" />
-                          {ts("stakeholders")}
+                          {labels.stakeholders}
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {useCase.stakeholders.split(", ").map((s, i) => (
                             <span
                               key={i}
-                              className="inline-flex items-center px-3 py-1 rounded-full bg-secondary/5 text-secondary text-sm font-medium border border-secondary/10"
+                              className="inline-flex items-center px-3 py-1 rounded-full bg-secondary/5 text-secondary text-xs font-medium border border-secondary/10"
                             >
                               {s}
                             </span>
@@ -137,17 +185,57 @@ export default function UseCasesPage() {
                       </div>
 
                       {/* Solution */}
-                      <div className="bg-accent/5 rounded-xl p-6 border border-accent/10">
-                        <h3 className="text-sm font-semibold text-accent uppercase tracking-wider mb-2 flex items-center gap-2">
-                          <Lightbulb className="w-4 h-4" />
-                          Avec GreenTechCycle
+                      <div className="bg-accent/5 rounded-xl p-5 border border-accent/10">
+                        <h3 className="text-xs font-semibold text-accent uppercase tracking-wider mb-2 flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4" />
+                          {labels.solution}
                         </h3>
-                        <p className="text-gray-700 leading-relaxed">
+                        <p className="text-gray-700 leading-relaxed text-sm">
                           {useCase.solution}
                         </p>
                       </div>
+
+                      {/* Results */}
+                      <div className="bg-[#047857]/5 rounded-xl p-5 border border-[#047857]/15">
+                        <h3 className="text-xs font-semibold text-[#047857] uppercase tracking-wider mb-3 flex items-center gap-2">
+                          <BarChart3 className="w-4 h-4" />
+                          {labels.results}
+                        </h3>
+                        <div className="grid sm:grid-cols-2 gap-2">
+                          {useCase.results.split(" · ").map((r, i) => (
+                            <div key={i} className="flex items-start gap-2">
+                              <CheckCircle2 className="w-4 h-4 text-[#047857] flex-shrink-0 mt-0.5" />
+                              <span className="text-sm text-gray-700 font-medium">{r}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Testimonial */}
+                      {useCase.testimonialQuote && (
+                        <div className="relative bg-[#F8FAFC] rounded-xl p-5 border border-gray-100">
+                          <Quote className="h-6 w-6 text-[#047857]/20 absolute top-4 right-4" aria-hidden="true" />
+                          <p className="text-gray-700 italic leading-relaxed text-sm mb-3">
+                            &ldquo;{useCase.testimonialQuote}&rdquo;
+                          </p>
+                          <p className="text-xs text-gray-500 font-medium">
+                            -- {useCase.testimonialRole}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* CTA */}
+                      <div className="pt-2">
+                        <Link
+                          href={`/contact?ref=usecase-${useCase.ctaSlug}`}
+                          className="inline-flex items-center gap-2 bg-[#047857] hover:bg-[#059669] text-white font-semibold px-6 py-3 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg text-sm"
+                        >
+                          {labels.discussCase}
+                          <ArrowRight className="h-4 w-4" />
+                        </Link>
+                      </div>
                     </div>
-                  </div>
+                  </article>
                 </FadeIn>
               );
             })}
@@ -155,83 +243,17 @@ export default function UseCasesPage() {
         </div>
       </section>
 
-      {/* Unified Platform Comparison */}
-      <section className="py-20 lg:py-28 bg-light">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">
-                {t("unified.title")}
-              </h2>
-              <p className="text-xl text-dark/60">
-                {t("unified.subtitle")}
-              </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn>
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden">
-                {/* Table header */}
-                <div className="grid grid-cols-3 bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
-                  <div className="px-6 py-4 font-semibold text-dark text-sm">
-                    {t("unified.comparison.headers.criteria")}
-                  </div>
-                  <div className="px-6 py-4 font-semibold text-red-600 text-sm text-center bg-red-50/50">
-                    {t("unified.comparison.headers.fragmented")}
-                  </div>
-                  <div className="px-6 py-4 font-semibold text-accent text-sm text-center bg-accent/5">
-                    {t("unified.comparison.headers.gtc")}
-                  </div>
-                </div>
-
-                {/* Table rows */}
-                {comparisonRows.map((row, index) => (
-                  <div
-                    key={index}
-                    className={`grid grid-cols-3 ${index < comparisonRows.length - 1 ? "border-b border-gray-100" : ""}`}
-                  >
-                    <div className="px-6 py-4 text-sm font-medium text-dark">
-                      {row.criteria}
-                    </div>
-                    <div className="px-6 py-4 text-sm text-red-600/80 text-center bg-red-50/30 flex items-center justify-center gap-2">
-                      <X className="w-4 h-4 text-red-400 flex-shrink-0" />
-                      <span>{row.fragmented}</span>
-                    </div>
-                    <div className="px-6 py-4 text-sm text-accent text-center bg-accent/5 flex items-center justify-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0" />
-                      <span>{row.gtc}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-primary to-secondary">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="text-center max-w-2xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                {t("cta.title")}
-              </h2>
-              <p className="text-white/80 text-lg mb-8">
-                {t("cta.subtitle")}
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-accent hover:bg-accent-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-accent/25 hover:-translate-y-0.5"
-              >
-                {t("cta.button")}
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+      <CtaSection
+        title={t("cta.title")}
+        subtitle={t("cta.subtitle")}
+        primaryLabel={t("cta.button")}
+        primaryHref="/contact?ref=usecase-custom"
+        secondaryLabel={t("cta.secondaryButton")}
+        secondaryHref="/demo"
+        variant="contact"
+        tone="dark"
+      />
     </main>
   );
 }

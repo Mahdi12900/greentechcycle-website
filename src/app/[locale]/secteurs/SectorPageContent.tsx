@@ -12,36 +12,24 @@ import {
   Shield,
 } from "lucide-react";
 
-type SectorKey = "finance" | "sante" | "industrie" | "public";
+type SectorKey = "finance" | "sante" | "industrie" | "public" | "energie" | "retail";
 
-const sectorLinks: Record<SectorKey, { label: string; href: string }[]> = {
-  finance: [
-    { label: "Santé", href: "/secteurs/sante" },
-    { label: "Industrie", href: "/secteurs/industrie" },
-    { label: "Secteur public", href: "/secteurs/public" },
-  ],
-  sante: [
-    { label: "Finance", href: "/secteurs/finance" },
-    { label: "Industrie", href: "/secteurs/industrie" },
-    { label: "Secteur public", href: "/secteurs/public" },
-  ],
-  industrie: [
-    { label: "Finance", href: "/secteurs/finance" },
-    { label: "Santé", href: "/secteurs/sante" },
-    { label: "Secteur public", href: "/secteurs/public" },
-  ],
-  public: [
-    { label: "Finance", href: "/secteurs/finance" },
-    { label: "Santé", href: "/secteurs/sante" },
-    { label: "Industrie", href: "/secteurs/industrie" },
-  ],
-};
+const allSectors: { key: SectorKey; label: string; href: string }[] = [
+  { key: "finance", label: "Banque & Finance", href: "/secteurs/finance" },
+  { key: "sante", label: "Sante", href: "/secteurs/sante" },
+  { key: "industrie", label: "Industrie", href: "/secteurs/industrie" },
+  { key: "public", label: "Secteur public", href: "/secteurs/public" },
+  { key: "energie", label: "Energie", href: "/secteurs/energie" },
+  { key: "retail", label: "Retail", href: "/secteurs/retail" },
+];
 
 const sectorImages: Record<SectorKey, { src: string; alt: string }> = {
   finance: { src: "/images/servers.jpg", alt: "Infrastructure serveur pour le secteur financier" },
-  sante: { src: "/images/hospital.jpg", alt: "Environnement hospitalier et gestion IT santé" },
+  sante: { src: "/images/hospital.jpg", alt: "Environnement hospitalier et gestion IT sante" },
   industrie: { src: "/images/industry.jpg", alt: "Site industriel et gestion des actifs technologiques" },
-  public: { src: "/images/office.jpg", alt: "Administration publique et conformité IT" },
+  public: { src: "/images/office.jpg", alt: "Administration publique et conformite IT" },
+  energie: { src: "/images/datacenter.jpg", alt: "Infrastructure critique energetique et systemes OT" },
+  retail: { src: "/images/office.jpg", alt: "Point de vente retail et gestion des actifs IT" },
 };
 
 export default function SectorPageContent({ sector }: { sector: SectorKey }) {
@@ -51,7 +39,10 @@ export default function SectorPageContent({ sector }: { sector: SectorKey }) {
   const regulations = t.raw("regulations.items") as string[];
   const challenges = t.raw("challenges.items") as string[];
   const solutions = t.raw("solution.items") as string[];
-  const otherSectors = sectorLinks[sector];
+  const otherSectors = allSectors
+    .filter((s) => s.key !== sector)
+    .slice(0, 4)
+    .map((s) => ({ label: s.label, href: s.href }));
 
   return (
     <main className="min-h-screen">

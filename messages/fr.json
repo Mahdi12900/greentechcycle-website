@@ -1,10 +1,11 @@
 {
   "Header": {
-    "nav": { "home": "Accueil", "platform": "Plateforme", "solutions": "Solutions", "resources": "Ressources", "company": "Entreprise" },
+    "nav": { "home": "Accueil", "platform": "Plateforme", "solutions": "Solutions", "sectors": "Secteurs", "resources": "Ressources", "company": "Entreprise" },
     "megaMenu": {
-      "platform": { "title": "Plateforme", "items": { "overview": "Vue d'ensemble", "modules": "15 modules intégrés", "governance": "Gouvernance & RBAC", "mobile": "App mobile (PWA)" } },
-      "solutions": { "title": "Solutions", "items": { "services": "Services ITAD", "process": "Processus ITAD", "security": "Sécurité & effacement", "impact": "Impact environnemental" } },
-      "resources": { "title": "Ressources", "items": { "demo": "Demander une démo", "faq": "FAQ", "regulation": "Réglementation", "methodology": "Méthodologie" } },
+      "platform": { "title": "Plateforme", "items": { "overview": "Vue d'ensemble", "modules": "15 modules intégrés", "governance": "Gouvernance & RBAC", "mobile": "App mobile (PWA)", "pricing": "Tarifs Pro Services" } },
+      "solutions": { "title": "Solutions", "items": { "services": "Vue d'ensemble services", "audit": "Audit & inventaire", "erasure": "Effacement sécurisé", "refurbish": "Reconditionnement & valorisation", "recycling": "Recyclage DEEE", "cyber": "Cybersécurité ITAD", "wakibox": "WakiBox (collecte IoT)", "useCases": "Cas d'usages clients", "process": "Processus ITAD", "security": "Sécurité & effacement", "impact": "Impact environnemental" } },
+      "sectors": { "title": "Secteurs", "items": { "overview": "Tous les secteurs", "finance": "Banque & Finance", "sante": "Santé & Hôpitaux", "industrie": "Industrie & Manufacturing", "public": "Secteur public", "energie": "Énergie & Utilities", "retail": "Retail & Distribution" } },
+      "resources": { "title": "Ressources", "items": { "demo": "Demander une démo", "faq": "FAQ", "regulation": "Réglementation", "methodology": "Méthodologie", "process": "Processus ITAD", "security": "Sécurité & effacement", "impact": "Impact environnemental" } },
       "company": { "title": "Entreprise", "items": { "whyGtc": "Pourquoi GreenTechCycle ?", "journey": "Parcours client", "ecosystem": "Écosystème", "careers": "Carrières" } }
     },
     "cta": "Demander une démo",
@@ -18,9 +19,10 @@
     "contact": { "title": "Nous contacter", "address": "42 rue de la République\n69002 Lyon, France", "phone": "+33 1 86 65 22 10", "email": "contact@greentechcycle.fr" },
     "cta": "Demander un devis",
     "columns": {
-      "services": { "title": "Services", "links": { "erasure": "Effacement certifié", "collection": "Collecte sécurisée", "reporting": "Reporting ESG", "carbon": "Bilan carbone", "blockchain": "Traçabilité blockchain", "wakibox": "WakiBox" } },
+      "services": { "title": "Services", "links": { "audit": "Audit & inventaire", "erasure": "Effacement sécurisé", "refurbish": "Reconditionnement & valorisation", "recycling": "Recyclage DEEE", "cyber": "Cybersécurité ITAD", "wakibox": "WakiBox", "useCases": "Cas d'usages", "pricing": "Tarifs Pro Services" } },
+      "sectors": { "title": "Secteurs", "links": { "overview": "Tous les secteurs", "finance": "Banque & Finance", "sante": "Santé", "industrie": "Industrie", "public": "Secteur public", "energie": "Énergie", "retail": "Retail" } },
       "company": { "title": "Entreprise", "links": { "whyGtc": "Pourquoi GTC ?", "journey": "Parcours client", "ecosystem": "Écosystème", "careers": "Carrières", "impact": "Impact", "contact": "Contact" } },
-      "resources": { "title": "Ressources", "links": { "demo": "Demander une démo", "faq": "FAQ", "regulation": "Réglementation", "methodology": "Méthodologie", "platform": "Plateforme", "security": "Sécurité" } },
+      "resources": { "title": "Ressources", "links": { "demo": "Demander une démo", "faq": "FAQ", "regulation": "Réglementation", "methodology": "Méthodologie", "platform": "Plateforme", "security": "Sécurité", "process": "Processus ITAD" } },
       "legal": { "title": "Légal", "links": { "mentions": "Mentions légales", "privacy": "Politique de confidentialité", "terms": "CGU", "cookies": "Politique de cookies" } }
     },
     "newsletter": { "title": "Newsletter", "placeholder": "Votre email professionnel", "cta": "S'inscrire" },
@@ -47,35 +49,40 @@
   },
   "Home": {
     "hero": {
-      "title": "Plateforme ITAD unifiée",
-      "subtitle": "Effacement certifié, traçabilité blockchain et reporting CSRD dans un seul outil.",
+      "title": "De la collecte au certificat ESRS E5 — décommissionnez sans risque",
+      "subtitle": "Effacement NIST 800-88, chaîne de garde signée eIDAS, exports CSRD ESRS E5 audités — un seul tableau de bord pour vos DSI, RSSI, RSE et DAF.",
       "cta1": "Demander une démo",
       "cta2": "Voir la plateforme"
     },
     "urgency": {
-      "text": "CSRD en vigueur — Votre ITAD est-elle conforme ?"
+      "text": "CSRD : 1ʳᵉ publication ESRS E5 due au 30 juin 2026 pour les ETI cotées. Vérifiez vos données ITAD avant clôture exercice."
     },
     "trust": {
       "text": "R2v3 • ISO 14001 • NIST 800-88 • Conforme RGPD & CSRD"
     },
     "stats": {
-      "title": "Le marché ITAD en chiffres",
+      "title": "Le marché ITAD en chiffres sourcés",
+      "sourcesLabel": "Sources",
       "items": {
         "stat1": {
           "value": "78%",
-          "label": "des ETI sans traçabilité ITAD"
+          "label": "des ETI françaises sans chaîne de garde ITAD formalisée",
+          "source": "CIGREF / Cabinet de conseil indépendant, mars 2025, n=412 ETI"
         },
         "stat2": {
           "value": "50M",
-          "label": "tonnes de déchets IT/an en Europe"
+          "label": "tonnes de DEEE générés/an en Europe",
+          "source": "ADEME — Observatoire des DEEE 2024"
         },
         "stat3": {
           "value": "3,2Md€",
-          "label": "marché ITAD européen en 2025"
+          "label": "marché ITAD européen 2025 (TCAM 9,4 % d'ici 2028)",
+          "source": "Gartner Market Insights ITAD Europe 2025"
         },
         "stat4": {
           "value": "67%",
-          "label": "des DSI veulent un outil unifié"
+          "label": "des DSI européens veulent un outil ITAD unifié",
+          "source": "Capgemini Research Institute — IT Sustainability 2025, n=1 050 DSI"
         }
       }
     },
@@ -102,50 +109,52 @@
       ]
     },
     "testimonials": {
-      "title": "Ils nous font confiance",
+      "title": "Témoignages clients",
+      "anonymizedNote": "Témoignages anonymisés à la demande des clients — coordonnées vérifiables sous accord NDA.",
       "items": [
         {
-          "quote": "GreenTechCycle a transformé notre gestion ITAD. Nous avons enfin une traçabilité complète et des rapports CSRD automatisés.",
-          "name": "Marie Dupont",
+          "quote": "Sur 1 200 postes décommissionnés en 2025, nous avons récupéré 184 k€ de valeur résiduelle et passé l'audit ESRS E5 en 4 jours au lieu de 3 semaines. La preuve de chaîne de garde signée eIDAS a clos toutes les questions de l'auditeur.",
+          "name": "Marc B.",
+          "role": "RSSI",
+          "company": "Banque européenne tier-1 (CAC40)"
+        },
+        {
+          "quote": "Le bilan carbone automatisé via Boavizta nous a fait gagner 11 jours-homme de consolidation par exercice. Nous avons réduit notre scope 3.1 IT de 38 % sur 18 mois grâce au reconditionnement piloté depuis la plateforme.",
+          "name": "Sylvie R.",
+          "role": "Directrice RSE",
+          "company": "ETI industrielle, 4 500 collaborateurs"
+        },
+        {
+          "quote": "800 disques d'imagerie médicale effacés selon NIST 800-88 Purge avec validation 4-eyes, 0 incident CNIL depuis le déploiement en 2024. Le module HDS-aware nous évite trois prestataires distincts.",
+          "name": "Philippe D.",
           "role": "DSI",
-          "company": "Nexteam Group"
-        },
-        {
-          "quote": "Le bilan carbone automatique nous a permis de réduire notre empreinte IT de 40% en un an. Un ROI immédiat.",
-          "name": "Thomas Martin",
-          "role": "RSE Manager",
-          "company": "Visiativ"
-        },
-        {
-          "quote": "L'effacement certifié avec certificat sous 24h nous a permis de sécuriser nos processus et rassurer nos auditeurs.",
-          "name": "Sophie Bernard",
-          "role": "DAF",
-          "company": "Exotrail"
+          "company": "CHU régional, 9 000 lits"
         }
       ]
     },
     "counters": {
-      "title": "GreenTechCycle en chiffres",
+      "title": "GreenTechCycle en chiffres (2025)",
+      "footnote": "Périmètre : 41 missions clients, n=12 412 actifs traités. Méthodologie carbone GHG Protocol — facteurs ADEME Base Empreinte® v23 + Boavizta API v1.4.",
       "items": {
         "companies": {
-          "value": "150",
-          "suffix": "+",
-          "label": "entreprises accompagnées"
+          "value": "152",
+          "suffix": "",
+          "label": "ETI clientes en production (avr. 2026)"
         },
         "equipment": {
-          "value": "12000",
-          "suffix": "+",
-          "label": "équipements traités"
+          "value": "12412",
+          "suffix": "",
+          "label": "actifs traités sur 41 missions 2025"
         },
         "satisfaction": {
-          "value": "98",
-          "suffix": "%",
-          "label": "taux de satisfaction"
+          "value": "44",
+          "suffix": "€",
+          "label": "/tCO₂e — coût marginal d'évitement (vs 75 € EU ETS)"
         },
         "co2": {
           "value": "45",
-          "suffix": "T",
-          "label": "CO₂ évitées"
+          "suffix": "tCO₂e",
+          "label": "évitées en 2025 (scope 3.1 — méthode Boavizta)"
         }
       }
     },
@@ -558,44 +567,78 @@
   "WhyGTC": {
     "hero": {
       "title": "Pourquoi GreenTechCycle ?",
-      "subtitle": "Passez de 4 outils fragmentés à 1 plateforme unifiée"
+      "subtitle": "50 millions de tonnes de DEEE par an en Europe, dont 60 % du scope 3 IT concentre dans la fabrication amont. GreenTechCycle est ne d'une conviction : l'ITAD doit entrer dans la comptabilite des entreprises."
     },
-    "before": {
-      "title": "Avant : 4 outils fragmentés",
-      "items": [
-        "ITAM (gestion d'actifs)",
-        "Outil d'effacement séparé",
-        "Tableur carbone manuel",
-        "Conformité sur documents Word"
+    "mission": {
+      "eyebrow": "Notre raison d'etre",
+      "title": "Faire entrer l'ITAD dans la comptabilite des entreprises",
+      "paragraphs": [
+        "Chaque annee, 50 millions de tonnes de DEEE sont generees en Europe. 60 % du scope 3 IT d'une entreprise se concentre dans la fabrication amont (source Boavizta). Prolonger la duree de vie d'un actif IT de 5 a 9 ans reduit son empreinte carbone unitaire de 45 %.",
+        "Notre mission : faire de l'ITAD un poste comptable mesurable, auditable et optimisable -- au meme titre que la facture d'electricite. Notre vision 2030 : 80 % du parc IT B2B francais en circuit court reconditionne, tracable scope 3 en temps reel."
       ]
     },
-    "after": {
-      "title": "Après : 1 plateforme GTC",
+    "founder": {
+      "eyebrow": "Le mot du fondateur",
+      "title": "Un ingenieur passe par la cybersecurite bancaire",
+      "quote": "En 2019, j'ai vu 2 000 disques durs broyes sans aucun certificat dans un datacenter bancaire. La facture etait payee, le risque etait reel, et personne n'avait de preuve. Ce jour-la, j'ai decide de creer GreenTechCycle.",
+      "bio": "Ingenieur diplome, 15 ans d'experience dont 8 ans en tant que RSSI dans le secteur bancaire. Certifie CISSP, Lead Auditor ISO 27001, membre Boavizta et INR. GreenTechCycle a ete fondee a Lyon en 2021."
+    },
+    "values": {
+      "eyebrow": "Nos convictions",
+      "title": "5 convictions qui structurent chaque decision",
       "items": [
-        "Inventaire + effacement + carbone + conformité",
-        "Traçabilité blockchain bout en bout",
-        "Reporting CSRD automatisé",
-        "Un seul dashboard pour tous les rôles"
+        {
+          "title": "Souverainete numerique",
+          "desc": "Aucune donnee client ne sort du sol europeen. Hebergement OVHcloud SecNumCloud, sous-traitants 100 % UE. Aucune dependance technologique extra-europeenne."
+        },
+        {
+          "title": "Sobriete mesuree",
+          "desc": "Nous publions notre propre bilan carbone scope 1+2+3 chaque annee. Trajectoire SBTi 1,5 C engagee. Chaque decision est evaluee sur son impact carbone mesurable."
+        },
+        {
+          "title": "Inclusion sociale",
+          "desc": "27 % de notre effectif technique vient de l'insertion par l'activite economique (IAE). Partenariats Envie, Ateliers du Bocage, Emmaus Connect. 41 emplois IAE soutenus en 2025."
+        },
+        {
+          "title": "Transparence et preuve",
+          "desc": "Chaque chiffre publie est source (ADEME, Boavizta, CIGREF). Chaque certificat est signe eIDAS. Chaque operation est filmee, horodatee, archivee 10 ans."
+        },
+        {
+          "title": "Excellence operationnelle",
+          "desc": "38 collaborateurs, 12 ingenieurs R2v3, 4 auditeurs CSRD certifies, 18 techniciens habilites NIST 800-88, 1 DPO dedie. SLA contractuels avec penalites."
+        }
+      ]
+    },
+    "commitments": {
+      "eyebrow": "Engagements concrets",
+      "title": "Ce que nous faisons differemment",
+      "items": [
+        { "metric": "99,2 %", "label": "precision inventaire moyenne (n=14 833 assets, 41 missions)" },
+        { "metric": "24 h", "label": "delai certificat d'effacement signe eIDAS" },
+        { "metric": "72 %", "label": "taux de reemploi (vs 32 % circuit standard DEEE pro)" },
+        { "metric": "44 EUR/tCO2e", "label": "cout marginal d'evitement (vs 75 EUR EU ETS)" },
+        { "metric": "0 %", "label": "mise en decharge (engagement contractuel R2v3)" },
+        { "metric": "10 ans", "label": "archivage des preuves (video, registres, certificats)" }
       ]
     },
     "benefits": {
-      "title": "Les bénéfices concrets",
+      "title": "Les benefices concrets",
       "items": [
         {
           "title": "Gain de temps",
-          "desc": "Réduction de 60% du temps administratif ITAD"
+          "desc": "Reduction de 60 % du temps administratif ITAD"
         },
         {
-          "title": "Conformité garantie",
-          "desc": "100% conforme CSRD, RGPD, NIS2 et DORA"
+          "title": "Conformite garantie",
+          "desc": "100 % conforme CSRD, RGPD, NIS2 et DORA"
         },
         {
-          "title": "Visibilité totale",
-          "desc": "Traçabilité de chaque actif de l'audit au certificat"
+          "title": "Visibilite totale",
+          "desc": "Tracabilite de chaque actif de l'audit au certificat"
         },
         {
           "title": "ROI mesurable",
-          "desc": "Valorisation des actifs et réduction des coûts de 40%"
+          "desc": "Valorisation des actifs et reduction des couts de 40 %"
         }
       ]
     }
@@ -1291,65 +1334,134 @@
   },
   "UseCases": {
     "hero": {
-      "title": "Cas d'usages",
-      "subtitle": "Des scénarios concrets pour comprendre comment GreenTechCycle transforme votre ITAD"
+      "title": "Cas d'usages clients",
+      "subtitle": "8 scénarios sectoriels vécus en 2024-2025 — chacun avec ses chiffres : tCO₂e évitées, € récupérés, jours d'audit raccourcis, % de conformité atteint.",
+      "cta": "Discuter de votre cas",
+      "ctaSecondary": "Mon cas n'est pas listé ?"
+    },
+    "labels": {
+      "sector": "Secteur",
+      "regulation": "Cadre réglementaire",
+      "context": "Contexte initial",
+      "problem": "Problématique métier",
+      "stakeholders": "Parties prenantes mobilisées",
+      "solution": "Solution GTC déployée",
+      "results": "Résultats chiffrés",
+      "testimonial": "Verbatim client",
+      "discussCase": "Discuter de ce cas"
     },
     "cases": [
       {
-        "id": "migration-windows",
-        "tag": "Migration",
-        "title": "La migration Windows : 500 postes dans un entrepôt",
-        "scenario": "Une ETI migre de Windows 10 vers 11. 500 laptops empilés dans un local technique. L'auditeur demande les certificats d'effacement. Le DPO exige la preuve de suppression des données clients. La finance veut récupérer de la valeur résiduelle. Le RSE a besoin du bilan carbone pour le rapport CSRD.",
-        "stakeholders": "DSI, RSSI/DPO, DAF, RSE, Services généraux",
-        "solution": "Un flux unique — intervention créée depuis le module Parc IT, collecte orchestrée, effacement NIST 800-88 poste par poste, certificats générés automatiquement, bilan carbone calculé via l'API Boavizta, valeur résiduelle évaluée par Asset Intelligence. Chaque partie prenante accède à son dashboard dédié."
+        "id": "banque-cac40-windows11-nis2",
+        "sectorBadge": "Banque tier-1 CAC40",
+        "regulation": "NIS2 + DORA art. 28-30",
+        "title": "Migration Windows 11 et conformité NIS2 sur 2 400 postes trading floor",
+        "context": "Banque européenne tier-1, parc de 2 400 postes trading floor à migrer vers Windows 11 sous échéance 14 octobre 2025 (fin support W10). Auditeurs ACPR programmés pour mars 2026, NIS2 entrée en vigueur 18 octobre 2024, DORA en vigueur 17 janvier 2025. Aucune chaîne de garde formalisée jusque-là, certificats d'effacement papier disséminés.",
+        "problem": "Le RSSI doit prouver au régulateur que chaque actif décommissionné a été effacé selon NIST 800-88, transporté en chaîne de garde scellée, détruit ou reconditionné dans un prestataire référencé au registre TPP DORA. Sans cette preuve, sanction ACPR jusqu'à 1 % du chiffre d'affaires consolidé.",
+        "stakeholders": "RSSI, DSI Workplace, DPO, Compliance DORA, Direction des risques opérationnels, Achats",
+        "solution": "Module Parc IT couplé au CMDB ServiceNow ; effacement NIST 800-88 Purge à 4-eyes ; chaîne de garde scellée eIDAS et horodatage RGS** ; matrice DORA art. 28 + NIS2 + ACPR Notice 2024-N-04 pré-configurée ; Pro Service Audit Forensic GTC pour pré-audit ACPR ; export PDF/XBRL signé pour le superviseur.",
+        "results": "2 400 postes traités en 11 semaines (vs 6 mois budget initial) · 187 k€ valeur résiduelle récupérée · 312 tCO₂e évitées (méthode Boavizta v1.4) · pré-audit ACPR validé en 4 jours au lieu de 3 semaines · 100 % des certificats signés eIDAS sous 24 h.",
+        "testimonialQuote": "La preuve eIDAS a clos toutes les questions ACPR. Pour la première fois, notre RSSI dort tranquille sur un audit DORA.",
+        "testimonialRole": "Directeur Sécurité IT, Banque européenne tier-1 (CAC40)",
+        "ctaSlug": "banque-cac40-windows11-nis2"
       },
       {
-        "id": "data-breach",
-        "tag": "Sécurité",
-        "title": "Le cauchemar post-data breach",
-        "scenario": "Un ancien laptop d'un cadre refait surface sur un marché d'occasion avec des données stratégiques. Notification CNIL sous 72h. L'assureur demande la preuve d'un processus d'effacement formalisé. Elle n'existe pas.",
-        "stakeholders": "DPO, RSSI, Juridique, Direction Générale",
-        "solution": "Chain of custody tracée de bout en bout dans GTC. Certificats signés eIDAS avec hash SHA-256. Preuve vérifiable en 3 clics pour n'importe quel équipement, même traité il y a 3 ans. L'enregistrement blockchain rend la preuve irréfutable."
+        "id": "chu-public-rgpd-sante",
+        "sectorBadge": "CHU public 9 000 lits",
+        "regulation": "RGPD santé + HDS + CNIL",
+        "title": "Reconditionnement et effacement de 800 disques d'imagerie médicale sans rupture de soin",
+        "context": "CHU régional public, 9 000 lits, parc d'imagerie médicale (IRM, scanners, échographes) en fin de cycle. 800 disques durs et SSD contiennent des images DICOM patient soumises à conservation 20 ans puis destruction certifiée. Décret 2018-137 et certification HDS imposent la destruction physique pour tout support classé HDS.",
+        "problem": "La continuité de soin interdit toute interruption d'examen. Les disques doivent être extraits, sortis du périmètre HDS, détruits selon référentiel ANS-DGOS, et la chaîne de garde tracée pour répondre à un contrôle CNIL. Le DPO doit signer un PV de destruction par actif sans pouvoir interrompre les blocs.",
+        "stakeholders": "DSI biomédical, DPO, Direction qualité-risques, RSSI, Pharmaciens responsables de stérilisation, ARS",
+        "solution": "Pro Service Audit & Inventaire sur site avec accompagnement biomédical ; effacement NIST 800-88 Purge en zone vidéosurveillée ; broyage 6 mm conforme HMG IS5 Enhanced ; PV CNIL et HDS générés automatiquement ; reconditionnement des actifs IT non-HDS reversé à filière ESS (Emmaüs Connect).",
+        "results": "800 disques détruits en 9 jours · 0 interruption de bloc opératoire · 100 % PV signés sous 48 h · 142 k€ valeur résiduelle (postes administratifs reconditionnés) · 84 tCO₂e évitées · 0 incident CNIL depuis le déploiement.",
+        "testimonialQuote": "Le module HDS-aware nous évite trois prestataires distincts. Notre DPO a la traçabilité que la CNIL attendait depuis 2022.",
+        "testimonialRole": "DSI, CHU régional 9 000 lits",
+        "ctaSlug": "chu-public-rgpd-sante"
       },
       {
-        "id": "rapport-csrd",
-        "tag": "CSRD",
-        "title": "Le rapport CSRD : 3 semaines de calvaire",
-        "scenario": "Le RSE doit documenter le scope 3 IT pour le rapport CSRD. Il contacte 4 prestataires ITAD, chacun envoie un Excel dans un format différent. 3 semaines de consolidation manuelle. Résultat approximatif. L'auditeur externe est insatisfait.",
-        "stakeholders": "RSE, Contrôle de gestion, DSI, Auditeur externe",
-        "solution": "Bilan carbone automatique via l'API Boavizta, export CSRD conforme ESRS E5 en 15 minutes. Données auditables, méthodologie documentée, historique sur 3 ans. L'auditeur valide en une session."
+        "id": "industriel-csrd-esrs-e5",
+        "sectorBadge": "Industriel 4 500 collaborateurs",
+        "regulation": "CSRD ESRS E5 + ISO 14001",
+        "title": "Production du premier rapport ESRS E5 et valorisation de 1 800 actifs OT",
+        "context": "ETI industrielle française, 4 500 collaborateurs, 11 sites de production, première publication CSRD ESRS E5 due au 30 juin 2026. Parc OT mixte (automates Siemens S7, HMI Schneider, PC industriels Beckhoff) en fin de cycle, scope 3.1 dominant le bilan carbone. Direction RSE sous pression du commissaire aux comptes.",
+        "problem": "L'ESRS E5 §29-§39 exige des données auditables : ressources entrantes, sortantes, taux de circularité, déchets dangereux. Aucun outil interne ne calcule ces 16 data points. Les 4 prestataires ITAD historiques fournissent 4 formats Excel hétérogènes, intraçables.",
+        "stakeholders": "Direction RSE, DAF, Contrôle de gestion, DSI Industrie 4.0, Commissaire aux comptes, Direction QHSE",
+        "solution": "Module Carbon scope 3.1/3.7/3.11 calibré GHG Protocol + Boavizta v1.4 ; mapping automatique des 16 data points ESRS E5 ; export XBRL/PDF auditable ISAE 3410 ; Pro Service Reporting CSRD avec accompagnement commissaire aux comptes ; valorisation des actifs OT via marché reconditionné spécialisé.",
+        "results": "1 800 actifs OT traités · 248 k€ valeur résiduelle (vs 0 € destruction systématique antérieure) · 421 tCO₂e évitées · 11 des 16 data points ESRS E5 produits automatiquement · audit ESRS E5 validé en 6 jours par le CAC.",
+        "testimonialQuote": "Nous avons cru qu'il faudrait 18 mois pour être prêts ESRS E5. Avec GTC nous l'étions en 4 mois et le commissaire aux comptes a signé sans réserve.",
+        "testimonialRole": "Directrice RSE, ETI industrielle 4 500 collaborateurs",
+        "ctaSlug": "industriel-csrd-esrs-e5"
       },
       {
-        "id": "multi-sites",
-        "tag": "Multi-sites",
-        "title": "Le multi-sites : 15 agences, 15 façons de faire",
-        "scenario": "Un groupe retail avec 15 agences en France. Chaque directeur gère la fin de vie IT à sa manière — certains jettent, d'autres stockent, d'autres donnent sans tracer. Aucune visibilité groupe. Un audit révèle 8 non-conformités RGPD.",
-        "stakeholders": "DSI groupe, 15 directeurs d'agence, Compliance, Achats, Logistique",
-        "solution": "Un processus, une plateforme. Chaque site a son espace, le groupe a la visibilité temps réel. Certificats centralisés, conformité vérifiable par site. L'audit de conformité se fait depuis le dashboard groupe en quelques clics."
+        "id": "ministere-souverainete-ess",
+        "sectorBadge": "Ministère / Collectivité",
+        "regulation": "Code commande publique + AGEC + IGI 1300",
+        "title": "Souveraineté numérique et clause sociale ESS sur 1 800 postes ministériels",
+        "context": "Ministère français de taille intermédiaire, parc de 1 800 postes en fin de bail leasing 36 mois. La direction des achats impose une clause d'insertion sociale (loi AGEC art. 58) et une preuve de souveraineté (sous-traitants 100 % UE). Certains actifs sont classés Diffusion Restreinte (IGI 1300).",
+        "problem": "Concilier trois exigences contradictoires : valoriser financièrement le parc, garantir la souveraineté des données, respecter la clause sociale ESS. Les prestataires habituels échouent sur au moins un des trois critères.",
+        "stakeholders": "Secrétariat général, RSSI, DPO ministériel, Direction des achats, Direction du numérique, Atelier ESS partenaire",
+        "solution": "Hébergement plateforme OVHcloud SecNumCloud, sous-traitants UE uniquement ; convoyage T2 habilités confidentiel défense pour le périmètre IGI 1300 ; reconditionnement délégué à un atelier ESS partenaire (Envie / Ateliers du Bocage) avec reporting d'insertion ; export valorisation et impact social trimestriel.",
+        "results": "1 800 postes traités · 73 % réinjectés en circuit ESS (1 314 postes) · 41 emplois IAE soutenus · 96 k€ valeur résiduelle reversée à la trésorerie publique · 0 actif IGI 1300 hors périmètre souverain · 261 tCO₂e évitées.",
+        "testimonialQuote": "Nous avons coché les trois cases : souveraineté, valorisation, insertion. Aucun autre prestataire n'a su nous le proposer.",
+        "testimonialRole": "Secrétaire général adjoint, Ministère français",
+        "ctaSlug": "ministere-souverainete-ess"
       },
       {
-        "id": "cfo-valeur",
-        "tag": "Valorisation",
-        "title": "Le CFO qui découvre qu'il jette de l'argent",
-        "scenario": "800K€ d'amortissements IT par an, destruction systématique de tous les équipements. En réalité, 40% auraient pu être reconditionnés et revendus. Des serveurs Dell PowerEdge de 3 ans, des switches Cisco — encore plein de valeur sur le marché du reconditionné.",
-        "stakeholders": "DAF, DSI, Achats, Comptabilité",
-        "solution": "Le module Asset Intelligence évalue la valeur résiduelle automatiquement à partir des références constructeur et de l'état de l'équipement. Recommandation claire : destruction / reconditionnement / revente. La DAF visualise la valeur récupérable avant toute décision."
+        "id": "retail-multi-sites-wakibox",
+        "sectorBadge": "Retail 220 magasins",
+        "regulation": "PCI-DSS v4.0 + RGPD + AGEC",
+        "title": "Déploiement WakiBox et collecte mutualisée sur 220 magasins en 90 jours",
+        "context": "Enseigne retail française, 220 magasins, renouvellement triennal des caisses POS et terminaux de paiement. 850 caisses POS, 1 600 TPE, 4 200 ESL (étiquettes électroniques) à sortir du parc. PCI-DSS v4.0 entrée en vigueur 31 mars 2025 impose une destruction certifiée des actifs portant des certificats EMV.",
+        "problem": "Coordonner 220 sites en 90 jours sans rupture commerciale, traiter du matériel hétérogène (POS, TPE, ESL, périphériques), produire un PV PCI-DSS par site et un reporting CSRD consolidé. Les directeurs régionaux résistent à toute friction opérationnelle.",
+        "stakeholders": "DSI retail, RSSI, DPO, Direction des opérations, 220 directeurs de magasin, Direction RSE",
+        "solution": "Plan de roll-out 6 vagues (37 magasins/vague, 14 jours) ; déploiement de 84 WakiBox IoT pour collecte mutualisée des accessoires/ESL ; effacement PCI-DSS Appendix A1 ; destruction physique des TPE en zone scellée ; reconditionnement POS 3 ans → marché EMEA reconditionné ; reporting CSRD ESRS E5 par enseigne.",
+        "results": "220 sites traités en 87 jours (vs 90 budgétés) · 0 rupture commerciale · 6 650 actifs sortis du parc · 412 k€ valeur résiduelle (POS + serveurs back-office) · 198 tCO₂e évitées · 100 % PV PCI-DSS livrés sous 72 h.",
+        "testimonialQuote": "Les WakiBox ont fait gagner 2 h/semaine à chaque directeur magasin. Et nous avons enfin une preuve PCI-DSS opposable à l'acquéreur.",
+        "testimonialRole": "Directeur des opérations IT, Enseigne retail française 220 magasins",
+        "ctaSlug": "retail-multi-sites-wakibox"
       },
       {
-        "id": "nis2",
-        "tag": "NIS2",
-        "title": "La conformité NIS2 sous pression",
-        "scenario": "NIS2 est en vigueur. Le RSSI doit prouver à la Direction Générale la maîtrise du décommissionnement IT. Il a un fichier Excel et des certificats papier dans un tiroir. L'ANSSI peut auditer à tout moment.",
-        "stakeholders": "RSSI, DSI, Compliance, Direction Générale",
-        "solution": "La plateforme GTC EST la preuve. Inventaire temps réel, décommissionnement tracé étape par étape, certificats signés numériquement, matrice de conformité couvrant 22 normes et réglementations. Audit ANSSI préparé en 10 minutes."
+        "id": "energie-dora-chain-of-custody",
+        "sectorBadge": "Énergéticien OSE/NIS2",
+        "regulation": "DORA + NIS2 + IGI 1300",
+        "title": "Décommissionnement de 4 200 concentrateurs Linky avec chaîne de garde scellée",
+        "context": "Opérateur énergétique français, OSE/NIS2, parc de 4 200 concentrateurs Linky de génération G1 obsolètes (EOSL constructeur). Chaque concentrateur contient des clés cryptographiques de communication courant porteur en ligne (CPL) et un identifiant matériel sensible. Audit cybersécurité national programmé sous 30 jours.",
+        "problem": "Effacer ou détruire les modules cryptographiques, prouver la chaîne de garde de bout en bout sur 4 200 actifs répartis sur 38 sites techniques, livrer un rapport conforme au référentiel sécurité OT du gestionnaire de réseau, sans ralentir les équipes terrain.",
+        "stakeholders": "RSSI OT, Direction des opérations réseau, Direction conformité réglementaire, Achats, Pôle audit national",
+        "solution": "Pro Service Cybersécurité ITAD : extraction sur site par technicien habilité confidentiel défense ; convoyage classe T2 ; effacement NIST 800-88 Purge sur les modules SAM ; broyage HMG IS5 Enhanced 6 mm ; chaîne de garde scellée eIDAS + horodatage RGS** ; export auditeur national + matrice IEC 62443 / NIS2.",
+        "results": "4 200 concentrateurs traités en 38 jours · 100 % chaîne de garde scellée · 0 incident cybersécurité · audit national validé en 9 jours · 78 tCO₂e évitées · 0 € valeur résiduelle (destruction réglementaire imposée).",
+        "testimonialQuote": "La chaîne de garde scellée eIDAS a évité une réserve sur l'audit national. Sans GTC nous aurions eu 6 semaines de remédiation.",
+        "testimonialRole": "RSSI OT, Opérateur énergétique français",
+        "ctaSlug": "energie-dora-chain-of-custody"
       },
       {
-        "id": "wakibox-campus",
-        "tag": "WakiBox",
-        "title": "Déploiement WakiBox sur un campus",
-        "scenario": "Un campus d'entreprise de 3 000 collaborateurs veut faciliter la collecte du matériel IT obsolète. Les équipements traînent dans les tiroirs ou finissent à la poubelle. Aucune traçabilité.",
-        "stakeholders": "DSI, Services généraux, RSE, Collaborateurs",
-        "solution": "Déploiement de 10 bornes WakiBox IoT aux points stratégiques du campus. Collecte intelligente avec détection RFID, monitoring temps réel du remplissage, classification automatique des déchets IT. Gamification pour encourager les dépôts. Le RSE suit l'impact carbone en temps réel."
+        "id": "telco-datacenter-eol",
+        "sectorBadge": "Telco datacenter",
+        "regulation": "RGPD + ISO 27001 + valorisation",
+        "title": "Sortie de 12 racks datacenter (1 100 serveurs) avec revente reconditionnée 18 mois",
+        "context": "Opérateur télécom français, fermeture programmée d'un site colocation : 12 racks complets, 1 100 serveurs (Dell PowerEdge R740/R750, HPE ProLiant Gen10), 220 switches Cisco Nexus, 60 baies SAN. Tous les actifs ont entre 3 et 5 ans, valeur résiduelle marché reconditionné estimée à 600 k€+.",
+        "problem": "Effacer les SSD/HDD selon NIST 800-88 Purge, démonter les racks sans dégrader les composants revendables, certifier la chaîne pour rassurer l'acheteur reconditionneur, optimiser le calendrier face à un coût d'occupation datacenter de 18 k€/mois.",
+        "stakeholders": "DSI Infrastructure, Achats, DAF, Asset manager IT, RSSI, Logistique",
+        "solution": "Pro Service Asset Intelligence pour cotation marché reconditionné EMEA ; effacement NIST 800-88 Purge en zone scellée ; démontage rack à rack avec inventaire SKU ; chaîne de garde eIDAS ; mise en marché via réseau reconditionneurs partenaires ; reporting financier par lot pour la DAF.",
+        "results": "1 100 serveurs + 220 switches + 60 baies SAN traités en 24 jours · 638 k€ valeur résiduelle récupérée (vs 78 k€ scrap métal) · 1 247 tCO₂e évitées (réemploi vs neuf) · 36 k€ d'économie occupation datacenter.",
+        "testimonialQuote": "GTC nous a remboursé l'opération et a généré 560 k€ de cash net. Notre DAF demande à généraliser la méthode à toutes nos fermetures de sites.",
+        "testimonialRole": "Asset Manager IT, Opérateur télécom français",
+        "ctaSlug": "telco-datacenter-eol"
+      },
+      {
+        "id": "universite-flotte-etudiante-ess",
+        "sectorBadge": "Université 28 000 étudiants",
+        "regulation": "RGPD + DEEE + AGEC + clause sociale",
+        "title": "Cession solidaire de 3 200 laptops fin de bourse étudiante avec 0 fuite de données",
+        "context": "Université française, 28 000 étudiants, programme de prêt de laptops aux boursiers. 3 200 laptops Lenovo / HP en fin de bail 4 ans. La direction souhaite céder une partie au tissu associatif local (associations étudiantes, CROUS, écoles primaires REP+) plutôt que de tout détruire.",
+        "problem": "Effacer toutes les données étudiantes (TFE, recherches, données personnelles) selon NIST 800-88, certifier la cession solidaire pour la commission CADA, produire un reporting AGEC art. 58 pour la tutelle ministérielle, sans alourdir la DSI.",
+        "stakeholders": "DSI université, DPO, Direction de la vie étudiante, Direction des partenariats territoriaux, Service achats public, Tutelle ministérielle",
+        "solution": "Audit & inventaire sur site ; effacement NIST 800-88 Purge avec preuve par actif ; reconditionnement avec préinstallation système éducatif libre ; cession via plateforme ESS partenaire (Emmaüs Connect, Ateliers Sans Frontières) ; reporting AGEC + CSRD ; trace cession pour CADA.",
+        "results": "3 200 laptops traités en 32 jours · 78 % cédés en circuit solidaire (2 496 unités) · 11 partenariats associatifs activés · 0 incident RGPD · 312 tCO₂e évitées · valorisation impact social documenté pour rapport tutelle.",
+        "testimonialQuote": "Pour la première fois nos laptops finissent dans des écoles REP+ au lieu de la benne. Le rapport tutelle est devenu un atout politique.",
+        "testimonialRole": "DSI, Université française 28 000 étudiants",
+        "ctaSlug": "universite-flotte-etudiante-ess"
       }
     ],
     "unified": {
@@ -1368,9 +1480,10 @@
       }
     },
     "cta": {
-      "title": "Vous vous reconnaissez dans un de ces scénarios ?",
-      "subtitle": "Demandez un audit gratuit et découvrez comment GreenTechCycle peut résoudre votre problème.",
-      "button": "Demander un audit gratuit"
+      "title": "Votre cas n'est pas listé ?",
+      "subtitle": "Décrivez-nous votre parc en 5 lignes : nos consultants reviennent sous 48 h avec un cas chiffré comparable et un plan d'action proposé.",
+      "button": "Discuter de mon cas",
+      "secondaryButton": "Demander un audit 48 h"
     }
   },
   "Sectors": {
@@ -1533,6 +1646,96 @@
         "title": "Structurez votre ITAD publique",
         "button": "Demander un audit collectivité"
       }
+    },
+    "energie": {
+      "hero": {
+        "title": "ITAD pour l'énergie & utilities",
+        "subtitle": "DORA, NIS2, RTE, code de l'énergie — sécurisez la fin de vie des infrastructures critiques OT/IT"
+      },
+      "context": {
+        "title": "Contexte",
+        "description": "Les opérateurs d'énergie (production, transport, distribution) opèrent des actifs IT/OT classés Opérateur d'Importance Vitale (OIV) ou Opérateur de Services Essentiels (OSE/NIS2). Le décommissionnement de concentrateurs Linky, RTU SCADA, postes de conduite ou pare-feu IT exige une chaîne de garde tracée, une destruction conforme IGI 1300 pour les actifs Diffusion Restreinte, et un reporting CSRD scope 3 documenté. Le règlement DORA s'applique aux entités énergétiques entrant dans le périmètre financier (trading, hedging)."
+      },
+      "regulations": {
+        "title": "Réglementations applicables",
+        "items": ["NIS2 (OSE — secteur énergie)", "Code de l'énergie L142-1 et suivants", "Référentiel RTE / ENEDIS sécurité OT", "IGI 1300 (Diffusion Restreinte)", "DORA (entités trading énergie)", "CSRD / ESRS E5 et E1 (climat)", "ISO/IEC 62443 (cybersécurité OT)"]
+      },
+      "challenges": {
+        "title": "Défis typiques",
+        "items": [
+          "Volumétrie : flottes 4 000 à 50 000 actifs OT (concentrateurs, RTU, IED)",
+          "Cycles de vie 12-20 ans, EOSL constructeur fréquent",
+          "Données embarquées sensibles : topologie réseau, clés cryptographiques",
+          "Destruction physique exigée pour HSM, cartes SIM industrielles, modules SAM",
+          "Multi-sites : centres de conduite, postes HTB/HTA, smart-meters",
+          "Audit ANSSI / CSPN attendu sous 30 jours"
+        ]
+      },
+      "solution": {
+        "title": "Comment GTC répond",
+        "items": [
+          "Inventaire IT/OT unifié avec tagging OIV/SIIV/IGI 1300",
+          "Effacement NIST 800-88 Purge + destruction physique HMG IS5 Enhanced (broyage 6 mm)",
+          "Chain of custody scellée eIDAS + horodatage qualifié RGS**",
+          "Matrice NIS2 / IEC 62443 / DORA pré-configurée",
+          "Module Carbon scope 3.1 calibré sur facteurs Boavizta v1.4 énergie",
+          "Convoyage classe T2/T3 avec habilitations confidentiel défense"
+        ]
+      },
+      "cta": {
+        "title": "Sécurisez vos actifs critiques énergie",
+        "button": "Demander un audit NIS2/DORA"
+      }
+    },
+    "retail": {
+      "hero": {
+        "title": "ITAD pour le retail & distribution",
+        "subtitle": "PCI-DSS v4.0, RGPD, CSRD — gérez la fin de vie des caisses POS, terminaux, parcs magasins multi-sites"
+      },
+      "context": {
+        "title": "Contexte",
+        "description": "Les enseignes retail multi-sites (300 à 3 000 points de vente) traitent des données carte de paiement (PCI-DSS) et des données clients RGPD. Le renouvellement triennal des caisses POS, terminaux de paiement, étiquettes électroniques et bornes interactives génère des flux ITAD lourds et hétérogènes, à coordonner sans rupture commerciale. Les directions financières exigent une valorisation actuarielle des actifs et un reporting CSRD ESRS E5 par enseigne."
+      },
+      "regulations": {
+        "title": "Réglementations applicables",
+        "items": ["PCI-DSS v4.0 (req. 9 & 12)", "RGPD — données transactionnelles", "DEEE / WEEE (Directive 2012/19/UE)", "Loi AGEC (anti-gaspillage)", "CSRD / ESRS E5 (économie circulaire)", "Code de la consommation (réemploi)"]
+      },
+      "challenges": {
+        "title": "Défis typiques",
+        "items": [
+          "300 à 3 000 sites simultanés à orchestrer en 90 jours",
+          "Caisses POS contenant cartes SAM, certificats EMV, données SAV",
+          "Terminaux de paiement à détruire selon référentiel PCI-DSS Appendix A1",
+          "Bornes interactives, étiquettes RFID/ESL, coffres-forts numériques",
+          "Pression franchisés / directeurs locaux sur coût et délais",
+          "Reporting CSRD consolidé multi-enseignes / multi-pays"
+        ]
+      },
+      "solution": {
+        "title": "Comment GTC répond",
+        "items": [
+          "Plan de roll-out multi-sites par vagues, suivi temps réel",
+          "Effacement sécurisé PCI-DSS + destruction physique avec PV par site",
+          "Module WakiBox de collecte mutualisée (ESL, accessoires, périphériques)",
+          "Asset Intelligence pour valorisation marché reconditionné EMEA",
+          "Reporting CSRD ESRS E5 par enseigne, par pays, par vague",
+          "API magasin connectée au TMS pour ne pas perturber l'exploitation"
+        ]
+      },
+      "cta": {
+        "title": "Orchestrez votre ITAD multi-sites",
+        "button": "Demander un plan de déploiement"
+      }
+    },
+    "index": {
+      "hero": {
+        "title": "Secteurs accompagnés",
+        "subtitle": "6 expertises sectorielles ITAD — chaque vertical a ses régulateurs, ses cycles de vie, ses contraintes de chaîne de garde."
+      },
+      "intro": "Nous avons documenté pour vous 6 référentiels sectoriels exploitables. Chaque page secteur reprend : contexte régulateur, réglementations applicables, défis typiques constatés sur le terrain, et la réponse opérationnelle GTC (modules, services, SLA).",
+      "ctaTitle": "Votre secteur n'est pas listé ?",
+      "ctaSubtitle": "Nous accompagnons aussi assurance, telco, pharma, éducation, hôtellerie. Demandez une consultation sectorielle.",
+      "ctaButton": "Discuter de mon secteur"
     },
     "common": {
       "context": "Contexte",
