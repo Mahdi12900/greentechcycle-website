@@ -295,9 +295,22 @@ Hash : *(voir §13 — généré au moment du commit)*
 
 ### Push GitHub
 
-Tentative effectuée (cf. §13). Si échec (token expiré, permissions),
-l'utilisateur devra rejouer le `git push origin main` manuellement
-avant Vercel deploy de vague 3.
+Tentative effectuée — **FAIL (non-fast-forward)**.
+
+Le remote `origin/main` contient 2 commits absents en local :
+- `9ea1cf7 chore: add Vercel configuration`
+- `c8cfac4 feat: GreenTechCycle landing page - B2B SaaS ITAD platform`
+
+Le local contient 4 commits absents du remote (vague 2 + vague 1 + tarifs +
+prepare deploy). Les deux historiques ont des **commits initiaux différents**
+(probable création parallèle local/remote).
+
+**Aucune action destructive entreprise** (pas de réécriture d'historique
+remote, pas de rebase automatique). Vague 3 deploy devra :
+1. Décider de la stratégie (rebase local sur remote, ou non-FF-push avec
+   approbation explicite du propriétaire).
+2. Rejouer `git push origin main` (avec ou sans `a non-default lease flag`
+   selon la décision).
 
 ---
 
@@ -385,8 +398,9 @@ avant Vercel deploy de vague 3.
 - **Composants créés** : `CarbonCalculator.tsx` (515 lignes, client component,
   4 inputs équipements + 2 paramètres + 4 outputs + accordéon méthodo + lead
   capture e-mail)
-- **Commit hash** : (voir §13 — `git rev-parse HEAD` après commit)
-- **Push status** : voir §11 — tentative effectuée
+- **Commit hash** : `a36a7cbec0697c71c7d102314cd9af5f410e64ae` (`a36a7cb`)
+- **Push status** : **FAIL (non-fast-forward)** — historiques divergents,
+  pas de non-FF-push automatique. À traiter en vague 3.
 
 ---
 
