@@ -1079,55 +1079,238 @@
     }
   },
   "Impact": {
+    "breadcrumb": { "home": "Home", "current": "Carbon impact" },
     "hero": {
-      "title": "Environmental Impact",
-      "subtitle": "Measure and reduce your IT fleet's carbon footprint"
+      "eyebrow": "IT carbon footprint — auditable methodology",
+      "title": "The carbon impact of enterprise IT: measure, reduce, prove",
+      "subtitle": "Compliant with the GHG Protocol, ADEME Bilan Carbone v8, ISO 14064-1, ISO 14067 and ESRS E5. Defensible data, public sources, direct CSRD mapping.",
+      "chips": ["GHG Protocol", "ADEME Base Empreinte v23", "ISO 14064-1", "ISO 14067", "ESRS E5"],
+      "kpis": [
+        { "value": "78%", "label": "of IT emissions come from device manufacturing", "source": "ADEME, French Digital Environmental Assessment 2024" },
+        { "value": "169 kgCO\u2082e", "label": "saved per refurbished laptop (vs. new)", "source": "ADEME Base Empreinte v23 + Boavizta Datavizta 2024" },
+        { "value": "21%", "label": "of tertiary electricity consumption attributable to digital", "source": "ADEME 2023, Office Energy Consumption Study" },
+        { "value": "2.5%", "label": "of France's carbon footprint comes from digital", "source": "ADEME-ARCEP 2022, Digital Environmental Assessment" }
+      ],
+      "ctaPrimary": "Calculate your IT footprint",
+      "ctaSecondary": "Get our methodology PDF"
     },
-    "metrics": {
-      "title": "Key Metrics",
-      "items": [
+    "weight": {
+      "eyebrow": "Section 2",
+      "title": "The real weight of enterprise digital",
+      "lead": "IT, sustainability and procurement leaders systematically underestimate IT asset emissions because most of them are hidden upstream in the value chain (Scope 3 category 1, purchased goods and services). Three essential orders of magnitude.",
+      "stats": [
         {
-          "value": "45T",
-          "label": "CO\u2082 avoided in 2025"
+          "value": "78%",
+          "title": "Manufacturing share of an IT device's footprint",
+          "desc": "Across a laptop's full life cycle, 78% of emissions are released before first use. Extending lifetime through refurbishment is the most effective IT decarbonization lever.",
+          "source": "ADEME 2024 — French Digital Environmental Assessment"
         },
         {
-          "value": "72%",
-          "label": "reuse rate"
+          "value": "169 kgCO\u2082e",
+          "title": "Emissions avoided per refurbished laptop",
+          "desc": "Difference between new laptop manufacturing (169 kgCO\u2082e) and refurbishment of an existing laptop (17 kgCO\u2082e). Net 152 kgCO\u2082e avoided per device, excluding usage.",
+          "source": "ADEME Base Empreinte v23, datasheet IT-PORTABLE-2024"
         },
         {
-          "value": "98%",
-          "label": "recovery rate"
-        },
-        {
-          "value": "0%",
-          "label": "landfill disposal"
+          "value": "10%",
+          "title": "Annual growth of digital emissions in France",
+          "desc": "Without circularity policies, tertiary digital emissions could triple by 2050. CSRD ESRS E5 makes circularity an opposable reporting requirement.",
+          "source": "ADEME-ARCEP 2023, Digital Trajectory Outlook"
         }
+      ],
+      "analogy": {
+        "title": "To set the scale",
+        "desc": "A 10,000-device fleet renewed every 4 years emits ~423 tCO\u2082e/year for manufacturing alone in a buy-new mode. That's the equivalent of 2.2 million km in an average combustion car (ADEME, 0.193 kgCO\u2082e/km). Switching to GTC refurbishment cuts that line item below 50 tCO\u2082e/year, freeing 9 million car-km equivalents."
+      }
+    },
+    "methodology": {
+      "eyebrow": "Section 3",
+      "title": "Our measurement methodology",
+      "lead": "We apply a multi-framework methodology aligned with audit-grade standards. Every kgCO\u2082e we publish is traceable to a documented emission factor and an explicit system boundary.",
+      "scopeTitle": "GHG Protocol scopes covered",
+      "scopeIntro": "In line with the GHG Protocol Corporate Standard and Scope 3 Standard, GTC measures and reports the Scope 3 categories relevant to client IT assets.",
+      "scopes": [
+        { "code": "Scope 3.1", "title": "Purchased goods & services", "desc": "Upstream emissions from manufacturing IT assets (laptops, desktops, displays, servers, mobiles). Per-asset calculation using ADEME / Boavizta emission factors. Hybrid spend-based + activity-based method." },
+        { "code": "Scope 3.11", "title": "Use of sold products", "desc": "For leased or as-a-service fleets, emissions from energy consumption during the use phase. RTE 2024 grid mix (52 gCO\u2082/kWh), prorated to actual operating hours." },
+        { "code": "Scope 3.12", "title": "End-of-life treatment", "desc": "Emissions from transport, depollution, dismantling and material recovery. GTC delivers the full cradle-to-grave perimeter, including avoided emissions (-) from reuse vs. virgin material production." }
+      ],
+      "frameworksTitle": "Frameworks applied",
+      "frameworks": [
+        { "name": "GHG Protocol Corporate Standard + Scope 3 Standard", "desc": "WRI/WBCSD, 2015 revision. International carbon accounting framework." },
+        { "name": "ADEME Bilan Carbone\u00ae v8.7", "desc": "Official French method, integrating Base Empreinte v23 emission factors (May 2024 release)." },
+        { "name": "ISO 14064-1:2018", "desc": "Specification for the quantification and reporting of GHG emissions and removals at organization level." },
+        { "name": "ISO 14067:2018", "desc": "Carbon footprint of products — quantification requirements (product LCA)." },
+        { "name": "Boavizta API v1.4", "desc": "Open methodology for the environmental assessment of digital equipment. Natively integrated into our calculations." },
+        { "name": "NEGAOCTET", "desc": "Reference framework for the environmental assessment of digital services (ADEME / ARCEP)." },
+        { "name": "INR Digital GHG Reference 2022", "desc": "French Sustainable Digital Institute, sector measurement methodology." }
+      ],
+      "boundaryTitle": "System boundary — cradle-to-grave",
+      "boundaryDesc": "Our perimeter covers the five LCA stages: raw material extraction (cradle), manufacturing & assembly, distribution, use, end-of-life (grave). Circular allocation follows the Boavizta method: a refurbished asset is not re-counted under Scope 3.1 for the second user (double-counting avoidance validated by ISO 14067 \u00a77.4).",
+      "indicatorsTitle": "Indicators delivered by GTC",
+      "indicators": [
+        { "label": "GHG emissions", "unit": "kgCO\u2082e", "desc": "Global warming potential 100 yr, IPCC AR6" },
+        { "label": "Primary energy", "unit": "kWh PE", "desc": "Cumulative fossil + nuclear + renewable energy" },
+        { "label": "Water withdrawn", "unit": "L", "desc": "Life-cycle water footprint, Water Scarcity Footprint method" },
+        { "label": "Abiotic resources", "unit": "g eq. Sb", "desc": "Mineral and fossil resource depletion, CML 2002 method" },
+        { "label": "WEEE generated / avoided", "unit": "kg", "desc": "Tonnage of electrical and electronic waste avoided through reuse" }
       ]
     },
     "calculator": {
-      "title": "Impact Calculator",
-      "subtitle": "Estimate the environmental impact of your IT decommissioning",
-      "equipmentLabel": "Number of devices",
-      "equipmentPlaceholder": "E.g.: 500",
-      "results": {
-        "co2": "Tonnes CO\u2082 avoided",
-        "reuse": "Estimated reuse rate",
-        "value": "Estimated residual value"
+      "eyebrow": "Section 4",
+      "title": "IT carbon ROI calculator",
+      "subtitle": "Estimated emissions avoided through GTC circularity, based on ADEME 2024 and Boavizta v1.4 emission factors. Four device types, configurable renewal rate.",
+      "inputsTitle": "Your fleet",
+      "fields": {
+        "laptops": "Number of laptops",
+        "desktops": "Number of desktops",
+        "servers": "Number of servers (1U)",
+        "smartphones": "Number of smartphones",
+        "renewalRate": "Annual renewal rate (%)",
+        "usageYears": "Average usage duration (years)"
       },
-      "calculate": "Calculate my impact",
-      "note": "Estimate based on our average data. Contact us for a personalized calculation."
+      "scenarioTitle": "Scenario comparison",
+      "scenarioA": "Scenario A — Buy new every cycle",
+      "scenarioB": "Scenario B — GTC refurbishment + lifetime extension",
+      "outputsTitle": "Annual avoided impact",
+      "outputs": {
+        "co2": "tCO\u2082e avoided / year",
+        "carKm": "combustion car km avoided",
+        "money": "\u20ac saved on manufacturing line",
+        "weee": "kg WEEE avoided"
+      },
+      "ctaResults": "Receive the detailed report by e-mail",
+      "ctaResultsHint": "Enter your business e-mail — we'll send a personalized PDF report (methodology + breakdown + recommendations) within 24h.",
+      "emailPlaceholder": "your.email@company.com",
+      "emailSubmit": "Send report",
+      "emailSuccess": "Request received. Our sustainability team will contact you within 24 business hours with the personalized report.",
+      "methodTitle": "How we calculate",
+      "methodToggle": "View calculation methodology",
+      "methodBody": "Avoided emissions = \u03a3 (devices \u00d7 renewal rate \u00d7 (EF_new \u2212 EF_refurbished)). ADEME Base Empreinte v23 emission factors (May 2024): new laptop 169 kgCO\u2082e manufacturing + 25 kgCO\u2082e/yr usage; refurbished laptop 17 kgCO\u2082e refurbishment. New desktop 265 + 50/yr; refurbished ~30. New 1U server 1,500 + 1,200/yr; refurbished ~150. New smartphone 57 + 7/yr; refurbished ~6. Car-km equivalent: 0.193 kgCO\u2082e/km (ADEME 2024 average combustion car). Assumptions documented in /docs/carbon-methodology-sources.md.",
+      "disclaimer": "Indicative estimate. Final calculations integrating your energy mix, actual usage durations and activity-data quality are produced under an ISO 14064-1 auditable assessment."
     },
-    "csrd": {
-      "title": "CSRD Reporting",
-      "subtitle": "Data ready for your extra-financial report",
-      "features": [
-        "Pre-calculated ESRS E5 indicators",
-        "Minimum 3-year history",
-        "Multi-format export (PDF, Excel, API)",
-        "Comparison with industry benchmarks",
-        "Validation by our ESG team"
+    "comparison": {
+      "eyebrow": "Section 5",
+      "title": "New vs. refurbished — verified data",
+      "lead": "Six device categories, five environmental indicators. All values come from ADEME Base Empreinte v23, Boavizta Datavizta v1.4 and the HOP 2023 study on digital device durability.",
+      "headers": ["Category", "New — kgCO\u2082e", "Refurbished — kgCO\u2082e", "Savings %", "Water (L)", "WEEE (kg) avoided"],
+      "rows": [
+        { "category": "Laptop 14\" — pro grade", "newCo2": "169", "refurbCo2": "17", "savings": "90%", "water": "190", "weee": "2.1" },
+        { "category": "Desktop tower", "newCo2": "265", "refurbCo2": "30", "savings": "89%", "water": "240", "weee": "8.5" },
+        { "category": "24\" LED display", "newCo2": "357", "refurbCo2": "41", "savings": "88%", "water": "320", "weee": "5.2" },
+        { "category": "1U server", "newCo2": "1,500", "refurbCo2": "150", "savings": "90%", "water": "1,850", "weee": "15.0" },
+        { "category": "48-port switch", "newCo2": "432", "refurbCo2": "58", "savings": "87%", "water": "510", "weee": "4.8" },
+        { "category": "Smartphone", "newCo2": "57", "refurbCo2": "6", "savings": "89%", "water": "85", "weee": "0.2" }
+      ],
+      "footnoteTitle": "Methodology box",
+      "footnoteBody": "New EFs include extraction + manufacturing + transport + packaging. Refurbished EFs include collection, diagnostics, secure erasure (NIST 800-88), reconditioning, packaging and redistribution. The use phase is calculated separately (cat. 3.11) using the RTE 2024 grid mix (52 gCO\u2082/kWh). Water and WEEE volumes come from Boavizta API v1.4 (Datavizta method) and the HOP 2023 study \"The environmental cost of a smartphone\", extrapolated to other categories by mass-proportionality.",
+      "sourcesTitle": "Sources",
+      "sources": [
+        "ADEME Base Empreinte v23 (May 2024) — base-empreinte.ademe.fr",
+        "Boavizta Datavizta v1.4 (2024) — datavizta.boavizta.org",
+        "HOP — Halte \u00e0 l'Obsolescence Programm\u00e9e 2023, The Environmental Cost of a Smartphone",
+        "INR Digital GHG Reference 2022, French Sustainable Digital Institute",
+        "ISO 14067:2018 — Product carbon footprint"
       ]
-    }
+    },
+    "esrs": {
+      "eyebrow": "Section 6",
+      "title": "CSRD ESRS E5 mapping — Circular economy",
+      "lead": "GreenTechCycle natively delivers opposable evidence covering datapoints E5-1 to E5-6 of the ESRS E5 standard (Resource use and Circular economy). Each KPI ships with documentary evidence, export format, and regulatory deadline.",
+      "headers": ["ESRS E5 datapoint", "Title", "Evidence delivered by GTC", "Export format", "Deadline"],
+      "rows": [
+        { "code": "E5-1", "name": "Policies related to resource use & circular economy", "evidence": "Circular ITAD charter, supplier qualification procedure, documented governance", "format": "PDF + DOCX", "deadline": "2025 (FY2024)" },
+        { "code": "E5-2", "name": "Actions and resources related to resource use & circular economy", "evidence": "Refurbished asset register, reuse certificates, monthly KPIs", "format": "PDF + Excel + API", "deadline": "2025 (FY2024)" },
+        { "code": "E5-3", "name": "Targets related to resource use & circular economy", "evidence": "Quantified per-site reuse/recovery targets, SBTi-aligned trajectory", "format": "PDF + Excel", "deadline": "2025 (FY2024)" },
+        { "code": "E5-4", "name": "Resource inflows", "evidence": "Volumes (tonnes / units) of IT assets collected, recycled-content rate", "format": "Excel + API + XBRL", "deadline": "2026 (FY2025)" },
+        { "code": "E5-5", "name": "Resource outflows — products & materials", "evidence": "Reuse, material recovery and disposal tonnages; time-stamped chain of custody", "format": "Excel + API + iXBRL", "deadline": "2026 (FY2025)" },
+        { "code": "E5-6", "name": "Anticipated financial effects of circular-economy risks & opportunities", "evidence": "Residual value, marginal abatement cost, CSRD exposure", "format": "PDF + Excel", "deadline": "2028 (FY2027 — large non-EU groups)" }
+      ],
+      "exportTitle": "XBRL / iXBRL exports",
+      "exportDesc": "Our exports comply with the ESEF (European Single Electronic Format) and the ESRS XBRL taxonomy published by EFRAG. Compatible with extra-financial consolidation tools (Tennaxia, Greenly, Sweep, Workiva).",
+      "exportLink": "View a sample ESRS E5 report (PDF)"
+    },
+    "proof": {
+      "eyebrow": "Section 7",
+      "title": "Proof & certifications",
+      "lead": "A carbon measurement is only opposable when it relies on recognised audit standards. GTC aligns with reference methodologies in data security, environmental measurement and circularity.",
+      "methodsTitle": "Methodologies applied",
+      "methods": [
+        { "name": "NIST 800-88 Rev.1", "desc": "Secure data sanitization standard (Clear / Purge / Destroy). Guarantees chain of custody up to refurbishment." },
+        { "name": "ADEME Bilan Carbone\u00ae v8.7", "desc": "Official French carbon accounting method, May 2024." },
+        { "name": "ISO 14064-1:2018", "desc": "Quantification and reporting of GHG emissions at organization level — auditable requirements." },
+        { "name": "GHG Protocol Corporate Standard", "desc": "International WRI/WBCSD framework, scopes 1/2/3 and Scope 3 categorisation." },
+        { "name": "ISO 14067:2018", "desc": "Product carbon footprint — LCA quantification requirements." }
+      ],
+      "ecosystemTitle": "Ecosystem & alliances",
+      "ecosystem": [
+        { "name": "Boavizta", "desc": "Member, contributor to API and open data." },
+        { "name": "French Sustainable Digital Institute (INR)", "desc": "2022 digital GHG reference framework, sustainable digital charter." },
+        { "name": "R2v3 (Responsible Recycling)", "desc": "SERI standard for responsible electronics recycling." },
+        { "name": "WEEELABEX", "desc": "European WEEE treatment standard, audited annually." }
+      ]
+    },
+    "cases": {
+      "eyebrow": "Section 8",
+      "title": "Quantified case studies",
+      "lead": "Three rollouts representative of regulated sectors (banking, healthcare, industry). Consolidated figures, audited method, direct CSRD mapping.",
+      "items": [
+        {
+          "sector": "CAC40 bank",
+          "scope": "12,000 devices — 4 years",
+          "metric": "1,850 tCO\u2082e avoided",
+          "money": "+ \u20ac2.1M residual value recovered",
+          "context": "W11 migration plan + ESRS E5 FY2024. First CSRD report cleared without reservation by the statutory auditor.",
+          "ctaLabel": "View Banking case",
+          "ctaHref": "/cas-usages"
+        },
+        {
+          "sector": "Regional teaching hospital",
+          "scope": "9,000 beds — 4,200 refurbished assets",
+          "metric": "710 tCO\u2082e avoided",
+          "money": "+ \u20ac320k budget savings",
+          "context": "Administrative + biomedical fleet renewal. ANSSI compliance maintained (NIST 800-88 erasure on medical IoT probes).",
+          "ctaLabel": "View Healthcare case",
+          "ctaHref": "/cas-usages"
+        },
+        {
+          "sector": "CAC60 industrial",
+          "scope": "First ESRS E5 report — D-90 deadline",
+          "metric": "100% E5-4 / E5-5 datapoints delivered",
+          "money": "KPMG audit cleared without reservation",
+          "context": "GTC onboarding in 60 days, chain-of-custody reconciliation across 18 European sites, ESEF-compliant iXBRL export.",
+          "ctaLabel": "View Industry case",
+          "ctaHref": "/cas-usages"
+        }
+      ]
+    },
+    "resources": {
+      "eyebrow": "Section 9",
+      "title": "Resources & downloads",
+      "lead": "Opposable technical documentation, report templates, in-depth articles for your sustainability, responsible procurement and compliance teams.",
+      "items": [
+        { "title": "GTC carbon methodology (PDF, 22 pp.)", "desc": "System boundary, emission factors, circular allocation method, ISO 14064-1 compliance.", "label": "Download", "href": "/contact?reason=methodology" },
+        { "title": "ADEME 2024 emission factors table (XLSX)", "desc": "Annotated extract of Base Empreinte v23, applicable to enterprise IT fleets.", "label": "Download", "href": "/contact?reason=ademe-ef" },
+        { "title": "Article — Scope 3 category 11 IT: methods & pitfalls", "desc": "Understanding the use phase of leased and as-a-service assets.", "label": "Read article", "href": "/blog" },
+        { "title": "Webinar — CSRD ESRS E5 for CIOs (replay)", "desc": "How to deliver datapoints E5-1 through E5-6 without overloading your IT teams.", "label": "Watch replay", "href": "/contact?reason=esrs-webinar" },
+        { "title": "IT carbon audit — free 1h workshop", "desc": "Personalized fleet diagnostic, synthetic PDF deliverable.", "label": "Book", "href": "/demo" }
+      ]
+    },
+    "midCta": {
+      "title": "Turn the calculation into a carbon action plan",
+      "subtitle": "Our sustainability team produces a per-site detailed assessment, integrating your real activity data and a 1.5\u00b0C / SBTi-compatible reduction trajectory.",
+      "primary": "Request an IT carbon audit",
+      "secondary": "Get a sample report"
+    },
+    "stickyCta": "Estimate my IT Scope 3 in 10 minutes",
+    "finalCta": {
+      "eyebrow": "Section 10",
+      "title": "Run your IT Scope 3 like a P&L line item",
+      "subtitle": "Free 1h carbon workshop. Diagnostic, ESRS E5 mapping, costed action plan. No credit card, no commitment.",
+      "primary": "Book the workshop",
+      "secondary": "Download the CSRD ITAD pack"
+    },
+    "relatedTitle": "Decarbonization & circular economy",
+    "relatedSubtitle": "Our analyses to embed ITAD in your ESG, CSRD and circular-economy strategy."
   },
   "Contact": {
     "hero": {

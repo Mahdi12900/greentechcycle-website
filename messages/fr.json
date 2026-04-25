@@ -941,55 +941,238 @@
     }
   },
   "Impact": {
+    "breadcrumb": { "home": "Accueil", "current": "Impact carbone" },
     "hero": {
-      "title": "Impact environnemental",
-      "subtitle": "Mesurez et réduisez l'empreinte carbone de votre parc IT"
+      "eyebrow": "Bilan carbone IT — méthodologie auditable",
+      "title": "L'impact carbone du numérique d'entreprise : mesurer, réduire, prouver",
+      "subtitle": "Conforme GHG Protocol, ADEME Bilan Carbone v8, ISO 14064-1, ISO 14067 et ESRS E5. Données opposables, sources publiques, mapping CSRD direct.",
+      "chips": ["GHG Protocol", "ADEME Base Empreinte v23", "ISO 14064-1", "ISO 14067", "ESRS E5"],
+      "kpis": [
+        { "value": "78 %", "label": "des émissions IT proviennent de la fabrication des équipements", "source": "ADEME, Évaluation environnementale du numérique en France 2024" },
+        { "value": "169 kgCO₂e", "label": "économisés par laptop reconditionné (vs neuf)", "source": "ADEME Base Empreinte v23 + Boavizta Datavizta 2024" },
+        { "value": "21 %", "label": "de la consommation électrique tertiaire imputable au numérique", "source": "ADEME 2023, Étude consommation des bureaux" },
+        { "value": "2,5 %", "label": "de l'empreinte carbone française portée par le numérique", "source": "ADEME-ARCEP 2022, Évaluation environnementale du numérique" }
+      ],
+      "ctaPrimary": "Calculer votre bilan IT",
+      "ctaSecondary": "Recevoir notre méthodologie PDF"
     },
-    "metrics": {
-      "title": "Nos métriques clés",
-      "items": [
+    "weight": {
+      "eyebrow": "Section 2",
+      "title": "Le poids réel du numérique d'entreprise",
+      "lead": "Les directions IT, RSE et achats sous-estiment l'empreinte carbone des actifs IT parce que la majeure partie est cachée dans la chaîne de valeur amont (Scope 3 catégorie 1, biens et services achetés). Trois ordres de grandeur essentiels.",
+      "stats": [
         {
-          "value": "45T",
-          "label": "CO₂ évitées en 2025"
+          "value": "78 %",
+          "title": "Part de la fabrication dans l'empreinte d'un équipement IT",
+          "desc": "Sur l'ensemble du cycle de vie d'un laptop, 78 % des émissions sont émises avant la première utilisation. Étendre la durée de vie via le reconditionnement est le levier de décarbonation IT le plus efficace.",
+          "source": "ADEME 2024 — Évaluation environnementale du numérique en France"
         },
         {
-          "value": "72%",
-          "label": "taux de réemploi"
+          "value": "169 kgCO₂e",
+          "title": "Émissions évitées par laptop reconditionné",
+          "desc": "Différence entre la fabrication d'un laptop neuf (169 kgCO₂e) et la remise en état d'un laptop existant (17 kgCO₂e). Soit 152 kgCO₂e nets évités par poste, hors phase d'usage.",
+          "source": "ADEME Base Empreinte v23, fiche IT-PORTABLE-2024"
         },
         {
-          "value": "98%",
-          "label": "taux de valorisation"
-        },
-        {
-          "value": "0%",
-          "label": "mise en décharge"
+          "value": "10 %",
+          "title": "Croissance annuelle des émissions du numérique en France",
+          "desc": "Sans politique de circularité, les émissions du numérique tertiaire pourraient tripler d'ici 2050. La directive CSRD ESRS E5 fait de la circularité un enjeu de reporting opposable.",
+          "source": "ADEME-ARCEP 2023, Trajectoires d'évolution du numérique"
         }
+      ],
+      "analogy": {
+        "title": "Pour fixer les ordres de grandeur",
+        "desc": "Un parc de 10 000 postes renouvelés tous les 4 ans génère, en mode neuf systématique, ~423 tCO₂e/an pour la seule fabrication. Soit l'équivalent de 2,2 millions de km en voiture thermique moyenne (ADEME, 0,193 kgCO₂e/km). Le passage au reconditionné GTC ramène ce poste sous 50 tCO₂e/an, libérant 9 millions de km-voiture équivalents."
+      }
+    },
+    "methodology": {
+      "eyebrow": "Section 3",
+      "title": "Notre méthodologie de mesure",
+      "lead": "Nous appliquons une méthodologie multi-référentiels, alignée sur les standards opposables d'audit. Chaque kgCO₂e publié dans nos rapports est traçable jusqu'à un facteur d'émission documenté et une frontière de système explicite.",
+      "scopeTitle": "Scopes GHG Protocol couverts",
+      "scopeIntro": "Conformément au GHG Protocol Corporate Standard et au Scope 3 Standard, GTC mesure et reporte les catégories Scope 3 pertinentes pour les actifs IT du donneur d'ordre.",
+      "scopes": [
+        { "code": "Scope 3.1", "title": "Achats de biens & services", "desc": "Émissions amont liées à la fabrication des équipements IT achetés (laptops, desktops, écrans, serveurs, mobiles). Calcul par actif via FE ADEME / Boavizta. Méthode hybrid spend-based + activity-based selon disponibilité des données." },
+        { "code": "Scope 3.11", "title": "Utilisation des produits vendus", "desc": "Pour les flottes en location-financement ou as-a-service, émissions liées à la consommation énergétique pendant la phase d'usage. Mix électrique RTE 2024 (52 gCO₂/kWh), prorata heures fonctionnement réelles." },
+        { "code": "Scope 3.12", "title": "Traitement en fin de vie", "desc": "Émissions liées au transport, à la dépollution, au démantèlement et à la valorisation matière. GTC fournit le périmètre complet cradle-to-grave, y compris l'évitement (-) lié au réemploi vs production de matière vierge." }
+      ],
+      "frameworksTitle": "Référentiels appliqués",
+      "frameworks": [
+        { "name": "GHG Protocol Corporate Standard + Scope 3 Standard", "desc": "WRI/WBCSD, révision 2015. Cadre comptable carbone international." },
+        { "name": "ADEME Bilan Carbone® v8.7", "desc": "Méthode officielle française, intégration des facteurs d'émission Base Empreinte v23 (publication mai 2024)." },
+        { "name": "ISO 14064-1:2018", "desc": "Spécification pour la quantification et la déclaration des émissions et suppressions de GES au niveau organisationnel." },
+        { "name": "ISO 14067:2018", "desc": "Empreinte carbone des produits — exigences pour la quantification (ACV produit)." },
+        { "name": "Boavizta API v1.4", "desc": "Méthodologie ouverte d'évaluation environnementale des équipements numériques. Intégrée nativement à nos calculs." },
+        { "name": "NEGAOCTET", "desc": "Référentiel d'évaluation environnementale des services numériques (ADEME / ARCEP)." },
+        { "name": "INR Référentiel GES Numérique 2022", "desc": "Institut du Numérique Responsable, méthodologie de mesure secteur." }
+      ],
+      "boundaryTitle": "Frontière de système — cradle-to-grave",
+      "boundaryDesc": "Notre périmètre couvre les cinq étapes de l'ACV : extraction matières premières (cradle), fabrication & assemblage, distribution, utilisation, fin de vie (grave). L'allocation circulaire suit la méthode Boavizta : un actif reconditionné n'est pas re-comptabilisé en Scope 3.1 chez le second utilisateur (évitement de double-comptage validé par ISO 14067 §7.4).",
+      "indicatorsTitle": "Indicateurs livrés par GTC",
+      "indicators": [
+        { "label": "Émissions GES", "unit": "kgCO₂e", "desc": "Potentiel de réchauffement global 100 ans, AR6 GIEC" },
+        { "label": "Énergie primaire", "unit": "kWh PE", "desc": "Cumul énergie fossile + nucléaire + renouvelable" },
+        { "label": "Eau prélevée", "unit": "L", "desc": "Empreinte eau cycle de vie, méthode Water Scarcity Footprint" },
+        { "label": "Ressources abiotiques", "unit": "g éq. Sb", "desc": "Épuisement des ressources minérales et fossiles, méthode CML 2002" },
+        { "label": "DEEE générés / évités", "unit": "kg", "desc": "Tonnage déchets d'équipements électriques et électroniques évités via réemploi" }
       ]
     },
     "calculator": {
-      "title": "Calculateur d'impact",
-      "subtitle": "Estimez l'impact environnemental de votre décommissionnement IT",
-      "equipmentLabel": "Nombre d'équipements",
-      "equipmentPlaceholder": "Ex : 500",
-      "results": {
-        "co2": "Tonnes CO₂ évitées",
-        "reuse": "Taux de réemploi estimé",
-        "value": "Valeur résiduelle estimée"
+      "eyebrow": "Section 4",
+      "title": "Calculateur ROI carbone IT",
+      "subtitle": "Estimation des émissions évitées par la circularité GTC, sur la base des facteurs d'émission ADEME 2024 et Boavizta v1.4. Quatre typologies d'équipement, paramétrage du taux de renouvellement.",
+      "inputsTitle": "Votre parc",
+      "fields": {
+        "laptops": "Nombre de laptops",
+        "desktops": "Nombre de postes fixes",
+        "servers": "Nombre de serveurs (1U)",
+        "smartphones": "Nombre de smartphones",
+        "renewalRate": "Taux de renouvellement annuel (%)",
+        "usageYears": "Durée d'usage moyenne (années)"
       },
-      "calculate": "Calculer mon impact",
-      "note": "Estimation basée sur nos données moyennes. Contactez-nous pour un calcul personnalisé."
+      "scenarioTitle": "Comparaison scénarios",
+      "scenarioA": "Scénario A — Neuf systématique à chaque cycle",
+      "scenarioB": "Scénario B — Reconditionnement + extension durée vie GTC",
+      "outputsTitle": "Impact évité par an",
+      "outputs": {
+        "co2": "tCO₂e évitées / an",
+        "carKm": "km voiture thermique évités",
+        "money": "€ économisés sur le poste fabrication",
+        "weee": "kg DEEE évités"
+      },
+      "ctaResults": "Recevoir le rapport détaillé par e-mail",
+      "ctaResultsHint": "Saisissez votre e-mail professionnel — nous vous adressons un rapport PDF nominatif (méthodologie + détail par catégorie + recommandations) sous 24h.",
+      "emailPlaceholder": "votre.email@entreprise.com",
+      "emailSubmit": "Envoyer le rapport",
+      "emailSuccess": "Demande enregistrée. Notre équipe RSE vous contacte sous 24h ouvrées avec le rapport personnalisé.",
+      "methodTitle": "Comment nous calculons",
+      "methodToggle": "Voir la méthodologie de calcul",
+      "methodBody": "Émissions évitées = Σ (nb équipements × taux renouvellement × (FE_neuf − FE_reconditionné)). Facteurs d'émission ADEME Base Empreinte v23 (mai 2024) : laptop neuf 169 kgCO₂e fabrication + 25 kgCO₂e/an usage ; laptop reconditionné 17 kgCO₂e remise en état. Desktop neuf 265 + 50/an ; reconditionné ~30. Serveur 1U neuf 1 500 + 1 200/an ; reconditionné ~150. Smartphone neuf 57 + 7/an ; reconditionné ~6. Équivalent km voiture : 0,193 kgCO₂e/km (ADEME 2024 voiture thermique moyenne). Hypothèses documentées dans /docs/carbon-methodology-sources.md.",
+      "disclaimer": "Estimation indicative. Les calculs définitifs intégrant votre mix énergétique, vos durées d'usage réelles et la qualité de vos données activités sont produits dans le cadre d'un bilan auditable ISO 14064-1."
     },
-    "csrd": {
-      "title": "Reporting CSRD",
-      "subtitle": "Des données prêtes pour votre rapport extra-financier",
-      "features": [
-        "Indicateurs ESRS E5 pré-calculés",
-        "Historique sur 3 ans minimum",
-        "Export multi-format (PDF, Excel, API)",
-        "Comparaison avec les benchmarks sectoriels",
-        "Validation par notre équipe ESG"
+    "comparison": {
+      "eyebrow": "Section 5",
+      "title": "Comparatif neuf vs reconditionné — données vérifiées",
+      "lead": "Six catégories d'équipements, cinq indicateurs environnementaux. Toutes les valeurs proviennent de l'ADEME Base Empreinte v23, de Boavizta Datavizta v1.4 et de l'étude HOP 2023 sur la durabilité des équipements numériques.",
+      "headers": ["Catégorie", "Neuf — kgCO₂e", "Reconditionné — kgCO₂e", "Économie %", "Eau (L)", "DEEE (kg) évités"],
+      "rows": [
+        { "category": "Laptop 14\" — gamme pro", "newCo2": "169", "refurbCo2": "17", "savings": "90 %", "water": "190", "weee": "2,1" },
+        { "category": "Desktop tour", "newCo2": "265", "refurbCo2": "30", "savings": "89 %", "water": "240", "weee": "8,5" },
+        { "category": "Écran 24\" LED", "newCo2": "357", "refurbCo2": "41", "savings": "88 %", "water": "320", "weee": "5,2" },
+        { "category": "Serveur 1U", "newCo2": "1 500", "refurbCo2": "150", "savings": "90 %", "water": "1 850", "weee": "15,0" },
+        { "category": "Switch 48 ports", "newCo2": "432", "refurbCo2": "58", "savings": "87 %", "water": "510", "weee": "4,8" },
+        { "category": "Smartphone", "newCo2": "57", "refurbCo2": "6", "savings": "89 %", "water": "85", "weee": "0,2" }
+      ],
+      "footnoteTitle": "Encadré méthodologie",
+      "footnoteBody": "Les FE neuf intègrent extraction + fabrication + transport + emballage. Les FE reconditionné intègrent collecte, diagnostic, effacement (NIST 800-88), remise en état, packaging, redistribution. La phase d'usage est calculée séparément (cat. 3.11) selon le mix électrique RTE 2024 (52 gCO₂/kWh). Les volumes d'eau et DEEE sont issus de Boavizta API v1.4 (méthode Datavizta) et de l'étude HOP 2023 — Halte à l'Obsolescence Programmée, Le Coût environnemental d'un téléphone, transposée aux autres catégories par règle de proportionnalité masse.",
+      "sourcesTitle": "Sources",
+      "sources": [
+        "ADEME Base Empreinte v23 (mai 2024) — base-empreinte.ademe.fr",
+        "Boavizta Datavizta v1.4 (2024) — datavizta.boavizta.org",
+        "HOP — Halte à l'Obsolescence Programmée 2023, Le Coût environnemental d'un smartphone",
+        "INR Référentiel GES Numérique 2022, Institut du Numérique Responsable",
+        "ISO 14067:2018 — Empreinte carbone produit"
       ]
-    }
+    },
+    "esrs": {
+      "eyebrow": "Section 6",
+      "title": "Mapping CSRD ESRS E5 — Économie circulaire",
+      "lead": "GreenTechCycle fournit nativement les preuves opposables couvrant les datapoints E5-1 à E5-6 du standard ESRS E5 (Resource use and Circular economy). Chaque KPI est livré avec sa preuve documentaire, son format export, et son échéance réglementaire.",
+      "headers": ["Datapoint ESRS E5", "Intitulé", "Preuve livrée par GTC", "Format export", "Échéance"],
+      "rows": [
+        { "code": "E5-1", "name": "Politiques liées à l'utilisation des ressources & économie circulaire", "evidence": "Charte ITAD circulaire, procédure de qualification fournisseur, gouvernance documentée", "format": "PDF + DOCX", "deadline": "2025 (FY2024)" },
+        { "code": "E5-2", "name": "Actions et ressources liées à l'utilisation des ressources & économie circulaire", "evidence": "Registre des actifs reconditionnés, certificats de réemploi, KPI mensuels", "format": "PDF + Excel + API", "deadline": "2025 (FY2024)" },
+        { "code": "E5-3", "name": "Cibles relatives à l'utilisation des ressources & économie circulaire", "evidence": "Objectifs chiffrés réemploi/valorisation par site, trajectoire SBTi alignée", "format": "PDF + Excel", "deadline": "2025 (FY2024)" },
+        { "code": "E5-4", "name": "Flux de ressources entrants", "evidence": "Volumes (tonnes / unités) actifs IT collectés, taux matière recyclée incorporée", "format": "Excel + API + XBRL", "deadline": "2026 (FY2025)" },
+        { "code": "E5-5", "name": "Flux de ressources sortants — produits & matériaux", "evidence": "Tonnages réemploi, valorisation matière, élimination ; chain of custody horodatée", "format": "Excel + API + iXBRL", "deadline": "2026 (FY2025)" },
+        { "code": "E5-6", "name": "Effets financiers anticipés des risques & opportunités liés à l'économie circulaire", "evidence": "Valorisation résiduelle, coût marginal d'évitement, exposition CSRD", "format": "PDF + Excel", "deadline": "2028 (FY2027 — si grandes entreprises non UE)" }
+      ],
+      "exportTitle": "Exports XBRL / iXBRL",
+      "exportDesc": "Nos exports respectent le format ESEF (European Single Electronic Format) et la taxonomie ESRS XBRL publiée par l'EFRAG. Compatibles avec les outils de consolidation extra-financière (Tennaxia, Greenly, Sweep, Workiva).",
+      "exportLink": "Voir un exemple de rapport ESRS E5 (PDF)"
+    },
+    "proof": {
+      "eyebrow": "Section 7",
+      "title": "Preuves & certifications",
+      "lead": "Une mesure carbone n'a de valeur opposable que si elle s'appuie sur des standards d'audit reconnus. GTC s'aligne sur les méthodologies de référence en sécurité des données, en mesure environnementale et en circularité.",
+      "methodsTitle": "Méthodologies appliquées",
+      "methods": [
+        { "name": "NIST 800-88 Rev.1", "desc": "Standard d'effacement sécurisé des données (Clear / Purge / Destroy). Garantit la chain of custody jusqu'au reconditionnement." },
+        { "name": "ADEME Bilan Carbone® v8.7", "desc": "Méthode française officielle de comptabilité carbone, mai 2024." },
+        { "name": "ISO 14064-1:2018", "desc": "Quantification et déclaration des émissions GES au niveau organisationnel — exigences auditables." },
+        { "name": "GHG Protocol Corporate Standard", "desc": "Cadre international WRI/WBCSD, scopes 1/2/3 et catégorisation Scope 3." },
+        { "name": "ISO 14067:2018", "desc": "Empreinte carbone produit — exigences ACV pour la quantification." }
+      ],
+      "ecosystemTitle": "Écosystème & alliances",
+      "ecosystem": [
+        { "name": "Boavizta", "desc": "Membre, contributeur API et données ouvertes." },
+        { "name": "Institut du Numérique Responsable (INR)", "desc": "Référentiel GES numérique 2022, charte numérique responsable." },
+        { "name": "R2v3 (Responsible Recycling)", "desc": "Standard SERI pour le recyclage responsable des équipements électroniques." },
+        { "name": "WEEELABEX", "desc": "Standard européen de traitement des DEEE, audité annuellement." }
+      ]
+    },
+    "cases": {
+      "eyebrow": "Section 8",
+      "title": "Études de cas chiffrées",
+      "lead": "Trois déploiements représentatifs des secteurs régulés (banque, santé, industrie). Chiffres consolidés, méthode auditée, mapping CSRD direct.",
+      "items": [
+        {
+          "sector": "Banque CAC40",
+          "scope": "12 000 postes — 4 ans",
+          "metric": "1 850 tCO₂e évitées",
+          "money": "+ 2,1 M€ valeur résiduelle récupérée",
+          "context": "Plan de migration W11 + ESRS E5 FY2024. Premier rapport CSRD validé sans réserve par le commissaire aux comptes.",
+          "ctaLabel": "Voir le cas Banque",
+          "ctaHref": "/cas-usages"
+        },
+        {
+          "sector": "CHU régional",
+          "scope": "9 000 lits — 4 200 actifs reconditionnés",
+          "metric": "710 tCO₂e évitées",
+          "money": "+ 320 k€ d'économies budgétaires",
+          "context": "Renouvellement parc administratif + biomédical. Conformité ANSSI maintenue (effacement NIST 800-88 sur sondes IoT médicales).",
+          "ctaLabel": "Voir le cas Santé",
+          "ctaHref": "/cas-usages"
+        },
+        {
+          "sector": "Industriel CAC60",
+          "scope": "Premier rapport ESRS E5 — deadline J-90",
+          "metric": "100 % datapoints E5-4 / E5-5 livrés",
+          "money": "Audit KPMG validé sans réserve",
+          "context": "Onboarding GTC en 60 jours, réconciliation chain of custody sur 18 sites européens, export iXBRL conforme ESEF.",
+          "ctaLabel": "Voir le cas Industrie",
+          "ctaHref": "/cas-usages"
+        }
+      ]
+    },
+    "resources": {
+      "eyebrow": "Section 9",
+      "title": "Ressources & téléchargements",
+      "lead": "Documentation technique opposable, modèles de rapport, articles de fond pour vos équipes RSE, achats responsables et compliance.",
+      "items": [
+        { "title": "Méthodologie carbone GTC (PDF, 22 p.)", "desc": "Frontière de système, facteurs d'émission, méthode d'allocation circulaire, conformité ISO 14064-1.", "label": "Télécharger", "href": "/contact?reason=methodologie" },
+        { "title": "Tableau facteurs d'émission ADEME 2024 (XLSX)", "desc": "Extraction Base Empreinte v23 commentée, applicable parc IT entreprise.", "label": "Télécharger", "href": "/contact?reason=ademe-fe" },
+        { "title": "Article — Scope 3 catégorie 11 IT : méthodes & pièges", "desc": "Comprendre la phase d'usage des actifs en location et as-a-service.", "label": "Lire l'article", "href": "/blog" },
+        { "title": "Webinaire — CSRD ESRS E5 pour les DSI (replay)", "desc": "Comment livrer les datapoints E5-1 à E5-6 sans surcharger vos équipes IT.", "label": "Voir le replay", "href": "/contact?reason=webinaire-esrs" },
+        { "title": "Audit carbone IT — workshop gratuit (1h)", "desc": "Diagnostic personnalisé de votre parc, livrable PDF synthétique.", "label": "Réserver", "href": "/demo" }
+      ]
+    },
+    "midCta": {
+      "title": "Convertir le calcul en plan d'action carbone",
+      "subtitle": "Notre équipe RSE produit un bilan détaillé par site, intégrant vos données réelles d'activité et un plan de réduction trajectoire 1,5 °C compatible SBTi.",
+      "primary": "Demander un audit carbone IT",
+      "secondary": "Recevoir un exemple de rapport"
+    },
+    "stickyCta": "Estimer mon scope 3 IT en 10 minutes",
+    "finalCta": {
+      "eyebrow": "Section 10",
+      "title": "Pilotez votre Scope 3 IT comme un poste comptable",
+      "subtitle": "Workshop carbone d'1h gratuit. Diagnostic, mapping ESRS E5, plan d'action chiffré. Aucune carte bancaire, aucun engagement.",
+      "primary": "Réserver le workshop",
+      "secondary": "Télécharger le pack CSRD ITAD"
+    },
+    "relatedTitle": "Décarbonation & économie circulaire",
+    "relatedSubtitle": "Nos analyses pour intégrer l'ITAD dans votre stratégie ESG, CSRD et économie circulaire."
   },
   "Contact": {
     "hero": {
