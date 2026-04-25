@@ -286,11 +286,14 @@ Chacun trouve **son angle, son chiffre, son cas** sans scroller la home en entie
 
 ## 9. Suivi déploiement
 
-- **Commit** : *(à renseigner après commit)*
-- **Push origin main** : *(à renseigner après push)*
-- **Vercel deploy** : *(à renseigner après deploy)*
-- **URL prod vérifiée** : https://greentechcycle-website.vercel.app/fr (curl -sI attendu 200)
-- **Vérif contenu** : grep insensible casse de « 78% » et « 22 % qui restent » dans le HTML servi.
+- **Commit local** : `6fc445f` (sur la branche `main`)
+- **Push origin main** : ✅ `10ed059..6fc445f` réussi le 2026-04-25
+- **Vercel deploy ID** : `dpl_6uuewFF4UR4PTuFpRfJAXXnJv9bR` (READY, 58 s, target=production)
+- **URL deployment** : https://greentechcycle-website-6g66e8i8b-grenntechcycle.vercel.app
+- **URL alias prod** : https://greentechcycle-website.vercel.app/fr — `HTTP/2 200` ✅
+- **Vérif contenu FR** : présence vérifiée pour `78%`, `22 % qui restent`, `figée à la fabrication`, `fenêtre de tir`, `Trois risques chiffrés`, `Calendrier régulateur`, `Demander un audit (sous 48`, `Réserver une démo (30 min)`, `hp-rssi-boardroom` (asset hero)
+- **Vérif contenu EN** : présence vérifiée pour `78%`, `locked in at manufacturing`, `Regulatory calendar`, `hidden cost`, `Book a 30-min demo`
+- **Push protection GitHub** : 1 incident (tokens dans `gtc-site-deploy-vague3b-report.md` — fichier hérité d'une session précédente, redacté avant push)
 
 ---
 
