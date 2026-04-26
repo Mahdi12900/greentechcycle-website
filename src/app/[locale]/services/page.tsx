@@ -42,6 +42,8 @@ type ServiceCard = {
   bookLabel: string;
   proof: { value: string; unit?: string; label: string }[];
   accent: string;
+  pricingNote?: string;
+  pricingHref?: string;
 };
 
 export default function ServicesPage() {
@@ -221,6 +223,8 @@ export default function ServicesPage() {
         { value: "99,5", unit: "%", label: tx("disponibilité borne", "kiosk uptime") },
       ],
       accent: "#F59E0B",
+      pricingNote: tx("À partir de 39 € HT/mois", "From €39 ex-VAT/month"),
+      pricingHref: "/tarifs",
     },
   ];
 
@@ -578,6 +582,30 @@ export default function ServicesPage() {
                           </div>
                         ))}
                       </div>
+
+                      {/* Pricing note */}
+                      {s.pricingNote && (
+                        <div className={`mb-8 pb-8 border-b ${isDark ? "border-white/10" : "border-gray-200"}`}>
+                          <Link
+                            href={s.pricingHref ?? "/tarifs"}
+                            className="inline-flex items-center gap-3 group"
+                          >
+                            <span
+                              className="text-xl lg:text-2xl font-black tracking-tight tabular-nums"
+                              style={{ color: s.accent }}
+                            >
+                              {s.pricingNote}
+                            </span>
+                            <span
+                              className={`text-sm font-medium underline underline-offset-4 decoration-1 transition-opacity group-hover:opacity-80 ${
+                                isDark ? "text-gray-300" : "text-gray-600"
+                              }`}
+                            >
+                              {tx("Voir les tarifs", "View pricing")}
+                            </span>
+                          </Link>
+                        </div>
+                      )}
 
                       {/* CTAs */}
                       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 flex-wrap">

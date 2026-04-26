@@ -978,6 +978,102 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
+          10-ter. TARIFS WAKI BOX TEASER — 3 plans + pilote
+         ========================================================== */}
+      <section className="py-24 lg:py-28 bg-[#0F172A] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.12),_transparent_60%)] pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
+          <FadeIn>
+            <div className="text-center max-w-3xl mx-auto mb-14">
+              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+                {t("pricingTeaser.eyebrow")}
+              </p>
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 tracking-tight leading-[1.1]">
+                {t("pricingTeaser.title")}
+              </h2>
+              <p className="text-gray-300 text-lg leading-relaxed">
+                {t("pricingTeaser.subtitle")}
+              </p>
+            </div>
+          </FadeIn>
+
+          <StaggerContainer className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto mb-10">
+            {(t.raw("pricingTeaser.plans") as Array<{
+              name: string;
+              price: string;
+              setup: string;
+              pitch: string;
+              slug: string;
+              popular?: boolean;
+            }>).map((plan, i) => {
+              const accents = ["#0EA5E9", "#10B981", "#F59E0B"];
+              return (
+                <StaggerItem key={i}>
+                  <div className={`relative bg-white/[0.04] border ${plan.popular ? "border-[#10B981]/60 shadow-xl shadow-[#10B981]/10" : "border-white/10"} backdrop-blur-sm rounded-2xl p-7 h-full flex flex-col hover:bg-white/[0.06] transition-all duration-300`}>
+                    {plan.popular && (
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#10B981] text-white text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
+                        {t("pricingTeaser.popularLabel")}
+                      </div>
+                    )}
+                    <h3 className="text-white text-xl font-bold mb-2 tracking-tight">{plan.name}</h3>
+                    <div className="flex items-end gap-1 mb-1">
+                      <span className="text-3xl font-black tabular-nums" style={{ color: accents[i] }}>
+                        {plan.price}
+                      </span>
+                      <span className="text-sm text-gray-400 mb-1">€ HT/mois</span>
+                    </div>
+                    <p className="text-xs text-gray-500 mb-4">Setup {plan.setup} € HT</p>
+                    <p className="text-sm text-gray-300 leading-relaxed flex-1 mb-6">{plan.pitch}</p>
+                    <Link
+                      href={`/reserver?offre=${plan.slug}`}
+                      className="block w-full text-center rounded-xl px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-90"
+                      style={{ backgroundColor: accents[i] }}
+                    >
+                      {t("pricingTeaser.bookCta")}
+                      <ArrowRight className="inline h-4 w-4 ml-1" />
+                    </Link>
+                  </div>
+                </StaggerItem>
+              );
+            })}
+          </StaggerContainer>
+
+          {/* Pilote encart */}
+          <FadeIn>
+            <div className="max-w-6xl mx-auto bg-[#10B981]/15 border border-[#10B981]/30 rounded-2xl p-6 lg:p-8 flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
+              <div className="flex-1">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#6EE7B7] mb-2">
+                  {t("pricingTeaser.pilot.label")}
+                </p>
+                <p className="text-white text-lg font-bold leading-snug">
+                  {t("pricingTeaser.pilot.headline")}
+                </p>
+              </div>
+              <Link
+                href="/reserver?offre=waki-box-pilote"
+                className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm flex-shrink-0"
+              >
+                {t("pricingTeaser.pilot.cta")}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </FadeIn>
+
+          <FadeIn>
+            <div className="text-center">
+              <Link
+                href="/tarifs"
+                className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#6EE7B7] font-semibold text-sm group"
+              >
+                {t("pricingTeaser.allPricingLink")}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              </Link>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ==========================================================
           11. CTA FINAL DOUBLE — audit + démo + bandeau confiance
          ========================================================== */}
       <section className="relative py-28 lg:py-32 overflow-hidden">

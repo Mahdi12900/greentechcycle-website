@@ -16,7 +16,7 @@
           "modules": "15 integrated modules",
           "governance": "Governance & RBAC",
           "mobile": "Mobile app (PWA)",
-          "pricing": "Pro Services pricing"
+          "pricing": "Pricing"
         }
       },
       "solutions": {
@@ -95,7 +95,7 @@
           "cyber": "ITAD cybersecurity",
           "wakibox": "WakiBox",
           "useCases": "Use cases",
-          "pricing": "Pro Services pricing"
+          "pricing": "Pricing"
         }
       },
       "sectors": {
@@ -495,6 +495,43 @@
           "a": "Contractual business continuity plan: XBRL/PDF/CSV exports delivered within 72 hours, source code in escrow with APP (French software escrow), takeover partnership ready to activate with a tier-1 market player."
         }
       ]
+    },
+    "pricingTeaser": {
+      "eyebrow": "WakiBox pricing",
+      "title": "Connected collection, transparent pricing.",
+      "subtitle": "Three plans tailored to your size, a pilot programme for early signers and à la carte options.",
+      "popularLabel": "Most popular",
+      "bookCta": "Book now",
+      "allPricingLink": "View all pricing and options",
+      "plans": [
+        {
+          "name": "Essentiel",
+          "price": "39",
+          "setup": "150",
+          "pitch": "One box, one console, a first step toward WEEE traceability.",
+          "slug": "waki-box-essentiel"
+        },
+        {
+          "name": "Confort",
+          "price": "79",
+          "setup": "290",
+          "pitch": "Up to 3 boxes, CSRD report, real-time alerts.",
+          "slug": "waki-box-confort",
+          "popular": true
+        },
+        {
+          "name": "Premium",
+          "price": "from 149",
+          "setup": "490",
+          "pitch": "Multi-site, dedicated manager, ERP integration via API.",
+          "slug": "waki-box-premium"
+        }
+      ],
+      "pilot": {
+        "label": "Pilot programme",
+        "headline": "First 3 signers: free setup + €19 ex-VAT/month for 6 months",
+        "cta": "Apply for the pilot"
+      }
     },
     "finalCTA": {
       "eyebrow": "Next step",

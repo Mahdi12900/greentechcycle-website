@@ -16,7 +16,7 @@
           "modules": "15 modules intégrés",
           "governance": "Gouvernance & RBAC",
           "mobile": "App mobile (PWA)",
-          "pricing": "Tarifs Pro Services"
+          "pricing": "Tarifs"
         }
       },
       "solutions": {
@@ -95,7 +95,7 @@
           "cyber": "Cybersécurité ITAD",
           "wakibox": "WakiBox",
           "useCases": "Cas d'usages",
-          "pricing": "Tarifs Pro Services"
+          "pricing": "Tarifs"
         }
       },
       "sectors": {
@@ -495,6 +495,43 @@
           "a": "Plan de continuité de service contractuel : exports XBRL/PDF/CSV livrables sous 72 h, code source sous séquestre auprès de l'APP, partenariat de reprise activable avec un acteur de marché tier-1."
         }
       ]
+    },
+    "pricingTeaser": {
+      "eyebrow": "Tarifs WakiBox",
+      "title": "Collecte connectée, tarifs transparents.",
+      "subtitle": "Trois plans adaptés à votre taille, un programme pilote pour les premiers signataires et des options à la carte.",
+      "popularLabel": "Le plus populaire",
+      "bookCta": "Réserver",
+      "allPricingLink": "Voir tous les tarifs et options",
+      "plans": [
+        {
+          "name": "Essentiel",
+          "price": "39",
+          "setup": "150",
+          "pitch": "Une box, une console, un premier pas vers la traçabilité DEEE.",
+          "slug": "waki-box-essentiel"
+        },
+        {
+          "name": "Confort",
+          "price": "79",
+          "setup": "290",
+          "pitch": "Jusqu'à 3 box, rapport CSRD, alertes temps réel.",
+          "slug": "waki-box-confort",
+          "popular": true
+        },
+        {
+          "name": "Premium",
+          "price": "dès 149",
+          "setup": "490",
+          "pitch": "Multi-sites, responsable dédié, intégration ERP par API.",
+          "slug": "waki-box-premium"
+        }
+      ],
+      "pilot": {
+        "label": "Programme pilote",
+        "headline": "3 premiers signataires : setup offert + 19 € HT/mois pendant 6 mois",
+        "cta": "Candidater au pilote"
+      }
     },
     "finalCTA": {
       "eyebrow": "Prochaine étape",

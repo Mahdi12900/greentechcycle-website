@@ -1,443 +1,759 @@
 "use client";
 
 /**
- * Tarifs — Public pricing page mirroring the 3 Professional Services tiers
- * shipped in Sprint 3 (platform migration 025_pro_services.sql).
- *
- * Monthly / annual billing toggle + feature matrix + CTA links to the
- * in-app subscription flow at /platform/services.
+ * /tarifs — Grille tarifaire Waki Box + services ITAD
+ * 3 plans (Essentiel, Confort, Premium) + programme pilote + add-ons + renvoi ITAD + FAQ
  */
 
-import { useMemo, useState } from "react";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import Image from "next/image";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
 import {
   ArrowRight,
   CheckCircle2,
-  XCircle,
+  Cpu,
+  HelpCircle,
+  ChevronDown,
   Rocket,
-  Star,
-  Crown,
-  Shield,
+  Users,
+  Building2,
+  ClipboardList,
   Sparkles,
-  Clock,
-  UserCheck,
-  TrendingUp,
-  Infinity as InfinityIcon,
+  ShieldCheck,
+  FileCheck,
+  Leaf,
+  Award,
 } from "lucide-react";
+import { useState } from "react";
 
-// ---------- i18n helper ----------
-const useTx = () => {
-  const locale = useLocale();
-  return (fr: string, en: string) => (locale === "en" ? en : fr);
-};
-
-// ---------- Types ----------
-type TierCode = "continuous" | "audit_plus" | "enterprise";
-
-interface Tier {
-  code: TierCode;
-  name: string;
-  tagline: string;
-  monthly: [number, number] | null;
-  annual: [number, number];
-  slaHours: number;
-  supportLevel: string;
-  includedAuditorHours: number;
-  maxScansMonth: number;
-  maxOrgs: number;
-  features: string[];
-  ctaKey: "trial" | "contact" | "quote";
-  icon: React.ComponentType<{ className?: string }>;
-  gradient: string;
-  highlight?: boolean;
+/* ── FAQ accordion ───────────────────────────────────────────────────────── */
+function FAQItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-gray-200 py-5">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between gap-4 text-left group"
+      >
+        <span className="font-semibold text-[#0F172A] text-[15px] leading-snug">
+          {q}
+        </span>
+        <ChevronDown
+          className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform ${
+            open ? "rotate-180 text-[#047857]" : ""
+          }`}
+          aria-hidden="true"
+        />
+      </button>
+      {open && (
+        <p className="mt-4 text-[14.5px] text-gray-600 leading-[1.78] pr-8">
+          {a}
+        </p>
+      )}
+    </div>
+  );
 }
 
-const TIERS: Tier[] = [
-  {
-    code: "continuous",
-    name: "Continuous Audit",
-    tagline: "fr=Scans IA continus + tableau de bord multi-axes",
-    monthly: [500, 2000],
-    annual: [5400, 21600],
-    slaHours: 48,
-    supportLevel: "basic",
-    includedAuditorHours: 0,
-    maxScansMonth: 200,
-    maxOrgs: 1,
-    features: [
-      "continuous_scans",
-      "multi_axis_dashboard",
-      "ai_reports",
-      "monthly_summary",
-      "rgpd_essentials",
-    ],
-    ctaKey: "trial",
-    icon: Rocket,
-    gradient: "from-sky-500 to-emerald-500",
-  },
-  {
-    code: "audit_plus",
-    name: "Audit+",
-    tagline: "fr=Validation humaine + rapport annuel signé + DPO 4h/mois",
-    monthly: [5000, 15000],
-    annual: [54000, 162000],
-    slaHours: 24,
-    supportLevel: "priority",
-    includedAuditorHours: 4,
-    maxScansMonth: 1000,
-    maxOrgs: 3,
-    features: [
-      "continuous_scans",
-      "multi_axis_dashboard",
-      "ai_reports",
-      "monthly_summary",
-      "rgpd_essentials",
-      "human_validation",
-      "signed_annual_report",
-      "dpo_consult_4h_month",
-      "quarterly_review",
-      "priority_support",
-    ],
-    ctaKey: "contact",
-    icon: Star,
-    gradient: "from-indigo-500 to-violet-500",
-    highlight: true,
-  },
-  {
-    code: "enterprise",
-    name: "Enterprise",
-    tagline: "fr=Pentest annuel + DPO-as-a-service + certification dédiée",
-    monthly: null,
-    annual: [50000, 150000],
-    slaHours: 4,
-    supportLevel: "dedicated",
-    includedAuditorHours: 40,
-    maxScansMonth: 10000,
-    maxOrgs: 25,
-    features: [
-      "continuous_scans",
-      "multi_axis_dashboard",
-      "ai_reports",
-      "monthly_summary",
-      "rgpd_essentials",
-      "human_validation",
-      "signed_annual_report",
-      "dpo_consult_4h_month",
-      "quarterly_review",
-      "priority_support",
-      "annual_pentest",
-      "dpo_aas",
-      "custom_compliance_certification",
-      "dedicated_auditor",
-      "support_24_7",
-    ],
-    ctaKey: "quote",
-    icon: Crown,
-    gradient: "from-amber-500 to-rose-500",
-  },
-];
-
-const FEATURE_LABEL_FR: Record<string, string> = {
-  continuous_scans: "Scans continus IA (M1/M2/M3/M4)",
-  multi_axis_dashboard: "Tableau de bord multi-axes (cyber/carbone/finance/cycle de vie)",
-  ai_reports: "Rapports IA automatisés (exécutif/technique/compliance)",
-  monthly_summary: "Synthèse mensuelle",
-  rgpd_essentials: "Conformité RGPD Essentials",
-  human_validation: "Validation humaine des constats critiques",
-  signed_annual_report: "Rapport annuel signé eIDAS",
-  dpo_consult_4h_month: "DPO externe — 4h / mois",
-  quarterly_review: "Revue trimestrielle",
-  priority_support: "Support prioritaire",
-  annual_pentest: "Pentest annuel externe",
-  dpo_aas: "DPO-as-a-Service",
-  custom_compliance_certification: "Préparation certification sur-mesure",
-  dedicated_auditor: "Auditeur dédié",
-  support_24_7: "Support 24/7",
-};
-
-const FEATURE_LABEL_EN: Record<string, string> = {
-  continuous_scans: "AI continuous scans (M1/M2/M3/M4)",
-  multi_axis_dashboard: "Multi-axis dashboard (cyber/carbon/finance/lifecycle)",
-  ai_reports: "AI automated reports (exec/technical/compliance)",
-  monthly_summary: "Monthly summary",
-  rgpd_essentials: "GDPR Essentials compliance",
-  human_validation: "Human validation of critical findings",
-  signed_annual_report: "Signed annual report (eIDAS)",
-  dpo_consult_4h_month: "Outsourced DPO — 4h / month",
-  quarterly_review: "Quarterly review",
-  priority_support: "Priority support",
-  annual_pentest: "External annual pentest",
-  dpo_aas: "DPO-as-a-Service",
-  custom_compliance_certification: "Bespoke certification preparation",
-  dedicated_auditor: "Dedicated auditor",
-  support_24_7: "24/7 support",
-};
-
-function formatRange(min: number | null, max: number | null, suffix: string): string {
-  if (min == null && max == null) return "—";
-  if (min != null && max != null) {
-    return `${min.toLocaleString()} – ${max.toLocaleString()} ${suffix}`;
-  }
-  return `${(min ?? max)?.toLocaleString()} ${suffix}`;
+/* ── Ghost number ────────────────────────────────────────────────────────── */
+function GhostNumber({
+  n,
+  isDark,
+  align = "right",
+}: {
+  n: string;
+  isDark: boolean;
+  align?: "left" | "right";
+}) {
+  return (
+    <div
+      className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
+      style={{
+        fontSize: "clamp(8rem, 22vw, 18rem)",
+        color: isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.035)",
+        [align === "right" ? "right" : "left"]: "-0.05em",
+        bottom: "-0.12em",
+      }}
+      aria-hidden="true"
+    >
+      {n}
+    </div>
+  );
 }
 
 export default function TarifsPage() {
   const locale = useLocale();
-  const tx = useTx();
-  const [mode, setMode] = useState<"monthly" | "annual">("monthly");
+  const isEn = locale === "en";
+  function tx<T>(fr: T, en: T): T {
+    return isEn ? en : fr;
+  }
 
-  const featureMatrix = useMemo(() => {
-    const all = new Set<string>();
-    for (const t of TIERS) for (const f of t.features) all.add(f);
-    const features = Array.from(all);
-    const support: Record<TierCode, boolean[]> = {
-      continuous: [],
-      audit_plus: [],
-      enterprise: [],
-    };
-    for (const t of TIERS) {
-      support[t.code] = features.map((f) => t.features.includes(f));
-    }
-    return { features, support };
-  }, []);
+  /* ── Data ─────────────────────────────────────────────────────────────── */
+  const plans = [
+    {
+      slug: "waki-box-essentiel",
+      num: "01",
+      name: "Essentiel",
+      icon: Rocket,
+      audience: tx("TPE / PME — 10 à 50 collaborateurs", "SMB — 10 to 50 employees"),
+      price: "39",
+      setup: "150",
+      engagement: tx("12 mois", "12 months"),
+      tagline: tx(
+        "Une seule box, une seule console, un premier pas vers la traçabilité DEEE sans complexité.",
+        "One box, one console, a first step toward WEEE traceability without complexity."
+      ),
+      features: tx(
+        [
+          "1 borne WakiBox installée et configurée",
+          "Plateforme de suivi basique — 1 utilisateur",
+          "Rapport trimestriel de flux DEEE",
+          "Support par courriel — J+2",
+        ],
+        [
+          "1 WakiBox kiosk installed and configured",
+          "Basic monitoring platform — 1 user",
+          "Quarterly WEEE flow report",
+          "Email support — D+2",
+        ]
+      ),
+      accent: "#0EA5E9",
+    },
+    {
+      slug: "waki-box-confort",
+      num: "02",
+      name: "Confort",
+      icon: Users,
+      popular: true,
+      audience: tx("PME / ETI — 50 à 300 collaborateurs", "Mid-market — 50 to 300 employees"),
+      price: "79",
+      setup: "290",
+      engagement: tx("12 mois", "12 months"),
+      tagline: tx(
+        "Jusqu'à trois bornes, cinq utilisateurs, des alertes temps réel et un export CSRD prêt à signer — le plan que choisissent huit clients sur dix.",
+        "Up to three kiosks, five users, real-time alerts and a CSRD export ready to sign — the plan eight out of ten clients choose."
+      ),
+      features: tx(
+        [
+          "Jusqu'à 3 bornes WakiBox",
+          "Plateforme complète — 5 utilisateurs",
+          "Rapport mensuel + export CSRD ESRS E5",
+          "Alertes de remplissage en temps réel",
+          "Support prioritaire — J+1",
+        ],
+        [
+          "Up to 3 WakiBox kiosks",
+          "Full platform — 5 users",
+          "Monthly report + CSRD ESRS E5 export",
+          "Real-time fill alerts",
+          "Priority support — D+1",
+        ]
+      ),
+      accent: "#10B981",
+    },
+    {
+      slug: "waki-box-premium",
+      num: "03",
+      name: "Premium",
+      icon: Building2,
+      audience: tx("ETI / grands comptes — 300+ collaborateurs", "Enterprise — 300+ employees"),
+      price: tx("dès 149", "from 149"),
+      setup: tx("490 / borne", "490 / kiosk"),
+      engagement: tx("24 mois", "24 months"),
+      tagline: tx(
+        "Bornes illimitées, multi-sites, un responsable de compte dédié, une intégration ERP/SIRH par API et un SLA de collecte à 48 heures — pour les organisations qui ne transigent pas.",
+        "Unlimited kiosks, multi-site, a dedicated account manager, ERP/HRIS integration via API and a 48-hour collection SLA — for organisations that don't compromise."
+      ),
+      features: tx(
+        [
+          "Bornes illimitées, multi-sites",
+          "Responsable de compte dédié",
+          "Intégration ERP / SIRH par API",
+          "SLA collecte 48 h garanti",
+          "Support dédié — SLA 4 h",
+        ],
+        [
+          "Unlimited kiosks, multi-site",
+          "Dedicated account manager",
+          "ERP / HRIS integration via API",
+          "48h collection SLA guaranteed",
+          "Dedicated support — 4h SLA",
+        ]
+      ),
+      accent: "#F59E0B",
+    },
+  ];
 
-  const label = locale === "en" ? FEATURE_LABEL_EN : FEATURE_LABEL_FR;
+  const addons = [
+    { slug: "box-supplementaire", name: tx("Box supplémentaire", "Additional box"), price: "29 € HT/mois" },
+    { slug: "collecte-urgence", name: tx("Collecte d'urgence", "Emergency collection"), price: "90 € HT" },
+    { slug: "animation-recyclage", name: tx("Animation Semaine du recyclage", "Recycling Week facilitation"), price: tx("350 € HT/jour", "€350 ex-VAT/day") },
+    { slug: "rapport-csrd", name: tx("Rapport CSRD dédié", "Dedicated CSRD report"), price: tx("490 € HT/an", "€490 ex-VAT/year") },
+    { slug: "kit-comm", name: tx("Kit communication personnalisé", "Custom communications kit"), price: "290 € HT" },
+    { slug: "audit-deee", name: tx("Audit DEEE complet", "Full WEEE audit"), price: tx("1 500 € HT/jour", "€1,500 ex-VAT/day") },
+    { slug: "formation", name: tx("Formation équipes", "Team training"), price: tx("450 € HT / 2 h", "€450 ex-VAT / 2h") },
+  ];
+
+  const faqItems = tx(
+    [
+      { q: "Les prix affichés sont-ils HT ou TTC ?", a: "Tous les prix sont exprimés hors taxes (HT). La TVA applicable en France métropolitaine est de 20 %. Les factures mentionnent le montant HT, la TVA et le total TTC." },
+      { q: "Puis-je résilier avant la fin de mon engagement ?", a: "L'engagement initial (12 ou 24 mois selon le plan) est ferme. Au-delà, le contrat est reconduit tacitement par période de 12 mois, résiliable avec un préavis de 3 mois avant chaque échéance." },
+      { q: "Les tarifs sont-ils indexés ?", a: "Une indexation annuelle est prévue, plafonnée à 3 % et basée sur l'indice INSEE des prix à la consommation. Toute révision est notifiée 60 jours avant application." },
+      { q: "Quels modes de paiement acceptez-vous ?", a: "Prélèvement SEPA (recommandé), carte bancaire et virement. Le prélèvement SEPA est mis en place lors de la signature du contrat pour un règlement automatique mensuel." },
+      { q: "Existe-t-il des remises pour les grands volumes ?", a: "Oui. Le plan Premium intègre des conditions tarifaires dégressives à partir de dix bornes. Contactez-nous pour un devis personnalisé incluant la volumétrie exacte." },
+      { q: "Le programme pilote engage-t-il au-delà de 6 mois ?", a: "Non. À l'issue des 6 mois au tarif pilote, vous basculez sur le plan Essentiel ou Confort aux conditions standard. Aucun engagement supplémentaire n'est imposé automatiquement." },
+    ],
+    [
+      { q: "Are prices shown ex-VAT or inc-VAT?", a: "All prices are shown excluding VAT (ex-VAT). The applicable VAT rate in mainland France is 20%. Invoices detail the ex-VAT amount, VAT and total inc-VAT." },
+      { q: "Can I cancel before the end of my commitment?", a: "The initial commitment (12 or 24 months depending on plan) is firm. After that, the contract auto-renews for 12-month periods, cancellable with 3 months' notice before each renewal date." },
+      { q: "Are prices indexed?", a: "Annual indexation is capped at 3%, based on the INSEE consumer price index. Any revision is notified 60 days before application." },
+      { q: "What payment methods do you accept?", a: "SEPA direct debit (recommended), credit card and wire transfer. SEPA direct debit is set up at contract signing for automatic monthly billing." },
+      { q: "Are volume discounts available?", a: "Yes. The Premium plan includes tiered pricing from ten kiosks upward. Contact us for a custom quote with your exact volume." },
+      { q: "Does the pilot programme commit me beyond 6 months?", a: "No. At the end of the 6-month pilot rate, you switch to the standard Essentiel or Confort plan. No additional commitment is imposed automatically." },
+    ]
+  );
+
+  const trustBadges = [
+    { icon: Award, label: "R2v3" },
+    { icon: ShieldCheck, label: "ISO 27001" },
+    { icon: Leaf, label: "ISO 14001" },
+    { icon: FileCheck, label: "NIST 800-88" },
+  ];
 
   return (
-    <>
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-primary to-dark py-24 md:py-32 overflow-hidden">
-        <div className="container-max mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 text-white/90 px-3 py-1 rounded-full text-xs mb-4">
-              <Sparkles className="w-3.5 h-3.5" />
-              {tx("Services Professionnels", "Professional Services")}
+    <main className="overflow-hidden bg-white">
+
+      {/* ════════════════════════════════════════════════════════════════
+          S1 — HERO ÉDITORIAL — split sombre #0F172A
+         ════════════════════════════════════════════════════════════════ */}
+      <section
+        className="relative w-full min-h-[72vh] flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
+        aria-labelledby="tarifs-hero-title"
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 12% 18%, rgba(16,185,129,0.18) 0%, transparent 60%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 55% 45% at 92% 88%, rgba(14,165,233,0.12) 0%, transparent 55%)",
+          }}
+        />
+
+        <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-24">
+          <FadeIn>
+            <div className="flex items-center gap-3 mb-10">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+                {tx("Tarification WakiBox", "WakiBox pricing")}
+              </span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              {tx("Tarifs transparents, sans surprise", "Transparent pricing, no surprises")}
-            </h1>
-            <p className="text-lg md:text-xl text-white/80">
+
+            <h1
+              id="tarifs-hero-title"
+              className="text-white font-black tracking-tight mb-8"
+              style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
+            >
               {tx(
-                "Choisissez le plan adapté à votre taille — 3 paliers, essai gratuit, sans engagement pendant 14 jours.",
-                "Pick the plan that fits your size — 3 tiers, free trial, no commitment for 14 days.",
+                <>Tarifs transparents.<br /><span className="text-[#10B981]">Engagement clair.</span></>,
+                <>Transparent pricing.<br /><span className="text-[#10B981]">Clear commitment.</span></>
+              )}
+            </h1>
+
+            <p className="text-gray-300 text-base lg:text-[1.12rem] leading-[1.72] max-w-xl mb-10">
+              {tx(
+                "Trois plans adaptés à votre taille, un programme pilote pour les premiers signataires, et des options à la carte. Tous les prix sont en euros HT.",
+                "Three plans tailored to your size, a pilot programme for early signers, and à la carte options. All prices in euros ex-VAT."
               )}
             </p>
+
+            <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10 pb-10 border-b border-white/8">
+              {[
+                { v: tx("dès 39 €", "from €39"), l: tx("HT / mois", "ex-VAT / month"), color: "#10B981" },
+                { v: tx("3 plans", "3 plans"), l: tx("Essentiel · Confort · Premium", "Essentiel · Confort · Premium"), color: "#0EA5E9" },
+                { v: tx("0 € setup", "€0 setup"), l: tx("programme pilote", "pilot programme"), color: "#F59E0B" },
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col">
+                  <span
+                    className="text-3xl lg:text-4xl font-black tracking-tight leading-none tabular-nums"
+                    style={{ color: item.color }}
+                  >
+                    {item.v}
+                  </span>
+                  <span className="text-xs text-gray-500 mt-1.5 font-medium">{item.l}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link
+                href="/reserver?offre=waki-box-confort"
+                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
+              >
+                {tx("Réserver une démonstration", "Book a demo")}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <a
+                href="#plans"
+                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
+              >
+                {tx("Voir les plans", "See plans")}
+              </a>
+            </div>
+          </FadeIn>
+        </div>
+
+        <div className="relative w-full lg:w-[45%] min-h-[52vh] lg:min-h-0 overflow-hidden flex-shrink-0">
+          <Image
+            src="/photos/service-wakibox.jpg"
+            alt={tx(
+              "Borne WakiBox de collecte connectée en entreprise",
+              "WakiBox connected collection kiosk in a workplace"
+            )}
+            fill
+            priority
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 45vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/85 via-[#0F172A]/25 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F172A]/55 to-transparent" />
+        </div>
+      </section>
+
+      {/* Certifications band */}
+      <section className="bg-[#0F172A] py-8 border-t border-white/5">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
+            {trustBadges.map(({ icon: Icon, label }) => (
+              <div
+                key={label}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300"
+              >
+                <Icon className="h-4 w-4 text-[#6EE7B7]" aria-hidden="true" />
+                <span className="text-xs font-semibold tracking-wide">{label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Billing toggle */}
-      <section className="py-8 bg-white">
-        <div className="container-max mx-auto px-4 flex justify-center">
-          <div className="inline-flex items-center gap-1 p-1 rounded-full bg-gray-100 border border-gray-200">
-            <button
-              onClick={() => setMode("monthly")}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
-                mode === "monthly" ? "bg-white shadow text-gray-900" : "text-gray-500"
-              }`}
-            >
-              {tx("Mensuel", "Monthly")}
-            </button>
-            <button
-              onClick={() => setMode("annual")}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
-                mode === "annual" ? "bg-white shadow text-gray-900" : "text-gray-500"
-              }`}
-            >
-              {tx("Annuel (-10%)", "Annual (-10%)")}
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* ════════════════════════════════════════════════════════════════
+          S2 — 3 PLANS — composition éditoriale verticale avec ghost numbers
+         ════════════════════════════════════════════════════════════════ */}
+      <div id="plans">
+        {plans.map((plan, i) => {
+          const isDark = i === 1;
+          const bgClass = isDark ? "bg-[#0F172A]" : i === 2 ? "bg-[#F8FAFC]" : "bg-white";
+          const textColor = isDark ? "text-white" : "text-[#0F172A]";
+          const subTextColor = isDark ? "text-gray-300" : "text-gray-700";
+          const Icon = plan.icon;
 
-      {/* Tier cards */}
-      <section className="py-10 bg-white">
-        <div className="container-max mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {TIERS.map((tier) => {
-              const Icon = tier.icon;
-              const monthlyDisplay = tier.monthly
-                ? formatRange(tier.monthly[0], tier.monthly[1], "€/mois")
-                : tx("Sur devis", "Custom quote");
-              const annualDisplay = formatRange(tier.annual[0], tier.annual[1], "€/an");
-              const price = mode === "monthly" ? monthlyDisplay : annualDisplay;
-              const ctaLabel =
-                tier.ctaKey === "trial"
-                  ? tx("Démarrer un essai", "Start trial")
-                  : tier.ctaKey === "contact"
-                  ? tx("Contacter les ventes", "Contact sales")
-                  : tx("Devis sur-mesure", "Custom quote");
-              const taglineFr = tier.tagline.replace(/^fr=/, "");
-              const taglineEn =
-                tier.code === "continuous"
-                  ? "AI continuous scans + multi-axis dashboard"
-                  : tier.code === "audit_plus"
-                  ? "Human validation + signed annual report + DPO 4h/month"
-                  : "Annual pentest + DPO-as-a-service + dedicated certification";
-              return (
-                <div
-                  key={tier.code}
-                  className={`relative rounded-2xl bg-white border ${
-                    tier.highlight
-                      ? "border-primary shadow-xl shadow-primary/10 scale-[1.02]"
-                      : "border-gray-200 shadow-lg"
-                  } p-6 flex flex-col`}
-                >
-                  {tier.highlight && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-indigo-500 to-violet-500 text-white text-xs px-3 py-1 rounded-full">
-                      {tx("Plus populaire", "Most popular")}
-                    </div>
-                  )}
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${tier.gradient} flex items-center justify-center mb-4`}>
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900">{tier.name}</h3>
-                  <p className="text-sm text-gray-500 mb-4">
-                    {tx(taglineFr, taglineEn)}
-                  </p>
-                  <div className="text-3xl font-bold text-gray-900 mb-1">{price}</div>
-                  {mode === "monthly" && tier.monthly && (
-                    <div className="text-xs text-gray-400 mb-4">
-                      {tx("Facturé mensuellement", "Billed monthly")}
-                    </div>
-                  )}
-                  {(mode === "annual" || !tier.monthly) && (
-                    <div className="text-xs text-gray-400 mb-4">
-                      {tx("Facturé annuellement", "Billed annually")}
-                    </div>
-                  )}
-                  <ul className="space-y-2 text-sm text-gray-700 mb-6">
-                    <li className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-sky-500" />
-                      SLA {tier.slaHours} h
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <UserCheck className="w-4 h-4 text-indigo-500" />
-                      {tier.includedAuditorHours > 0
-                        ? `${tier.includedAuditorHours} h ${tx("auditeur incluses", "auditor included")}`
-                        : tx("Support de base", "Basic support")}
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Shield className="w-4 h-4 text-emerald-500" />
-                      {tx("Support", "Support")} {tier.supportLevel}
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <TrendingUp className="w-4 h-4 text-amber-500" />
-                      {tier.maxScansMonth.toLocaleString()} {tx("scans/mois", "scans/month")}
-                    </li>
-                  </ul>
+          return (
+            <section
+              key={plan.slug}
+              className={`relative w-full overflow-hidden ${bgClass} py-20 lg:py-28`}
+              aria-labelledby={`plan-title-${plan.slug}`}
+            >
+              <GhostNumber n={plan.num} isDark={isDark} align={i % 2 === 0 ? "right" : "left"} />
 
-                  <div className="mt-auto space-y-3">
-                    <div className="border-t border-gray-100 pt-3 space-y-1.5">
-                      {tier.features.slice(0, 6).map((f) => (
-                        <div key={f} className="flex items-start gap-2 text-sm text-gray-700">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
-                          <span>{label[f] ?? f.replace(/_/g, " ")}</span>
-                        </div>
-                      ))}
-                      {tier.features.length > 6 && (
-                        <div className="text-xs text-gray-400 italic pl-6">
-                          + {tier.features.length - 6} {tx("autres avantages", "more benefits")}
-                        </div>
+              <div className="container mx-auto px-4 relative z-10">
+                <div className="max-w-4xl">
+                  <FadeIn>
+                    <div className="flex items-center gap-4 mb-6">
+                      <span
+                        className="text-5xl lg:text-6xl font-black leading-none tracking-tighter tabular-nums"
+                        style={{ color: plan.accent }}
+                      >
+                        {plan.num}
+                      </span>
+                      <span
+                        className="flex-1 h-[1px] opacity-25"
+                        style={{ backgroundColor: plan.accent }}
+                        aria-hidden="true"
+                      />
+                      {("popular" in plan && plan.popular) && (
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#10B981] text-white text-[11px] font-semibold uppercase tracking-wider">
+                          <Sparkles className="h-3 w-3" aria-hidden="true" />
+                          {tx("Le plus populaire", "Most popular")}
+                        </span>
                       )}
                     </div>
 
-                    <Link
-                      href={
-                        tier.ctaKey === "trial"
-                          ? "/plateforme"
-                          : "/contact"
-                      }
-                      className={`block w-full text-center rounded-xl px-4 py-3 font-semibold text-white bg-gradient-to-r ${tier.gradient} hover:opacity-95 transition`}
+                    <div className="flex items-center gap-3 mb-3">
+                      <div
+                        className="w-11 h-11 rounded-xl flex items-center justify-center"
+                        style={{ backgroundColor: `${plan.accent}18` }}
+                      >
+                        <Icon className="h-5 w-5" style={{ color: plan.accent }} aria-hidden="true" />
+                      </div>
+                      <span className={`text-[11px] font-semibold uppercase tracking-[0.15em] ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                        {plan.audience}
+                      </span>
+                    </div>
+
+                    <h2
+                      id={`plan-title-${plan.slug}`}
+                      className={`font-bold tracking-tight mb-4 ${textColor}`}
+                      style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
                     >
-                      {ctaLabel}
-                      <ArrowRight className="inline w-4 h-4 ml-1" />
+                      {plan.name}
+                    </h2>
+
+                    <p className={`text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-8 max-w-3xl ${subTextColor}`}>
+                      {plan.tagline}
+                    </p>
+
+                    {/* Prix */}
+                    <div className={`flex flex-wrap items-end gap-8 mb-8 pb-8 border-b ${isDark ? "border-white/10" : "border-gray-200"}`}>
+                      <div className="flex flex-col">
+                        <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">
+                          {tx("Abonnement mensuel", "Monthly subscription")}
+                        </span>
+                        <span
+                          className="text-4xl lg:text-5xl font-black tracking-tight leading-none tabular-nums"
+                          style={{ color: plan.accent }}
+                        >
+                          {plan.price} <span className="text-lg font-semibold opacity-80">€ HT/mois</span>
+                        </span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">
+                          Setup
+                        </span>
+                        <span className={`text-xl font-bold ${textColor}`}>
+                          {plan.setup} <span className="text-sm font-medium opacity-70">€ HT</span>
+                        </span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">
+                          {tx("Engagement", "Commitment")}
+                        </span>
+                        <span className={`text-xl font-bold ${textColor}`}>
+                          {plan.engagement}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Features */}
+                    <ul className="space-y-3 mb-10">
+                      {plan.features.map((f, j) => (
+                        <li key={j} className={`flex items-start gap-3 text-[15px] leading-snug ${subTextColor}`}>
+                          <CheckCircle2 className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: plan.accent }} aria-hidden="true" />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA */}
+                    <Link
+                      href={`/reserver?offre=${plan.slug}`}
+                      className={`inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${
+                        isDark
+                          ? "bg-white text-[#0F172A] hover:bg-gray-100"
+                          : "text-white"
+                      }`}
+                      style={isDark ? {} : { backgroundColor: plan.accent, boxShadow: `0 4px 16px ${plan.accent}30` }}
+                    >
+                      {tx("Réserver", "Book now")}
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </Link>
-                  </div>
+                  </FadeIn>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      {/* ════════════════════════════════════════════════════════════════
+          S3 — PROGRAMME PILOTE — fond #10B981
+         ════════════════════════════════════════════════════════════════ */}
+      <section className="relative w-full overflow-hidden bg-[#10B981]">
+        <div
+          className="absolute inset-0 pointer-events-none opacity-30"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 80% 0%, rgba(255,255,255,0.25) 0%, transparent 55%)",
+          }}
+        />
+        <GhostNumber n="04" isDark={true} align="right" />
+
+        <div className="container mx-auto px-4 py-20 lg:py-24 relative z-10">
+          <FadeIn>
+            <div className="max-w-4xl">
+              <div className="flex items-center gap-3 mb-6">
+                <Sparkles className="h-5 w-5 text-white/80" aria-hidden="true" />
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
+                  {tx("Programme pilote", "Pilot programme")}
+                </span>
+              </div>
+
+              <h2
+                className="text-white font-black tracking-tight mb-6"
+                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+              >
+                {tx(
+                  "19 € HT/mois pendant 6 mois. Setup offert.",
+                  "€19 ex-VAT/month for 6 months. Setup free."
+                )}
+              </h2>
+
+              <p className="text-white/90 text-[1.05rem] lg:text-[1.15rem] leading-[1.65] max-w-2xl mb-6">
+                {tx(
+                  "Réservé aux trois premiers signataires. Une borne installée, la plateforme complète, six mois pour mesurer l'impact avant de s'engager sur un plan standard.",
+                  "Reserved for the first three signers. One installed kiosk, the full platform, six months to measure the impact before committing to a standard plan."
+                )}
+              </p>
+
+              <ul className="space-y-2 mb-10">
+                {tx(
+                  [
+                    "Setup offert (valeur 150 €)",
+                    "19 € HT/mois au lieu de 39 € pendant 6 mois",
+                    "Bascule automatique vers le plan Essentiel ou Confort à l'issue",
+                    "Aucun engagement supplémentaire",
+                  ],
+                  [
+                    "Free setup (worth €150)",
+                    "€19 ex-VAT/month instead of €39 for 6 months",
+                    "Automatic switch to Essentiel or Confort plan afterwards",
+                    "No additional commitment",
+                  ]
+                ).map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-white/95 text-[15px] leading-snug">
+                    <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                href="/reserver?offre=waki-box-pilote"
+                className="inline-flex items-center justify-center gap-2 bg-[#0F172A] hover:bg-[#022C22] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
+              >
+                {tx("Candidater au pilote", "Apply for the pilot")}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-      {/* Feature matrix */}
-      <section className="py-16 bg-light">
-        <div className="container-max mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-2">
-              {tx("Matrice détaillée des fonctionnalités", "Detailed feature matrix")}
-            </h2>
-            <p className="text-center text-gray-500 mb-8">
-              {tx(
-                "Tous les plans incluent la plateforme SaaS + tableaux de bord ESG/cyber/carbone.",
-                "All plans include the SaaS platform + ESG/cyber/carbon dashboards.",
-              )}
-            </p>
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase">
-                      {tx("Fonctionnalité", "Feature")}
-                    </th>
-                    <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500 uppercase">Continuous</th>
-                    <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500 uppercase">Audit+</th>
-                    <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500 uppercase">Enterprise</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {featureMatrix.features.map((f, i) => (
-                    <tr key={f}>
-                      <td className="px-4 py-3 text-gray-700">{label[f] ?? f.replace(/_/g, " ")}</td>
-                      {(["continuous", "audit_plus", "enterprise"] as TierCode[]).map((code) => (
-                        <td key={code} className="px-4 py-3 text-center">
-                          {featureMatrix.support[code][i] ? (
-                            <CheckCircle2 className="w-4 h-4 text-emerald-500 inline" />
-                          ) : (
-                            <XCircle className="w-4 h-4 text-gray-300 inline" />
-                          )}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+      {/* ════════════════════════════════════════════════════════════════
+          S4 — ADD-ONS — fond blanc, ghost number 05
+         ════════════════════════════════════════════════════════════════ */}
+      <section className="relative w-full overflow-hidden bg-white py-20 lg:py-28">
+        <GhostNumber n="05" isDark={false} align="right" />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <FadeIn>
+            <div className="max-w-3xl mb-14">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
+                {tx("Options à la carte", "À la carte options")}
+              </p>
+              <h2
+                className="text-[#0F172A] font-bold tracking-tight mb-6"
+                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+              >
+                {tx("Composez votre offre.", "Build your offer.")}
+              </h2>
+              <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+                {tx(
+                  "Chaque option se greffe sur n'importe quel plan. Facturation unitaire, sans engagement additionnel.",
+                  "Each option plugs into any plan. Unit billing, no additional commitment."
+                )}
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="max-w-4xl">
+            <div className="bg-[#F8FAFC] rounded-2xl border border-gray-100 overflow-hidden">
+              {addons.map((addon, i) => (
+                <div
+                  key={addon.slug}
+                  className={`flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 px-6 lg:px-8 py-5 ${
+                    i < addons.length - 1 ? "border-b border-gray-200" : ""
+                  }`}
+                >
+                  <div className="flex-1">
+                    <p className="font-semibold text-[#0F172A] text-[15px]">{addon.name}</p>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-lg font-bold text-[#047857] tabular-nums whitespace-nowrap">
+                      {addon.price}
+                    </span>
+                    <Link
+                      href={`/reserver?offre=waki-box-addon-${addon.slug}`}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#047857]/10 text-[#047857] text-xs font-semibold hover:bg-[#047857]/20 transition-colors"
+                    >
+                      {tx("Réserver", "Book")}
+                      <ArrowRight className="h-3 w-3" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA footer */}
-      <section className="py-16 bg-gradient-to-br from-primary to-dark">
-        <div className="container-max mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            {tx("Prêt à industrialiser votre audit continu ?", "Ready to scale your continuous audit?")}
-          </h2>
-          <p className="text-white/80 mb-6 max-w-2xl mx-auto">
-            {tx(
-              "Démarrez votre essai gratuit de 14 jours ou contactez-nous pour un devis Enterprise.",
-              "Start your free 14-day trial or contact us for an Enterprise quote.",
-            )}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/plateforme"
-              className="inline-flex items-center justify-center rounded-xl bg-white text-primary px-6 py-3 font-semibold hover:bg-white/90 transition"
-            >
-              {tx("Accéder à la plateforme", "Go to the platform")}
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-xl border border-white/50 text-white px-6 py-3 font-semibold hover:bg-white/10 transition"
-            >
-              {tx("Contacter les ventes", "Contact sales")}
-            </Link>
-          </div>
+      {/* ════════════════════════════════════════════════════════════════
+          S5 — SERVICES ITAD — fond #0F172A, renvoi vers /services
+         ════════════════════════════════════════════════════════════════ */}
+      <section className="relative w-full overflow-hidden bg-[#0F172A] py-20 lg:py-28">
+        <GhostNumber n="06" isDark={true} align="left" />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 55% at 50% 30%, rgba(16,185,129,0.10) 0%, transparent 60%)",
+          }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <FadeIn>
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-3 mb-6">
+                <ClipboardList className="h-5 w-5 text-[#6EE7B7]" aria-hidden="true" />
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#6EE7B7]">
+                  {tx("Services ITAD", "ITAD services")}
+                </span>
+              </div>
+
+              <h2
+                className="text-white font-bold tracking-tight mb-6"
+                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+              >
+                {tx(
+                  "Et pour l'audit, l'effacement ou le reconditionnement ?",
+                  "What about audit, erasure or refurbishment?"
+                )}
+              </h2>
+
+              <p className="text-gray-300 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-8">
+                {tx(
+                  "Nos services ITAD (audit de parc, effacement certifié NIST 800-88, reconditionnement, recyclage DEEE, cybersécurité) sont chiffrés sur devis selon le volume, le type de matériel et le niveau de sécurité requis. Un plan d'action détaillé vous est remis sous 48 heures.",
+                  "Our ITAD services (fleet audit, NIST 800-88 certified erasure, refurbishment, WEEE recycling, cybersecurity) are priced on a per-quote basis depending on volume, equipment type and required security level. A detailed action plan is delivered within 48 hours."
+                )}
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/reserver?offre=audit-inventaire"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-[#0F172A] font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:bg-gray-100 hover:shadow-xl hover:-translate-y-0.5 text-sm"
+                >
+                  {tx("Demander un devis", "Request a quote")}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
+                >
+                  {tx("Voir tous les services ITAD", "View all ITAD services")}
+                </Link>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
-    </>
+
+      {/* ════════════════════════════════════════════════════════════════
+          S6 — FAQ TARIFAIRE — fond blanc
+         ════════════════════════════════════════════════════════════════ */}
+      <section className="relative w-full overflow-hidden bg-white py-20 lg:py-28">
+        <GhostNumber n="07" isDark={false} align="left" />
+        <div className="container mx-auto px-4 relative z-10">
+          <FadeIn>
+            <div className="max-w-3xl mx-auto">
+              <div className="flex items-center gap-3 mb-3">
+                <HelpCircle className="w-5 h-5 text-[#047857]" aria-hidden="true" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857]">
+                  {tx("Questions fréquentes", "Frequently asked questions")}
+                </p>
+              </div>
+              <h2
+                className="text-[#0F172A] font-bold tracking-tight mb-12"
+                style={{ fontSize: "clamp(1.7rem, 3.2vw, 2.4rem)", lineHeight: 1.1 }}
+              >
+                {tx("Facturation, engagement, paiement : tout est clair.", "Billing, commitment, payment: everything is clear.")}
+              </h2>
+
+              <div>
+                {faqItems.map((item, i) => (
+                  <FAQItem key={i} q={item.q} a={item.a} />
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════════
+          S7 — CTA DOUBLE FINAL — fond #10B981
+         ════════════════════════════════════════════════════════════════ */}
+      <section className="relative w-full overflow-hidden bg-[#10B981]">
+        <div
+          className="absolute inset-0 pointer-events-none opacity-30"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 80% 0%, rgba(255,255,255,0.25) 0%, transparent 55%)",
+          }}
+        />
+
+        <div className="container mx-auto px-4 py-20 lg:py-24 relative z-10">
+          <FadeIn>
+            <div className="max-w-4xl mx-auto text-center">
+              <h2
+                className="text-white font-black tracking-tight mb-6"
+                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+              >
+                {tx("Prêt à passer à l'action ?", "Ready to take the next step?")}
+              </h2>
+              <p className="text-white/90 text-[1.05rem] lg:text-[1.15rem] leading-[1.65] max-w-2xl mx-auto mb-10">
+                {tx(
+                  "Trente minutes avec un expert senior. Un plan d'action chiffré sous 48 heures.",
+                  "Thirty minutes with a senior expert. A quoted action plan within 48 hours."
+                )}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Link
+                  href="/reserver?offre=waki-box-confort"
+                  className="inline-flex items-center justify-center gap-2 bg-[#0F172A] hover:bg-[#022C22] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
+                >
+                  {tx("Réserver une démonstration", "Book a demo")}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href="/reserver?offre=waki-box-pilote"
+                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/40 hover:border-white/60 font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-sm"
+                >
+                  {tx("Candidater au pilote", "Apply for the pilot")}
+                </Link>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 mt-12 text-white/80 text-xs">
+                <span className="inline-flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+                  {tx("Réponse sous 24 heures ouvrées", "Response within 24 business hours")}
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+                  {tx("NDA signé sur demande", "NDA signed on request")}
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+                  {tx("Aucun engagement avant signature", "No commitment before signing")}
+                </span>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+    </main>
   );
 }
