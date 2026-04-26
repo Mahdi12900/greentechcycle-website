@@ -131,6 +131,9 @@ export default function Header() {
                 )}
               </div>
             ))}
+            <Link href="/tarifs" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary transition-colors rounded-lg hover:bg-gray-50">
+              {t("nav.pricing")}
+            </Link>
           </nav>
 
           {/* Right side */}
@@ -164,6 +167,9 @@ export default function Header() {
           <div className="px-4 py-4 space-y-1">
             <Link href="/" className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">
               {t("nav.home")}
+            </Link>
+            <Link href="/tarifs" className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">
+              {t("nav.pricing")}
             </Link>
             {navItems.map((item) => (
               <div key={item.key}>

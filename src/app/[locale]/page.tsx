@@ -1022,7 +1022,7 @@ export default function HomePage() {
                       </span>
                       <span className="text-sm text-gray-400 mb-1">€ HT/mois</span>
                     </div>
-                    <p className="text-xs text-gray-500 mb-4">Setup {plan.setup} € HT</p>
+                    <p className="text-xs text-gray-500 mb-4">{t("pricingTeaser.setupLabel")} {plan.setup} € HT</p>
                     <p className="text-sm text-gray-300 leading-relaxed flex-1 mb-6">{plan.pitch}</p>
                     <Link
                       href={`/reserver?offre=${plan.slug}`}

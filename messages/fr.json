@@ -6,7 +6,8 @@
       "solutions": "Solutions",
       "sectors": "Secteurs",
       "resources": "Ressources",
-      "company": "Entreprise"
+      "company": "Entreprise",
+      "pricing": "Tarifs"
     },
     "megaMenu": {
       "platform": {
@@ -502,6 +503,7 @@
       "subtitle": "Trois plans adaptés à votre taille, un programme pilote pour les premiers signataires et des options à la carte.",
       "popularLabel": "Le plus populaire",
       "bookCta": "Réserver",
+      "setupLabel": "Mise en service",
       "allPricingLink": "Voir tous les tarifs et options",
       "plans": [
         {
@@ -529,7 +531,7 @@
       ],
       "pilot": {
         "label": "Programme pilote",
-        "headline": "3 premiers signataires : setup offert + 19 € HT/mois pendant 6 mois",
+        "headline": "3 premiers signataires : mise en service offerte + 19 € HT/mois pendant 6 mois",
         "cta": "Candidater au pilote"
       }
     },
@@ -2003,7 +2005,7 @@
     "daf": [
       {
         "q": "Quel est le modèle de tarification ?",
-        "a": "Tarification à l'actif traité avec dégressivité par volume. Pas de frais de setup ni d'abonnement caché. Devis personnalisé sous 48h."
+        "a": "Tarification à l'actif traité avec dégressivité par volume. Pas de frais de mise en service ni d'abonnement caché. Devis personnalisé sous 48h."
       },
       {
         "q": "Y a-t-il une valeur de reprise des équipements ?",
@@ -3523,7 +3525,7 @@
       "scrollCta": "Voir les 8 cas sectoriels",
       "cta1": "Demander un audit",
       "cta2": "Réserver une démo 30 min",
-      "featuredLabel": "Cas featured — Banque CAC40",
+      "featuredLabel": "Cas phare — Banque CAC40",
       "featuredMeta": "Marc B. · RSSI · Banque européenne tier-1"
     },
     "editorialIntro": {
@@ -3549,7 +3551,7 @@
     }
   },
   "wakiBox": {
-    "urgency": "Programme pilote ouvert · 3 premiers signataires · Setup offert",
+    "urgency": "Programme pilote ouvert · 3 premiers signataires · Mise en service offerte",
     "urgencyCta": "Candidater au pilote",
     "hero": {
       "eyebrow": "Waki Box · v1.0 · Avril 2026",
@@ -3695,9 +3697,9 @@
     "pilot": {
       "eyebrow": "Programme pilote · ouvert jusqu'à épuisement",
       "title": "Trois premières entreprises. Un témoignage. Un tarif fondateur.",
-      "body": "Nous lançons Waki Box auprès de trois entreprises pilotes choisies sur dossier. En échange d'un témoignage public à six mois, vous bénéficiez du setup offert et d'un abonnement à 19 € HT par mois pendant six mois — soit moins de la moitié du plan Essentiel. Au-delà, vous basculez automatiquement sur l'offre publique du plan choisi, sans surprise.",
+      "body": "Nous lançons Waki Box auprès de trois entreprises pilotes choisies sur dossier. En échange d'un témoignage public à six mois, vous bénéficiez de la mise en service offerte et d'un abonnement à 19 € HT par mois pendant six mois — soit moins de la moitié du plan Essentiel. Au-delà, vous basculez automatiquement sur l'offre publique du plan choisi, sans surprise.",
       "bullets": [
-        "Setup et installation totalement offerts",
+        "Mise en service et installation totalement offertes",
         "19 € HT par mois pendant 6 mois (au lieu de 39 € à 79 €)",
         "Accompagnement direct par l'équipe fondatrice",
         "Témoignage écrit ou vidéo à six mois en contrepartie"
@@ -3835,7 +3837,7 @@
       "cta1": "Réserver une démo",
       "cta2": "Candidater au pilote",
       "trustBadges": [
-        "Setup en 5 jours",
+        "Mise en service en 5 jours",
         "Sans engagement les 30 premiers jours",
         "Données hébergées en France",
         "Filière REP DEEE garantie"
@@ -3851,9 +3853,9 @@
       "eyebrowDefault": "Réservation qualifiée",
       "headlineDefault": "Réserver une démo GreenTechCycle.",
       "subtitleDefault": "Quelques informations pour qu'un responsable Waki Box ou ITAD vous rappelle avec une proposition adaptée à votre secteur, votre taille et votre niveau de maturité conformité.",
-      "headlinePrefix": "Réserver le plan ",
+      "headlinePrefix": "Réserver le ",
       "pilotHeadline": "Candidater au programme pilote Waki Box.",
-      "pilotSubtitle": "Trois places. Une candidature courte. Une réponse sous cinq jours ouvrés. Setup offert et abonnement à 19 € HT par mois pendant six mois en échange d'un témoignage public.",
+      "pilotSubtitle": "Trois places. Une candidature courte. Une réponse sous cinq jours ouvrés. Mise en service offerte et abonnement à 19 € HT par mois pendant six mois en échange d'un témoignage public.",
       "addonHeadline": "Réserver une option à la carte.",
       "addonSubtitle": "Précisez le contexte d'activation et le site concerné. Nous revenons vers vous avec un devis sous 24 heures ouvrées."
     },

@@ -276,7 +276,7 @@ export default function TarifsPage() {
               {[
                 { v: tx("dès 39 €", "from €39"), l: tx("HT / mois", "ex-VAT / month"), color: "#10B981" },
                 { v: tx("3 plans", "3 plans"), l: tx("Essentiel · Confort · Premium", "Essentiel · Confort · Premium"), color: "#0EA5E9" },
-                { v: tx("0 € setup", "€0 setup"), l: tx("programme pilote", "pilot programme"), color: "#F59E0B" },
+                { v: tx("0 € mise en service", "€0 setup"), l: tx("programme pilote", "pilot programme"), color: "#F59E0B" },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col">
                   <span
@@ -423,7 +423,7 @@ export default function TarifsPage() {
                       </div>
                       <div className="flex flex-col">
                         <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">
-                          Setup
+                          {tx("Mise en service", "Setup")}
                         </span>
                         <span className={`text-xl font-bold ${textColor}`}>
                           {plan.setup} <span className="text-sm font-medium opacity-70">€ HT</span>
@@ -498,7 +498,7 @@ export default function TarifsPage() {
                 style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
               >
                 {tx(
-                  "19 € HT/mois pendant 6 mois. Setup offert.",
+                  "19 € HT/mois pendant 6 mois. Mise en service offerte.",
                   "€19 ex-VAT/month for 6 months. Setup free."
                 )}
               </h2>
@@ -513,7 +513,7 @@ export default function TarifsPage() {
               <ul className="space-y-2 mb-10">
                 {tx(
                   [
-                    "Setup offert (valeur 150 €)",
+                    "Mise en service offerte (valeur 150 €)",
                     "19 € HT/mois au lieu de 39 € pendant 6 mois",
                     "Bascule automatique vers le plan Essentiel ou Confort à l'issue",
                     "Aucun engagement supplémentaire",

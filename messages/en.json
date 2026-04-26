@@ -6,7 +6,8 @@
       "solutions": "Solutions",
       "sectors": "Sectors",
       "resources": "Resources",
-      "company": "Company"
+      "company": "Company",
+      "pricing": "Pricing"
     },
     "megaMenu": {
       "platform": {
@@ -502,6 +503,7 @@
       "subtitle": "Three plans tailored to your size, a pilot programme for early signers and à la carte options.",
       "popularLabel": "Most popular",
       "bookCta": "Book now",
+      "setupLabel": "Setup",
       "allPricingLink": "View all pricing and options",
       "plans": [
         {

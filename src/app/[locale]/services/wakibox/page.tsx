@@ -219,7 +219,7 @@ export default function WakiBoxPage() {
                     <span className="text-sm text-gray-500 mb-1">€ HT/mois</span>
                   </div>
                   <p className="text-xs text-gray-500 mb-4">
-                    Setup {plan.setup} € HT · {plan.engagement}
+                    {tx("Mise en service", "Setup")} {plan.setup} € HT · {plan.engagement}
                   </p>
                   <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-5">{plan.pitch}</p>
                   <Link
@@ -244,7 +244,7 @@ export default function WakiBoxPage() {
                 </p>
                 <p className="text-[#0F172A] font-bold leading-snug">
                   {tx(
-                    "3 premiers signataires : setup offert + 19 € HT/mois pendant 6 mois",
+                    "3 premiers signataires : mise en service offerte + 19 € HT/mois pendant 6 mois",
                     "First 3 signers: free setup + €19 ex-VAT/month for 6 months"
                   )}
                 </p>

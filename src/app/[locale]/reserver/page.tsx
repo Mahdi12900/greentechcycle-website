@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { FadeIn } from "@/components/motion";
 import ReservationForm from "@/components/reservation/ReservationForm";
@@ -50,8 +50,104 @@ const KNOWN_OFFERS = new Set([
   "plateforme-info",
 ]);
 
+type OfferPricing = {
+  price: { fr: string; en: string };
+  setup?: { fr: string; en: string };
+  engagement?: { fr: string; en: string };
+};
+
+const OFFER_PRICING: Record<string, OfferPricing> = {
+  "waki-box-essentiel": {
+    price: { fr: "39 € HT/mois", en: "€39 ex-VAT/month" },
+    setup: { fr: "150 € HT", en: "€150 ex-VAT" },
+    engagement: { fr: "12 mois", en: "12 months" },
+  },
+  "waki-box-confort": {
+    price: { fr: "79 € HT/mois", en: "€79 ex-VAT/month" },
+    setup: { fr: "290 € HT", en: "€290 ex-VAT" },
+    engagement: { fr: "12 mois", en: "12 months" },
+  },
+  "waki-box-premium": {
+    price: { fr: "dès 149 € HT/mois", en: "from €149 ex-VAT/month" },
+    setup: { fr: "490 € HT par borne", en: "€490 ex-VAT per kiosk" },
+    engagement: { fr: "24 mois", en: "24 months" },
+  },
+  "waki-box-pilote": {
+    price: { fr: "19 € HT/mois pendant 6 mois", en: "€19 ex-VAT/month for 6 months" },
+    setup: { fr: "Mise en service offerte", en: "Setup waived" },
+  },
+  "waki-box-addon-collecte": {
+    price: { fr: "90 € HT par intervention", en: "€90 ex-VAT per intervention" },
+  },
+  "collecte-urgence": {
+    price: { fr: "90 € HT par intervention", en: "€90 ex-VAT per intervention" },
+  },
+  "waki-box-addon-animation": {
+    price: { fr: "350 € HT par jour", en: "€350 ex-VAT per day" },
+  },
+  "animation-semaine-recyclage": {
+    price: { fr: "350 € HT par jour", en: "€350 ex-VAT per day" },
+  },
+  "waki-box-addon-csrd": {
+    price: { fr: "490 € HT par an", en: "€490 ex-VAT per year" },
+  },
+  "rapport-csrd-dedie": {
+    price: { fr: "490 € HT par an", en: "€490 ex-VAT per year" },
+  },
+  "waki-box-addon-kit": {
+    price: { fr: "290 € HT (one-shot)", en: "€290 ex-VAT (one-off)" },
+  },
+  "kit-comm-customise": {
+    price: { fr: "290 € HT (one-shot)", en: "€290 ex-VAT (one-off)" },
+  },
+  "waki-box-addon-audit": {
+    price: { fr: "1 500 € HT par jour", en: "€1,500 ex-VAT per day" },
+  },
+  "audit-deee": {
+    price: { fr: "1 500 € HT par jour", en: "€1,500 ex-VAT per day" },
+  },
+  "waki-box-addon-formation": {
+    price: { fr: "450 € HT pour 2 heures", en: "€450 ex-VAT for 2 hours" },
+  },
+  "formation-equipes": {
+    price: { fr: "450 € HT pour 2 heures", en: "€450 ex-VAT for 2 hours" },
+  },
+  "box-supplementaire": {
+    price: { fr: "29 € HT/mois par borne", en: "€29 ex-VAT/month per kiosk" },
+  },
+  "audit-inventaire": {
+    price: { fr: "Sur devis selon volume", en: "Custom quote based on volume" },
+  },
+  "effacement-securise": {
+    price: { fr: "Sur devis selon volume", en: "Custom quote based on volume" },
+  },
+  "reconditionnement-valorisation": {
+    price: { fr: "Sur devis selon volume", en: "Custom quote based on volume" },
+  },
+  "recyclage-deee": {
+    price: { fr: "Sur devis selon volume", en: "Custom quote based on volume" },
+  },
+  "cybersecurite": {
+    price: { fr: "Sur devis selon volume", en: "Custom quote based on volume" },
+  },
+  "cybersecurite-itad": {
+    price: { fr: "Sur devis selon volume", en: "Custom quote based on volume" },
+  },
+  "wakibox": {
+    price: { fr: "Sur devis selon volume", en: "Custom quote based on volume" },
+  },
+};
+
+const PLAN_SLUGS = new Set([
+  "waki-box-essentiel",
+  "waki-box-confort",
+  "waki-box-premium",
+]);
+
 function ReserverInner() {
   const t = useTranslations("reserver");
+  const locale = useLocale();
+  const isEn = locale === "en";
   const sp = useSearchParams();
   const rawOffer = sp?.get("offre") ?? null;
   const offerSlug = rawOffer && KNOWN_OFFERS.has(rawOffer) ? rawOffer : null;
@@ -65,7 +161,7 @@ function ReserverInner() {
     if (offerSlug === "waki-box-pilote") {
       headline = t("hero.pilotHeadline");
       subtitle = t("hero.pilotSubtitle");
-    } else if (offerSlug.startsWith("waki-box-")) {
+    } else if (PLAN_SLUGS.has(offerSlug)) {
       headline = `${t("hero.headlinePrefix")}${offerLabel}.`;
     } else {
       headline = t("hero.addonHeadline");
@@ -74,6 +170,13 @@ function ReserverInner() {
   }
 
   const offerLabelDisplay = offerSlug ? t(`offers.${offerSlug}`) : t("summary.noOffer");
+  const pricing = offerSlug ? OFFER_PRICING[offerSlug] : undefined;
+  const lang = isEn ? "en" : "fr";
+  const labels = {
+    price: isEn ? "Price" : "Tarif",
+    setup: isEn ? "Setup" : "Mise en service",
+    engagement: isEn ? "Commitment" : "Engagement",
+  };
 
   return (
     <main className="overflow-hidden bg-white">
@@ -116,9 +219,39 @@ function ReserverInner() {
               </p>
 
               {offerSlug && (
-                <div className="mt-7 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#10B981]/12 border border-[#10B981]/30 text-[12px] text-[#6EE7B7] font-medium">
-                  <span className="text-[#6EE7B7] font-bold">{t("summary.offerLabel")} :</span>
-                  <span>{offerLabelDisplay}</span>
+                <div className="mt-7 max-w-xl rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 p-4 lg:p-5">
+                  <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#6EE7B7] font-medium mb-3">
+                    <span className="text-[#6EE7B7] font-bold uppercase tracking-wider text-[10px]">
+                      {t("summary.offerLabel")}
+                    </span>
+                    <span className="text-white text-[13px] font-semibold">{offerLabelDisplay}</span>
+                  </div>
+                  {pricing && (
+                    <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-[12px]">
+                      <div className="flex flex-col">
+                        <dt className="text-gray-400 uppercase tracking-wider text-[10px] font-semibold">
+                          {labels.price}
+                        </dt>
+                        <dd className="text-white font-bold tabular-nums">{pricing.price[lang]}</dd>
+                      </div>
+                      {pricing.setup && (
+                        <div className="flex flex-col">
+                          <dt className="text-gray-400 uppercase tracking-wider text-[10px] font-semibold">
+                            {labels.setup}
+                          </dt>
+                          <dd className="text-white font-bold tabular-nums">{pricing.setup[lang]}</dd>
+                        </div>
+                      )}
+                      {pricing.engagement && (
+                        <div className="flex flex-col">
+                          <dt className="text-gray-400 uppercase tracking-wider text-[10px] font-semibold">
+                            {labels.engagement}
+                          </dt>
+                          <dd className="text-white font-bold">{pricing.engagement[lang]}</dd>
+                        </div>
+                      )}
+                    </dl>
+                  )}
                 </div>
               )}
             </div>
