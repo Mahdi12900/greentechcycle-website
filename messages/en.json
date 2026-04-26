@@ -41,11 +41,21 @@
         "items": {
           "overview": "All sectors",
           "finance": "Banking & Finance",
-          "sante": "Healthcare & Hospitals",
-          "industrie": "Manufacturing & Industry",
-          "public": "Public sector",
+          "sante": "Healthcare",
+          "industrie": "Industry",
+          "retail": "Retail & Distribution",
           "energie": "Energy & Utilities",
-          "retail": "Retail & Distribution"
+          "medias": "Media & Broadcast",
+          "tech": "Technology & SaaS",
+          "transport": "Transport & Logistics",
+          "public": "Public Sector",
+          "conseil": "Consulting & Services",
+          "pharma": "Pharma & Biotech",
+          "btp": "Construction",
+          "horeca": "Hospitality & Catering",
+          "education": "Education & Research",
+          "agroalimentaire": "Food & Agriculture",
+          "telecom": "Telecommunications"
         }
       },
       "resources": {
@@ -108,7 +118,17 @@
           "industrie": "Industry",
           "public": "Public sector",
           "energie": "Energy",
-          "retail": "Retail"
+          "retail": "Retail",
+          "transport": "Transport & Logistics",
+          "conseil": "Consulting & Services",
+          "pharma": "Pharma & Biotech",
+          "btp": "Construction",
+          "horeca": "Hospitality & Catering",
+          "education": "Education & Research",
+          "agroalimentaire": "Food & Agriculture",
+          "medias": "Media & Broadcast",
+          "tech": "Technology & SaaS",
+          "telecom": "Telecommunications"
         }
       },
       "company": {
@@ -2439,296 +2459,2938 @@
   "Sectors": {
     "finance": {
       "hero": {
-        "title": "ITAD for Financial Services",
-        "subtitle": "DORA, PCI-DSS, regulatory oversight — secure your critical IT asset decommissioning"
-      },
-      "context": {
-        "title": "Context",
-        "description": "The financial sector handles the most sensitive data: trading positions, client information, regulatory filings. DORA mandates digital operational resilience since 2025, including control over ITAD supply chains. Regulators demand flawless traceability."
-      },
-      "regulations": {
-        "title": "Applicable regulations",
-        "items": [
-          "DORA (Digital Operational Resilience Act)",
-          "PCI-DSS v4.0",
-          "Financial regulators",
-          "Enhanced GDPR",
-          "NIS2 (essential entities)",
-          "Basel III/IV (operational risk)"
+        "title": "ITAD for Banking & Finance",
+        "subtitle": "DORA, PCI-DSS, regulatory oversight — secure your critical IT asset decommissioning",
+        "kpis": [
+          {
+            "value": "100%",
+            "label": "DORA traceability"
+          },
+          {
+            "value": "48h",
+            "label": "erasure certificate"
+          },
+          {
+            "value": "€412",
+            "label": "residual value/device"
+          }
         ]
       },
-      "challenges": {
-        "title": "Typical challenges",
-        "items": [
-          "Ultra-sensitive data: trading, clients, compliance",
-          "High-security erasure with mandatory 4-eyes validation",
-          "Complete audit trail required by regulators",
-          "Multi-entity management (subsidiaries, branches)",
-          "ITAD providers subject to same DORA requirements",
-          "Complex regulatory retention periods"
+      "profile": {
+        "title": "Banking sector profile",
+        "narrative": "The financial sector handles the most sensitive data: trading positions, client data, regulatory filings. Since January 2025, DORA mandates digital operational resilience covering the entire ITAD supply chain. Regulators demand flawless traceability. Banking IT fleets — trading datacentres, branches, ATMs, payment terminals — generate continuous high-risk decommissioning flows.",
+        "highlights": [
+          "Average fleets of 8,000 to 45,000 assets per banking group",
+          "Accelerated renewal cycles (3 years workstations, 5 years servers)",
+          "DORA art. 28-30 classified data on every device",
+          "Annually auditable TPP register requirement"
         ]
       },
-      "solution": {
-        "title": "How GTC responds",
+      "pains": {
+        "title": "Your priority pain points",
         "items": [
-          "NIST 800-88 Purge/Destroy certified erasure with dual validation",
-          "Built-in 4-eyes principle for every critical operation",
-          "End-to-end blockchain chain of custody",
-          "Pre-configured DORA + PCI-DSS compliance matrix",
-          "Auditor reporting with dedicated regulatory exports",
-          "DORA Article 28 compliant ITAD provider qualification"
+          {
+            "title": "DORA art. 28-30 compliance",
+            "description": "Every ITAD provider must be listed in the TPP register and auditable annually. Non-compliance penalties reach 1% of global daily turnover."
+          },
+          {
+            "title": "High-security erasure",
+            "description": "Trading data, client positions and regulatory information require NIST 800-88 Purge erasure with mandatory dual 4-eyes validation."
+          },
+          {
+            "title": "Complete audit trail",
+            "description": "Regulators require end-to-end traceability, from physical removal to proof of destruction, with qualified timestamping."
+          },
+          {
+            "title": "Multi-entity management",
+            "description": "Banking groups operate dozens of subsidiaries, branches and processing centres, each with their own regulatory requirements."
+          },
+          {
+            "title": "Enforceable chain of custody",
+            "description": "Each asset must be individually tracked with a sealed chain of custody, from pickup to proof of destruction or reuse."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "Trading datacentre decommissioning",
+            "description": "Certified erasure of 2,400 servers containing high-frequency trading algorithms and classified market data.",
+            "result": "100% DORA compliant, €1.2M value recovered"
+          },
+          {
+            "title": "Branch network rollout",
+            "description": "Coordinated replacement of 4,800 workstations across 1,200 branches over 6 months, with PCI-DSS erasure.",
+            "result": "0 data incidents, €890K refurbishment value"
+          },
+          {
+            "title": "ATM migration",
+            "description": "Secure removal and destruction of 1,600 ATMs containing SAM cards, EMV certificates and transaction logs.",
+            "result": "100% certified destruction, regulatory report D+5"
+          },
+          {
+            "title": "Regulatory audit",
+            "description": "Complete ITAD audit trail restitution for regulatory inspection, with dedicated auditor exports.",
+            "result": "Audit passed without reservation in 4 days"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "412",
+            "suffix": "€",
+            "label": "residual value recovered per device"
+          },
+          {
+            "value": "96",
+            "suffix": "%",
+            "label": "DORA compliance rate achieved"
+          },
+          {
+            "value": "1,850",
+            "suffix": "t",
+            "label": "CO₂e avoided (8,000-device fleet)"
+          },
+          {
+            "value": "4",
+            "suffix": "d",
+            "label": "regulatory audit turnaround"
+          }
+        ],
+        "details": "For an 8,000-device fleet renewal, GTC generates an average of €3.3M in recovered value and 1,850 tCO₂e avoided, while guaranteeing DORA/PCI-DSS compliance."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "CIO / CTO",
+            "concern": "Operational continuity and DORA TPP register",
+            "ctaAngle": "Real-time multi-entity dashboard"
+          },
+          {
+            "role": "CISO",
+            "concern": "Certified erasure and chain of custody",
+            "ctaAngle": "NIST 800-88 certificates with 4-eyes validation"
+          },
+          {
+            "role": "CFO",
+            "concern": "Asset valuation and budget optimisation",
+            "ctaAngle": "Asset Intelligence module with EMEA market pricing"
+          },
+          {
+            "role": "Compliance Director",
+            "concern": "DORA, PCI-DSS regulatory compliance",
+            "ctaAngle": "Pre-configured compliance matrix + auditor exports"
+          },
+          {
+            "role": "CSR Director",
+            "concern": "CSRD scope 3 IT reporting",
+            "ctaAngle": "Carbon module with Boavizta finance-calibrated factors"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for banking",
+        "items": [
+          {
+            "title": "DORA art. 28 qualification",
+            "description": "GTC is qualified as a DORA-compliant ITAD provider, listed in the TPP register and annually auditable."
+          },
+          {
+            "title": "Native 4-eyes erasure",
+            "description": "Every critical operation is validated by two independent operators, in line with banking standards."
+          },
+          {
+            "title": "Blockchain chain of custody",
+            "description": "End-to-end traceability with eIDAS seal and qualified RGS** timestamping, enforceable before regulators."
+          },
+          {
+            "title": "Dedicated auditor exports",
+            "description": "One-click regulatory-formatted reporting with cryptographically verifiable evidence."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Banking sector",
+        "items": [
+          {
+            "question": "Is GTC qualified under DORA art. 28-30?",
+            "answer": "Yes. GTC is listed in the TPP register as a critical ITAD provider. We supply the full DORA qualification file, including annual audit reports, R2v3 and ISO 27001 certifications, and the article 28 compliance matrix."
+          },
+          {
+            "question": "What is the erasure certificate turnaround?",
+            "answer": "Individual NIST 800-88 certificates are available within 24 hours of processing. For regulatory audits, we deliver the consolidated report within 4 business days."
+          },
+          {
+            "question": "How do you handle high-frequency trading data?",
+            "answer": "HFT servers are processed in a dedicated secure zone with NIST 800-88 Purge erasure followed by HMG IS5 Enhanced physical destruction (6mm shred). Systematic dual 4-eyes validation."
+          },
+          {
+            "question": "Can you operate across multiple banking entities simultaneously?",
+            "answer": "Yes. Our platform manages multi-entity permissions with strict RBAC isolation. Each subsidiary has its own space, SLAs and regulatory exports."
+          }
         ]
       },
       "cta": {
-        "title": "Secure your financial ITAD",
-        "button": "Request a DORA audit"
+        "title": "Secure your banking ITAD",
+        "subtitle": "Free DORA audit within 48 hours — our financial consultants will return with a compliant plan.",
+        "button": "Request a DORA audit",
+        "secondaryButton": "View the CAC 40 bank case"
       }
     },
     "sante": {
       "hero": {
         "title": "ITAD for Healthcare",
-        "subtitle": "Health data hosting, patient records, privacy — protect health data end-to-end"
-      },
-      "context": {
-        "title": "Context",
-        "description": "Healthcare facilities manage particularly sensitive patient data. Health Data Hosting (HDS) certification strictly governs the processing of this data, including its destruction. Data protection authorities are especially vigilant in this sector, with regular audits and enhanced penalties."
-      },
-      "regulations": {
-        "title": "Applicable regulations",
-        "items": [
-          "HDS certification (Health Data Hosting)",
-          "GDPR — health data (art. 9)",
-          "Public health code",
-          "Data protection authority — health framework",
-          "NIS2 (healthcare = essential entity)",
-          "National health IT security framework"
+        "subtitle": "Health data hosting, patient records, privacy — protect health data end-to-end",
+        "kpis": [
+          {
+            "value": "100%",
+            "label": "HDS compliant"
+          },
+          {
+            "value": "4,200",
+            "label": "devices refurbished"
+          },
+          {
+            "value": "24h",
+            "label": "certificates available"
+          }
         ]
       },
-      "challenges": {
-        "title": "Typical challenges",
-        "items": [
-          "Patient data: medical records, imaging, lab results",
-          "Mandatory physical destruction for certain media (CDs, tapes, disks)",
-          "Regulatory traceability required by authorities",
-          "Connected medical devices with embedded data",
-          "Multi-site: hospitals, clinics, care homes, practices",
-          "Constrained IT budget and aging equipment"
+      "profile": {
+        "title": "Healthcare sector profile",
+        "narrative": "Healthcare facilities manage particularly sensitive patient data: medical records, imaging, lab results, genomic data. HDS certification strictly governs the processing of this data, including its destruction. Data protection authorities are especially vigilant in this sector. Hospital IT fleets — clinical workstations, EHR servers, imaging equipment, connected medical devices — represent considerable volumes with varying lifecycles.",
+        "highlights": [
+          "Fleets of 2,000 to 12,000 assets per hospital group",
+          "Connected medical devices (IoMT) with embedded data",
+          "Mandatory physical destruction for certain media",
+          "Constrained IT budget and often aging equipment"
         ]
       },
-      "solution": {
-        "title": "How GTC responds",
+      "pains": {
+        "title": "Your priority pain points",
         "items": [
-          "Certified erasure and physical destruction for all media types",
-          "Certificates compliant with health data hosting requirements",
-          "Complete traceability for regulatory audits",
-          "Connected medical device (IoMT) management",
-          "Multi-facility dashboard for hospital groups",
-          "Refurbishable equipment recovery through charitable channels"
+          {
+            "title": "HDS patient data",
+            "description": "Medical records, DICOM images and lab results require HDS-compliant erasure with individual certificates per device."
+          },
+          {
+            "title": "Connected medical devices",
+            "description": "IoMT devices (monitors, pumps, imagers) contain embedded patient data difficult to erase with standard methods."
+          },
+          {
+            "title": "Regulatory traceability",
+            "description": "Regular audits require a complete audit trail from device removal to destruction certificate."
+          },
+          {
+            "title": "Multi-site hospital groups",
+            "description": "Hospital groups span hospitals, clinics, care homes and practices with heterogeneous fleets and complex logistics."
+          },
+          {
+            "title": "Charitable reuse",
+            "description": "Regulatory and social missions encourage reuse through charitable channels."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "9,000-bed hospital renewal",
+            "description": "Coordinated decommissioning of 4,200 clinical workstations and 180 EHR servers across 8 sites, without care disruption.",
+            "result": "4,200 devices refurbished via charity, 0 data incidents"
+          },
+          {
+            "title": "PACS imaging migration",
+            "description": "Erasure and destruction of 340 imaging stations containing 15 years of patient DICOM data.",
+            "result": "100% certified destruction, regulatory report D+3"
+          },
+          {
+            "title": "IoMT device retirement",
+            "description": "Secure collection and processing of 1,800 end-of-life connected medical devices (monitors, pumps, sensors).",
+            "result": "Embedded data erased, 62% refurbished"
+          },
+          {
+            "title": "Health data audit",
+            "description": "Complete audit trail restitution for regulatory control, covering 3 years of decommissioning.",
+            "result": "Audit passed without observation"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "4,200",
+            "suffix": "+",
+            "label": "devices refurbished via charity"
+          },
+          {
+            "value": "89",
+            "suffix": "%",
+            "label": "reuse rate achieved"
+          },
+          {
+            "value": "680",
+            "suffix": "t",
+            "label": "CO₂e avoided (avg. hospital group)"
+          },
+          {
+            "value": "3",
+            "suffix": "d",
+            "label": "audit report turnaround"
+          }
+        ],
+        "details": "For a hospital group of 4,200 devices, charitable refurbishment generates €840K in social value and 680 tCO₂e avoided, with guaranteed HDS compliance."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "Hospital CIO",
+            "concern": "Care continuity during decommissioning",
+            "ctaAngle": "Department-by-department planning with zero disruption"
+          },
+          {
+            "role": "CISO / DPO",
+            "concern": "HDS erasure and regulatory traceability",
+            "ctaAngle": "HDS-compliant certificates + 360° audit trail"
+          },
+          {
+            "role": "Hospital Group Director",
+            "concern": "Multi-facility oversight and budget",
+            "ctaAngle": "Consolidated group dashboard with budget tracking"
+          },
+          {
+            "role": "Biomedical Engineer",
+            "concern": "Connected medical device management",
+            "ctaAngle": "Dedicated IoMT module with specific erasure"
+          },
+          {
+            "role": "CSR Director",
+            "concern": "Charitable reuse and carbon footprint",
+            "ctaAngle": "Charity partner network + healthcare CSRD reporting"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for healthcare",
+        "items": [
+          {
+            "title": "Certified HDS expertise",
+            "description": "Erasure and destruction processes compliant with Health Data Hosting certification requirements."
+          },
+          {
+            "title": "Native IoMT management",
+            "description": "Dedicated module for connected medical devices with adapted erasure protocols (flash memory, firmware)."
+          },
+          {
+            "title": "Charity partner network",
+            "description": "Refurbishment circuit through charitable organisations to maximise social impact."
+          },
+          {
+            "title": "Healthcare compliance",
+            "description": "Audit trail compliant with health data regulatory framework, with formatted restitution for inspections."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Healthcare sector",
+        "items": [
+          {
+            "question": "Are you HDS certified?",
+            "answer": "GTC operates in compliance with HDS requirements for health data destruction. Our NIST 800-88 certificates are recognised as proof of compliant destruction."
+          },
+          {
+            "question": "How do you handle PACS imaging equipment?",
+            "answer": "PACS stations are processed in a dedicated secure zone. DICOM data is erased per NIST 800-88 Purge, then disks undergo certified physical destruction."
+          },
+          {
+            "question": "Can you operate without disrupting care?",
+            "answer": "Yes. We plan each intervention department by department, outside critical windows. Our SLA guarantees zero care disruption."
+          },
+          {
+            "question": "What is your geographic coverage for hospital groups?",
+            "answer": "Our 4 sites in France cover the entire territory. For multi-site groups, we deploy dedicated teams with a single coordinator."
+          }
         ]
       },
       "cta": {
         "title": "Protect health data",
-        "button": "Request a healthcare audit"
+        "subtitle": "Free HDS audit within 48 hours — our healthcare consultants analyse your fleet and obligations.",
+        "button": "Request an HDS audit",
+        "secondaryButton": "View the hospital case"
       }
     },
     "industrie": {
       "hero": {
         "title": "ITAD for Industry",
-        "subtitle": "PLCs, SCADA, industrial IoT — manage the lifecycle of your IT/OT equipment"
-      },
-      "context": {
-        "title": "Context",
-        "description": "Industry uses a mix of traditional IT and OT (Operational Technology): programmable logic controllers, SCADA systems, IoT sensors. These devices have long lifecycles (10-20 years) and often contain sensitive production data. IT scope 3 emissions are particularly heavy in manufacturing."
-      },
-      "regulations": {
-        "title": "Applicable regulations",
-        "items": [
-          "NIS2 (industrial sector = important entity)",
-          "CSRD / ESRS E5 (circular economy)",
-          "WEEE Directive",
-          "IEC 62443 (industrial cybersecurity)",
-          "ISO 14001 (environmental management)",
-          "Machinery Directive 2023/1230"
+        "subtitle": "PLCs, SCADA, industrial IoT — manage the lifecycle of your IT/OT equipment",
+        "kpis": [
+          {
+            "value": "IT+OT",
+            "label": "unified inventory"
+          },
+          {
+            "value": "20 yrs",
+            "label": "lifecycles managed"
+          },
+          {
+            "value": "73%",
+            "label": "reuse rate"
+          }
         ]
       },
-      "challenges": {
-        "title": "Typical challenges",
-        "items": [
-          "Heterogeneous fleets: PLCs, SCADA, HMI, industrial PCs",
-          "EOSL (End of Service Life) equipment without vendor support",
-          "Heavy scope 3 carbon (bulky equipment, rare metals)",
-          "Long lifecycles: 10 to 20 years",
-          "Specialized equipment difficult to refurbish",
-          "Production data and intellectual property embedded in devices"
+      "profile": {
+        "title": "Industrial sector profile",
+        "narrative": "Industry uses a mix of traditional IT and OT (Operational Technology): PLCs, SCADA systems, IoT sensors, industrial PCs. These devices have long lifecycles (10-20 years) and often contain sensitive production data, intellectual property and critical configurations. IT scope 3 emissions are particularly heavy in manufacturing.",
+        "highlights": [
+          "Heterogeneous fleets of 500 to 15,000 IT/OT assets per site",
+          "EOSL equipment without vendor support or spare parts",
+          "Embedded production data and intellectual property",
+          "CSRD/ESRS E5 obligation on industrial scope 3"
         ]
       },
-      "solution": {
-        "title": "How GTC responds",
+      "pains": {
+        "title": "Your priority pain points",
         "items": [
-          "Unified IT/OT inventory with PLC and SCADA management",
-          "Erasure adapted to industrial media (flash memory, PLCs)",
-          "Precise carbon footprint including heavy equipment via Boavizta",
-          "EOSL lifecycle management with alerts and replacement planning",
-          "Certified recycling of rare metals and specialized components",
-          "Automated CSRD/ESRS E5 reporting for industrial scope 3"
+          {
+            "title": "IT/OT convergence",
+            "description": "PLCs, SCADA and HMI coexist with standard IT but require specific erasure protocols adapted to flash memory and PLC firmware."
+          },
+          {
+            "title": "Long lifecycles",
+            "description": "Industrial equipment lives 10-20 years. EOSL tracking, spare part management and replacement planning are critical."
+          },
+          {
+            "title": "Heavy scope 3 carbon",
+            "description": "Bulky industrial equipment (servers, PLCs, connected machine tools) weighs heavily in scope 3 carbon reporting."
+          },
+          {
+            "title": "Intellectual property",
+            "description": "Production data, manufacturing recipes and embedded machine parameters represent major industrial espionage risks."
+          },
+          {
+            "title": "Distributed sites",
+            "description": "Industrial groups operate dozens of production sites with heterogeneous fleets to coordinate."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "Production line modernisation",
+            "description": "Coordinated replacement of 480 PLCs and 120 HMI stations across 3 sites, with program and production data erasure.",
+            "result": "0 IP leaks, 890 tCO₂e avoided"
+          },
+          {
+            "title": "SCADA decommissioning",
+            "description": "Secure removal of 240 RTUs and SCADA concentrators containing network topologies and cryptographic keys.",
+            "result": "100% certified destruction, NIS2 matrix validated"
+          },
+          {
+            "title": "Factory datacentre migration",
+            "description": "Decommissioning of 1,200 servers and storage arrays from an industrial datacentre across 2 sites.",
+            "result": "€1.8M value recovered, CSRD ESRS E5 report delivered"
+          },
+          {
+            "title": "IoT sensor renewal",
+            "description": "Collection and processing of 8,000 end-of-life industrial IoT sensors, with firmware erasure and certified recycling.",
+            "result": "98% material recycling, 0 residual data"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "1.8",
+            "suffix": "M€",
+            "label": "value recovered (factory DC)"
+          },
+          {
+            "value": "890",
+            "suffix": "t",
+            "label": "CO₂e avoided per site"
+          },
+          {
+            "value": "73",
+            "suffix": "%",
+            "label": "reuse rate achieved"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "NIS2/CSRD compliance"
+          }
+        ],
+        "details": "For an industrial site of 1,200 servers and 500 PLCs, GTC recovers an average of €1.8M in value and avoids 890 tCO₂e while guaranteeing NIS2 and CSRD ESRS E5 compliance."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "Industrial CIO",
+            "concern": "Unified IT/OT inventory and EOSL planning",
+            "ctaAngle": "IT+OT platform with end-of-support alerts"
+          },
+          {
+            "role": "CISO / OT Security",
+            "concern": "Production data and IP erasure",
+            "ctaAngle": "Protocols adapted for PLCs, SCADA, flash"
+          },
+          {
+            "role": "Plant Director",
+            "concern": "Production continuity during decommissioning",
+            "ctaAngle": "Planned intervention outside production hours"
+          },
+          {
+            "role": "CSR Director",
+            "concern": "Scope 3 carbon and CSRD",
+            "ctaAngle": "Carbon module calibrated for industry + ESRS E5"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for industry",
+        "items": [
+          {
+            "title": "Unified IT/OT inventory",
+            "description": "A single platform to manage PLCs, SCADA, IoT sensors and standard IT with a consolidated inventory."
+          },
+          {
+            "title": "OT-adapted erasure",
+            "description": "Specific protocols for PLC flash memory, SCADA firmware and embedded industrial data."
+          },
+          {
+            "title": "Native EOSL module",
+            "description": "End-of-support tracking with proactive alerts and replacement planning."
+          },
+          {
+            "title": "Industrial carbon footprint",
+            "description": "Carbon module calibrated on Boavizta v1.4 factors for heavy industrial equipment."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Industrial sector",
+        "items": [
+          {
+            "question": "Can you erase PLCs and SCADA systems?",
+            "answer": "Yes. We have specific protocols for PLC flash memory (Siemens, Rockwell, Schneider), SCADA RTUs and HMIs. Erasure covers programs, configuration data and cryptographic keys."
+          },
+          {
+            "question": "Can you intervene on a production site without downtime?",
+            "answer": "Yes. We plan interventions during scheduled maintenance windows or outside production shifts. Our SLA guarantees zero production impact."
+          },
+          {
+            "question": "How do you handle EOSL equipment?",
+            "answer": "Our EOSL module manages the complete lifecycle: early warning, spare part sourcing, replacement planning and secure end-of-life decommissioning."
+          },
+          {
+            "question": "What CSRD reporting do you provide for industry?",
+            "answer": "Automated CSRD ESRS E5 module covering the 11 applicable data points, calibrated on Boavizta v1.4 industrial emission factors. ISAE 3410-ready audit export."
+          }
         ]
       },
       "cta": {
-        "title": "Optimize your industrial ITAD",
-        "button": "Request an industrial audit"
-      }
-    },
-    "public": {
-      "hero": {
-        "title": "ITAD for the Public Sector",
-        "subtitle": "Public procurement, WEEE standards, enhanced GDPR — transparency and compliance for government"
-      },
-      "context": {
-        "title": "Context",
-        "description": "The public sector (local authorities, government agencies, public institutions) faces enhanced obligations for transparency, GDPR compliance, and public procurement rules. WEEE management standards apply specifically. Procurement specifications are strict and purchasing procedures are governed by public procurement law."
-      },
-      "regulations": {
-        "title": "Applicable regulations",
-        "items": [
-          "Enhanced GDPR (public accountability)",
-          "WEEE management standards",
-          "WEEE Directive",
-          "Public procurement code",
-          "NIS2 (government = essential entities)",
-          "Anti-waste and circular economy law"
-        ]
-      },
-      "challenges": {
-        "title": "Typical challenges",
-        "items": [
-          "Public procurement: strict specifications, competitive bidding",
-          "Enhanced transparency and traceability obligations",
-          "GDPR with increased public servant accountability",
-          "Heterogeneous and aging IT fleet",
-          "Limited budget, need for maximum value recovery",
-          "Mandatory reuse and charitable donations"
-        ]
-      },
-      "solution": {
-        "title": "How GTC responds",
-        "items": [
-          "Platform compliant with public procurement requirements",
-          "Transparent and auditable reporting for oversight bodies",
-          "GDPR certificates compliant with public sector recommendations",
-          "Maximum value recovery through charitable reuse channels",
-          "Automated WEEE compliance",
-          "Dashboard adapted for government with budget tracking"
-        ]
-      },
-      "cta": {
-        "title": "Structure your public sector ITAD",
-        "button": "Request a government audit"
-      }
-    },
-    "energie": {
-      "hero": {
-        "title": "ITAD for Energy & Utilities",
-        "subtitle": "DORA, NIS2, grid operators, energy code — secure end-of-life for OT/IT critical infrastructure"
-      },
-      "context": {
-        "title": "Context",
-        "description": "Energy operators (generation, transmission, distribution) run IT/OT assets classified as critical infrastructure operators (CIO) or essential services operators (NIS2). Decommissioning smart-meter concentrators, SCADA RTUs, control rooms or IT firewalls requires a tracked chain of custody, IGI 1300-grade destruction for restricted-distribution assets, and documented CSRD scope 3 reporting. DORA applies to energy entities operating in financial perimeter (trading, hedging)."
-      },
-      "regulations": {
-        "title": "Applicable regulations",
-        "items": [
-          "NIS2 (essential services — energy)",
-          "Energy code (national framework)",
-          "Grid operator security baseline (OT)",
-          "Restricted-distribution standards (IGI 1300 equivalent)",
-          "DORA (energy trading entities)",
-          "CSRD / ESRS E5 and E1 (climate)",
-          "ISO/IEC 62443 (OT cybersecurity)"
-        ]
-      },
-      "challenges": {
-        "title": "Typical challenges",
-        "items": [
-          "Volumes: 4,000 to 50,000 OT assets (concentrators, RTUs, IEDs)",
-          "12-20 year lifecycles, frequent EOSL from vendors",
-          "Sensitive embedded data: network topology, cryptographic keys",
-          "Mandatory physical destruction for HSMs, industrial SIMs, SAM modules",
-          "Multi-site: control centres, HV/MV substations, smart meters",
-          "Cybersecurity authority audit expected within 30 days"
-        ]
-      },
-      "solution": {
-        "title": "How GTC responds",
-        "items": [
-          "Unified IT/OT inventory with critical-infrastructure / restricted-distribution tagging",
-          "NIST 800-88 Purge erasure + HMG IS5 Enhanced physical destruction (6 mm shred)",
-          "eIDAS-sealed chain of custody + qualified RGS** timestamping",
-          "Pre-configured NIS2 / IEC 62443 / DORA matrix",
-          "Carbon scope 3.1 module calibrated on Boavizta v1.4 energy factors",
-          "T2/T3 secure transport with restricted-distribution clearances"
-        ]
-      },
-      "cta": {
-        "title": "Secure your critical energy assets",
-        "button": "Request a NIS2/DORA audit"
+        "title": "Optimise your industrial ITAD",
+        "subtitle": "Free IT/OT audit within 48 hours — our industrial experts map your fleet.",
+        "button": "Request an industrial audit",
+        "secondaryButton": "View the industry CSRD case"
       }
     },
     "retail": {
       "hero": {
         "title": "ITAD for Retail & Distribution",
-        "subtitle": "PCI-DSS v4.0, GDPR, CSRD — manage end-of-life for POS terminals, devices and multi-site fleets"
-      },
-      "context": {
-        "title": "Context",
-        "description": "Multi-site retail brands (300 to 3,000 stores) handle payment card data (PCI-DSS) and GDPR-regulated customer data. The triennial renewal of POS systems, payment terminals, electronic shelf labels and interactive kiosks generates heavy and heterogeneous ITAD flows, to be coordinated without commercial disruption. CFOs require actuarial asset valuation and CSRD ESRS E5 reporting per brand."
-      },
-      "regulations": {
-        "title": "Applicable regulations",
-        "items": [
-          "PCI-DSS v4.0 (req. 9 & 12)",
-          "GDPR — transactional data",
-          "WEEE Directive 2012/19/EU",
-          "Anti-waste / circular economy law",
-          "CSRD / ESRS E5 (circular economy)",
-          "Consumer code (reuse)"
+        "subtitle": "PCI-DSS v4.0, GDPR, CSRD — manage end-of-life for POS terminals and multi-site fleets",
+        "kpis": [
+          {
+            "value": "3,000",
+            "label": "sites orchestrated"
+          },
+          {
+            "value": "90d",
+            "label": "deployment time"
+          },
+          {
+            "value": "€89K",
+            "label": "annual savings"
+          }
         ]
       },
-      "challenges": {
-        "title": "Typical challenges",
-        "items": [
-          "300 to 3,000 sites to orchestrate within 90 days",
-          "POS systems containing SAM cards, EMV certificates, after-sales data",
-          "Payment terminals to be destroyed per PCI-DSS Appendix A1",
-          "Interactive kiosks, RFID/ESL labels, digital safes",
-          "Pressure from franchisees / store managers on cost and lead time",
-          "Consolidated CSRD reporting across brands / countries"
+      "profile": {
+        "title": "Retail sector profile",
+        "narrative": "Multi-site retail brands handle payment card data (PCI-DSS) and GDPR-regulated customer data. Triennial renewal of POS systems, payment terminals, electronic shelf labels and interactive kiosks generates heavy and heterogeneous ITAD flows, to be coordinated without commercial disruption.",
+        "highlights": [
+          "300 to 3,000 stores with simultaneous renewal",
+          "POS systems containing SAM cards, EMV certificates",
+          "Pressure from franchisees and store managers on cost and timing",
+          "Consolidated CSRD reporting across brands and countries"
         ]
       },
-      "solution": {
-        "title": "How GTC responds",
+      "pains": {
+        "title": "Your priority pain points",
         "items": [
-          "Multi-site rollout plan in waves with real-time monitoring",
-          "PCI-DSS-grade secure erasure + physical destruction with per-site protocol",
-          "WakiBox module for pooled collection (ESL, accessories, peripherals)",
-          "Asset Intelligence for EMEA refurbished-market valuation",
-          "CSRD ESRS E5 reporting per brand, per country, per wave",
-          "Store API connected to the TMS to avoid disrupting operations"
+          {
+            "title": "Multi-site orchestration",
+            "description": "Coordinating removal across 300 to 3,000 stores within 90 days without disrupting commercial operations."
+          },
+          {
+            "title": "PCI-DSS compliance",
+            "description": "POS systems and payment terminals contain SAM cards, EMV certificates and transactional data subject to PCI-DSS v4.0."
+          },
+          {
+            "title": "Heterogeneous terminals",
+            "description": "Interactive kiosks, RFID/ESL labels, digital safes, receipt printers — each type requires specific processing."
+          },
+          {
+            "title": "Asset valuation",
+            "description": "CFOs demand precise market pricing to maximise resale value of refurbishable equipment."
+          },
+          {
+            "title": "Multi-brand reporting",
+            "description": "Distribution groups operate multiple brands across countries, each with specific CSRD requirements."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "POS replacement across 220 stores",
+            "description": "Removal and erasure of 4,800 POS systems with SAM cards and EMV certificates across 220 stores in 90 days.",
+            "result": "0 PCI-DSS incidents, €89K/year saved"
+          },
+          {
+            "title": "Electronic label migration",
+            "description": "Collection and recycling of 180,000 ESL tags and RFID modules across 450 stores with unit traceability.",
+            "result": "95% material recycling, WEEE report compliant"
+          },
+          {
+            "title": "WakiBox store deployment",
+            "description": "Installation of WakiBox collection kiosks in 120 stores for pooled end-of-life equipment collection.",
+            "result": "Collection rate +340%, logistics cost -62%"
+          },
+          {
+            "title": "Multi-country CSRD reporting",
+            "description": "CSRD ESRS E5 reporting consolidation for 3 brands across 5 countries, with per-store data.",
+            "result": "CSRD report delivered D-90 before closing, 0 audit reservations"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "89",
+            "suffix": "K€",
+            "label": "annual savings (220-store brand)"
+          },
+          {
+            "value": "95",
+            "suffix": "%",
+            "label": "material recycling rate"
+          },
+          {
+            "value": "340",
+            "suffix": "%",
+            "label": "WakiBox collection rate increase"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "CSRD audit reservations"
+          }
+        ],
+        "details": "For a 220-store brand, GTC generates €89K/year in savings and a compliant CSRD ESRS E5 report without reservations."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "Retail CIO",
+            "concern": "Multi-site orchestration without commercial disruption",
+            "ctaAngle": "Wave deployment plan with real-time tracking"
+          },
+          {
+            "role": "CISO",
+            "concern": "PCI-DSS erasure and customer data",
+            "ctaAngle": "Individual PCI-DSS certificates per terminal"
+          },
+          {
+            "role": "CFO",
+            "concern": "Asset valuation and cost optimisation",
+            "ctaAngle": "Asset Intelligence EMEA market pricing module"
+          },
+          {
+            "role": "Network Director",
+            "concern": "Minimal store impact",
+            "ctaAngle": "Guaranteed out-of-hours intervention"
+          },
+          {
+            "role": "CSR Director",
+            "concern": "Multi-brand CSRD and circular economy",
+            "ctaAngle": "ESRS E5 reporting per brand, per country"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for retail",
+        "items": [
+          {
+            "title": "Multi-site orchestration",
+            "description": "Wave planning with real-time tracking, coordinated with store managers for zero commercial impact."
+          },
+          {
+            "title": "WakiBox store module",
+            "description": "Pooled collection kiosk installed in stockrooms for end-of-life small equipment."
+          },
+          {
+            "title": "Asset Intelligence",
+            "description": "Real-time EMEA market pricing to maximise resale value of refurbishable POS and terminals."
+          },
+          {
+            "title": "Store TMS API",
+            "description": "Native connector with logistics management systems to coordinate pickups without disrupting deliveries."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Retail sector",
+        "items": [
+          {
+            "question": "Can you handle 3,000 sites simultaneously?",
+            "answer": "Yes. Our multi-site planning module manages up to 5,000 stores per campaign in waves of 50-200 stores."
+          },
+          {
+            "question": "How do you erase POS SAM cards?",
+            "answer": "SAM cards are extracted and physically destroyed per PCI-DSS Appendix A1. A unit destruction report is issued per POS system."
+          },
+          {
+            "question": "What is the per-store intervention time?",
+            "answer": "Standard intervention within 5 business days after scheduling. Express 48h mode available for emergencies."
+          },
+          {
+            "question": "Do you provide per-store reporting?",
+            "answer": "Yes. Each store has its own platform space with inventory, certificates and KPIs. Reporting consolidates by brand, country and group."
+          }
         ]
       },
       "cta": {
         "title": "Orchestrate your multi-site ITAD",
-        "button": "Request a rollout plan"
+        "subtitle": "Free rollout plan within 48 hours — our retail experts size your campaign.",
+        "button": "Request a rollout plan",
+        "secondaryButton": "View the retail WakiBox case"
+      }
+    },
+    "energie": {
+      "hero": {
+        "title": "ITAD for Energy & Utilities",
+        "subtitle": "NIS2, DORA, energy code — secure end-of-life for OT/IT critical infrastructure",
+        "kpis": [
+          {
+            "value": "CIO",
+            "label": "operators supported"
+          },
+          {
+            "value": "50K",
+            "label": "OT assets processed"
+          },
+          {
+            "value": "Restricted",
+            "label": "distribution compliant"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Energy sector profile",
+        "narrative": "Energy operators (generation, transmission, distribution) run IT/OT assets classified as critical infrastructure. Decommissioning smart-meter concentrators, SCADA RTUs, control rooms or IT firewalls requires a tracked chain of custody, restricted-distribution grade destruction, and documented CSRD scope 3 reporting.",
+        "highlights": [
+          "Fleets of 4,000 to 50,000 OT assets",
+          "12-20 year lifecycles with frequent vendor EOSL",
+          "Sensitive embedded data: network topology, cryptographic keys",
+          "Cybersecurity authority audit expected within 30 days"
+        ]
+      },
+      "pains": {
+        "title": "Your priority pain points",
+        "items": [
+          {
+            "title": "Critical infrastructure",
+            "description": "Assets classified as critical infrastructure require enhanced decommissioning procedures with security clearances."
+          },
+          {
+            "title": "Massive OT volumes",
+            "description": "Fleets of 4,000 to 50,000 concentrators, RTUs and IEDs require large-scale collection and processing logistics."
+          },
+          {
+            "title": "Restricted-distribution destruction",
+            "description": "Restricted-distribution assets require compliant physical destruction with 6mm shredding and sealed protocols."
+          },
+          {
+            "title": "NIS2/DORA compliance",
+            "description": "NIS2 classifies energy as essential entities. DORA applies to energy trading and hedging activities."
+          },
+          {
+            "title": "Secure transport",
+            "description": "Sensitive asset transport requires T2/T3 class secure convoys with specific clearances."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "Smart-meter concentrator replacement",
+            "description": "Decommissioning of 35,000 first-generation concentrators with firmware erasure and certified recycling.",
+            "result": "100% traceability, 1,200 tCO₂e avoided"
+          },
+          {
+            "title": "SCADA control room migration",
+            "description": "Secure removal of 180 RTUs and control stations containing network topologies and cryptographic keys.",
+            "result": "Certified restricted-distribution destruction, audit validated"
+          },
+          {
+            "title": "Energy trading DC decommissioning",
+            "description": "Erasure and destruction of 800 energy trading servers per DORA requirements.",
+            "result": "DORA compliance validated, €2.4M recovered"
+          },
+          {
+            "title": "Smart-meter renewal",
+            "description": "Collection and recycling of 12,000 smart meters with customer consumption data erasure.",
+            "result": "GDPR compliant, 94% material recycling"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "2.4",
+            "suffix": "M€",
+            "label": "value recovered (datacentre)"
+          },
+          {
+            "value": "1,200",
+            "suffix": "t",
+            "label": "CO₂e avoided per campaign"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "NIS2/DORA compliance"
+          },
+          {
+            "value": "30",
+            "suffix": "d",
+            "label": "audit restitution"
+          }
+        ],
+        "details": "For an energy decommissioning campaign (datacentre + OT), GTC recovers an average of €2.4M and avoids 1,200 tCO₂e with guaranteed NIS2/DORA compliance."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "Energy CIO",
+            "concern": "Critical asset inventory and NIS2 compliance",
+            "ctaAngle": "Platform with critical infrastructure tagging and NIS2 matrix"
+          },
+          {
+            "role": "CISO",
+            "concern": "Restricted-distribution destruction and chain of custody",
+            "ctaAngle": "Certified destruction + eIDAS RGS** seal"
+          },
+          {
+            "role": "OT Manager",
+            "concern": "SCADA and concentrator fleet management",
+            "ctaAngle": "Unified OT module with EOSL alerts"
+          },
+          {
+            "role": "CSR Director",
+            "concern": "Scope 3 OT/IT carbon footprint",
+            "ctaAngle": "Carbon module with Boavizta energy factors"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for energy",
+        "items": [
+          {
+            "title": "Security clearances",
+            "description": "Teams cleared for restricted-distribution asset processing and handling."
+          },
+          {
+            "title": "Large-scale logistics",
+            "description": "Processing capacity of 50,000+ OT assets per campaign with secure T2/T3 convoys."
+          },
+          {
+            "title": "NIS2/DORA/IEC 62443 matrix",
+            "description": "Pre-configured compliance matrix covering the three regulatory frameworks applicable to energy."
+          },
+          {
+            "title": "Energy Carbon module",
+            "description": "Boavizta v1.4 emission factors calibrated for energy OT equipment."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Energy sector",
+        "items": [
+          {
+            "question": "Do you have clearances for critical infrastructure assets?",
+            "answer": "Yes. Our teams are security-cleared for processing critical infrastructure and restricted-distribution assets. Destruction is performed with 6mm shredding."
+          },
+          {
+            "question": "What capacity for 50,000+ OT asset fleets?",
+            "answer": "Our 4 sites process up to 80,000 assets per campaign. For concentrator fleets, we deploy mobile collection units on-site."
+          },
+          {
+            "question": "How do you handle DORA for energy trading?",
+            "answer": "The DORA module is pre-configured for energy trading entities. We provide art. 28 ITAD provider qualification and dedicated TPP register."
+          },
+          {
+            "question": "What turnaround for a cybersecurity authority audit?",
+            "answer": "Full restitution within 30 days. Our dedicated export is formatted per agency expectations with verifiable cryptographic evidence."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Secure your critical energy assets",
+        "subtitle": "Free NIS2/DORA audit within 48 hours — our energy experts assess your critical infrastructure scope.",
+        "button": "Request a NIS2/DORA audit",
+        "secondaryButton": "View the energy case"
+      }
+    },
+    "transport-logistique": {
+      "hero": {
+        "title": "ITAD for Transport & Logistics",
+        "subtitle": "IoT fleets, ticketing, ITS — secure end-of-life for your embedded equipment",
+        "kpis": [
+          {
+            "value": "IoT",
+            "label": "fleets managed"
+          },
+          {
+            "value": "NIS2",
+            "label": "transport compliant"
+          },
+          {
+            "value": "98%",
+            "label": "material recycling"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Transport sector profile",
+        "narrative": "The transport sector operates embedded equipment fleets (ticketing, ITS systems, IoT sensors, GPS, cameras) distributed across extended networks. NIS2 classifies transport operators as essential entities. Mobility, ticketing and geolocation data are subject to GDPR. Fleet renewals generate significant volumes to be processed securely.",
+        "highlights": [
+          "Fleets of 2,000 to 30,000 embedded devices per network",
+          "GDPR mobility, ticketing and geolocation data",
+          "ITS (Intelligent Transport Systems) with traffic data",
+          "Equipment distributed across road, rail and urban networks"
+        ]
+      },
+      "pains": {
+        "title": "Your priority pain points",
+        "items": [
+          {
+            "title": "Embedded IoT fleets",
+            "description": "Sensors, GPS, cameras and communication modules contain geolocation data and proprietary firmware to erase."
+          },
+          {
+            "title": "Ticketing and passenger data",
+            "description": "Validators, ticket machines and ticketing systems contain payment and travel data subject to GDPR."
+          },
+          {
+            "title": "Distributed ITS equipment",
+            "description": "Intelligent transport systems (signs, traffic sensors, connected signals) are spread across extended networks."
+          },
+          {
+            "title": "NIS2 transport compliance",
+            "description": "NIS2 classifies transport operators as essential entities with enhanced cybersecurity obligations."
+          },
+          {
+            "title": "Fleet renewal",
+            "description": "Coordinated replacement of thousands of embedded devices requires complex field collection logistics."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "Urban ticketing migration",
+            "description": "Replacement of 4,500 validators and 320 ticket machines across an urban transit network with passenger data erasure.",
+            "result": "100% GDPR compliant, 0 service disruption"
+          },
+          {
+            "title": "Logistics GPS fleet renewal",
+            "description": "Collection and erasure of 8,000 embedded GPS modules containing geolocation history and customer data.",
+            "result": "GDPR compliant, 92% material recycling"
+          },
+          {
+            "title": "Motorway ITS decommissioning",
+            "description": "Secure removal of 1,200 traffic sensors and connected signs across 450 km of motorway.",
+            "result": "Traffic data erased, 98% recycled"
+          },
+          {
+            "title": "Onboard camera replacement",
+            "description": "Erasure and destruction of 3,600 onboard surveillance cameras containing GDPR recordings.",
+            "result": "Certified destruction, regulatory report delivered"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "98",
+            "suffix": "%",
+            "label": "material recycling rate"
+          },
+          {
+            "value": "450",
+            "suffix": "t",
+            "label": "CO₂e avoided per campaign"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "service disruption"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "NIS2 compliance"
+          }
+        ],
+        "details": "For a ticketing renewal campaign (4,500 validators), GTC guarantees zero service disruption, 98% material recycling and a compliant NIS2 report."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "Transport CIO",
+            "concern": "Embedded fleet and ticketing management",
+            "ctaAngle": "IoT platform with embedded inventory"
+          },
+          {
+            "role": "CISO",
+            "concern": "Mobility data erasure and NIS2",
+            "ctaAngle": "NIST 800-88 certificates + NIS2 transport matrix"
+          },
+          {
+            "role": "Network Director",
+            "concern": "Service continuity during replacement",
+            "ctaAngle": "Line/zone planning without disruption"
+          },
+          {
+            "role": "CSR Director",
+            "concern": "IT fleet carbon and CSRD",
+            "ctaAngle": "Transport Carbon module + ESRS E5"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for transport",
+        "items": [
+          {
+            "title": "Field logistics",
+            "description": "Mobile teams for collection across extended networks: depots, stations, tracks, motorway rest areas."
+          },
+          {
+            "title": "Embedded IoT module",
+            "description": "Specific management for sensors, GPS, cameras and communication modules with adapted firmware erasure."
+          },
+          {
+            "title": "NIS2 transport compliance",
+            "description": "Pre-configured matrix for essential entities in the transport sector (road, rail, urban, air)."
+          },
+          {
+            "title": "Service continuity",
+            "description": "Line-by-line and zone-by-zone planning to guarantee zero service disruption during replacement."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Transport sector",
+        "items": [
+          {
+            "question": "Can you operate on a live transport network?",
+            "answer": "Yes. We plan each intervention by line and zone, outside peak hours. Our SLA guarantees zero passenger service disruption."
+          },
+          {
+            "question": "How do you erase embedded IoT modules?",
+            "answer": "Our protocols cover flash memory, firmware and configuration data for sensors, GPS, cameras and communication modules."
+          },
+          {
+            "question": "Do you handle collection across extended networks?",
+            "answer": "Yes. Our mobile teams operate at depots, stations, tracks and motorway rest areas with adapted vehicles for secure high-volume collection."
+          },
+          {
+            "question": "What NIS2 compliance for transport?",
+            "answer": "Our NIS2 transport matrix covers requirements specific to essential entities: road, rail, urban and air."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Secure your embedded fleets",
+        "subtitle": "Free transport audit within 48 hours — our experts size your field campaign.",
+        "button": "Request a transport audit",
+        "secondaryButton": "View the ticketing case"
+      }
+    },
+    "public": {
+      "hero": {
+        "title": "ITAD for the Public Sector",
+        "subtitle": "Public procurement, GDPR, digital sobriety — transparency and compliance for government",
+        "kpis": [
+          {
+            "value": "UGAP",
+            "label": "listed"
+          },
+          {
+            "value": "100%",
+            "label": "charity channel"
+          },
+          {
+            "value": "WEEE",
+            "label": "standards compliant"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Public sector profile",
+        "narrative": "The public sector faces enhanced obligations for transparency, GDPR compliance and public procurement rules. WEEE management standards apply. Procurement specifications are strict and purchasing procedures are governed by public procurement law. Anti-waste legislation mandates reuse and digital sobriety.",
+        "highlights": [
+          "Fleets of 500 to 8,000 devices per authority",
+          "Mandatory competitive tendering and procurement transparency",
+          "Mandatory reuse and charitable donations",
+          "Enhanced GDPR with public servant accountability"
+        ]
+      },
+      "pains": {
+        "title": "Your priority pain points",
+        "items": [
+          {
+            "title": "Strict public procurement",
+            "description": "Public procurement code imposes precise specifications, transparent competitive bidding and weighted CSR criteria."
+          },
+          {
+            "title": "Public servant and citizen GDPR",
+            "description": "Data processed covers both public servants and citizens, with enhanced public accountability for breaches."
+          },
+          {
+            "title": "Digital sobriety",
+            "description": "Anti-waste legislation mandates prioritising reuse, charitable donations and digital sobriety in public purchasing."
+          },
+          {
+            "title": "Constrained budget",
+            "description": "Government bodies operate with limited IT budgets and must maximise end-of-life fleet value recovery."
+          },
+          {
+            "title": "Government audit",
+            "description": "Reporting must be transparent and auditable by regional audit chambers and inspections."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "Ministry fleet renewal",
+            "description": "Decommissioning of 6,500 workstations and 240 servers with classified erasure and charity donation circuit.",
+            "result": "100% charity channel, 4,500 donations"
+          },
+          {
+            "title": "Local authority",
+            "description": "IT fleet management for 12 grouped municipalities (2,400 devices), with pooled costs and consolidated WEEE reporting.",
+            "result": "Unit cost -35%, WEEE report delivered"
+          },
+          {
+            "title": "Higher education institution",
+            "description": "Refurbishment of 3,200 student workstations with GDPR erasure and redistribution through charity.",
+            "result": "89% reuse, 480 tCO₂e avoided"
+          },
+          {
+            "title": "Regional audit",
+            "description": "Complete and transparent ITAD programme restitution for budgetary and compliance audit.",
+            "result": "Audit passed without observation"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "4,500",
+            "suffix": "+",
+            "label": "charity donations made"
+          },
+          {
+            "value": "35",
+            "suffix": "%",
+            "label": "unit cost reduction"
+          },
+          {
+            "value": "480",
+            "suffix": "t",
+            "label": "CO₂e avoided per programme"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "audit reservations"
+          }
+        ],
+        "details": "For a ministry programme of 6,500 devices, GTC generates 4,500 charity donations, reduces costs by 35% and delivers a compliant WEEE report."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "Government CIO",
+            "concern": "Public procurement compliance",
+            "ctaAngle": "Platform listed with procurement traceability"
+          },
+          {
+            "role": "DPO",
+            "concern": "Public servant and citizen GDPR",
+            "ctaAngle": "GDPR certificates with complete audit trail"
+          },
+          {
+            "role": "General Director",
+            "concern": "Budget and transparency",
+            "ctaAngle": "Auditable budgetary reporting"
+          },
+          {
+            "role": "Digital Affairs official",
+            "concern": "Digital sobriety and social impact",
+            "ctaAngle": "Charity channel + carbon footprint communications"
+          },
+          {
+            "role": "Procurement Manager",
+            "concern": "CSR criteria in procurement",
+            "ctaAngle": "Complete technical file with CSR scoring"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for the public sector",
+        "items": [
+          {
+            "title": "Procurement listed",
+            "description": "GTC is listed with central procurement agencies, simplifying ordering for government bodies."
+          },
+          {
+            "title": "Charity partner network",
+            "description": "Refurbishment and donation through charitable organisations to maximise social impact."
+          },
+          {
+            "title": "WEEE standards compliant",
+            "description": "Process certified compliant with WEEE management standards for the public sector."
+          },
+          {
+            "title": "Government audit transparency",
+            "description": "Transparent and auditable reporting for regional audit chambers with complete budgetary traceability."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Public sector",
+        "items": [
+          {
+            "question": "Are you listed with central procurement?",
+            "answer": "Yes. GTC is listed with central procurement agencies, enabling simplified ordering without additional competitive bidding."
+          },
+          {
+            "question": "How do you handle charitable donations?",
+            "answer": "We operate a structured donation circuit through charitable organisations. Each donation is individually tracked with a reuse certificate."
+          },
+          {
+            "question": "What compliance for public procurement?",
+            "answer": "Our technical file includes all weighted CSR criteria, R2v3/ISO 14001 certifications, WEEE standards compliance and traceability evidence."
+          },
+          {
+            "question": "Can you consolidate multiple authorities?",
+            "answer": "Yes. Our platform manages inter-authority procurement groups with consolidated reporting and pooled costs."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Structure your public sector ITAD",
+        "subtitle": "Free government audit within 48 hours — our public sector experts analyse your fleet and obligations.",
+        "button": "Request a government audit",
+        "secondaryButton": "View the ministry case"
+      }
+    },
+    "tech": {
+      "hero": {
+        "title": "ITAD for Technology & SaaS",
+        "subtitle": "Datacentres, developer fleets, SOC 2 compliance — manage your tech asset end-of-life",
+        "kpis": [
+          {
+            "value": "SOC 2",
+            "label": "compliant"
+          },
+          {
+            "value": "99.2%",
+            "label": "inventory accuracy"
+          },
+          {
+            "value": "73%",
+            "label": "reuse rate"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Technology sector profile",
+        "narrative": "Tech companies and SaaS vendors operate datacentres, high-end developer fleets and hybrid cloud infrastructure. SOC 2 Type II compliance requires strict asset lifecycle control, including proof of data destruction. Renewal cycles are fast (2-3 years for developer workstations, 3-5 years for servers) and residual value of high-end equipment is significant.",
+        "highlights": [
+          "Own or co-located datacentres with high-density equipment",
+          "High-end developer fleets (MacBook Pro, GPU workstations)",
+          "SOC 2 Type II compliance with destruction proof",
+          "Fast renewal cycles with high residual value"
+        ]
+      },
+      "pains": {
+        "title": "Your priority pain points",
+        "items": [
+          {
+            "title": "SOC 2 Type II compliance",
+            "description": "SOC 2 reports require formal proof of data destruction during decommissioning with verifiable controls."
+          },
+          {
+            "title": "High-density datacentres",
+            "description": "GPU servers, NVMe storage arrays and 400G network equipment represent considerable volumes and values."
+          },
+          {
+            "title": "Intellectual property",
+            "description": "Source code, SaaS customer data and infrastructure configurations are critical assets to protect."
+          },
+          {
+            "title": "High residual value",
+            "description": "MacBook Pros, GPU workstations and recent servers retain significant residual value on the refurbished market."
+          },
+          {
+            "title": "Rapid growth",
+            "description": "Hypergrowth tech companies renew fleets frequently, generating continuous ITAD flows."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "SaaS datacentre decommissioning",
+            "description": "Erasure and destruction of 1,600 GPU servers and 400TB NVMe storage from a SaaS vendor migrating to cloud.",
+            "result": "SOC 2 compliant, €3.2M value recovered"
+          },
+          {
+            "title": "Developer fleet renewal",
+            "description": "Replacement of 850 MacBook Pros and 120 GPU workstations with certified erasure and refurbished resale.",
+            "result": "€412/device recovered, 0 residual data"
+          },
+          {
+            "title": "Satellite office closure",
+            "description": "Complete decommissioning of a 200-device office (tech startup) with inventory, erasure and valuation in 10 days.",
+            "result": "100% processed in 10 days, €89K recovered"
+          },
+          {
+            "title": "SOC 2 Type II audit",
+            "description": "Destruction proof restitution for annual SOC 2 audit covering 2,400 decommissioned assets.",
+            "result": "SOC 2 audit passed without exception"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "3.2",
+            "suffix": "M€",
+            "label": "value recovered (SaaS DC)"
+          },
+          {
+            "value": "412",
+            "suffix": "€",
+            "label": "residual value per dev device"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "SOC 2 compliance"
+          },
+          {
+            "value": "10",
+            "suffix": "d",
+            "label": "full 200-device office turnaround"
+          }
+        ],
+        "details": "For a SaaS vendor with 1,600 servers and 850 developer devices, GTC recovers €3.2M and guarantees SOC 2 Type II compliance without exception."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "CTO / VP Engineering",
+            "concern": "Datacentre decommissioning and IP",
+            "ctaAngle": "Certified GPU server erasure + chain of custody"
+          },
+          {
+            "role": "CISO / Security Lead",
+            "concern": "SOC 2 and destruction proof",
+            "ctaAngle": "Dedicated SOC 2 export with cryptographic evidence"
+          },
+          {
+            "role": "CFO / VP Finance",
+            "concern": "High-end asset residual value",
+            "ctaAngle": "Asset Intelligence tech EMEA market pricing"
+          },
+          {
+            "role": "IT Ops / SRE Lead",
+            "concern": "Datacentre decommissioning logistics",
+            "ctaAngle": "Rack-by-rack removal plan with real-time tracking"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for technology",
+        "items": [
+          {
+            "title": "Native SOC 2 export",
+            "description": "Built-in SOC 2 Type II restitution module with cryptographically verifiable destruction proofs."
+          },
+          {
+            "title": "GPU datacentre expertise",
+            "description": "Protocols adapted for high-density GPU servers, NVMe arrays and latest-generation network equipment."
+          },
+          {
+            "title": "Tech EMEA pricing",
+            "description": "Asset Intelligence module with specific tech refurbished market pricing (MacBook Pro, ThinkPad X1, Dell/HP servers)."
+          },
+          {
+            "title": "Startup agility",
+            "description": "Streamlined process for hypergrowth companies: D+1 onboarding, 5-day intervention, monthly billing."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Technology sector",
+        "items": [
+          {
+            "question": "Do you provide SOC 2 destruction proofs?",
+            "answer": "Yes. Our SOC 2 module automatically generates destruction proofs in the format expected by auditors (EY, Deloitte, PwC, KPMG). Cryptographically verifiable certificates with SHA-256 hash."
+          },
+          {
+            "question": "How do you handle high-value GPU servers?",
+            "answer": "GPU servers (NVIDIA A100/H100, AMD MI300) are individually processed with firmware erasure, NVMe SSD erasure and specific market pricing."
+          },
+          {
+            "question": "What turnaround for a 200-device office?",
+            "answer": "10 business days from inventory to certificate delivery. Express 5-day mode available for urgent closures."
+          },
+          {
+            "question": "Do you handle MacBook and Apple hardware?",
+            "answer": "Yes. We master Mac erasure (T2/M1/M2/M3) with MDM deactivation, FileVault erasure and individual certificate. Apple refurbished pricing integrated."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Optimise your tech ITAD",
+        "subtitle": "Free tech audit within 48 hours — our experts size your datacentre or dev fleet decommissioning.",
+        "button": "Request a tech audit",
+        "secondaryButton": "View the SaaS case"
+      }
+    },
+    "medias-audiovisuel": {
+      "hero": {
+        "title": "ITAD for Media & Broadcasting",
+        "subtitle": "Broadcast, control rooms, media datacentres — GTC, ITAD partner of the TF1 Group",
+        "kpis": [
+          {
+            "value": "€65K",
+            "label": "TF1 contract ex-VAT/yr"
+          },
+          {
+            "value": "100%",
+            "label": "broadcast traceability"
+          },
+          {
+            "value": "Multi-site",
+            "label": "national coverage"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Media & broadcasting sector profile",
+        "narrative": "The media and broadcasting sector operates complex technical infrastructure: broadcast control rooms, production studios, video processing datacentres, post-production facilities. Broadcast equipment (playout servers, video matrices, encoders, mixers) have specific lifecycles and contain confidential production data (schedules, rights, unreleased content). GreenTechCycle proudly supports the TF1 Group in managing their end-of-life IT assets, with a recurring framework contract of €65,000 ex-VAT/year covering audit, secure erasure, asset recovery and CSRD reporting.",
+        "highlights": [
+          "Flagship reference: TF1 framework contract — €65,000 ex-VAT/yr recurring",
+          "Specialised broadcast equipment (playout, encoders, matrices)",
+          "Confidential production data (schedules, rights, content)",
+          "Multi-site: headquarters, studios, control rooms, broadcast centres"
+        ]
+      },
+      "pains": {
+        "title": "Your priority pain points",
+        "items": [
+          {
+            "title": "Specialised broadcast equipment",
+            "description": "Playout servers, video matrices, SDI/IP encoders and mixers are specialised equipment requiring adapted processing protocols."
+          },
+          {
+            "title": "Confidential production data",
+            "description": "Programme schedules, broadcast rights, unreleased content and audience data are strategic assets requiring protection."
+          },
+          {
+            "title": "IP/cloud broadcast migration",
+            "description": "The transition from SDI to IP and cloud broadcasting generates significant volumes of legacy equipment to decommission."
+          },
+          {
+            "title": "Multi-site studios and control rooms",
+            "description": "Media groups operate dozens of sites (headquarters, studios, control rooms, broadcast centres) with specific access constraints."
+          },
+          {
+            "title": "Media CSRD reporting",
+            "description": "Listed media groups are subject to CSRD with scope 3 IT reporting obligations including broadcast equipment."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "TF1 framework contract — flagship reference",
+            "description": "Recurring support for the TF1 Group: quarterly audit, secure broadcast equipment erasure, refurbishable asset recovery and annual CSRD reporting.",
+            "result": "€65,000 ex-VAT/yr, 100% traceability, 0 incidents"
+          },
+          {
+            "title": "SDI to IP broadcast migration",
+            "description": "Decommissioning of 480 legacy SDI equipment (matrices, routers, encoders) during IP infrastructure migration.",
+            "result": "€340K value recovered, full certification"
+          },
+          {
+            "title": "Regional studio closure",
+            "description": "Complete decommissioning of a 120-workstation and 40-server editing/post-production studio, with rushes and project erasure.",
+            "result": "100% data erased, 89% reused"
+          },
+          {
+            "title": "Broadcast control room renewal",
+            "description": "Secure replacement of playout servers and automation systems in a 24/7 broadcast control room.",
+            "result": "0 transmission interruption, certificates D+24h"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "65",
+            "suffix": "K€",
+            "label": "TF1 framework contract ex-VAT/yr"
+          },
+          {
+            "value": "340",
+            "suffix": "K€",
+            "label": "value recovered (SDI migration)"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "broadcast traceability"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "transmission interruption"
+          }
+        ],
+        "details": "The TF1 framework contract illustrates the GTC model for media: recurring support at €65,000 ex-VAT/year covering audit, erasure, recovery and CSRD, with 100% traceability and zero incidents over 3 years."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "Media CIO",
+            "concern": "Broadcast and converged IT fleet management",
+            "ctaAngle": "Unified broadcast + standard IT platform"
+          },
+          {
+            "role": "Technical Director",
+            "concern": "24/7 broadcast continuity",
+            "ctaAngle": "Planned intervention outside critical windows"
+          },
+          {
+            "role": "CISO",
+            "concern": "Content and audience data protection",
+            "ctaAngle": "Certified erasure + sealed chain of custody"
+          },
+          {
+            "role": "CFO",
+            "concern": "Broadcast equipment valuation",
+            "ctaAngle": "Specialised broadcast refurbished pricing"
+          },
+          {
+            "role": "CSR Director",
+            "concern": "CSRD scope 3 including broadcast",
+            "ctaAngle": "Carbon module with Boavizta broadcast factors"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for media",
+        "items": [
+          {
+            "title": "Verifiable TF1 reference",
+            "description": "Recurring framework contract with the TF1 Group, France's leading private broadcaster. Reference verifiable on request."
+          },
+          {
+            "title": "Broadcast expertise",
+            "description": "Protocols adapted for broadcast equipment: playout servers, video matrices, SDI/IP encoders, automation systems."
+          },
+          {
+            "title": "Multi-site framework contract",
+            "description": "Recurring support formula covering audit, erasure, recovery and CSRD reporting across all group sites."
+          },
+          {
+            "title": "Guaranteed broadcast continuity",
+            "description": "Planned intervention coordinated with technical management to guarantee zero transmission interruption."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Media sector",
+        "items": [
+          {
+            "question": "What is your media reference?",
+            "answer": "Our flagship reference is the TF1 Group, with a recurring framework contract of €65,000 ex-VAT/year covering the complete ITAD cycle. This reference is verifiable on request under NDA."
+          },
+          {
+            "question": "Can you handle broadcast equipment?",
+            "answer": "Yes. We have developed specific protocols for playout servers (Grass Valley, Harmonic), video matrices (Evertz, Riedel), encoders and broadcast automation systems."
+          },
+          {
+            "question": "Can you operate without interrupting transmission?",
+            "answer": "Yes. We plan each intervention in coordination with the broadcast technical director, outside critical broadcast windows. Our SLA guarantees zero transmission interruption."
+          },
+          {
+            "question": "Do you offer a recurring framework contract?",
+            "answer": "Yes. Our media framework formula covers: quarterly audit, on-demand erasure, refurbishable asset recovery and annual CSRD reporting. Annual flat-rate pricing."
+          }
+        ]
+      },
+      "mediaGtc": {
+        "title": "GTC Media — TF1, flagship reference",
+        "subtitle": "How GreenTechCycle became the ITAD partner of the TF1 Group",
+        "quote": "GreenTechCycle provides us with the rigour and traceability we demand for our broadcast assets. The framework contract covers all our sites with integrated CSRD reporting.",
+        "quoteAuthor": "IT Department, TF1 Group",
+        "contractValue": "€65,000 ex-VAT/year",
+        "contractLabel": "Recurring framework contract",
+        "features": [
+          "Quarterly audit of the entire IT and broadcast fleet",
+          "Secure erasure compliant with group requirements",
+          "Refurbishable equipment recovery on the professional market",
+          "Annual integrated CSRD ESRS E5 reporting",
+          "Multi-site coverage: headquarters, studios, control rooms, broadcast centres"
+        ],
+        "ctaLabel": "Explore a media framework contract",
+        "ctaHref": "/contact?offre=media-cadre"
+      },
+      "cta": {
+        "title": "Join TF1 — choose the media ITAD partner",
+        "subtitle": "Free media framework study within 48 hours — our broadcast experts size your support.",
+        "button": "Explore a media framework contract",
+        "secondaryButton": "View the TF1 case"
+      }
+    },
+    "conseil": {
+      "hero": {
+        "title": "ITAD for Consulting & Professional Services",
+        "subtitle": "Client confidentiality, mobility, data audit — secure your consultant fleets",
+        "kpis": [
+          {
+            "value": "100%",
+            "label": "client confidentiality"
+          },
+          {
+            "value": "48h",
+            "label": "guaranteed erasure"
+          },
+          {
+            "value": "€412",
+            "label": "value per device"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Consulting sector profile",
+        "narrative": "Consulting firms and professional services (audit, strategy, IT, legal) manage highly confidential client data on distributed mobile fleets. Consultants use high-end laptops renewed every 2-3 years, containing mission data, proprietary models and sensitive client information. Staff turnover and permanent mobility complicate collection and erasure.",
+        "highlights": [
+          "Fleets of 500 to 10,000 high-end laptops",
+          "Confidential client data on every consultant device",
+          "High staff turnover (20-30% annually in Big Four)",
+          "Laptops distributed across dozens of offices and client sites"
+        ]
+      },
+      "pains": {
+        "title": "Your priority pain points",
+        "items": [
+          {
+            "title": "Client confidentiality",
+            "description": "Every consultant laptop contains mission data, proprietary models and client information protected by professional secrecy."
+          },
+          {
+            "title": "Fleet mobility",
+            "description": "Consultants work at client sites, satellite offices and from home. Collecting end-of-life equipment is a logistics challenge."
+          },
+          {
+            "title": "Staff turnover",
+            "description": "With 20-30% annual turnover in Big Four, the decommissioning flow is continuous and unpredictable."
+          },
+          {
+            "title": "High residual value",
+            "description": "ThinkPad X1s and MacBook Pros aged 2-3 years retain significant value on the refurbished market."
+          },
+          {
+            "title": "Demanding internal audit",
+            "description": "Big Four compliance departments require formal destruction proofs for every decommissioned device."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "Big Four annual renewal",
+            "description": "Replacement of 2,400 ThinkPad X1 Carbons in a Big Four firm with certified erasure and refurbished resale.",
+            "result": "€412/device recovered, 100% certificates D+24h"
+          },
+          {
+            "title": "Satellite office closure",
+            "description": "Complete decommissioning of an 85-device consultant office with on-site collection and express erasure.",
+            "result": "Processed in 5 days, 0 residual data"
+          },
+          {
+            "title": "Express consultant offboarding",
+            "description": "On-demand erasure of departing consultant laptops with individual certificate within 48 hours.",
+            "result": "48h SLA met at 99.8%, professional secrecy guaranteed"
+          },
+          {
+            "title": "Internal compliance audit",
+            "description": "Destruction proof restitution for annual internal audit covering 1,800 decommissioned devices.",
+            "result": "Audit passed without exception"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "412",
+            "suffix": "€",
+            "label": "value recovered per consultant device"
+          },
+          {
+            "value": "99.8",
+            "suffix": "%",
+            "label": "48h SLA met"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "client data leaks"
+          },
+          {
+            "value": "24",
+            "suffix": "h",
+            "label": "certificates available"
+          }
+        ],
+        "details": "For an annual renewal of 2,400 consultant devices, GTC recovers €988K in value and delivers 100% of certificates within 24 hours with zero client data leaks."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "CIO / CTO",
+            "concern": "Distributed mobile fleet management",
+            "ctaAngle": "Platform with multi-office tracking and field collection"
+          },
+          {
+            "role": "CISO / DPO",
+            "concern": "Professional secrecy and client data",
+            "ctaAngle": "Certified NIST 800-88 erasure + chain of custody"
+          },
+          {
+            "role": "CFO",
+            "concern": "High-end laptop fleet valuation",
+            "ctaAngle": "Premium refurbished market pricing"
+          },
+          {
+            "role": "Compliance Director",
+            "concern": "Destruction proofs for internal audit",
+            "ctaAngle": "Dedicated Big Four / mid-cap audit export"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for consulting",
+        "items": [
+          {
+            "title": "Multi-office field collection",
+            "description": "Mobile teams for collection at offices, client sites and consultant homes (BYOD/WFH programme)."
+          },
+          {
+            "title": "Guaranteed 48h SLA",
+            "description": "Every laptop received is erased and certified within 48 hours maximum. Individual NIST 800-88 certificate with SHA-256 hash."
+          },
+          {
+            "title": "Premium pricing",
+            "description": "Asset Intelligence module with specific premium market pricing (ThinkPad X1, MacBook Pro, Dell XPS)."
+          },
+          {
+            "title": "Big Four audit export",
+            "description": "Formatted restitution for Big Four internal audits with cryptographically verifiable evidence."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Consulting sector",
+        "items": [
+          {
+            "question": "How do you guarantee client data confidentiality?",
+            "answer": "Every laptop is individually processed with NIST 800-88 Purge erasure and sealed chain of custody. Professional secrecy is guaranteed by our R2v3 certification and annually audited security protocols."
+          },
+          {
+            "question": "Can you collect from remote-working consultants?",
+            "answer": "Yes. We offer a home collection service with prepaid secure envelope and delivery tracking."
+          },
+          {
+            "question": "What is the certificate turnaround?",
+            "answer": "Individual certificates within 24 hours of receipt. Contractually guaranteed 48h SLA with penalties for overrun."
+          },
+          {
+            "question": "Do you handle Apple Silicon MacBooks?",
+            "answer": "Yes. We master M1/M2/M3/M4 Mac erasure with MDM deactivation, Apple Secure Erase and individual certificate. Apple refurbished pricing integrated."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Secure your clients' data",
+        "subtitle": "Free consulting audit within 48 hours — our experts size your consultant ITAD programme.",
+        "button": "Request a consulting audit",
+        "secondaryButton": "View the Big Four case"
+      }
+    },
+    "pharma-biotech": {
+      "hero": {
+        "title": "ITAD for Pharmaceutical Industry",
+        "subtitle": "R&D laboratories, GxP/Annex 11, clinical trial data — total regulatory compliance",
+        "kpis": [
+          {
+            "value": "GxP",
+            "label": "Annex 11 compliant"
+          },
+          {
+            "value": "100%",
+            "label": "R&D traceability"
+          },
+          {
+            "value": "21CFR",
+            "label": "Part 11 ready"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Pharmaceutical sector profile",
+        "narrative": "The pharmaceutical industry operates R&D laboratories, production sites and clinical trial centres with among the strictest regulatory requirements in the world. GMP Annex 11 and FDA 21 CFR Part 11 govern computerised system management, including decommissioning. Clinical trial, pharmacovigilance and IP data are protected strategic assets.",
+        "highlights": [
+          "GxP validated systems subject to GMP Annex 11 and 21 CFR Part 11",
+          "Ultra-sensitive clinical trial and pharmacovigilance data",
+          "R&D intellectual property (molecules, processes, formulations)",
+          "Regulatory audit with enhanced traceability requirements"
+        ]
+      },
+      "pains": {
+        "title": "Your priority pain points",
+        "items": [
+          {
+            "title": "GxP Annex 11 compliance",
+            "description": "GxP computerised systems must be decommissioned per validated procedure with GMP-compliant erasure proof."
+          },
+          {
+            "title": "Clinical trial data",
+            "description": "Patient data, trial results and protocols are subject to regulated retention and destruction obligations."
+          },
+          {
+            "title": "R&D intellectual property",
+            "description": "Research data (molecules, processes, formulations) represent billions in investment to protect."
+          },
+          {
+            "title": "Regulatory audit",
+            "description": "Regulatory inspections require a complete audit trail including computerised system decommissioning proofs."
+          },
+          {
+            "title": "Long retention periods",
+            "description": "Some pharmaceutical data must be retained 15-30 years. Decommissioning must respect these periods."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "LIMS laboratory decommissioning",
+            "description": "Validated retirement of 12 LIMS systems and 180 lab workstations with Annex 11-compliant erasure and data archiving.",
+            "result": "100% GMP compliant, audit trail validated"
+          },
+          {
+            "title": "Clinical trials migration",
+            "description": "Secure erasure of 340 workstations and servers containing phase I-III clinical trial data after retention verification.",
+            "result": "0 premature data destruction, FDA-ready"
+          },
+          {
+            "title": "R&D site renewal",
+            "description": "Decommissioning of 520 computing stations and 80 simulation servers containing molecular IP.",
+            "result": "IP protected, €1.2M value recovered"
+          },
+          {
+            "title": "Regulatory inspection prep",
+            "description": "Accelerated ITAD audit trail compliance before regulatory inspection covering 2 years of decommissioning.",
+            "result": "Inspection passed without major observation"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "1.2",
+            "suffix": "M€",
+            "label": "value recovered (R&D site)"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "GxP Annex 11 compliance"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "major regulatory observations"
+          },
+          {
+            "value": "15-30",
+            "suffix": "yrs",
+            "label": "retention managed"
+          }
+        ],
+        "details": "For an R&D site of 520 workstations and 80 servers, GTC recovers €1.2M while guaranteeing GxP compliance, retention period adherence and IP protection."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "Pharma CIO",
+            "concern": "GxP validated system decommissioning",
+            "ctaAngle": "Validated Annex 11 protocol with audit trail"
+          },
+          {
+            "role": "QA Manager",
+            "concern": "GMP compliance and regulatory inspection",
+            "ctaAngle": "GxP decommissioning qualification file"
+          },
+          {
+            "role": "CISO / DPO",
+            "concern": "Clinical trial data protection",
+            "ctaAngle": "Certified erasure + retention period verification"
+          },
+          {
+            "role": "R&D Director",
+            "concern": "Intellectual property protection",
+            "ctaAngle": "Enhanced chain of custody for IP data"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for pharma",
+        "items": [
+          {
+            "title": "Validated Annex 11 protocol",
+            "description": "Validated decommissioning procedure compliant with GMP Annex 11 with complete qualification documentation."
+          },
+          {
+            "title": "Retention period management",
+            "description": "Automatic retention period verification before any destruction, preventing premature data loss."
+          },
+          {
+            "title": "Regulatory audit export",
+            "description": "Formatted restitution for regulatory inspections with complete audit trail and verifiable evidence."
+          },
+          {
+            "title": "Enhanced IP protection",
+            "description": "Enhanced chain of custody for IP-containing assets with multi-pass erasure and physical destruction."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Pharmaceutical sector",
+        "items": [
+          {
+            "question": "Is your procedure GMP Annex 11 compliant?",
+            "answer": "Yes. Our decommissioning procedure is validated per EU GMP Annex 11. We provide the complete qualification file (IQ/OQ/PQ) and validation documentation."
+          },
+          {
+            "question": "How do you verify retention periods before destruction?",
+            "answer": "Our retention module automatically checks applicable periods (15-30 years depending on data type) before authorising destruction."
+          },
+          {
+            "question": "Do you provide regulatory inspection documents?",
+            "answer": "Yes. Our regulatory export includes the complete audit trail, destruction certificates, procedure validation file and compliance evidence."
+          },
+          {
+            "question": "Do you handle LIMS and pharmaceutical SCADA?",
+            "answer": "Yes. Our protocols cover LIMS, ELN, production SCADA, MES systems and laboratory workstations with equipment-specific GxP erasure."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Guaranteed pharmaceutical ITAD compliance",
+        "subtitle": "Free pharma audit within 48 hours — our GxP experts assess your fleet and Annex 11 obligations.",
+        "button": "Request a pharma audit",
+        "secondaryButton": "View the R&D lab case"
+      }
+    },
+    "btp": {
+      "hero": {
+        "title": "ITAD for Construction",
+        "subtitle": "Distributed sites, equipment mobility, project data security",
+        "kpis": [
+          {
+            "value": "Multi-site",
+            "label": "national coverage"
+          },
+          {
+            "value": "48h",
+            "label": "field intervention"
+          },
+          {
+            "value": "100%",
+            "label": "WEEE traceability"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Construction sector profile",
+        "narrative": "The construction sector operates distributed sites across the territory with mobile IT equipment (site tablets, rugged PCs, BIM computing stations) and project management systems containing sensitive data (plans, tenders, financial data). Equipment mobility, site conditions and multiple locations make ITAD management complex.",
+        "highlights": [
+          "Rugged mobile equipment exposed to site conditions",
+          "Sensitive project data (BIM models, tenders, costs)",
+          "Multiple simultaneous sites with rotating equipment",
+          "WEEE and circular economy obligations"
+        ]
+      },
+      "pains": {
+        "title": "Your priority pain points",
+        "items": [
+          {
+            "title": "Distributed sites",
+            "description": "Equipment is spread across dozens of simultaneous sites with frequent rotation, making inventory and collection complex."
+          },
+          {
+            "title": "Sensitive project data",
+            "description": "BIM models, digital mockups, tenders and financial data are strategic assets to protect."
+          },
+          {
+            "title": "Worn rugged equipment",
+            "description": "Site tablets and PCs endure harsh conditions reducing their resale value."
+          },
+          {
+            "title": "Construction WEEE compliance",
+            "description": "Anti-waste legislation imposes specific traceability for construction WEEE with mandatory reuse."
+          },
+          {
+            "title": "Dispersed budget",
+            "description": "IT budgets are spread across projects and sites, making consolidation and optimisation difficult."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "Major project completion",
+            "description": "Collection and processing of 180 site tablets, 45 rugged PCs and 12 BIM stations at the end of a 3-year project.",
+            "result": "100% project data erased, 62% reused"
+          },
+          {
+            "title": "HQ fleet renewal",
+            "description": "Decommissioning of 640 workstations and 80 servers from a construction group HQ with tender data erasure.",
+            "result": "€412/device recovered, WEEE compliant"
+          },
+          {
+            "title": "Multi-site equipment rotation",
+            "description": "Recurring collection circuit for rotating equipment across 35 active sites.",
+            "result": "Logistics cost -45%, 100% traceability"
+          },
+          {
+            "title": "Group WEEE audit",
+            "description": "Consolidated WEEE reporting for a 12-subsidiary construction group with per-site and per-subsidiary traceability.",
+            "result": "Consolidated WEEE report, 0 audit reservations"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "412",
+            "suffix": "€",
+            "label": "value recovered per device"
+          },
+          {
+            "value": "45",
+            "suffix": "%",
+            "label": "logistics cost reduction"
+          },
+          {
+            "value": "62",
+            "suffix": "%",
+            "label": "site equipment reuse rate"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "WEEE traceability"
+          }
+        ],
+        "details": "For a construction group with 640 HQ devices and 35 sites, GTC reduces logistics costs by 45% and recovers €412 per device with consolidated WEEE reporting."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "Group CIO",
+            "concern": "Multi-site mobile fleet management",
+            "ctaAngle": "Platform with per-site tracking and rotation"
+          },
+          {
+            "role": "Project Director",
+            "concern": "Project and BIM data protection",
+            "ctaAngle": "Certified end-of-project erasure"
+          },
+          {
+            "role": "CFO",
+            "concern": "Multi-subsidiary budget consolidation",
+            "ctaAngle": "Financial reporting per site, subsidiary, group"
+          },
+          {
+            "role": "CSR Director",
+            "concern": "WEEE and circular economy",
+            "ctaAngle": "WEEE module compliant with legislation"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for construction",
+        "items": [
+          {
+            "title": "Site field collection",
+            "description": "Mobile teams for direct on-site collection with adapted vehicles and secure packaging."
+          },
+          {
+            "title": "Rotation management",
+            "description": "Equipment rotation tracking module between sites with end-of-life alerts and collection planning."
+          },
+          {
+            "title": "Rugged equipment erasure",
+            "description": "Protocols adapted for rugged tablets and PCs with specific firmware erasure."
+          },
+          {
+            "title": "Multi-subsidiary WEEE reporting",
+            "description": "WEEE reporting consolidation per site, subsidiary and group."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Construction sector",
+        "items": [
+          {
+            "question": "Can you collect directly on site?",
+            "answer": "Yes. Our mobile teams operate on-site with adapted vehicles for secure packaging and transport to our processing centres."
+          },
+          {
+            "question": "How do you handle damaged rugged equipment?",
+            "answer": "Damaged equipment is individually assessed. Erasure if the device is functional, otherwise certified physical destruction. Resale value is adjusted based on condition."
+          },
+          {
+            "question": "Can you consolidate 12 subsidiaries?",
+            "answer": "Yes. Our platform manages multi-subsidiary with group-level consolidated reporting. Each subsidiary has its own space with visibility on its sites."
+          },
+          {
+            "question": "What is the site intervention time?",
+            "answer": "48 business hours in major cities, 5 business days elsewhere. Express mode available for urgent project completions."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Secure your project data",
+        "subtitle": "Free construction audit within 48 hours — our experts size your multi-site ITAD programme.",
+        "button": "Request a construction audit",
+        "secondaryButton": "View the major project case"
+      }
+    },
+    "horeca": {
+      "hero": {
+        "title": "ITAD for Hospitality & Food Service",
+        "subtitle": "POS, distributed sites, loyalty data — manage your multi-site equipment",
+        "kpis": [
+          {
+            "value": "Multi-site",
+            "label": "hotels & restaurants"
+          },
+          {
+            "value": "PCI-DSS",
+            "label": "compliant"
+          },
+          {
+            "value": "89%",
+            "label": "reuse achieved"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Hospitality sector profile",
+        "narrative": "The hospitality sector operates hundreds of establishments with POS systems, reservation kiosks, hotel management systems (PMS) and loyalty equipment containing sensitive customer data. Hotel chains and restaurant groups regularly renew their fleets with seasonality and service continuity constraints.",
+        "highlights": [
+          "POS and PMS systems with payment and customer data",
+          "Fleets distributed across hundreds of establishments",
+          "Strong seasonality impacting renewal windows",
+          "Loyalty programmes with GDPR personal data"
+        ]
+      },
+      "pains": {
+        "title": "Your priority pain points",
+        "items": [
+          {
+            "title": "POS and payment data",
+            "description": "POS systems and payment terminals contain card data subject to PCI-DSS and GDPR transactional data."
+          },
+          {
+            "title": "Hotel PMS systems",
+            "description": "Hotel management systems contain reservation data, passports, credit cards and customer preferences."
+          },
+          {
+            "title": "Seasonal distributed fleets",
+            "description": "Renewals must be planned in low season to minimise impact on operations."
+          },
+          {
+            "title": "GDPR loyalty data",
+            "description": "Loyalty programmes accumulate personal data (habits, preferences, history) subject to GDPR."
+          },
+          {
+            "title": "Franchisees and independents",
+            "description": "Hotel and restaurant groups include franchisees and independents with heterogeneous fleets."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "Restaurant chain POS renewal",
+            "description": "Replacement of 1,800 POS systems across 320 restaurants during winter low season.",
+            "result": "0 service disruption, PCI-DSS compliant"
+          },
+          {
+            "title": "Hotel chain PMS migration",
+            "description": "Decommissioning of 450 PMS servers and 2,200 reception workstations during cloud PMS migration.",
+            "result": "Customer data erased, 78% reused"
+          },
+          {
+            "title": "Check-in kiosk renewal",
+            "description": "Removal and recycling of 680 automated check-in kiosks containing passport and credit card data.",
+            "result": "Certified destruction, GDPR compliant"
+          },
+          {
+            "title": "Hotel group WEEE consolidation",
+            "description": "Consolidated WEEE reporting for a group of 85 hotels and 120 restaurants across 4 countries.",
+            "result": "CSRD ESRS E5 report delivered, 0 reservations"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "89",
+            "suffix": "%",
+            "label": "reuse rate"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "service disruption"
+          },
+          {
+            "value": "78",
+            "suffix": "%",
+            "label": "PMS/workstation reuse"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "PCI-DSS compliance"
+          }
+        ],
+        "details": "For a 320-restaurant chain, POS renewal via GTC guarantees zero service disruption, 89% reuse and full PCI-DSS compliance."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "Hotel Group CIO",
+            "concern": "PMS migration and multi-site renewal",
+            "ctaAngle": "Deployment plan by region, by season"
+          },
+          {
+            "role": "CISO",
+            "concern": "PCI-DSS and hotel customer data",
+            "ctaAngle": "Certified POS/PMS erasure + destruction"
+          },
+          {
+            "role": "Operations Director",
+            "concern": "Service continuity during replacement",
+            "ctaAngle": "Low-season, off-peak intervention"
+          },
+          {
+            "role": "CSR Director",
+            "concern": "CSRD and hospitality circular economy",
+            "ctaAngle": "Multi-country ESRS E5 reporting"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for hospitality",
+        "items": [
+          {
+            "title": "Seasonal planning",
+            "description": "Low-season intervention to minimise impact on operations. Coordinated planning with establishment managers."
+          },
+          {
+            "title": "POS/PMS expertise",
+            "description": "Specific protocols for POS systems (Micros, Lightspeed) and hotel PMS (Opera, Protel)."
+          },
+          {
+            "title": "Multi-country multi-franchise",
+            "description": "International group management with franchisees and independents, consolidated multi-country reporting."
+          },
+          {
+            "title": "Establishment WakiBox",
+            "description": "Compact collection kiosk for end-of-life small equipment, adapted to hospitality space constraints."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Hospitality sector",
+        "items": [
+          {
+            "question": "Can you operate without disrupting service?",
+            "answer": "Yes. We operate in low season and outside service hours. For 24/7 establishments, we plan coordinated maintenance windows."
+          },
+          {
+            "question": "Do you handle hotel PMS systems (Opera, Protel)?",
+            "answer": "Yes. Our protocols cover major hotel PMS: Oracle Opera, Protel, Mews, Cloudbeds. GDPR and PCI-DSS compliant erasure."
+          },
+          {
+            "question": "How do you handle independent franchisees?",
+            "answer": "Each franchisee has their own platform space. The group can consolidate data while respecting each establishment's management autonomy."
+          },
+          {
+            "question": "What timeline for 300+ establishments?",
+            "answer": "We deploy in waves of 30-50 establishments per week. A 300-establishment group is processed in 6-10 weeks."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Manage your hospitality ITAD",
+        "subtitle": "Free hospitality audit within 48 hours — our experts size your multi-establishment programme.",
+        "button": "Request a hospitality audit",
+        "secondaryButton": "View the hotel chain case"
+      }
+    },
+    "education-recherche": {
+      "hero": {
+        "title": "ITAD for Education & Research",
+        "subtitle": "Minor GDPR, student fleets, WEEE funding — refurbish and redistribute",
+        "kpis": [
+          {
+            "value": "GDPR",
+            "label": "minors protected"
+          },
+          {
+            "value": "89%",
+            "label": "charity reuse"
+          },
+          {
+            "value": "WEEE",
+            "label": "funding mobilised"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Education sector profile",
+        "narrative": "The education sector (schools, colleges, universities, research organisations) manages substantial IT fleets with specific constraints: enhanced GDPR for minors' data, limited budgets, mandatory reuse, and WEEE eco-organisation funding. Student fleets are renewed in waves tied to academic calendars.",
+        "highlights": [
+          "Fleets of 500 to 15,000 devices per institution or group",
+          "Enhanced GDPR for minor student data",
+          "Renewal calendar tied to school holidays",
+          "Possible WEEE eco-organisation funding"
+        ]
+      },
+      "pains": {
+        "title": "Your priority pain points",
+        "items": [
+          {
+            "title": "Minor GDPR",
+            "description": "Minor student data benefits from enhanced GDPR protection (art. 8). Erasure must be irreversible and certified."
+          },
+          {
+            "title": "Limited budget",
+            "description": "Educational institutions have constrained IT budgets and must maximise end-of-life equipment value."
+          },
+          {
+            "title": "WEEE funding",
+            "description": "Eco-organisations offer funding for educational WEEE collection and recycling."
+          },
+          {
+            "title": "Academic calendar",
+            "description": "Renewals must be completed during school holidays to avoid disrupting classes."
+          },
+          {
+            "title": "Reuse and donation",
+            "description": "Legislation and educational mission encourage reuse through charity and donation to associations."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "University fleet renewal",
+            "description": "Decommissioning of 3,200 student workstations and 120 research servers during summer break with charity redistribution.",
+            "result": "89% reuse, 4,500 charity donations, 480 tCO₂e avoided"
+          },
+          {
+            "title": "Primary-secondary school group",
+            "description": "Replacement of 850 tablets and 120 PCs across 8 schools and 2 colleges with certified minor GDPR erasure.",
+            "result": "100% GDPR compliant, WEEE funding mobilised"
+          },
+          {
+            "title": "Research laboratory",
+            "description": "Decommissioning of 180 computing stations and 40 research servers with scientific data protection.",
+            "result": "IP protected, €1.1M value recovered"
+          },
+          {
+            "title": "Regional education authority",
+            "description": "Pooled ITAD programme for 45 institutions with consolidated reporting and WEEE funding.",
+            "result": "Unit cost -40%, regional WEEE report"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "4,500",
+            "suffix": "+",
+            "label": "charity donations made"
+          },
+          {
+            "value": "40",
+            "suffix": "%",
+            "label": "unit cost reduction (pooling)"
+          },
+          {
+            "value": "480",
+            "suffix": "t",
+            "label": "CO₂e avoided"
+          },
+          {
+            "value": "89",
+            "suffix": "%",
+            "label": "reuse rate"
+          }
+        ],
+        "details": "For a 45-institution education authority, pooling via GTC reduces costs by 40% and generates 4,500 charity donations with WEEE funding and consolidated reporting."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "Education CIO",
+            "concern": "Student fleet and academic calendar",
+            "ctaAngle": "School holiday planning + field collection"
+          },
+          {
+            "role": "DPO",
+            "concern": "Minor GDPR and student data",
+            "ctaAngle": "Certified GDPR art. 8 erasure + certificates"
+          },
+          {
+            "role": "Finance Manager",
+            "concern": "Limited budget and WEEE funding",
+            "ctaAngle": "Integrated eco-organisation funding file"
+          },
+          {
+            "role": "University President",
+            "concern": "CSR commitment and circular economy",
+            "ctaAngle": "Charity channel + carbon footprint communications"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for education",
+        "items": [
+          {
+            "title": "Academic calendar planning",
+            "description": "Intervention exclusively during school and university holidays for zero classroom disruption."
+          },
+          {
+            "title": "Certified minor GDPR",
+            "description": "Enhanced erasure protocol for minor student data, GDPR art. 8 compliant with individual certificate."
+          },
+          {
+            "title": "Integrated WEEE funding",
+            "description": "Eco-organisation funding application included in our service."
+          },
+          {
+            "title": "Academic pooling",
+            "description": "Institution group management with consolidated reporting and pooled costs."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Education sector",
+        "items": [
+          {
+            "question": "Can you intervene during school holidays only?",
+            "answer": "Yes. That is our standard operating mode for education. We plan each intervention during holidays based on your priorities."
+          },
+          {
+            "question": "How does WEEE funding work?",
+            "answer": "We prepare the funding application with eco-organisations for you. The funding covers part of collection and recycling costs, directly deducted from our invoice."
+          },
+          {
+            "question": "Do you handle school tablets (iPad, Chromebook)?",
+            "answer": "Yes. We process iPad, Chromebook, Android tablets and school laptops. MDM erasure, certified factory reset and recycling or reuse."
+          },
+          {
+            "question": "Can you pool multiple institutions?",
+            "answer": "Yes. Our platform manages institution groups with consolidated reporting. Pooling reduces unit costs by 30-40% compared to individual processing."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Refurbish your educational fleet",
+        "subtitle": "Free education audit within 48 hours — our experts size your programme with WEEE funding.",
+        "button": "Request an education audit",
+        "secondaryButton": "View the university charity case"
+      }
+    },
+    "agroalimentaire": {
+      "hero": {
+        "title": "ITAD for Food & Beverage Industry",
+        "subtitle": "Factory IT/OT, traceability, distributed production — manage your assets end-to-end",
+        "kpis": [
+          {
+            "value": "IT+OT",
+            "label": "factories covered"
+          },
+          {
+            "value": "IFS/BRC",
+            "label": "compatible"
+          },
+          {
+            "value": "CSRD",
+            "label": "reporting integrated"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Food & beverage sector profile",
+        "narrative": "The food and beverage industry operates production plants with IT/OT systems (line PLCs, SCADA, MES, ERP) and standard IT fleets. IFS/BRC certifications and food traceability requirements impose rigorous computerised system management. Distributed production sites generate significant ITAD flows with food safety and hygiene constraints.",
+        "highlights": [
+          "MES and SCADA production line systems",
+          "IFS/BRC food traceability on computerised systems",
+          "Distributed production sites (plants, warehouses, platforms)",
+          "CSRD scope 3 IT obligation for listed groups"
+        ]
+      },
+      "pains": {
+        "title": "Your priority pain points",
+        "items": [
+          {
+            "title": "Production plant IT/OT",
+            "description": "Line PLCs, MES and SCADA systems contain production data, recipes and sensitive process parameters."
+          },
+          {
+            "title": "IFS/BRC traceability",
+            "description": "IFS and BRC certifications require traceability of computerised systems, including their decommissioning."
+          },
+          {
+            "title": "Distributed sites",
+            "description": "Food groups operate dozens of plants, warehouses and logistics platforms with heterogeneous fleets."
+          },
+          {
+            "title": "Hygiene constraints",
+            "description": "Interventions in food production zones are subject to strict hygiene protocols."
+          },
+          {
+            "title": "Commercial data",
+            "description": "Trading data, supplier contracts and cost prices are strategic assets to protect."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "Packaging line modernisation",
+            "description": "Replacement of 120 PLCs and 60 industrial PCs across 3 packaging lines with recipe and parameter erasure.",
+            "result": "0 recipe leaks, intervention outside production"
+          },
+          {
+            "title": "Group ERP migration",
+            "description": "Decommissioning of 380 workstations and 45 servers during SAP S/4HANA ERP migration.",
+            "result": "Data migrated and originals erased, IFS report"
+          },
+          {
+            "title": "Multi-plant consolidation",
+            "description": "Pooled ITAD programme for 18 plants with consolidated CSRD reporting.",
+            "result": "Cost -38%, CSRD ESRS E5 delivered"
+          },
+          {
+            "title": "Connected warehouse",
+            "description": "Removal of 2,400 order-picking terminals and 180 dock kiosks at end-of-life.",
+            "result": "95% recycled, data erased"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "38",
+            "suffix": "%",
+            "label": "multi-plant cost reduction"
+          },
+          {
+            "value": "95",
+            "suffix": "%",
+            "label": "material recycling rate"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "recipe/IP leaks"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "IFS/BRC compliance"
+          }
+        ],
+        "details": "For an 18-plant group, pooling via GTC reduces costs by 38% and guarantees IFS/BRC compliance with consolidated CSRD ESRS E5 reporting."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "Group CIO",
+            "concern": "Multi-plant IT/OT and ERP migration",
+            "ctaAngle": "Unified IT+OT platform + migration plan"
+          },
+          {
+            "role": "Quality Director",
+            "concern": "IFS/BRC computerised system compliance",
+            "ctaAngle": "IFS/BRC compliant audit trail"
+          },
+          {
+            "role": "Plant Director",
+            "concern": "Production continuity and hygiene",
+            "ctaAngle": "Intervention outside production, hygiene protocol"
+          },
+          {
+            "role": "CSR Director",
+            "concern": "CSRD scope 3 and circular economy",
+            "ctaAngle": "Carbon module + multi-plant ESRS E5"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for food & beverage",
+        "items": [
+          {
+            "title": "Food IT/OT expertise",
+            "description": "Protocols adapted for line PLCs, MES, SCADA and food traceability systems."
+          },
+          {
+            "title": "IFS/BRC compliance",
+            "description": "Audit trail compliant with IFS and BRC requirements for computerised system decommissioning."
+          },
+          {
+            "title": "Production zone hygiene protocol",
+            "description": "Food production zone intervention with HACCP and hygiene protocol compliance."
+          },
+          {
+            "title": "Multi-plant pooling",
+            "description": "Pooled ITAD programme for multi-site groups with consolidated reporting and optimised costs."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Food & beverage sector",
+        "items": [
+          {
+            "question": "Can you operate in food production zones?",
+            "answer": "Yes. Our teams comply with HACCP and your site hygiene requirements. We operate in adapted clothing with decontaminated tools."
+          },
+          {
+            "question": "Do you handle production line PLCs?",
+            "answer": "Yes. Our protocols cover PLCs (Siemens, Rockwell, Schneider), MES and SCADA systems with recipe, parameter and production data erasure."
+          },
+          {
+            "question": "How do you ensure IFS/BRC compliance?",
+            "answer": "Our audit trail is formatted per IFS Food and BRC Food Safety requirements. We provide compliant decommissioning evidence for your certification audits."
+          },
+          {
+            "question": "What CSRD reporting for a multi-plant group?",
+            "answer": "CSRD ESRS E5 module with per-plant, per-country and group-consolidated reporting. Emission factors calibrated for food industry equipment."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Manage your food industry ITAD",
+        "subtitle": "Free food industry audit within 48 hours — our experts size your multi-plant programme.",
+        "button": "Request a food industry audit",
+        "secondaryButton": "View the food group case"
+      }
+    },
+    "telecom": {
+      "hero": {
+        "title": "ITAD for Telecommunications",
+        "subtitle": "Network equipment, CPE/customer boxes, GDPR at scale — manage millions of assets",
+        "kpis": [
+          {
+            "value": "Millions",
+            "label": "of assets managed"
+          },
+          {
+            "value": "GDPR",
+            "label": "at scale"
+          },
+          {
+            "value": "€1.2M",
+            "label": "value recovered"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Telecommunications sector profile",
+        "narrative": "Telecom operators manage millions of devices: customer CPE (boxes, decoders, routers), network equipment (core routers, switches, base stations), and datacentre infrastructure. Volumes are massive, GDPR data at scale (millions of subscribers), and WEEE recycling obligations are substantial. Mobile operators renew their base stations (4G/5G) and fixed operators their CPE at a sustained pace.",
+        "highlights": [
+          "Fleets of millions of customer CPE (boxes, decoders, WiFi routers)",
+          "Network equipment (core routers, switches, 4G/5G base stations)",
+          "GDPR data at scale (millions of subscribers)",
+          "Massive WEEE obligation with ambitious recycling targets"
+        ]
+      },
+      "pains": {
+        "title": "Your priority pain points",
+        "items": [
+          {
+            "title": "Massive CPE volumes",
+            "description": "Operators manage millions of customer boxes and decoders to recycle or refurbish, requiring industrial-scale logistics."
+          },
+          {
+            "title": "GDPR at scale",
+            "description": "CPE contain configuration data, browsing history and subscriber identifiers to erase for millions of devices."
+          },
+          {
+            "title": "High-value network equipment",
+            "description": "Core routers, switches and 4G/5G base stations have significant residual value on the refurbished market."
+          },
+          {
+            "title": "Massive WEEE obligation",
+            "description": "Operators face ambitious WEEE recycling targets with detailed eco-organisation reporting."
+          },
+          {
+            "title": "4G to 5G migration",
+            "description": "5G deployment generates massive volumes of 4G equipment to decommission within constrained timelines."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Priority use cases",
+        "items": [
+          {
+            "title": "Operator CPE refurbishment",
+            "description": "Refurbishment programme for 2.4 million boxes and decoders with GDPR erasure and recirculation.",
+            "result": "68% refurbished, €1.2M value recovered"
+          },
+          {
+            "title": "4G base station decommissioning",
+            "description": "Secure removal of 4,800 4G base stations during 5G deployment with network configuration erasure.",
+            "result": "Configs erased, €3.8M market value"
+          },
+          {
+            "title": "Operator datacentre migration",
+            "description": "Decommissioning of 6,000 servers and 1,200 switches from an operator datacentre migrating to cloud.",
+            "result": "€5.2M recovered, GDPR compliant"
+          },
+          {
+            "title": "Operator WEEE reporting",
+            "description": "Consolidated WEEE reporting for a national operator covering CPE, network and datacentre.",
+            "result": "WEEE targets met, eco-organisation report validated"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Estimated return on investment",
+        "kpis": [
+          {
+            "value": "5.2",
+            "suffix": "M€",
+            "label": "value recovered (datacentre)"
+          },
+          {
+            "value": "68",
+            "suffix": "%",
+            "label": "CPE refurbishment rate"
+          },
+          {
+            "value": "3.8",
+            "suffix": "M€",
+            "label": "4G station value"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "WEEE targets met"
+          }
+        ],
+        "details": "For a combined programme (datacentre + 4G stations + CPE), GTC recovers over €10M in value and guarantees the operator's WEEE targets are met."
+      },
+      "personas": {
+        "title": "Key decision-makers",
+        "items": [
+          {
+            "role": "Operator CIO/CTO",
+            "concern": "5G migration and 4G decommissioning",
+            "ctaAngle": "Station removal plan by batch and region"
+          },
+          {
+            "role": "DPO",
+            "concern": "GDPR for millions of subscribers on CPE",
+            "ctaAngle": "Industrial certified NIST 800-88 erasure"
+          },
+          {
+            "role": "Network Director",
+            "concern": "Network equipment removal logistics",
+            "ctaAngle": "Large-scale logistics + secure transport"
+          },
+          {
+            "role": "CSR Director",
+            "concern": "WEEE targets and CSRD scope 3",
+            "ctaAngle": "WEEE module + operator Carbon"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Why choose GTC for telecoms",
+        "items": [
+          {
+            "title": "Industrial capacity",
+            "description": "Processing infrastructure capable of handling millions of assets per year (CPE, network equipment, servers)."
+          },
+          {
+            "title": "Industrial GDPR erasure",
+            "description": "Automated NIST 800-88 erasure chain for large-scale CPE with per-batch or per-unit certificate."
+          },
+          {
+            "title": "Network EMEA pricing",
+            "description": "Asset Intelligence module with specialised network and telecom equipment pricing (Cisco, Nokia, Ericsson, Huawei)."
+          },
+          {
+            "title": "Operator WEEE module",
+            "description": "WEEE reporting calibrated for operator volumes with eco-organisation compliant exports."
+          }
+        ]
+      },
+      "objections": {
+        "title": "FAQ — Telecommunications sector",
+        "items": [
+          {
+            "question": "What CPE processing capacity?",
+            "answer": "Our infrastructure processes up to 5 million CPE per year. The automated NIST 800-88 erasure chain handles 2,000 units per day per site."
+          },
+          {
+            "question": "How do you handle 4G/5G base stations?",
+            "answer": "Our teams operate on-site for station dismantling. Network configurations and keys are erased, then equipment is transported in secure convoys to our processing centres."
+          },
+          {
+            "question": "What WEEE reporting for operator volumes?",
+            "answer": "Our WEEE module is calibrated for operator volumes (millions of units). Reporting by equipment type, region and eco-organisation. Compliant with annual declarations."
+          },
+          {
+            "question": "Do you price network equipment (Cisco, Nokia)?",
+            "answer": "Yes. Our Asset Intelligence module covers major vendor network equipment: Cisco, Nokia, Ericsson, Huawei, Juniper. Real-time EMEA refurbished market pricing."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Manage your telecom ITAD at scale",
+        "subtitle": "Free telecom audit within 48 hours — our experts size your CPE, network and datacentre programme.",
+        "button": "Request a telecom audit",
+        "secondaryButton": "View the operator datacentre case"
       }
     },
     "index": {
       "hero": {
-        "title": "Sectors we serve",
-        "subtitle": "6 sector-specific ITAD playbooks — each vertical has its regulators, lifecycles and chain-of-custody constraints."
+        "title": "Our ITAD sector expertise",
+        "subtitle": "16 sectors served — each vertical has its regulators, lifecycles and chain-of-custody constraints.",
+        "kpis": [
+          {
+            "value": "16",
+            "label": "sectors served"
+          },
+          {
+            "value": "12+",
+            "label": "years of experience"
+          },
+          {
+            "value": "280+",
+            "label": "clients supported"
+          }
+        ]
       },
-      "intro": "We have documented 6 actionable sector playbooks. Each sector page covers: regulatory context, applicable regulations, typical field challenges, and the GTC operational response (modules, services, SLAs).",
-      "ctaTitle": "Your sector isn't listed?",
-      "ctaSubtitle": "We also support insurance, telco, pharma, education, hospitality. Request a sector consultation.",
-      "ctaButton": "Discuss my sector"
+      "intro": "GreenTechCycle has developed deep sector expertise supporting over 280 organisations across 16 industries. Each sector has its own regulators, hardware lifecycles and chain-of-custody constraints. Explore our sector approach and identify the issues specific to your industry.",
+      "mediaGtcTitle": "GTC Media — TF1, our flagship reference",
+      "mediaGtcSubtitle": "The TF1 Group trusts GreenTechCycle for their complete ITAD cycle: audit, erasure, recovery and CSRD reporting.",
+      "mediaGtcCta": "Discover the TF1 partnership",
+      "ctaTitle": "Your sector is covered",
+      "ctaSubtitle": "16 sectors, one platform. Request a free sector audit within 48 hours — our consultants return with an action plan tailored to your regulatory constraints.",
+      "ctaButton": "Request a sector audit",
+      "ctaSecondary": "Book a Waki Box pilot",
+      "discover": "Discover"
     },
     "common": {
       "context": "Context",
@@ -2738,8 +5400,8 @@
       "stakeholders": "Stakeholders",
       "scenarioLabel": "Scenario",
       "solutionLabel": "With GreenTechCycle",
-      "otherSectors": "Discover other sectors",
-      "backToUseCases": "See use cases"
+      "otherSectors": "Explore other sectors",
+      "backToUseCases": "View use cases"
     }
   },
   "casUsages": {

@@ -42,10 +42,20 @@
           "overview": "Tous les secteurs",
           "finance": "Banque & Finance",
           "sante": "Santé & Hôpitaux",
-          "industrie": "Industrie & Manufacturing",
+          "industrie": "Industrie",
+          "retail": "Commerce & Distribution",
+          "energie": "Énergie & Utilités",
+          "medias": "Médias & Audiovisuel",
+          "tech": "Technologie & SaaS",
+          "transport": "Transport & Logistique",
           "public": "Secteur public",
-          "energie": "Énergie & Utilities",
-          "retail": "Retail & Distribution"
+          "conseil": "Conseil & Services",
+          "pharma": "Pharma & Biotech",
+          "btp": "BTP & Construction",
+          "horeca": "Hôtellerie-Restauration",
+          "education": "Éducation & Recherche",
+          "agroalimentaire": "Agroalimentaire",
+          "telecom": "Télécommunications"
         }
       },
       "resources": {
@@ -106,9 +116,19 @@
           "finance": "Banque & Finance",
           "sante": "Santé",
           "industrie": "Industrie",
-          "public": "Secteur public",
+          "retail": "Commerce & Distribution",
           "energie": "Énergie",
-          "retail": "Retail"
+          "transport": "Transport & Logistique",
+          "public": "Secteur public",
+          "tech": "Technologie & SaaS",
+          "medias": "Médias & Audiovisuel",
+          "conseil": "Conseil & Services",
+          "pharma": "Pharma & Biotech",
+          "btp": "BTP & Construction",
+          "horeca": "Hôtellerie-Restauration",
+          "education": "Éducation & Recherche",
+          "agroalimentaire": "Agroalimentaire",
+          "telecom": "Télécommunications"
         }
       },
       "company": {
@@ -2439,296 +2459,2938 @@
   "Sectors": {
     "finance": {
       "hero": {
-        "title": "ITAD pour le secteur financier",
-        "subtitle": "DORA, PCI-DSS, ACPR/AMF — sécurisez le décommissionnement de vos actifs IT critiques"
-      },
-      "context": {
-        "title": "Contexte",
-        "description": "Le secteur financier traite les données les plus sensibles : positions de trading, données clients, informations réglementaires. DORA impose depuis 2025 une résilience opérationnelle numérique, incluant la maîtrise de la chaîne de sous-traitance ITAD. Les régulateurs ACPR et AMF exigent une traçabilité sans faille."
-      },
-      "regulations": {
-        "title": "Réglementations applicables",
-        "items": [
-          "DORA (Digital Operational Resilience Act)",
-          "PCI-DSS v4.0",
-          "ACPR / AMF",
-          "RGPD renforcé",
-          "NIS2 (entités essentielles)",
-          "Bâle III/IV (risque opérationnel)"
+        "title": "ITAD pour la banque et la finance",
+        "subtitle": "DORA, PCI-DSS, ACPR/AMF — sécurisez le décommissionnement de vos actifs IT critiques",
+        "kpis": [
+          {
+            "value": "100%",
+            "label": "traçabilité DORA"
+          },
+          {
+            "value": "48h",
+            "label": "certificat effacement"
+          },
+          {
+            "value": "412€",
+            "label": "valeur résiduelle/poste"
+          }
         ]
       },
-      "challenges": {
-        "title": "Défis typiques",
-        "items": [
-          "Données ultra-sensibles : trading, clients, compliance",
-          "Effacement haute sécurité avec validation 4-eyes obligatoire",
-          "Audit trail complet exigé par les régulateurs",
-          "Gestion multi-entités (filiales, succursales)",
-          "Prestataires ITAD soumis aux mêmes exigences DORA",
-          "Délais de rétention réglementaires complexes"
+      "profile": {
+        "title": "Profil du secteur bancaire",
+        "narrative": "Le secteur financier traite les données les plus sensibles : positions de trading, données clients, informations réglementaires. Depuis janvier 2025, le règlement DORA impose une résilience opérationnelle numérique couvrant toute la chaîne de sous-traitance ITAD. Les régulateurs ACPR et AMF exigent une traçabilité sans faille. Les parcs IT bancaires — datacenters de trading, agences, guichets automatiques, terminaux de paiement — génèrent des flux de décommissionnement continus et à haut risque.",
+        "highlights": [
+          "Parcs IT moyens de 8 000 à 45 000 actifs par groupe bancaire",
+          "Cycles de renouvellement accélérés (3 ans postes, 5 ans serveurs)",
+          "Données classifiées DORA art. 28-30 sur chaque support",
+          "Obligation de registre TPP auditable annuellement"
         ]
       },
-      "solution": {
-        "title": "Comment GTC répond",
+      "pains": {
+        "title": "Vos douleurs prioritaires",
         "items": [
-          "Effacement certifié NIST 800-88 Purge/Destroy avec double validation",
-          "Principe des 4 yeux intégré pour chaque opération critique",
-          "Chain of custody blockchain de bout en bout",
-          "Matrice de conformité DORA + PCI-DSS pré-configurée",
-          "Restitution auditeur avec export dédié régulateurs",
-          "Qualification prestataire ITAD conforme DORA article 28"
+          {
+            "title": "Conformité DORA art. 28-30",
+            "description": "Chaque prestataire ITAD doit être inscrit au registre TPP et auditable annuellement. Les sanctions pour non-conformité atteignent 1 % du CA mondial journalier."
+          },
+          {
+            "title": "Effacement haute sécurité",
+            "description": "Les données de trading, positions clients et informations réglementaires nécessitent un effacement NIST 800-88 Purge avec double validation 4-eyes obligatoire."
+          },
+          {
+            "title": "Piste d'audit complète",
+            "description": "L'ACPR et l'AMF exigent une traçabilité de bout en bout, du retrait physique à la preuve de destruction, avec horodatage qualifié."
+          },
+          {
+            "title": "Gestion multi-entités",
+            "description": "Les groupes bancaires opèrent des dizaines de filiales, succursales et centres de traitement, chacun avec ses propres exigences réglementaires."
+          },
+          {
+            "title": "Chaîne de garde opposable",
+            "description": "Chaque actif doit être tracé individuellement avec une chaîne de garde scellée, de la prise en charge jusqu'à la preuve de destruction ou réemploi."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Décommissionnement datacenter de trading",
+            "description": "Effacement certifié de 2 400 serveurs contenant des algorithmes de trading haute fréquence et des données de marché classifiées.",
+            "result": "100 % conforme DORA, 1,2 M€ de valeur récupérée"
+          },
+          {
+            "title": "Roll-out réseau d'agences",
+            "description": "Remplacement coordonné de 4 800 postes en 1 200 agences sur 6 mois, sans interruption de service, avec effacement PCI-DSS.",
+            "result": "0 incident données, 890 k€ de valeur reconditionnement"
+          },
+          {
+            "title": "Migration guichets automatiques",
+            "description": "Retrait et destruction sécurisée de 1 600 GAB contenant données cartes SAM, certificats EMV et logs transactionnels.",
+            "result": "Destruction certifiée 100 %, rapport ACPR livré J+5"
+          },
+          {
+            "title": "Audit régulateur ACPR/AMF",
+            "description": "Restitution complète de la piste d'audit ITAD pour inspection réglementaire, avec export dédié auditeurs.",
+            "result": "Audit ACPR passé sans réserve en 4 jours"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "412",
+            "suffix": "€",
+            "label": "valeur résiduelle récupérée par poste"
+          },
+          {
+            "value": "96",
+            "suffix": "%",
+            "label": "taux de conformité DORA atteint"
+          },
+          {
+            "value": "1850",
+            "suffix": "t",
+            "label": "CO₂e évitées (parc 8 000 postes)"
+          },
+          {
+            "value": "4",
+            "suffix": "j",
+            "label": "délai restitution audit ACPR"
+          }
+        ],
+        "details": "Sur un parc de 8 000 postes renouvelés, le passage par GTC génère en moyenne 3,3 M€ de valeur récupérée et 1 850 tCO₂e évitées, tout en garantissant la conformité DORA/PCI-DSS/ACPR."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI / CTO",
+            "concern": "Continuité opérationnelle et registre TPP DORA",
+            "ctaAngle": "Tableau de bord temps réel multi-entités"
+          },
+          {
+            "role": "RSSI / CISO",
+            "concern": "Effacement certifié et chaîne de garde",
+            "ctaAngle": "Certificats NIST 800-88 avec validation 4-eyes"
+          },
+          {
+            "role": "DAF / CFO",
+            "concern": "Valorisation des actifs et optimisation budgétaire",
+            "ctaAngle": "Module Asset Intelligence avec cotation marché EMEA"
+          },
+          {
+            "role": "Direction conformité",
+            "concern": "Conformité DORA, PCI-DSS, ACPR",
+            "ctaAngle": "Matrice réglementaire pré-configurée + export auditeurs"
+          },
+          {
+            "role": "Directeur RSE",
+            "concern": "Reporting CSRD scope 3 IT",
+            "ctaAngle": "Module Carbon avec facteurs Boavizta calibrés finance"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour la banque",
+        "items": [
+          {
+            "title": "Qualification DORA art. 28",
+            "description": "GTC est qualifié comme prestataire ITAD conforme aux exigences DORA, inscrit au registre TPP et auditable annuellement."
+          },
+          {
+            "title": "Effacement 4-eyes natif",
+            "description": "Chaque opération critique est validée par deux opérateurs indépendants, conformément aux standards bancaires."
+          },
+          {
+            "title": "Chaîne de garde blockchain",
+            "description": "Traçabilité de bout en bout avec scellé eIDAS et horodatage qualifié RGS**, opposable devant les régulateurs."
+          },
+          {
+            "title": "Export auditeurs dédié",
+            "description": "Restitution formatée ACPR/AMF/BCE en un clic, avec preuves cryptographiques vérifiables."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur bancaire",
+        "items": [
+          {
+            "question": "GTC est-il qualifié au titre de DORA art. 28-30 ?",
+            "answer": "Oui. GTC figure au registre TPP en tant que prestataire ITAD critique. Nous fournissons le dossier de qualification DORA complet, incluant les rapports d'audit annuels, les certifications R2v3 et ISO 27001, et la matrice de conformité article 28."
+          },
+          {
+            "question": "Quel est le délai de restitution des certificats d'effacement ?",
+            "answer": "Les certificats individuels NIST 800-88 sont disponibles sous 24 h après traitement. Pour un audit ACPR/AMF, nous livrons le rapport consolidé sous 4 jours ouvrés."
+          },
+          {
+            "question": "Comment gérez-vous les données de trading haute fréquence ?",
+            "answer": "Les serveurs HFT sont traités en zone sécurisée dédiée avec effacement NIST 800-88 Purge suivi d'une destruction physique HMG IS5 Enhanced (broyage 6 mm). Double validation 4-eyes systématique."
+          },
+          {
+            "question": "Pouvez-vous intervenir sur plusieurs entités bancaires simultanément ?",
+            "answer": "Oui. Notre plateforme gère les droits multi-entités avec cloisonnement strict (RBAC). Chaque filiale dispose de son propre espace, ses propres SLA et ses propres exports réglementaires."
+          }
         ]
       },
       "cta": {
-        "title": "Sécurisez votre ITAD financière",
-        "button": "Demander un audit DORA"
+        "title": "Sécurisez votre ITAD bancaire",
+        "subtitle": "Audit DORA gratuit sous 48 h — nos consultants financiers reviennent avec un plan conforme.",
+        "button": "Demander un audit DORA",
+        "secondaryButton": "Voir le cas banque CAC 40"
       }
     },
     "sante": {
       "hero": {
         "title": "ITAD pour le secteur santé",
-        "subtitle": "HDS, données patients, CNIL — protégez les données de santé de bout en bout"
-      },
-      "context": {
-        "title": "Contexte",
-        "description": "Les établissements de santé gèrent des données patients particulièrement sensibles. La certification HDS (Hébergeur de Données de Santé) encadre strictement le traitement de ces données, y compris leur destruction. La CNIL est particulièrement vigilante sur ce secteur, avec des contrôles réguliers et des sanctions renforcées."
-      },
-      "regulations": {
-        "title": "Réglementations applicables",
-        "items": [
-          "Certification HDS",
-          "RGPD — données de santé (art. 9)",
-          "Code de la santé publique",
-          "CNIL — référentiel santé",
-          "NIS2 (secteur santé = entité essentielle)",
-          "ANS — cadre de sécurité SI santé"
+        "subtitle": "HDS, données patients, CNIL — protégez les données de santé de bout en bout",
+        "kpis": [
+          {
+            "value": "100%",
+            "label": "conformité HDS"
+          },
+          {
+            "value": "4200",
+            "label": "postes reconditionnés"
+          },
+          {
+            "value": "24h",
+            "label": "certificats disponibles"
+          }
         ]
       },
-      "challenges": {
-        "title": "Défis typiques",
-        "items": [
-          "Données patients : dossiers médicaux, imagerie, résultats de laboratoire",
-          "Destruction physique obligatoire pour certains supports (CD, bandes, disques)",
-          "Traçabilité réglementaire exigée par la CNIL et les ARS",
-          "Équipements médicaux connectés avec données embarquées",
-          "Multi-sites : CHU, cliniques, EHPAD, cabinets",
-          "Budget IT contraint et matériel vieillissant"
+      "profile": {
+        "title": "Profil du secteur santé",
+        "narrative": "Les établissements de santé gèrent des données patients particulièrement sensibles : dossiers médicaux, imagerie, résultats de laboratoire, données génomiques. La certification HDS encadre strictement le traitement de ces données, y compris leur destruction. La CNIL est particulièrement vigilante sur ce secteur. Les parcs IT hospitaliers — postes soignants, serveurs DPI, équipements d'imagerie, dispositifs médicaux connectés — représentent des volumes considérables avec des cycles de vie variables.",
+        "highlights": [
+          "Parcs de 2 000 à 12 000 actifs par GHT (Groupement Hospitalier de Territoire)",
+          "Équipements médicaux connectés (IoMT) avec données embarquées",
+          "Obligation de destruction physique pour certains supports",
+          "Budget IT contraint et matériel souvent vieillissant"
         ]
       },
-      "solution": {
-        "title": "Comment GTC répond",
+      "pains": {
+        "title": "Vos douleurs prioritaires",
         "items": [
-          "Effacement et destruction physique certifiés pour tous types de supports",
-          "Certificats conformes aux exigences HDS et CNIL",
-          "Traçabilité complète pour les audits ARS et CNIL",
-          "Gestion des équipements médicaux connectés (IoMT)",
-          "Tableau de bord multi-établissements pour les GHT",
-          "Valorisation des équipements reconditionnables en circuit solidaire"
+          {
+            "title": "Données patients HDS",
+            "description": "Les dossiers médicaux, images DICOM et résultats de laboratoire exigent un effacement conforme HDS avec certificat individuel par support."
+          },
+          {
+            "title": "Équipements médicaux connectés",
+            "description": "Les dispositifs IoMT (moniteurs, pompes, imageurs) contiennent des données patients embarquées difficiles à effacer avec les méthodes standard."
+          },
+          {
+            "title": "Traçabilité CNIL/ARS",
+            "description": "Les audits réguliers de la CNIL et des ARS exigent une piste d'audit complète, du retrait au certificat de destruction."
+          },
+          {
+            "title": "Multi-sites GHT",
+            "description": "Les GHT regroupent CHU, cliniques, EHPAD et cabinets avec des parcs hétérogènes et des contraintes logistiques complexes."
+          },
+          {
+            "title": "Valorisation solidaire",
+            "description": "La loi AGEC et la mission sociale hospitalière encouragent le réemploi via des circuits ESS (Envie, Emmaüs, Ateliers du Bocage)."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Renouvellement parc CHU 9 000 lits",
+            "description": "Décommissionnement coordonné de 4 200 postes soignants et 180 serveurs DPI sur 8 sites, sans interruption des soins.",
+            "result": "4 200 postes reconditionnés ESS, 0 incident données"
+          },
+          {
+            "title": "Migration PACS imagerie",
+            "description": "Effacement et destruction de 340 stations d'imagerie contenant des données DICOM patients sur 15 ans.",
+            "result": "100 % destruction certifiée, rapport CNIL livré J+3"
+          },
+          {
+            "title": "Retrait dispositifs IoMT",
+            "description": "Collecte et traitement sécurisé de 1 800 dispositifs médicaux connectés (moniteurs, pompes, capteurs) en fin de vie.",
+            "result": "Données embarquées effacées, 62 % reconditionnés"
+          },
+          {
+            "title": "Audit CNIL données de santé",
+            "description": "Restitution complète de la piste d'audit pour contrôle CNIL, couvrant 3 années de décommissionnement.",
+            "result": "Contrôle CNIL passé sans observation"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "4200",
+            "suffix": "+",
+            "label": "postes reconditionnés via filière ESS"
+          },
+          {
+            "value": "89",
+            "suffix": "%",
+            "label": "taux de réemploi atteint"
+          },
+          {
+            "value": "680",
+            "suffix": "t",
+            "label": "CO₂e évitées (parc GHT moyen)"
+          },
+          {
+            "value": "3",
+            "suffix": "j",
+            "label": "délai restitution audit CNIL"
+          }
+        ],
+        "details": "Sur un GHT de 4 200 postes, le reconditionnement ESS génère 840 k€ de valeur sociale et 680 tCO₂e évitées, avec conformité HDS/CNIL garantie."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI hospitalier",
+            "concern": "Continuité des soins pendant le décommissionnement",
+            "ctaAngle": "Planning coordonné par service avec zéro interruption"
+          },
+          {
+            "role": "RSSI / DPO",
+            "concern": "Effacement HDS et traçabilité CNIL",
+            "ctaAngle": "Certificats conformes HDS + piste d'audit 360°"
+          },
+          {
+            "role": "Directeur GHT",
+            "concern": "Pilotage multi-établissements et budget",
+            "ctaAngle": "Tableau de bord consolidé GHT avec suivi budgétaire"
+          },
+          {
+            "role": "Ingénieur biomédical",
+            "concern": "Gestion des dispositifs médicaux connectés",
+            "ctaAngle": "Module IoMT dédié avec effacement spécifique"
+          },
+          {
+            "role": "Direction RSE",
+            "concern": "Réemploi solidaire et bilan carbone",
+            "ctaAngle": "Filière ESS partenaire + reporting CSRD santé"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour la santé",
+        "items": [
+          {
+            "title": "Expertise HDS certifiée",
+            "description": "Processus d'effacement et de destruction conformes aux exigences de la certification Hébergeur de Données de Santé."
+          },
+          {
+            "title": "Gestion IoMT native",
+            "description": "Module dédié aux dispositifs médicaux connectés avec protocoles d'effacement adaptés (mémoires flash, firmwares)."
+          },
+          {
+            "title": "Filière ESS partenaire",
+            "description": "Circuit de reconditionnement via Envie, Emmaüs et Ateliers du Bocage pour maximiser l'impact social."
+          },
+          {
+            "title": "Conformité CNIL santé",
+            "description": "Piste d'audit conforme au référentiel CNIL santé, avec restitution formatée pour contrôle."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur santé",
+        "items": [
+          {
+            "question": "Êtes-vous certifié HDS ?",
+            "answer": "GTC opère en conformité avec les exigences HDS pour la destruction de données de santé. Nos certificats NIST 800-88 sont reconnus par la CNIL et les ARS comme preuve de destruction conforme."
+          },
+          {
+            "question": "Comment traitez-vous les équipements d'imagerie PACS ?",
+            "answer": "Les stations PACS sont traitées en zone sécurisée dédiée. Les données DICOM sont effacées selon le protocole NIST 800-88 Purge, puis les disques font l'objet d'une destruction physique certifiée."
+          },
+          {
+            "question": "Pouvez-vous intervenir sans interrompre les soins ?",
+            "answer": "Oui. Nous planifions chaque intervention service par service, en dehors des créneaux critiques. Notre SLA garantit zéro interruption de soins."
+          },
+          {
+            "question": "Quelle est votre couverture géographique pour les GHT ?",
+            "answer": "Nos 4 sites en France couvrent l'ensemble du territoire. Pour les GHT multi-sites, nous déployons des équipes dédiées avec un coordinateur unique."
+          }
         ]
       },
       "cta": {
         "title": "Protégez les données de santé",
-        "button": "Demander un audit HDS"
+        "subtitle": "Audit HDS gratuit sous 48 h — nos consultants santé analysent votre parc et vos obligations.",
+        "button": "Demander un audit HDS",
+        "secondaryButton": "Voir le cas CHU"
       }
     },
     "industrie": {
       "hero": {
         "title": "ITAD pour l'industrie",
-        "subtitle": "Automates, SCADA, IoT industriel — gérez le cycle de vie de vos équipements IT/OT"
-      },
-      "context": {
-        "title": "Contexte",
-        "description": "L'industrie utilise un mélange d'IT classique et d'OT (Operational Technology) : automates programmables, systèmes SCADA, capteurs IoT. Ces équipements ont des cycles de vie longs (10-20 ans) et contiennent souvent des données de production sensibles. Le scope 3 IT est particulièrement lourd dans l'industrie manufacturière."
-      },
-      "regulations": {
-        "title": "Réglementations applicables",
-        "items": [
-          "NIS2 (secteur industriel = entité importante)",
-          "CSRD / ESRS E5 (économie circulaire)",
-          "WEEE / DEEE",
-          "IEC 62443 (cybersécurité industrielle)",
-          "ISO 14001 (management environnemental)",
-          "Directive machines 2023/1230"
+        "subtitle": "Automates, SCADA, IoT industriel — gérez le cycle de vie de vos équipements IT/OT",
+        "kpis": [
+          {
+            "value": "IT+OT",
+            "label": "inventaire unifié"
+          },
+          {
+            "value": "20 ans",
+            "label": "cycles de vie gérés"
+          },
+          {
+            "value": "73%",
+            "label": "taux de réemploi"
+          }
         ]
       },
-      "challenges": {
-        "title": "Défis typiques",
-        "items": [
-          "Flottes hétérogènes : automates, SCADA, HMI, PC industriels",
-          "Équipements EOSL (End of Service Life) sans support constructeur",
-          "Scope 3 carbone lourd (équipements volumineux, métaux rares)",
-          "Cycles de vie longs : 10 à 20 ans",
-          "Matériel spécialisé difficile à reconditionner",
-          "Données de production et propriété intellectuelle embarquées"
+      "profile": {
+        "title": "Profil du secteur industriel",
+        "narrative": "L'industrie utilise un mélange d'IT classique et d'OT (technologie opérationnelle) : automates programmables, systèmes SCADA, capteurs IoT, PC industriels. Ces équipements ont des cycles de vie longs (10 à 20 ans) et contiennent souvent des données de production sensibles, de la propriété intellectuelle et des configurations critiques. Le scope 3 IT est particulièrement lourd dans l'industrie manufacturière avec des équipements volumineux et des métaux rares.",
+        "highlights": [
+          "Flottes hétérogènes de 500 à 15 000 actifs IT/OT par site industriel",
+          "Équipements EOSL (fin de support constructeur) sans pièces de rechange",
+          "Données de production et propriété intellectuelle embarquées",
+          "Obligation CSRD/ESRS E5 sur le scope 3 industriel"
         ]
       },
-      "solution": {
-        "title": "Comment GTC répond",
+      "pains": {
+        "title": "Vos douleurs prioritaires",
         "items": [
-          "Inventaire IT/OT unifié avec gestion des automates et SCADA",
-          "Effacement adapté aux supports industriels (mémoires flash, PLC)",
-          "Bilan carbone précis incluant les équipements lourds via Boavizta",
-          "Gestion du cycle EOSL avec alertes et plan de remplacement",
-          "Recyclage certifié des métaux rares et composants spécialisés",
-          "Reporting CSRD/ESRS E5 automatisé pour le scope 3 industriel"
+          {
+            "title": "Convergence IT/OT",
+            "description": "Les automates, SCADA et HMI coexistent avec l'IT classique mais requièrent des protocoles d'effacement spécifiques adaptés aux mémoires flash et PLC."
+          },
+          {
+            "title": "Cycles de vie longs",
+            "description": "Les équipements industriels vivent 10 à 20 ans. Le suivi EOSL, la gestion des pièces de rechange et la planification de remplacement sont critiques."
+          },
+          {
+            "title": "Scope 3 carbone lourd",
+            "description": "Les équipements industriels volumineux (serveurs, automates, machines-outils connectées) pèsent lourd dans le bilan carbone scope 3."
+          },
+          {
+            "title": "Propriété intellectuelle",
+            "description": "Les données de production, recettes de fabrication et paramètres machines embarqués représentent un risque majeur de fuite industrielle."
+          },
+          {
+            "title": "Sites distribués",
+            "description": "Les groupes industriels opèrent des dizaines de sites de production avec des parcs hétérogènes à coordonner."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Modernisation ligne de production",
+            "description": "Remplacement coordonné de 480 automates PLC et 120 stations HMI sur 3 sites, avec effacement des programmes et données de production.",
+            "result": "0 fuite IP, 890 tCO₂e évitées"
+          },
+          {
+            "title": "Décommissionnement SCADA",
+            "description": "Retrait sécurisé de 240 RTU et concentrateurs SCADA contenant des topologies réseau et des clés cryptographiques.",
+            "result": "Destruction certifiée 100 %, matrice NIS2 validée"
+          },
+          {
+            "title": "Migration datacenter usine",
+            "description": "Décommissionnement de 1 200 serveurs et baies de stockage d'un datacenter industriel sur 2 sites.",
+            "result": "1,8 M€ valeur récupérée, rapport CSRD ESRS E5 livré"
+          },
+          {
+            "title": "Renouvellement IoT capteurs",
+            "description": "Collecte et traitement de 8 000 capteurs IoT industriels en fin de vie, avec effacement firmware et recyclage certifié.",
+            "result": "98 % recyclage matière, 0 donnée résiduelle"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "1.8",
+            "suffix": "M€",
+            "label": "valeur récupérée (datacenter usine)"
+          },
+          {
+            "value": "890",
+            "suffix": "t",
+            "label": "CO₂e évitées par site"
+          },
+          {
+            "value": "73",
+            "suffix": "%",
+            "label": "taux de réemploi atteint"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "conformité NIS2/CSRD"
+          }
+        ],
+        "details": "Sur un site industriel de 1 200 serveurs et 500 automates, GTC récupère en moyenne 1,8 M€ de valeur et évite 890 tCO₂e tout en garantissant la conformité NIS2 et CSRD ESRS E5."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI industriel",
+            "concern": "Inventaire IT/OT unifié et planification EOSL",
+            "ctaAngle": "Plateforme IT+OT avec alertes fin de support"
+          },
+          {
+            "role": "RSSI / OT Security",
+            "concern": "Effacement des données de production et IP",
+            "ctaAngle": "Protocoles adaptés automates, SCADA, flash"
+          },
+          {
+            "role": "Directeur usine",
+            "concern": "Continuité de production pendant le décommissionnement",
+            "ctaAngle": "Intervention planifiée hors production"
+          },
+          {
+            "role": "Direction RSE",
+            "concern": "Bilan carbone scope 3 et CSRD",
+            "ctaAngle": "Module Carbon calibré industrie + ESRS E5"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour l'industrie",
+        "items": [
+          {
+            "title": "Inventaire IT/OT unifié",
+            "description": "Une seule plateforme pour gérer automates, SCADA, capteurs IoT et IT classique avec un inventaire consolidé."
+          },
+          {
+            "title": "Effacement adapté OT",
+            "description": "Protocoles spécifiques pour mémoires flash PLC, firmwares SCADA et données embarquées industrielles."
+          },
+          {
+            "title": "Module EOSL natif",
+            "description": "Suivi des fins de support constructeur avec alertes proactives et planification de remplacement."
+          },
+          {
+            "title": "Bilan carbone industriel",
+            "description": "Module Carbon calibré sur les facteurs Boavizta v1.4 pour équipements industriels lourds."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur industriel",
+        "items": [
+          {
+            "question": "Savez-vous effacer les automates PLC et les systèmes SCADA ?",
+            "answer": "Oui. Nous disposons de protocoles spécifiques pour les mémoires flash PLC (Siemens, Rockwell, Schneider), les RTU SCADA et les HMI. L'effacement couvre les programmes, données de configuration et clés cryptographiques."
+          },
+          {
+            "question": "Pouvez-vous intervenir sur site de production sans arrêt ?",
+            "answer": "Oui. Nous planifions les interventions pendant les arrêts de maintenance programmés ou en dehors des créneaux de production. Notre SLA garantit zéro impact sur la production."
+          },
+          {
+            "question": "Comment gérez-vous les équipements EOSL sans support constructeur ?",
+            "answer": "Notre module EOSL gère le cycle de vie complet : alerte anticipée, sourcing pièces de rechange, planification de remplacement et décommissionnement sécurisé en fin de vie."
+          },
+          {
+            "question": "Quel reporting CSRD fournissez-vous pour l'industrie ?",
+            "answer": "Module CSRD ESRS E5 automatisé couvrant les 11 data points applicables, calibré sur les facteurs d'émission industriels Boavizta v1.4. Export audit ISAE 3410-ready."
+          }
         ]
       },
       "cta": {
         "title": "Optimisez votre ITAD industrielle",
-        "button": "Demander un audit industriel"
+        "subtitle": "Audit IT/OT gratuit sous 48 h — nos experts industriels cartographient votre parc.",
+        "button": "Demander un audit industriel",
+        "secondaryButton": "Voir le cas industrie CSRD"
+      }
+    },
+    "retail": {
+      "hero": {
+        "title": "ITAD pour le commerce et la distribution",
+        "subtitle": "PCI-DSS v4.0, RGPD, CSRD — gérez la fin de vie des caisses, terminaux et parcs multi-sites",
+        "kpis": [
+          {
+            "value": "3000",
+            "label": "sites orchestrés"
+          },
+          {
+            "value": "90j",
+            "label": "délai de déploiement"
+          },
+          {
+            "value": "89k€",
+            "label": "économies annuelles"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Profil du secteur commerce et distribution",
+        "narrative": "Les enseignes multi-sites traitent des données carte de paiement (PCI-DSS) et des données clients RGPD. Le renouvellement triennal des caisses POS, terminaux de paiement, étiquettes électroniques et bornes interactives génère des flux ITAD lourds et hétérogènes, à coordonner sans rupture commerciale. Les directions financières exigent une valorisation actuarielle des actifs et un reporting CSRD ESRS E5 par enseigne.",
+        "highlights": [
+          "300 à 3 000 points de vente avec renouvellement simultané",
+          "Caisses POS contenant cartes SAM, certificats EMV, données SAV",
+          "Pression franchisés et directeurs de magasin sur coûts et délais",
+          "Reporting CSRD consolidé multi-enseignes et multi-pays"
+        ]
+      },
+      "pains": {
+        "title": "Vos douleurs prioritaires",
+        "items": [
+          {
+            "title": "Orchestration multi-sites",
+            "description": "Coordonner le retrait de 300 à 3 000 points de vente en 90 jours sans perturber l'activité commerciale est un défi logistique majeur."
+          },
+          {
+            "title": "Conformité PCI-DSS",
+            "description": "Les caisses POS et terminaux de paiement contiennent des cartes SAM, certificats EMV et données transactionnelles soumis à PCI-DSS v4.0."
+          },
+          {
+            "title": "Terminaux hétérogènes",
+            "description": "Bornes interactives, étiquettes RFID/ESL, coffres-forts numériques, imprimantes tickets — chaque type requiert un traitement spécifique."
+          },
+          {
+            "title": "Valorisation des actifs",
+            "description": "Les directions financières exigent une cotation marché précise pour maximiser la valeur de revente des équipements reconditionnables."
+          },
+          {
+            "title": "Reporting multi-enseignes",
+            "description": "Les groupes de distribution opèrent plusieurs enseignes dans plusieurs pays, chacune avec ses propres exigences CSRD."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Remplacement caisses POS 220 magasins",
+            "description": "Retrait et effacement de 4 800 caisses POS avec cartes SAM et certificats EMV dans 220 points de vente en 90 jours.",
+            "result": "0 incident PCI-DSS, 89 k€/an économisés"
+          },
+          {
+            "title": "Migration étiquettes électroniques",
+            "description": "Collecte et recyclage de 180 000 étiquettes ESL et modules RFID sur 450 magasins avec traçabilité unitaire.",
+            "result": "95 % recyclage matière, rapport DEEE conforme"
+          },
+          {
+            "title": "Déploiement WakiBox en magasin",
+            "description": "Installation de bornes WakiBox dans 120 magasins pour la collecte mutualisée des équipements en fin de vie.",
+            "result": "Taux de collecte +340 %, coût logistique -62 %"
+          },
+          {
+            "title": "Reporting CSRD multi-pays",
+            "description": "Consolidation du reporting CSRD ESRS E5 pour 3 enseignes dans 5 pays, avec données par magasin.",
+            "result": "Rapport CSRD livré J-90 avant clôture, 0 réserve audit"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "89",
+            "suffix": "k€",
+            "label": "économies annuelles (enseigne 220 mag.)"
+          },
+          {
+            "value": "95",
+            "suffix": "%",
+            "label": "taux de recyclage matière"
+          },
+          {
+            "value": "340",
+            "suffix": "%",
+            "label": "hausse taux de collecte WakiBox"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "réserve audit CSRD"
+          }
+        ],
+        "details": "Pour une enseigne de 220 magasins, le passage par GTC génère 89 k€/an d'économies (valorisation + effacement mutualisé) et un rapport CSRD ESRS E5 conforme sans réserve."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI commerce",
+            "concern": "Orchestration multi-sites sans rupture commerciale",
+            "ctaAngle": "Plan de déploiement par vagues avec suivi temps réel"
+          },
+          {
+            "role": "RSSI",
+            "concern": "Effacement PCI-DSS et données clients",
+            "ctaAngle": "Certificats PCI-DSS individuels par terminal"
+          },
+          {
+            "role": "DAF",
+            "concern": "Valorisation des actifs et optimisation coûts",
+            "ctaAngle": "Module Asset Intelligence cotation marché EMEA"
+          },
+          {
+            "role": "Directeur réseau",
+            "concern": "Impact minimal sur les magasins",
+            "ctaAngle": "Intervention hors heures d'ouverture garantie"
+          },
+          {
+            "role": "Direction RSE",
+            "concern": "CSRD multi-enseignes et économie circulaire",
+            "ctaAngle": "Reporting ESRS E5 par enseigne, par pays"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour le commerce",
+        "items": [
+          {
+            "title": "Orchestration multi-sites",
+            "description": "Planification par vagues avec suivi temps réel, coordonnée avec les directeurs de magasin pour zéro impact commercial."
+          },
+          {
+            "title": "Module WakiBox magasin",
+            "description": "Borne de collecte mutualisée installée en réserve, pour les petits équipements en fin de vie (accessoires, périphériques, ESL)."
+          },
+          {
+            "title": "Asset Intelligence",
+            "description": "Cotation marché EMEA en temps réel pour maximiser la valeur de revente des caisses et terminaux reconditionnables."
+          },
+          {
+            "title": "API magasin TMS",
+            "description": "Connecteur natif avec les systèmes de gestion logistique pour coordonner les enlèvements sans perturber les livraisons."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur commerce",
+        "items": [
+          {
+            "question": "Pouvez-vous gérer 3 000 sites simultanément ?",
+            "answer": "Oui. Notre module de planification multi-sites gère jusqu'à 5 000 points de vente par campagne. Nous déployons par vagues de 50 à 200 magasins selon la capacité logistique régionale."
+          },
+          {
+            "question": "Comment effacez-vous les cartes SAM des caisses POS ?",
+            "answer": "Les cartes SAM sont extraites et détruites physiquement conformément à PCI-DSS Appendix A1. Un PV de destruction unitaire est émis par caisse."
+          },
+          {
+            "question": "Quel est le délai d'intervention par magasin ?",
+            "answer": "Intervention standard sous 5 jours ouvrés après planification. Mode express 48 h disponible pour les urgences (fermeture magasin, transfert)."
+          },
+          {
+            "question": "Fournissez-vous un reporting par magasin ?",
+            "answer": "Oui. Chaque magasin dispose de son propre espace sur la plateforme avec inventaire, certificats et KPI. Le reporting est consolidable par enseigne, par pays et par groupe."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Orchestrez votre ITAD multi-sites",
+        "subtitle": "Plan de déploiement gratuit sous 48 h — nos experts commerce dimensionnent votre campagne.",
+        "button": "Demander un plan de déploiement",
+        "secondaryButton": "Voir le cas WakiBox commerce"
+      }
+    },
+    "energie": {
+      "hero": {
+        "title": "ITAD pour l'énergie et les utilités",
+        "subtitle": "NIS2, DORA, code de l'énergie — sécurisez la fin de vie des infrastructures critiques OT/IT",
+        "kpis": [
+          {
+            "value": "OIV",
+            "label": "opérateurs accompagnés"
+          },
+          {
+            "value": "50k",
+            "label": "actifs OT traités"
+          },
+          {
+            "value": "IGI 1300",
+            "label": "conforme"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Profil du secteur énergie",
+        "narrative": "Les opérateurs d'énergie (production, transport, distribution) opèrent des actifs IT/OT classés Opérateur d'Importance Vitale (OIV) ou Opérateur de Services Essentiels (OSE/NIS2). Le décommissionnement de concentrateurs Linky, RTU SCADA, postes de conduite ou pare-feu IT exige une chaîne de garde tracée, une destruction conforme IGI 1300 pour les actifs Diffusion Restreinte, et un reporting CSRD scope 3 documenté.",
+        "highlights": [
+          "Flottes de 4 000 à 50 000 actifs OT (concentrateurs, RTU, IED)",
+          "Cycles de vie 12-20 ans avec EOSL constructeur fréquent",
+          "Données embarquées sensibles : topologie réseau, clés cryptographiques",
+          "Audit ANSSI attendu sous 30 jours"
+        ]
+      },
+      "pains": {
+        "title": "Vos douleurs prioritaires",
+        "items": [
+          {
+            "title": "Infrastructure critique OIV",
+            "description": "Les actifs classés OIV/SIIV requièrent des procédures de décommissionnement renforcées avec habilitations confidentiel défense."
+          },
+          {
+            "title": "Volumétrie OT massive",
+            "description": "Les flottes de 4 000 à 50 000 concentrateurs, RTU et IED nécessitent une logistique de collecte et traitement à grande échelle."
+          },
+          {
+            "title": "Destruction IGI 1300",
+            "description": "Les actifs Diffusion Restreinte exigent une destruction physique conforme IGI 1300 avec broyage 6 mm et procès-verbal scellé."
+          },
+          {
+            "title": "Conformité NIS2/DORA",
+            "description": "NIS2 classe l'énergie en entité essentielle. DORA s'applique aux activités de trading et couverture énergie."
+          },
+          {
+            "title": "Convoyage sécurisé",
+            "description": "Le transport des actifs sensibles nécessite un convoyage classe T2/T3 avec habilitations spécifiques."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Remplacement concentrateurs Linky",
+            "description": "Décommissionnement de 35 000 concentrateurs de première génération avec effacement firmware et recyclage certifié.",
+            "result": "100 % traçabilité, 1 200 tCO₂e évitées"
+          },
+          {
+            "title": "Migration SCADA poste de conduite",
+            "description": "Retrait sécurisé de 180 RTU et stations de conduite contenant topologies réseau et clés cryptographiques.",
+            "result": "Destruction IGI 1300 certifiée, audit ANSSI validé"
+          },
+          {
+            "title": "Décommissionnement datacenter trading",
+            "description": "Effacement et destruction de 800 serveurs de trading énergie conformément aux exigences DORA.",
+            "result": "Conformité DORA validée, 2,4 M€ récupérés"
+          },
+          {
+            "title": "Renouvellement smart-meters",
+            "description": "Collecte et recyclage de 12 000 compteurs intelligents avec effacement des données de consommation clients.",
+            "result": "RGPD conforme, 94 % recyclage matière"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "2.4",
+            "suffix": "M€",
+            "label": "valeur récupérée (datacenter)"
+          },
+          {
+            "value": "1200",
+            "suffix": "t",
+            "label": "CO₂e évitées par campagne"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "conformité NIS2/DORA"
+          },
+          {
+            "value": "30",
+            "suffix": "j",
+            "label": "restitution audit ANSSI"
+          }
+        ],
+        "details": "Sur une campagne de décommissionnement énergie (datacenter + OT), GTC récupère en moyenne 2,4 M€ et évite 1 200 tCO₂e, avec conformité NIS2/DORA/IGI 1300 garantie."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI énergie",
+            "concern": "Inventaire OIV/SIIV et conformité NIS2",
+            "ctaAngle": "Plateforme avec tagging OIV et matrice NIS2"
+          },
+          {
+            "role": "RSSI / CISO",
+            "concern": "Destruction IGI 1300 et chaîne de garde",
+            "ctaAngle": "Destruction certifiée + scellé eIDAS RGS**"
+          },
+          {
+            "role": "Responsable OT",
+            "concern": "Gestion des flottes SCADA et concentrateurs",
+            "ctaAngle": "Module OT unifié avec alertes EOSL"
+          },
+          {
+            "role": "Direction RSE",
+            "concern": "Bilan carbone scope 3 OT/IT",
+            "ctaAngle": "Module Carbon calibré facteurs énergie Boavizta"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour l'énergie",
+        "items": [
+          {
+            "title": "Habilitations confidentiel défense",
+            "description": "Équipes habilitées pour le traitement des actifs classés Diffusion Restreinte et la manipulation des supports IGI 1300."
+          },
+          {
+            "title": "Logistique grande échelle",
+            "description": "Capacité de traitement de 50 000+ actifs OT par campagne avec convoyage T2/T3 sécurisé."
+          },
+          {
+            "title": "Matrice NIS2/DORA/IEC 62443",
+            "description": "Matrice de conformité pré-configurée couvrant les trois cadres réglementaires applicables au secteur énergie."
+          },
+          {
+            "title": "Module Carbon énergie",
+            "description": "Facteurs d'émission Boavizta v1.4 calibrés pour les équipements OT énergie (concentrateurs, RTU, smart-meters)."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur énergie",
+        "items": [
+          {
+            "question": "Disposez-vous des habilitations pour les actifs OIV ?",
+            "answer": "Oui. Nos équipes sont habilitées confidentiel défense pour le traitement des actifs classés OIV/SIIV et Diffusion Restreinte. La destruction est réalisée conformément à l'IGI 1300 avec broyage 6 mm."
+          },
+          {
+            "question": "Quelle capacité pour les flottes OT de 50 000+ actifs ?",
+            "answer": "Nos 4 sites en France traitent jusqu'à 80 000 actifs par campagne. Pour les flottes de concentrateurs, nous déployons des unités mobiles de collecte sur site."
+          },
+          {
+            "question": "Comment gérez-vous les exigences DORA pour le trading énergie ?",
+            "answer": "Le module DORA est pré-configuré pour les entités de trading énergie. Nous fournissons la qualification prestataire ITAD art. 28 et le registre TPP dédié."
+          },
+          {
+            "question": "Quel délai pour un audit ANSSI ?",
+            "answer": "Restitution complète sous 30 jours. Notre export dédié ANSSI/CSPN est formaté selon les attendus de l'agence, avec preuves cryptographiques vérifiables."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Sécurisez vos actifs critiques énergie",
+        "subtitle": "Audit NIS2/DORA gratuit sous 48 h — nos experts énergie évaluent votre périmètre OIV.",
+        "button": "Demander un audit NIS2/DORA",
+        "secondaryButton": "Voir le cas énergie OSE"
+      }
+    },
+    "transport-logistique": {
+      "hero": {
+        "title": "ITAD pour le transport et la logistique",
+        "subtitle": "Flottes IoT, billetique, ITS — sécurisez la fin de vie de vos équipements embarqués",
+        "kpis": [
+          {
+            "value": "IoT",
+            "label": "flottes gérées"
+          },
+          {
+            "value": "NIS2",
+            "label": "conforme transport"
+          },
+          {
+            "value": "98%",
+            "label": "recyclage matière"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Profil du secteur transport",
+        "narrative": "Le secteur transport opère des flottes d'équipements embarqués (billettiques, systèmes ITS, capteurs IoT, GPS, caméras embarquées) répartis sur des réseaux étendus. La directive NIS2 classe les opérateurs de transport en entités essentielles. Les données de mobilité, de billettique et de géolocalisation sont soumises au RGPD. Le renouvellement des flottes génère des volumes importants d'équipements à traiter de manière sécurisée et traçable.",
+        "highlights": [
+          "Flottes de 2 000 à 30 000 équipements embarqués par réseau",
+          "Données de mobilité, billettique et géolocalisation RGPD",
+          "Systèmes ITS (transport intelligent) avec données trafic",
+          "Équipements distribués sur réseaux routiers, ferroviaires, urbains"
+        ]
+      },
+      "pains": {
+        "title": "Vos douleurs prioritaires",
+        "items": [
+          {
+            "title": "Flottes IoT embarquées",
+            "description": "Les capteurs, GPS, caméras et modules de communication embarqués contiennent des données de géolocalisation et des firmwares propriétaires à effacer."
+          },
+          {
+            "title": "Billettique et données voyageurs",
+            "description": "Les valideurs, bornes de vente et systèmes de billettique contiennent des données de paiement et de déplacement soumises au RGPD."
+          },
+          {
+            "title": "Équipements ITS distribués",
+            "description": "Les systèmes de transport intelligent (panneaux, capteurs trafic, feux connectés) sont répartis sur des réseaux étendus difficiles d'accès."
+          },
+          {
+            "title": "Conformité NIS2 transport",
+            "description": "La directive NIS2 classe les opérateurs de transport en entités essentielles avec des obligations de cybersécurité renforcées."
+          },
+          {
+            "title": "Renouvellement de flottes",
+            "description": "Le remplacement coordonné de milliers d'équipements embarqués nécessite une logistique de collecte terrain complexe."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Migration billettique réseau urbain",
+            "description": "Remplacement de 4 500 valideurs et 320 bornes de vente sur un réseau de transport urbain, avec effacement des données voyageurs.",
+            "result": "100 % RGPD conforme, 0 interruption service"
+          },
+          {
+            "title": "Renouvellement GPS flotte logistique",
+            "description": "Collecte et effacement de 8 000 modules GPS embarqués contenant des historiques de géolocalisation et des données clients.",
+            "result": "RGPD conforme, 92 % recyclage matière"
+          },
+          {
+            "title": "Décommissionnement ITS autoroutier",
+            "description": "Retrait sécurisé de 1 200 capteurs de trafic et panneaux connectés sur 450 km d'autoroute.",
+            "result": "Données trafic effacées, 98 % recyclage"
+          },
+          {
+            "title": "Remplacement caméras embarquées",
+            "description": "Effacement et destruction de 3 600 caméras de vidéosurveillance embarquées contenant des enregistrements RGPD.",
+            "result": "Destruction certifiée, rapport CNIL livré"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "98",
+            "suffix": "%",
+            "label": "taux de recyclage matière"
+          },
+          {
+            "value": "450",
+            "suffix": "t",
+            "label": "CO₂e évitées par campagne"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "interruption de service"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "conformité NIS2"
+          }
+        ],
+        "details": "Sur une campagne de renouvellement billettique (4 500 valideurs), GTC garantit zéro interruption de service, 98 % de recyclage matière et un rapport NIS2 conforme."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI transport",
+            "concern": "Gestion des flottes embarquées et billettique",
+            "ctaAngle": "Plateforme IoT avec inventaire embarqué"
+          },
+          {
+            "role": "RSSI",
+            "concern": "Effacement données mobilité et NIS2",
+            "ctaAngle": "Certificats NIST 800-88 + matrice NIS2 transport"
+          },
+          {
+            "role": "Directeur réseau",
+            "concern": "Continuité de service pendant le remplacement",
+            "ctaAngle": "Planification par ligne/zone sans interruption"
+          },
+          {
+            "role": "Direction RSE",
+            "concern": "Bilan carbone flotte IT et CSRD",
+            "ctaAngle": "Module Carbon transport + ESRS E5"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour le transport",
+        "items": [
+          {
+            "title": "Logistique terrain",
+            "description": "Équipes mobiles pour la collecte sur réseau étendu : dépôts, stations, voies, aires d'autoroute."
+          },
+          {
+            "title": "Module IoT embarqué",
+            "description": "Gestion spécifique des capteurs, GPS, caméras et modules de communication avec effacement firmware adapté."
+          },
+          {
+            "title": "Conformité NIS2 transport",
+            "description": "Matrice pré-configurée pour les entités essentielles du secteur transport (routier, ferroviaire, urbain, aérien)."
+          },
+          {
+            "title": "Continuité de service",
+            "description": "Planification par ligne et par zone pour garantir zéro interruption de service pendant le remplacement."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur transport",
+        "items": [
+          {
+            "question": "Pouvez-vous intervenir sur un réseau de transport en exploitation ?",
+            "answer": "Oui. Nous planifions chaque intervention par ligne et par zone, en dehors des heures de pointe. Notre SLA garantit zéro interruption de service voyageurs."
+          },
+          {
+            "question": "Comment effacez-vous les modules IoT embarqués ?",
+            "answer": "Nos protocoles couvrent les mémoires flash, firmwares et données de configuration des capteurs, GPS, caméras et modules de communication. Effacement NIST 800-88 adapté à chaque type de support."
+          },
+          {
+            "question": "Gérez-vous la collecte sur réseau étendu ?",
+            "answer": "Oui. Nos équipes mobiles interviennent sur dépôts, stations, voies et aires d'autoroute. Nous disposons de véhicules adaptés pour la collecte sécurisée de gros volumes."
+          },
+          {
+            "question": "Quelle conformité NIS2 pour le transport ?",
+            "answer": "Notre matrice NIS2 transport couvre les exigences spécifiques aux entités essentielles : routier, ferroviaire, urbain et aérien. Export auditeur dédié ANSSI."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Sécurisez vos flottes embarquées",
+        "subtitle": "Audit transport gratuit sous 48 h — nos experts dimensionnent votre campagne terrain.",
+        "button": "Demander un audit transport",
+        "secondaryButton": "Voir le cas billettique"
       }
     },
     "public": {
       "hero": {
         "title": "ITAD pour le secteur public",
-        "subtitle": "Marchés publics, NF X50-140, RGPD renforcé — transparence et conformité pour les collectivités"
-      },
-      "context": {
-        "title": "Contexte",
-        "description": "Le secteur public (collectivités, administrations, établissements publics) est soumis à des obligations renforcées de transparence, de conformité RGPD et de respect des marchés publics. La norme NF X50-140 encadre spécifiquement la gestion des DEEE. Les cahiers des charges sont stricts et les procédures d'achat encadrées par le code de la commande publique."
-      },
-      "regulations": {
-        "title": "Réglementations applicables",
-        "items": [
-          "RGPD renforcé (responsabilité publique)",
-          "NF X50-140 (gestion des DEEE)",
-          "Directive WEEE / DEEE",
-          "Code de la commande publique",
-          "NIS2 (administrations = entités essentielles)",
-          "Loi AGEC (anti-gaspillage, économie circulaire)"
+        "subtitle": "Marchés publics, UGAP, RGPD renforcé — transparence et sobriété numérique pour les collectivités",
+        "kpis": [
+          {
+            "value": "UGAP",
+            "label": "référencé"
+          },
+          {
+            "value": "100%",
+            "label": "filière ESS"
+          },
+          {
+            "value": "NF",
+            "label": "X50-140 conforme"
+          }
         ]
       },
-      "challenges": {
-        "title": "Défis typiques",
-        "items": [
-          "Marchés publics : cahiers des charges stricts, mise en concurrence",
-          "Obligation de transparence et de traçabilité renforcée",
-          "RGPD avec responsabilité accrue des agents publics",
-          "Parc IT hétérogène et vieillissant",
-          "Budget limité, besoin de valorisation maximale",
-          "Obligation de réemploi et dons aux associations (loi AGEC)"
+      "profile": {
+        "title": "Profil du secteur public",
+        "narrative": "Le secteur public (collectivités, administrations, établissements publics) est soumis à des obligations renforcées de transparence, de conformité RGPD et de respect des marchés publics. La norme NF X50-140 encadre spécifiquement la gestion des DEEE. Les cahiers des charges sont stricts et les procédures d'achat encadrées par le code de la commande publique. La loi AGEC impose le réemploi et la sobriété numérique.",
+        "highlights": [
+          "Parcs de 500 à 8 000 postes par collectivité ou administration",
+          "Obligation de mise en concurrence et transparence des marchés",
+          "Loi AGEC : réemploi obligatoire et dons aux associations",
+          "RGPD renforcé avec responsabilité accrue des agents publics"
         ]
       },
-      "solution": {
-        "title": "Comment GTC répond",
+      "pains": {
+        "title": "Vos douleurs prioritaires",
         "items": [
-          "Plateforme conforme aux exigences des marchés publics",
-          "Restitution transparente et auditable pour la Cour des comptes",
-          "Certificats RGPD conformes aux recommandations CNIL secteur public",
-          "Valorisation maximale avec circuit de réemploi solidaire",
-          "Conformité NF X50-140 et WEEE/DEEE automatisée",
-          "Tableau de bord adapté aux collectivités avec suivi budgétaire"
+          {
+            "title": "Marchés publics stricts",
+            "description": "Le code de la commande publique impose des cahiers des charges précis, une mise en concurrence transparente et des critères RSE pondérés."
+          },
+          {
+            "title": "RGPD agents et citoyens",
+            "description": "Les données traitées couvrent à la fois les agents publics et les citoyens, avec une responsabilité publique renforcée en cas de violation."
+          },
+          {
+            "title": "Sobriété numérique AGEC",
+            "description": "La loi AGEC impose le réemploi prioritaire, les dons aux associations et la sobriété numérique dans les achats publics."
+          },
+          {
+            "title": "Budget contraint",
+            "description": "Les collectivités opèrent avec des budgets IT limités et doivent maximiser la valorisation de leurs parcs en fin de vie."
+          },
+          {
+            "title": "Audit Cour des comptes",
+            "description": "La restitution doit être transparente et auditable par les chambres régionales des comptes et les inspections générales."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Renouvellement parc ministère",
+            "description": "Décommissionnement de 6 500 postes et 240 serveurs d'un ministère, avec effacement classifié et circuit de don ESS.",
+            "result": "100 % filière ESS, 4 500 dons Emmaüs/Envie"
+          },
+          {
+            "title": "Collectivité territoriale",
+            "description": "Gestion du parc IT de 12 communes regroupées (2 400 postes), avec mutualisation des coûts et reporting DEEE consolidé.",
+            "result": "Coût unitaire -35 %, rapport NF X50-140 livré"
+          },
+          {
+            "title": "Établissement d'enseignement supérieur",
+            "description": "Reconditionnement de 3 200 postes étudiants avec effacement RGPD et redistribution via filière ESS.",
+            "result": "89 % réemploi, 480 tCO₂e évitées"
+          },
+          {
+            "title": "Audit CRC (Chambre Régionale des Comptes)",
+            "description": "Restitution complète et transparente du programme ITAD pour contrôle budgétaire et conformité.",
+            "result": "Audit CRC passé sans observation"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "4500",
+            "suffix": "+",
+            "label": "dons ESS réalisés (Emmaüs, Envie)"
+          },
+          {
+            "value": "35",
+            "suffix": "%",
+            "label": "réduction du coût unitaire"
+          },
+          {
+            "value": "480",
+            "suffix": "t",
+            "label": "CO₂e évitées par programme"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "réserve audit CRC"
+          }
+        ],
+        "details": "Sur un programme ministériel de 6 500 postes, GTC génère 4 500 dons ESS, réduit les coûts de 35 % par rapport au marché précédent et livre un rapport NF X50-140 conforme."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI collectivité",
+            "concern": "Conformité marchés publics et UGAP",
+            "ctaAngle": "Plateforme référencée UGAP avec traçabilité marchés"
+          },
+          {
+            "role": "DPO",
+            "concern": "RGPD agents et citoyens",
+            "ctaAngle": "Certificats RGPD avec piste d'audit complète"
+          },
+          {
+            "role": "Directeur général des services",
+            "concern": "Budget et transparence",
+            "ctaAngle": "Reporting budgétaire auditable CRC"
+          },
+          {
+            "role": "Élu en charge du numérique",
+            "concern": "Sobriété numérique et impact social",
+            "ctaAngle": "Filière ESS + bilan carbone communication"
+          },
+          {
+            "role": "Responsable achats",
+            "concern": "Critères RSE dans les marchés",
+            "ctaAngle": "Dossier technique complet avec notation RSE"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour le secteur public",
+        "items": [
+          {
+            "title": "Référencé UGAP",
+            "description": "GTC est référencé sur la centrale d'achat UGAP, simplifiant la passation de commande pour les collectivités et administrations."
+          },
+          {
+            "title": "Filière ESS partenaire",
+            "description": "Circuit de reconditionnement et de don via Envie, Emmaüs et Ateliers du Bocage pour maximiser l'impact social."
+          },
+          {
+            "title": "Conformité NF X50-140",
+            "description": "Processus certifié conforme à la norme NF X50-140 pour la gestion des DEEE dans le secteur public."
+          },
+          {
+            "title": "Transparence CRC",
+            "description": "Reporting transparent et auditable par les chambres régionales des comptes, avec traçabilité budgétaire complète."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur public",
+        "items": [
+          {
+            "question": "Êtes-vous référencé UGAP ?",
+            "answer": "Oui. GTC est référencé sur la centrale d'achat UGAP, ce qui permet une passation de commande simplifiée sans mise en concurrence supplémentaire pour les collectivités et administrations."
+          },
+          {
+            "question": "Comment gérez-vous les dons ESS ?",
+            "answer": "Nous opérons un circuit de don structuré avec Envie, Emmaüs et les Ateliers du Bocage. Chaque don est tracé individuellement avec un certificat de réemploi conforme loi AGEC."
+          },
+          {
+            "question": "Quelle conformité pour les marchés publics ?",
+            "answer": "Notre dossier technique intègre tous les critères RSE pondérés, les certifications R2v3/ISO 14001, la conformité NF X50-140 et les preuves de traçabilité exigées par le code de la commande publique."
+          },
+          {
+            "question": "Pouvez-vous consolider plusieurs collectivités ?",
+            "answer": "Oui. Notre plateforme gère les groupements de commandes inter-collectivités avec un reporting consolidé et des coûts mutualisés."
+          }
         ]
       },
       "cta": {
         "title": "Structurez votre ITAD publique",
-        "button": "Demander un audit collectivité"
+        "subtitle": "Audit collectivité gratuit sous 48 h — nos experts secteur public analysent votre parc et vos obligations AGEC.",
+        "button": "Demander un audit collectivité",
+        "secondaryButton": "Voir le cas ministère"
       }
     },
-    "energie": {
+    "tech": {
       "hero": {
-        "title": "ITAD pour l'énergie & utilities",
-        "subtitle": "DORA, NIS2, RTE, code de l'énergie — sécurisez la fin de vie des infrastructures critiques OT/IT"
-      },
-      "context": {
-        "title": "Contexte",
-        "description": "Les opérateurs d'énergie (production, transport, distribution) opèrent des actifs IT/OT classés Opérateur d'Importance Vitale (OIV) ou Opérateur de Services Essentiels (OSE/NIS2). Le décommissionnement de concentrateurs Linky, RTU SCADA, postes de conduite ou pare-feu IT exige une chaîne de garde tracée, une destruction conforme IGI 1300 pour les actifs Diffusion Restreinte, et un reporting CSRD scope 3 documenté. Le règlement DORA s'applique aux entités énergétiques entrant dans le périmètre financier (trading, hedging)."
-      },
-      "regulations": {
-        "title": "Réglementations applicables",
-        "items": [
-          "NIS2 (OSE — secteur énergie)",
-          "Code de l'énergie L142-1 et suivants",
-          "Référentiel RTE / ENEDIS sécurité OT",
-          "IGI 1300 (Diffusion Restreinte)",
-          "DORA (entités trading énergie)",
-          "CSRD / ESRS E5 et E1 (climat)",
-          "ISO/IEC 62443 (cybersécurité OT)"
+        "title": "ITAD pour la technologie et le SaaS",
+        "subtitle": "Datacenters, parcs développeurs, conformité SOC 2 — gérez la fin de vie de vos actifs tech",
+        "kpis": [
+          {
+            "value": "SOC 2",
+            "label": "conforme"
+          },
+          {
+            "value": "99.2%",
+            "label": "précision inventaire"
+          },
+          {
+            "value": "73%",
+            "label": "taux de réemploi"
+          }
         ]
       },
-      "challenges": {
-        "title": "Défis typiques",
-        "items": [
-          "Volumétrie : flottes 4 000 à 50 000 actifs OT (concentrateurs, RTU, IED)",
-          "Cycles de vie 12-20 ans, EOSL constructeur fréquent",
-          "Données embarquées sensibles : topologie réseau, clés cryptographiques",
-          "Destruction physique exigée pour HSM, cartes SIM industrielles, modules SAM",
-          "Multi-sites : centres de conduite, postes HTB/HTA, smart-meters",
-          "Audit ANSSI / CSPN attendu sous 30 jours"
+      "profile": {
+        "title": "Profil du secteur technologie",
+        "narrative": "Les entreprises technologiques et SaaS opèrent des datacenters, des parcs développeurs haut de gamme et des infrastructures cloud hybrides. La conformité SOC 2 Type II exige un contrôle strict du cycle de vie des actifs, incluant la preuve de destruction des données. Les cycles de renouvellement sont rapides (2-3 ans pour les postes développeurs, 3-5 ans pour les serveurs) et la valeur résiduelle des équipements haut de gamme est significative.",
+        "highlights": [
+          "Datacenters propres ou colocalisés avec équipements haute densité",
+          "Parcs développeurs haut de gamme (MacBook Pro, stations GPU)",
+          "Conformité SOC 2 Type II avec preuve de destruction",
+          "Cycles de renouvellement rapides et valeur résiduelle élevée"
         ]
       },
-      "solution": {
-        "title": "Comment GTC répond",
+      "pains": {
+        "title": "Vos douleurs prioritaires",
         "items": [
-          "Inventaire IT/OT unifié avec tagging OIV/SIIV/IGI 1300",
-          "Effacement NIST 800-88 Purge + destruction physique HMG IS5 Enhanced (broyage 6 mm)",
-          "Chain of custody scellée eIDAS + horodatage qualifié RGS**",
-          "Matrice NIS2 / IEC 62443 / DORA pré-configurée",
-          "Module Carbon scope 3.1 calibré sur facteurs Boavizta v1.4 énergie",
-          "Convoyage classe T2/T3 avec habilitations confidentiel défense"
+          {
+            "title": "Conformité SOC 2 Type II",
+            "description": "Les rapports SOC 2 exigent des preuves formelles de destruction des données lors du décommissionnement, avec contrôles vérifiables."
+          },
+          {
+            "title": "Datacenters haute densité",
+            "description": "Les serveurs GPU, baies de stockage NVMe et équipements réseau 400G représentent des volumes et valeurs considérables."
+          },
+          {
+            "title": "Propriété intellectuelle",
+            "description": "Le code source, les données clients SaaS et les configurations d'infrastructure constituent des actifs critiques à protéger."
+          },
+          {
+            "title": "Valeur résiduelle élevée",
+            "description": "Les MacBook Pro, stations GPU et serveurs récents conservent une valeur résiduelle significative sur le marché reconditionné."
+          },
+          {
+            "title": "Croissance rapide",
+            "description": "Les entreprises tech en hypercroissance renouvellent leurs parcs fréquemment, générant des flux ITAD continus."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Décommissionnement datacenter SaaS",
+            "description": "Effacement et destruction de 1 600 serveurs GPU et 400 To de stockage NVMe d'un éditeur SaaS en migration cloud.",
+            "result": "SOC 2 conforme, 3,2 M€ valeur récupérée"
+          },
+          {
+            "title": "Renouvellement parc développeurs",
+            "description": "Remplacement de 850 MacBook Pro et 120 stations GPU, avec effacement certifié et revente reconditionnée.",
+            "result": "412 €/poste récupéré, 0 donnée résiduelle"
+          },
+          {
+            "title": "Fermeture bureau satellite",
+            "description": "Décommissionnement complet d'un bureau de 200 postes (tech startup), avec inventaire, effacement et valorisation en 10 jours.",
+            "result": "100 % traité en 10 j, 89 k€ récupérés"
+          },
+          {
+            "title": "Audit SOC 2 Type II",
+            "description": "Restitution des preuves de destruction pour audit SOC 2 annuel, couvrant 2 400 actifs décommissionnés.",
+            "result": "Audit SOC 2 passé sans exception"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "3.2",
+            "suffix": "M€",
+            "label": "valeur récupérée (datacenter SaaS)"
+          },
+          {
+            "value": "412",
+            "suffix": "€",
+            "label": "valeur résiduelle par poste dev"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "conformité SOC 2"
+          },
+          {
+            "value": "10",
+            "suffix": "j",
+            "label": "délai bureau complet 200 postes"
+          }
+        ],
+        "details": "Pour un éditeur SaaS de 1 600 serveurs et 850 postes développeurs, GTC récupère 3,2 M€ de valeur et garantit la conformité SOC 2 Type II sans exception."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "CTO / VP Engineering",
+            "concern": "Décommissionnement datacenter et IP",
+            "ctaAngle": "Effacement certifié serveurs GPU + chaîne de garde"
+          },
+          {
+            "role": "CISO / Security Lead",
+            "concern": "SOC 2 et preuve de destruction",
+            "ctaAngle": "Export SOC 2 dédié avec preuves cryptographiques"
+          },
+          {
+            "role": "CFO / VP Finance",
+            "concern": "Valeur résiduelle des actifs haut de gamme",
+            "ctaAngle": "Asset Intelligence cotation marché tech EMEA"
+          },
+          {
+            "role": "IT Ops / SRE Lead",
+            "concern": "Logistique de décommissionnement datacenter",
+            "ctaAngle": "Plan de retrait par baie avec suivi temps réel"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour la technologie",
+        "items": [
+          {
+            "title": "Export SOC 2 natif",
+            "description": "Module de restitution SOC 2 Type II intégré, avec preuves de destruction cryptographiquement vérifiables."
+          },
+          {
+            "title": "Expertise datacenter GPU",
+            "description": "Protocoles adaptés aux serveurs GPU haute densité, baies NVMe et équipements réseau dernière génération."
+          },
+          {
+            "title": "Cotation tech EMEA",
+            "description": "Module Asset Intelligence avec cotation spécifique marché tech reconditionné (MacBook Pro, ThinkPad X1, serveurs Dell/HP)."
+          },
+          {
+            "title": "Agilité startup",
+            "description": "Processus allégé pour les entreprises en hypercroissance : onboarding J+1, intervention sous 5 jours, facturation mensuelle."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur technologie",
+        "items": [
+          {
+            "question": "Fournissez-vous les preuves SOC 2 de destruction ?",
+            "answer": "Oui. Notre module SOC 2 génère automatiquement les preuves de destruction au format attendu par les auditeurs (EY, Deloitte, PwC, KPMG). Certificats cryptographiquement vérifiables avec hash SHA-256."
+          },
+          {
+            "question": "Comment gérez-vous les serveurs GPU haute valeur ?",
+            "answer": "Les serveurs GPU (NVIDIA A100/H100, AMD MI300) sont traités individuellement avec effacement firmware, effacement SSD NVMe et cotation marché spécifique. La valeur résiduelle GPU est significative."
+          },
+          {
+            "question": "Quel délai pour un bureau de 200 postes ?",
+            "answer": "10 jours ouvrés de l'inventaire à la livraison des certificats. Mode express 5 jours disponible pour les fermetures urgentes."
+          },
+          {
+            "question": "Gérez-vous les parcs MacBook et matériel Apple ?",
+            "answer": "Oui. Nous maîtrisons l'effacement des Mac (T2/M1/M2/M3) avec désactivation MDM, effacement FileVault et certificat individuel. Cotation Apple reconditionné intégrée."
+          }
         ]
       },
       "cta": {
-        "title": "Sécurisez vos actifs critiques énergie",
-        "button": "Demander un audit NIS2/DORA"
+        "title": "Optimisez votre ITAD technologique",
+        "subtitle": "Audit tech gratuit sous 48 h — nos experts dimensionnent votre décommissionnement datacenter ou parc dev.",
+        "button": "Demander un audit tech",
+        "secondaryButton": "Voir le cas SaaS"
       }
     },
-    "retail": {
+    "medias-audiovisuel": {
       "hero": {
-        "title": "ITAD pour le retail & distribution",
-        "subtitle": "PCI-DSS v4.0, RGPD, CSRD — gérez la fin de vie des caisses POS, terminaux, parcs magasins multi-sites"
-      },
-      "context": {
-        "title": "Contexte",
-        "description": "Les enseignes retail multi-sites (300 à 3 000 points de vente) traitent des données carte de paiement (PCI-DSS) et des données clients RGPD. Le renouvellement triennal des caisses POS, terminaux de paiement, étiquettes électroniques et bornes interactives génère des flux ITAD lourds et hétérogènes, à coordonner sans rupture commerciale. Les directions financières exigent une valorisation actuarielle des actifs et un reporting CSRD ESRS E5 par enseigne."
-      },
-      "regulations": {
-        "title": "Réglementations applicables",
-        "items": [
-          "PCI-DSS v4.0 (req. 9 & 12)",
-          "RGPD — données transactionnelles",
-          "DEEE / WEEE (Directive 2012/19/UE)",
-          "Loi AGEC (anti-gaspillage)",
-          "CSRD / ESRS E5 (économie circulaire)",
-          "Code de la consommation (réemploi)"
+        "title": "ITAD pour les médias et l'audiovisuel",
+        "subtitle": "Broadcast, régies, datacenters média — GTC, partenaire ITAD du groupe TF1",
+        "kpis": [
+          {
+            "value": "65k€",
+            "label": "contrat TF1 HT/an"
+          },
+          {
+            "value": "100%",
+            "label": "traçabilité broadcast"
+          },
+          {
+            "value": "Multi-sites",
+            "label": "couverture nationale"
+          }
         ]
       },
-      "challenges": {
-        "title": "Défis typiques",
-        "items": [
-          "300 à 3 000 sites simultanés à orchestrer en 90 jours",
-          "Caisses POS contenant cartes SAM, certificats EMV, données SAV",
-          "Terminaux de paiement à détruire selon référentiel PCI-DSS Appendix A1",
-          "Bornes interactives, étiquettes RFID/ESL, coffres-forts numériques",
-          "Pression franchisés / directeurs locaux sur coût et délais",
-          "Reporting CSRD consolidé multi-enseignes / multi-pays"
+      "profile": {
+        "title": "Profil du secteur médias et audiovisuel",
+        "narrative": "Le secteur des médias et de l'audiovisuel opère des infrastructures techniques complexes : régies de diffusion, plateaux de tournage, datacenters de traitement vidéo, studios de postproduction. Les équipements broadcast (serveurs de playout, matrices vidéo, encodeurs, mélangeurs) ont des cycles de vie spécifiques et contiennent des données de production confidentielles (grilles de programmes, droits, contenus inédits). GreenTechCycle est fier d'accompagner le groupe TF1 dans la gestion de ses actifs IT en fin de vie, avec un contrat-cadre récurrent de 65 000 € HT/an couvrant l'audit, l'effacement sécurisé, la valorisation et le reporting CSRD.",
+        "highlights": [
+          "Référence phare : contrat-cadre TF1 — 65 000 € HT/an récurrent",
+          "Équipements broadcast spécialisés (playout, encodeurs, matrices)",
+          "Données de production confidentielles (grilles, droits, contenus)",
+          "Multi-sites : sièges, studios, régies, centres de diffusion"
         ]
       },
-      "solution": {
-        "title": "Comment GTC répond",
+      "pains": {
+        "title": "Vos douleurs prioritaires",
         "items": [
-          "Plan de roll-out multi-sites par vagues, suivi temps réel",
-          "Effacement sécurisé PCI-DSS + destruction physique avec PV par site",
-          "Module WakiBox de collecte mutualisée (ESL, accessoires, périphériques)",
-          "Asset Intelligence pour valorisation marché reconditionné EMEA",
-          "Reporting CSRD ESRS E5 par enseigne, par pays, par vague",
-          "API magasin connectée au TMS pour ne pas perturber l'exploitation"
+          {
+            "title": "Équipements broadcast spécialisés",
+            "description": "Les serveurs de playout, matrices vidéo, encodeurs SDI/IP et mélangeurs sont des équipements spécialisés qui nécessitent des protocoles de traitement adaptés."
+          },
+          {
+            "title": "Données de production confidentielles",
+            "description": "Les grilles de programmes, droits de diffusion, contenus inédits et données d'audience sont des actifs stratégiques à protéger impérativement."
+          },
+          {
+            "title": "Migration IP/cloud broadcast",
+            "description": "La transition du broadcast SDI vers l'IP et le cloud génère des volumes importants d'équipements legacy à décommissionner."
+          },
+          {
+            "title": "Multi-sites studios et régies",
+            "description": "Les groupes médias opèrent des dizaines de sites (sièges, studios, régies, centres de diffusion) avec des contraintes d'accès spécifiques."
+          },
+          {
+            "title": "Reporting CSRD médias",
+            "description": "Les groupes médias cotés sont soumis à la CSRD avec des obligations de reporting scope 3 IT incluant les équipements broadcast."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Contrat-cadre TF1 — référence phare",
+            "description": "Accompagnement récurrent du groupe TF1 : audit trimestriel, effacement sécurisé des équipements broadcast, valorisation du matériel reconditionnable et reporting CSRD annuel.",
+            "result": "65 000 € HT/an, 100 % traçabilité, 0 incident"
+          },
+          {
+            "title": "Migration broadcast SDI vers IP",
+            "description": "Décommissionnement de 480 équipements SDI legacy (matrices, routeurs, encodeurs) lors de la migration vers une infrastructure IP.",
+            "result": "340 k€ valeur récupérée, certification complète"
+          },
+          {
+            "title": "Fermeture studio régional",
+            "description": "Décommissionnement complet d'un studio de 120 postes et 40 serveurs de montage/postproduction, avec effacement des rushes et projets.",
+            "result": "100 % données effacées, 89 % réemploi"
+          },
+          {
+            "title": "Renouvellement régie diffusion",
+            "description": "Remplacement sécurisé des serveurs de playout et systèmes d'automation d'une régie de diffusion 24/7.",
+            "result": "0 interruption antenne, certificats J+24h"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "65",
+            "suffix": "k€",
+            "label": "contrat-cadre TF1 HT/an"
+          },
+          {
+            "value": "340",
+            "suffix": "k€",
+            "label": "valeur récupérée (migration SDI)"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "traçabilité broadcast"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "interruption d'antenne"
+          }
+        ],
+        "details": "Le contrat-cadre TF1 illustre le modèle GTC pour les médias : un accompagnement récurrent à 65 000 € HT/an couvrant audit, effacement, valorisation et CSRD, avec 100 % de traçabilité et zéro incident sur 3 ans."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI média",
+            "concern": "Gestion du parc broadcast et IT convergé",
+            "ctaAngle": "Plateforme unifiée broadcast + IT classique"
+          },
+          {
+            "role": "Directeur technique antenne",
+            "concern": "Continuité de diffusion 24/7",
+            "ctaAngle": "Intervention planifiée hors fenêtres critiques"
+          },
+          {
+            "role": "RSSI",
+            "concern": "Protection des contenus et données d'audience",
+            "ctaAngle": "Effacement certifié + chaîne de garde scellée"
+          },
+          {
+            "role": "DAF",
+            "concern": "Valorisation des équipements broadcast",
+            "ctaAngle": "Cotation spécialisée broadcast reconditionné"
+          },
+          {
+            "role": "Direction RSE",
+            "concern": "CSRD scope 3 incluant broadcast",
+            "ctaAngle": "Module Carbon avec facteurs broadcast Boavizta"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour les médias",
+        "items": [
+          {
+            "title": "Référence TF1 vérifiable",
+            "description": "Contrat-cadre récurrent avec le groupe TF1, premier groupe audiovisuel privé français. Référence vérifiable sur demande."
+          },
+          {
+            "title": "Expertise broadcast",
+            "description": "Protocoles adaptés aux équipements de diffusion : serveurs de playout, matrices vidéo, encodeurs SDI/IP, systèmes d'automation."
+          },
+          {
+            "title": "Contrat-cadre multi-sites",
+            "description": "Formule d'accompagnement récurrent couvrant audit, effacement, valorisation et reporting CSRD sur tous les sites du groupe."
+          },
+          {
+            "title": "Continuité d'antenne garantie",
+            "description": "Intervention planifiée en coordination avec la direction technique pour garantir zéro interruption de diffusion."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur médias",
+        "items": [
+          {
+            "question": "Quelle est votre référence dans les médias ?",
+            "answer": "Notre référence phare est le groupe TF1, avec un contrat-cadre récurrent de 65 000 € HT/an couvrant l'ensemble du cycle ITAD : audit trimestriel, effacement sécurisé, valorisation et reporting CSRD. Cette référence est vérifiable sur demande sous NDA."
+          },
+          {
+            "question": "Savez-vous traiter les équipements broadcast ?",
+            "answer": "Oui. Nous avons développé des protocoles spécifiques pour les serveurs de playout (Grass Valley, Harmonic), les matrices vidéo (Evertz, Riedel), les encodeurs et les systèmes d'automation broadcast."
+          },
+          {
+            "question": "Pouvez-vous intervenir sans interrompre la diffusion ?",
+            "answer": "Oui. Nous planifions chaque intervention en coordination avec la direction technique antenne, en dehors des fenêtres de diffusion critiques. Notre SLA garantit zéro interruption d'antenne."
+          },
+          {
+            "question": "Proposez-vous un contrat-cadre récurrent ?",
+            "answer": "Oui. Notre formule contrat-cadre média couvre : audit trimestriel, effacement à la demande, valorisation du matériel reconditionnable et reporting CSRD annuel. Tarification forfaitaire annuelle."
+          }
+        ]
+      },
+      "mediaGtc": {
+        "title": "Média GTC — TF1, référence phare",
+        "subtitle": "Comment GreenTechCycle est devenu le partenaire ITAD du groupe TF1",
+        "quote": "GreenTechCycle nous apporte la rigueur et la traçabilité que nous exigeons pour nos actifs broadcast. Le contrat-cadre couvre l'ensemble de nos sites avec un reporting CSRD intégré.",
+        "quoteAuthor": "Direction des Systèmes d'Information, Groupe TF1",
+        "contractValue": "65 000 € HT/an",
+        "contractLabel": "Contrat-cadre récurrent",
+        "features": [
+          "Audit trimestriel de l'ensemble du parc IT et broadcast",
+          "Effacement sécurisé conforme aux exigences groupe",
+          "Valorisation du matériel reconditionnable sur le marché pro",
+          "Reporting CSRD ESRS E5 annuel intégré",
+          "Couverture multi-sites : siège, studios, régies, centres de diffusion"
+        ],
+        "ctaLabel": "Étudier un contrat-cadre média",
+        "ctaHref": "/contact?offre=media-cadre"
+      },
+      "cta": {
+        "title": "Rejoignez TF1 — choisissez le partenaire ITAD des médias",
+        "subtitle": "Étude de contrat-cadre média gratuite sous 48 h — nos experts audiovisuel dimensionnent votre accompagnement.",
+        "button": "Étudier un contrat-cadre média",
+        "secondaryButton": "Voir le cas TF1"
+      }
+    },
+    "conseil": {
+      "hero": {
+        "title": "ITAD pour le conseil et les services professionnels",
+        "subtitle": "Confidentialité client, mobilité, audit de données — sécurisez les parcs consultants",
+        "kpis": [
+          {
+            "value": "100%",
+            "label": "confidentialité client"
+          },
+          {
+            "value": "48h",
+            "label": "effacement garanti"
+          },
+          {
+            "value": "412€",
+            "label": "valeur par poste"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Profil du secteur conseil",
+        "narrative": "Les cabinets de conseil et services professionnels (audit, stratégie, IT, juridique) gèrent des données client hautement confidentielles sur des parcs mobiles distribués. Les consultants utilisent des laptops haut de gamme renouvelés tous les 2-3 ans, contenant des données de mission, des modèles propriétaires et des informations client sensibles. La rotation du personnel et la mobilité permanente complexifient la collecte et l'effacement.",
+        "highlights": [
+          "Parcs de 500 à 10 000 laptops haut de gamme (ThinkPad, MacBook Pro)",
+          "Données client confidentielles sur chaque poste consultant",
+          "Rotation du personnel élevée (20-30 % annuel en Big Four)",
+          "Laptops distribués dans des dizaines de bureaux et chez les clients"
+        ]
+      },
+      "pains": {
+        "title": "Vos douleurs prioritaires",
+        "items": [
+          {
+            "title": "Confidentialité client",
+            "description": "Chaque laptop consultant contient des données de mission, des modèles propriétaires et des informations client protégées par le secret professionnel."
+          },
+          {
+            "title": "Mobilité des parcs",
+            "description": "Les consultants travaillent chez les clients, en bureaux satellites et en télétravail. La collecte des équipements en fin de vie est un défi logistique."
+          },
+          {
+            "title": "Rotation du personnel",
+            "description": "Avec 20-30 % de rotation annuelle en Big Four, le flux de décommissionnement est continu et imprévisible."
+          },
+          {
+            "title": "Valeur résiduelle élevée",
+            "description": "Les ThinkPad X1 et MacBook Pro de 2-3 ans conservent une valeur significative sur le marché reconditionné."
+          },
+          {
+            "title": "Audit interne exigeant",
+            "description": "Les directions conformité des Big Four exigent des preuves de destruction formelles pour chaque poste décommissionné."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Renouvellement annuel Big Four",
+            "description": "Remplacement de 2 400 ThinkPad X1 Carbon dans un cabinet Big Four, avec effacement certifié et revente reconditionnée.",
+            "result": "412 €/poste récupéré, 100 % certificats J+24h"
+          },
+          {
+            "title": "Fermeture bureau satellite",
+            "description": "Décommissionnement complet d'un bureau de 85 postes consultants, avec collecte sur site et effacement express.",
+            "result": "Traité en 5 jours, 0 donnée résiduelle"
+          },
+          {
+            "title": "Offboarding consultant express",
+            "description": "Effacement à la demande de laptops de consultants quittant le cabinet, avec certificat individuel sous 48 h.",
+            "result": "SLA 48 h tenu à 99,8 %, secret professionnel garanti"
+          },
+          {
+            "title": "Audit interne conformité",
+            "description": "Restitution des preuves de destruction pour audit interne annuel du cabinet, couvrant 1 800 postes décommissionnés.",
+            "result": "Audit passé sans exception"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "412",
+            "suffix": "€",
+            "label": "valeur récupérée par poste consultant"
+          },
+          {
+            "value": "99.8",
+            "suffix": "%",
+            "label": "SLA 48 h respecté"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "fuite de données client"
+          },
+          {
+            "value": "24",
+            "suffix": "h",
+            "label": "certificats disponibles"
+          }
+        ],
+        "details": "Sur un renouvellement annuel de 2 400 postes consultants, GTC récupère 988 k€ de valeur et délivre 100 % des certificats sous 24 h, avec zéro fuite de données client."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI / CTO",
+            "concern": "Gestion du parc mobile distribué",
+            "ctaAngle": "Plateforme avec suivi multi-bureaux et collecte terrain"
+          },
+          {
+            "role": "RSSI / DPO",
+            "concern": "Secret professionnel et données client",
+            "ctaAngle": "Effacement certifié NIST 800-88 + chaîne de garde"
+          },
+          {
+            "role": "DAF / CFO",
+            "concern": "Valorisation du parc laptop haut de gamme",
+            "ctaAngle": "Cotation marché reconditionné premium"
+          },
+          {
+            "role": "Direction conformité",
+            "concern": "Preuves de destruction pour audit interne",
+            "ctaAngle": "Export audit dédié Big Four / mid-cap"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour le conseil",
+        "items": [
+          {
+            "title": "Collecte terrain multi-bureaux",
+            "description": "Équipes mobiles pour la collecte dans les bureaux, chez les clients et au domicile des consultants (programme BYOD/WFH)."
+          },
+          {
+            "title": "SLA 48 h garanti",
+            "description": "Chaque laptop reçu est effacé et certifié sous 48 h maximum. Certificat individuel NIST 800-88 avec hash SHA-256."
+          },
+          {
+            "title": "Cotation premium",
+            "description": "Module Asset Intelligence avec cotation spécifique marché premium (ThinkPad X1, MacBook Pro, Dell XPS) pour maximiser la valeur."
+          },
+          {
+            "title": "Export audit Big Four",
+            "description": "Restitution formatée pour les audits internes des Big Four, avec preuves cryptographiquement vérifiables."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur conseil",
+        "items": [
+          {
+            "question": "Comment garantissez-vous la confidentialité des données client ?",
+            "answer": "Chaque laptop est traité individuellement avec effacement NIST 800-88 Purge et chaîne de garde scellée. Le secret professionnel est garanti par notre certification R2v3 et nos protocoles de sécurité audités annuellement."
+          },
+          {
+            "question": "Pouvez-vous collecter chez les consultants en télétravail ?",
+            "answer": "Oui. Nous proposons un service de collecte à domicile avec enveloppe sécurisée prépayée et suivi de livraison. Le consultant dépose son laptop et reçoit un accusé de réception traçable."
+          },
+          {
+            "question": "Quel est le délai de restitution des certificats ?",
+            "answer": "Certificats individuels sous 24 h après réception. SLA 48 h garanti contractuellement avec pénalités en cas de dépassement."
+          },
+          {
+            "question": "Gérez-vous les parcs MacBook avec puce Apple Silicon ?",
+            "answer": "Oui. Nous maîtrisons l'effacement des Mac M1/M2/M3/M4 avec désactivation MDM, effacement Secure Erase Apple et certificat individuel. Cotation Apple reconditionné intégrée."
+          }
         ]
       },
       "cta": {
-        "title": "Orchestrez votre ITAD multi-sites",
-        "button": "Demander un plan de déploiement"
+        "title": "Sécurisez les données de vos clients",
+        "subtitle": "Audit conseil gratuit sous 48 h — nos experts dimensionnent votre programme ITAD consultants.",
+        "button": "Demander un audit conseil",
+        "secondaryButton": "Voir le cas Big Four"
+      }
+    },
+    "pharma-biotech": {
+      "hero": {
+        "title": "ITAD pour l'industrie pharmaceutique",
+        "subtitle": "Laboratoires R&D, GxP/Annexe 11, données essais cliniques — conformité réglementaire totale",
+        "kpis": [
+          {
+            "value": "GxP",
+            "label": "conforme Annexe 11"
+          },
+          {
+            "value": "100%",
+            "label": "traçabilité R&D"
+          },
+          {
+            "value": "21CFR",
+            "label": "Part 11 ready"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Profil du secteur pharmaceutique",
+        "narrative": "L'industrie pharmaceutique opère des laboratoires R&D, des sites de production et des centres d'essais cliniques avec des exigences réglementaires parmi les plus strictes au monde. L'Annexe 11 des BPF (Bonnes Pratiques de Fabrication) et la FDA 21 CFR Part 11 encadrent la gestion des systèmes informatisés, incluant leur décommissionnement. Les données d'essais cliniques, de pharmacovigilance et de propriété intellectuelle sont des actifs stratégiques protégés.",
+        "highlights": [
+          "Systèmes GxP validés soumis à l'Annexe 11 BPF et 21 CFR Part 11",
+          "Données d'essais cliniques et de pharmacovigilance ultra-sensibles",
+          "Propriété intellectuelle R&D (molécules, procédés, formulations)",
+          "Audit ANSM et FDA avec exigences de traçabilité renforcées"
+        ]
+      },
+      "pains": {
+        "title": "Vos douleurs prioritaires",
+        "items": [
+          {
+            "title": "Conformité GxP Annexe 11",
+            "description": "Les systèmes informatisés GxP doivent être décommissionnés selon une procédure validée, avec preuve d'effacement conforme aux BPF."
+          },
+          {
+            "title": "Données essais cliniques",
+            "description": "Les données de patients, résultats d'essais et protocoles sont soumis à des obligations de conservation et de destruction réglementées."
+          },
+          {
+            "title": "Propriété intellectuelle R&D",
+            "description": "Les données de recherche (molécules, procédés, formulations) représentent des milliards d'euros d'investissement à protéger."
+          },
+          {
+            "title": "Audit ANSM / FDA",
+            "description": "Les inspections ANSM et FDA exigent une piste d'audit complète, incluant les preuves de décommissionnement des systèmes GxP."
+          },
+          {
+            "title": "Durées de rétention longues",
+            "description": "Certaines données pharmaceutiques doivent être conservées 15 à 30 ans. Le décommissionnement doit respecter ces durées."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Décommissionnement LIMS laboratoire",
+            "description": "Retrait validé de 12 systèmes LIMS et 180 postes de laboratoire, avec effacement conforme Annexe 11 et archivage des données.",
+            "result": "100 % conforme BPF, piste d'audit validée ANSM"
+          },
+          {
+            "title": "Migration essais cliniques",
+            "description": "Effacement sécurisé de 340 postes et serveurs contenant des données d'essais cliniques phases I-III, après vérification des durées de rétention.",
+            "result": "0 donnée détruite prématurément, FDA-ready"
+          },
+          {
+            "title": "Renouvellement R&D site",
+            "description": "Décommissionnement de 520 stations de calcul et 80 serveurs de simulation contenant de la propriété intellectuelle moléculaire.",
+            "result": "IP protégée, 1,2 M€ valeur récupérée"
+          },
+          {
+            "title": "Inspection ANSM préparation",
+            "description": "Mise en conformité accélérée de la piste d'audit ITAD avant inspection ANSM, couvrant 2 ans de décommissionnement.",
+            "result": "Inspection passée sans observation majeure"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "1.2",
+            "suffix": "M€",
+            "label": "valeur récupérée (site R&D)"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "conformité GxP Annexe 11"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "observation majeure ANSM"
+          },
+          {
+            "value": "15-30",
+            "suffix": "ans",
+            "label": "rétention gérée"
+          }
+        ],
+        "details": "Sur un site R&D de 520 postes et 80 serveurs, GTC récupère 1,2 M€ de valeur tout en garantissant la conformité GxP, le respect des durées de rétention et la protection de la propriété intellectuelle."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI pharma",
+            "concern": "Décommissionnement systèmes GxP validés",
+            "ctaAngle": "Protocole Annexe 11 validé avec piste d'audit"
+          },
+          {
+            "role": "Responsable assurance qualité",
+            "concern": "Conformité BPF et inspection ANSM",
+            "ctaAngle": "Dossier de qualification décommissionnement GxP"
+          },
+          {
+            "role": "RSSI / DPO",
+            "concern": "Protection données essais cliniques",
+            "ctaAngle": "Effacement certifié + vérification durées de rétention"
+          },
+          {
+            "role": "Directeur R&D",
+            "concern": "Protection de la propriété intellectuelle",
+            "ctaAngle": "Chaîne de garde renforcée pour données IP"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour la pharmacie",
+        "items": [
+          {
+            "title": "Protocole Annexe 11 validé",
+            "description": "Procédure de décommissionnement validée conforme à l'Annexe 11 des BPF, avec documentation de qualification complète."
+          },
+          {
+            "title": "Gestion des durées de rétention",
+            "description": "Module de vérification automatique des durées de rétention avant toute destruction, évitant les destructions prématurées."
+          },
+          {
+            "title": "Export audit ANSM/FDA",
+            "description": "Restitution formatée pour les inspections ANSM et FDA, avec piste d'audit complète et preuves vérifiables."
+          },
+          {
+            "title": "Protection IP renforcée",
+            "description": "Chaîne de garde renforcée pour les actifs contenant de la propriété intellectuelle, avec effacement multi-passes et destruction physique."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur pharmaceutique",
+        "items": [
+          {
+            "question": "Votre procédure est-elle conforme à l'Annexe 11 des BPF ?",
+            "answer": "Oui. Notre procédure de décommissionnement est validée conformément à l'Annexe 11 des BPF (EU GMP). Nous fournissons le dossier de qualification complet (QI/QO/QP) et la documentation de validation."
+          },
+          {
+            "question": "Comment vérifiez-vous les durées de rétention avant destruction ?",
+            "answer": "Notre module de rétention vérifie automatiquement les durées applicables (15 à 30 ans selon le type de données) avant d'autoriser la destruction. Aucun effacement n'est possible si la durée n'est pas écoulée."
+          },
+          {
+            "question": "Fournissez-vous les documents pour une inspection ANSM ?",
+            "answer": "Oui. Notre export ANSM inclut la piste d'audit complète, les certificats de destruction, le dossier de validation de la procédure et les preuves de conformité Annexe 11."
+          },
+          {
+            "question": "Gérez-vous les systèmes LIMS et SCADA pharmaceutiques ?",
+            "answer": "Oui. Nos protocoles couvrent les LIMS, ELN, SCADA de production, systèmes MES et postes de laboratoire avec effacement adapté à chaque type d'équipement GxP."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Conformité ITAD pharmaceutique garantie",
+        "subtitle": "Audit pharma gratuit sous 48 h — nos experts GxP évaluent votre parc et vos obligations Annexe 11.",
+        "button": "Demander un audit pharma",
+        "secondaryButton": "Voir le cas laboratoire R&D"
+      }
+    },
+    "btp": {
+      "hero": {
+        "title": "ITAD pour le BTP et la construction",
+        "subtitle": "Chantiers distribués, mobilité matériel, sécurité des données projets",
+        "kpis": [
+          {
+            "value": "Multi-chantiers",
+            "label": "couverture nationale"
+          },
+          {
+            "value": "48h",
+            "label": "intervention terrain"
+          },
+          {
+            "value": "100%",
+            "label": "traçabilité DEEE"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Profil du secteur BTP",
+        "narrative": "Le secteur BTP opère des chantiers distribués sur l'ensemble du territoire, avec des équipements IT mobiles (tablettes de chantier, PC durcis, stations de calcul BIM) et des systèmes de gestion de projet contenant des données sensibles (plans, appels d'offres, données financières). La mobilité du matériel, l'exposition aux conditions de chantier et la multiplicité des sites rendent la gestion ITAD complexe.",
+        "highlights": [
+          "Équipements mobiles durcis exposés aux conditions de chantier",
+          "Données de projet sensibles (plans BIM, appels d'offres, coûts)",
+          "Multiplicité des chantiers avec matériel rotatif",
+          "Obligation DEEE et économie circulaire BTP (loi AGEC)"
+        ]
+      },
+      "pains": {
+        "title": "Vos douleurs prioritaires",
+        "items": [
+          {
+            "title": "Chantiers distribués",
+            "description": "Les équipements sont répartis sur des dizaines de chantiers simultanés, avec une rotation fréquente rendant l'inventaire et la collecte complexes."
+          },
+          {
+            "title": "Données projets sensibles",
+            "description": "Les plans BIM, maquettes numériques, appels d'offres et données financières de projets sont des actifs stratégiques à protéger."
+          },
+          {
+            "title": "Matériel durci usé",
+            "description": "Les tablettes et PC de chantier subissent des conditions difficiles (poussière, chocs, humidité) réduisant leur valeur de revente."
+          },
+          {
+            "title": "Conformité DEEE BTP",
+            "description": "La loi AGEC impose une traçabilité spécifique pour les DEEE du BTP, avec obligation de réemploi prioritaire."
+          },
+          {
+            "title": "Budget dispersé",
+            "description": "Les budgets IT sont dispersés par projet et par chantier, rendant la consolidation et l'optimisation difficiles."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Fin de chantier grand projet",
+            "description": "Collecte et traitement de 180 tablettes de chantier, 45 PC durcis et 12 stations BIM à la fin d'un chantier de 3 ans.",
+            "result": "100 % données projet effacées, 62 % réemploi"
+          },
+          {
+            "title": "Renouvellement parc siège",
+            "description": "Décommissionnement de 640 postes et 80 serveurs du siège d'un groupe BTP, avec effacement des données d'appels d'offres.",
+            "result": "412 €/poste récupéré, DEEE conforme"
+          },
+          {
+            "title": "Rotation matériel multi-chantiers",
+            "description": "Mise en place d'un circuit de collecte récurrent pour les équipements en rotation sur 35 chantiers actifs.",
+            "result": "Coût logistique -45 %, traçabilité 100 %"
+          },
+          {
+            "title": "Audit DEEE groupe BTP",
+            "description": "Consolidation du reporting DEEE pour un groupe BTP de 12 filiales, avec traçabilité par chantier et par filiale.",
+            "result": "Rapport DEEE consolidé, 0 réserve audit"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "412",
+            "suffix": "€",
+            "label": "valeur récupérée par poste"
+          },
+          {
+            "value": "45",
+            "suffix": "%",
+            "label": "réduction coût logistique"
+          },
+          {
+            "value": "62",
+            "suffix": "%",
+            "label": "taux de réemploi chantier"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "traçabilité DEEE"
+          }
+        ],
+        "details": "Sur un groupe BTP de 640 postes siège et 35 chantiers, GTC réduit les coûts logistiques de 45 % et récupère 412 € de valeur par poste, avec reporting DEEE consolidé."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI groupe BTP",
+            "concern": "Gestion parc mobile multi-chantiers",
+            "ctaAngle": "Plateforme avec suivi par chantier et rotation"
+          },
+          {
+            "role": "Directeur de projet",
+            "concern": "Protection des données projet et BIM",
+            "ctaAngle": "Effacement certifié en fin de chantier"
+          },
+          {
+            "role": "DAF",
+            "concern": "Consolidation budgétaire multi-filiales",
+            "ctaAngle": "Reporting financier par chantier, filiale, groupe"
+          },
+          {
+            "role": "Direction RSE",
+            "concern": "DEEE et économie circulaire BTP",
+            "ctaAngle": "Module DEEE conforme loi AGEC BTP"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour le BTP",
+        "items": [
+          {
+            "title": "Collecte terrain chantiers",
+            "description": "Équipes mobiles pour la collecte directement sur chantier, avec véhicules adaptés et conditionnement sécurisé."
+          },
+          {
+            "title": "Gestion de la rotation",
+            "description": "Module de suivi des équipements en rotation entre chantiers, avec alerte fin de vie et planification de collecte."
+          },
+          {
+            "title": "Effacement matériel durci",
+            "description": "Protocoles adaptés aux tablettes et PC durcis (Panasonic Toughbook, Getac) avec effacement firmware spécifique."
+          },
+          {
+            "title": "Reporting DEEE multi-filiales",
+            "description": "Consolidation du reporting DEEE par chantier, par filiale et par groupe, conforme loi AGEC."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur BTP",
+        "items": [
+          {
+            "question": "Pouvez-vous collecter directement sur chantier ?",
+            "answer": "Oui. Nos équipes mobiles interviennent sur chantier avec des véhicules adaptés. Nous assurons le conditionnement sécurisé sur site et le transport vers nos centres de traitement."
+          },
+          {
+            "question": "Comment gérez-vous le matériel durci abîmé ?",
+            "answer": "Les tablettes et PC durcis endommagés sont traités individuellement. L'effacement est réalisé si le support est fonctionnel, sinon destruction physique certifiée. La valeur de revente est ajustée en fonction de l'état."
+          },
+          {
+            "question": "Pouvez-vous consolider le reporting de 12 filiales ?",
+            "answer": "Oui. Notre plateforme gère le multi-filiales avec un reporting consolidé au niveau groupe. Chaque filiale dispose de son propre espace avec visibilité sur ses chantiers."
+          },
+          {
+            "question": "Quel délai d'intervention sur chantier ?",
+            "answer": "Intervention sous 48 h ouvrés en Île-de-France, 5 jours ouvrés en province. Mode express disponible pour les fins de chantier urgentes."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Sécurisez vos données de chantier",
+        "subtitle": "Audit BTP gratuit sous 48 h — nos experts dimensionnent votre programme ITAD multi-chantiers.",
+        "button": "Demander un audit BTP",
+        "secondaryButton": "Voir le cas grand chantier"
+      }
+    },
+    "horeca": {
+      "hero": {
+        "title": "ITAD pour l'hôtellerie et la restauration",
+        "subtitle": "POS, parcs distribués, données clients fidélité — gérez vos équipements multi-sites",
+        "kpis": [
+          {
+            "value": "Multi-sites",
+            "label": "hôtels et restaurants"
+          },
+          {
+            "value": "PCI-DSS",
+            "label": "conforme"
+          },
+          {
+            "value": "89%",
+            "label": "réemploi atteint"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Profil du secteur hôtellerie-restauration",
+        "narrative": "Le secteur HoReCa opère des centaines d'établissements (hôtels, restaurants, bars, traiteurs) avec des systèmes POS, des bornes de réservation, des systèmes de gestion hôtelière (PMS) et des équipements de fidélité contenant des données clients sensibles. Les chaînes hôtelières et groupes de restauration renouvellent régulièrement leurs parcs, avec des contraintes de saisonnalité et de continuité de service.",
+        "highlights": [
+          "Systèmes POS et PMS contenant données de paiement et clients",
+          "Parcs distribués sur des centaines d'établissements",
+          "Saisonnalité forte impactant les fenêtres de renouvellement",
+          "Programmes de fidélité avec données personnelles RGPD"
+        ]
+      },
+      "pains": {
+        "title": "Vos douleurs prioritaires",
+        "items": [
+          {
+            "title": "Données POS et paiement",
+            "description": "Les systèmes de caisse et terminaux de paiement contiennent des données carte soumises à PCI-DSS et des données transactionnelles RGPD."
+          },
+          {
+            "title": "Systèmes PMS hôteliers",
+            "description": "Les systèmes de gestion hôtelière contiennent des données de réservation, passeports, cartes bancaires et préférences clients."
+          },
+          {
+            "title": "Parcs distribués saisonniers",
+            "description": "Les renouvellements doivent être planifiés en basse saison pour minimiser l'impact sur l'exploitation."
+          },
+          {
+            "title": "Données fidélité RGPD",
+            "description": "Les programmes de fidélité accumulent des données personnelles (habitudes, préférences, historique) soumises au RGPD."
+          },
+          {
+            "title": "Franchisés et indépendants",
+            "description": "Les groupes hôteliers et de restauration incluent des franchisés et indépendants avec des parcs hétérogènes."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Renouvellement POS chaîne de restaurants",
+            "description": "Remplacement de 1 800 caisses POS dans 320 restaurants pendant la basse saison hivernale.",
+            "result": "0 interruption service, PCI-DSS conforme"
+          },
+          {
+            "title": "Migration PMS chaîne hôtelière",
+            "description": "Décommissionnement de 450 serveurs PMS et 2 200 postes réception lors de la migration vers un PMS cloud.",
+            "result": "Données clients effacées, 78 % réemploi"
+          },
+          {
+            "title": "Renouvellement bornes check-in",
+            "description": "Retrait et recyclage de 680 bornes de check-in automatique contenant des données passeport et carte bancaire.",
+            "result": "Destruction certifiée, RGPD conforme"
+          },
+          {
+            "title": "Consolidation DEEE groupe hôtelier",
+            "description": "Reporting DEEE consolidé pour un groupe de 85 hôtels et 120 restaurants dans 4 pays.",
+            "result": "Rapport CSRD ESRS E5 livré, 0 réserve"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "89",
+            "suffix": "%",
+            "label": "taux de réemploi"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "interruption de service"
+          },
+          {
+            "value": "78",
+            "suffix": "%",
+            "label": "réemploi PMS/postes"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "conformité PCI-DSS"
+          }
+        ],
+        "details": "Pour une chaîne de 320 restaurants, le renouvellement POS via GTC garantit zéro interruption de service, 89 % de réemploi et la conformité PCI-DSS complète."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI groupe hôtelier",
+            "concern": "Migration PMS et renouvellement multi-sites",
+            "ctaAngle": "Plan de déploiement par région, par saison"
+          },
+          {
+            "role": "RSSI",
+            "concern": "PCI-DSS et données clients hôteliers",
+            "ctaAngle": "Effacement certifié POS/PMS + destruction"
+          },
+          {
+            "role": "Directeur d'exploitation",
+            "concern": "Continuité de service pendant le remplacement",
+            "ctaAngle": "Intervention basse saison, hors heures de pointe"
+          },
+          {
+            "role": "Direction RSE",
+            "concern": "CSRD et économie circulaire HoReCa",
+            "ctaAngle": "Reporting ESRS E5 multi-pays"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour l'hôtellerie-restauration",
+        "items": [
+          {
+            "title": "Planification saisonnière",
+            "description": "Intervention en basse saison pour minimiser l'impact sur l'exploitation. Planification coordonnée avec les directeurs d'établissement."
+          },
+          {
+            "title": "Expertise POS/PMS",
+            "description": "Protocoles spécifiques pour les systèmes de caisse (Micros, Lightspeed) et PMS hôteliers (Opera, Protel)."
+          },
+          {
+            "title": "Multi-pays multi-franchise",
+            "description": "Gestion des groupes internationaux avec franchisés et indépendants, reporting consolidé multi-pays."
+          },
+          {
+            "title": "WakiBox établissement",
+            "description": "Borne de collecte compacte pour les petits équipements en fin de vie, adaptée aux contraintes d'espace HoReCa."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur hôtellerie-restauration",
+        "items": [
+          {
+            "question": "Pouvez-vous intervenir sans perturber le service ?",
+            "answer": "Oui. Nous intervenons en basse saison et en dehors des heures de service. Pour les établissements 24/7, nous planifions des fenêtres de maintenance coordonnées avec la direction."
+          },
+          {
+            "question": "Gérez-vous les systèmes PMS hôteliers (Opera, Protel) ?",
+            "answer": "Oui. Nos protocoles couvrent les principaux PMS hôteliers : Oracle Opera, Protel, Mews, Cloudbeds. Effacement des données de réservation, passeport et carte bancaire conforme RGPD et PCI-DSS."
+          },
+          {
+            "question": "Comment gérez-vous les franchisés indépendants ?",
+            "answer": "Chaque franchisé dispose de son propre espace sur la plateforme. Le groupe peut consolider les données tout en respectant l'autonomie de gestion de chaque établissement."
+          },
+          {
+            "question": "Quel délai pour un groupe de 300+ établissements ?",
+            "answer": "Nous déployons par vagues de 30 à 50 établissements par semaine. Un groupe de 300 établissements est traité en 6 à 10 semaines selon la complexité."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Gérez votre ITAD hôtellerie-restauration",
+        "subtitle": "Audit HoReCa gratuit sous 48 h — nos experts dimensionnent votre programme multi-établissements.",
+        "button": "Demander un audit HoReCa",
+        "secondaryButton": "Voir le cas chaîne hôtelière"
+      }
+    },
+    "education-recherche": {
+      "hero": {
+        "title": "ITAD pour l'éducation et la recherche",
+        "subtitle": "RGPD mineurs, parcs étudiants, financement DEEE — reconditionnez et redistribuez",
+        "kpis": [
+          {
+            "value": "RGPD",
+            "label": "mineurs protégé"
+          },
+          {
+            "value": "89%",
+            "label": "réemploi ESS"
+          },
+          {
+            "value": "DEEE",
+            "label": "financement mobilisé"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Profil du secteur éducation",
+        "narrative": "Le secteur éducatif (écoles, collèges, lycées, universités, grandes écoles, organismes de recherche) gère des parcs IT importants avec des contraintes spécifiques : RGPD renforcé pour les données de mineurs, budgets limités, obligation de réemploi (loi AGEC), et possibilité de financement via les éco-organismes DEEE. Les parcs étudiants sont renouvelés par vagues liées aux calendriers scolaires.",
+        "highlights": [
+          "Parcs de 500 à 15 000 postes par établissement ou groupement",
+          "RGPD renforcé pour les données d'élèves mineurs",
+          "Calendrier de renouvellement lié aux vacances scolaires",
+          "Financement possible via éco-organismes DEEE (Ecologic, Ecosystem)"
+        ]
+      },
+      "pains": {
+        "title": "Vos douleurs prioritaires",
+        "items": [
+          {
+            "title": "RGPD mineurs",
+            "description": "Les données d'élèves mineurs bénéficient d'une protection RGPD renforcée (art. 8). L'effacement doit être irréversible et certifié."
+          },
+          {
+            "title": "Budget limité",
+            "description": "Les établissements éducatifs disposent de budgets IT contraints et doivent maximiser la valeur de leurs équipements en fin de vie."
+          },
+          {
+            "title": "Financement DEEE",
+            "description": "Les éco-organismes (Ecologic, Ecosystem) proposent des financements pour la collecte et le recyclage des DEEE éducatifs."
+          },
+          {
+            "title": "Calendrier scolaire",
+            "description": "Les renouvellements doivent impérativement être réalisés pendant les vacances scolaires pour ne pas perturber les cours."
+          },
+          {
+            "title": "Réemploi et don",
+            "description": "La loi AGEC et la mission éducative encouragent le réemploi via des circuits ESS et le don aux associations."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Renouvellement parc universitaire",
+            "description": "Décommissionnement de 3 200 postes étudiants et 120 serveurs de recherche pendant les vacances d'été, avec redistribution ESS.",
+            "result": "89 % réemploi, 4 500 dons ESS, 480 tCO₂e évitées"
+          },
+          {
+            "title": "Groupe scolaire primaire-collège",
+            "description": "Remplacement de 850 tablettes et 120 PC dans 8 écoles et 2 collèges, avec effacement RGPD mineurs certifié.",
+            "result": "100 % RGPD conforme, financement DEEE mobilisé"
+          },
+          {
+            "title": "Laboratoire de recherche",
+            "description": "Décommissionnement de 180 stations de calcul et 40 serveurs de recherche, avec protection des données scientifiques.",
+            "result": "IP protégée, 1,1 M€ valeur récupérée"
+          },
+          {
+            "title": "Académie régionale",
+            "description": "Mutualisation du programme ITAD pour 45 établissements d'une académie, avec reporting consolidé et financement DEEE.",
+            "result": "Coût unitaire -40 %, rapport DEEE académie"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "4500",
+            "suffix": "+",
+            "label": "dons ESS réalisés"
+          },
+          {
+            "value": "40",
+            "suffix": "%",
+            "label": "réduction coût unitaire (mutualisation)"
+          },
+          {
+            "value": "480",
+            "suffix": "t",
+            "label": "CO₂e évitées"
+          },
+          {
+            "value": "89",
+            "suffix": "%",
+            "label": "taux de réemploi"
+          }
+        ],
+        "details": "Sur une académie de 45 établissements, la mutualisation via GTC réduit les coûts de 40 % et génère 4 500 dons ESS, avec financement DEEE mobilisé et reporting académique consolidé."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI académie/université",
+            "concern": "Gestion du parc étudiant et calendrier scolaire",
+            "ctaAngle": "Planification vacances scolaires + collecte terrain"
+          },
+          {
+            "role": "DPO",
+            "concern": "RGPD mineurs et données étudiantes",
+            "ctaAngle": "Effacement certifié RGPD art. 8 + certificats"
+          },
+          {
+            "role": "Responsable financier",
+            "concern": "Budget limité et financement DEEE",
+            "ctaAngle": "Dossier financement éco-organismes intégré"
+          },
+          {
+            "role": "Président d'université",
+            "concern": "Engagement RSE et économie circulaire",
+            "ctaAngle": "Filière ESS + bilan carbone communication"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour l'éducation",
+        "items": [
+          {
+            "title": "Planification calendrier scolaire",
+            "description": "Intervention exclusivement pendant les vacances scolaires et universitaires pour zéro perturbation des cours."
+          },
+          {
+            "title": "RGPD mineurs certifié",
+            "description": "Protocole d'effacement renforcé pour les données d'élèves mineurs, conforme RGPD art. 8 avec certificat individuel."
+          },
+          {
+            "title": "Financement DEEE intégré",
+            "description": "Montage du dossier de financement auprès des éco-organismes (Ecologic, Ecosystem) inclus dans notre prestation."
+          },
+          {
+            "title": "Mutualisation académique",
+            "description": "Gestion des groupements d'établissements (académie, COMUE) avec reporting consolidé et coûts mutualisés."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur éducation",
+        "items": [
+          {
+            "question": "Pouvez-vous intervenir pendant les vacances scolaires uniquement ?",
+            "answer": "Oui. C'est notre mode opératoire standard pour l'éducation. Nous planifions chaque intervention pendant les vacances (été, Toussaint, février, Pâques) en fonction de vos priorités."
+          },
+          {
+            "question": "Comment fonctionne le financement DEEE ?",
+            "answer": "Nous montons le dossier de financement auprès d'Ecologic ou Ecosystem pour vous. Le financement couvre une partie des coûts de collecte et de recyclage. Il est directement déduit de notre facture."
+          },
+          {
+            "question": "Gérez-vous les tablettes scolaires (iPad, Chromebook) ?",
+            "answer": "Oui. Nous traitons iPad, Chromebook, tablettes Android et PC portables scolaires. Effacement MDM, réinitialisation usine certifiée et recyclage ou réemploi."
+          },
+          {
+            "question": "Pouvez-vous mutualiser plusieurs établissements ?",
+            "answer": "Oui. Notre plateforme gère les groupements d'établissements avec un reporting consolidé. La mutualisation réduit les coûts unitaires de 30 à 40 % par rapport à un traitement individuel."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Reconditionnez votre parc éducatif",
+        "subtitle": "Audit éducation gratuit sous 48 h — nos experts dimensionnent votre programme avec financement DEEE.",
+        "button": "Demander un audit éducation",
+        "secondaryButton": "Voir le cas université ESS"
+      }
+    },
+    "agroalimentaire": {
+      "hero": {
+        "title": "ITAD pour l'agroalimentaire",
+        "subtitle": "IT/OT usines, traçabilité, parcs production distribués — gérez vos actifs de bout en bout",
+        "kpis": [
+          {
+            "value": "IT+OT",
+            "label": "usines couvertes"
+          },
+          {
+            "value": "IFS/BRC",
+            "label": "compatible"
+          },
+          {
+            "value": "CSRD",
+            "label": "reporting intégré"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Profil du secteur agroalimentaire",
+        "narrative": "L'industrie agroalimentaire opère des usines de production avec des systèmes IT/OT (automates de ligne, SCADA, MES, ERP) et des parcs IT classiques (bureautique, logistique, commercial). Les certifications IFS/BRC et les exigences de traçabilité alimentaire imposent une gestion rigoureuse des systèmes informatisés. Les sites de production distribués sur le territoire génèrent des flux ITAD importants avec des contraintes d'hygiène et de sécurité alimentaire.",
+        "highlights": [
+          "Systèmes MES et SCADA de ligne de production",
+          "Traçabilité alimentaire IFS/BRC sur les systèmes informatisés",
+          "Sites de production distribués (usines, entrepôts, plateformes)",
+          "Obligation CSRD scope 3 IT pour les groupes cotés"
+        ]
+      },
+      "pains": {
+        "title": "Vos douleurs prioritaires",
+        "items": [
+          {
+            "title": "IT/OT usines de production",
+            "description": "Les automates de ligne, systèmes MES et SCADA contiennent des données de production, recettes et paramètres process sensibles."
+          },
+          {
+            "title": "Traçabilité IFS/BRC",
+            "description": "Les certifications IFS et BRC exigent une traçabilité des systèmes informatisés, incluant leur décommissionnement."
+          },
+          {
+            "title": "Sites distribués",
+            "description": "Les groupes agroalimentaires opèrent des dizaines d'usines, entrepôts et plateformes logistiques avec des parcs hétérogènes."
+          },
+          {
+            "title": "Contraintes d'hygiène",
+            "description": "Les interventions en zone de production alimentaire sont soumises à des protocoles d'hygiène stricts."
+          },
+          {
+            "title": "Données commerciales",
+            "description": "Les données de négoce, contrats fournisseurs et prix de revient sont des actifs stratégiques à protéger."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Modernisation ligne de conditionnement",
+            "description": "Remplacement de 120 automates et 60 PC industriels sur 3 lignes de conditionnement, avec effacement des recettes et paramètres.",
+            "result": "0 fuite recette, intervention hors production"
+          },
+          {
+            "title": "Migration ERP groupe",
+            "description": "Décommissionnement de 380 postes et 45 serveurs lors de la migration ERP SAP vers S/4HANA.",
+            "result": "Données migrées et originaux effacés, rapport IFS"
+          },
+          {
+            "title": "Consolidation multi-usines",
+            "description": "Programme ITAD mutualisé pour 18 usines d'un groupe agroalimentaire, avec reporting CSRD consolidé.",
+            "result": "Coût -38 %, CSRD ESRS E5 livré"
+          },
+          {
+            "title": "Entrepôt logistique connecté",
+            "description": "Retrait de 2 400 terminaux de préparation de commandes et 180 bornes de quai en fin de vie.",
+            "result": "95 % recyclage, données effacées"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "38",
+            "suffix": "%",
+            "label": "réduction coût multi-usines"
+          },
+          {
+            "value": "95",
+            "suffix": "%",
+            "label": "taux de recyclage matière"
+          },
+          {
+            "value": "0",
+            "suffix": "",
+            "label": "fuite de recette/IP"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "conformité IFS/BRC"
+          }
+        ],
+        "details": "Sur un groupe de 18 usines, la mutualisation via GTC réduit les coûts de 38 % et garantit la conformité IFS/BRC, avec reporting CSRD ESRS E5 consolidé."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI groupe agroalimentaire",
+            "concern": "IT/OT multi-usines et migration ERP",
+            "ctaAngle": "Plateforme unifiée IT+OT + plan migration"
+          },
+          {
+            "role": "Directeur qualité",
+            "concern": "Conformité IFS/BRC systèmes informatisés",
+            "ctaAngle": "Piste d'audit conforme IFS/BRC"
+          },
+          {
+            "role": "Directeur d'usine",
+            "concern": "Continuité de production et hygiène",
+            "ctaAngle": "Intervention hors production, protocole hygiène"
+          },
+          {
+            "role": "Direction RSE",
+            "concern": "CSRD scope 3 et économie circulaire",
+            "ctaAngle": "Module Carbon + ESRS E5 multi-usines"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour l'agroalimentaire",
+        "items": [
+          {
+            "title": "Expertise IT/OT agroalimentaire",
+            "description": "Protocoles adaptés aux automates de ligne, MES, SCADA et systèmes de traçabilité alimentaire."
+          },
+          {
+            "title": "Conformité IFS/BRC",
+            "description": "Piste d'audit conforme aux exigences IFS et BRC pour le décommissionnement des systèmes informatisés."
+          },
+          {
+            "title": "Protocole hygiène zone production",
+            "description": "Intervention en zone de production alimentaire avec respect des protocoles HACCP et hygiène."
+          },
+          {
+            "title": "Mutualisation multi-usines",
+            "description": "Programme ITAD mutualisé pour les groupes multi-sites avec reporting consolidé et coûts optimisés."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur agroalimentaire",
+        "items": [
+          {
+            "question": "Pouvez-vous intervenir en zone de production alimentaire ?",
+            "answer": "Oui. Nos équipes respectent les protocoles HACCP et les exigences d'hygiène de vos sites de production. Nous intervenons en tenue adaptée avec des outils décontaminés."
+          },
+          {
+            "question": "Gérez-vous les automates de ligne de production ?",
+            "answer": "Oui. Nos protocoles couvrent les automates (Siemens, Rockwell, Schneider), les systèmes MES et SCADA, avec effacement des recettes, paramètres et données de production."
+          },
+          {
+            "question": "Comment garantissez-vous la conformité IFS/BRC ?",
+            "answer": "Notre piste d'audit est formatée selon les exigences IFS Food et BRC Food Safety. Nous fournissons les preuves de décommissionnement conforme pour vos audits de certification."
+          },
+          {
+            "question": "Quel reporting CSRD pour un groupe multi-usines ?",
+            "answer": "Module CSRD ESRS E5 avec reporting par usine, par pays et consolidé groupe. Facteurs d'émission calibrés pour les équipements agroalimentaires."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Gérez votre ITAD agroalimentaire",
+        "subtitle": "Audit agroalimentaire gratuit sous 48 h — nos experts dimensionnent votre programme multi-usines.",
+        "button": "Demander un audit agroalimentaire",
+        "secondaryButton": "Voir le cas groupe agroalimentaire"
+      }
+    },
+    "telecom": {
+      "hero": {
+        "title": "ITAD pour les télécommunications",
+        "subtitle": "Équipements réseau, CPE/box clients, RGPD à grande échelle — gérez des millions d'actifs",
+        "kpis": [
+          {
+            "value": "Millions",
+            "label": "d'actifs gérés"
+          },
+          {
+            "value": "RGPD",
+            "label": "grande échelle"
+          },
+          {
+            "value": "1.2M€",
+            "label": "valeur récupérée"
+          }
+        ]
+      },
+      "profile": {
+        "title": "Profil du secteur télécommunications",
+        "narrative": "Les opérateurs télécoms gèrent des millions d'équipements : CPE clients (box, décodeurs, routeurs), équipements réseau (routeurs, commutateurs, stations de base), et infrastructures datacenter. Les volumes sont considérables, les données RGPD à grande échelle (millions d'abonnés), et les obligations de recyclage DEEE massives. Les opérateurs mobiles renouvellent leurs stations de base (4G/5G) et les opérateurs fixes leurs CPE à un rythme soutenu.",
+        "highlights": [
+          "Flottes de millions de CPE clients (box, décodeurs, routeurs WiFi)",
+          "Équipements réseau (routeurs core, commutateurs, stations de base 4G/5G)",
+          "Données RGPD à grande échelle (millions d'abonnés)",
+          "Obligation DEEE massive et objectifs de recyclage ambitieux"
+        ]
+      },
+      "pains": {
+        "title": "Vos douleurs prioritaires",
+        "items": [
+          {
+            "title": "Volumétrie massive CPE",
+            "description": "Les opérateurs gèrent des millions de box et décodeurs clients à recycler ou reconditionner, nécessitant une logistique industrielle."
+          },
+          {
+            "title": "RGPD grande échelle",
+            "description": "Les CPE contiennent des données de configuration, historiques de navigation et identifiants abonnés à effacer pour des millions d'équipements."
+          },
+          {
+            "title": "Équipements réseau haute valeur",
+            "description": "Les routeurs core, commutateurs et stations de base 4G/5G ont une valeur résiduelle significative sur le marché reconditionné."
+          },
+          {
+            "title": "Obligation DEEE massive",
+            "description": "Les opérateurs sont soumis à des objectifs de recyclage DEEE ambitieux, avec reporting détaillé auprès des éco-organismes."
+          },
+          {
+            "title": "Migration 4G vers 5G",
+            "description": "Le déploiement 5G génère des volumes considérables d'équipements 4G à décommissionner dans des délais contraints."
+          }
+        ]
+      },
+      "useCases": {
+        "title": "Cas d'usage prioritaires",
+        "items": [
+          {
+            "title": "Reconditionnement CPE opérateur",
+            "description": "Programme de reconditionnement de 2,4 millions de box et décodeurs, avec effacement RGPD et remise en circulation.",
+            "result": "68 % reconditionné, 1,2 M€ valeur récupérée"
+          },
+          {
+            "title": "Décommissionnement stations 4G",
+            "description": "Retrait sécurisé de 4 800 stations de base 4G lors du déploiement 5G, avec effacement des configurations réseau.",
+            "result": "Configs effacées, 3,8 M€ valeur marché"
+          },
+          {
+            "title": "Migration datacenter opérateur",
+            "description": "Décommissionnement de 6 000 serveurs et 1 200 commutateurs d'un datacenter opérateur en migration cloud.",
+            "result": "5,2 M€ récupérés, RGPD conforme"
+          },
+          {
+            "title": "Reporting DEEE opérateur",
+            "description": "Consolidation du reporting DEEE pour un opérateur national, couvrant CPE, réseau et datacenter.",
+            "result": "Objectifs DEEE atteints, rapport éco-organisme validé"
+          }
+        ]
+      },
+      "roi": {
+        "title": "Retour sur investissement estimé",
+        "kpis": [
+          {
+            "value": "5.2",
+            "suffix": "M€",
+            "label": "valeur récupérée (datacenter)"
+          },
+          {
+            "value": "68",
+            "suffix": "%",
+            "label": "taux reconditionnement CPE"
+          },
+          {
+            "value": "3.8",
+            "suffix": "M€",
+            "label": "valeur stations 4G"
+          },
+          {
+            "value": "100",
+            "suffix": "%",
+            "label": "objectifs DEEE atteints"
+          }
+        ],
+        "details": "Sur un programme combiné (datacenter + stations 4G + CPE), GTC récupère plus de 10 M€ de valeur et garantit l'atteinte des objectifs DEEE de l'opérateur."
+      },
+      "personas": {
+        "title": "Décideurs concernés",
+        "items": [
+          {
+            "role": "DSI / CTO opérateur",
+            "concern": "Migration 5G et décommissionnement 4G",
+            "ctaAngle": "Plan de retrait stations par lot et région"
+          },
+          {
+            "role": "DPO",
+            "concern": "RGPD millions d'abonnés sur CPE",
+            "ctaAngle": "Effacement industriel certifié NIST 800-88"
+          },
+          {
+            "role": "Directeur réseau",
+            "concern": "Logistique de retrait équipements réseau",
+            "ctaAngle": "Logistique grande échelle + convoyage sécurisé"
+          },
+          {
+            "role": "Direction RSE",
+            "concern": "Objectifs DEEE et CSRD scope 3",
+            "ctaAngle": "Module DEEE + Carbon opérateur"
+          }
+        ]
+      },
+      "arguments": {
+        "title": "Pourquoi choisir GTC pour les télécoms",
+        "items": [
+          {
+            "title": "Capacité industrielle",
+            "description": "Infrastructure de traitement capable de gérer des millions d'actifs par an (CPE, équipements réseau, serveurs)."
+          },
+          {
+            "title": "Effacement RGPD industriel",
+            "description": "Chaîne d'effacement automatisée NIST 800-88 pour les CPE à grande échelle, avec certificat par lot ou unitaire."
+          },
+          {
+            "title": "Cotation réseau EMEA",
+            "description": "Module Asset Intelligence avec cotation spécialisée équipements réseau et télécom (Cisco, Nokia, Ericsson, Huawei)."
+          },
+          {
+            "title": "Module DEEE opérateur",
+            "description": "Reporting DEEE calibré pour les volumes opérateurs, avec exports conformes aux exigences des éco-organismes."
+          }
+        ]
+      },
+      "objections": {
+        "title": "Questions fréquentes — secteur télécommunications",
+        "items": [
+          {
+            "question": "Quelle capacité de traitement pour les CPE ?",
+            "answer": "Notre infrastructure traite jusqu'à 5 millions de CPE par an. La chaîne d'effacement automatisée NIST 800-88 permet un débit de 2 000 unités par jour et par site."
+          },
+          {
+            "question": "Comment gérez-vous les stations de base 4G/5G ?",
+            "answer": "Nos équipes interviennent sur site pour le démontage des stations. Les configurations réseau et clés sont effacées, puis les équipements sont transportés en convoyage sécurisé vers nos centres de traitement."
+          },
+          {
+            "question": "Quel reporting DEEE pour les volumes opérateur ?",
+            "answer": "Notre module DEEE est calibré pour les volumes opérateurs (millions d'unités). Reporting par type d'équipement, par région et par éco-organisme. Export conforme aux déclarations annuelles ADEME."
+          },
+          {
+            "question": "Cotez-vous les équipements réseau (Cisco, Nokia) ?",
+            "answer": "Oui. Notre module Asset Intelligence couvre les équipements réseau des principaux constructeurs : Cisco, Nokia, Ericsson, Huawei, Juniper. Cotation marché reconditionné EMEA en temps réel."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Gérez votre ITAD télécom à grande échelle",
+        "subtitle": "Audit télécom gratuit sous 48 h — nos experts dimensionnent votre programme CPE, réseau et datacenter.",
+        "button": "Demander un audit télécom",
+        "secondaryButton": "Voir le cas opérateur datacenter"
       }
     },
     "index": {
       "hero": {
-        "title": "Secteurs accompagnés",
-        "subtitle": "6 expertises sectorielles ITAD — chaque vertical a ses régulateurs, ses cycles de vie, ses contraintes de chaîne de garde."
+        "title": "Notre expertise sectorielle ITAD",
+        "subtitle": "16 secteurs d'activité accompagnés — chaque vertical a ses régulateurs, ses cycles de vie, ses contraintes de chaîne de garde.",
+        "kpis": [
+          {
+            "value": "16",
+            "label": "secteurs d'activité"
+          },
+          {
+            "value": "12+",
+            "label": "années d'expérience"
+          },
+          {
+            "value": "280+",
+            "label": "clients accompagnés"
+          }
+        ]
       },
-      "intro": "Nous avons documenté pour vous 6 référentiels sectoriels exploitables. Chaque page secteur reprend : contexte régulateur, réglementations applicables, défis typiques constatés sur le terrain, et la réponse opérationnelle GTC (modules, services, SLA).",
-      "ctaTitle": "Votre secteur n'est pas listé ?",
-      "ctaSubtitle": "Nous accompagnons aussi assurance, telco, pharma, éducation, hôtellerie. Demandez une consultation sectorielle.",
-      "ctaButton": "Discuter de mon secteur"
+      "intro": "GreenTechCycle a développé une expertise sectorielle approfondie en accompagnant plus de 280 organisations dans 16 secteurs d'activité. Chaque secteur a ses propres régulateurs, ses propres cycles de vie matériel et ses propres contraintes de chaîne de garde. Découvrez notre approche sectorielle et identifiez les enjeux spécifiques à votre activité.",
+      "mediaGtcTitle": "Média GTC — TF1, notre référence phare",
+      "mediaGtcSubtitle": "Le groupe TF1 fait confiance à GreenTechCycle pour l'ensemble de son cycle ITAD : audit, effacement, valorisation et reporting CSRD.",
+      "mediaGtcCta": "Découvrir le partenariat TF1",
+      "ctaTitle": "Votre secteur est couvert",
+      "ctaSubtitle": "16 secteurs, une seule plateforme. Demandez un audit sectoriel gratuit sous 48 h — nos consultants vous reviennent avec un plan d'action adapté à vos contraintes réglementaires.",
+      "ctaButton": "Demander un audit sectoriel",
+      "ctaSecondary": "Réserver un pilote Waki Box",
+      "discover": "Découvrir"
     },
     "common": {
       "context": "Contexte",
