@@ -136,6 +136,11 @@ const OFFER_PRICING: Record<string, OfferPricing> = {
   "wakibox": {
     price: { fr: "Sur devis selon volume", en: "Custom quote based on volume" },
   },
+  "cadre-media": {
+    price: { fr: "65 000 € HT/an (contrat-cadre)", en: "€65,000 ex-VAT/yr (framework contract)" },
+    setup: { fr: "Audit initial inclus", en: "Initial audit included" },
+    engagement: { fr: "12 mois renouvelable", en: "12 months renewable" },
+  },
 };
 
 const PLAN_SLUGS = new Set([

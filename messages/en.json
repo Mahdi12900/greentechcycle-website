@@ -3543,6 +3543,45 @@
       "telco-datacenter": "Three data centres to decommission in 60 days. 2,800 servers. Telecom operator customer data under ANSSI requirements. And an IT director who had provisioned €400k in residual value — three times less than what GreenTechCycle would actually recover. The difference is international secondary market expertise: a network of qualified European buyers, real-time market pricing, and on-time execution.",
       "universite-ess": "4,500 teaching devices to decommission before the start of the academic year, with student data to erase and a public budget that didn't allow for destruction. GreenTechCycle organised in 10 days the certified NIST 800-88 erasure, grading into 3 categories, and donation to 12 ESS partner associations — turning a budget constraint into a concrete circular economy initiative. 520 tCO2e avoided. 4,500 computers given to students who needed them."
     },
+    "featuredTf1": {
+      "eyebrow": "Spotlight — Broadcast Media",
+      "badge": "Featured case",
+      "title": "TF1 — large-scale broadcast ITAD",
+      "subtitle": "TF1 Group · Studios, control rooms, broadcast datacenters · Recurring framework contract",
+      "body": "France's leading private broadcasting group, TF1 operates a hybrid IT estate spanning production studios, broadcast control rooms, media datacenters and office infrastructure across its subsidiaries. With CSRD obligations and strengthened GDPR requirements on sensitive audiovisual data, the group entrusted GreenTechCycle with a recurring multi-site framework contract covering the full ITAD lifecycle: inventory audit, certified erasure, refurbishment, WEEE recycling and quarterly CSRD compliance reports.",
+      "photo": "/photos/case-media-tf1.jpg",
+      "photoAlt": "Broadcast control room — technical equipment undergoing ITAD decommissioning",
+      "metrics": [
+        {
+          "label": "Recurring contract",
+          "value": "€65,000",
+          "detail": "ex-VAT/yr · multi-year framework"
+        },
+        {
+          "label": "Compliant erasure",
+          "value": "100%",
+          "detail": "NIST 800-88 · audiovisual data"
+        },
+        {
+          "label": "Tonnes valorised",
+          "value": "18 t",
+          "detail": "broadcast + office WEEE/yr"
+        },
+        {
+          "label": "Reuse rate",
+          "value": "74%",
+          "detail": "broadcast refurbishment"
+        }
+      ],
+      "quote": "GreenTechCycle structured our ITAD approach across all our production sites. For a media group, audiovisual data traceability is as critical as regulatory compliance — GTC masters both.",
+      "quoteName": "Antoine V.",
+      "quoteRole": "Chief Information Officer",
+      "quoteSector": "TF1 Group",
+      "cta": "Book a similar engagement",
+      "ctaHref": "/reserver?offre=cadre-media",
+      "ctaSecondary": "Explore our sector cases",
+      "scrollTarget": "#cas-banque-cac40"
+    },
     "editorialFinalQuote": {
       "text": "Without GreenTechCycle, our NIS2 migration plan would have taken 18 months and cost €600k. They delivered it in 4 months for €220k, with 1,850 tonnes of CO₂ avoided as a bonus.",
       "name": "Marc B.",

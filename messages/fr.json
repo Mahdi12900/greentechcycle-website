@@ -3543,6 +3543,45 @@
       "telco-datacenter": "Trois datacenters à décommissionner en 60 jours. 2 800 serveurs. Des données clients d'opérateur télécom sous exigences ANSSI. Et une DSI qui avait provisionné 400 k€ de valeur résiduelle — soit trois fois moins que ce que GreenTechCycle allait réellement récupérer. La différence, c'est l'expertise marché secondaire international : réseau d'acheteurs qualifiés européens, valorisation à la cotation en temps réel, exécution dans les délais contractuels.",
       "universite-ess": "4 500 postes pédagogiques à décommissionner avant la rentrée universitaire, avec des données étudiants à effacer et un budget public qui n'autorise pas la destruction. GreenTechCycle a organisé en 10 jours l'effacement certifié NIST 800-88, le tri en 3 grades et le don solidaire à 12 associations ESS partenaires — transformant une contrainte budgétaire en acte concret d'économie circulaire. 520 tCO2e évitées. 4 500 ordinateurs redonnés."
     },
+    "featuredTf1": {
+      "eyebrow": "À la une — Média audiovisuel",
+      "badge": "Cas phare",
+      "title": "TF1 — l'ITAD audiovisuel à grande échelle",
+      "subtitle": "Groupe TF1 · Plateaux, régies, datacenters broadcast · Contrat-cadre récurrent",
+      "body": "Premier groupe audiovisuel privé en France, TF1 exploite un parc IT hybride couvrant les plateaux de tournage, les régies de diffusion, les datacenters broadcast et l'infrastructure bureautique de ses filiales. À l'heure de la CSRD et du renforcement des exigences RGPD sur les données audiovisuelles sensibles, le groupe a confié à GreenTechCycle un contrat-cadre récurrent multi-sites couvrant l'intégralité du cycle ITAD : audit-inventaire, effacement certifié, reconditionnement, recyclage DEEE et rapports trimestriels de conformité CSRD.",
+      "photo": "/photos/case-media-tf1.jpg",
+      "photoAlt": "Régie technique de diffusion audiovisuelle — équipements broadcast en cours de décommissionnement",
+      "metrics": [
+        {
+          "label": "Contrat récurrent",
+          "value": "65 000 €",
+          "detail": "HT/an · cadre pluriannuel"
+        },
+        {
+          "label": "Effacement conforme",
+          "value": "100%",
+          "detail": "NIST 800-88 · données audiovisuelles"
+        },
+        {
+          "label": "Tonnes valorisées",
+          "value": "18 t",
+          "detail": "DEEE broadcast + bureautique/an"
+        },
+        {
+          "label": "Taux de réemploi",
+          "value": "74%",
+          "detail": "reconditionnement broadcast"
+        }
+      ],
+      "quote": "GreenTechCycle a structuré notre démarche ITAD sur l'ensemble de nos sites de production. Pour un groupe média, la traçabilité des données audiovisuelles est aussi critique que la conformité réglementaire — GTC maîtrise les deux.",
+      "quoteName": "Antoine V.",
+      "quoteRole": "Directeur des Systèmes d'Information",
+      "quoteSector": "Groupe TF1",
+      "cta": "Réserver une démarche similaire",
+      "ctaHref": "/reserver?offre=cadre-media",
+      "ctaSecondary": "Découvrir nos cas sectoriels",
+      "scrollTarget": "#cas-banque-cac40"
+    },
     "editorialFinalQuote": {
       "text": "Sans GreenTechCycle, notre plan de migration NIS2 aurait pris 18 mois et coûté 600 k€. Ils l'ont livré en 4 mois pour 220 k€, avec 1 850 tonnes de CO₂ évitées en bonus.",
       "name": "Marc B.",

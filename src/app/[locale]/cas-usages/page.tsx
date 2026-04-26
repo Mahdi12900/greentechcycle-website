@@ -35,6 +35,8 @@ import {
   BarChart3,
   TrendingUp,
   Award,
+  Tv,
+  MonitorPlay,
 } from "lucide-react";
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -72,21 +74,23 @@ const CASE_ICONS = [
 ] as const;
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Layout logic per case index
-   index 0 → white bg,     photo left
-   index 1 → #F8FAFC,      photo right
-   index 2 → #0F172A dark, photo left
-   index 3 → white bg,     photo right
-   index 4 → #F8FAFC,      photo left
-   index 5 → white bg,     photo right
-   index 6 → #0F172A dark, photo left
-   index 7 → #F8FAFC,      photo right
+   Layout logic per case index — dramatic alternation v3
+   index 0 → white bg,          photo left     (Banque)
+   index 1 → #F8FAFC,           photo right    (CHU)
+   index 2 → #0F172A dark,      photo left     (Industrie)
+   index 3 → white bg,          photo right    (Public)
+   index 4 → #0C1E1A tinted,    photo left     (Retail) — deep teal tinted
+   index 5 → #F8FAFC,           photo right    (Énergie)
+   index 6 → #0F172A dark,      photo left     (Telco)
+   index 7 → white bg,          photo right    (Éducation)
 ───────────────────────────────────────────────────────────────────────────── */
 function getCaseLayout(index: number) {
   const photoOnLeft = index % 2 === 0;
-  const isDark = index === 2 || index === 6;
+  const isDark = index === 2 || index === 4 || index === 6;
   let bgStyle: string;
-  if (isDark) {
+  if (index === 4) {
+    bgStyle = "bg-[#0C1E1A]";
+  } else if (index === 2 || index === 6) {
     bgStyle = "bg-[#0F172A]";
   } else if (index % 2 === 1) {
     bgStyle = "bg-[#F8FAFC]";
@@ -127,12 +131,12 @@ function CaseSection({
       aria-labelledby={`case-title-${c.slug}`}
     >
       <div
-        className={`flex flex-col lg:flex-row min-h-[85vh] ${
+        className={`flex flex-col lg:flex-row min-h-[90vh] ${
           !photoOnLeft ? "lg:flex-row-reverse" : ""
         }`}
       >
-        {/* ── Photo panel ── */}
-        <div className="relative w-full lg:w-[48%] min-h-[56vw] lg:min-h-0 overflow-hidden flex-shrink-0">
+        {/* ── Photo panel — 52% cinematic ── */}
+        <div className="relative w-full lg:w-[52%] min-h-[60vw] lg:min-h-0 overflow-hidden flex-shrink-0">
           <Image
             src={c.photo}
             alt={c.photoAlt}
@@ -162,15 +166,15 @@ function CaseSection({
             }`}
           />
 
-          {/* Ghost case number watermark — bleeds off bottom */}
+          {/* Ghost case number watermark — bleeds off bottom, reinforced opacity */}
           <div
             className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
             style={{
-              fontSize: "clamp(8rem, 22vw, 18rem)",
-              color: isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.035)",
-              right: photoOnLeft ? "0.5rem" : "auto",
-              left: photoOnLeft ? "auto" : "0.5rem",
-              bottom: "-0.1em",
+              fontSize: "clamp(10rem, 28vw, 22rem)",
+              color: isDark ? "rgba(255,255,255,0.055)" : "rgba(0,0,0,0.05)",
+              right: photoOnLeft ? "-0.5rem" : "auto",
+              left: photoOnLeft ? "auto" : "-0.5rem",
+              bottom: "-0.15em",
             }}
             aria-hidden="true"
           >
@@ -212,27 +216,27 @@ function CaseSection({
                 />
               </div>
 
-              {/* Title */}
+              {/* Title — editorial XXL */}
               <h2
                 id={`case-title-${c.slug}`}
-                className={`text-3xl sm:text-4xl lg:text-[2.5rem] font-bold leading-[1.1] tracking-tight mb-5 ${textColor}`}
+                className={`text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight mb-6 ${textColor}`}
               >
                 {c.title}
               </h2>
 
-              {/* Editorial body — prose, no bullet points */}
-              <p className={`text-[1.0rem] lg:text-[1.05rem] leading-[1.78] mb-8 ${subTextColor}`}>
+              {/* Editorial body — prose with drop cap */}
+              <p className={`text-[1.05rem] lg:text-[1.1rem] leading-[1.82] mb-8 first-letter:text-[3.2em] first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:leading-[0.8] ${subTextColor} ${isDark ? "first-letter:text-white/60" : "first-letter:text-[#0F172A]"}`}>
                 {editorialBody}
               </p>
 
-              {/* 3 KPIs horizontal */}
+              {/* 3 KPIs horizontal — XXL */}
               <div
-                className={`grid grid-cols-3 gap-3 mb-8 pb-8 border-b ${borderColor}`}
+                className={`grid grid-cols-3 gap-4 mb-10 pb-10 border-b ${borderColor}`}
               >
                 {kpis.map((kpi, j) => (
-                  <div key={j} className="flex flex-col gap-1">
+                  <div key={j} className="flex flex-col gap-1.5">
                     <span
-                      className="text-2xl lg:text-[1.9rem] font-black tracking-tight leading-none tabular-nums"
+                      className="text-3xl lg:text-[2.4rem] font-black tracking-tight leading-none tabular-nums"
                       style={{ color: accentColor }}
                     >
                       {kpi.value}
@@ -251,20 +255,27 @@ function CaseSection({
                 ))}
               </div>
 
-              {/* Client quote */}
+              {/* Client pull quote — XXL editorial */}
               <blockquote
-                className="mb-8 pl-4 border-l-[3px]"
-                style={{ borderLeftColor: accentColor + "55" }}
+                className="mb-10 pl-5 border-l-[4px] relative"
+                style={{ borderLeftColor: accentColor + "65" }}
               >
+                <span
+                  className="absolute -top-4 -left-1 font-serif leading-none select-none pointer-events-none"
+                  style={{ fontSize: "4rem", color: accentColor + "20" }}
+                  aria-hidden="true"
+                >
+                  &ldquo;
+                </span>
                 <p
-                  className={`italic text-base lg:text-[1.05rem] leading-relaxed mb-3 ${
+                  className={`italic text-lg lg:text-xl leading-[1.6] mb-4 font-medium ${
                     isDark ? "text-gray-200" : "text-gray-700"
                   }`}
                 >
-                  &ldquo;{c.quote}&rdquo;
+                  {c.quote}
                 </p>
                 <footer
-                  className={`text-xs font-semibold not-italic ${
+                  className={`text-sm font-semibold not-italic ${
                     isDark ? "text-gray-400" : "text-gray-500"
                   }`}
                 >
@@ -792,8 +803,212 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
+          S3c — CAS PHARE TF1 — FEATURED STORY PLEINE LARGEUR
+          Fond sombre cinéma #0F172A, photo full-bleed à droite (45%)
+         ════════════════════════════════════════════════════════════════ */}
+      {(() => {
+        const tf1 = t.raw("featuredTf1") as {
+          eyebrow: string; badge: string; title: string; subtitle: string;
+          body: string; photo: string; photoAlt: string;
+          metrics: KPIItem[]; quote: string; quoteName: string;
+          quoteRole: string; quoteSector: string;
+          cta: string; ctaHref: string; ctaSecondary: string; scrollTarget: string;
+        };
+        return (
+          <section
+            id="cas-tf1-media"
+            className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
+            aria-labelledby="tf1-featured-title"
+          >
+            {/* Ambient glow */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse 80% 60% at 15% 20%, rgba(245,158,11,0.14) 0%, transparent 55%)",
+              }}
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse 60% 50% at 85% 80%, rgba(14,165,233,0.10) 0%, transparent 50%)",
+              }}
+            />
+
+            {/* Ghost watermark TF1 */}
+            <div
+              className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
+              style={{
+                fontSize: "clamp(12rem, 30vw, 26rem)",
+                color: "rgba(255,255,255,0.03)",
+                right: "2rem",
+                top: "50%",
+                transform: "translateY(-50%)",
+              }}
+              aria-hidden="true"
+            >
+              TF1
+            </div>
+
+            {/* ── Left content column (55%) ── */}
+            <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-28">
+              <FadeIn>
+                {/* Badge */}
+                <div className="flex items-center gap-3 mb-8">
+                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#F59E0B]/30 bg-[#F59E0B]/10 text-[11px] font-bold tracking-[0.12em] text-[#F59E0B] uppercase">
+                    <MonitorPlay className="h-3.5 w-3.5" aria-hidden="true" />
+                    {tf1.badge}
+                  </span>
+                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] font-semibold tracking-[0.1em] text-gray-500 uppercase">
+                    <span
+                      className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"
+                      style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
+                    />
+                    {tf1.eyebrow}
+                  </span>
+                </div>
+
+                {/* Headline */}
+                <h2
+                  id="tf1-featured-title"
+                  className="text-white font-black tracking-tight mb-6"
+                  style={{ fontSize: "clamp(2rem, 5vw, 4.2rem)", lineHeight: 1.04 }}
+                >
+                  {tf1.title}
+                </h2>
+
+                {/* Subtitle */}
+                <p className="text-gray-400 text-sm font-semibold tracking-wide uppercase mb-6">
+                  {tf1.subtitle}
+                </p>
+
+                {/* Body — editorial prose */}
+                <p className="text-gray-300 text-base lg:text-[1.08rem] leading-[1.78] max-w-xl mb-10 first-letter:text-[2.8em] first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:leading-[0.8] first-letter:text-white/70">
+                  {tf1.body}
+                </p>
+
+                {/* 4 KPIs — grid */}
+                <div className="grid grid-cols-2 gap-x-8 gap-y-5 mb-10 pb-10 border-b border-white/10">
+                  {tf1.metrics.map((kpi: KPIItem, j: number) => (
+                    <div key={j} className="flex flex-col gap-1">
+                      <span className="text-3xl lg:text-4xl font-black tracking-tight leading-none tabular-nums text-[#F59E0B]">
+                        {kpi.value}
+                      </span>
+                      <span className="text-[12px] font-semibold text-white leading-tight mt-1">
+                        {kpi.label}
+                      </span>
+                      <span className="text-[10px] text-gray-500 leading-snug">
+                        {kpi.detail}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Pull quote */}
+                <blockquote className="mb-10 pl-5 border-l-[4px] border-[#F59E0B]/40 relative">
+                  <span
+                    className="absolute -top-4 -left-1 font-serif leading-none select-none pointer-events-none"
+                    style={{ fontSize: "3.5rem", color: "rgba(245,158,11,0.15)" }}
+                    aria-hidden="true"
+                  >
+                    &ldquo;
+                  </span>
+                  <p className="italic text-lg lg:text-xl leading-[1.6] mb-3 font-medium text-gray-200">
+                    {tf1.quote}
+                  </p>
+                  <footer className="text-sm font-semibold not-italic text-gray-400">
+                    — {tf1.quoteName}, {tf1.quoteRole},{" "}
+                    <span className="italic font-normal">{tf1.quoteSector}</span>
+                  </footer>
+                </blockquote>
+
+                {/* CTAs */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link
+                    href={tf1.ctaHref}
+                    className="inline-flex items-center justify-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0F172A] font-bold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#F59E0B]/25 hover:-translate-y-0.5 text-sm"
+                  >
+                    {tf1.cta}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                  <a
+                    href={tf1.scrollTarget}
+                    className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
+                  >
+                    {tf1.ctaSecondary}
+                    <ArrowDown className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                </div>
+              </FadeIn>
+            </div>
+
+            {/* ── Right photo column (45%) ── */}
+            <div className="relative w-full lg:w-[45%] min-h-[52vh] lg:min-h-0 overflow-hidden flex-shrink-0">
+              <Image
+                src={tf1.photo}
+                alt={tf1.photoAlt}
+                fill
+                loading="lazy"
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 45vw"
+              />
+              {/* Left blend gradient */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/80 via-[#0F172A]/20 to-transparent" />
+              {/* Bottom fade */}
+              <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F172A]/50 to-transparent" />
+
+              {/* Floating KPI card — 65k overlay */}
+              <div className="absolute bottom-8 right-5 sm:right-8 max-w-[240px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-gray-100 hidden sm:block">
+                <Tv className="h-6 w-6 text-[#F59E0B] mb-3" aria-hidden="true" />
+                <p className="text-2xl font-black text-[#0F172A] tabular-nums leading-none mb-1">
+                  {tf1.metrics[0]?.value}{" "}
+                  <span className="text-xs font-semibold text-gray-500">{tf1.metrics[0]?.detail?.split("·")[0]?.trim()}</span>
+                </p>
+                <p className="text-[11px] text-gray-600 leading-snug font-medium">
+                  {tf1.metrics[0]?.label}
+                </p>
+              </div>
+            </div>
+          </section>
+        );
+      })()}
+
+      {/* ════════════════════════════════════════════════════════════════
           S4 → S11 — 8 CAS SECTORIELS EN SECTIONS PLEINE LARGEUR ALTERNÉES
          ════════════════════════════════════════════════════════════════ */}
+
+      {/* Sticky side nav — desktop only */}
+      <div className="hidden xl:block fixed right-4 top-1/2 -translate-y-1/2 z-40">
+        <nav
+          className="flex flex-col gap-2 bg-white/90 backdrop-blur-md rounded-2xl p-2.5 shadow-lg ring-1 ring-gray-100"
+          aria-label="Navigation cas"
+        >
+          <a
+            href="#cas-tf1-media"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-[#F59E0B]/10 text-[10px] font-bold text-gray-500 hover:text-[#F59E0B] transition-colors uppercase tracking-wider"
+            title="TF1 Média"
+          >
+            <Tv className="h-3 w-3" aria-hidden="true" />
+            <span className="sr-only sm:not-sr-only">TF1</span>
+          </a>
+          {cases.map((c, i) => {
+            const NavIcon = CASE_ICONS[i] ?? Building2;
+            return (
+              <a
+                key={c.slug}
+                href={`#cas-${c.slug}`}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-[#10B981]/10 text-[10px] font-bold text-gray-500 hover:text-[#10B981] transition-colors uppercase tracking-wider"
+                title={c.sector}
+              >
+                <NavIcon className="h-3 w-3" aria-hidden="true" />
+                <span className="sr-only sm:not-sr-only">{String(i + 1).padStart(2, "0")}</span>
+              </a>
+            );
+          })}
+        </nav>
+      </div>
+
       {cases.map((c, i) => (
         <CaseSection
           key={c.slug}
