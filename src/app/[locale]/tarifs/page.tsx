@@ -1,8 +1,18 @@
 "use client";
 
 /**
- * /tarifs — Grille tarifaire Waki Box + services ITAD
- * 3 plans (Essentiel, Confort, Premium) + programme pilote + add-ons + renvoi ITAD + FAQ
+ * /tarifs — Refonte premium : tarifs chiffrés Waki Box + services ITAD sur devis
+ *
+ * Architecture :
+ *   S1  Hero split sombre
+ *   S2  Plans Waki Box (Essentiel · Confort · Premium) — prose asymétrique
+ *   S3  Programme pilote — encart #10B981
+ *   S4  Tableau comparatif Waki Box — 10 critères
+ *   S5  Modules complémentaires Waki Box — liste éditoriale
+ *   ──  Séparation visuelle nette
+ *   S6  Services ITAD — sur devis, sans prix
+ *   S7  FAQ tarifaire — 8 questions
+ *   S8  CTA double final
  */
 
 import { useLocale } from "next-intl";
@@ -24,6 +34,11 @@ import {
   FileCheck,
   Leaf,
   Award,
+  X,
+  Search,
+  RefreshCcw,
+  Recycle,
+  Lock,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -81,6 +96,19 @@ function GhostNumber({
   );
 }
 
+/* ── Check / Cross cell ──────────────────────────────────────────────────── */
+function CellCheck({ ok, label }: { ok: boolean | string; label?: string }) {
+  if (typeof ok === "string")
+    return (
+      <span className="text-sm font-semibold text-[#0F172A]">{ok}</span>
+    );
+  return ok ? (
+    <CheckCircle2 className="h-5 w-5 text-[#10B981]" aria-hidden="true" />
+  ) : (
+    <X className="h-5 w-5 text-gray-300" aria-hidden="true" />
+  );
+}
+
 export default function TarifsPage() {
   const locale = useLocale();
   const isEn = locale === "en";
@@ -88,14 +116,17 @@ export default function TarifsPage() {
     return isEn ? en : fr;
   }
 
-  /* ── Data ─────────────────────────────────────────────────────────────── */
+  /* ── Plans data ────────────────────────────────────────────────────────── */
   const plans = [
     {
       slug: "waki-box-essentiel",
       num: "01",
       name: "Essentiel",
       icon: Rocket,
-      audience: tx("TPE / PME — 10 à 50 collaborateurs", "SMB — 10 to 50 employees"),
+      audience: tx(
+        "TPE / PME — 10 à 50 collaborateurs",
+        "SMB — 10 to 50 employees"
+      ),
       price: "39",
       setup: "150",
       engagement: tx("12 mois", "12 months"),
@@ -125,7 +156,10 @@ export default function TarifsPage() {
       name: "Confort",
       icon: Users,
       popular: true,
-      audience: tx("PME / ETI — 50 à 300 collaborateurs", "Mid-market — 50 to 300 employees"),
+      audience: tx(
+        "PME / ETI — 50 à 300 collaborateurs",
+        "Mid-market — 50 to 300 employees"
+      ),
       price: "79",
       setup: "290",
       engagement: tx("12 mois", "12 months"),
@@ -156,7 +190,10 @@ export default function TarifsPage() {
       num: "03",
       name: "Premium",
       icon: Building2,
-      audience: tx("ETI / grands comptes — 300+ collaborateurs", "Enterprise — 300+ employees"),
+      audience: tx(
+        "ETI / grands comptes — 300+ collaborateurs",
+        "Enterprise — 300+ employees"
+      ),
       price: tx("dès 149", "from 149"),
       setup: tx("490 / borne", "490 / kiosk"),
       engagement: tx("24 mois", "24 months"),
@@ -184,16 +221,156 @@ export default function TarifsPage() {
     },
   ];
 
+  /* ── Comparison table ──────────────────────────────────────────────────── */
+  const comparisonRows: {
+    label: string;
+    essentiel: boolean | string;
+    confort: boolean | string;
+    premium: boolean | string;
+  }[] = tx(
+    [
+      { label: "Bornes WakiBox incluses", essentiel: "1", confort: "Jusqu'à 3", premium: "Illimitées" },
+      { label: "Collectes planifiées / mois", essentiel: "1", confort: "2", premium: "Illimité" },
+      { label: "Utilisateurs plateforme", essentiel: "1", confort: "5", premium: "Illimité" },
+      { label: "Télémétrie LoRaWAN temps réel", essentiel: false, confort: true, premium: true },
+      { label: "Alertes de remplissage", essentiel: false, confort: true, premium: true },
+      { label: "Rapports CSRD ESRS E5", essentiel: false, confort: true, premium: true },
+      { label: "Intégration ERP / SIRH par API", essentiel: false, confort: false, premium: true },
+      { label: "Responsable de compte dédié", essentiel: false, confort: false, premium: true },
+      { label: "SLA collecte 48 h garanti", essentiel: false, confort: false, premium: true },
+      { label: "Support", essentiel: "Courriel J+2", confort: "Prioritaire J+1", premium: "Dédié SLA 4 h" },
+    ],
+    [
+      { label: "WakiBox kiosks included", essentiel: "1", confort: "Up to 3", premium: "Unlimited" },
+      { label: "Scheduled collections / month", essentiel: "1", confort: "2", premium: "Unlimited" },
+      { label: "Platform users", essentiel: "1", confort: "5", premium: "Unlimited" },
+      { label: "Real-time LoRaWAN telemetry", essentiel: false, confort: true, premium: true },
+      { label: "Fill-level alerts", essentiel: false, confort: true, premium: true },
+      { label: "CSRD ESRS E5 reports", essentiel: false, confort: true, premium: true },
+      { label: "ERP / HRIS integration via API", essentiel: false, confort: false, premium: true },
+      { label: "Dedicated account manager", essentiel: false, confort: false, premium: true },
+      { label: "48h collection SLA guaranteed", essentiel: false, confort: false, premium: true },
+      { label: "Support", essentiel: "Email D+2", confort: "Priority D+1", premium: "Dedicated 4h SLA" },
+    ]
+  );
+
+  /* ── Add-ons ───────────────────────────────────────────────────────────── */
   const addons = [
-    { slug: "box-supplementaire", name: tx("Box supplémentaire", "Additional box"), price: "29 € HT/mois" },
-    { slug: "collecte-urgence", name: tx("Collecte d'urgence", "Emergency collection"), price: "90 € HT" },
-    { slug: "animation-recyclage", name: tx("Animation Semaine du recyclage", "Recycling Week facilitation"), price: tx("350 € HT/jour", "€350 ex-VAT/day") },
-    { slug: "rapport-csrd", name: tx("Rapport CSRD dédié", "Dedicated CSRD report"), price: tx("490 € HT/an", "€490 ex-VAT/year") },
-    { slug: "kit-comm", name: tx("Kit communication personnalisé", "Custom communications kit"), price: "290 € HT" },
-    { slug: "audit-deee", name: tx("Audit DEEE complet", "Full WEEE audit"), price: tx("1 500 € HT/jour", "€1,500 ex-VAT/day") },
-    { slug: "formation", name: tx("Formation équipes", "Team training"), price: tx("450 € HT / 2 h", "€450 ex-VAT / 2h") },
+    {
+      slug: "box-supplementaire",
+      name: tx("Box supplémentaire", "Additional box"),
+      desc: tx(
+        "Étendez votre maillage avec une borne supplémentaire, installée et connectée à votre plateforme existante.",
+        "Expand your coverage with an additional kiosk, installed and connected to your existing platform."
+      ),
+      price: tx("29 € HT/mois", "€29 ex-VAT/month"),
+    },
+    {
+      slug: "collecte-urgence",
+      name: tx("Collecte d'urgence", "Emergency collection"),
+      desc: tx(
+        "Intervention sous 24 heures ouvrées pour un enlèvement non planifié — idéal en cas de déménagement ou de fermeture de site.",
+        "Intervention within 24 business hours for an unplanned pickup — ideal for relocations or site closures."
+      ),
+      price: tx("90 € HT", "€90 ex-VAT"),
+    },
+    {
+      slug: "animation-semaine-recyclage",
+      name: tx("Animation Semaine du recyclage", "Recycling Week facilitation"),
+      desc: tx(
+        "Un animateur certifié sur site pour sensibiliser vos équipes avec ateliers pratiques et supports personnalisés.",
+        "A certified facilitator on-site to raise awareness among your teams with hands-on workshops and custom materials."
+      ),
+      price: tx("350 € HT/jour", "€350 ex-VAT/day"),
+    },
+    {
+      slug: "rapport-csrd-dedie",
+      name: tx("Rapport CSRD dédié", "Dedicated CSRD report"),
+      desc: tx(
+        "Un rapport annuel ESRS E5 clé en main, aligné avec les exigences de la CSRD, prêt à intégrer dans votre déclaration extra-financière.",
+        "A turnkey annual ESRS E5 report, aligned with CSRD requirements, ready to include in your non-financial statement."
+      ),
+      price: tx("490 € HT/an", "€490 ex-VAT/year"),
+    },
+    {
+      slug: "kit-comm-customise",
+      name: tx("Kit communication personnalisé", "Custom communications kit"),
+      desc: tx(
+        "Affiches, stickers et signalétique aux couleurs de votre entreprise pour maximiser l'adoption de la borne.",
+        "Posters, stickers and signage in your company colours to maximise kiosk adoption."
+      ),
+      price: tx("290 € HT", "€290 ex-VAT"),
+    },
+    {
+      slug: "audit-deee",
+      name: tx("Audit DEEE complet", "Full WEEE audit"),
+      desc: tx(
+        "Cartographie exhaustive de vos flux de déchets électroniques, identification des gisements et recommandations d'optimisation.",
+        "Comprehensive mapping of your e-waste flows, identification of deposits and optimisation recommendations."
+      ),
+      price: tx("1 500 € HT/jour", "€1,500 ex-VAT/day"),
+    },
+    {
+      slug: "formation-equipes",
+      name: tx("Formation équipes", "Team training"),
+      desc: tx(
+        "Session de deux heures pour vos référents internes : bonnes pratiques de tri, réglementation DEEE, utilisation optimale de la plateforme.",
+        "Two-hour session for your internal champions: sorting best practices, WEEE regulations, optimal platform usage."
+      ),
+      price: tx("450 € HT / 2 h", "€450 ex-VAT / 2h"),
+    },
   ];
 
+  /* ── ITAD services ─────────────────────────────────────────────────────── */
+  const itadServices = [
+    {
+      slug: "audit-inventaire",
+      icon: Search,
+      name: tx("Audit et inventaire de parc", "Fleet audit and inventory"),
+      desc: tx(
+        "Cartographie complète de vos actifs informatiques — serveurs, postes, périphériques — avec évaluation de l'état, de la valeur résiduelle et des risques de non-conformité.",
+        "Complete mapping of your IT assets — servers, workstations, peripherals — with condition assessment, residual value evaluation and non-compliance risk analysis."
+      ),
+    },
+    {
+      slug: "effacement-securise",
+      icon: Lock,
+      name: tx("Effacement sécurisé certifié", "Certified secure erasure"),
+      desc: tx(
+        "Destruction logique des données conforme NIST 800-88 avec certificat unitaire par support. Traçabilité garantie, conformité RGPD et NIS 2.",
+        "Logical data destruction compliant with NIST 800-88 with per-media certificate. Guaranteed traceability, GDPR and NIS 2 compliance."
+      ),
+    },
+    {
+      slug: "reconditionnement-valorisation",
+      icon: RefreshCcw,
+      name: tx("Reconditionnement et valorisation", "Refurbishment and value recovery"),
+      desc: tx(
+        "Remise en état, tests fonctionnels et revente sur les marchés secondaires. Maximisation de la valeur résiduelle et allongement de la durée de vie des équipements.",
+        "Restoration, functional testing and resale on secondary markets. Residual value maximisation and equipment lifespan extension."
+      ),
+    },
+    {
+      slug: "recyclage-deee",
+      icon: Recycle,
+      name: tx("Recyclage DEEE réglementaire", "Regulatory WEEE recycling"),
+      desc: tx(
+        "Collecte, tri et recyclage conforme à la directive européenne DEEE. Bordereaux de suivi des déchets et certificats de destruction fournis.",
+        "Collection, sorting and recycling compliant with the European WEEE directive. Waste tracking slips and destruction certificates provided."
+      ),
+    },
+    {
+      slug: "cybersecurite",
+      icon: ShieldCheck,
+      name: tx("Cybersécurité ITAD", "ITAD cybersecurity"),
+      desc: tx(
+        "Audit de vos processus de décommissionnement, identification des failles de sécurité et mise en place de protocoles conformes aux standards ISO 27001.",
+        "Audit of your decommissioning processes, identification of security gaps and implementation of ISO 27001-compliant protocols."
+      ),
+    },
+  ];
+
+  /* ── FAQ ────────────────────────────────────────────────────────────────── */
   const faqItems = tx(
     [
       { q: "Les prix affichés sont-ils HT ou TTC ?", a: "Tous les prix sont exprimés hors taxes (HT). La TVA applicable en France métropolitaine est de 20 %. Les factures mentionnent le montant HT, la TVA et le total TTC." },
@@ -202,6 +379,8 @@ export default function TarifsPage() {
       { q: "Quels modes de paiement acceptez-vous ?", a: "Prélèvement SEPA (recommandé), carte bancaire et virement. Le prélèvement SEPA est mis en place lors de la signature du contrat pour un règlement automatique mensuel." },
       { q: "Existe-t-il des remises pour les grands volumes ?", a: "Oui. Le plan Premium intègre des conditions tarifaires dégressives à partir de dix bornes. Contactez-nous pour un devis personnalisé incluant la volumétrie exacte." },
       { q: "Le programme pilote engage-t-il au-delà de 6 mois ?", a: "Non. À l'issue des 6 mois au tarif pilote, vous basculez sur le plan Essentiel ou Confort aux conditions standard. Aucun engagement supplémentaire n'est imposé automatiquement." },
+      { q: "Pourquoi les services ITAD sont-ils sur devis ?", a: "Chaque mission ITAD dépend du volume d'équipements, du type de matériel, du niveau de sécurité exigé et des contraintes réglementaires spécifiques. Un tarif forfaitaire ne refléterait pas la réalité de votre besoin. Nous préférons vous remettre un devis ajusté sous 48 heures." },
+      { q: "Puis-je combiner Waki Box et services ITAD ?", a: "Absolument. De nombreux clients associent un plan Waki Box pour la collecte au quotidien avec des missions ITAD ponctuelles (audit de parc, effacement certifié, reconditionnement). Les deux s'articulent dans une seule relation contractuelle." },
     ],
     [
       { q: "Are prices shown ex-VAT or inc-VAT?", a: "All prices are shown excluding VAT (ex-VAT). The applicable VAT rate in mainland France is 20%. Invoices detail the ex-VAT amount, VAT and total inc-VAT." },
@@ -210,6 +389,8 @@ export default function TarifsPage() {
       { q: "What payment methods do you accept?", a: "SEPA direct debit (recommended), credit card and wire transfer. SEPA direct debit is set up at contract signing for automatic monthly billing." },
       { q: "Are volume discounts available?", a: "Yes. The Premium plan includes tiered pricing from ten kiosks upward. Contact us for a custom quote with your exact volume." },
       { q: "Does the pilot programme commit me beyond 6 months?", a: "No. At the end of the 6-month pilot rate, you switch to the standard Essentiel or Confort plan. No additional commitment is imposed automatically." },
+      { q: "Why are ITAD services quoted individually?", a: "Each ITAD engagement depends on equipment volume, hardware type, required security level and specific regulatory constraints. A flat rate wouldn't reflect the reality of your needs. We prefer to deliver a tailored quote within 48 hours." },
+      { q: "Can I combine Waki Box and ITAD services?", a: "Absolutely. Many clients pair a Waki Box plan for day-to-day collection with one-off ITAD engagements (fleet audit, certified erasure, refurbishment). Both fit within a single contractual relationship." },
     ]
   );
 
@@ -250,7 +431,7 @@ export default function TarifsPage() {
             <div className="flex items-center gap-3 mb-10">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
-                {tx("Tarification WakiBox", "WakiBox pricing")}
+                {tx("Tarifs Waki Box", "Waki Box pricing")}
               </span>
             </div>
 
@@ -260,23 +441,23 @@ export default function TarifsPage() {
               style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
             >
               {tx(
-                <>Tarifs transparents.<br /><span className="text-[#10B981]">Engagement clair.</span></>,
-                <>Transparent pricing.<br /><span className="text-[#10B981]">Clear commitment.</span></>
+                <>Tarifs transparents,<br /><span className="text-[#10B981]">sans engagement caché.</span></>,
+                <>Transparent pricing,<br /><span className="text-[#10B981]">no hidden commitment.</span></>
               )}
             </h1>
 
             <p className="text-gray-300 text-base lg:text-[1.12rem] leading-[1.72] max-w-xl mb-10">
               {tx(
-                "Trois plans adaptés à votre taille, un programme pilote pour les premiers signataires, et des options à la carte. Tous les prix sont en euros HT.",
-                "Three plans tailored to your size, a pilot programme for early signers, and à la carte options. All prices in euros ex-VAT."
+                "Trois plans adaptés à votre taille, un programme pilote pour démarrer en douceur et sept modules complémentaires à la carte. Services ITAD chiffrés sur devis.",
+                "Three plans tailored to your size, a pilot programme to get started smoothly and seven à la carte add-on modules. ITAD services quoted individually."
               )}
             </p>
 
             <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10 pb-10 border-b border-white/8">
               {[
-                { v: tx("dès 39 €", "from €39"), l: tx("HT / mois", "ex-VAT / month"), color: "#10B981" },
-                { v: tx("3 plans", "3 plans"), l: tx("Essentiel · Confort · Premium", "Essentiel · Confort · Premium"), color: "#0EA5E9" },
-                { v: tx("0 € mise en service", "€0 setup"), l: tx("programme pilote", "pilot programme"), color: "#F59E0B" },
+                { v: "3", l: tx("plans Waki Box", "Waki Box plans"), color: "#10B981" },
+                { v: "1", l: tx("programme pilote", "pilot programme"), color: "#0EA5E9" },
+                { v: "7", l: tx("modules complémentaires", "add-on modules"), color: "#F59E0B" },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col">
                   <span
@@ -291,18 +472,18 @@ export default function TarifsPage() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link
-                href="/reserver?offre=waki-box-confort"
-                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
-              >
-                {tx("Réserver une démonstration", "Book a demo")}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
               <a
                 href="#plans"
+                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
+              >
+                {tx("Voir les tarifs", "View pricing")}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a
+                href="#itad"
                 className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
               >
-                {tx("Voir les plans", "See plans")}
+                {tx("Services ITAD — sur devis", "ITAD services — custom quote")}
               </a>
             </div>
           </FadeIn>
@@ -343,7 +524,7 @@ export default function TarifsPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S2 — 3 PLANS — composition éditoriale verticale avec ghost numbers
+          S2 — 3 PLANS WAKI BOX — composition éditoriale asymétrique
          ════════════════════════════════════════════════════════════════ */}
       <div id="plans">
         {plans.map((plan, i) => {
@@ -362,7 +543,7 @@ export default function TarifsPage() {
               <GhostNumber n={plan.num} isDark={isDark} align={i % 2 === 0 ? "right" : "left"} />
 
               <div className="container mx-auto px-4 relative z-10">
-                <div className="max-w-4xl">
+                <div className={`max-w-4xl ${i % 2 !== 0 ? "ml-auto" : ""}`}>
                   <FadeIn>
                     <div className="flex items-center gap-4 mb-6">
                       <span
@@ -376,10 +557,10 @@ export default function TarifsPage() {
                         style={{ backgroundColor: plan.accent }}
                         aria-hidden="true"
                       />
-                      {("popular" in plan && plan.popular) && (
+                      {"popular" in plan && plan.popular && (
                         <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#10B981] text-white text-[11px] font-semibold uppercase tracking-wider">
                           <Sparkles className="h-3 w-3" aria-hidden="true" />
-                          {tx("Le plus populaire", "Most popular")}
+                          {tx("Le plus choisi", "Most chosen")}
                         </span>
                       )}
                     </div>
@@ -423,7 +604,7 @@ export default function TarifsPage() {
                       </div>
                       <div className="flex flex-col">
                         <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">
-                          {tx("Mise en service", "Setup")}
+                          {tx("Mise en service", "Installation")}
                         </span>
                         <span className={`text-xl font-bold ${textColor}`}>
                           {plan.setup} <span className="text-sm font-medium opacity-70">€ HT</span>
@@ -459,7 +640,7 @@ export default function TarifsPage() {
                       }`}
                       style={isDark ? {} : { backgroundColor: plan.accent, boxShadow: `0 4px 16px ${plan.accent}30` }}
                     >
-                      {tx("Réserver", "Book now")}
+                      {tx("Réserver ce plan", "Book this plan")}
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </Link>
                   </FadeIn>
@@ -499,7 +680,7 @@ export default function TarifsPage() {
               >
                 {tx(
                   "19 € HT/mois pendant 6 mois. Mise en service offerte.",
-                  "€19 ex-VAT/month for 6 months. Setup free."
+                  "€19 ex-VAT/month for 6 months. Installation included."
                 )}
               </h2>
 
@@ -519,7 +700,7 @@ export default function TarifsPage() {
                     "Aucun engagement supplémentaire",
                   ],
                   [
-                    "Free setup (worth €150)",
+                    "Free installation (worth €150)",
                     "€19 ex-VAT/month instead of €39 for 6 months",
                     "Automatic switch to Essentiel or Confort plan afterwards",
                     "No additional commitment",
@@ -536,7 +717,7 @@ export default function TarifsPage() {
                 href="/reserver?offre=waki-box-pilote"
                 className="inline-flex items-center justify-center gap-2 bg-[#0F172A] hover:bg-[#022C22] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
               >
-                {tx("Candidater au pilote", "Apply for the pilot")}
+                {tx("Lancer un pilote", "Start a pilot")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
@@ -545,68 +726,209 @@ export default function TarifsPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S4 — ADD-ONS — fond blanc, ghost number 05
+          S4 — TABLEAU COMPARATIF WAKI BOX — fond #F8FAFC
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-white py-20 lg:py-28">
-        <GhostNumber n="05" isDark={false} align="right" />
+      <section className="relative w-full overflow-hidden bg-[#F8FAFC] py-20 lg:py-28">
+        <GhostNumber n="05" isDark={false} align="left" />
 
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-14">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
-                {tx("Options à la carte", "À la carte options")}
+                {tx("Comparatif détaillé", "Detailed comparison")}
               </p>
               <h2
                 className="text-[#0F172A] font-bold tracking-tight mb-6"
                 style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
               >
-                {tx("Composez votre offre.", "Build your offer.")}
+                {tx("Quel plan pour votre organisation ?", "Which plan for your organisation?")}
               </h2>
               <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
                 {tx(
-                  "Chaque option se greffe sur n'importe quel plan. Facturation unitaire, sans engagement additionnel.",
-                  "Each option plugs into any plan. Unit billing, no additional commitment."
+                  "Dix critères essentiels pour comparer en un coup d'œil les trois plans Waki Box.",
+                  "Ten key criteria to compare the three Waki Box plans at a glance."
                 )}
               </p>
             </div>
           </FadeIn>
 
-          <div className="max-w-4xl">
-            <div className="bg-[#F8FAFC] rounded-2xl border border-gray-100 overflow-hidden">
-              {addons.map((addon, i) => (
-                <div
-                  key={addon.slug}
-                  className={`flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 px-6 lg:px-8 py-5 ${
-                    i < addons.length - 1 ? "border-b border-gray-200" : ""
-                  }`}
-                >
-                  <div className="flex-1">
-                    <p className="font-semibold text-[#0F172A] text-[15px]">{addon.name}</p>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <span className="text-lg font-bold text-[#047857] tabular-nums whitespace-nowrap">
-                      {addon.price}
-                    </span>
-                    <Link
-                      href={`/reserver?offre=waki-box-addon-${addon.slug}`}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#047857]/10 text-[#047857] text-xs font-semibold hover:bg-[#047857]/20 transition-colors"
+          <FadeIn>
+            <div className="max-w-5xl overflow-x-auto">
+              <table className="w-full min-w-[640px]">
+                <thead>
+                  <tr className="border-b-2 border-gray-200">
+                    <th className="text-left py-4 pr-4 text-sm font-semibold text-gray-500 w-[40%]">
+                      {tx("Critère", "Criteria")}
+                    </th>
+                    <th className="text-center py-4 px-3 w-[20%]">
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#0EA5E9]">Essentiel</span>
+                      <span className="block text-lg font-black text-[#0F172A] mt-0.5">39 €</span>
+                    </th>
+                    <th className="text-center py-4 px-3 w-[20%] relative">
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#10B981] text-white text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">
+                        <Sparkles className="h-2.5 w-2.5" aria-hidden="true" />
+                        {tx("Le plus choisi", "Most chosen")}
+                      </span>
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#10B981]">Confort</span>
+                      <span className="block text-lg font-black text-[#0F172A] mt-0.5">79 €</span>
+                    </th>
+                    <th className="text-center py-4 px-3 w-[20%]">
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#F59E0B]">Premium</span>
+                      <span className="block text-lg font-black text-[#0F172A] mt-0.5">{tx("dès 149 €", "from €149")}</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonRows.map((row, idx) => (
+                    <tr
+                      key={idx}
+                      className={`border-b border-gray-200/80 ${idx % 2 === 0 ? "bg-white/50" : ""}`}
                     >
-                      {tx("Réserver", "Book")}
-                      <ArrowRight className="h-3 w-3" aria-hidden="true" />
-                    </Link>
+                      <td className="py-4 pr-4 text-sm font-medium text-[#0F172A]">{row.label}</td>
+                      <td className="py-4 px-3 text-center">
+                        <div className="flex justify-center">
+                          <CellCheck ok={row.essentiel} />
+                        </div>
+                      </td>
+                      <td className="py-4 px-3 text-center bg-[#10B981]/[0.04]">
+                        <div className="flex justify-center">
+                          <CellCheck ok={row.confort} />
+                        </div>
+                      </td>
+                      <td className="py-4 px-3 text-center">
+                        <div className="flex justify-center">
+                          <CellCheck ok={row.premium} />
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td className="pt-6" />
+                    <td className="pt-6 px-3 text-center">
+                      <Link
+                        href="/reserver?offre=waki-box-essentiel"
+                        className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-semibold text-white bg-[#0EA5E9] hover:bg-[#0284C7] transition-colors"
+                      >
+                        {tx("Réserver", "Book")}
+                        <ArrowRight className="h-3 w-3" aria-hidden="true" />
+                      </Link>
+                    </td>
+                    <td className="pt-6 px-3 text-center">
+                      <Link
+                        href="/reserver?offre=waki-box-confort"
+                        className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-semibold text-white bg-[#10B981] hover:bg-[#0E9F6E] transition-colors"
+                      >
+                        {tx("Réserver", "Book")}
+                        <ArrowRight className="h-3 w-3" aria-hidden="true" />
+                      </Link>
+                    </td>
+                    <td className="pt-6 px-3 text-center">
+                      <Link
+                        href="/reserver?offre=waki-box-premium"
+                        className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-semibold text-white bg-[#F59E0B] hover:bg-[#D97706] transition-colors"
+                      >
+                        {tx("Réserver", "Book")}
+                        <ArrowRight className="h-3 w-3" aria-hidden="true" />
+                      </Link>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════════
+          S5 — MODULES COMPLÉMENTAIRES WAKI BOX — fond blanc
+         ════════════════════════════════════════════════════════════════ */}
+      <section className="relative w-full overflow-hidden bg-white py-20 lg:py-28">
+        <GhostNumber n="06" isDark={false} align="right" />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <FadeIn>
+            <div className="max-w-3xl mb-14">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
+                {tx("Modules complémentaires", "Add-on modules")}
+              </p>
+              <h2
+                className="text-[#0F172A] font-bold tracking-tight mb-6"
+                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+              >
+                {tx("Composez votre offre sur mesure.", "Build your custom offer.")}
+              </h2>
+              <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+                {tx(
+                  "Chaque module se greffe sur n'importe quel plan Waki Box. Facturation unitaire, sans engagement additionnel.",
+                  "Each module plugs into any Waki Box plan. Unit billing, no additional commitment."
+                )}
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="max-w-4xl space-y-4">
+            {addons.map((addon, i) => (
+              <FadeIn key={addon.slug}>
+                <div className="bg-[#F8FAFC] rounded-2xl border border-gray-100 p-6 lg:px-8 hover:border-[#10B981]/30 transition-colors">
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="text-xs font-bold text-gray-400 tabular-nums">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <h3 className="font-semibold text-[#0F172A] text-[15px]">{addon.name}</h3>
+                      </div>
+                      <p className="text-sm text-gray-600 leading-relaxed pl-8">
+                        {addon.desc}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-4 pl-8 lg:pl-0 flex-shrink-0">
+                      <span className="text-lg font-bold text-[#047857] tabular-nums whitespace-nowrap">
+                        {addon.price}
+                      </span>
+                      <Link
+                        href={`/reserver?offre=${addon.slug}`}
+                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#047857]/10 text-[#047857] text-xs font-semibold hover:bg-[#047857]/20 transition-colors whitespace-nowrap"
+                      >
+                        {tx("Réserver", "Book")}
+                        <ArrowRight className="h-3 w-3" aria-hidden="true" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S5 — SERVICES ITAD — fond #0F172A, renvoi vers /services
+          SÉPARATION VISUELLE — transition entre chiffré et devis
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#0F172A] py-20 lg:py-28">
-        <GhostNumber n="06" isDark={true} align="left" />
+      <section className="relative w-full bg-gradient-to-b from-white via-[#F1F5F9] to-[#0F172A] py-16 lg:py-20">
+        <div className="container mx-auto px-4 text-center">
+          <FadeIn>
+            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-white shadow-lg shadow-gray-200/50 border border-gray-100">
+              <div className="w-2 h-2 rounded-full bg-[#10B981]" />
+              <span className="text-sm font-semibold text-[#0F172A]">
+                {tx(
+                  "Ci-dessus : tarifs chiffrés Waki Box — Ci-dessous : services ITAD sur devis",
+                  "Above: Waki Box fixed pricing — Below: ITAD services quoted individually"
+                )}
+              </span>
+              <div className="w-2 h-2 rounded-full bg-[#F59E0B]" />
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════════
+          S6 — SERVICES ITAD — SUR DEVIS — fond #0F172A
+         ════════════════════════════════════════════════════════════════ */}
+      <section id="itad" className="relative w-full overflow-hidden bg-[#0F172A] py-20 lg:py-28">
+        <GhostNumber n="07" isDark={true} align="left" />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -617,11 +939,11 @@ export default function TarifsPage() {
 
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
-            <div className="max-w-3xl">
+            <div className="max-w-3xl mb-14">
               <div className="flex items-center gap-3 mb-6">
                 <ClipboardList className="h-5 w-5 text-[#6EE7B7]" aria-hidden="true" />
                 <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#6EE7B7]">
-                  {tx("Services ITAD", "ITAD services")}
+                  {tx("Services ITAD — sur devis", "ITAD services — custom quote")}
                 </span>
               </div>
 
@@ -630,43 +952,55 @@ export default function TarifsPage() {
                 style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
               >
                 {tx(
-                  "Et pour l'audit, l'effacement ou le reconditionnement ?",
-                  "What about audit, erasure or refurbishment?"
+                  "Audit, effacement, reconditionnement, recyclage.",
+                  "Audit, erasure, refurbishment, recycling."
                 )}
               </h2>
 
-              <p className="text-gray-300 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-8">
+              <p className="text-gray-300 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
                 {tx(
-                  "Nos services ITAD (audit de parc, effacement certifié NIST 800-88, reconditionnement, recyclage DEEE, cybersécurité) sont chiffrés sur devis selon le volume, le type de matériel et le niveau de sécurité requis. Un plan d'action détaillé vous est remis sous 48 heures.",
-                  "Our ITAD services (fleet audit, NIST 800-88 certified erasure, refurbishment, WEEE recycling, cybersecurity) are priced on a per-quote basis depending on volume, equipment type and required security level. A detailed action plan is delivered within 48 hours."
+                  "La tarification de nos services ITAD est adaptée au volume, à la complexité et aux contraintes réglementaires de chaque mission. Un devis détaillé vous est remis sous 48 heures.",
+                  "ITAD service pricing is tailored to the volume, complexity and regulatory constraints of each engagement. A detailed quote is delivered within 48 hours."
                 )}
               </p>
-
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/reserver?offre=audit-inventaire"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-[#0F172A] font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:bg-gray-100 hover:shadow-xl hover:-translate-y-0.5 text-sm"
-                >
-                  {tx("Demander un devis", "Request a quote")}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
-                >
-                  {tx("Voir tous les services ITAD", "View all ITAD services")}
-                </Link>
-              </div>
             </div>
           </FadeIn>
+
+          <div className="max-w-4xl space-y-5">
+            {itadServices.map((svc) => {
+              const SvcIcon = svc.icon;
+              return (
+                <FadeIn key={svc.slug}>
+                  <div className="bg-white/[0.06] hover:bg-white/[0.09] border border-white/10 hover:border-[#10B981]/30 rounded-2xl p-6 lg:px-8 transition-all duration-200">
+                    <div className="flex flex-col lg:flex-row lg:items-start gap-5">
+                      <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#10B981]/15 flex-shrink-0">
+                        <SvcIcon className="h-5 w-5 text-[#6EE7B7]" aria-hidden="true" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-white font-semibold text-[16px] mb-2">{svc.name}</h3>
+                        <p className="text-gray-400 text-sm leading-relaxed mb-4">{svc.desc}</p>
+                        <Link
+                          href={`/contact?offre=${svc.slug}`}
+                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white/10 hover:bg-white/15 text-white text-xs font-semibold transition-colors border border-white/15 hover:border-white/25"
+                        >
+                          {tx("Demander un devis", "Request a quote")}
+                          <ArrowRight className="h-3 w-3" aria-hidden="true" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </FadeIn>
+              );
+            })}
+          </div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S6 — FAQ TARIFAIRE — fond blanc
+          S7 — FAQ TARIFAIRE — fond blanc
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden bg-white py-20 lg:py-28">
-        <GhostNumber n="07" isDark={false} align="left" />
+        <GhostNumber n="08" isDark={false} align="left" />
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mx-auto">
@@ -694,7 +1028,7 @@ export default function TarifsPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S7 — CTA DOUBLE FINAL — fond #10B981
+          S8 — CTA DOUBLE FINAL — fond #10B981
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden bg-[#10B981]">
         <div
@@ -725,14 +1059,15 @@ export default function TarifsPage() {
                   href="/reserver?offre=waki-box-confort"
                   className="inline-flex items-center justify-center gap-2 bg-[#0F172A] hover:bg-[#022C22] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
                 >
-                  {tx("Réserver une démonstration", "Book a demo")}
+                  {tx("Réserver Waki Box", "Book Waki Box")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link
-                  href="/reserver?offre=waki-box-pilote"
+                  href="/contact?offre=audit-inventaire"
                   className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/40 hover:border-white/60 font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-sm"
                 >
-                  {tx("Candidater au pilote", "Apply for the pilot")}
+                  {tx("Demander un devis ITAD", "Request an ITAD quote")}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </div>
 
