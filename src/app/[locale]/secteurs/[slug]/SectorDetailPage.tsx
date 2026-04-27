@@ -209,15 +209,15 @@ export default function SectorDetailPage({
                 <div>
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-sm font-semibold text-white mb-3">
                     <Sparkles className="w-4 h-4" />
-                    {isFr ? "Référence client" : "Client reference"} — TF1
+                    {isFr ? "Référence client" : "Client reference"} : TF1
                   </div>
                   <p className="text-white text-lg leading-relaxed">
                     {content.tf1Reference}
                   </p>
                   <p className="text-white/80 text-sm mt-3 font-medium">
                     {isFr
-                      ? "Contrat annuel récurrent — 65 000 € · Parc IT et broadcast"
-                      : "Recurring annual contract — €65,000 · IT and broadcast fleet"}
+                      ? "Contrat annuel récurrent, parc IT et broadcast"
+                      : "Recurring annual contract, IT and broadcast fleet"}
                   </p>
                 </div>
               </div>
@@ -418,7 +418,7 @@ export default function SectorDetailPage({
                 {content.quote}
               </blockquote>
               <div className="mt-8 text-accent font-semibold">
-                — GreenTechCycle
+                GreenTechCycle
               </div>
             </FadeIn>
           </div>
@@ -510,6 +510,120 @@ export default function SectorDetailPage({
               </div>
             </div>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════
+          BANDEAU TARIFAIRE
+      ════════════════════════════════════════════ */}
+      <section className="py-14 lg:py-16 bg-[#0F172A]">
+        <div className="container mx-auto px-4">
+          <FadeIn>
+            <div className="max-w-5xl mx-auto">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#6EE7B7] mb-3 text-center">
+                {isFr ? "Grille tarifaire GreenTechCycle" : "GreenTechCycle pricing"}
+              </p>
+              <h3
+                className="text-white font-bold text-center mb-10"
+                style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)", lineHeight: 1.12 }}
+              >
+                {isFr
+                  ? "Découvrez la grille tarifaire complète"
+                  : "Explore the full pricing grid"}
+              </h3>
+              <div className="grid md:grid-cols-3 gap-5 mb-10">
+                {[
+                  {
+                    label: isFr ? "Plateforme GTC SaaS" : "GTC SaaS Platform",
+                    price: isFr ? "À partir de 2 500 € HT/mois" : "Starting at €2,500 HT/month",
+                    note: isFr ? "Base 500 postes, étude personnalisée" : "Base 500 devices, bespoke study",
+                    accent: "#0EA5E9",
+                  },
+                  {
+                    label: "Waki Box",
+                    price: isFr ? "Dès 39 € HT/mois" : "From €39 HT/month",
+                    note: isFr ? "3 plans publics, pilote 1er mois offert" : "3 public plans, pilot 1st month free",
+                    accent: "#10B981",
+                    featured: true,
+                  },
+                  {
+                    label: isFr ? "Service ITAD" : "ITAD Service",
+                    price: isFr ? "À partir de 15 € HT/poste" : "Starting at €15 HT/device",
+                    note: isFr ? "Effacement NIST 800-88, devis sous 48 h" : "NIST 800-88 erasure, quote in 48 h",
+                    accent: "#F59E0B",
+                  },
+                ].map((card, i) => (
+                  <div
+                    key={i}
+                    className={`rounded-2xl p-5 border transition-all ${
+                      card.featured
+                        ? "bg-[#10B981]/10 border-[#10B981]/40 ring-1 ring-[#10B981]/30"
+                        : "bg-white/[0.04] border-white/10"
+                    }`}
+                  >
+                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] mb-2" style={{ color: card.accent }}>
+                      {card.label}
+                    </p>
+                    <p className="text-base font-black text-white mb-1" style={{ color: card.accent }}>
+                      {card.price}
+                    </p>
+                    <p className="text-[12px] text-gray-400 leading-snug">{card.note}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <Link
+                  href="/tarifs"
+                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 text-sm"
+                >
+                  {isFr ? "Voir tous les tarifs" : "See all pricing"}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href="/reserver?offre=demo-conseil"
+                  className="inline-flex items-center gap-2 bg-white/8 hover:bg-white/14 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 text-sm"
+                >
+                  {isFr ? "Réserver une démo" : "Book a demo"}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Waki Box pilote encart */}
+      <section className="py-10 lg:py-12 bg-[#F0FDF4] border-t border-[#10B981]/20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl border border-[#10B981]/30 shadow-sm p-6 lg:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#10B981]/10 flex items-center justify-center">
+                <Sparkles className="w-5 h-5 text-[#10B981]" aria-hidden="true" />
+              </div>
+              <div>
+                <p className="text-xs font-semibold tracking-[0.1em] text-[#10B981] uppercase mb-1">
+                  {isFr ? "Pilote sans engagement" : "Risk-free pilot"}
+                </p>
+                <p className="font-bold text-[#0F172A] text-base leading-snug">
+                  {isFr
+                    ? "Testez Waki Box - 1er mois offert, puis 39 EUR HT/mois"
+                    : "Try Waki Box - 1st month free, then EUR 39 ex-VAT/month"}
+                </p>
+                <p className="text-sm text-gray-600 mt-1 leading-snug">
+                  {isFr
+                    ? "Collecte, inventaire automatise et attestation inclus. Resiliable a tout moment."
+                    : "Collection, automated inventory and certificate included. Cancel anytime."}
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/reserver?offre=pilote-waki-box"
+              className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm flex-shrink-0 whitespace-nowrap"
+            >
+              {isFr ? "Demarrer le pilote" : "Start the pilot"}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -398,7 +398,7 @@ export default function HomePage() {
       {/* ==========================================================
           5. SOLUTION : Phrase puissante + Hub-and-spoke
          ========================================================== */}
-      <section className="py-24 lg:py-32 bg-white">
+      <section className="py-24 lg:py-32 bg-[#F8FAFC]">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center max-w-4xl mx-auto mb-16">

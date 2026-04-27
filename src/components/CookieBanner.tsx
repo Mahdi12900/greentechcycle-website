@@ -36,8 +36,8 @@ export default function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-[60] p-4" role="dialog" aria-label="Gestion des cookies">
-      <div className="container-max mx-auto max-w-2xl bg-white rounded-2xl shadow-2xl border border-gray-200 p-5">
+    <div className="fixed bottom-0 inset-x-0 z-[60] p-2 sm:p-4" role="dialog" aria-label="Gestion des cookies">
+      <div className="container-max mx-auto max-w-2xl bg-white rounded-xl sm:rounded-2xl shadow-2xl border border-gray-200 p-4 sm:p-5 max-h-[80vh] overflow-y-auto">
         <div className="flex items-start justify-between gap-3 mb-3">
           <div className="flex items-center gap-2">
             <Cookie className="w-5 h-5 text-primary" aria-hidden="true" />

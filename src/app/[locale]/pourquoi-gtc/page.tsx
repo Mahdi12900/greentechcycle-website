@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 
 /**
- * /pourquoi-gtc — refonte éditoriale (vague 4)
+ * /pourquoi-gtc, refonte éditoriale (vague 4)
  * Registre manifeste fondateur. Hero narratif provocant, sections alternées,
  * numéros XXL ghost, prose narrative, citations magazine, conversion verte.
  */
@@ -60,7 +60,7 @@ export default function PourquoiGtcPage() {
       </div>
 
       {/* ════════════════════════════════════════════════════════════════
-          S1 — HERO MANIFESTE — sombre, provocation chiffrée 50 millions de tonnes
+          S1 (HERO MANIFESTE) sombre, provocation chiffrée 50 millions de tonnes
          ════════════════════════════════════════════════════════════════ */}
       <section
         className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
@@ -159,8 +159,9 @@ export default function PourquoiGtcPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S2 — MANIFESTE PROSE — fond clair
+          S2 (MANIFESTE PROSE) fond clair
          ════════════════════════════════════════════════════════════════ */}
+      <div id="expertise" aria-hidden="true" className="sr-only" />
       <section className="py-24 lg:py-28 bg-white" id="manifeste">
         <div className="container mx-auto px-4">
           <FadeIn>
@@ -191,9 +192,9 @@ export default function PourquoiGtcPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S3 — LE MOT DU FONDATEUR — section split sombre, photo + citation magazine
+          S3 (LE MOT DU FONDATEUR) section split sombre, photo + citation magazine
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#0F172A]">
+      <section id="fondateur" className="relative w-full overflow-hidden bg-[#0F172A]">
         <div className="flex flex-col lg:flex-row min-h-[80vh]">
           <div className="relative w-full lg:w-[42%] min-h-[50vw] lg:min-h-0 overflow-hidden flex-shrink-0">
             <Image
@@ -252,8 +253,9 @@ export default function PourquoiGtcPage() {
         </div>
       </section>
 
+      <div id="ethique" aria-hidden="true" className="sr-only" />
       {/* ════════════════════════════════════════════════════════════════
-          S4 — LES 5 CONVICTIONS — sections alternées
+          S4 (LES 5 CONVICTIONS) sections alternées
          ════════════════════════════════════════════════════════════════ */}
       {convictions.map((c, index) => {
         const photoOnLeft = index % 2 === 0;
@@ -414,9 +416,9 @@ export default function PourquoiGtcPage() {
       })}
 
       {/* ════════════════════════════════════════════════════════════════
-          S5 — ENGAGEMENTS CHIFFRÉS — bandeau preuves
+          S5 (ENGAGEMENTS CHIFFRÉS) bandeau preuves
          ════════════════════════════════════════════════════════════════ */}
-      <section className="bg-[#0F172A] relative overflow-hidden border-t border-white/5">
+      <section id="engagement" className="bg-[#0F172A] relative overflow-hidden border-t border-white/5">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -487,7 +489,7 @@ export default function PourquoiGtcPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S6 — CITATION MAGAZINE — fond sombre intercalé
+          S6 (CITATION MAGAZINE) fond sombre intercalé
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative py-24 lg:py-28 bg-[#022C22] text-white overflow-hidden">
         <div className="absolute inset-0 opacity-25">
@@ -527,7 +529,7 @@ export default function PourquoiGtcPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S7 — CONVERSION FOND VERT PLEIN
+          S7, CONVERSION FOND VERT PLEIN
          ════════════════════════════════════════════════════════════════ */}
       <section className="py-20 lg:py-24 bg-[#10B981] text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.15),_transparent_60%)] pointer-events-none" />
