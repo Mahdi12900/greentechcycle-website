@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 
 /**
- * /contact — refonte éditoriale (vague 4)
+ * /contact : refonte éditoriale (vague 4)
  * Formulaire qualifié pré-rempli via ?offre=<slug>. Pattern hero sombre,
  * sections alternées, prose narrative, conversion verte.
  */
@@ -88,7 +88,7 @@ function ContactInner() {
       </div>
 
       {/* ════════════════════════════════════════════════════════════════
-          S1 — HERO — split sombre, photo équipe à droite
+          S1 (HERO) split sombre, photo équipe à droite
          ════════════════════════════════════════════════════════════════ */}
       <section
         className="relative w-full min-h-[78vh] flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
@@ -185,7 +185,7 @@ function ContactInner() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S2 — FORMULAIRE QUALIFIÉ — clair, panneau d'offre à gauche
+          S2 (FORMULAIRE QUALIFIÉ) clair, panneau d'offre à gauche
          ════════════════════════════════════════════════════════════════ */}
       <section className="py-20 lg:py-24 bg-[#F8FAFC]" id="formulaire">
         <div className="container mx-auto px-4">
@@ -364,9 +364,9 @@ function ContactInner() {
                           className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none bg-white"
                         >
                           <option value="0-500">{t("form.fields.fleetSmall")}</option>
-                          <option value="500-1000">500 — 1 000</option>
-                          <option value="1000-5000">1 000 — 5 000</option>
-                          <option value="5000-20000">5 000 — 20 000</option>
+                          <option value="500-1000">500, 1 000</option>
+                          <option value="1000-5000">1 000, 5 000</option>
+                          <option value="5000-20000">5 000, 20 000</option>
                           <option value="20000+">{t("form.fields.fleetLarge")}</option>
                         </select>
                       </div>
@@ -456,7 +456,7 @@ function ContactInner() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S3 — COORDONNÉES & VOIES DIRECTES — split sombre
+          S3 (COORDONNÉES & VOIES DIRECTES) split sombre
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden bg-[#0F172A] text-white">
         <div className="flex flex-col lg:flex-row min-h-[60vh]">
@@ -522,7 +522,7 @@ function ContactInner() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S4 — CONVERSION FOND VERT PLEIN
+          S4, CONVERSION FOND VERT PLEIN
          ════════════════════════════════════════════════════════════════ */}
       <section className="py-20 lg:py-24 bg-[#10B981] text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.15),_transparent_60%)] pointer-events-none" />

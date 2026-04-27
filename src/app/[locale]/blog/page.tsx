@@ -60,8 +60,16 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
       <SchemaOrg data={schemaData} />
       <main className="min-h-screen">
         {/* Hero */}
-        <section className="relative bg-gradient-to-br from-[#047857] to-[#1E40AF] py-24 md:py-32">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(16,185,129,0.15),_transparent_50%)]" />
+        <section className="relative bg-[#0F172A] py-24 md:py-32 overflow-hidden">
+          <div className="absolute inset-0">
+            <Image
+              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=2400&q=80"
+              alt="Consultation IT et analyse de données"
+              fill
+              className="object-cover opacity-15"
+              priority
+            />
+          </div>
           <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs items={breadcrumbs} dark />
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">

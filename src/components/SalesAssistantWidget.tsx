@@ -14,10 +14,11 @@ import {
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 /* ------------------------------------------------------------------ */
-/*  Premium Sales Assistant Widget — "Sophie Martin"                  */
+/*  Premium Sales Assistant Widget, "Sophie Martin"                  */
 /* ------------------------------------------------------------------ */
 
 export default function SalesAssistantWidget() {
@@ -31,7 +32,13 @@ export default function SalesAssistantWidget() {
   >([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const locale = useLocale();
+  const pathname = usePathname();
   const tx = (fr: string, en: string) => (locale === "en" ? en : fr);
+
+  // Hide widget on /reserver page (form already present)
+  if (pathname?.includes("/reserver")) {
+    return null;
+  }
 
   /* ---- Auto-bubble after 4s ---- */
   useEffect(() => {

@@ -171,7 +171,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
         </div>
       </div>
 
-      {/* Step 1 — coordonnées */}
+      {/* Step 1, coordonnées */}
       {step === 1 && (
         <FadeIn>
           <h3 className="text-xl lg:text-2xl font-bold text-[#0F172A] mb-6 tracking-tight">
@@ -212,7 +212,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
         </FadeIn>
       )}
 
-      {/* Step 2 — organisation */}
+      {/* Step 2, organisation */}
       {step === 2 && (
         <FadeIn>
           <h3 className="text-xl lg:text-2xl font-bold text-[#0F172A] mb-6 tracking-tight">
@@ -249,7 +249,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
         </FadeIn>
       )}
 
-      {/* Step 3 — besoin */}
+      {/* Step 3, besoin */}
       {step === 3 && (
         <FadeIn>
           <h3 className="text-xl lg:text-2xl font-bold text-[#0F172A] mb-6 tracking-tight">
@@ -288,7 +288,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
         </FadeIn>
       )}
 
-      {/* Step 4 — créneaux + consent */}
+      {/* Step 4, créneaux + consent */}
       {step === 4 && (
         <FadeIn>
           <h3 className="text-xl lg:text-2xl font-bold text-[#0F172A] mb-2 tracking-tight">
@@ -417,7 +417,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   Sub-fields — kept inline for simplicity, no shared design-system needed
+   Sub-fields, kept inline for simplicity, no shared design-system needed
 ───────────────────────────────────────────────────────────────────────── */
 function Field({
   id,
@@ -545,7 +545,7 @@ function SelectField({
           error ? "border-red-300 bg-red-50/40" : "border-gray-200 bg-[#F8FAFC]"
         }`}
       >
-        <option value="">—</option>
+        <option value="">-</option>
         {options.map((opt) => (
           <option key={opt.value} value={opt.value}>
             {opt.label}

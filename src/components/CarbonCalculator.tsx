@@ -8,9 +8,9 @@
  * Methodology
  * -----------
  * Compares two scenarios on an annual basis:
- *   A — "Buy new every cycle" (baseline). Manufacturing emissions of brand-new
+ *   A, "Buy new every cycle" (baseline). Manufacturing emissions of brand-new
  *       devices renewed each year at the user-configured renewal rate.
- *   B — "GTC refurbishment + lifetime extension". Manufacturing emissions
+ *   B, "GTC refurbishment + lifetime extension". Manufacturing emissions
  *       reduced to the refurbishment-only emission factor.
  *
  * Avoided emissions are computed as:
@@ -20,12 +20,12 @@
  * sourced from ADEME Base Empreinte v23 (May 2024) and Boavizta API v1.4.
  * Annual usage emission factors are kept identical across scenarios because
  * we do not assume an energy-mix change between buying new vs. refurbished
- * (conservative assumption — see /docs/carbon-methodology-sources.md).
+ * (conservative assumption, see /docs/carbon-methodology-sources.md).
  *
- *   Laptop      — new manufacturing  : 169 kgCO2e   | refurbishment :  17 kgCO2e | use : 25 kgCO2e/yr
- *   Desktop     — new manufacturing  : 265 kgCO2e   | refurbishment :  30 kgCO2e | use : 50 kgCO2e/yr
- *   Server (1U) — new manufacturing  : 1500 kgCO2e  | refurbishment : 150 kgCO2e | use : 1200 kgCO2e/yr
- *   Smartphone  — new manufacturing  :  57 kgCO2e   | refurbishment :   6 kgCO2e | use : 7 kgCO2e/yr
+ *   Laptop     , new manufacturing  : 169 kgCO2e   | refurbishment :  17 kgCO2e | use : 25 kgCO2e/yr
+ *   Desktop    , new manufacturing  : 265 kgCO2e   | refurbishment :  30 kgCO2e | use : 50 kgCO2e/yr
+ *   Server (1U), new manufacturing  : 1500 kgCO2e  | refurbishment : 150 kgCO2e | use : 1200 kgCO2e/yr
+ *   Smartphone , new manufacturing  :  57 kgCO2e   | refurbishment :   6 kgCO2e | use : 7 kgCO2e/yr
  *
  * Equivalences:
  *   - Combustion-car km : 0.193 kgCO2e/km  (ADEME 2024 average passenger car)
@@ -55,7 +55,7 @@ import {
 } from "lucide-react";
 
 // -----------------------------------------------------------------------------
-// Documented coefficients — see file header for sources
+// Documented coefficients, see file header for sources
 // -----------------------------------------------------------------------------
 
 interface DeviceFactors {
@@ -102,7 +102,7 @@ const FACTORS = {
   } as DeviceFactors,
 } as const;
 
-/** ADEME 2024 — average French passenger car, combustion engine */
+/** ADEME 2024, average French passenger car, combustion engine */
 const KG_CO2E_PER_CAR_KM = 0.193;
 
 // -----------------------------------------------------------------------------
@@ -116,7 +116,7 @@ interface FleetState {
   smartphones: number;
   /** % of the fleet renewed each year (e.g. 25 ⇒ 4-year refresh cycle) */
   renewalRate: number;
-  /** Average target life (years) — informational, used to align renewal rate */
+  /** Average target life (years), informational, used to align renewal rate */
   usageYears: number;
 }
 
@@ -168,7 +168,7 @@ export default function CarbonCalculator() {
       const aManufKg = renewedPerYear * f.newFab;
       const bManufKg = renewedPerYear * f.refurbFab;
 
-      // Annual use emissions (identical in both scenarios — conservative)
+      // Annual use emissions (identical in both scenarios, conservative)
       const useKg = qty * f.yearlyUse;
 
       scenarioANewKg += aManufKg + useKg;
@@ -198,7 +198,7 @@ export default function CarbonCalculator() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !email.includes("@")) return;
-    // No backend call — front-end stub for MVP.
+    // No backend call, front-end stub for MVP.
     setSubmitted(true);
   };
 

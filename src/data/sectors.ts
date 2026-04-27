@@ -19,7 +19,7 @@ import {
 import type { ComponentType } from "react";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Slugs — FR canonical, same URL path for both locales
+   Slugs, FR canonical, same URL path for both locales
 ───────────────────────────────────────────────────────────────────────────── */
 export type SectorSlug =
   | "finance"
@@ -59,16 +59,16 @@ export const SECTORS: SectorDef[] = [
   { slug: "industrie", number: 3, icon: Factory, image: "/photos/case-industrie.jpg", color: "bg-amber-500/10 text-amber-600", accent: "amber", priority: 1 },
   { slug: "retail", number: 4, icon: ShoppingCart, image: "/photos/sector-retail.jpg", color: "bg-teal-500/10 text-teal-600", accent: "teal", priority: 1 },
   { slug: "energie", number: 5, icon: Zap, image: "/photos/case-energie.jpg", color: "bg-emerald-500/10 text-emerald-600", accent: "emerald", priority: 2 },
-  { slug: "transport-logistique", number: 6, icon: Truck, image: "/images/servers.jpg", color: "bg-sky-500/10 text-sky-600", accent: "sky", priority: 2 },
+  { slug: "transport-logistique", number: 6, icon: Truck, image: "https://images.unsplash.com/photo-1586528116493-a8b56d7a6a33?auto=format&fit=crop&w=1280&q=80", color: "bg-sky-500/10 text-sky-600", accent: "sky", priority: 2 },
   { slug: "public", number: 7, icon: Landmark, image: "/photos/case-administration.jpg", color: "bg-purple-500/10 text-purple-600", accent: "purple", priority: 3 },
   { slug: "tech", number: 8, icon: Cpu, image: "/images/datacenter.jpg", color: "bg-indigo-500/10 text-indigo-600", accent: "indigo", priority: 1 },
-  { slug: "medias-audiovisuel", number: 9, icon: Tv, image: "/photos/case-media-tf1.jpg", color: "bg-pink-500/10 text-pink-600", accent: "pink", priority: 1, featured: true },
+  { slug: "medias-audiovisuel", number: 9, icon: Tv, image: "https://images.unsplash.com/photo-1478720568477-152d9b164543?auto=format&fit=crop&w=1280&q=80", color: "bg-pink-500/10 text-pink-600", accent: "pink", priority: 1, featured: true },
   { slug: "conseil", number: 10, icon: Briefcase, image: "/photos/corporate-meeting.jpg", color: "bg-slate-500/10 text-slate-600", accent: "slate", priority: 1 },
   { slug: "pharma-biotech", number: 11, icon: FlaskConical, image: "/images/hospital.jpg", color: "bg-cyan-500/10 text-cyan-600", accent: "cyan", priority: 2 },
   { slug: "btp", number: 12, icon: HardHat, image: "/images/industry.jpg", color: "bg-orange-500/10 text-orange-600", accent: "orange", priority: 3 },
   { slug: "horeca", number: 13, icon: UtensilsCrossed, image: "/images/office.jpg", color: "bg-rose-500/10 text-rose-600", accent: "rose", priority: 2 },
   { slug: "education-recherche", number: 14, icon: GraduationCap, image: "/photos/case-universite.jpg", color: "bg-violet-500/10 text-violet-600", accent: "violet", priority: 3 },
-  { slug: "agroalimentaire", number: 15, icon: Wheat, image: "/images/industry.jpg", color: "bg-lime-500/10 text-lime-600", accent: "lime", priority: 2 },
+  { slug: "agroalimentaire", number: 15, icon: Wheat, image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=1280&q=80", color: "bg-lime-500/10 text-lime-600", accent: "lime", priority: 2 },
   { slug: "telecom", number: 16, icon: Radio, image: "/photos/case-telco.jpg", color: "bg-fuchsia-500/10 text-fuchsia-600", accent: "fuchsia", priority: 2 },
 ];
 

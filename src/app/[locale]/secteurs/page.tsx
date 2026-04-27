@@ -20,7 +20,7 @@ import { getHubLabels, getMatrixData, getPhases, getSectorName } from "@/data/se
 import type { PhaseData } from "@/data/sectors-i18n";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Magazine grid layout — asymmetric, editorial, NOT a flat 3-column grid
+   Magazine grid layout, asymmetric, editorial, NOT a flat 3-column grid
 ───────────────────────────────────────────────────────────────────────────── */
 function SectorCard({ sector, locale, labels, size }: { sector: SectorDef; locale: string; labels: ReturnType<typeof getHubLabels>; size: "lg" | "md" | "sm" }) {
   const Icon = sector.icon;
@@ -167,7 +167,7 @@ export default function SecteursHubPage() {
       </section>
 
       {/* ════════════════════════════════════════════
-          MAGAZINE GRID — 16 SECTORS
+          MAGAZINE GRID, 16 SECTORS
       ════════════════════════════════════════════ */}
       <section className="py-20 lg:py-28 bg-[#F8FAFC]">
         <div className="container mx-auto px-4">
@@ -221,7 +221,7 @@ export default function SecteursHubPage() {
       </section>
 
       {/* ════════════════════════════════════════════
-          ANNEXE 1 — MATRICE DE PRIORISATION
+          ANNEXE 1, MATRICE DE PRIORISATION
       ════════════════════════════════════════════ */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="container mx-auto px-4">
@@ -284,7 +284,7 @@ export default function SecteursHubPage() {
       </section>
 
       {/* ════════════════════════════════════════════
-          ANNEXE 2 — SÉQUENCEMENT
+          ANNEXE 2, SÉQUENCEMENT
       ════════════════════════════════════════════ */}
       <section className="py-20 lg:py-28 bg-[#0F1115]">
         <div className="container mx-auto px-4">

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { X, BookOpen } from "lucide-react";
 
@@ -25,11 +26,13 @@ function pickContext(pathname: string): { titleKey: string; subtitleKey: string;
 
 export default function ExitPopup() {
   const t = useTranslations("ExitPopup");
+  const locale = useLocale();
   const pathname = usePathname() || "/";
   const ctx = pickContext(pathname);
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   // Fallback helper: contextual keys may not yet exist in i18n; default to
   // the historical generic copy so the component never throws.
@@ -65,10 +68,22 @@ export default function ExitPopup() {
     setVisible(false);
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(dismiss, 2000);
+    setSubmitting(true);
+    try {
+      await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, locale }),
+      });
+    } catch {
+      // Non-blocking — show success regardless
+    } finally {
+      setSubmitting(false);
+      setSubmitted(true);
+      setTimeout(dismiss, 2000);
+    }
   }
 
   if (!visible) return null;
@@ -96,8 +111,12 @@ export default function ExitPopup() {
               placeholder={t("placeholder")}
               className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none"
             />
-            <button type="submit" className="w-full py-3 bg-[#10B981] text-white font-semibold rounded-lg hover:bg-[#0E9F6E] transition-colors text-sm">
-              {tx(ctx.ctaKey, "cta")}
+            <button
+              type="submit"
+              disabled={submitting}
+              className="w-full py-3 bg-[#10B981] text-white font-semibold rounded-lg hover:bg-[#0E9F6E] transition-colors text-sm disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {submitting ? "..." : tx(ctx.ctaKey, "cta")}
             </button>
           </form>
         )}

@@ -40,7 +40,7 @@ export default function StickyCTA() {
   const t = useTranslations("StickyCTA");
   const pathname = usePathname() || "/";
   const ctx = pickContext(pathname);
-  // Fallback to "text" key if a contextual key is missing in messages — keeps
+  // Fallback to "text" key if a contextual key is missing in messages, keeps
   // the component robust during partial i18n rollouts.
   const label = (() => {
     try {

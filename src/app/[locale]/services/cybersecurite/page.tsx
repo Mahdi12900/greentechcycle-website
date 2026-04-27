@@ -12,23 +12,23 @@ export default function CybersecuritePage() {
 
   const data: ServicePageData = {
     slug: "cybersecurite-itad",
-    eyebrow: tx("05 — Niveau Défense", "05 — Defence-grade"),
+    eyebrow: tx("05 (Niveau Défense", "05) Defence-grade"),
     title: tx("Cybersécurité ITAD", "ITAD cybersecurity"),
     subtitle: tx(
       "Les autres acteurs traitent la sécurité comme une case à cocher. Pour nous, c'est la colonne vertébrale du métier : huissier, scellés numérotés, GPS, vidéosurveillance archivée dix ans, registre signé eIDAS.",
       "Other ITAD vendors treat security as a checkbox. For us, it is the spine of the trade: bailiff, numbered seals, GPS, video surveillance archived for ten years, eIDAS-signed register."
     ),
     description: tx(
-      "Quand un actif sort de vos locaux, vous transférez une responsabilité. Si une donnée fuit en chemin, c'est votre nom qui apparaît dans la presse — pas celui du transporteur. Notre protocole de chaîne de garde a été conçu avec d'anciens RSSI bancaires et de défense pour produire un dossier juridiquement opposable. Procès-verbal d'huissier, vérification d'identité des intervenants, vérification d'antécédents annuelle, scellés inviolables, suivi GPS, vidéosurveillance haute définition. Huit contrôles imbriqués générant un dossier de preuves complet.",
-      "When an asset leaves your premises, you transfer a responsibility. If data leaks in transit, it is your name that hits the press — not the carrier's. Our chain of custody protocol was built with former banking and defence CISOs to produce a legally admissible dossier. Bailiff report, operator identity verification, annual background screening, tamper-evident seals, GPS tracking, high-definition video surveillance. Eight interlocked controls producing a complete evidence file."
+      "Quand un actif sort de vos locaux, vous transférez une responsabilité. Si une donnée fuit en chemin, c'est votre nom qui apparaît dans la presse, pas celui du transporteur. Notre protocole de chaîne de garde a été conçu avec d'anciens RSSI bancaires et de défense pour produire un dossier juridiquement opposable. Procès-verbal d'huissier, vérification d'identité des intervenants, vérification d'antécédents annuelle, scellés inviolables, suivi GPS, vidéosurveillance haute définition. Huit contrôles imbriqués générant un dossier de preuves complet.",
+      "When an asset leaves your premises, you transfer a responsibility. If data leaks in transit, it is your name that hits the press, not the carrier's. Our chain of custody protocol was built with former banking and defence CISOs to produce a legally admissible dossier. Bailiff report, operator identity verification, annual background screening, tamper-evident seals, GPS tracking, high-definition video surveillance. Eight interlocked controls producing a complete evidence file."
     ),
     narrative: tx(
       "Le protocole n'est ni un document marketing ni une charte interne : c'est un enchaînement industriel, audité chaque année par un cabinet externe, gravé dans nos contrats. Voici comment il se déroule.",
       "The protocol is neither a marketing document nor an internal charter: it is an industrial sequence, audited every year by an external firm, written into our contracts. Here is how it unfolds."
     ),
     deliveryNarrative: tx(
-      "Vous repartez avec un dossier opposable devant un tribunal, pas avec une attestation sur l'honneur. Acte d'huissier authentique, vidéos horodatées, registre cryptographique chaîné — la totalité scellée dans un PDF signé eIDAS.",
-      "You leave with a court-admissible dossier, not a self-attested certificate. Authentic bailiff record, timestamped videos, chained cryptographic register — all sealed in an eIDAS-signed PDF."
+      "Vous repartez avec un dossier opposable devant un tribunal, pas avec une attestation sur l'honneur. Acte d'huissier authentique, vidéos horodatées, registre cryptographique chaîné, la totalité scellée dans un PDF signé eIDAS.",
+      "You leave with a court-admissible dossier, not a self-attested certificate. Authentic bailiff record, timestamped videos, chained cryptographic register, all sealed in an eIDAS-signed PDF."
     ),
     icon: Shield,
     badge: tx("Niveau Défense", "Defence-grade"),
@@ -87,8 +87,8 @@ export default function CybersecuritePage() {
         {
           title: tx("Constitution du dossier de preuves", "Evidence file build-up"),
           desc: tx(
-            "Procès-verbal d'huissier, scans d'identité, photos de scellés, journal GPS, vidéos horodatées, registre cryptographique — l'ensemble est consolidé dans un PDF signé eIDAS, archivé dix ans, accessible à tout moment.",
-            "Bailiff report, ID scans, seal photos, GPS log, timestamped videos, cryptographic register — all consolidated in an eIDAS-signed PDF, archived for ten years, accessible at any time."
+            "Procès-verbal d'huissier, scans d'identité, photos de scellés, journal GPS, vidéos horodatées, registre cryptographique, l'ensemble est consolidé dans un PDF signé eIDAS, archivé dix ans, accessible à tout moment.",
+            "Bailiff report, ID scans, seal photos, GPS log, timestamped videos, cryptographic register, all consolidated in an eIDAS-signed PDF, archived for ten years, accessible at any time."
           ),
         },
       ],

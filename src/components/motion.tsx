@@ -81,7 +81,7 @@ export function StaggerItem({
 }
 
 /**
- * CountUp — animates a number from 0 to `end` once the element is in view.
+ * CountUp, animates a number from 0 to `end` once the element is in view.
  * Triggered by IntersectionObserver via framer-motion's useInView.
  */
 export function CountUp({
@@ -129,7 +129,7 @@ export function CountUp({
 }
 
 /**
- * Simple scroll-triggered scale/opacity reveal — good for large KPI numbers.
+ * Simple scroll-triggered scale/opacity reveal, good for large KPI numbers.
  */
 export function ScaleIn({
   children,

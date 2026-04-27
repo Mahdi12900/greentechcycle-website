@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import {
@@ -74,12 +74,26 @@ const CASE_ICONS = [
 ] as const;
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Layout logic per case index — dramatic alternation v3
+   Mapping cas → fiche secteur (slug du nouveau hub /secteurs)
+───────────────────────────────────────────────────────────────────────────── */
+const CASE_TO_SECTOR: Record<string, { slug: string; labelFr: string; labelEn: string }> = {
+  "banque-cac40": { slug: "finance", labelFr: "Banque, assurance et services financiers", labelEn: "Banking, insurance and financial services" },
+  "chu-sante": { slug: "sante", labelFr: "Santé et hôpitaux", labelEn: "Healthcare and hospitals" },
+  "industriel-csrd": { slug: "industrie", labelFr: "Industrie et manufacturing", labelEn: "Industry and manufacturing" },
+  "ministere-collectivite": { slug: "public", labelFr: "Secteur public et collectivités", labelEn: "Public sector and local authorities" },
+  "retail-wakibox": { slug: "retail", labelFr: "Retail et grande distribution", labelEn: "Retail and large-scale distribution" },
+  "energie-dora": { slug: "energie", labelFr: "Énergie et utilities", labelEn: "Energy and utilities" },
+  "telco-datacenter": { slug: "telecom", labelFr: "Télécom et opérateurs", labelEn: "Telecom and operators" },
+  "universite-ess": { slug: "education-recherche", labelFr: "Éducation et recherche", labelEn: "Education and research" },
+};
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Layout logic per case index, dramatic alternation v3
    index 0 → white bg,          photo left     (Banque)
    index 1 → #F8FAFC,           photo right    (CHU)
    index 2 → #0F172A dark,      photo left     (Industrie)
    index 3 → white bg,          photo right    (Public)
-   index 4 → #0C1E1A tinted,    photo left     (Retail) — deep teal tinted
+   index 4 → #0C1E1A tinted,    photo left     (Retail), deep teal tinted
    index 5 → #F8FAFC,           photo right    (Énergie)
    index 6 → #0F172A dark,      photo left     (Telco)
    index 7 → white bg,          photo right    (Éducation)
@@ -101,17 +115,21 @@ function getCaseLayout(index: number) {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   CaseSection — intra-page component
+   CaseSection, intra-page component
 ───────────────────────────────────────────────────────────────────────────── */
 function CaseSection({
   c,
   index,
   editorialBody,
+  locale,
 }: {
   c: CaseItem;
   index: number;
   editorialBody: string;
+  locale: string;
 }) {
+  const isFr = locale === "fr";
+  const sectorLink = CASE_TO_SECTOR[c.slug];
   const { photoOnLeft, isDark, bgStyle } = getCaseLayout(index);
   const caseNumber = String(index + 1).padStart(2, "0");
   const CaseIcon = CASE_ICONS[index] ?? Building2;
@@ -135,7 +153,7 @@ function CaseSection({
           !photoOnLeft ? "lg:flex-row-reverse" : ""
         }`}
       >
-        {/* ── Photo panel — 52% cinematic ── */}
+        {/* ── Photo panel, 52% cinematic ── */}
         <div className="relative w-full lg:w-[52%] min-h-[60vw] lg:min-h-0 overflow-hidden flex-shrink-0">
           <Image
             src={c.photo}
@@ -145,7 +163,7 @@ function CaseSection({
             className="object-cover transition-transform duration-[1400ms] hover:scale-[1.04]"
             sizes="(max-width: 1024px) 100vw, 48vw"
           />
-          {/* Gradient overlay — blend with content panel */}
+          {/* Gradient overlay, blend with content panel */}
           <div
             className={`absolute inset-0 ${
               isDark
@@ -166,7 +184,7 @@ function CaseSection({
             }`}
           />
 
-          {/* Ghost case number watermark — bleeds off bottom, reinforced opacity */}
+          {/* Ghost case number watermark, bleeds off bottom, reinforced opacity */}
           <div
             className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
             style={{
@@ -216,7 +234,7 @@ function CaseSection({
                 />
               </div>
 
-              {/* Title — editorial XXL */}
+              {/* Title, editorial XXL */}
               <h2
                 id={`case-title-${c.slug}`}
                 className={`text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight mb-6 ${textColor}`}
@@ -224,12 +242,12 @@ function CaseSection({
                 {c.title}
               </h2>
 
-              {/* Editorial body — prose with drop cap */}
+              {/* Editorial body, prose with drop cap */}
               <p className={`text-[1.05rem] lg:text-[1.1rem] leading-[1.82] mb-8 first-letter:text-[3.2em] first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:leading-[0.8] ${subTextColor} ${isDark ? "first-letter:text-white/60" : "first-letter:text-[#0F172A]"}`}>
                 {editorialBody}
               </p>
 
-              {/* 3 KPIs horizontal — XXL */}
+              {/* 3 KPIs horizontal, XXL */}
               <div
                 className={`grid grid-cols-3 gap-4 mb-10 pb-10 border-b ${borderColor}`}
               >
@@ -255,7 +273,7 @@ function CaseSection({
                 ))}
               </div>
 
-              {/* Client pull quote — XXL editorial */}
+              {/* Client pull quote, XXL editorial */}
               <blockquote
                 className="mb-10 pl-5 border-l-[4px] relative"
                 style={{ borderLeftColor: accentColor + "65" }}
@@ -279,13 +297,13 @@ function CaseSection({
                     isDark ? "text-gray-400" : "text-gray-500"
                   }`}
                 >
-                  — {c.quoteName}, {c.quoteRole},{" "}
+                 , {c.quoteName}, {c.quoteRole},{" "}
                   <span className="italic font-normal">{c.quoteSector}</span>
                 </footer>
               </blockquote>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 flex-wrap">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 flex-wrap mb-5">
                 <Link
                   href={`/contact?cas=${c.slug}`}
                   className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${
@@ -302,18 +320,28 @@ function CaseSection({
                         }
                   }
                 >
-                  Discuter d&apos;un cas similaire
+                  {isFr ? "Discuter d'un cas similaire" : "Discuss a similar case"}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
-                <a
-                  href={`#cas-${c.slug}`}
-                  className={`text-sm font-medium underline underline-offset-4 decoration-1 transition-opacity hover:opacity-80 ${
-                    isDark ? "text-gray-400" : "text-gray-500"
+              </div>
+
+              {/* Cross-link vers la fiche secteur correspondante */}
+              {sectorLink && (
+                <Link
+                  href={`/secteurs/${sectorLink.slug}`}
+                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm transition-all duration-200 hover:-translate-y-0.5 ${
+                    isDark
+                      ? "border-white/15 bg-white/[0.04] text-gray-300 hover:border-white/30 hover:text-white"
+                      : "border-gray-200 bg-white/60 text-gray-600 hover:border-gray-300 hover:text-[#0F172A]"
                   }`}
                 >
-                  Voir les détails
-                </a>
-              </div>
+                  <span className={`text-[10px] font-bold uppercase tracking-[0.12em] ${isDark ? "text-gray-500" : "text-gray-400"}`}>
+                    {isFr ? "Voir la fiche secteur" : "View sector profile"}
+                  </span>
+                  <span className="font-semibold">{sectorLink[isFr ? "labelFr" : "labelEn"]}</span>
+                  <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </Link>
+              )}
             </FadeIn>
           </div>
         </div>
@@ -323,7 +351,7 @@ function CaseSection({
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   ComparativeBar — animated progress bar
+   ComparativeBar, animated progress bar
 ───────────────────────────────────────────────────────────────────────────── */
 function ComparativeBar({
   label,
@@ -368,10 +396,12 @@ function ComparativeBar({
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Main page — CasUsagesPage
+   Main page, CasUsagesPage
 ───────────────────────────────────────────────────────────────────────────── */
 export default function CasUsagesPage() {
   const t = useTranslations("casUsages");
+  const locale = useLocale();
+  const isFr = locale === "fr";
 
   const cases = t.raw("cases.items") as CaseItem[];
   const kpiItems = t.raw("kpis.items") as Array<{
@@ -421,7 +451,7 @@ export default function CasUsagesPage() {
   return (
     <main className="overflow-hidden bg-white">
 
-      {/* Urgency band — same pattern as home */}
+      {/* Urgency band, same pattern as home */}
       <div className="bg-[#0F172A] text-white py-3 px-4 border-b border-white/5">
         <div className="container mx-auto flex items-center justify-center gap-3 text-sm font-medium text-center">
           <ShieldCheck className="h-4 w-4 flex-shrink-0 text-[#10B981]" aria-hidden="true" />
@@ -440,7 +470,7 @@ export default function CasUsagesPage() {
       </div>
 
       {/* ════════════════════════════════════════════════════════════════
-          S1 — HERO ÉDITORIAL FEATURED
+          S1, HERO ÉDITORIAL FEATURED
           Full-viewport split dark: content LEFT (55%) + photo RIGHT (45%)
          ════════════════════════════════════════════════════════════════ */}
       <section
@@ -477,7 +507,7 @@ export default function CasUsagesPage() {
               </span>
             </div>
 
-            {/* Main headline — XXL editorial */}
+            {/* Main headline, XXL editorial */}
             <h1
               id="hero-editorial-title"
               className="text-white font-black tracking-tight mb-8"
@@ -491,7 +521,7 @@ export default function CasUsagesPage() {
               {t("editorialHero.subtitle")}
             </p>
 
-            {/* Proof strip — 3 key figures */}
+            {/* Proof strip, 3 key figures */}
             <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10 pb-10 border-b border-white/8">
               {[
                 { v: "1 850", unit: "tCO₂e", l: "évitées en 4 ans", color: "#10B981" },
@@ -584,7 +614,7 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S2 — BANDEAU CHIFFRES XXVL — fond #0F172A
+          S2 (BANDEAU CHIFFRES XXVL) fond #0F172A
          ════════════════════════════════════════════════════════════════ */}
       <section
         className="bg-[#0F172A] relative overflow-hidden border-t border-white/5"
@@ -649,7 +679,7 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S2b — TROIS DIFFÉRENCIATEURS ÉDITORIAUX — fond #F8FAFC
+          S2b (TROIS DIFFÉRENCIATEURS ÉDITORIAUX) fond #F8FAFC
          ════════════════════════════════════════════════════════════════ */}
       <section className="py-16 lg:py-20 bg-[#F8FAFC] border-b border-gray-100">
         <div className="container mx-auto px-4">
@@ -714,7 +744,7 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S3 — INTRODUCTION ÉDITORIALE — fond blanc
+          S3 (INTRODUCTION ÉDITORIALE) fond blanc
          ════════════════════════════════════════════════════════════════ */}
       <section className="py-24 lg:py-32 bg-white">
         <div className="container mx-auto px-4">
@@ -745,7 +775,7 @@ export default function CasUsagesPage() {
             </div>
           </FadeIn>
 
-          {/* Sector anchor nav — desktop only */}
+          {/* Sector anchor nav, desktop only */}
           <div className="hidden lg:block mt-16 pt-10 border-t border-gray-100">
             <p className="text-[10px] font-semibold tracking-[0.2em] text-gray-400 uppercase text-center mb-6">
               {t("nav.label")}
@@ -776,7 +806,7 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S3b — PARTENAIRES & CERTIFICATIONS — bandeau discret fond blanc
+          S3b (PARTENAIRES & CERTIFICATIONS) bandeau discret fond blanc
          ════════════════════════════════════════════════════════════════ */}
       <section className="py-12 bg-white border-y border-gray-100">
         <div className="container mx-auto px-4">
@@ -803,7 +833,7 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S3c — CAS PHARE TF1 — FEATURED STORY PLEINE LARGEUR
+          S3c (CAS PHARE TF1) FEATURED STORY PLEINE LARGEUR
           Fond sombre cinéma #0F172A, photo full-bleed à droite (45%)
          ════════════════════════════════════════════════════════════════ */}
       {(() => {
@@ -883,12 +913,12 @@ export default function CasUsagesPage() {
                   {tf1.subtitle}
                 </p>
 
-                {/* Body — editorial prose */}
+                {/* Body, editorial prose */}
                 <p className="text-gray-300 text-base lg:text-[1.08rem] leading-[1.78] max-w-xl mb-10 first-letter:text-[2.8em] first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:leading-[0.8] first-letter:text-white/70">
                   {tf1.body}
                 </p>
 
-                {/* 4 KPIs — grid */}
+                {/* 4 KPIs, grid */}
                 <div className="grid grid-cols-2 gap-x-8 gap-y-5 mb-10 pb-10 border-b border-white/10">
                   {tf1.metrics.map((kpi: KPIItem, j: number) => (
                     <div key={j} className="flex flex-col gap-1">
@@ -918,7 +948,7 @@ export default function CasUsagesPage() {
                     {tf1.quote}
                   </p>
                   <footer className="text-sm font-semibold not-italic text-gray-400">
-                    — {tf1.quoteName}, {tf1.quoteRole},{" "}
+                   , {tf1.quoteName}, {tf1.quoteRole},{" "}
                     <span className="italic font-normal">{tf1.quoteSector}</span>
                   </footer>
                 </blockquote>
@@ -958,7 +988,7 @@ export default function CasUsagesPage() {
               {/* Bottom fade */}
               <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F172A]/50 to-transparent" />
 
-              {/* Floating KPI card — 65k overlay */}
+              {/* Floating KPI card, 65k overlay */}
               <div className="absolute bottom-8 right-5 sm:right-8 max-w-[240px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-gray-100 hidden sm:block">
                 <Tv className="h-6 w-6 text-[#F59E0B] mb-3" aria-hidden="true" />
                 <p className="text-2xl font-black text-[#0F172A] tabular-nums leading-none mb-1">
@@ -975,10 +1005,10 @@ export default function CasUsagesPage() {
       })()}
 
       {/* ════════════════════════════════════════════════════════════════
-          S4 → S11 — 8 CAS SECTORIELS EN SECTIONS PLEINE LARGEUR ALTERNÉES
+          S4 → S11, 8 CAS SECTORIELS EN SECTIONS PLEINE LARGEUR ALTERNÉES
          ════════════════════════════════════════════════════════════════ */}
 
-      {/* Sticky side nav — desktop only */}
+      {/* Sticky side nav, desktop only */}
       <div className="hidden xl:block fixed right-4 top-1/2 -translate-y-1/2 z-40">
         <nav
           className="flex flex-col gap-2 bg-white/90 backdrop-blur-md rounded-2xl p-2.5 shadow-lg ring-1 ring-gray-100"
@@ -1015,12 +1045,13 @@ export default function CasUsagesPage() {
           c={c}
           index={i}
           editorialBody={editorialBodies[c.slug] ?? c.subtitle}
+          locale={locale}
         />
       ))}
 
       {/* ════════════════════════════════════════════════════════════════
-          S12 — SECTION COMPARATIVE VISUELLE
-          Liste éditoriale avec barres de progression — pas de tableau
+          S12, SECTION COMPARATIVE VISUELLE
+          Liste éditoriale avec barres de progression, pas de tableau
          ════════════════════════════════════════════════════════════════ */}
       <section
         className="py-24 lg:py-32 bg-white"
@@ -1047,7 +1078,7 @@ export default function CasUsagesPage() {
           <div className="max-w-5xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 mb-12">
 
-              {/* Left — Recovery rate bars */}
+              {/* Left : Recovery rate bars */}
               <FadeIn direction="right">
                 <div>
                   <div className="flex items-center gap-2 mb-6 pb-4 border-b border-gray-100">
@@ -1073,7 +1104,7 @@ export default function CasUsagesPage() {
                 </div>
               </FadeIn>
 
-              {/* Right — Value + CO2 card list */}
+              {/* Right, Value + CO2 card list */}
               <FadeIn direction="left">
                 <div>
                   <div className="flex items-center gap-2 mb-6 pb-4 border-b border-gray-100">
@@ -1128,7 +1159,7 @@ export default function CasUsagesPage() {
               </FadeIn>
             </div>
 
-            {/* Bottom — Compliance matrix */}
+            {/* Bottom, Compliance matrix */}
             <FadeIn>
               <div className="bg-[#F8FAFC] rounded-2xl p-6 lg:p-8 border border-gray-100">
                 <div className="flex items-center gap-2 mb-6">
@@ -1173,7 +1204,7 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S12b — TÉMOIGNAGES 4 PERSONAS — fond sombre #0F172A
+          S12b (TÉMOIGNAGES 4 PERSONAS) fond sombre #0F172A
          ════════════════════════════════════════════════════════════════ */}
       <section
         className="py-24 lg:py-32 bg-[#0F172A] relative overflow-hidden"
@@ -1259,7 +1290,7 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S12c — FAQ DSI/RSSI — fond blanc
+          S12c (FAQ DSI/RSSI) fond blanc
          ════════════════════════════════════════════════════════════════ */}
       <section
         className="py-24 lg:py-32 bg-white"
@@ -1323,7 +1354,153 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S13 — ENCART CONVERSION — fond #10B981 pleine largeur
+          S12d (CROSS-LINK 16 SECTEURS) bandeau éditorial fond #0F1115
+          Pointe vers le hub /secteurs sans dupliquer le contenu
+         ════════════════════════════════════════════════════════════════ */}
+      <section
+        className="relative py-20 lg:py-24 bg-[#0F1115] overflow-hidden"
+        aria-labelledby="cross-secteurs-title"
+      >
+        {/* Ghost watermark 16 */}
+        <div
+          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none text-white/[0.025]"
+          style={{
+            fontSize: "clamp(10rem, 26vw, 22rem)",
+            right: "-0.05em",
+            bottom: "-0.15em",
+          }}
+          aria-hidden="true"
+        >
+          16
+        </div>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 55% at 20% 30%, rgba(14,165,233,0.12) 0%, transparent 60%)",
+          }}
+        />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-center max-w-6xl mx-auto">
+            <FadeIn>
+              <div>
+                <p className="text-[11px] font-semibold tracking-[0.18em] text-[#67E8F9] uppercase mb-5">
+                  {isFr ? "Au-delà des 8 cas chiffrés" : "Beyond the 8 quantified cases"}
+                </p>
+                <h2
+                  id="cross-secteurs-title"
+                  className="text-white font-bold tracking-tight mb-6"
+                  style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+                >
+                  {isFr ? (
+                    <>16 fiches sectorielles complètes,<br /><span className="text-[#0EA5E9]">de la banque au broadcast.</span></>
+                  ) : (
+                    <>16 complete sector profiles,<br /><span className="text-[#0EA5E9]">from banking to broadcast.</span></>
+                  )}
+                </h2>
+                <p className="text-gray-300 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-8 max-w-xl">
+                  {isFr
+                    ? "Chaque secteur a son audit, ses douleurs, son ROI, ses personas et ses objections. Le hub /secteurs synthétise les 16 marchés que nous couvrons en France et en Europe, y compris la référence broadcast TF1."
+                    : "Each sector has its audit, its pain points, its ROI, its personas and its objections. The /secteurs hub synthesises the 16 markets we cover in France and Europe, including the TF1 broadcast reference."}
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-3 mb-10">
+                  <Link
+                    href="/secteurs"
+                    className="inline-flex items-center justify-center gap-2 bg-[#0EA5E9] hover:bg-[#0284C7] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#0EA5E9]/25 hover:-translate-y-0.5 text-sm"
+                  >
+                    {isFr ? "Explorer les 16 secteurs" : "Explore the 16 sectors"}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                  <Link
+                    href="/secteurs/medias-audiovisuel"
+                    className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
+                  >
+                    <Tv className="h-4 w-4 text-[#F59E0B]" aria-hidden="true" />
+                    {isFr ? "Voir la fiche TF1 / Médias" : "See the TF1 / Media profile"}
+                  </Link>
+                </div>
+
+                <div className="grid grid-cols-3 gap-4 max-w-md">
+                  {[
+                    { v: "16", l: isFr ? "secteurs couverts" : "sectors covered", c: "#10B981" },
+                    { v: "TF1", l: isFr ? "référence broadcast" : "broadcast reference", c: "#F59E0B" },
+                    { v: "3", l: isFr ? "phases priorité" : "priority phases", c: "#0EA5E9" },
+                  ].map((it, k) => (
+                    <div key={k} className="flex flex-col">
+                      <span
+                        className="text-2xl lg:text-3xl font-black tracking-tight leading-none tabular-nums"
+                        style={{ color: it.c }}
+                      >
+                        {it.v}
+                      </span>
+                      <span className="text-[10px] text-gray-500 mt-1.5 font-medium uppercase tracking-wider">
+                        {it.l}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                {[
+                  { name: isFr ? "Médias / TF1" : "Media / TF1", slug: "medias-audiovisuel", accent: "#F59E0B", featured: true },
+                  { name: isFr ? "Banque" : "Banking", slug: "finance", accent: "#0EA5E9" },
+                  { name: isFr ? "Santé" : "Healthcare", slug: "sante", accent: "#10B981" },
+                  { name: isFr ? "Industrie" : "Industry", slug: "industrie", accent: "#0EA5E9" },
+                  { name: isFr ? "Public" : "Public", slug: "public", accent: "#10B981" },
+                  { name: isFr ? "Énergie" : "Energy", slug: "energie", accent: "#F59E0B" },
+                ].map((s) => (
+                  <Link
+                    key={s.slug}
+                    href={`/secteurs/${s.slug}`}
+                    className="group relative aspect-[4/3] rounded-xl border border-white/10 hover:border-white/30 bg-white/[0.03] hover:bg-white/[0.07] transition-all duration-300 overflow-hidden"
+                  >
+                    {s.featured && (
+                      <span
+                        className="absolute top-2 right-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider z-10"
+                        style={{ backgroundColor: s.accent, color: "#0F1115" }}
+                      >
+                        <Award className="w-2.5 h-2.5" aria-hidden="true" />
+                        {isFr ? "Phare" : "Featured"}
+                      </span>
+                    )}
+                    <div className="absolute inset-0 flex flex-col justify-end p-4">
+                      <span
+                        className="absolute top-3 left-3 font-black leading-none text-white/[0.18]"
+                        style={{ fontSize: "2.5rem" }}
+                        aria-hidden="true"
+                      >
+                        {s.slug === "medias-audiovisuel" ? "TF1" : ""}
+                      </span>
+                      <span
+                        className="text-[10px] font-bold uppercase tracking-[0.12em] mb-1"
+                        style={{ color: s.accent }}
+                      >
+                        {isFr ? "Secteur" : "Sector"}
+                      </span>
+                      <span className="text-sm font-bold text-white leading-tight">{s.name}</span>
+                      <span className="inline-flex items-center gap-1 text-[11px] text-gray-400 group-hover:text-white mt-2 transition-colors">
+                        {isFr ? "Voir la fiche" : "View profile"}
+                        <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+              <p className="mt-4 text-[11px] text-gray-500 text-center italic">
+                {isFr ? "+ 10 autres secteurs : retail, telco, éducation, BTP, HoReCa, agro, transport, pharma, conseil, tech." : "+ 10 more sectors: retail, telco, education, construction, hospitality, agro, transport, pharma, consulting, tech."}
+              </p>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════════
+          S13 (ENCART CONVERSION) fond #10B981 pleine largeur
          ════════════════════════════════════════════════════════════════ */}
       <section
         className="py-20 lg:py-28 bg-[#10B981] relative overflow-hidden"
@@ -1446,7 +1623,7 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S14 — CITATION FINALE LARGE — magazine-style
+          S14 (CITATION FINALE LARGE) magazine-style
          ════════════════════════════════════════════════════════════════ */}
       <section className="py-28 lg:py-40 bg-white relative overflow-hidden">
         {/* Enormous ghost quote mark background */}
@@ -1511,16 +1688,96 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S15 — CTA FINAL DOUBLE + BANDEAU CONFIANCE
+          S14b (PASSERELLE VERS LES 16 SECTEURS) fond #F8FAFC
+         ════════════════════════════════════════════════════════════════ */}
+      <section className="relative py-20 lg:py-28 bg-[#F8FAFC] overflow-hidden">
+        <div
+          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
+          style={{
+            fontSize: "clamp(10rem, 22vw, 18rem)",
+            color: "rgba(0,0,0,0.035)",
+            right: "-0.05em",
+            bottom: "-0.12em",
+          }}
+          aria-hidden="true"
+        >
+          16
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <FadeIn>
+            <div className="max-w-3xl mb-12">
+              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-4">
+                {isFr ? "Catalogue sectoriel complet" : "Full sector catalogue"}
+              </p>
+              <h2
+                className="text-[#0F172A] font-bold tracking-tight mb-6"
+                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+              >
+                {isFr
+                  ? "Au-delà de ces 8 cas : 16 fiches sectorielles détaillées."
+                  : "Beyond these 8 cases: 16 detailed sector profiles."}
+              </h2>
+              <p className="text-gray-600 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] max-w-2xl">
+                {isFr
+                  ? "Chaque secteur dispose d'une fiche complète : profil réglementaire, douleurs spécifiques, cas d'usage prioritaires, ROI attendu, personas décideurs et objections. De la finance à la pharma, du retail à l'éducation."
+                  : "Each sector has a complete profile: regulatory framework, specific pain points, priority use cases, expected ROI, decision-maker personas and objections. From finance to pharma, from retail to education."}
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="max-w-5xl">
+            <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-10">
+              {(Object.values(CASE_TO_SECTOR) as Array<{ slug: string; labelFr: string; labelEn: string }>)
+                .concat([
+                  { slug: "medias-audiovisuel", labelFr: "Médias et audiovisuel", labelEn: "Media and broadcast" },
+                  { slug: "tech", labelFr: "Tech et services numériques", labelEn: "Tech and digital services" },
+                  { slug: "conseil", labelFr: "Conseil, audit et services pro", labelEn: "Consulting, audit and pro services" },
+                  { slug: "transport-logistique", labelFr: "Transport et logistique", labelEn: "Transport and logistics" },
+                  { slug: "pharma-biotech", labelFr: "Pharmaceutique et biotech", labelEn: "Pharma and biotech" },
+                  { slug: "btp", labelFr: "Construction et BTP", labelEn: "Construction" },
+                  { slug: "horeca", labelFr: "Hôtellerie et tourisme", labelEn: "Hospitality and tourism" },
+                  { slug: "agroalimentaire", labelFr: "Agroalimentaire", labelEn: "Food industry" },
+                ])
+                .map((s) => (
+                  <StaggerItem key={s.slug}>
+                    <Link
+                      href={`/secteurs/${s.slug}`}
+                      className="group flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-white border border-gray-150 hover:border-[#10B981]/40 hover:shadow-md transition-all duration-200"
+                    >
+                      <span className="text-[12px] font-semibold text-[#0F172A] leading-tight group-hover:text-[#047857] transition-colors line-clamp-2">
+                        {isFr ? s.labelFr : s.labelEn}
+                      </span>
+                      <ChevronRight className="h-3.5 w-3.5 text-gray-400 group-hover:text-[#10B981] flex-shrink-0 transition-all group-hover:translate-x-0.5" aria-hidden="true" />
+                    </Link>
+                  </StaggerItem>
+                ))}
+            </StaggerContainer>
+
+            <FadeIn>
+              <Link
+                href="/secteurs"
+                className="inline-flex items-center gap-2 bg-[#0F172A] hover:bg-[#1E293B] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
+              >
+                {isFr ? "Voir les 16 fiches secteurs" : "View the 16 sector profiles"}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════════
+          S15, CTA FINAL DOUBLE + BANDEAU CONFIANCE
          ════════════════════════════════════════════════════════════════ */}
       <section
         className="relative py-28 lg:py-32 overflow-hidden bg-[#0F172A]"
         aria-labelledby="final-cta-title"
       >
-        {/* Background photo — very subtle */}
+        {/* Background photo, very subtle */}
         <Image
           src="/photos/hp-atelier-itad.jpg"
-          alt="Atelier de reconditionnement GreenTechCycle — chaîne d'effacement certifiée"
+          alt="Atelier de reconditionnement GreenTechCycle, chaîne d'effacement certifiée"
           fill
           loading="lazy"
           className="object-cover opacity-15"
@@ -1555,7 +1812,7 @@ export default function CasUsagesPage() {
                 {t("finalCta.subtitle")}
               </p>
 
-              {/* Process — 4 quick steps */}
+              {/* Process, 4 quick steps */}
               <div className="flex flex-wrap justify-center gap-3 mb-10">
                 {[
                   { n: "01", l: "Audit flash 72h" },

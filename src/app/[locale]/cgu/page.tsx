@@ -30,7 +30,7 @@ function CguContent({ locale }: { locale: string }) {
       <LegalPageLayout
         locale={locale}
         title={t("title")}
-        subtitle="Conditions générales d'utilisation de la plateforme GreenTechCycle — engagements, responsabilités et cadre contractuel."
+        subtitle="Conditions générales d'utilisation de la plateforme GreenTechCycle, engagements, responsabilités et cadre contractuel."
         breadcrumbLabel="CGU"
         icon={<FileText className="h-7 w-7 text-accent" />}
       >

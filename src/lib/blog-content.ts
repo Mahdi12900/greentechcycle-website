@@ -19,13 +19,13 @@ const articleContents: Record<string, string> = {
 
 <p>Parmi les normes ESRS, plusieurs indicateurs concernent directement la gestion des actifs IT en fin de vie :</p>
 
-<h3>ESRS E1 — Changement climatique</h3>
+<h3>ESRS E1, Changement climatique</h3>
 <p>Vous devez quantifier les émissions de scope 3 liées au cycle de vie de vos équipements IT. L'ITAD permet de calculer les <strong>émissions évitées</strong> grâce au reconditionnement et au réemploi, un avantage significatif dans votre bilan carbone.</p>
 
-<h3>ESRS E5 — Utilisation des ressources et économie circulaire</h3>
+<h3>ESRS E5, Utilisation des ressources et économie circulaire</h3>
 <p>Cet indicateur impose de reporter sur les flux de matières, le taux de circularité et les pratiques de valorisation. Une stratégie ITAD structurée vous fournit directement ces données : taux de reconditionnement, quantité de matériaux recyclés, pourcentage de réemploi.</p>
 
-<h3>ESRS S1 — Main-d'œuvre propre</h3>
+<h3>ESRS S1, Main-d'œuvre propre</h3>
 <p>La traçabilité de la chaîne de valeur ITAD, notamment les conditions de travail dans les filières de recyclage, entre dans le périmètre social du reporting.</p>
 
 <h2>Comment l'ITAD alimente votre reporting CSRD</h2>
@@ -69,7 +69,7 @@ const articleContents: Record<string, string> = {
 
 <h2>Conclusion</h2>
 
-<p>La CSRD n'est pas seulement une contrainte réglementaire — c'est une opportunité de structurer votre gestion des actifs IT en fin de vie. En adoptant une approche ITAD intégrée, vous transformez une obligation de reporting en levier de performance environnementale et financière. Les entreprises qui anticipent cette convergence ITAD-CSRD prendront une longueur d'avance dans la transition vers un numérique responsable.</p>
+<p>La CSRD n'est pas seulement une contrainte réglementaire, c'est une opportunité de structurer votre gestion des actifs IT en fin de vie. En adoptant une approche ITAD intégrée, vous transformez une obligation de reporting en levier de performance environnementale et financière. Les entreprises qui anticipent cette convergence ITAD-CSRD prendront une longueur d'avance dans la transition vers un numérique responsable.</p>
 `,
 
   "securite-donnees-fin-de-vie-equipements-it": `
@@ -116,7 +116,7 @@ const articleContents: Record<string, string> = {
 <p>Pour les SSD et supports chiffrés, l'effacement de la clé de chiffrement rend les données instantanément inaccessibles. Cette méthode est rapide mais nécessite que le chiffrement ait été activé avant le stockage des données.</p>
 
 <h3>Démagnétisation (Degaussing)</h3>
-<p>Un champ magnétique puissant détruit l'alignement magnétique des plateaux de disques durs. Efficace mais rend le support inutilisable — incompatible avec le reconditionnement.</p>
+<p>Un champ magnétique puissant détruit l'alignement magnétique des plateaux de disques durs. Efficace mais rend le support inutilisable, incompatible avec le reconditionnement.</p>
 
 <h3>Destruction physique</h3>
 <p>Le broyage mécanique ou la perforation garantit l'irréversibilité. Des prestataires certifiés fournissent des certificats de destruction avec traçabilité vidéo.</p>
@@ -126,10 +126,10 @@ const articleContents: Record<string, string> = {
 <p>Le RGPD impose plusieurs obligations directement liées à la fin de vie des équipements :</p>
 
 <ul>
-<li><strong>Article 5(1)(e)</strong> — Limitation de la conservation : les données ne doivent pas être conservées au-delà de leur finalité. Un équipement retiré du service doit être effacé.</li>
-<li><strong>Article 5(1)(f)</strong> — Intégrité et confidentialité : des mesures techniques appropriées doivent protéger les données, y compris lors du décommissionnement.</li>
-<li><strong>Article 28</strong> — Sous-traitance : si vous confiez l'effacement à un prestataire ITAD, un contrat de sous-traitance conforme est obligatoire avec garanties sur les mesures de sécurité.</li>
-<li><strong>Article 33</strong> — Notification des violations : une fuite de données liée à un équipement non effacé constitue une violation à notifier à la CNIL sous 72 heures.</li>
+<li><strong>Article 5(1)(e)</strong>, Limitation de la conservation : les données ne doivent pas être conservées au-delà de leur finalité. Un équipement retiré du service doit être effacé.</li>
+<li><strong>Article 5(1)(f)</strong>, Intégrité et confidentialité : des mesures techniques appropriées doivent protéger les données, y compris lors du décommissionnement.</li>
+<li><strong>Article 28</strong>, Sous-traitance : si vous confiez l'effacement à un prestataire ITAD, un contrat de sous-traitance conforme est obligatoire avec garanties sur les mesures de sécurité.</li>
+<li><strong>Article 33</strong>, Notification des violations : une fuite de données liée à un équipement non effacé constitue une violation à notifier à la CNIL sous 72 heures.</li>
 </ul>
 
 <h2>Bonnes pratiques pour sécuriser vos données en fin de vie</h2>
@@ -165,7 +165,7 @@ const articleContents: Record<string, string> = {
 
 <h2>Conclusion</h2>
 
-<p>La sécurité des données ne s'arrête pas à la mise hors service d'un équipement — elle se prolonge jusqu'à la certitude que les données sont irréversiblement détruites. Dans un contexte réglementaire de plus en plus exigeant (RGPD, NIS2, DORA), investir dans un processus d'effacement certifié n'est plus une option mais une nécessité. Chaque équipement non effacé est une bombe à retardement juridique et réputationnelle.</p>
+<p>La sécurité des données ne s'arrête pas à la mise hors service d'un équipement, elle se prolonge jusqu'à la certitude que les données sont irréversiblement détruites. Dans un contexte réglementaire de plus en plus exigeant (RGPD, NIS2, DORA), investir dans un processus d'effacement certifié n'est plus une option mais une nécessité. Chaque équipement non effacé est une bombe à retardement juridique et réputationnelle.</p>
 `,
 
   "nis2-compliance-it-infrastructure": `
@@ -186,7 +186,7 @@ const articleContents: Record<string, string> = {
 
 <p>NIS2 ne se limite pas à la protection des systèmes en production. La directive couvre explicitement la <strong>sécurité de la chaîne d'approvisionnement</strong> et la <strong>gestion des actifs</strong>, ce qui inclut directement les processus ITAD.</p>
 
-<h3>Article 21 — Mesures de gestion des risques</h3>
+<h3>Article 21, Mesures de gestion des risques</h3>
 <p>Les entités doivent mettre en œuvre des mesures techniques et organisationnelles « appropriées et proportionnées » incluant :</p>
 <ul>
 <li>La gestion des actifs et l'inventaire des systèmes d'information</li>
@@ -216,7 +216,7 @@ const articleContents: Record<string, string> = {
 </ul>
 
 <h3>3. Effacement sécurisé comme mesure de cybersécurité</h3>
-<p>L'effacement des données sur les équipements décommissionnés n'est plus seulement une obligation RGPD — c'est une mesure de cybersécurité au sens de NIS2. Un actif non effacé qui quitte votre périmètre constitue un vecteur d'attaque potentiel sur vos systèmes d'information.</p>
+<p>L'effacement des données sur les équipements décommissionnés n'est plus seulement une obligation RGPD, c'est une mesure de cybersécurité au sens de NIS2. Un actif non effacé qui quitte votre périmètre constitue un vecteur d'attaque potentiel sur vos systèmes d'information.</p>
 
 <h3>4. Notification d'incidents</h3>
 <p>NIS2 impose une notification des incidents significatifs sous 24 heures (alerte initiale) puis 72 heures (rapport détaillé). Si une fuite de données est liée à un équipement IT mal décommissionné, elle entre dans le périmètre de notification.</p>
@@ -256,7 +256,7 @@ const articleContents: Record<string, string> = {
 
 <h2>Conclusion</h2>
 
-<p>NIS2 élève la gestion des actifs IT au rang d'obligation de cybersécurité. Le décommissionnement n'est plus une simple opération logistique — c'est un processus de sécurité qui doit être maîtrisé, tracé et auditable. Les entreprises qui intègrent leur stratégie ITAD dans leur conformité NIS2 réduisent simultanément leurs risques cyber et leur exposition réglementaire.</p>
+<p>NIS2 élève la gestion des actifs IT au rang d'obligation de cybersécurité. Le décommissionnement n'est plus une simple opération logistique, c'est un processus de sécurité qui doit être maîtrisé, tracé et auditable. Les entreprises qui intègrent leur stratégie ITAD dans leur conformité NIS2 réduisent simultanément leurs risques cyber et leur exposition réglementaire.</p>
 `,
 
   "economie-circulaire-it-entreprise": `
@@ -371,7 +371,7 @@ const articleContents: Record<string, string> = {
 
 <h2>Conclusion</h2>
 
-<p>L'économie circulaire IT n'est pas un luxe réservé aux grandes entreprises — c'est une démarche accessible qui génère des bénéfices immédiats. En structurant votre approche autour du reconditionnement, du réemploi et d'une traçabilité rigoureuse, vous transformez vos déchets électroniques en ressources tout en renforçant votre performance environnementale et financière.</p>
+<p>L'économie circulaire IT n'est pas un luxe réservé aux grandes entreprises, c'est une démarche accessible qui génère des bénéfices immédiats. En structurant votre approche autour du reconditionnement, du réemploi et d'une traçabilité rigoureuse, vous transformez vos déchets électroniques en ressources tout en renforçant votre performance environnementale et financière.</p>
 `,
 
   "guide-deee-reglementation-entreprise": `
@@ -475,7 +475,7 @@ const articleContents: Record<string, string> = {
 <p>Planifiez vos opérations de décommissionnement pour éviter l'accumulation de DEEE dans vos locaux. Un stock important de DEEE non traité peut constituer un risque (sécurité incendie, pollution, vol de données).</p>
 
 <h3>6. Intégrer les DEEE dans votre reporting ESG</h3>
-<p>Les flux de DEEE alimentent directement vos indicateurs CSRD (ESRS E5 — économie circulaire). Automatisez la collecte de données via votre prestataire ITAD.</p>
+<p>Les flux de DEEE alimentent directement vos indicateurs CSRD (ESRS E5, économie circulaire). Automatisez la collecte de données via votre prestataire ITAD.</p>
 
 <h2>L'approche GreenTechCycle pour la conformité DEEE</h2>
 
@@ -492,7 +492,7 @@ const articleContents: Record<string, string> = {
 
 <h2>Conclusion</h2>
 
-<p>La réglementation DEEE se renforce chaque année, portée par les objectifs européens d'économie circulaire et la prise de conscience environnementale. Pour les entreprises, la conformité n'est pas seulement une obligation légale — c'est une responsabilité environnementale et une opportunité de valorisation. En structurant votre gestion des DEEE avec un partenaire ITAD certifié, vous sécurisez votre conformité tout en maximisant la valeur résiduelle de vos actifs IT.</p>
+<p>La réglementation DEEE se renforce chaque année, portée par les objectifs européens d'économie circulaire et la prise de conscience environnementale. Pour les entreprises, la conformité n'est pas seulement une obligation légale, c'est une responsabilité environnementale et une opportunité de valorisation. En structurant votre gestion des DEEE avec un partenaire ITAD certifié, vous sécurisez votre conformité tout en maximisant la valeur résiduelle de vos actifs IT.</p>
 `,
 };
 

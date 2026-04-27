@@ -41,7 +41,7 @@ export default function NotFound() {
 
         {/* Helpful Links */}
         <div className="border-t border-gray-200 pt-8">
-          <p className="text-sm text-gray-500 mb-4">&mdash;</p>
+          <p className="text-sm text-gray-500 mb-4">-</p>
           <div className="flex flex-wrap justify-center gap-4">
             {helpfulLinks.map((link) => (
               <Link

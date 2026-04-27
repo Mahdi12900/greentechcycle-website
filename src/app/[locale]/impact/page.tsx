@@ -105,31 +105,31 @@ export default function ImpactPage() {
   const heroChips = t.raw("hero.chips") as string[];
   const heroKpis = t.raw("hero.kpis") as Kpi[];
 
-  // S2 — Weight
+  // S2 : Weight
   const weightStats = t.raw("weight.stats") as WeightStat[];
 
-  // S3 — Methodology
+  // S3 : Methodology
   const scopes = t.raw("methodology.scopes") as Scope[];
   const frameworks = t.raw("methodology.frameworks") as Framework[];
   const indicators = t.raw("methodology.indicators") as Indicator[];
 
-  // S5 — Comparison
+  // S5 : Comparison
   const comparisonHeaders = t.raw("comparison.headers") as string[];
   const comparisonRows = t.raw("comparison.rows") as ComparisonRow[];
   const comparisonSources = t.raw("comparison.sources") as string[];
 
-  // S6 — ESRS
+  // S6 : ESRS
   const esrsHeaders = t.raw("esrs.headers") as string[];
   const esrsRows = t.raw("esrs.rows") as EsrsRow[];
 
-  // S7 — Proof
+  // S7 : Proof
   const methods = t.raw("proof.methods") as Method[];
   const ecosystem = t.raw("proof.ecosystem") as EcosystemEntry[];
 
-  // S8 — Cases
+  // S8 : Cases
   const caseItems = t.raw("cases.items") as CaseItem[];
 
-  // S9 — Resources
+  // S9 : Resources
   const resources = t.raw("resources.items") as ResourceItem[];
 
   // JSON-LD WebPage + Breadcrumb
@@ -178,7 +178,7 @@ export default function ImpactPage() {
       <SchemaOrg data={breadcrumbSchema} />
 
       {/* =====================================================================
-          SECTION 1 — HERO ÉDITORIAL — split sombre + photo droite
+          SECTION 1 (HERO ÉDITORIAL) split sombre + photo droite
           ===================================================================== */}
       <section
         className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
@@ -299,7 +299,7 @@ export default function ImpactPage() {
         <div className="relative w-full lg:w-[45%] min-h-[42vh] lg:min-h-0 overflow-hidden flex-shrink-0">
           <Image
             src="/photos/impact-sustainability.jpg"
-            alt="Forêt et infrastructure énergétique — symbole de la décarbonation du numérique d'entreprise"
+            alt="Forêt et infrastructure énergétique, symbole de la décarbonation du numérique d'entreprise"
             fill
             priority
             className="object-cover"
@@ -311,7 +311,7 @@ export default function ImpactPage() {
       </section>
 
       {/* =====================================================================
-          SECTION 2 — WEIGHT OF DIGITAL
+          SECTION 2, WEIGHT OF DIGITAL
           ===================================================================== */}
       <section className="py-20 md:py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
@@ -370,7 +370,7 @@ export default function ImpactPage() {
       </section>
 
       {/* =====================================================================
-          SECTION 3 — METHODOLOGY
+          SECTION 3, METHODOLOGY
           ===================================================================== */}
       <section className="py-20 md:py-24 px-6 bg-gradient-to-b from-light to-white">
         <div className="max-w-7xl mx-auto">
@@ -491,7 +491,7 @@ export default function ImpactPage() {
       </section>
 
       {/* =====================================================================
-          SECTION 4 — CALCULATOR
+          SECTION 4, CALCULATOR
           ===================================================================== */}
       <section
         id="calculator"
@@ -555,7 +555,7 @@ export default function ImpactPage() {
       </section>
 
       {/* =====================================================================
-          SECTION 5 — COMPARISON NEW vs REFURBISHED
+          SECTION 5, COMPARISON NEW vs REFURBISHED
           ===================================================================== */}
       <section className="py-20 md:py-24 px-6 bg-light">
         <div className="max-w-7xl mx-auto">
@@ -658,7 +658,7 @@ export default function ImpactPage() {
       </section>
 
       {/* =====================================================================
-          SECTION 6 — ESRS E5 MAPPING
+          SECTION 6, ESRS E5 MAPPING
           ===================================================================== */}
       <section className="py-20 md:py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
@@ -747,7 +747,7 @@ export default function ImpactPage() {
       </section>
 
       {/* =====================================================================
-          SECTION 7 — PROOF & CERTIFICATIONS
+          SECTION 7, PROOF & CERTIFICATIONS
           ===================================================================== */}
       <section className="py-20 md:py-24 px-6 bg-gradient-to-b from-light to-white">
         <div className="max-w-7xl mx-auto">
@@ -824,7 +824,7 @@ export default function ImpactPage() {
       </section>
 
       {/* =====================================================================
-          SECTION 8 — CASES
+          SECTION 8, CASES
           ===================================================================== */}
       <section className="py-20 md:py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
@@ -879,7 +879,7 @@ export default function ImpactPage() {
       </section>
 
       {/* =====================================================================
-          SECTION 9 — RESOURCES
+          SECTION 9, RESOURCES
           ===================================================================== */}
       <section className="py-20 md:py-24 px-6 bg-light">
         <div className="max-w-7xl mx-auto">
@@ -936,7 +936,7 @@ export default function ImpactPage() {
       />
 
       {/* =====================================================================
-          SECTION 10 — FINAL CTA
+          SECTION 10, FINAL CTA
           ===================================================================== */}
       <CtaSection
         title={t("finalCta.title")}

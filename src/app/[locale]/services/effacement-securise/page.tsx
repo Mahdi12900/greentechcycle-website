@@ -12,15 +12,15 @@ export default function EffacementSecurisePage() {
 
   const data: ServicePageData = {
     slug: "effacement-securise",
-    eyebrow: tx("02 — Sécurité des données", "02 — Data security"),
+    eyebrow: tx("02 (Sécurité des données", "02) Data security"),
     title: tx("Effacement sécurisé", "Secure data erasure"),
     subtitle: tx(
       "Quand un poste sort de votre organisation, ce n'est pas la machine qui inquiète : ce sont les fichiers qu'elle a hébergés. Nous garantissons un effacement opposable, certifié actif par actif, archivé dix ans.",
       "When a device leaves your organisation, it isn't the machine that worries you: it's the files it has hosted. We guarantee admissible erasure, certified asset by asset, archived for ten years."
     ),
     description: tx(
-      "Trois familles de méthodes coexistent dans le monde de l'effacement, et choisir la mauvaise revient à laisser une porte ouverte. Nous appliquons NIST 800-88 dans la majorité des cas, DoD 5220.22-M sur les environnements historiquement sensibles, et IEEE 2883-2022 sur les SSD modernes où les méthodes anciennes deviennent inopérantes. Chaque opération est tracée, horodatée et signée. Un audit interne est déclenché automatiquement sur chaque lot — nous ne vous laissons pas vérifier seul.",
-      "Three families of erasure methods coexist, and picking the wrong one leaves a door open. We apply NIST 800-88 in the majority of cases, DoD 5220.22-M for historically sensitive environments, and IEEE 2883-2022 for modern SSDs where legacy methods become ineffective. Every operation is logged, timestamped and signed. An internal audit is automatically triggered for each batch — you don't verify on your own."
+      "Trois familles de méthodes coexistent dans le monde de l'effacement, et choisir la mauvaise revient à laisser une porte ouverte. Nous appliquons NIST 800-88 dans la majorité des cas, DoD 5220.22-M sur les environnements historiquement sensibles, et IEEE 2883-2022 sur les SSD modernes où les méthodes anciennes deviennent inopérantes. Chaque opération est tracée, horodatée et signée. Un audit interne est déclenché automatiquement sur chaque lot, nous ne vous laissons pas vérifier seul.",
+      "Three families of erasure methods coexist, and picking the wrong one leaves a door open. We apply NIST 800-88 in the majority of cases, DoD 5220.22-M for historically sensitive environments, and IEEE 2883-2022 for modern SSDs where legacy methods become ineffective. Every operation is logged, timestamped and signed. An internal audit is automatically triggered for each batch, you don't verify on your own."
     ),
     narrative: tx(
       "L'effacement n'est pas une commande dans un script : c'est une chaîne contrôlée, exécutée en zone sécurisée par des opérateurs habilités, sous le principe du double regard pour les opérations irréversibles. Voici comment elle se déroule.",
@@ -63,8 +63,8 @@ export default function EffacementSecurisePage() {
         {
           title: tx("Classification des supports", "Media classification"),
           desc: tx(
-            "Nous identifions le type de support — disque mécanique, SSD, NVMe, bande — et la sensibilité des données qu'il contient. Cette classification dicte la méthode appliquée et le niveau de preuve attendu.",
-            "We identify the media type — mechanical disk, SSD, NVMe, tape — and the sensitivity of the data it carries. This classification dictates the method applied and the level of evidence expected."
+            "Nous identifions le type de support (disque mécanique, SSD, NVMe, bande) et la sensibilité des données qu'il contient. Cette classification dicte la méthode appliquée et le niveau de preuve attendu.",
+            "We identify the media type (mechanical disk, SSD, NVMe, tape) and the sensitivity of the data it carries. This classification dictates the method applied and the level of evidence expected."
           ),
         },
         {
@@ -114,21 +114,23 @@ export default function EffacementSecurisePage() {
       {
         q: tx("Quelle différence entre Clear, Purge et Destroy ?", "What's the difference between Clear, Purge and Destroy?"),
         a: tx(
-          "Clear : écrasement logique standard, suffisant pour des données non sensibles. Purge : écrasement renforcé avec vérification forensique, exigé pour les données sensibles. Destroy : destruction physique du support — broyage ou démagnétisation — pour les données classifiées.",
-          "Clear: standard logical overwrite, sufficient for non-sensitive data. Purge: enhanced overwrite with forensic verification, required for sensitive data. Destroy: physical destruction of the device — shredding or degaussing — for classified data."
+          "Clear : écrasement logique standard, suffisant pour des données non sensibles. Purge : écrasement renforcé avec vérification forensique, exigé pour les données sensibles. Destroy : destruction physique du support (broyage ou démagnétisation) pour les données classifiées.",
+          "Clear: standard logical overwrite, sufficient for non-sensitive data. Purge: enhanced overwrite with forensic verification, required for sensitive data. Destroy: physical destruction of the device (shredding or degaussing) for classified data."
         ),
       },
       {
         q: tx("L'effacement est-il possible sur site ?", "Is on-site erasure possible?"),
         a: tx(
-          "Oui. Nous déployons des unités mobiles d'effacement pour les actifs qui ne doivent pas quitter vos locaux. Les conditions de sécurité — zone fermée, double regard, vidéosurveillance — sont strictement identiques à celles de notre centre.",
-          "Yes. We deploy mobile erasure units for assets that must not leave your premises. Security conditions — sealed area, four-eyes principle, video surveillance — are strictly identical to our centre."
+          "Oui. Nous déployons des unités mobiles d'effacement pour les actifs qui ne doivent pas quitter vos locaux. Les conditions de sécurité (zone fermée, double regard, vidéosurveillance) sont strictement identiques à celles de notre centre.",
+          "Yes. We deploy mobile erasure units for assets that must not leave your premises. Security conditions (sealed area, four-eyes principle, video surveillance) are strictly identical to our centre."
         ),
       },
     ],
     ctaPrimaryLabel: tx("Réserver une mission", "Book a mission"),
     ctaSecondaryLabel: tx("Voir les certifications", "See certifications"),
     ctaSecondaryHref: "/securite",
+    pricingAnchor: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+    pricingHref: "/tarifs",
     isEn,
   };
 

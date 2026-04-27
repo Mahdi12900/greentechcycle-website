@@ -221,8 +221,8 @@ export default function RegulationPage() {
       textColor: "text-blue-700",
       title: tx("Finance & Banque", "Finance & Banking"),
       description: tx(
-        "PCI-DSS, DORA, Bâle III/IV, MiFID II — les obligations les plus strictes en matière de données de paiement et résilience opérationnelle.",
-        "PCI-DSS, DORA, Basel III/IV, MiFID II — the strictest obligations for payment data and operational resilience."
+        "PCI-DSS, DORA, Bâle III/IV, MiFID II, les obligations les plus strictes en matière de données de paiement et résilience opérationnelle.",
+        "PCI-DSS, DORA, Basel III/IV, MiFID II, the strictest obligations for payment data and operational resilience."
       ),
       items: [
         {
@@ -320,8 +320,8 @@ export default function RegulationPage() {
       textColor: "text-rose-700",
       title: tx("Santé", "Healthcare"),
       description: tx(
-        "HIPAA, HDS, MDR, HAS 2024 — protection des données de santé, obligations de chiffrement et destruction des PHI.",
-        "HIPAA, HDS, MDR, HAS 2024 — health data protection, encryption obligations and PHI destruction."
+        "HIPAA, HDS, MDR, HAS 2024, protection des données de santé, obligations de chiffrement et destruction des PHI.",
+        "HIPAA, HDS, MDR, HAS 2024, health data protection, encryption obligations and PHI destruction."
       ),
       items: [
         {
@@ -389,7 +389,7 @@ export default function RegulationPage() {
         },
         {
           name: "HAS 2024",
-          fullName: tx("Haute Autorité de Santé — Recommandations ITAD", "French Health Authority — ITAD Recommendations"),
+          fullName: tx("Haute Autorité de Santé (Recommandations ITAD", "French Health Authority) ITAD Recommendations"),
           jurisdiction: tx("France · Établissements de santé", "France · Healthcare facilities"),
           inForce: "2024",
           status: "update" as Status,
@@ -419,8 +419,8 @@ export default function RegulationPage() {
       textColor: "text-amber-700",
       title: tx("Industrie & OT", "Industry & OT"),
       description: tx(
-        "NIS2, IEC 62443, Directive Machines — cybersécurité industrielle, systèmes OT/SCADA et convergence IT/OT.",
-        "NIS2, IEC 62443, Machinery Directive — industrial cybersecurity, OT/SCADA systems and IT/OT convergence."
+        "NIS2, IEC 62443, Directive Machines, cybersécurité industrielle, systèmes OT/SCADA et convergence IT/OT.",
+        "NIS2, IEC 62443, Machinery Directive : industrial cybersecurity, OT/SCADA systems and IT/OT convergence."
       ),
       items: [
         {
@@ -497,13 +497,13 @@ export default function RegulationPage() {
       textColor: "text-indigo-700",
       title: tx("Secteur Public & Défense", "Public Sector & Defense"),
       description: tx(
-        "ANSSI SecNumCloud, RGS, eIDAS 2.0, IGI 1300 — souveraineté numérique et classification défense.",
-        "ANSSI SecNumCloud, RGS, eIDAS 2.0, IGI 1300 — digital sovereignty and defense classification."
+        "ANSSI SecNumCloud, RGS, eIDAS 2.0, IGI 1300, souveraineté numérique et classification défense.",
+        "ANSSI SecNumCloud, RGS, eIDAS 2.0, IGI 1300, digital sovereignty and defense classification."
       ),
       items: [
         {
           name: "ANSSI / SecNumCloud",
-          fullName: tx("Référentiel SecNumCloud v3.2 — ANSSI", "SecNumCloud Framework v3.2 — ANSSI"),
+          fullName: tx("Référentiel SecNumCloud v3.2 (ANSSI", "SecNumCloud Framework v3.2) ANSSI"),
           jurisdiction: tx("France · OIV/OSE", "France · Critical operators"),
           inForce: tx("Rév. 3.2 · 2024", "Rev. 3.2 · 2024"),
           status: "update" as Status,
@@ -575,8 +575,8 @@ export default function RegulationPage() {
       textColor: "text-yellow-700",
       title: tx("Énergie & Télécoms", "Energy & Telecoms"),
       description: tx(
-        "Code de l'énergie, ARCEP, NIS2 sectoriel — obligations des opérateurs d'énergie et télécoms.",
-        "Energy Code, ARCEP, sectoral NIS2 — energy and telecom operator obligations."
+        "Code de l'énergie, ARCEP, NIS2 sectoriel, obligations des opérateurs d'énergie et télécoms.",
+        "Energy Code, ARCEP, sectoral NIS2, energy and telecom operator obligations."
       ),
       items: [
         {
@@ -632,8 +632,8 @@ export default function RegulationPage() {
       textColor: "text-pink-700",
       title: tx("Retail & E-commerce", "Retail & E-commerce"),
       description: tx(
-        "PCI-DSS, Loi Hamon, DMA — protection des données de paiement et des consommateurs numériques.",
-        "PCI-DSS, Hamon Law, DMA — payment data and digital consumer protection."
+        "PCI-DSS, Loi Hamon, DMA, protection des données de paiement et des consommateurs numériques.",
+        "PCI-DSS, Hamon Law, DMA, payment data and digital consumer protection."
       ),
       items: [
         {
@@ -818,49 +818,49 @@ export default function RegulationPage() {
       date: tx("Oct 2024", "Oct 2024"),
       title: "NIS2",
       impact: tx("Registre d'actifs obligatoire, notification incident 24h", "Mandatory asset register, 24h incident notification"),
-      business: tx("Amende 10M€ / 2% CA — Préparez votre registre d'actifs MAINTENANT", "Fine €10M / 2% revenue — Prepare your asset register NOW"),
+      business: tx("Amende 10M€ / 2% CA (Préparez votre registre d'actifs MAINTENANT", "Fine €10M / 2% revenue) Prepare your asset register NOW"),
     },
     {
       date: tx("Jan 2025", "Jan 2025"),
       title: "DORA",
       impact: tx("Résilience opérationnelle numérique obligatoire pour la finance", "Mandatory digital operational resilience for finance"),
-      business: tx("22 000 entités — Registre ICT et tests de pénétration requis", "22,000 entities — ICT register and penetration tests required"),
+      business: tx("22 000 entités (Registre ICT et tests de pénétration requis", "22,000 entities) ICT register and penetration tests required"),
     },
     {
       date: tx("Mar 2025", "Mar 2025"),
       title: "PCI-DSS v4.0",
       impact: tx("Fin de la période transitoire, conformité totale obligatoire", "End of transition period, full compliance mandatory"),
-      business: tx("Révocation agrément possible — Auditez vos processus de destruction", "Accreditation revocation possible — Audit your destruction processes"),
+      business: tx("Révocation agrément possible (Auditez vos processus de destruction", "Accreditation revocation possible) Audit your destruction processes"),
     },
     {
       date: tx("Jan 2026", "Jan 2026"),
       title: "CSRD v3",
       impact: tx("PME cotées > 10 salariés soumises aux comptes-rendus extra-financiers", "Listed SMEs > 10 employees subject to non-financial reporting"),
-      business: tx("50 000 entreprises — Mettez en place votre reporting ESRS E5 maintenant", "50,000 companies — Set up your ESRS E5 reporting now"),
+      business: tx("50 000 entreprises (Mettez en place votre reporting ESRS E5 maintenant", "50,000 companies) Set up your ESRS E5 reporting now"),
     },
     {
       date: tx("Août 2026", "Aug 2026"),
       title: "AI Act · HR",
       impact: tx("Systèmes IA haut risque : registre, traçabilité, audit", "High-risk AI systems: register, traceability, audit"),
-      business: tx("GPU/TPU à tracer — Identifiez vos assets IA et leur cycle de vie", "GPU/TPU to track — Identify your AI assets and their lifecycle"),
+      business: tx("GPU/TPU à tracer (Identifiez vos assets IA et leur cycle de vie", "GPU/TPU to track) Identify your AI assets and their lifecycle"),
     },
     {
       date: tx("Jan 2027", "Jan 2027"),
       title: tx("Directive Machines", "Machinery Dir."),
       impact: tx("Cybersécurité intégrée by design, exigences fin de vie", "Cybersecurity integrated by design, EOL requirements"),
-      business: tx("Industrie — Anticipez la gestion de fin de vie des machines connectées", "Industry — Anticipate connected machinery EOL management"),
+      business: tx("Industrie (Anticipez la gestion de fin de vie des machines connectées", "Industry) Anticipate connected machinery EOL management"),
     },
     {
       date: tx("Fév 2027", "Feb 2027"),
       title: tx("Passeport batterie", "Battery passport"),
       impact: tx("Passeport numérique obligatoire pour toutes les batteries industrielles", "Mandatory digital passport for all industrial batteries"),
-      business: tx("Traçabilité batterie par batterie — Préparez votre chaîne de custody", "Battery-by-battery traceability — Prepare your chain of custody"),
+      business: tx("Traçabilité batterie par batterie (Préparez votre chaîne de custody", "Battery-by-battery traceability) Prepare your chain of custody"),
     },
     {
       date: tx("Jan 2028", "Jan 2028"),
       title: tx("Passeport produit numérique", "Digital product passport"),
       impact: tx("ESPR : passeport numérique pour les produits IT (EcoDesign)", "ESPR: digital passport for IT products (EcoDesign)"),
-      business: tx("IT concerné — Chaque asset devra avoir son passeport numérique", "IT concerned — Every asset will need its digital passport"),
+      business: tx("IT concerné (Chaque asset devra avoir son passeport numérique", "IT concerned) Every asset will need its digital passport"),
     },
   ];
 
@@ -904,8 +904,8 @@ export default function RegulationPage() {
         {
           title: tx("Data centers : 2-3% de la consommation mondiale", "Data centers: 2-3% of global consumption"),
           text: tx(
-            "Les data centers consomment 2-3% de l'électricité mondiale (Source : IEA 2024). PUE moyen mondial : 1,58 — objectif UE : 1,3 d'ici 2030. Le reconditionnement évite la fabrication de nouveaux équipements : -47kg CO₂ par laptop reconditionné (Source : ADEME).",
-            "Data centers consume 2-3% of global electricity (Source: IEA 2024). Global average PUE: 1.58 — EU target: 1.3 by 2030. Refurbishment avoids new equipment manufacturing: -47kg CO₂ per refurbished laptop (Source: ADEME)."
+            "Les data centers consomment 2-3% de l'électricité mondiale (Source : IEA 2024). PUE moyen mondial : 1,58, objectif UE : 1,3 d'ici 2030. Le reconditionnement évite la fabrication de nouveaux équipements : -47kg CO₂ par laptop reconditionné (Source : ADEME).",
+            "Data centers consume 2-3% of global electricity (Source: IEA 2024). Global average PUE: 1.58 : EU target: 1.3 by 2030. Refurbishment avoids new equipment manufacturing: -47kg CO₂ per refurbished laptop (Source: ADEME)."
           ),
         },
         {
@@ -953,7 +953,7 @@ export default function RegulationPage() {
       title: tx("Nouvelle posture IT", "New IT posture"),
       items: [
         {
-          title: tx("De 'posséder' à 'utiliser' — FinOps, GreenOps", "From 'own' to 'use' — FinOps, GreenOps"),
+          title: tx("De 'posséder' à 'utiliser' (FinOps, GreenOps", "From 'own' to 'use') FinOps, GreenOps"),
           text: tx(
             "Le shift vers le cloud n'élimine pas les assets physiques : serveurs on-premise résiduels, postes de travail, équipements réseau. La question 'que faire des assets physiques restants ?' devient critique dans chaque migration cloud.",
             "The shift to cloud doesn't eliminate physical assets: residual on-premise servers, workstations, network equipment. The question 'what to do with remaining physical assets?' becomes critical in every cloud migration."
@@ -979,12 +979,12 @@ export default function RegulationPage() {
 
   // ---------- Sources ----------
   const sources = [
-    { name: "ENISA", desc: tx("European Union Agency for Cybersecurity — rapports annuels sur les menaces", "European Union Agency for Cybersecurity — annual threat reports") },
+    { name: "ENISA", desc: tx("European Union Agency for Cybersecurity (rapports annuels sur les menaces", "European Union Agency for Cybersecurity) annual threat reports") },
     { name: "Gartner", desc: tx("Prédictions cybersécurité, Magic Quadrant ITAM", "Cybersecurity predictions, ITAM Magic Quadrant") },
-    { name: "Greenpeace", desc: tx("Rapports empreinte carbone du numérique — « Clicking Clean »", "Digital carbon footprint reports — 'Clicking Clean'") },
+    { name: "Greenpeace", desc: tx("Rapports empreinte carbone du numérique (« Clicking Clean »", "Digital carbon footprint reports) 'Clicking Clean'") },
     { name: "ADEME", desc: tx("Facteurs d'émission, bilans carbone reconditionnement", "Emission factors, refurbishment carbon assessments") },
-    { name: "CNIL / EDPB", desc: tx("Statistiques amendes RGPD — 4,5Md€ cumulés", "GDPR fine statistics — €4.5B cumulative") },
-    { name: "IEA", desc: tx("International Energy Agency — consommation énergétique data centers", "International Energy Agency — data center energy consumption") },
+    { name: "CNIL / EDPB", desc: tx("Statistiques amendes RGPD (4,5Md€ cumulés", "GDPR fine statistics) €4.5B cumulative") },
+    { name: "IEA", desc: tx("International Energy Agency (consommation énergétique data centers", "International Energy Agency) data center energy consumption") },
     { name: "NIST", desc: tx("Référentiels cybersécurité, standards post-quantum PQC 2024", "Cybersecurity frameworks, post-quantum PQC standards 2024") },
   ];
 
@@ -1108,7 +1108,7 @@ export default function RegulationPage() {
                 </span>
               </p>
 
-              {/* Hero KPIs — premium 4-column */}
+              {/* Hero KPIs, premium 4-column */}
               <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-5xl mx-auto">
                 {[
                   { num: 30, suffix: "+", decimals: 0, label: tx("Réglementations maîtrisées", "Regulations mastered"), icon: Gavel, accent: true },
@@ -1370,7 +1370,7 @@ export default function RegulationPage() {
             <div className="max-w-3xl mx-auto text-center mb-16">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-accent text-xs font-bold uppercase tracking-widest mb-5">
                 <Clock className="w-3.5 h-3.5" />
-                {tx("Agenda réglementaire 2024 — 2028", "Regulatory agenda 2024 — 2028")}
+                {tx("Agenda réglementaire 2024 (2028", "Regulatory agenda 2024) 2028")}
               </span>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-5 tracking-tight leading-[1.1]">
                 {tx("Chaque jalon,", "Every milestone,")}
@@ -1381,8 +1381,8 @@ export default function RegulationPage() {
               </h2>
               <p className="text-lg text-slate-400 leading-relaxed">
                 {tx(
-                  "Pas juste des dates — ce qui change pour le DSI/RSSI, l'impact financier, et ce que GTC recommande de faire maintenant.",
-                  "Not just dates — what changes for the CIO/CISO, the financial impact, and what GTC recommends doing now."
+                  "Pas juste des dates, ce qui change pour le DSI/RSSI, l'impact financier, et ce que GTC recommande de faire maintenant.",
+                  "Not just dates, what changes for the CIO/CISO, the financial impact, and what GTC recommends doing now."
                 )}
               </p>
             </div>

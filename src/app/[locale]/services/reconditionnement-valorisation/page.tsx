@@ -12,15 +12,15 @@ export default function ReconditionnementPage() {
 
   const data: ServicePageData = {
     slug: "reconditionnement-valorisation",
-    eyebrow: tx("03 — Valorisation", "03 — Value recovery"),
+    eyebrow: tx("03 (Valorisation", "03) Value recovery"),
     title: tx("Reconditionnement et valorisation", "Refurbishment and value recovery"),
     subtitle: tx(
-      "Un poste de quatre ans n'est pas un déchet : c'est un budget mal lu. Notre atelier remet en état, classe, vend ou cède chaque actif éligible — et reverse une part contractuelle de la valeur récupérée.",
-      "A four-year-old laptop is not waste: it is a misread budget. Our workshop refurbishes, grades, sells or donates every eligible asset — and returns a contractual share of the recovered value."
+      "Un poste de quatre ans n'est pas un déchet : c'est un budget mal lu. Notre atelier remet en état, classe, vend ou cède chaque actif éligible, et reverse une part contractuelle de la valeur récupérée.",
+      "A four-year-old laptop is not waste: it is a misread budget. Our workshop refurbishes, grades, sells or donates every eligible asset, and returns a contractual share of the recovered value."
     ),
     description: tx(
-      "Chaque actif éligible passe sur notre ligne de reconditionnement. Diagnostic matériel, remise en état cosmétique, remplacement des composants défaillants, mise à jour du micrologiciel, batterie de tests fonctionnels, attribution d'un grade qualité A, B ou C. Les équipements sont ensuite valorisés sur trois canaux selon votre politique : revente entre professionnels, boutique interne pour vos collaborateurs, ou cession solidaire à des associations agréées avec déduction fiscale. La part de valeur résiduelle reversée est fixée contractuellement avant la première mission — pas de mauvaise surprise au bilan.",
-      "Every eligible asset goes through our refurbishment line. Hardware diagnostic, cosmetic restoration, replacement of failing components, firmware update, functional test battery, A/B/C quality grade. Equipment is then placed on three channels according to your policy: business resale, internal store for your employees, or charitable transfer to approved associations with tax deduction. The share of residual value returned is contractually fixed before the first mission — no surprise at year end."
+      "Chaque actif éligible passe sur notre ligne de reconditionnement. Diagnostic matériel, remise en état cosmétique, remplacement des composants défaillants, mise à jour du micrologiciel, batterie de tests fonctionnels, attribution d'un grade qualité A, B ou C. Les équipements sont ensuite valorisés sur trois canaux selon votre politique : revente entre professionnels, boutique interne pour vos collaborateurs, ou cession solidaire à des associations agréées avec déduction fiscale. La part de valeur résiduelle reversée est fixée contractuellement avant la première mission, pas de mauvaise surprise au bilan.",
+      "Every eligible asset goes through our refurbishment line. Hardware diagnostic, cosmetic restoration, replacement of failing components, firmware update, functional test battery, A/B/C quality grade. Equipment is then placed on three channels according to your policy: business resale, internal store for your employees, or charitable transfer to approved associations with tax deduction. The share of residual value returned is contractually fixed before the first mission, no surprise at year end."
     ),
     narrative: tx(
       "La valorisation ne se résume pas à un prix de revente. Elle exige une chaîne industrielle : diagnostic, pièces de rechange en stock, formation des techniciens, contrôle qualité, garantie. Voici comment nous obtenons un taux de réemploi moyen de 72 %.",
@@ -130,6 +130,8 @@ export default function ReconditionnementPage() {
     ctaPrimaryLabel: tx("Réserver une cession", "Book a transfer"),
     ctaSecondaryLabel: tx("Voir les cas d'usages", "See use cases"),
     ctaSecondaryHref: "/cas-usages",
+    pricingAnchor: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+    pricingHref: "/tarifs",
     isEn,
   };
 

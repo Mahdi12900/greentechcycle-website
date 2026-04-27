@@ -4,7 +4,7 @@ import path from "path";
 import { randomUUID } from "crypto";
 
 /* ─────────────────────────────────────────────────────────────────────────
-   /api/reservation — qualified lead intake.
+   /api/reservation, qualified lead intake.
    - Persistence: Supabase (table `reservations`) when env vars are set.
    - Fallback: append a JSON line to `reservations.jsonl` at repo root.
    - Email: Resend transactional email when RESEND_API_KEY is set.
@@ -133,7 +133,7 @@ async function persistInFile(record: StoredReservation): Promise<boolean> {
     return true;
   } catch (err) {
     // On serverless filesystems (Vercel prod) fs.appendFile may fail because
-    // the filesystem is read-only — that is expected, we just log and skip.
+    // the filesystem is read-only, that is expected, we just log and skip.
     console.warn("[reservation] Filesystem fallback unavailable", err);
     return false;
   }
@@ -154,16 +154,16 @@ async function sendEmails(record: StoredReservation): Promise<{ internal: boolea
     <p><strong>Offre :</strong> ${offerLabel}</p>
     <p><strong>Source :</strong> ${record.source}</p>
     <hr/>
-    <p><strong>${record.name}</strong> — ${record.persona}</p>
+    <p><strong>${record.name}</strong>, ${record.persona}</p>
     <p>${record.email} · ${record.phone}</p>
     <p>${record.company} · ${record.size}</p>
-    <p><strong>Sites :</strong> ${record.sites || "—"}</p>
+    <p><strong>Sites :</strong> ${record.sites || "-"}</p>
     <hr/>
     <p><strong>Volumes / besoins :</strong></p>
-    <p>${record.needs.replace(/\n/g, "<br/>") || "—"}</p>
+    <p>${record.needs.replace(/\n/g, "<br/>") || "-"}</p>
     <p><strong>Message :</strong></p>
-    <p>${(record.message || "").replace(/\n/g, "<br/>") || "—"}</p>
-    <p><strong>Créneaux préférés :</strong> ${record.slots.join(" · ") || "—"}</p>
+    <p>${(record.message || "").replace(/\n/g, "<br/>") || "-"}</p>
+    <p><strong>Créneaux préférés :</strong> ${record.slots.join(" · ") || "-"}</p>
   `;
 
   const confirmationHtml = `
@@ -172,7 +172,7 @@ async function sendEmails(record: StoredReservation): Promise<{ internal: boolea
     <p>Un responsable GreenTechCycle vous recontacte sous 24 heures ouvrées
     avec une proposition personnalisée et la confirmation d'un créneau.</p>
     <p>Référence à conserver : <strong>${record.id}</strong></p>
-    <p>— L'équipe GreenTechCycle</p>
+    <p>L'équipe GreenTechCycle</p>
   `;
 
   const send = async (to: string, subject: string, html: string): Promise<boolean> => {

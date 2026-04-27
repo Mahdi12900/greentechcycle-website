@@ -12,15 +12,15 @@ export default function RecyclageDEEEPage() {
 
   const data: ServicePageData = {
     slug: "recyclage-deee",
-    eyebrow: tx("04 — Économie circulaire", "04 — Circular economy"),
+    eyebrow: tx("04 (Économie circulaire", "04) Circular economy"),
     title: tx("Recyclage responsable des DEEE", "Responsible WEEE recycling"),
     subtitle: tx(
-      "Pour ce qui ne peut plus servir, nous orchestrons un recyclage entièrement conforme à la directive DEEE et à la responsabilité élargie du producteur. Chaque matière est tracée, pesée, valorisée — et nourrit directement votre rapport CSRD.",
-      "For what can no longer serve, we orchestrate WEEE-compliant recycling under extended producer responsibility. Every material is tracked, weighed, recovered — and directly feeds your CSRD reporting."
+      "Pour ce qui ne peut plus servir, nous orchestrons un recyclage entièrement conforme à la directive DEEE et à la responsabilité élargie du producteur. Chaque matière est tracée, pesée, valorisée, et nourrit directement votre rapport CSRD.",
+      "For what can no longer serve, we orchestrate WEEE-compliant recycling under extended producer responsibility. Every material is tracked, weighed, recovered, and directly feeds your CSRD reporting."
     ),
     description: tx(
-      "Quand un actif est irrécupérable, l'enjeu n'est plus la valeur marchande, c'est la responsabilité environnementale et juridique. Notre réseau d'éco-organismes certifiés — Ecologic, Ecosystem — garantit une traçabilité de bout en bout. Chaque matière, des métaux ferreux aux cartes électroniques, est pesée, photographiée et valorisée en filière dédiée. Le bilan carbone évité et les matières premières secondaires réinjectées remontent automatiquement dans votre rapport CSRD ESRS E5, sans aucune ressaisie manuelle. Mise en décharge : zéro.",
-      "When an asset is unrecoverable, the issue is no longer market value but environmental and legal responsibility. Our certified eco-organisation network — Ecologic, Ecosystem — guarantees end-to-end traceability. Every material, from ferrous metals to electronic boards, is weighed, photographed and recovered via a dedicated channel. The avoided carbon footprint and secondary raw materials feed automatically into your CSRD ESRS E5 reporting, with no manual re-entry. Landfill rate: zero."
+      "Quand un actif est irrécupérable, l'enjeu n'est plus la valeur marchande, c'est la responsabilité environnementale et juridique. Notre réseau d'éco-organismes certifiés (Ecologic, Ecosystem) garantit une traçabilité de bout en bout. Chaque matière, des métaux ferreux aux cartes électroniques, est pesée, photographiée et valorisée en filière dédiée. Le bilan carbone évité et les matières premières secondaires réinjectées remontent automatiquement dans votre rapport CSRD ESRS E5, sans aucune ressaisie manuelle. Mise en décharge : zéro.",
+      "When an asset is unrecoverable, the issue is no longer market value but environmental and legal responsibility. Our certified eco-organisation network (Ecologic, Ecosystem) guarantees end-to-end traceability. Every material, from ferrous metals to electronic boards, is weighed, photographed and recovered via a dedicated channel. The avoided carbon footprint and secondary raw materials feed automatically into your CSRD ESRS E5 reporting, with no manual re-entry. Landfill rate: zero."
     ),
     narrative: tx(
       "La traçabilité matière n'est pas une promesse marketing : c'est une exigence réglementaire qui se vérifie poste par poste, ligne de bordereau par ligne de bordereau. Voici comment elle est tenue.",
@@ -130,6 +130,8 @@ export default function RecyclageDEEEPage() {
     ctaPrimaryLabel: tx("Réserver une collecte", "Book a collection"),
     ctaSecondaryLabel: tx("Voir l'impact carbone", "See carbon impact"),
     ctaSecondaryHref: "/impact",
+    pricingAnchor: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+    pricingHref: "/tarifs",
     isEn,
   };
 

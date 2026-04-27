@@ -1,7 +1,7 @@
 import type { SectorContent, SectorSlug, MatrixRow } from "./sectors";
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   CONTENU FR — 16 FICHES SECTEURS
+   CONTENU FR, 16 FICHES SECTEURS
    ═══════════════════════════════════════════════════════════════════════════ */
 
 export const sectorContentFr: Record<SectorSlug, SectorContent> = {
@@ -11,7 +11,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   finance: {
     hero: {
       title: "Banque, assurance et services financiers",
-      subtitle: "DORA, NIS2, ACPR/AMF, CSRD — sécurisez le cycle de vie de vos actifs IT critiques dans un cadre réglementaire parmi les plus exigeants d'Europe.",
+      subtitle: "DORA, NIS2, ACPR/AMF, CSRD, sécurisez le cycle de vie de vos actifs IT critiques dans un cadre réglementaire parmi les plus exigeants d'Europe.",
     },
     profile: {
       description: "Le secteur financier européen opère sous l'un des cadres réglementaires les plus stricts au monde. Avec des volumes de 20 000 à 100 000 postes par banque réseau, la gestion du cycle de vie des actifs IT représente un enjeu colossal, à la croisée de la sécurité des données, de la conformité réglementaire et de la responsabilité environnementale. Chaque poste de travail, chaque serveur, chaque terminal d'agence contient potentiellement des données relevant du secret bancaire, de la protection des investisseurs ou du RGPD.",
@@ -19,9 +19,9 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
     },
     painPoints: [
       "Le risque de fuite de données clients conjugue les exigences du RGPD et du secret bancaire. Un seul disque dur mal effacé dans une agence peut déclencher une crise réputationnelle majeure et des sanctions réglementaires en cascade.",
-      "Depuis janvier 2025, DORA impose de tracer la résilience opérationnelle ICT de bout en bout, y compris chez les prestataires tiers. Votre chaîne ITAD doit désormais être documentée, auditée et résiliente — exactement comme vos systèmes de production.",
+      "Depuis janvier 2025, DORA impose de tracer la résilience opérationnelle ICT de bout en bout, y compris chez les prestataires tiers. Votre chaîne ITAD doit désormais être documentée, auditée et résiliente, exactement comme vos systèmes de production.",
       "Les auditeurs ACPR exigent une chaîne de traçabilité irréfutable pour chaque actif décommissionné. Un fichier Excel partagé entre trois prestataires ne suffit plus : il faut des preuves horodatées, signées et opposables.",
-      "Le coût de la destruction physique, entre 10 et 30 € par appareil, s'accumule sur des volumes de dizaines de milliers d'unités par an — alors qu'une part significative de ces équipements pourrait être reconditionnée et valorisée.",
+      "Le coût de la destruction physique, entre 10 et 30 € par appareil, s'accumule sur des volumes de dizaines de milliers d'unités par an, alors qu'une part significative de ces équipements pourrait être reconditionnée et valorisée.",
       "Les données ESG doivent être consolidées à travers des structures multi-pays et multi-filiales, chacune avec ses propres processus et prestataires. La CSRD exige une granularité ESRS E5 par entité et au niveau groupe.",
       "Le risque réputationnel d'un appareil mal effacé reste le cauchemar de tout CISO bancaire. Les conséquences dépassent largement l'amende : perte de confiance des clients, couverture médiatique négative, impact sur le cours de l'action.",
     ],
@@ -32,7 +32,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
       {
         title: "Conformité DORA : registre prestataires ITAD et suivi d'incidents",
-        description: "DORA exige un registre à jour de tous les prestataires ICT tiers, incluant leurs certifications, SLA et incidents. GreenTechCycle centralise ces informations pour votre chaîne ITAD — certifications R2v3, ISO 27001, SLA de traitement, tracking d'incidents — et génère les exports nécessaires pour l'ACPR en un clic.",
+        description: "DORA exige un registre à jour de tous les prestataires ICT tiers, incluant leurs certifications, SLA et incidents. GreenTechCycle centralise ces informations pour votre chaîne ITAD (certifications R2v3, ISO 27001, SLA de traitement, tracking d'incidents) et génère les exports nécessaires pour l'ACPR en un clic.",
       },
       {
         title: "Reporting CSRD ESRS E5 multi-filiales",
@@ -84,7 +84,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   sante: {
     hero: {
       title: "Santé et hôpitaux",
-      subtitle: "HDS, RGPD article 9, NIS2 — protégez les données patients tout en valorisant votre parc IT hospitalier.",
+      subtitle: "HDS, RGPD article 9, NIS2, protégez les données patients tout en valorisant votre parc IT hospitalier.",
     },
     profile: {
       description: "Le secteur de la santé gère des données parmi les plus sensibles qui existent : dossiers patients, imagerie médicale, résultats d'analyses. Avec 5 000 à 50 000 postes par CHU, auxquels s'ajoutent tablettes médicales, terminaux de chevet et équipements d'imagerie (IRM, scanners) contenant des données locales, la gestion ITAD représente un défi à la fois sécuritaire, logistique et budgétaire.",
@@ -153,14 +153,14 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   industrie: {
     hero: {
       title: "Industrie et manufacturing",
-      subtitle: "CSRD, ISO 14001, REACH/RoHS — unifiez la gestion IT et OT de vos sites industriels pour répondre aux exigences ESG de vos donneurs d'ordre.",
+      subtitle: "CSRD, ISO 14001, REACH/RoHS, unifiez la gestion IT et OT de vos sites industriels pour répondre aux exigences ESG de vos donneurs d'ordre.",
     },
     profile: {
       description: "L'industrie française opère à la croisée de deux mondes technologiques : l'IT bureautique classique et l'OT (automates, capteurs, terminaux ATEX, interfaces homme-machine). Cette dualité, combinée à des sites souvent isolés géographiquement et à la pression croissante des donneurs d'ordre en matière d'ESG, rend la gestion du cycle de vie des actifs technologiques particulièrement complexe.",
       regulations: "La CSRD s'applique aux grandes industries et à leurs sous-traitants via les exigences des donneurs d'ordre. L'ISO 14001 encadre le management environnemental. REACH et RoHS régulent les substances dangereuses dans les équipements. Le code de l'environnement impose des obligations de traçabilité des déchets électroniques.",
     },
     painPoints: [
-      "Les sites industriels isolés rendent la logistique ITAD coûteuse et complexe. Chaque site a ses propres contraintes d'accès, ses horaires, ses protocoles de sécurité — multipliés par 15, 20 ou 30 sites, les coûts explosent.",
+      "Les sites industriels isolés rendent la logistique ITAD coûteuse et complexe. Chaque site a ses propres contraintes d'accès, ses horaires, ses protocoles de sécurité, multipliés par 15, 20 ou 30 sites, les coûts explosent.",
       "La pression ESG des donneurs d'ordre est devenue un enjeu commercial direct. Quand Renault, Stellantis, Airbus ou Total demandent des données précises sur votre gestion des déchets électroniques, la réponse conditionne le renouvellement du contrat.",
       "Le réemploi des équipements industriels se heurte parfois à des blocages juridiques liés à la propriété intellectuelle et au secret industriel. Des automates contenant des configurations propriétaires ne peuvent pas être reconditionnés sans précautions spécifiques.",
       "Les équipements OT (HMI, automates, terminaux terrain) échappent souvent à la gestion IT classique. Avec des durées de vie de 15 à 20 ans, ils accumulent des données opérationnelles sans que personne n'ait de visibilité sur leur fin de vie.",
@@ -222,14 +222,14 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   retail: {
     hero: {
       title: "Retail et grande distribution",
-      subtitle: "CSRD, PCI DSS, RGPD — transformez votre obligation réglementaire en avantage marketing dans un réseau de centaines de points de vente.",
+      subtitle: "CSRD, PCI DSS, RGPD, transformez votre obligation réglementaire en avantage marketing dans un réseau de centaines de points de vente.",
     },
     profile: {
       description: "Le retail et la grande distribution opèrent des réseaux denses de 100 à 1 000 points de vente, avec des parcs IT massifs et standardisés : caisses enregistreuses, terminaux de paiement (TPE), étiquettes électroniques, scanners, back-offices. La logistique inverse de ces équipements en fin de vie est un cauchemar opérationnel, tandis que la pression CSRD et l'exigence de storytelling ESG transforment cette contrainte en opportunité stratégique.",
       regulations: "La CSRD s'applique aux enseignes cotées avec des exigences ESRS E5 sur les déchets. PCI DSS encadre strictement l'effacement des terminaux de paiement. Le RGPD protège les données clients collectées en magasin. Le code du commerce impose des obligations de traçabilité.",
     },
     painPoints: [
-      "La logistique inverse est un cauchemar dans le retail. Collecter des équipements dans 500 à 2 000 magasins, coordonner les retours, trier, traiter — sans visibilité centralisée, les coûts et les délais dérapent systématiquement.",
+      "La logistique inverse est un cauchemar dans le retail. Collecter des équipements dans 500 à 2 000 magasins, coordonner les retours, trier, traiter, sans visibilité centralisée, les coûts et les délais dérapent systématiquement.",
       "Les terminaux de paiement et caisses enregistreuses stockent des données bancaires clients. Le non-respect de PCI DSS lors de la fin de vie peut entraîner des amendes allant jusqu'à 100 000 € par infraction.",
       "Les volumes énormes de petits DEEE (scanners, étiquettes électroniques, accessoires) sont souvent jetés sans tri ni traçabilité dans les arrière-boutiques, créant un angle mort réglementaire et environnemental.",
       "La pression CSRD sur le Scope 3 inclut désormais les déchets électroniques. Pour les enseignes cotées, la granularité des données attendues par les analystes ESG augmente chaque année.",
@@ -291,7 +291,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   energie: {
     hero: {
       title: "Énergie et utilities",
-      subtitle: "NIS2, CSRD, ANSSI — gérez les cycles de vie IT et OT de vos infrastructures critiques avec la traçabilité que régulateurs et investisseurs exigent.",
+      subtitle: "NIS2, CSRD, ANSSI, gérez les cycles de vie IT et OT de vos infrastructures critiques avec la traçabilité que régulateurs et investisseurs exigent.",
     },
     profile: {
       description: "Le secteur de l'énergie conjugue des infrastructures critiques, des cycles de vie OT très longs, des volumes massifs d'équipements connectés (smart meters) et une pression ESG sans égale. Les acteurs comme EDF, Engie, Veolia ou TotalEnergies opèrent des datacenters internes considérables, des milliers de sites distribués (centrales, postes électriques, stations) et font face à des vagues de renouvellement d'une ampleur inédite.",
@@ -360,7 +360,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   "transport-logistique": {
     hero: {
       title: "Transport et logistique",
-      subtitle: "CSRD, sites sensibles, flottes massives — gérez le cycle de vie de dizaines de milliers de terminaux mobiles sur des infrastructures critiques.",
+      subtitle: "CSRD, sites sensibles, flottes massives, gérez le cycle de vie de dizaines de milliers de terminaux mobiles sur des infrastructures critiques.",
     },
     profile: {
       description: "Transporteurs (SNCF, Air France, RATP, ADP), armateurs, routiers et logisticiens (Geodis, FM Logistic, Bolloré) opèrent des flottes IT massives et hétérogènes sur des sites sensibles. Des dizaines de milliers de PDA, des équipements embarqués dans les locomotives, bus et navires, et des entrepôts de 50 000 m² génèrent des volumes de DEEE considérables dans un contexte de forte pression CSRD et de sécurité renforcée.",
@@ -428,7 +428,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   public: {
     hero: {
       title: "Secteur public et collectivités",
-      subtitle: "Loi AGEC, BEGES, ANSSI — respectez vos obligations d'exemplarité environnementale tout en récupérant du budget sur votre parc IT.",
+      subtitle: "Loi AGEC, BEGES, ANSSI, respectez vos obligations d'exemplarité environnementale tout en récupérant du budget sur votre parc IT.",
     },
     profile: {
       description: "L'État (ministères), les opérateurs publics (CNAM, Pôle Emploi, CAF), les collectivités (régions, départements, communes) et les établissements publics (universités, hôpitaux, ÉPIC) représentent des volumes de 20 000 à 200 000 postes par ministère. Les contraintes spécifiques des marchés publics, l'exemplarité environnementale attendue et les exigences de sécurité ANSSI pour les ministères régaliens font de l'ITAD public un domaine à part.",
@@ -496,16 +496,16 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   tech: {
     hero: {
       title: "Tech et services numériques",
-      subtitle: "Marque employeur, MacBook Pro, CSRD — transformez vos laptops haut de gamme en levier RSE et en économies massives.",
+      subtitle: "Marque employeur, MacBook Pro, CSRD, transformez vos laptops haut de gamme en levier RSE et en économies massives.",
     },
     profile: {
-      description: "ESN, éditeurs SaaS, pure players, agences digitales et scale-ups partagent un profil commun : des parcs 100 % laptops, souvent haut de gamme (MacBook Pro à 2 000-3 000 €), un renouvellement fréquent (3 ans pour les développeurs), une marque employeur où la RSE pèse de plus en plus, et une croissance rapide qui fait grossir le parc sans visibilité. La valeur résiduelle de ces équipements est considérable — et souvent perdue.",
+      description: "ESN, éditeurs SaaS, pure players, agences digitales et scale-ups partagent un profil commun : des parcs 100 % laptops, souvent haut de gamme (MacBook Pro à 2 000-3 000 €), un renouvellement fréquent (3 ans pour les développeurs), une marque employeur où la RSE pèse de plus en plus, et une croissance rapide qui fait grossir le parc sans visibilité. La valeur résiduelle de ces équipements est considérable, et souvent perdue.",
       regulations: "La CSRD s'appliquera progressivement aux scale-ups dépassant 250 salariés. Le RGPD encadre strictement les données sensibles stockées sur les laptops (code source, accès clients, propriété intellectuelle). Les obligations de conformité s'intensifient à mesure que les entreprises tech grandissent.",
     },
     painPoints: [
       "Le renouvellement des laptops développeurs tous les 3 ans génère des volumes constants et prévisibles. Pourtant, la plupart des entreprises tech n'ont pas de processus structuré pour gérer la fin de vie de ces équipements coûteux.",
       "La marque employeur est un enjeu critique dans la guerre des talents tech. Les développeurs, de plus en plus sensibles aux engagements RSE de leur employeur, évaluent la cohérence entre discours et pratiques.",
-      "La croissance rapide des scale-ups fait grossir le parc IT sans que la visibilité suive. Quand l'entreprise passe de 50 à 500 collaborateurs en 3 ans, la gestion du parc en fin de vie est rarement une priorité — jusqu'à ce que les armoires débordent.",
+      "La croissance rapide des scale-ups fait grossir le parc IT sans que la visibilité suive. Quand l'entreprise passe de 50 à 500 collaborateurs en 3 ans, la gestion du parc en fin de vie est rarement une priorité, jusqu'à ce que les armoires débordent.",
       "Les données stockées sur les laptops (code source, accès clients, propriété intellectuelle) sont parmi les plus sensibles de l'entreprise. Un laptop mal effacé peut compromettre des mois de développement ou des accès clients.",
       "Les MacBook Pro et stations de travail haut de gamme conservent une valeur résiduelle élevée (400 à 800 € après 3 ans) qui est systématiquement perdue quand les appareils sont simplement stockés ou jetés.",
     ],
@@ -562,7 +562,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   "medias-audiovisuel": {
     hero: {
       title: "Médias et audiovisuel",
-      subtitle: "CSRD, propriété intellectuelle, sécurité broadcast — la plateforme ITAD de référence pour les groupes médias français, validée par TF1.",
+      subtitle: "CSRD, propriété intellectuelle, sécurité broadcast, la plateforme ITAD de référence pour les groupes médias français, validée par TF1.",
     },
     profile: {
       description: "Groupes TV (TF1, M6, France TV, Canal+, Arte), radio (Radio France, RTL, NRJ, Lagardère), presse (Le Monde, Bouygues Médias, Bertelsmann), producteurs et studios (Banijay, Mediawan, Newen), streaming (Salto, Molotov) et régies publicitaires (TF1 Pub, M6 Pub, FranceTV Pub) opèrent des parcs IT massifs et hétérogènes. La coexistence de postes bureautiques classiques et d'équipements broadcast de haute valeur (stations de montage, serveurs vidéo, caméras IP, régies de production) crée un environnement ITAD unique en son genre.",
@@ -620,7 +620,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
     objections: [
       {
         question: "Notre matériel broadcast est trop spécifique pour une plateforme généraliste",
-        answer: "Le modèle de données GreenTechCycle accepte tout type d'équipement avec des règles de scoring et de décision spécifiques par catégorie. TF1 nous confie ses stations Avid, ses serveurs vidéo et ses caméras IP — la preuve que la plateforme s'adapte aux spécificités broadcast.",
+        answer: "Le modèle de données GreenTechCycle accepte tout type d'équipement avec des règles de scoring et de décision spécifiques par catégorie. TF1 nous confie ses stations Avid, ses serveurs vidéo et ses caméras IP, la preuve que la plateforme s'adapte aux spécificités broadcast.",
       },
       {
         question: "Nos prestataires actuels sont des spécialistes broadcast",
@@ -628,7 +628,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
       {
         question: "Le risque de fuite de contenus est critique, on ne peut pas prendre ce risque",
-        answer: "Le risque maximal est justement le statu quo : des processus Excel, des prestataires multiples sans chaîne de traçabilité unifiée. GreenTechCycle crée une chaîne de traçabilité irréfutable avec signatures, horodatages et photos à chaque étape — le niveau de preuve que vos juristes exigent.",
+        answer: "Le risque maximal est justement le statu quo : des processus Excel, des prestataires multiples sans chaîne de traçabilité unifiée. GreenTechCycle crée une chaîne de traçabilité irréfutable avec signatures, horodatages et photos à chaque étape, le niveau de preuve que vos juristes exigent.",
       },
       {
         question: "Notre storytelling ESG est géré en interne par la communication",
@@ -647,7 +647,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   conseil: {
     hero: {
       title: "Conseil, audit et services professionnels",
-      subtitle: "Secret professionnel, mobilité, rigueur — vos pratiques ITAD doivent être à la hauteur de ce que vous vendez à vos clients.",
+      subtitle: "Secret professionnel, mobilité, rigueur, vos pratiques ITAD doivent être à la hauteur de ce que vous vendez à vos clients.",
     },
     profile: {
       description: "Cabinets de conseil (Big 4, Tier 2, boutiques), cabinets d'avocats, experts-comptables, cabinets RH et agences opèrent des parcs 100 % laptops avec une mobilité extrême. Le secret professionnel impose un niveau de rigueur ITAD supérieur : un laptop de partner mal effacé peut compromettre des dossiers clients et engager la responsabilité du cabinet.",
@@ -694,7 +694,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
       {
         question: "Notre IT gère déjà l'effacement en interne",
-        answer: "Votre IT efface les données, mais produit-elle des certificats opposables en cas de litige ? La traçabilité GreenTechCycle est conçue pour résister à un examen juridique — pas seulement pour cocher une case.",
+        answer: "Votre IT efface les données, mais produit-elle des certificats opposables en cas de litige ? La traçabilité GreenTechCycle est conçue pour résister à un examen juridique, pas seulement pour cocher une case.",
       },
     ],
     cta: {
@@ -709,7 +709,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   "pharma-biotech": {
     hero: {
       title: "Pharmaceutique et biotech",
-      subtitle: "BPF, GxP, FDA/EMA — une traçabilité ITAD opposable aux régulateurs les plus exigeants au monde.",
+      subtitle: "BPF, GxP, FDA/EMA, une traçabilité ITAD opposable aux régulateurs les plus exigeants au monde.",
     },
     profile: {
       description: "Laboratoires (Sanofi, Servier, Pierre Fabre), biotechs, CRO et CDMO opèrent à la croisée de la recherche de pointe et de la réglementation la plus stricte. Les données R&D valant des centaines de millions d'euros (formules, brevets, résultats d'essais cliniques) coexistent avec des équipements de laboratoire (HPLC, séquenceurs, microscopes) stockant localement des données d'essais. Les cycles de vie sont longs (7-10 ans pour un poste chercheur) et les certifications ISO systématiques.",
@@ -771,7 +771,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   btp: {
     hero: {
       title: "Construction et BTP",
-      subtitle: "CSRD donneurs d'ordre, chantiers distribués — centralisez la gestion de vos terminaux mobiles et batteries lourdes.",
+      subtitle: "CSRD donneurs d'ordre, chantiers distribués, centralisez la gestion de vos terminaux mobiles et batteries lourdes.",
     },
     profile: {
       description: "Les majors du BTP (Vinci, Bouygues, Eiffage), les ETI régionales et les artisans opèrent dans un environnement où le numérique gagne du terrain (BIM, drones, tablettes terrain) tandis que les structures IT restent souvent peu formalisées. Les tablettes durcies cassées, perdues ou volées (15-25 % par an), les drones professionnels et leurs batteries lithium, et la multiplication des chantiers temporaires créent des défis ITAD spécifiques.",
@@ -808,7 +808,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       { role: "Responsable QSE", description: "Porte les certifications et la conformité environnementale du groupe." },
       { role: "Direction des achats", description: "Recherche des solutions simples et économiques pour la gestion des déchets électroniques." },
     ],
-    quote: "Vos tablettes terrain valent encore de l'argent. GTC les trace, les récupère et les reconditionne — au lieu de les perdre sur les chantiers.",
+    quote: "Vos tablettes terrain valent encore de l'argent. GTC les trace, les récupère et les reconditionne, au lieu de les perdre sur les chantiers.",
     objections: [
       {
         question: "On n'a pas d'équipe IT dédiée pour gérer ça",
@@ -831,7 +831,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   horeca: {
     hero: {
       title: "Hôtellerie, restauration et tourisme",
-      subtitle: "PCI DSS, CSRD, storytelling RSE — transformez la gestion de vos équipements en levier de marque et de conformité.",
+      subtitle: "PCI DSS, CSRD, storytelling RSE, transformez la gestion de vos équipements en levier de marque et de conformité.",
     },
     profile: {
       description: "Les groupes hôteliers (Accor, Louvre Hotels), la restauration collective (Areas, Elior, Sodexo) et le tourisme (Pierre & Vacances, Club Med) opèrent des réseaux de 200 à 5 000 établissements. Les parcs IT mêlent TPE, caisses, terminaux client (PMS, check-in), TV de chambres et équipements wellness. Le storytelling RSE est devenu un levier de marque essentiel dans un secteur tourné vers l'expérience client.",
@@ -892,7 +892,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   "education-recherche": {
     hero: {
       title: "Éducation et recherche",
-      subtitle: "BEGES, exemplarité, budgets contraints — valorisez votre parc IT tout en montrant l'exemple à vos étudiants et tutelles.",
+      subtitle: "BEGES, exemplarité, budgets contraints, valorisez votre parc IT tout en montrant l'exemple à vos étudiants et tutelles.",
     },
     profile: {
       description: "Universités, grandes écoles, organismes de recherche (CNRS, INSERM, INRIA, CEA) et écoles privées opèrent des campus de 30 000 à 100 000 utilisateurs. Le parc IT mêle équipements administratifs, postes étudiants, stations de recherche spécialisées (microscopes, spectromètres, capteurs de laboratoire) et infrastructures réseau. Les budgets sont contraints mais l'exemplarité environnementale est attendue par les étudiants, les tutelles et la société.",
@@ -954,7 +954,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   agroalimentaire: {
     hero: {
       title: "Agroalimentaire",
-      subtitle: "CSRD, HACCP, sites distribués — maîtrisez le cycle de vie de vos équipements IT et OT dans un secteur sous pression sociétale.",
+      subtitle: "CSRD, HACCP, sites distribués, maîtrisez le cycle de vie de vos équipements IT et OT dans un secteur sous pression sociétale.",
     },
     profile: {
       description: "Industries de transformation (Danone, Lactalis, LDC), coopératives agricoles et négociants opèrent des usines avec des parcs hybrides IT bureautique et OT industriel (capteurs de ligne de production, terminaux de contrôle qualité). Les sites distribués (silos, fermes, usines de transformation) en zones rurales et la pression sociétale sur l'environnement font de la gestion ITAD un enjeu à la fois logistique, réglementaire et d'image.",
@@ -1015,7 +1015,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
   telecom: {
     hero: {
       title: "Télécom et opérateurs",
-      subtitle: "Loi REEN, AGEC, volumes massifs — gérez des millions d'équipements avec la rigueur environnementale que régulateurs et opinion publique exigent.",
+      subtitle: "Loi REEN, AGEC, volumes massifs, gérez des millions d'équipements avec la rigueur environnementale que régulateurs et opinion publique exigent.",
     },
     profile: {
       description: "Les opérateurs (Orange, SFR, Bouygues Telecom, Free), leurs filiales B2B, les MVNO et les équipementiers gèrent des volumes IT parmi les plus importants de l'économie française. Des millions de boxes et modems, des datacenters internes considérables et des infrastructures réseau distribuées (centraux, NRA, antennes) créent un environnement ITAD d'une complexité et d'une échelle uniques.",
@@ -1096,7 +1096,7 @@ export const matrixDataFr: MatrixRow[] = [
 ];
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   SÉQUENCEMENT COMMERCIAL — 3 PHASES
+   SÉQUENCEMENT COMMERCIAL, 3 PHASES
    ═══════════════════════════════════════════════════════════════════════════ */
 
 export interface PhaseData {
@@ -1112,10 +1112,10 @@ export const phasesFr: PhaseData[] = [
     period: "Mois 1-6",
     description: "Les premiers mois doivent générer des victoires rapides et capitaliser sur la référence TF1. Les secteurs à cycles courts et besoin clair sont prioritaires.",
     sectors: [
-      "Médias & Audiovisuel — cibler M6, France TV, Canal+, Lagardère, Radio France",
-      "Tech & Services numériques — cycles de vente courts (3-6 mois)",
-      "Conseil & Audit — besoin immédiat de traçabilité secret professionnel",
-      "Industrie ETI — cycles maîtrisables, pression donneurs d'ordre",
+      "Médias & Audiovisuel, cibler M6, France TV, Canal+, Lagardère, Radio France",
+      "Tech & Services numériques, cycles de vente courts (3-6 mois)",
+      "Conseil & Audit, besoin immédiat de traçabilité secret professionnel",
+      "Industrie ETI, cycles maîtrisables, pression donneurs d'ordre",
     ],
   },
   {
@@ -1123,9 +1123,9 @@ export const phasesFr: PhaseData[] = [
     period: "Mois 6-18",
     description: "Avec un portefeuille de références solides, les deals de plus grande envergure deviennent accessibles. Les secteurs à forte valeur et cycles moyens sont la cible.",
     sectors: [
-      "Banque & Finance — deals à 6 chiffres, prestige et récurrence",
-      "Retail & Grande distribution — volumes massifs, impact marketing",
-      "Pharma & Biotech — référence forte, validation GxP différenciante",
+      "Banque & Finance, deals à 6 chiffres, prestige et récurrence",
+      "Retail & Grande distribution, volumes massifs, impact marketing",
+      "Pharma & Biotech, référence forte, validation GxP différenciante",
     ],
   },
   {
@@ -1133,9 +1133,9 @@ export const phasesFr: PhaseData[] = [
     period: "Mois 18+",
     description: "Les secteurs à cycles longs et deals complexes nécessitent un historique et une crédibilité construits sur les phases précédentes.",
     sectors: [
-      "Énergie & Utilities — deals complexes, anticipation vague Linky",
-      "Télécom & Opérateurs — volumes nationaux, échelle industrielle",
-      "Secteur public & Collectivités — référencement UGAP, canal récurrent",
+      "Énergie & Utilities, deals complexes, anticipation vague Linky",
+      "Télécom & Opérateurs, volumes nationaux, échelle industrielle",
+      "Secteur public & Collectivités, référencement UGAP, canal récurrent",
     ],
   },
 ];
@@ -1146,7 +1146,7 @@ export const phasesFr: PhaseData[] = [
 
 export const hubLabelsFr = {
   heroTitle: "Secteurs d'activité",
-  heroSubtitle: "ITAD · Sécurité · Plateforme unifiée — Catalogue 16 secteurs",
+  heroSubtitle: "ITAD · Sécurité · Plateforme unifiée : Catalogue 16 secteurs",
   howToReadTitle: "Comment lire ce catalogue",
   howToReadBricks: [
     { title: "Plateforme SaaS", description: "Traçabilité, scoring décisionnel, reporting CSRD/ESG et tableaux de bord temps réel pour piloter votre ITAD." },

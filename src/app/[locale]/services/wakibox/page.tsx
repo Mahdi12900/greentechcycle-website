@@ -14,19 +14,19 @@ export default function WakiBoxPage() {
 
   const data: ServicePageData = {
     slug: "wakibox",
-    eyebrow: tx("06 — Collecte connectée", "06 — Connected collection"),
+    eyebrow: tx("06 (Collecte connectée", "06) Connected collection"),
     title: "WakiBox",
     subtitle: tx(
-      "Une borne installée dans le hall, et la collecte se fait toute seule. Détection automatique par RFID, pesée intégrée, alerte de remplissage en temps réel et un brin de ludification — pour multiplier par trois le geste utile.",
-      "A kiosk in your lobby, and collection happens on its own. Automatic RFID detection, integrated weighing, real-time fill alerts and a touch of gamification — to triple the useful gesture."
+      "Une borne installée dans le hall, et la collecte se fait toute seule. Détection automatique par RFID, pesée intégrée, alerte de remplissage en temps réel et un brin de ludification : pour multiplier par trois le geste utile.",
+      "A kiosk in your lobby, and collection happens on its own. Automatic RFID detection, integrated weighing, real-time fill alerts and a touch of gamification, to triple the useful gesture."
     ),
     description: tx(
-      "WakiBox est notre borne de collecte connectée, conçue pour les organisations multi-sites qui veulent rendre la collecte des équipements en fin de vie aussi simple que poser un colis. Chaque borne est reliée à la console GreenTechCycle. Elle détecte automatiquement les dépôts par RFID, pèse l'équipement, le classe, et alerte la logistique quand le seuil de remplissage est atteint. Une application embarquée transforme le geste en classement convivial entre services — badges, défis, retours visibles. Résultat : un taux de collecte multiplié par trois face aux bacs passifs, un pilotage centralisé, et des données de flux injectées directement dans votre rapport CSRD.",
-      "WakiBox is our connected collection kiosk, built for multi-site organisations that want collection of end-of-life equipment to be as simple as dropping a parcel. Each kiosk connects to the GreenTechCycle console. It automatically detects deposits by RFID, weighs the equipment, classifies it, and alerts logistics when the fill threshold is reached. An embedded app turns the gesture into a friendly ranking between teams — badges, challenges, visible feedback. Result: a 3x higher collection rate vs passive bins, centralised monitoring, and flow data fed straight into your CSRD report."
+      "WakiBox est notre borne de collecte connectée, conçue pour les organisations multi-sites qui veulent rendre la collecte des équipements en fin de vie aussi simple que poser un colis. Chaque borne est reliée à la console GreenTechCycle. Elle détecte automatiquement les dépôts par RFID, pèse l'équipement, le classe, et alerte la logistique quand le seuil de remplissage est atteint. Une application embarquée transforme le geste en classement convivial entre services, badges, défis, retours visibles. Résultat : un taux de collecte multiplié par trois face aux bacs passifs, un pilotage centralisé, et des données de flux injectées directement dans votre rapport CSRD.",
+      "WakiBox is our connected collection kiosk, built for multi-site organisations that want collection of end-of-life equipment to be as simple as dropping a parcel. Each kiosk connects to the GreenTechCycle console. It automatically detects deposits by RFID, weighs the equipment, classifies it, and alerts logistics when the fill threshold is reached. An embedded app turns the gesture into a friendly ranking between teams, badges, challenges, visible feedback. Result: a 3x higher collection rate vs passive bins, centralised monitoring, and flow data fed straight into your CSRD report."
     ),
     narrative: tx(
-      "WakiBox a été déployée en moins de quatre semaines dans un réseau de 142 magasins. Voici comment elle s'installe, se connecte et entre en service — sans bloquer vos équipes IT internes.",
-      "WakiBox has been rolled out in less than four weeks across a network of 142 stores. Here is how it is installed, connected and put into service — without blocking your internal IT teams."
+      "WakiBox a été déployée en moins de quatre semaines dans un réseau de 142 magasins. Voici comment elle s'installe, se connecte et entre en service, sans bloquer vos équipes IT internes.",
+      "WakiBox has been rolled out in less than four weeks across a network of 142 stores. Here is how it is installed, connected and put into service, without blocking your internal IT teams."
     ),
     deliveryNarrative: tx(
       "Vous recevez les bornes installées et configurées, une console de pilotage par site, un rapport de flux par période, et l'ensemble des données de ludification. Tout est exploitable par vos directions RSE et logistique sans intervention IT.",

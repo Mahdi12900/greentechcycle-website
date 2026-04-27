@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import {
@@ -11,7 +12,12 @@ import {
 
 export default function Footer() {
   const t = useTranslations("Footer");
+  const locale = useLocale();
+  const isEn = locale === "en";
   const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const columns = [
     {
@@ -135,19 +141,66 @@ export default function Footer() {
 
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm p-6">
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider">{t("newsletter.title")}</h4>
-            <p className="mt-3 text-sm text-gray-400">Recevez nos dernières actualités ITAD, guides et réglementations.</p>
-            <form onSubmit={(e) => { e.preventDefault(); setEmail(""); }} className="mt-5 flex gap-2">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={t("newsletter.placeholder")}
-                className="flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder-gray-500 focus:ring-2 focus:ring-accent focus:border-accent outline-none"
-              />
-              <button type="submit" className="px-4 py-2.5 bg-accent rounded-lg text-white hover:bg-accent-600 transition-colors">
-                <Send className="w-4 h-4" />
-              </button>
-            </form>
+            <p className="mt-3 text-sm text-gray-400">
+              {isEn
+                ? "Receive our latest ITAD news, guides and regulatory updates."
+                : "Recevez nos dernières actualités ITAD, guides et réglementations."}
+            </p>
+            {success ? (
+              <p className="mt-5 text-sm font-semibold text-[#10B981]">
+                {isEn ? "Subscribed, thanks!" : "Inscription validée, merci !"}
+              </p>
+            ) : (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  setError(false);
+                  setSubmitting(true);
+                  try {
+                    const res = await fetch("/api/newsletter", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ email, locale }),
+                    });
+                    if (res.ok) {
+                      setSuccess(true);
+                      setEmail("");
+                    } else {
+                      setError(true);
+                    }
+                  } catch {
+                    setError(true);
+                  } finally {
+                    setSubmitting(false);
+                  }
+                }}
+                className="mt-5 flex gap-2"
+              >
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => { setEmail(e.target.value); setError(false); }}
+                  placeholder={t("newsletter.placeholder")}
+                  className="flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder-gray-500 focus:ring-2 focus:ring-accent focus:border-accent outline-none"
+                />
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="px-4 py-2.5 bg-accent rounded-lg text-white hover:bg-accent-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                  aria-label={t("newsletter.cta")}
+                >
+                  <Send className="w-4 h-4" />
+                </button>
+              </form>
+            )}
+            {error && (
+              <p className="mt-2 text-xs text-red-400">
+                {isEn
+                  ? "Invalid address, please check your email."
+                  : "Adresse invalide, vérifiez votre email."}
+              </p>
+            )}
           </div>
         </div>
 

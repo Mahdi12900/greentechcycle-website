@@ -2,12 +2,12 @@ import type { SectorContent, SectorSlug, MatrixRow } from "./sectors";
 import type { PhaseData } from "./sectors-content-fr";
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   CONTENT EN — 16 SECTOR PAGES
+   CONTENT EN, 16 SECTOR PAGES
    ═══════════════════════════════════════════════════════════════════════════ */
 
 export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   finance: {
-    hero: { title: "Banking, insurance & financial services", subtitle: "DORA, NIS2, ACPR/AMF, CSRD — secure the lifecycle of your critical IT assets within one of Europe's strictest regulatory frameworks." },
+    hero: { title: "Banking, insurance & financial services", subtitle: "DORA, NIS2, ACPR/AMF, CSRD, secure the lifecycle of your critical IT assets within one of Europe's strictest regulatory frameworks." },
     profile: {
       description: "The European financial sector operates under one of the world's most rigorous regulatory frameworks. With 20,000 to 100,000 workstations per retail bank, IT asset lifecycle management is a massive challenge at the intersection of data security, regulatory compliance and environmental responsibility.",
       regulations: "DORA (effective January 2025) mandates full traceability of ICT operational resilience, including third-party providers such as ITAD. NIS2 strengthens cyber obligations. ACPR and AMF require auditable evidence. CSRD mandates granular ESG reporting, and GDPR strictly governs personal data destruction.",
@@ -16,13 +16,13 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       "Customer data leakage risk combines GDPR and banking secrecy requirements. A single improperly erased hard drive in a branch can trigger a major reputational crisis and cascading regulatory sanctions.",
       "Since January 2025, DORA requires end-to-end ICT operational resilience tracing, including third-party providers. Your ITAD chain must now be documented, audited and resilient.",
       "ACPR auditors demand an irrefutable chain of custody for every decommissioned asset. A shared Excel file among three providers no longer suffices.",
-      "Physical destruction costs (€10-30 per device) accumulate on volumes of tens of thousands of units per year — while a significant share could be refurbished and resold.",
+      "Physical destruction costs (€10-30 per device) accumulate on volumes of tens of thousands of units per year, while a significant share could be refurbished and resold.",
       "ESG data must be consolidated across multi-country, multi-subsidiary structures, each with its own processes and providers.",
       "The reputational risk of a poorly erased device remains every banking CISO's nightmare.",
     ],
     useCases: [
       { title: "Post-merger renewal: accelerated inventory and auditor traceability", description: "During a banking merger, 30-40% of the IT estate becomes redundant. GreenTechCycle deploys ITAM connectors for a full inventory in 2-3 weeks, applies automated decisioning, and generates a complete chain of custody for post-merger auditors." },
-      { title: "DORA compliance: ITAD provider registry and incident tracking", description: "DORA requires an up-to-date registry of all third-party ICT providers. GreenTechCycle centralizes ITAD chain information — R2v3 certifications, ISO 27001, SLAs, incident tracking — and generates ACPR exports in one click." },
+      { title: "DORA compliance: ITAD provider registry and incident tracking", description: "DORA requires an up-to-date registry of all third-party ICT providers. GreenTechCycle centralizes ITAD chain information (R2v3 certifications, ISO 27001, SLAs, incident tracking) and generates ACPR exports in one click." },
       { title: "CSRD ESRS E5 multi-subsidiary reporting", description: "With 5 to 30 entities across multiple countries, consolidating IT end-of-life data is challenging. GreenTechCycle centralizes flows, calculates ESRS E5 indicators by entity and group, and produces an auditable report." },
       { title: "Waki Box in bank branches", description: "With 500-2,000 branches, small WEEE accumulates everywhere. The Waki Box provides fleet-wide granularity: every deposit is tracked, collections are optimized by route, and HQ gets a real-time dashboard." },
     ],
@@ -50,7 +50,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   sante: {
-    hero: { title: "Healthcare & hospitals", subtitle: "HDS, GDPR Article 9, NIS2 — protect patient data while unlocking value from your hospital IT estate." },
+    hero: { title: "Healthcare & hospitals", subtitle: "HDS, GDPR Article 9, NIS2, protect patient data while unlocking value from your hospital IT estate." },
     profile: {
       description: "The healthcare sector manages some of the most sensitive data in existence: patient records, medical imaging, test results. With 5,000 to 50,000 workstations per university hospital, plus medical tablets and imaging equipment storing local data, ITAD management is a security, logistics and budget challenge.",
       regulations: "Health Data Hosting (HDS) strictly governs patient data processing. GDPR Article 9 protects health data as a special category. MDR governs medical devices. NIS2 classifies healthcare facilities as essential service operators.",
@@ -67,7 +67,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       { title: "Certified erasure of end-of-life medical devices", description: "MRI and CT scanners store patient images locally. GreenTechCycle orchestrates NIST 800-88 Purge erasure with a CNIL-compliant certificate during replacement cycles." },
       { title: "Unified multi-site platform for university hospitals", description: "A typical university hospital has 12 sites with 12 different ITAD processes. GreenTechCycle unifies inventories and applies a consistent security policy." },
       { title: "Value recovery from administrative equipment", description: "Administrative workstations (finance, HR, reception) don't contain patient data and are eligible for refurbishment. On 10,000 workstations, €50-100 per device represents €500K-1M." },
-      { title: "Waki Box in wards and reception areas", description: "Blood pressure monitors, oximeters, bed remotes, batteries — the Waki Box secures small WEEE, prevents lithium battery fire risks, and traces every deposit." },
+      { title: "Waki Box in wards and reception areas", description: "Blood pressure monitors, oximeters, bed remotes, batteries, the Waki Box secures small WEEE, prevents lithium battery fire risks, and traces every deposit." },
     ],
     roi: [
       { lever: "Administrative equipment recovery", gain: "€60-90 per eligible workstation" },
@@ -92,14 +92,14 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   industrie: {
-    hero: { title: "Industry & manufacturing", subtitle: "CSRD, ISO 14001, REACH/RoHS — unify IT and OT lifecycle management across your industrial sites to meet OEM ESG requirements." },
+    hero: { title: "Industry & manufacturing", subtitle: "CSRD, ISO 14001, REACH/RoHS, unify IT and OT lifecycle management across your industrial sites to meet OEM ESG requirements." },
     profile: {
       description: "French industry operates at the crossroads of two technology worlds: classic IT and OT (PLCs, sensors, ATEX terminals, HMIs). This duality, combined with geographically isolated sites and growing OEM ESG pressure, makes technology asset lifecycle management particularly complex.",
       regulations: "CSRD applies to large industries and their subcontractors via OEM requirements. ISO 14001 governs environmental management. REACH and RoHS regulate hazardous substances. Environmental codes mandate WEEE traceability.",
     },
     painPoints: [
       "Isolated industrial sites make ITAD logistics costly and complex.",
-      "OEM ESG pressure is now a direct commercial issue — when Renault, Airbus or Total ask for precise WEEE data, contract renewal depends on the answer.",
+      "OEM ESG pressure is now a direct commercial issue, when Renault, Airbus or Total ask for precise WEEE data, contract renewal depends on the answer.",
       "Equipment reuse sometimes faces legal blocks related to IP and industrial secrets.",
       "OT equipment (HMIs, PLCs, field terminals) often escapes classic IT management.",
       "Industrial battery volumes (forklifts, portable tools) represent a major environmental and safety challenge.",
@@ -108,8 +108,8 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     useCases: [
       { title: "OEM CSRD reporting: from 5 days to 5 minutes", description: "GreenTechCycle automates ESG report production and turns this constraint into a commercial advantage: a client ESG dossier ready in 5 minutes instead of 5 days." },
       { title: "Unified IT + OT management", description: "GreenTechCycle integrates IT and OT equipment in a single repository with OT-specific rules: adapted scoring, specific components, industrial secret compliance." },
-      { title: "Multi-site logistics optimization", description: "15 industrial sites with 15 different ITAD contracts — GreenTechCycle consolidates flows and generates 30-40% logistics savings." },
-      { title: "Waki Box for workshops and production areas", description: "Sensors, transmitters, tool chargers, walkie-talkies — the Waki Box centralizes small WEEE flows and feeds site environmental reporting." },
+      { title: "Multi-site logistics optimization", description: "15 industrial sites with 15 different ITAD contracts, GreenTechCycle consolidates flows and generates 30-40% logistics savings." },
+      { title: "Waki Box for workshops and production areas", description: "Sensors, transmitters, tool chargers, walkie-talkies, the Waki Box centralizes small WEEE flows and feeds site environmental reporting." },
     ],
     roi: [
       { lever: "Multi-site contract consolidation", gain: "-30 to 40% on ITAD costs" },
@@ -134,13 +134,13 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   retail: {
-    hero: { title: "Retail & mass distribution", subtitle: "CSRD, PCI DSS, GDPR — turn your regulatory obligation into a marketing advantage across hundreds of stores." },
+    hero: { title: "Retail & mass distribution", subtitle: "CSRD, PCI DSS, GDPR, turn your regulatory obligation into a marketing advantage across hundreds of stores." },
     profile: {
       description: "Retail and mass distribution operate dense networks of 100 to 1,000 stores with massive standardized IT estates: POS systems, payment terminals, electronic shelf labels, scanners, back offices. Reverse logistics is an operational nightmare, while CSRD pressure and ESG storytelling transform this constraint into a strategic opportunity.",
       regulations: "CSRD applies to listed retailers with ESRS E5 waste requirements. PCI DSS strictly governs payment terminal erasure. GDPR protects customer data collected in-store.",
     },
     painPoints: [
-      "Reverse logistics is a nightmare in retail — collecting equipment from 500-2,000 stores without centralized visibility.",
+      "Reverse logistics is a nightmare in retail, collecting equipment from 500-2,000 stores without centralized visibility.",
       "Payment terminals and POS systems store customer banking data. PCI DSS non-compliance can result in fines up to €100,000 per violation.",
       "Massive volumes of small WEEE are often discarded without sorting or traceability.",
       "CSRD Scope 3 pressure now includes electronic waste.",
@@ -176,7 +176,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   energie: {
-    hero: { title: "Energy & utilities", subtitle: "NIS2, CSRD, ANSSI — manage IT and OT lifecycles across your critical infrastructure with the granularity regulators and investors demand." },
+    hero: { title: "Energy & utilities", subtitle: "NIS2, CSRD, ANSSI, manage IT and OT lifecycles across your critical infrastructure with the granularity regulators and investors demand." },
     profile: {
       description: "The energy sector combines critical infrastructure, very long OT lifecycles, massive volumes of connected equipment (smart meters) and unparalleled ESG pressure. Operators like EDF, Engie, Veolia and TotalEnergies run considerable internal data centers, thousands of distributed sites, and face unprecedented renewal waves.",
       regulations: "NIS2 classifies energy operators as essential service operators (fines up to €10M or 2% of revenue). CSRD places energy companies on the ESG frontline. ANSSI imposes specific cybersecurity requirements for critical infrastructure.",
@@ -218,7 +218,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   "transport-logistique": {
-    hero: { title: "Transport & logistics", subtitle: "CSRD, sensitive sites, massive fleets — manage the lifecycle of tens of thousands of mobile terminals across critical infrastructure." },
+    hero: { title: "Transport & logistics", subtitle: "CSRD, sensitive sites, massive fleets, manage the lifecycle of tens of thousands of mobile terminals across critical infrastructure." },
     profile: {
       description: "Transport operators (SNCF, Air France, RATP, ADP), shipping companies, road carriers and logistics providers (Geodis, FM Logistic, Bolloré) operate massive, heterogeneous IT fleets across sensitive sites.",
       regulations: "CSRD applies to major transport companies with particular attention to Scope 3 IT. Sensitive sites (airports, ports, stations) impose strict access controls. Aviation, rail and maritime security regulations govern digital equipment management.",
@@ -259,7 +259,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   public: {
-    hero: { title: "Public sector & local government", subtitle: "AGEC law, carbon reporting, ANSSI — meet your environmental exemplarity obligations while recovering budget from your IT estate." },
+    hero: { title: "Public sector & local government", subtitle: "AGEC law, carbon reporting, ANSSI, meet your environmental exemplarity obligations while recovering budget from your IT estate." },
     profile: {
       description: "Government ministries, public operators, local authorities and public institutions manage 20,000-200,000 workstations per ministry. Public procurement constraints, expected environmental exemplarity and ANSSI security requirements for sovereign ministries make public ITAD a domain apart.",
       regulations: "The AGEC law and 3R decree impose measurable reuse targets (minimum 20%). Carbon reporting (BEGES) is mandatory for municipalities over 50,000 inhabitants. ANSSI governs sovereign ministry security. Public procurement (BOAMP, TED) imposes specific purchasing processes.",
@@ -300,14 +300,14 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   tech: {
-    hero: { title: "Tech & digital services", subtitle: "Employer brand, MacBook Pro, CSRD — turn your premium laptops into an RSE lever and massive savings." },
+    hero: { title: "Tech & digital services", subtitle: "Employer brand, MacBook Pro, CSRD, turn your premium laptops into an RSE lever and massive savings." },
     profile: {
       description: "IT service companies, SaaS vendors, pure players, digital agencies and scale-ups share a common profile: 100% laptop fleets, often premium (MacBook Pro at €2,000-3,000), frequent renewal (3 years for developers), an employer brand where CSR increasingly matters, and rapid growth that expands the fleet without visibility.",
       regulations: "CSRD will progressively apply to scale-ups exceeding 250 employees. GDPR strictly governs sensitive data stored on laptops (source code, client access, IP).",
     },
     painPoints: [
       "Developer laptop renewal every 3 years generates constant, predictable volumes without structured end-of-life processes.",
-      "Employer brand is a critical issue in the tech talent war — developers increasingly evaluate their employer's CSR consistency.",
+      "Employer brand is a critical issue in the tech talent war, developers increasingly evaluate their employer's CSR consistency.",
       "Rapid scale-up growth expands the IT fleet without visibility following.",
       "Laptop data (source code, client access, IP) is among the most sensitive in the company.",
       "Premium MacBook Pro workstations retain high residual value (€400-800 after 3 years) that is systematically lost.",
@@ -339,13 +339,13 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   "medias-audiovisuel": {
-    hero: { title: "Media & broadcast", subtitle: "CSRD, intellectual property, broadcast security — the reference ITAD platform for French media groups, validated by TF1." },
+    hero: { title: "Media & broadcast", subtitle: "CSRD, intellectual property, broadcast security, the reference ITAD platform for French media groups, validated by TF1." },
     profile: {
       description: "TV groups (TF1, M6, France TV, Canal+, Arte), radio (Radio France, RTL, NRJ), press, production studios (Banijay, Mediawan, Newen), streaming and ad sales operate massive, heterogeneous IT estates. Classic workstations coexist with high-value broadcast equipment (editing stations, video servers, IP cameras, production control rooms).",
       regulations: "CSRD applies to listed groups. GDPR protects contributor and talent data. ARCOM conventions govern broadcaster obligations. Content intellectual property is a major legal concern. Physical security of live production control rooms imposes specific constraints.",
     },
     painPoints: [
-      "Extreme IT heterogeneity: standard workstations, premium editing stations (Avid, Final Cut, Premiere at €6,000-15,000), video servers, IP cameras, production control rooms — with very different lifecycles.",
+      "Extreme IT heterogeneity: standard workstations, premium editing stations (Avid, Final Cut, Premiere at €6,000-15,000), video servers, IP cameras, production control rooms, with very different lifecycles.",
       "Editing stations contain ultra-sensitive data: unaired rushes, embargoed content, archives worth millions. An ITAD breach could cost an exclusive, a premiere, a contract.",
       "Multiple sites with remote production control rooms generate permanent mobile equipment flows.",
       "ESG pressure is strong on public media brands scrutinized by NGOs and regulators.",
@@ -357,7 +357,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       { title: "Broadcast station refurbishment and internal reuse", description: "An Avid/Final Cut/Premiere station purchased for €6,000-15,000 for VFX or color grading retains ample power for news, sports or light post-production. Automatic scoring evaluates residual power vs. target use criticality. Savings of €1,500-3,000 per station on 50-100 units/year." },
       { title: "Media-specific CSRD ESRS E5 reporting", description: "TF1, M6, Lagardère and Vivendi-Canal+ are scrutinized by ESG analysts. IT + broadcast Scope 3 is poorly understood but significant. GreenTechCycle provides ESRS E5 granularity by equipment type with auditable figures." },
       { title: "Professional broadcast battery management", description: "A news camera uses 4-8 Anton/Bauer or V-Mount batteries at 100-300Wh each. GreenTechCycle centralizes management with ADR-certified transport partners and full traceability." },
-      { title: "Event and sports production control room program", description: "Roland-Garros, Tour de France, World Cup, Olympics — each major event generates IT deployment/teardown peaks. GreenTechCycle offers an event mode with pre- and post-event processing." },
+      { title: "Event and sports production control room program", description: "Roland-Garros, Tour de France, World Cup, Olympics, each major event generates IT deployment/teardown peaks. GreenTechCycle offers an event mode with pre- and post-event processing." },
     ],
     roi: [
       { lever: "Internal station reuse", gain: "€1,500-3,000 per station" },
@@ -388,7 +388,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   conseil: {
-    hero: { title: "Consulting, audit & professional services", subtitle: "Professional secrecy, mobility, rigor — your ITAD practices must match what you sell to your clients." },
+    hero: { title: "Consulting, audit & professional services", subtitle: "Professional secrecy, mobility, rigor, your ITAD practices must match what you sell to your clients." },
     profile: {
       description: "Consulting firms (Big 4, Tier 2, boutiques), law firms, accountants, HR firms and agencies operate 100% laptop fleets with extreme mobility. Professional secrecy demands a superior level of ITAD rigor.",
       regulations: "Professional secrecy (lawyers, auditors, accountants) strictly governs client data protection. GDPR applies to personal data processed on behalf of clients. CSRD reaches firms indirectly via client ESG questionnaires.",
@@ -403,7 +403,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     useCases: [
       { title: "Certified erasure guaranteeing professional secrecy", description: "GreenTechCycle applies NIST 800-88 Purge with legally defensible certificates, ensuring client data is irreversibly destroyed." },
       { title: "Internal reuse between assignments and hierarchy levels", description: "GreenTechCycle orchestrates internal reallocations with certified erasure between each user." },
-      { title: "Instant response to client ESG questionnaires", description: "GreenTechCycle responds instantly with CO₂ avoided, reuse rate and full traceability — a commercial advantage during contract renewals." },
+      { title: "Instant response to client ESG questionnaires", description: "GreenTechCycle responds instantly with CO₂ avoided, reuse rate and full traceability, a commercial advantage during contract renewals." },
     ],
     roi: [
       { lever: "Internal laptop reuse", gain: "€800-1,500 per reallocated workstation" },
@@ -426,14 +426,14 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   "pharma-biotech": {
-    hero: { title: "Pharmaceutical & biotech", subtitle: "GMP, GxP, FDA/EMA — ITAD traceability defensible before the world's most demanding regulators." },
+    hero: { title: "Pharmaceutical & biotech", subtitle: "GMP, GxP, FDA/EMA, ITAD traceability defensible before the world's most demanding regulators." },
     profile: {
       description: "Laboratories (Sanofi, Servier, Pierre Fabre), biotechs, CROs and CDMOs operate at the intersection of cutting-edge research and the strictest regulation. R&D data worth hundreds of millions (formulas, patents, clinical trial results) coexist with lab equipment storing local trial data.",
       regulations: "Good Manufacturing Practices (GMP) and the GxP framework govern IT processes. FDA and EMA impose validation and traceability requirements for clinical trial equipment. ISO 14001 and ISO 27001 are systematic. CSRD places major labs under ESG analyst scrutiny.",
     },
     painPoints: [
       "GxP validation of IT processes, including ITAD, is a regulatory requirement.",
-      "Research data worth hundreds of millions — a leak can compromise years of R&D and marketing authorizations.",
+      "Research data worth hundreds of millions, a leak can compromise years of R&D and marketing authorizations.",
       "Lab equipment stores clinical trial data locally requiring specific erasure.",
       "Long lifecycles (7-10 years per researcher workstation) mean years of sensitive data accumulation.",
       "International sites add multi-regulatory complexity.",
@@ -464,7 +464,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   btp: {
-    hero: { title: "Construction & building", subtitle: "OEM CSRD pressure, distributed sites — centralize your mobile terminal and heavy battery management." },
+    hero: { title: "Construction & building", subtitle: "OEM CSRD pressure, distributed sites, centralize your mobile terminal and heavy battery management." },
     profile: {
       description: "Major construction firms (Vinci, Bouygues, Eiffage), regional mid-caps and contractors operate in an environment where digital is gaining ground (BIM, drones, field tablets) while IT structures remain often informal.",
       regulations: "CSRD applies indirectly via majors requiring ESG data from subcontractors. Environmental regulations govern construction site waste. Lithium battery regulations apply to drones and power tools.",
@@ -491,7 +491,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       { role: "QSE Manager", description: "Carries certifications and environmental compliance." },
       { role: "Procurement Director", description: "Seeks simple, economical WEEE management solutions." },
     ],
-    quote: "Your field tablets are still worth money. GTC tracks them, recovers them and refurbishes them — instead of losing them on construction sites.",
+    quote: "Your field tablets are still worth money. GTC tracks them, recovers them and refurbishes them, instead of losing them on construction sites.",
     objections: [
       { question: "We don't have a dedicated IT team", answer: "GreenTechCycle is designed to work without a dedicated IT team. Simple onboarding, intuitive platform, and our support assists your site managers." },
       { question: "Per-site volumes are too low", answer: "Consolidation creates value. 20 tablets per site across 100 sites means 2,000 tablets to manage." },
@@ -500,7 +500,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   horeca: {
-    hero: { title: "Hospitality, catering & tourism", subtitle: "PCI DSS, CSRD, CSR storytelling — turn equipment management into a brand lever and compliance asset." },
+    hero: { title: "Hospitality, catering & tourism", subtitle: "PCI DSS, CSRD, CSR storytelling, turn equipment management into a brand lever and compliance asset." },
     profile: {
       description: "Hotel groups (Accor, Louvre Hotels), contract catering (Areas, Elior, Sodexo) and tourism (Pierre & Vacances, Club Med) operate networks of 200-5,000 properties. IT estates mix payment terminals, POS systems, client terminals, room TVs and wellness equipment.",
       regulations: "PCI DSS governs payment terminals. GDPR protects reservation and banking data. CSRD applies to listed groups.",
@@ -537,7 +537,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   "education-recherche": {
-    hero: { title: "Education & research", subtitle: "Carbon reporting, exemplarity, tight budgets — unlock value from your IT estate while setting an example for students and oversight bodies." },
+    hero: { title: "Education & research", subtitle: "Carbon reporting, exemplarity, tight budgets, unlock value from your IT estate while setting an example for students and oversight bodies." },
     profile: {
       description: "Universities, grandes écoles, research organizations (CNRS, INSERM, INRIA, CEA) and private schools operate campuses of 30,000-100,000 users. IT estates mix administrative equipment, student workstations, specialized research stations and network infrastructure.",
       regulations: "BEGES (carbon reporting) is mandatory for public universities. GDPR protects student and research data. Public procurement governs purchases. Environmental exemplarity is an increasing oversight body expectation.",
@@ -545,7 +545,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     painPoints: [
       "Volumes are considerable but IT budgets are among the tightest across all sectors.",
       "Specialized research equipment stores locally stored data, sometimes patentable.",
-      "Research data includes pending patents — insufficient erasure can compromise patent filings.",
+      "Research data includes pending patents, insufficient erasure can compromise patent filings.",
       "Multi-site campuses multiply collection points and logistics complexity.",
       "Exemplarity is a strong expectation from students, researchers and oversight bodies.",
     ],
@@ -575,7 +575,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   agroalimentaire: {
-    hero: { title: "Food & agriculture industry", subtitle: "CSRD, HACCP, distributed sites — manage IT and OT equipment lifecycle in a sector under societal pressure." },
+    hero: { title: "Food & agriculture industry", subtitle: "CSRD, HACCP, distributed sites, manage IT and OT equipment lifecycle in a sector under societal pressure." },
     profile: {
       description: "Processing industries (Danone, Lactalis, LDC), agricultural cooperatives and traders operate factories with hybrid IT/OT estates. Distributed sites in rural areas and societal pressure on environmental practices make ITAD management a logistics, regulatory and image challenge.",
       regulations: "CSRD applies to major food groups with particular attention to the value chain (Scope 3). HACCP governs production processes. Environmental regulations are reinforced by societal pressure.",
@@ -590,7 +590,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     useCases: [
       { title: "Commercial and quality fleet mobile terminal management", description: "1,000-10,000 PDAs and ruggedized tablets. GreenTechCycle manages the complete lifecycle." },
       { title: "CSRD ESRS E5 and food Scope 3 reporting", description: "The food value chain is scrutinized end-to-end. IT is an underrecognized but real Scope 3 component." },
-      { title: "Waki Box for workshops and logistics areas", description: "Scanner batteries, remotes, maintenance accessories — the Waki Box centralizes these flows with automatic traceability." },
+      { title: "Waki Box for workshops and logistics areas", description: "Scanner batteries, remotes, maintenance accessories, the Waki Box centralizes these flows with automatic traceability." },
     ],
     roi: [
       { lever: "Mobile terminal refurbishment", gain: "€60-120 per terminal" },
@@ -612,7 +612,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
   },
 
   telecom: {
-    hero: { title: "Telecom & operators", subtitle: "REEN law, AGEC, massive volumes — manage millions of devices with the environmental rigor regulators and public opinion demand." },
+    hero: { title: "Telecom & operators", subtitle: "REEN law, AGEC, massive volumes, manage millions of devices with the environmental rigor regulators and public opinion demand." },
     profile: {
       description: "Operators (Orange, SFR, Bouygues Telecom, Free), their B2B subsidiaries, MVNOs and equipment manufacturers manage some of the largest IT volumes in the French economy. Millions of boxes and modems, considerable internal data centers and distributed network infrastructure create an ITAD environment of unique complexity and scale.",
       regulations: "The REEN law mandates transparency on digital services' environmental footprint. The AGEC law imposes reuse and recycling targets. CSRD applies to all major operators. High public exposure on digital carbon footprint adds constant societal pressure.",
@@ -683,10 +683,10 @@ export const phasesEn: PhaseData[] = [
     period: "Months 1-6",
     description: "The first months must generate quick wins and capitalize on the TF1 reference. Short-cycle sectors with clear needs are prioritized.",
     sectors: [
-      "Media & Broadcast — target M6, France TV, Canal+, Lagardère, Radio France",
-      "Tech & Digital Services — short sales cycles (3-6 months)",
-      "Consulting & Audit — immediate professional secrecy traceability need",
-      "Industrial mid-caps — manageable cycles, OEM pressure",
+      "Media & Broadcast, target M6, France TV, Canal+, Lagardère, Radio France",
+      "Tech & Digital Services, short sales cycles (3-6 months)",
+      "Consulting & Audit, immediate professional secrecy traceability need",
+      "Industrial mid-caps, manageable cycles, OEM pressure",
     ],
   },
   {
@@ -694,9 +694,9 @@ export const phasesEn: PhaseData[] = [
     period: "Months 6-18",
     description: "With a solid reference portfolio, larger deals become accessible. High-value, medium-cycle sectors are the target.",
     sectors: [
-      "Banking & Finance — six-figure deals, prestige and recurrence",
-      "Retail & Mass distribution — massive volumes, marketing impact",
-      "Pharma & Biotech — strong reference, differentiating GxP validation",
+      "Banking & Finance, six-figure deals, prestige and recurrence",
+      "Retail & Mass distribution, massive volumes, marketing impact",
+      "Pharma & Biotech, strong reference, differentiating GxP validation",
     ],
   },
   {
@@ -704,9 +704,9 @@ export const phasesEn: PhaseData[] = [
     period: "Months 18+",
     description: "Long-cycle, complex-deal sectors require the track record and credibility built in previous phases.",
     sectors: [
-      "Energy & Utilities — complex deals, Linky wave anticipation",
-      "Telecom & Operators — national volumes, industrial scale",
-      "Public Sector & Local Government — UGAP listing, recurring channel",
+      "Energy & Utilities, complex deals, Linky wave anticipation",
+      "Telecom & Operators, national volumes, industrial scale",
+      "Public Sector & Local Government : UGAP listing, recurring channel",
     ],
   },
 ];
@@ -717,7 +717,7 @@ export const phasesEn: PhaseData[] = [
 
 export const hubLabelsEn = {
   heroTitle: "Industry sectors",
-  heroSubtitle: "ITAD · Security · Unified platform — 16-sector catalogue",
+  heroSubtitle: "ITAD · Security · Unified platform, 16-sector catalogue",
   howToReadTitle: "How to read this catalogue",
   howToReadBricks: [
     { title: "SaaS Platform", description: "Traceability, decisioning scoring, CSRD/ESG reporting and real-time dashboards to drive your ITAD." },

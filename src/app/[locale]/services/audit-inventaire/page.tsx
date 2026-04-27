@@ -12,15 +12,15 @@ export default function AuditInventairePage() {
 
   const data: ServicePageData = {
     slug: "audit-inventaire",
-    eyebrow: tx("01 — Cartographie", "01 — Mapping"),
+    eyebrow: tx("01 (Cartographie", "01) Mapping"),
     title: tx("Audit & inventaire IT", "IT audit & inventory"),
     subtitle: tx(
       "Avant d'effacer, valoriser ou recycler, il faut savoir ce que l'on possède réellement. Notre audit pose le socle de toute décision : un inventaire physique, certifié et opposable, livré en cinq jours ouvrés.",
       "Before erasing, recovering or recycling, you have to know what you actually own. Our audit lays the foundation for every decision: a physical, certified and admissible inventory, delivered in five working days."
     ),
     description: tx(
-      "La plupart des parcs informatiques d'ETI dérivent d'années d'acquisitions, de migrations et de projets gelés. Personne, en interne, ne sait précisément ce qui se trouve dans la baie 7 du datacenter B ni dans le placard du site de Lille. Nos techniciens passent sur site, scannent, photographient et qualifient chaque équipement — du serveur en production au smartphone oublié au fond d'un tiroir. Trois axes d'évaluation guident le travail : criticité des données, état physique et valeur résiduelle marchande.",
-      "Most enterprise IT estates result from years of acquisitions, migrations and frozen projects. Internally, no one knows precisely what sits in rack 7 of datacentre B or in the cupboard of the Lille office. Our technicians come on site, scan, photograph and qualify every device — from the production server to the smartphone forgotten in a drawer. Three axes drive the assessment: data criticality, physical condition and residual market value."
+      "La plupart des parcs informatiques d'ETI dérivent d'années d'acquisitions, de migrations et de projets gelés. Personne, en interne, ne sait précisément ce qui se trouve dans la baie 7 du datacenter B ni dans le placard du site de Lille. Nos techniciens passent sur site, scannent, photographient et qualifient chaque équipement, du serveur en production au smartphone oublié au fond d'un tiroir. Trois axes d'évaluation guident le travail : criticité des données, état physique et valeur résiduelle marchande.",
+      "Most enterprise IT estates result from years of acquisitions, migrations and frozen projects. Internally, no one knows precisely what sits in rack 7 of datacentre B or in the cupboard of the Lille office. Our technicians come on site, scan, photograph and qualify every device, from the production server to the smartphone forgotten in a drawer. Three axes drive the assessment: data criticality, physical condition and residual market value."
     ),
     narrative: tx(
       "Notre méthodologie est passée au crible par les commissaires aux comptes des plus grands groupes français. Chaque étape est documentée, chaque décision tracée. L'audit n'est pas une formalité : c'est l'acte qui fonde la responsabilité juridique du donneur d'ordre.",
@@ -105,8 +105,8 @@ export default function AuditInventairePage() {
     certifications: ["R2v3", "ISO 27001", "NIST 800-88", "ITIL v4"],
     quote: {
       text: tx(
-        "L'audit GreenTechCycle nous a remis 14 % d'actifs hors comptabilité — soit 412 000 € de valeur que nous croyions perdue. Le rapport est passé en COMEX sans une seule retouche.",
-        "The GreenTechCycle audit recovered 14% of off-book assets — €412,000 of value we thought lost. The report went to the executive committee without a single edit."
+        "L'audit GreenTechCycle nous a remis 14 % d'actifs hors comptabilité, soit 412 000 € de valeur que nous croyions perdue. Le rapport est passé en COMEX sans une seule retouche.",
+        "The GreenTechCycle audit recovered 14% of off-book assets, €412,000 of value we thought lost. The report went to the executive committee without a single edit."
       ),
       name: "Sophie L.",
       role: tx("DSI, groupe industriel coté", "CIO, listed industrial group"),

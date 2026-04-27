@@ -28,9 +28,19 @@ export async function generateMetadata({
   const title = `${content.hero.title} | ITAD GreenTechCycle`;
   const description = content.hero.subtitle;
 
+  const SITE = "https://greentechcycle-website.vercel.app";
+
   return {
     title,
     description,
+    alternates: {
+      canonical: `${SITE}/${locale}/secteurs/${slug}`,
+      languages: {
+        fr: `${SITE}/fr/secteurs/${slug}`,
+        en: `${SITE}/en/secteurs/${slug}`,
+        "x-default": `${SITE}/fr/secteurs/${slug}`,
+      },
+    },
     openGraph: {
       title,
       description,
@@ -45,7 +55,7 @@ export async function generateMetadata({
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Page — pass only the slug string (not the full sectorDef which contains
+   Page, pass only the slug string (not the full sectorDef which contains
    React component functions that cannot be serialized to client components)
 ───────────────────────────────────────────────────────────────────────────── */
 export default async function SectorPage({

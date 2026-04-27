@@ -89,7 +89,7 @@ export default function WakiBoxPage() {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          S1 — HERO ÉDITORIAL · split dark
+          S1, HERO ÉDITORIAL · split dark
          ═══════════════════════════════════════════════════════════════ */}
       <section
         className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
@@ -171,7 +171,7 @@ export default function WakiBoxPage() {
         {/* Right photo */}
         <div className="relative w-full lg:w-[45%] min-h-[52vh] lg:min-h-0 overflow-hidden flex-shrink-0">
           <Image
-            src="/photos/service-wakibox.jpg"
+            src="/photos/ewaste-recycling.jpg"
             alt={t("hero.photoAlt")}
             fill
             priority
@@ -184,7 +184,7 @@ export default function WakiBoxPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          S2 — BANDEAU CHIFFRES XXL
+          S2, BANDEAU CHIFFRES XXL
          ═══════════════════════════════════════════════════════════════ */}
       <section
         className="bg-[#0F172A] relative overflow-hidden border-t border-white/5"
@@ -239,7 +239,7 @@ export default function WakiBoxPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          S3 — PROBLÈME ÉDITORIAL · prose
+          S3, PROBLÈME ÉDITORIAL · prose
          ═══════════════════════════════════════════════════════════════ */}
       <section className="py-24 lg:py-32 bg-white">
         <div className="container mx-auto px-4">
@@ -263,7 +263,7 @@ export default function WakiBoxPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          S4 — PROMESSE 5 EN 1 · split clair avec photo
+          S4, PROMESSE 5 EN 1 · split clair avec photo
          ═══════════════════════════════════════════════════════════════ */}
       <section className="relative bg-[#F8FAFC] border-y border-gray-100">
         <div className="flex flex-col lg:flex-row min-h-[80vh]">
@@ -327,7 +327,7 @@ export default function WakiBoxPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          S5 — LES 3 PLANS · composition verticale éditoriale
+          S5, LES 3 PLANS · composition verticale éditoriale
          ═══════════════════════════════════════════════════════════════ */}
       <section
         id="waki-plans"
@@ -473,7 +473,7 @@ export default function WakiBoxPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          S6 — PROGRAMME PILOTE · #10B981 plein
+          S6, PROGRAMME PILOTE · #10B981 plein
          ═══════════════════════════════════════════════════════════════ */}
       <section className="relative py-20 lg:py-28 bg-[#10B981] overflow-hidden">
         <div
@@ -532,7 +532,7 @@ export default function WakiBoxPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          S7 — OPTIONS & ADD-ONS · tableau éditorial sobre
+          S7, OPTIONS & ADD-ONS · tableau éditorial sobre
          ═══════════════════════════════════════════════════════════════ */}
       <section className="py-24 lg:py-32 bg-[#F8FAFC]">
         <div className="container mx-auto px-4">
@@ -610,7 +610,7 @@ export default function WakiBoxPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          S8 — FLUX ACCEPTÉS / EXCLUS · prose
+          S8, FLUX ACCEPTÉS / EXCLUS · prose
          ═══════════════════════════════════════════════════════════════ */}
       <section className="py-24 lg:py-32 bg-white">
         <div className="container mx-auto px-4">
@@ -691,7 +691,7 @@ export default function WakiBoxPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          S9 — FAQ ÉDITORIALE
+          S9, FAQ ÉDITORIALE
          ═══════════════════════════════════════════════════════════════ */}
       <section className="py-24 lg:py-32 bg-[#F8FAFC] border-y border-gray-100">
         <div className="container mx-auto px-4">
@@ -730,7 +730,7 @@ export default function WakiBoxPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          S10 — CITATION MAGAZINE + CTA DOUBLE FINAL
+          S10, CITATION MAGAZINE + CTA DOUBLE FINAL
          ═══════════════════════════════════════════════════════════════ */}
       <section className="py-28 lg:py-36 bg-white relative overflow-hidden">
         <div

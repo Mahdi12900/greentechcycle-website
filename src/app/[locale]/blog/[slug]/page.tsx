@@ -17,15 +17,25 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const article = getArticleBySlug(slug);
   if (!article) return {};
+
+  const SITE = "https://greentechcycle-website.vercel.app";
 
   return {
     title: article.title,
     description: article.description,
     keywords: article.keywords,
     authors: [{ name: article.author }],
+    alternates: {
+      canonical: `${SITE}/${locale}/blog/${slug}`,
+      languages: {
+        fr: `${SITE}/fr/blog/${slug}`,
+        en: `${SITE}/en/blog/${slug}`,
+        "x-default": `${SITE}/fr/blog/${slug}`,
+      },
+    },
     openGraph: {
       title: article.title,
       description: article.description,

@@ -16,7 +16,7 @@ import type { ComponentType } from "react";
 import { useState } from "react";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Types — étoffés pour le registre éditorial premium
+   Types, étoffés pour le registre éditorial premium
 ───────────────────────────────────────────────────────────────────────────── */
 export type ProofKPI = {
   value: string;
@@ -26,23 +26,23 @@ export type ProofKPI = {
 };
 
 export type ServicePageData = {
-  /** Slug technique de l'offre — utilisé pour /reserver?offre=<slug> */
+  /** Slug technique de l'offre, utilisé pour /reserver?offre=<slug> */
   slug: string;
   eyebrow: string;
   title: string;
   /** Sous-titre court hero (1 phrase) */
   subtitle: string;
-  /** Prose narrative 3-4 phrases — section « Pourquoi » */
+  /** Prose narrative 3-4 phrases, section « Pourquoi » */
   description: string;
-  /** Prose narrative complémentaire — section méthodologie intro */
+  /** Prose narrative complémentaire, section méthodologie intro */
   narrative: string;
-  /** Prose narrative — section livrables intro */
+  /** Prose narrative, section livrables intro */
   deliveryNarrative: string;
   icon: ComponentType<{ className?: string }>;
   badge: string;
   image: string;
   imageAlt: string;
-  /** Photo secondaire — section méthodologie ou livrables */
+  /** Photo secondaire, section méthodologie ou livrables */
   imageSecondary: string;
   imageSecondaryAlt: string;
   benefits: string[];
@@ -57,11 +57,14 @@ export type ServicePageData = {
   certifications: string[];
   quote: { text: string; name: string; role: string };
   faq: { q: string; a: string }[];
-  /** Libellés des deux CTA finaux — le premier pointe vers /reserver?offre=<slug> */
+  /** Libellés des deux CTA finaux, le premier pointe vers /reserver?offre=<slug> */
   ctaPrimaryLabel: string;
   ctaSecondaryLabel: string;
   ctaSecondaryHref: string;
-  /** Locale active — nécessaire pour les libellés courts ('Réserver', 'Voir', etc.) */
+  /** Ancre tarifaire affichée dans le hero (optionnelle) */
+  pricingAnchor?: string;
+  pricingHref?: string;
+  /** Locale active, nécessaire pour les libellés courts ('Réserver', 'Voir', etc.) */
   isEn: boolean;
 };
 
@@ -96,7 +99,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   GhostNumber — watermark XXL en arrière-plan
+   GhostNumber, watermark XXL en arrière-plan
 ───────────────────────────────────────────────────────────────────────────── */
 function GhostNumber({
   n,
@@ -124,16 +127,16 @@ function GhostNumber({
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   ServicePageTemplate — registre éditorial premium
+   ServicePageTemplate, registre éditorial premium
    Structure :
-   S1 — Hero éditorial split (sombre, photo droite)
-   S2 — Bandeau preuve KPI (sombre)
-   S3 — « Pourquoi » prose + bénéfices (clair, photo gauche)
-   S4 — Méthodologie 4 étapes alternance fond clair/sombre + ghost numbers
-   S5 — Livrables / SLA / Certifications (clair)
-   S6 — Citation magazine (sombre, pleine largeur)
-   S7 — FAQ (clair)
-   S8 — Encart conversion fond #10B981 plein
+   S1, Hero éditorial split (sombre, photo droite)
+   S2, Bandeau preuve KPI (sombre)
+   S3, « Pourquoi » prose + bénéfices (clair, photo gauche)
+   S4, Méthodologie 4 étapes alternance fond clair/sombre + ghost numbers
+   S5, Livrables / SLA / Certifications (clair)
+   S6, Citation magazine (sombre, pleine largeur)
+   S7, FAQ (clair)
+   S8, Encart conversion fond #10B981 plein
 ───────────────────────────────────────────────────────────────────────────── */
 export default function ServicePageTemplate({ data }: { data: ServicePageData }) {
   const Icon = data.icon;
@@ -163,7 +166,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
     <main className="overflow-hidden bg-white">
 
       {/* ════════════════════════════════════════════════════════════════
-          S1 — HERO ÉDITORIAL SPLIT — fond #0F172A, photo droite
+          S1 (HERO ÉDITORIAL SPLIT) fond #0F172A, photo droite
          ════════════════════════════════════════════════════════════════ */}
       <section
         className="relative w-full min-h-[88vh] flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
@@ -235,6 +238,23 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
               ))}
             </div>
 
+            {data.pricingAnchor && (
+              <div className="mb-8">
+                <Link
+                  href={data.pricingHref ?? "/tarifs"}
+                  className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-[#F59E0B]/15 border border-[#F59E0B]/30 hover:bg-[#F59E0B]/25 transition-colors group"
+                >
+                  <span className="text-xl lg:text-2xl font-black text-[#F59E0B] tabular-nums tracking-tight">
+                    {data.pricingAnchor}
+                  </span>
+                  <span className="text-sm font-medium text-gray-300 underline underline-offset-4 decoration-1 group-hover:text-white transition-colors">
+                    {isEn ? "See pricing" : "Voir les tarifs"}
+                  </span>
+                  <ArrowRight className="h-4 w-4 text-[#F59E0B]" aria-hidden="true" />
+                </Link>
+              </div>
+            )}
+
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <Link
                 href={reserverHref}
@@ -280,7 +300,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S2 — POURQUOI — fond blanc, photo gauche, ghost number 01
+          S2 (POURQUOI) fond blanc, photo gauche, ghost number 01
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden bg-white border-t border-gray-100">
         <div className="flex flex-col lg:flex-row min-h-[72vh]">
@@ -344,7 +364,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S3 — MÉTHODOLOGIE — fond #0F172A, ghost number 02, étapes alternées
+          S3 (MÉTHODOLOGIE) fond #0F172A, ghost number 02, étapes alternées
          ════════════════════════════════════════════════════════════════ */}
       <section
         id="methodologie"
@@ -402,7 +422,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S4 — LIVRABLES / SLA / CERTIFS — fond #F8FAFC, ghost number 03
+          S4 (LIVRABLES / SLA / CERTIFS) fond #F8FAFC, ghost number 03
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden bg-[#F8FAFC] py-20 lg:py-28">
         <GhostNumber n="03" isDark={false} align="right" />
@@ -492,7 +512,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S5 — CITATION MAGAZINE — fond #022C22, pleine largeur
+          S5 (CITATION MAGAZINE) fond #022C22, pleine largeur
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden bg-[#022C22] py-20 lg:py-28">
         <div
@@ -526,7 +546,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S6 — FAQ — fond blanc
+          S6 (FAQ) fond blanc
          ════════════════════════════════════════════════════════════════ */}
       {data.faq.length > 0 && (
         <section className="relative w-full overflow-hidden bg-white py-20 lg:py-28">
@@ -559,7 +579,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
       )}
 
       {/* ════════════════════════════════════════════════════════════════
-          S7 — ENCART CONVERSION — fond #10B981 plein
+          S7 (ENCART CONVERSION) fond #10B981 plein
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden bg-[#10B981]">
         <div
