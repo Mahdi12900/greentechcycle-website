@@ -116,7 +116,7 @@ const OFFER_PRICING: Record<string, OfferPricing> = {
     engagement: { fr: "Remboursé sur la 1re année Plateforme si signature sous 90 j", en: "Refunded on Year 1 Platform if signed within 90 days" },
   },
   "diagnostic-flash": {
-    price: { fr: "Gratuit — 2 minutes", en: "Free — 2 minutes" },
+    price: { fr: "Gratuit - 2 minutes", en: "Free - 2 minutes" },
   },
   "waki-box-addon-collecte": {
     price: { fr: "120 € HT par intervention", en: "€120 ex-VAT per intervention" },
