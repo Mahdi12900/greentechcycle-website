@@ -41,7 +41,7 @@ const KNOWN_OFFERS = new Set([
   "plateforme-demo",
   "demo-plateforme",
   "contact-general",
-  // Secteurs — audits et contrats
+  // Secteurs, audits et contrats
   "audit-sectoriel",
   "audit-finance",
   "audit-sante",
@@ -68,6 +68,16 @@ const KNOWN_OFFERS = new Set([
   "csrd-pack",
   "audit-blanc-itad",
   "plateforme-info",
+  // Nouvelles portes d'entrée + bundles (Passe 2)
+  "pilote-waki-box",
+  "pilote-audit-3j",
+  "diagnostic-flash",
+  "intervention-urgence",
+  "animation-rse",
+  "rapport-csrd-esrs",
+  "kit-signaletique-rse",
+  "audit-terrain-deee",
+  "formation-collaborateurs",
 ]);
 
 type OfferPricing = {
@@ -93,47 +103,77 @@ const OFFER_PRICING: Record<string, OfferPricing> = {
     engagement: { fr: "24 mois", en: "24 months" },
   },
   "waki-box-pilote": {
-    price: { fr: "19 € HT/mois pendant 6 mois", en: "€19 ex-VAT/month for 6 months" },
-    setup: { fr: "Mise en service offerte", en: "Setup waived" },
+    price: { fr: "1er mois offert, puis 39 € HT/mois", en: "1st month free, then €39 HT/month" },
+    setup: { fr: "Sans frais d'installation", en: "No installation fee" },
+  },
+  "pilote-waki-box": {
+    price: { fr: "1er mois offert, puis 39 € HT/mois", en: "1st month free, then €39 HT/month" },
+    setup: { fr: "Sans frais d'installation", en: "No installation fee" },
+  },
+  "pilote-audit-3j": {
+    price: { fr: "2 900 € HT", en: "€2,900 ex-VAT" },
+    setup: { fr: "Mission 3 jours, paiement 100 % à la signature", en: "3-day engagement, 100% on signing" },
+    engagement: { fr: "Remboursé sur la 1re année Plateforme si signature sous 90 j", en: "Refunded on Year 1 Platform if signed within 90 days" },
+  },
+  "diagnostic-flash": {
+    price: { fr: "Gratuit — 2 minutes", en: "Free — 2 minutes" },
   },
   "waki-box-addon-collecte": {
-    price: { fr: "90 € HT par intervention", en: "€90 ex-VAT per intervention" },
+    price: { fr: "120 € HT par intervention", en: "€120 ex-VAT per intervention" },
   },
   "collecte-urgence": {
-    price: { fr: "90 € HT par intervention", en: "€90 ex-VAT per intervention" },
+    price: { fr: "120 € HT par intervention", en: "€120 ex-VAT per intervention" },
+  },
+  "intervention-urgence": {
+    price: { fr: "120 € HT par intervention", en: "€120 ex-VAT per intervention" },
   },
   "waki-box-addon-animation": {
-    price: { fr: "350 € HT par jour", en: "€350 ex-VAT per day" },
+    price: { fr: "750 € HT par jour", en: "€750 ex-VAT per day" },
   },
   "animation-semaine-recyclage": {
-    price: { fr: "350 € HT par jour", en: "€350 ex-VAT per day" },
+    price: { fr: "750 € HT par jour", en: "€750 ex-VAT per day" },
+  },
+  "animation-rse": {
+    price: { fr: "750 € HT par jour", en: "€750 ex-VAT per day" },
   },
   "waki-box-addon-csrd": {
-    price: { fr: "490 € HT par an", en: "€490 ex-VAT per year" },
+    price: { fr: "990 € HT par an", en: "€990 ex-VAT per year" },
   },
   "rapport-csrd-dedie": {
-    price: { fr: "490 € HT par an", en: "€490 ex-VAT per year" },
+    price: { fr: "990 € HT par an", en: "€990 ex-VAT per year" },
+  },
+  "rapport-csrd-esrs": {
+    price: { fr: "990 € HT par an", en: "€990 ex-VAT per year" },
   },
   "waki-box-addon-kit": {
-    price: { fr: "290 € HT (one-shot)", en: "€290 ex-VAT (one-off)" },
+    price: { fr: "350 € HT (one-shot)", en: "€350 ex-VAT (one-off)" },
   },
   "kit-comm-customise": {
-    price: { fr: "290 € HT (one-shot)", en: "€290 ex-VAT (one-off)" },
+    price: { fr: "350 € HT (one-shot)", en: "€350 ex-VAT (one-off)" },
+  },
+  "kit-signaletique-rse": {
+    price: { fr: "350 € HT (one-shot)", en: "€350 ex-VAT (one-off)" },
   },
   "waki-box-addon-audit": {
-    price: { fr: "1 500 € HT par jour", en: "€1,500 ex-VAT per day" },
+    price: { fr: "1 800 € HT par jour", en: "€1,800 ex-VAT per day" },
   },
   "audit-deee": {
-    price: { fr: "1 500 € HT par jour", en: "€1,500 ex-VAT per day" },
+    price: { fr: "1 800 € HT par jour", en: "€1,800 ex-VAT per day" },
+  },
+  "audit-terrain-deee": {
+    price: { fr: "1 800 € HT par jour", en: "€1,800 ex-VAT per day" },
   },
   "waki-box-addon-formation": {
-    price: { fr: "450 € HT pour 2 heures", en: "€450 ex-VAT for 2 hours" },
+    price: { fr: "590 € HT pour 2 heures", en: "€590 ex-VAT for 2 hours" },
   },
   "formation-equipes": {
-    price: { fr: "450 € HT pour 2 heures", en: "€450 ex-VAT for 2 hours" },
+    price: { fr: "590 € HT pour 2 heures", en: "€590 ex-VAT for 2 hours" },
+  },
+  "formation-collaborateurs": {
+    price: { fr: "590 € HT (session 2 h)", en: "€590 ex-VAT (2h session)" },
   },
   "box-supplementaire": {
-    price: { fr: "29 € HT/mois par borne", en: "€29 ex-VAT/month per kiosk" },
+    price: { fr: "32 € HT/mois par borne", en: "€32 ex-VAT/month per kiosk" },
   },
   "audit-inventaire": {
     price: { fr: "Sur devis selon volume", en: "Custom quote based on volume" },
@@ -157,7 +197,7 @@ const OFFER_PRICING: Record<string, OfferPricing> = {
     price: { fr: "Sur devis selon volume", en: "Custom quote based on volume" },
   },
   "cadre-media": {
-    price: { fr: "65 000 € HT/an (contrat-cadre)", en: "€65,000 ex-VAT/yr (framework contract)" },
+    price: { fr: "Sur devis (contrat-cadre)", en: "Custom quote (framework contract)" },
     setup: { fr: "Audit initial inclus", en: "Initial audit included" },
     engagement: { fr: "12 mois renouvelable", en: "12 months renewable" },
   },

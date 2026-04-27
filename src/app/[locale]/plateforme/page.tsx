@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { FadeIn, StaggerContainer, StaggerItem, CountUp } from "@/components/motion";
@@ -22,12 +22,14 @@ import {
 } from "lucide-react";
 
 /**
- * /plateforme — refonte éditoriale (vague 4)
+ * /plateforme, refonte éditoriale (vague 4)
  * Storytelling parcours : ingestion → audit → décision → traçabilité → restitution.
  * Pas de grille de modules. Sections pleine largeur alternées, numéros XXL ghost.
  */
 export default function PlateformePage() {
   const t = useTranslations("Platform");
+  const locale = useLocale();
+  const isEn = locale === "en";
 
   type Chapter = {
     slug: string;
@@ -74,7 +76,7 @@ export default function PlateformePage() {
       </div>
 
       {/* ════════════════════════════════════════════════════════════════
-          S1 — HERO ÉDITORIAL — split sombre, photo plateau audit à droite
+          S1 (HERO ÉDITORIAL) split sombre, photo plateau audit à droite
          ════════════════════════════════════════════════════════════════ */}
       <section
         className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
@@ -209,7 +211,7 @@ export default function PlateformePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S2 — PROMESSE NARRATIVE (transition vers le parcours)
+          S2, PROMESSE NARRATIVE (transition vers le parcours)
          ════════════════════════════════════════════════════════════════ */}
       <section className="py-24 lg:py-28 bg-white" id="parcours">
         <div className="container mx-auto px-4">
@@ -227,8 +229,39 @@ export default function PlateformePage() {
               <p className="text-gray-600 text-lg leading-[1.78] mb-4">
                 {t("promise.body1")}
               </p>
-              <p className="text-gray-600 text-lg leading-[1.78]">
+              <p className="text-gray-600 text-lg leading-[1.78] mb-5">
                 {t("promise.body2")}
+              </p>
+              <p className="text-base text-[#0F172A] font-medium leading-[1.78] max-w-2xl">
+                {isEn ? (
+                  <>
+                    The GTC SaaS platform is accessible{" "}
+                    <strong className="text-[#10B981]">starting at €2,500 HT/month</strong>{" "}
+                    (base 500 devices, one module). Pricing adapts to your fleet, modules and maturity level.{" "}
+                    <Link href="/tarifs" className="underline underline-offset-4 text-[#10B981] hover:text-[#0E9F6E] transition-colors font-semibold">
+                      View pricing
+                    </Link>{" "}
+                    - or start with a{" "}
+                    <Link href="/tarifs#pilote" className="underline underline-offset-4 text-[#10B981] hover:text-[#0E9F6E] transition-colors font-semibold">
+                      3-day Pilot at €2,900 ex-VAT
+                    </Link>
+                    , refunded on Year 1 if signed within 90 days.
+                  </>
+                ) : (
+                  <>
+                    La plateforme GTC SaaS est accessible{" "}
+                    <strong className="text-[#10B981]">à partir de 2 500 € HT/mois</strong>{" "}
+                    (base 500 postes, un module). La tarification s&apos;affine selon votre parc, vos modules et votre maturité.{" "}
+                    <Link href="/tarifs" className="underline underline-offset-4 text-[#10B981] hover:text-[#0E9F6E] transition-colors font-semibold">
+                      Voir les tarifs
+                    </Link>{" "}
+                    - ou démarrez par un{" "}
+                    <Link href="/tarifs#pilote" className="underline underline-offset-4 text-[#10B981] hover:text-[#0E9F6E] transition-colors font-semibold">
+                      Pilote 3 j à 2 900 € HT
+                    </Link>
+                    , remboursé sur la 1re année si signature sous 90 j.
+                  </>
+                )}
               </p>
             </div>
           </FadeIn>
@@ -236,7 +269,7 @@ export default function PlateformePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S3 — LES 5 CHAPITRES DU PARCOURS
+          S3, LES 5 CHAPITRES DU PARCOURS
           Sections pleine largeur, alternance gauche/droite, alternance fond, numéro XXL ghost
          ════════════════════════════════════════════════════════════════ */}
       {chapters.map((chap, index) => {
@@ -401,7 +434,7 @@ export default function PlateformePage() {
       })}
 
       {/* ════════════════════════════════════════════════════════════════
-          S4 — CITATION MAGAZINE — fond sombre intercalé
+          S4 (CITATION MAGAZINE) fond sombre intercalé
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative py-24 lg:py-28 bg-[#022C22] text-white overflow-hidden">
         <div className="absolute inset-0 opacity-25">
@@ -441,7 +474,7 @@ export default function PlateformePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S5 — CHIFFRES D'EXPLOITATION — bandeau preuves
+          S5 (CHIFFRES D'EXPLOITATION) bandeau preuves
          ════════════════════════════════════════════════════════════════ */}
       <section className="bg-[#0F172A] relative overflow-hidden border-t border-white/5">
         <div
@@ -484,7 +517,7 @@ export default function PlateformePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S6 — OFFRES D'ENTRÉE — 3 packs avec bouton Réserver
+          S6 (OFFRES D'ENTRÉE) 3 packs avec bouton Réserver
          ════════════════════════════════════════════════════════════════ */}
       <section className="py-24 lg:py-28 bg-[#F8FAFC]">
         <div className="container mx-auto px-4">
@@ -541,7 +574,7 @@ export default function PlateformePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S7 — FAQ COURTE
+          S7, FAQ COURTE
          ════════════════════════════════════════════════════════════════ */}
       <section className="py-24 lg:py-28 bg-white">
         <div className="container mx-auto px-4">
@@ -578,7 +611,7 @@ export default function PlateformePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S8 — CONVERSION FOND VERT PLEIN
+          S8, CONVERSION FOND VERT PLEIN
          ════════════════════════════════════════════════════════════════ */}
       <section className="py-20 lg:py-24 bg-[#10B981] text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.15),_transparent_60%)] pointer-events-none" />
@@ -618,7 +651,7 @@ export default function PlateformePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S9 — CTA FINAL avec photo atelier
+          S9, CTA FINAL avec photo atelier
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative py-24 lg:py-28 overflow-hidden">
         <Image

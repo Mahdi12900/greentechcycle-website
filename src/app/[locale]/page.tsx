@@ -40,8 +40,8 @@ import {
 } from "lucide-react";
 
 /**
- * Home — refonte vague 4 (avr. 2026)
- * Direction hero retenue : C — "Provocation chiffrée".
+ * Home, refonte vague 4 (avr. 2026)
+ * Direction hero retenue : C, "Provocation chiffrée".
  * Cible : DSI, RSSI, RSE, DAF d'ETI cotées et grandes entreprises.
  * Structure narrative chaîne de valeur (problème → solution → preuve → cas → différenciateurs → action).
  */
@@ -89,7 +89,7 @@ export default function HomePage() {
   const afterItems = t.raw("comparison.after.items") as string[];
   const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
 
-  // Icons for value chain steps — sober lucide outlines
+  // Icons for value chain steps, sober lucide outlines
   const valueStepIcons = [FileCheck, Eraser, Recycle, BarChart3, Lock];
 
   // Icons for the 3 client cases
@@ -104,7 +104,7 @@ export default function HomePage() {
   return (
     <main className="overflow-hidden bg-white">
       {/* ==========================================================
-          1. URGENCY BAND — sober navy, calendrier régulateur précis
+          1. URGENCY BAND, sober navy, calendrier régulateur précis
          ========================================================== */}
       <div className="bg-[#0F172A] text-white py-3 px-4 border-b border-white/5">
         <div className="container mx-auto flex items-center justify-center gap-3 text-sm font-medium text-center">
@@ -114,7 +114,7 @@ export default function HomePage() {
       </div>
 
       {/* ==========================================================
-          2. HERO — Direction "Provocation chiffrée"
+          2. HERO : Direction "Provocation chiffrée"
              Split layout : argument à gauche, photo à droite.
              Chiffre choc 78% en grand, sub-titre angle GTC, dual CTA.
          ========================================================== */}
@@ -129,7 +129,7 @@ export default function HomePage() {
 
         <div className="container mx-auto px-4 relative z-10 py-16 lg:py-24">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Argument column — 7/12 */}
+            {/* Argument column, 7/12 */}
             <FadeIn className="lg:col-span-7">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-200 text-[#0F172A] text-xs font-semibold tracking-wider uppercase mb-8 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-[#10B981]" />
@@ -140,7 +140,7 @@ export default function HomePage() {
                 id="hero-title"
                 className="text-[#0F172A] mb-6 tracking-tight leading-[1.02]"
               >
-                {/* Giant impact figure — primary green */}
+                {/* Giant impact figure, primary green */}
                 <span className="block text-[5.5rem] sm:text-[7rem] lg:text-[9rem] font-bold text-[#10B981] leading-none mb-2 tracking-tighter">
                   {t("hero.figure")}
                 </span>
@@ -196,7 +196,7 @@ export default function HomePage() {
               </div>
             </FadeIn>
 
-            {/* Visual column — 5/12 — boardroom photo + floating proof card */}
+            {/* Visual column (5/12) boardroom photo + floating proof card */}
             <FadeIn delay={0.1} direction="left" className="lg:col-span-5">
               <div className="relative">
                 <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-200">
@@ -245,7 +245,7 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
-          3. TRUST BAND — donneurs d'ordre anonymisés (sectoriels)
+          3. TRUST BAND, donneurs d'ordre anonymisés (sectoriels)
          ========================================================== */}
       <section className="py-16 bg-white border-y border-gray-100">
         <div className="container mx-auto px-4">
@@ -274,7 +274,7 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
-          4. PROBLÈME — Coût caché, 3 risques chiffrés
+          4. PROBLÈME : Coût caché, 3 risques chiffrés
          ========================================================== */}
       <section className="py-24 lg:py-28 bg-[#F8FAFC]">
         <div className="container mx-auto px-4">
@@ -323,7 +323,7 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
-          4-bis. CALENDRIER RÉGULATEUR — 4 échéances datées
+          4-bis. CALENDRIER RÉGULATEUR, 4 échéances datées
          ========================================================== */}
       <section className="py-24 lg:py-28 bg-white">
         <div className="container mx-auto px-4">
@@ -396,7 +396,7 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
-          5. SOLUTION — Phrase puissante + Hub-and-spoke
+          5. SOLUTION : Phrase puissante + Hub-and-spoke
          ========================================================== */}
       <section className="py-24 lg:py-32 bg-white">
         <div className="container mx-auto px-4">
@@ -491,7 +491,7 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
-          6. CHAÎNE DE VALEUR — 5 étapes horizontales
+          6. CHAÎNE DE VALEUR, 5 étapes horizontales
          ========================================================== */}
       <section className="py-24 lg:py-28 bg-[#0F172A] relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.12),_transparent_60%)] pointer-events-none" />
@@ -556,7 +556,7 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
-          7. PREUVES & RÉSULTATS — 4 KPIs CountUp avec sources
+          7. PREUVES & RÉSULTATS, 4 KPIs CountUp avec sources
          ========================================================== */}
       <section className="py-24 lg:py-28 bg-white">
         <div className="container mx-auto px-4">
@@ -617,7 +617,7 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
-          8. CAS CLIENTS — 3 mini-cas chiffrés liés à /cas-usages
+          8. CAS CLIENTS, 3 mini-cas chiffrés liés à /cas-usages
          ========================================================== */}
       <section className="py-24 lg:py-28 bg-[#F8FAFC]">
         <div className="container mx-auto px-4">
@@ -708,7 +708,7 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
-          9. POURQUOI GREENTECHCYCLE — 4 différenciateurs durs
+          9. POURQUOI GREENTECHCYCLE, 4 différenciateurs durs
          ========================================================== */}
       <section className="py-24 lg:py-28 bg-white">
         <div className="container mx-auto px-4">
@@ -755,7 +755,7 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
-          9-bis. AVANT / APRÈS — comparaison synthétique
+          9-bis. AVANT / APRÈS, comparaison synthétique
          ========================================================== */}
       <section className="py-24 lg:py-28 bg-[#F8FAFC]">
         <div className="container mx-auto px-4">
@@ -859,7 +859,7 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
-          10. TÉMOIGNAGE FORT — 1 grosse citation Marc B. RSSI
+          10. TÉMOIGNAGE FORT, 1 grosse citation Marc B. RSSI
          ========================================================== */}
       <section className="py-24 lg:py-28 bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A] relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(16,185,129,0.18),_transparent_70%)] pointer-events-none" />
@@ -874,7 +874,7 @@ export default function HomePage() {
               </p>
 
               <div className="grid lg:grid-cols-[auto_1fr] gap-10 items-center">
-                {/* Visual — anonymized boardroom photo with mark */}
+                {/* Visual, anonymized boardroom photo with mark */}
                 <div className="relative w-48 h-48 lg:w-56 lg:h-56 mx-auto flex-shrink-0">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#10B981] to-[#0EA5E9] rounded-2xl rotate-3" />
                   <div className="relative w-full h-full rounded-2xl overflow-hidden ring-4 ring-white/10">
@@ -925,7 +925,7 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
-          10-bis. FAQ DSI/RSSI — 4 objections frontales
+          10-bis. FAQ DSI/RSSI, 4 objections frontales
          ========================================================== */}
       <section className="py-24 lg:py-28 bg-white">
         <div className="container mx-auto px-4">
@@ -978,7 +978,7 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
-          10-ter. TARIFS WAKI BOX TEASER — 3 plans + pilote
+          10-ter. TARIFS WAKI BOX TEASER, 3 plans + pilote
          ========================================================== */}
       <section className="py-24 lg:py-28 bg-[#0F172A] relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.12),_transparent_60%)] pointer-events-none" />
@@ -1038,7 +1038,36 @@ export default function HomePage() {
             })}
           </StaggerContainer>
 
-          {/* Pilote encart */}
+          {/* Pilote Audit 3j encart */}
+          <FadeIn>
+            <div className="max-w-6xl mx-auto bg-[#10B981]/20 border border-[#10B981]/50 rounded-2xl p-6 lg:p-8 flex flex-col md:flex-row items-start gap-6 mb-6">
+              <div className="flex-1">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-[#6EE7B7] mb-2">
+                  {t("pricingTeaser.piloteAudit.label")}
+                </p>
+                <p className="text-white text-xl font-black leading-snug mb-1">
+                  {t("pricingTeaser.piloteAudit.headline")}
+                </p>
+                <p className="text-gray-300 text-sm leading-relaxed max-w-xl">
+                  {t("pricingTeaser.piloteAudit.subline")}
+                </p>
+              </div>
+              <div className="flex flex-col items-start md:items-end gap-3 flex-shrink-0">
+                <p className="text-[#10B981] text-2xl font-black tabular-nums whitespace-nowrap">
+                  {t("pricingTeaser.piloteAudit.price")}
+                </p>
+                <Link
+                  href="/reserver?offre=pilote-audit-3j"
+                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm"
+                >
+                  {t("pricingTeaser.piloteAudit.cta")}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Pilote Waki Box encart */}
           <FadeIn>
             <div className="max-w-6xl mx-auto bg-[#10B981]/15 border border-[#10B981]/30 rounded-2xl p-6 lg:p-8 flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
               <div className="flex-1">
@@ -1059,6 +1088,48 @@ export default function HomePage() {
             </div>
           </FadeIn>
 
+          {/* Plateforme + ITAD anchors */}
+          <FadeIn>
+            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-5 mb-10">
+              <div className="bg-white/[0.04] border border-[#0EA5E9]/30 hover:border-[#0EA5E9]/60 rounded-2xl p-6 flex flex-col transition-colors">
+                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#67E8F9] mb-3">
+                  {t("pricingTeaser.platformBrick")}
+                </p>
+                <p className="text-2xl lg:text-3xl font-black text-[#0EA5E9] tabular-nums mb-2 tracking-tight">
+                  {t("pricingTeaser.platformAnchor")}
+                </p>
+                <p className="text-sm text-gray-400 mb-5 flex-1 leading-relaxed">
+                  {t("pricingTeaser.platformDesc")}
+                </p>
+                <Link
+                  href="/tarifs"
+                  className="inline-flex items-center gap-1.5 text-[#0EA5E9] text-sm font-semibold hover:text-white transition-colors"
+                >
+                  {t("pricingTeaser.platformCta")}
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </Link>
+              </div>
+              <div className="bg-white/[0.04] border border-[#F59E0B]/30 hover:border-[#F59E0B]/60 rounded-2xl p-6 flex flex-col transition-colors">
+                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#FCD34D] mb-3">
+                  {t("pricingTeaser.itadBrick")}
+                </p>
+                <p className="text-2xl lg:text-3xl font-black text-[#F59E0B] tabular-nums mb-2 tracking-tight">
+                  {t("pricingTeaser.itadAnchor")}
+                </p>
+                <p className="text-sm text-gray-400 mb-5 flex-1 leading-relaxed">
+                  {t("pricingTeaser.itadDesc")}
+                </p>
+                <Link
+                  href="/tarifs"
+                  className="inline-flex items-center gap-1.5 text-[#F59E0B] text-sm font-semibold hover:text-white transition-colors"
+                >
+                  {t("pricingTeaser.itadCta")}
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
+          </FadeIn>
+
           <FadeIn>
             <div className="text-center">
               <Link
@@ -1074,12 +1145,12 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
-          11. CTA FINAL DOUBLE — audit + démo + bandeau confiance
+          11. CTA FINAL DOUBLE, audit + démo + bandeau confiance
          ========================================================== */}
       <section className="relative py-28 lg:py-32 overflow-hidden">
         <Image
           src="/photos/hp-atelier-itad.jpg"
-          alt="Atelier de reconditionnement GreenTechCycle — chaîne d'effacement et de tri certifiée"
+          alt="Atelier de reconditionnement GreenTechCycle, chaîne d'effacement et de tri certifiée"
           fill
           loading="lazy"
           className="object-cover"

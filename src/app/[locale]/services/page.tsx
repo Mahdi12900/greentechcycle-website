@@ -23,7 +23,7 @@ import {
 } from "lucide-react";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   /services — page hub éditoriale premium
+   /services, page hub éditoriale premium
    Inspiration directe : home + cas-usages (refonte 2026).
 ───────────────────────────────────────────────────────────────────────────── */
 
@@ -93,8 +93,8 @@ export default function ServicesPage() {
         "It isn't the machine that worries you, it's the files."
       ),
       body: tx(
-        "NIST 800-88, DoD 5220.22-M, IEEE 2883-2022 selon le support et la sensibilité. Chaque actif reçoit un certificat individuel signé eIDAS, archivé dix ans. Un audit interne est déclenché sur chaque lot — pas besoin de vérifier seul.",
-        "NIST 800-88, DoD 5220.22-M, IEEE 2883-2022 depending on the medium and sensitivity. Every asset gets an eIDAS-signed individual certificate, archived ten years. An internal audit is triggered on every batch — no need to check alone."
+        "NIST 800-88, DoD 5220.22-M, IEEE 2883-2022 selon le support et la sensibilité. Chaque actif reçoit un certificat individuel signé eIDAS, archivé dix ans. Un audit interne est déclenché sur chaque lot, pas besoin de vérifier seul.",
+        "NIST 800-88, DoD 5220.22-M, IEEE 2883-2022 depending on the medium and sensitivity. Every asset gets an eIDAS-signed individual certificate, archived ten years. An internal audit is triggered on every batch, no need to check alone."
       ),
       badge: tx("Certificat sous 24 h", "Certificate within 24h"),
       icon: ShieldCheck,
@@ -109,6 +109,8 @@ export default function ServicesPage() {
         { value: "99,97", unit: "%", label: tx("réussite mesurée", "measured success rate") },
       ],
       accent: "#0EA5E9",
+      pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+      pricingHref: "/tarifs",
     },
     {
       slug: "reconditionnement-valorisation",
@@ -121,8 +123,8 @@ export default function ServicesPage() {
         "A four-year-old laptop isn't waste, it's a misread budget."
       ),
       body: tx(
-        "Diagnostic, remise en état, notation A/B/C, revente entre professionnels, boutique interne ou cession solidaire. La part de valeur résiduelle reversée est fixée contractuellement — pas de mauvaise surprise au bilan.",
-        "Diagnostic, restoration, A/B/C grading, business resale, internal store or charitable transfer. The share of residual value returned is contractually fixed — no surprise at year end."
+        "Diagnostic, remise en état, notation A/B/C, revente entre professionnels, boutique interne ou cession solidaire. La part de valeur résiduelle reversée est fixée contractuellement, pas de mauvaise surprise au bilan.",
+        "Diagnostic, restoration, A/B/C grading, business resale, internal store or charitable transfer. The share of residual value returned is contractually fixed, no surprise at year end."
       ),
       badge: tx("+40 % de valeur récupérée", "+40% recovered value"),
       icon: RefreshCcw,
@@ -137,6 +139,8 @@ export default function ServicesPage() {
         { value: "72", unit: "%", label: tx("taux de réemploi", "reuse rate") },
       ],
       accent: "#F59E0B",
+      pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+      pricingHref: "/tarifs",
     },
     {
       slug: "recyclage-deee",
@@ -166,6 +170,8 @@ export default function ServicesPage() {
         { value: "0", unit: "%", label: tx("mise en décharge", "landfill rate") },
       ],
       accent: "#10B981",
+      pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+      pricingHref: "/tarifs",
     },
     {
       slug: "cybersecurite-itad",
@@ -271,7 +277,7 @@ export default function ServicesPage() {
       </div>
 
       {/* ════════════════════════════════════════════════════════════════
-          S1 — HERO ÉDITORIAL — split sombre, content gauche, photo droite
+          S1 (HERO ÉDITORIAL) split sombre, content gauche, photo droite
          ════════════════════════════════════════════════════════════════ */}
       <section
         className="relative w-full min-h-[88vh] flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
@@ -317,8 +323,8 @@ export default function ServicesPage() {
 
             <p className="text-gray-300 text-base lg:text-[1.12rem] leading-[1.72] max-w-xl mb-10">
               {tx(
-                "Audit, effacement, reconditionnement, recyclage, sécurité, collecte connectée. Six métiers, un seul interlocuteur, une seule donnée — versée jour après jour à votre rapport CSRD et à votre dossier RSSI.",
-                "Audit, erasure, refurbishment, recycling, security, connected collection. Six trades, one point of contact, one dataset — fed day after day into your CSRD report and your CISO file."
+                "Audit, effacement, reconditionnement, recyclage, sécurité, collecte connectée. Six métiers, un seul interlocuteur, une seule donnée, versée jour après jour à votre rapport CSRD et à votre dossier RSSI.",
+                "Audit, erasure, refurbishment, recycling, security, connected collection. Six trades, one point of contact, one dataset, fed day after day into your CSRD report and your CISO file."
               )}
             </p>
 
@@ -374,8 +380,8 @@ export default function ServicesPage() {
           <Image
             src="/photos/hp-atelier-itad.jpg"
             alt={tx(
-              "Atelier ITAD GreenTechCycle — équipe en intervention sur du matériel informatique",
-              "GreenTechCycle ITAD workshop — team operating on IT equipment"
+              "Atelier ITAD GreenTechCycle : équipe en intervention sur du matériel informatique",
+              "GreenTechCycle ITAD workshop, team operating on IT equipment"
             )}
             fill
             priority
@@ -410,7 +416,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S2 — BANDEAU CERTIFICATIONS — fond #0F172A
+          S2 (BANDEAU CERTIFICATIONS) fond #0F172A
          ════════════════════════════════════════════════════════════════ */}
       <section className="bg-[#0F172A] py-10 border-t border-white/5">
         <div className="container mx-auto px-4">
@@ -432,7 +438,55 @@ export default function ServicesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S3 — GRILLE ÉDITORIALE 6 SERVICES — alternance fond/photo
+          S2b (PILOTE GTC — PORTE D'ENTRÉE SENIOR 3 JOURS)
+         ════════════════════════════════════════════════════════════════ */}
+      <section className="bg-[#F8FAFC] py-12 lg:py-14 border-b border-gray-100">
+        <div className="container mx-auto px-4">
+          <FadeIn>
+            <div className="max-w-6xl mx-auto rounded-2xl bg-white border border-[#10B981]/30 shadow-sm hover:shadow-lg transition-shadow duration-300 p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#10B981]/15 flex items-center justify-center">
+                <ClipboardList className="h-6 w-6 text-[#10B981]" aria-hidden="true" />
+              </div>
+              <div className="flex-1">
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="inline-flex px-2.5 py-1 rounded-full bg-[#10B981]/12 text-[#047857] text-[10px] font-bold uppercase tracking-wider">
+                    {tx("Porte d'entrée senior", "Senior entry point")}
+                  </span>
+                  <span className="text-[#10B981] text-base font-black tabular-nums">
+                    {tx("2 900 € HT / 3 jours", "€2,900 ex-VAT / 3 days")}
+                  </span>
+                </div>
+                <h2 className="text-[#0F172A] text-xl font-bold tracking-tight mb-2">
+                  {tx("Pilote GTC - Audit & démarrage 3 jours", "GTC Pilot - Audit & 3-day kickoff")}
+                </h2>
+                <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
+                  {tx(
+                    "Diagnostic parc IT, plan ITAD priorisé et démarrage Plateforme. Mission senior conduite par notre équipe ITAM, carbone et cyber. Pilote remboursé sur la 1re année de Plateforme si signature dans les 90 jours apres la restitution.",
+                    "IT fleet diagnostic, prioritised ITAD action plan and Platform kickoff. Senior engagement by our ITAM, carbon and cyber team. Pilot refunded on Year 1 Platform subscription if signed within 90 days of debrief."
+                  )}
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                <Link
+                  href="/reserver?offre=pilote-audit-3j"
+                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#10B981]/25 text-sm whitespace-nowrap"
+                >
+                  {tx("Réserver le Pilote", "Book the Pilot")}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <p className="text-[11px] text-gray-400 text-center mt-2">
+                  <Link href="/tarifs#pilote" className="underline hover:text-[#047857] transition-colors">
+                    {tx("Détails et garantie remboursement", "Details and refund guarantee")}
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════════
+          S3 (GRILLE ÉDITORIALE 6 SERVICES) alternance fond/photo
          ════════════════════════════════════════════════════════════════ */}
       <div id="services-grille">
         {services.map((s, i) => {
@@ -648,7 +702,7 @@ export default function ServicesPage() {
       </div>
 
       {/* ════════════════════════════════════════════════════════════════
-          S4 — CITATION MAGAZINE — fond #022C22
+          S4 (CITATION MAGAZINE) fond #022C22
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden bg-[#022C22] py-20 lg:py-28">
         <div
@@ -685,7 +739,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S5 — POURQUOI UN INTERLOCUTEUR UNIQUE — fond clair, ghost 07
+          S5 (POURQUOI UN INTERLOCUTEUR UNIQUE) fond clair, ghost 07
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden bg-white py-20 lg:py-28">
         <div
@@ -718,8 +772,8 @@ export default function ServicesPage() {
               </h2>
               <p className="text-gray-700 text-[1.02rem] lg:text-[1.1rem] leading-[1.78] mb-10 max-w-3xl">
                 {tx(
-                  "La plupart de nos clients arrivaient avec un assemblage hérité : un transporteur ici, un broyeur là, un brocanteur de matériel reconditionné, un cabinet pour le rapport carbone. Quand l'autorité demande la chaîne complète, plus personne n'arrive à recoller les bordereaux. GreenTechCycle a été conçu pour produire une preuve unique — la même donnée nourrit la console DSI, le dossier RSSI et le rapport CSRD.",
-                  "Most of our clients arrived with an inherited patchwork: a carrier here, a shredder there, a refurbished hardware reseller, an external firm for the carbon report. When the regulator asks for the full chain, nobody can put the slips back together. GreenTechCycle was built to produce a single proof — the same data feeds the CIO console, the CISO file and the CSRD report."
+                  "La plupart de nos clients arrivaient avec un assemblage hérité : un transporteur ici, un broyeur là, un brocanteur de matériel reconditionné, un cabinet pour le rapport carbone. Quand l'autorité demande la chaîne complète, plus personne n'arrive à recoller les bordereaux. GreenTechCycle a été conçu pour produire une preuve unique, la même donnée nourrit la console DSI, le dossier RSSI et le rapport CSRD.",
+                  "Most of our clients arrived with an inherited patchwork: a carrier here, a shredder there, a refurbished hardware reseller, an external firm for the carbon report. When the regulator asks for the full chain, nobody can put the slips back together. GreenTechCycle was built to produce a single proof, the same data feeds the CIO console, the CISO file and the CSRD report."
                 )}
               </p>
             </FadeIn>
@@ -769,7 +823,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S6 — ENCART CONVERSION — fond #10B981
+          S6 (ENCART CONVERSION) fond #10B981
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden bg-[#10B981]">
         <div
@@ -809,8 +863,8 @@ export default function ServicesPage() {
               </h2>
               <p className="text-white/90 text-[1.05rem] lg:text-[1.15rem] leading-[1.65] max-w-2xl mb-10">
                 {tx(
-                  "Pas d'appel commercial scripté, pas de questionnaire en ligne. Un échange direct avec un ingénieur qui a déjà piloté une mission équivalente — banque, santé, distribution, industrie ou administration.",
-                  "No scripted sales call, no online form maze. A direct conversation with an engineer who has already run an equivalent mission — banking, healthcare, retail, industry or public administration."
+                  "Pas d'appel commercial scripté, pas de questionnaire en ligne. Un échange direct avec un ingénieur qui a déjà piloté une mission équivalente, banque, santé, distribution, industrie ou administration.",
+                  "No scripted sales call, no online form maze. A direct conversation with an engineer who has already run an equivalent mission, banking, healthcare, retail, industry or public administration."
                 )}
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
