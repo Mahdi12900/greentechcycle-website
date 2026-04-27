@@ -134,7 +134,7 @@ https://greentechcycle-website.vercel.app/fr/mentions-legales
 - ✅ Droit d'opposition
 - ✅ Droit de limitation du traitement
 
-**Contact DPO** : contact@greentechcycle.fr *(à remplacer par email DPO si désigné)*
+**Contact DPO** : contact@greentechcycle.fr
 
 ---
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- GreenTechCycle Brand Colors -->
+    <color name="brand_green">#10B981</color>
+    <color name="brand_dark">#0F172A</color>
+    <color name="brand_light">#F8FAFC</color>
+
+    <!-- Splash Screen -->
+    <color name="splash_background">#10B981</color>
+
+    <!-- Status Bar -->
+    <color name="status_bar">#0F172A</color>
+
+    <!-- Default Android colors (can be customized) -->
+    <color name="colorPrimary">#10B981</color>
+    <color name="colorPrimaryDark">#047857</color>
+    <color name="colorAccent">#10B981</color>
+</resources>

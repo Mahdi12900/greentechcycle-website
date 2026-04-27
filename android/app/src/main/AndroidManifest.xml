@@ -22,6 +22,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+            <!-- Deep Links HTTPS -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="greentechcycle.fr" />
+                <data android:scheme="https" android:host="www.greentechcycle.fr" />
+                <data android:scheme="https" android:host="greentechcycle-website.vercel.app" />
+            </intent-filter>
+
         </activity>
 
         <provider

@@ -120,7 +120,7 @@ GreenTechCycle transforms your compliance obligations into ESG opportunities. Do
 
 **Privacy Policy**: `https://greentechcycle-website.vercel.app/fr/mentions-legales`
 
-**Contact Email**: `contact@greentechcycle.fr` *(to confirm with client)*
+**Contact Email**: `contact@greentechcycle.fr`
 
 ## Content Rating
 **Everyone** (E for Everyone)
