@@ -39,3 +39,11 @@ vercel-deploy.log
 # IDEs
 .vscode/
 .idea/
+
+# Mobile/Capacitor
+out/
+*.keystore
+*.jks
+android/key.properties
+android/app/release/
+android/app/build/

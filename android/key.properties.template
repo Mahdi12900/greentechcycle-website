@@ -1,0 +1,8 @@
+# Android Signing Configuration
+# Copy this file to key.properties and fill in your values
+# NEVER commit key.properties to git!
+
+storeFile=gtc-release.keystore
+storePassword=YOUR_KEYSTORE_PASSWORD
+keyAlias=gtc
+keyPassword=YOUR_KEY_PASSWORD
