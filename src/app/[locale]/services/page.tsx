@@ -438,7 +438,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S2b (PILOTE GTC — PORTE D'ENTRÉE SENIOR 3 JOURS)
+          S2b (PILOTE GTC - PORTE D'ENTREE SENIOR 3 JOURS)
          ════════════════════════════════════════════════════════════════ */}
       <section className="bg-[#F8FAFC] py-12 lg:py-14 border-b border-gray-100">
         <div className="container mx-auto px-4">

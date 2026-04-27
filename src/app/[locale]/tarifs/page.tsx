@@ -1888,7 +1888,7 @@ export default function TarifsPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S6e (PILOTE GTC — AUDIT & DÉMARRAGE 3 JOURS)
+          S6e (PILOTE GTC - AUDIT & DEMARRAGE 3 JOURS)
          ════════════════════════════════════════════════════════════════ */}
       <section
         id="pilote"
