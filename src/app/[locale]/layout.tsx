@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import dynamic from "next/dynamic";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -9,7 +11,18 @@ import CookieBanner from "@/components/CookieBanner";
 import StickyCTA from "@/components/StickyCTA";
 import ExitPopup from "@/components/ExitPopup";
 import SchemaOrg from "@/components/SchemaOrg";
-import SalesAssistantWidget from "@/components/SalesAssistantWidget";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const SalesAssistantWidget = dynamic(
+  () => import("@/components/SalesAssistantWidget"),
+  { ssr: false }
+);
 
 const SITE = "https://greentechcycle-website.vercel.app";
 
@@ -152,7 +165,7 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={inter.variable}>
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" href="/icon.svg" />
