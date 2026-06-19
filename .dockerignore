@@ -1,0 +1,13 @@
+node_modules
+.next
+.git
+.gitignore
+.env*
+*.md
+android
+ios
+_old_next_bak
+.mcp.json
+.mcp.local.json
+memory
+.claude

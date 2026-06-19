@@ -7,6 +7,7 @@ logs/
 
 # Build directory
 .next/
+_old_next_bak/
 
 # Dependencies
 node_modules/
