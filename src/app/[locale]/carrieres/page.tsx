@@ -28,7 +28,7 @@ export default function CareersPage() {
             <div className="max-w-3xl mx-auto text-center">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs font-medium tracking-wider uppercase mb-6">
                 <Rocket className="h-4 w-4 text-accent" />
-                Nous recrutons
+                {t("badge")}
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
                 {t("hero.title")}

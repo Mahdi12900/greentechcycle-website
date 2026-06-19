@@ -87,6 +87,13 @@
     animation-delay: 0.4s;
   }
 
+  /* Mobile: prevent chat widget from overlapping body text */
+  @media (max-width: 480px) {
+    main {
+      padding-bottom: 5rem;
+    }
+  }
+
   /* Custom scrollbar for chat */
   .custom-scrollbar::-webkit-scrollbar {
     width: 4px;

@@ -7,7 +7,8 @@
       "sectors": "Sectors",
       "resources": "Resources",
       "company": "Company",
-      "pricing": "Pricing"
+      "pricing": "Pricing",
+      "blog": "Blog"
     },
     "megaMenu": {
       "platform": {
@@ -67,7 +68,8 @@
           "methodology": "Methodology",
           "process": "ITAD process",
           "security": "Security & erasure",
-          "impact": "Environmental impact"
+          "impact": "Environmental impact",
+          "blog": "Blog"
         }
       },
       "company": {
@@ -228,7 +230,17 @@
       "source": "Source: ADEME : Environmental Assessment of Digital Technology 2024 (scope 3.1 manufacturing, weighted laptop/desktop/server average).",
       "trust1": "R2v3 · ISO 14001 · ISO 27001",
       "trust2": "NIST 800-88 rev2 · HMG IS5 Enhanced",
-      "trust3": "GDPR · NIS2 · DORA · CSRD ESRS E5 compliant"
+      "trust3": "GDPR · NIS2 · DORA · CSRD ESRS E5 compliant",
+      "kpiAudit": {
+        "label": "ACPR AUDIT",
+        "value": "4 days",
+        "sub": "vs 3 weeks on average"
+      },
+      "kpiValue": {
+        "label": "VALUE RECOVERED",
+        "value": "638 k€",
+        "sub": "average / enterprise engagement"
+      }
     },
     "trustBand": {
       "label": "They trust us with their IT decommissioning",
@@ -2080,7 +2092,15 @@
         "q": "How do you handle data transfers outside the EU?",
         "a": "No transfers outside the EU. French hosting, exclusively European subcontractors, GDPR compliance contractually guaranteed."
       }
-    ]
+    ],
+    "cta": {
+      "title": "Your question isn't in the FAQ?",
+      "subtitle": "Our ITAD expert team responds within 24h to all your specific questions.",
+      "primaryLabel": "Ask a question",
+      "secondaryLabel": "Schedule a demo"
+    },
+    "relatedTitle": "Related articles",
+    "relatedSubtitle": "Deepen your questions with our guides on compliance, security and IT circular economy."
   },
   "Careers": {
     "hero": {
@@ -2117,7 +2137,8 @@
       "description": "No opening matches your profile? Send us your spontaneous application.",
       "cta": "Send my application",
       "email": "recruitment@greentechcycle.fr"
-    }
+    },
+    "badge": "WE'RE HIRING"
   },
   "Legal": {
     "mentions": {
@@ -6746,5 +6767,32 @@
       "audit-blanc-itad": "Workshop · ITAD mock audit",
       "plateforme-info": "Documentation · GreenTechCycle platform"
     }
+  },
+  "BlogPage": {
+    "title": "ITAD & IT Recycling Blog",
+    "metaDescription": "Articles and guides on ITAD, IT recycling, CSRD/NIS2 compliance, data security and circular economy for enterprises.",
+    "heroSubtitle": "Guides, analysis and news on responsible IT asset management, regulatory compliance and circular economy.",
+    "breadcrumbHome": "Home",
+    "readArticle": "Read article",
+    "backToBlog": "Back to blog",
+    "share": "Share",
+    "relatedArticles": "Related articles",
+    "readingTime": "reading time",
+    "categories": {
+      "Réglementation": "Regulation",
+      "Sécurité": "Security",
+      "Conformité": "Compliance",
+      "Durabilité": "Sustainability",
+      "Cybersécurité": "Cybersecurity",
+      "Économie circulaire": "Circular economy"
+    },
+    "seeAllArticles": "See all articles"
+  },
+  "RelatedArticles": {
+    "eyebrow": "Resources",
+    "title": "Related articles to explore",
+    "subtitle": "Deepen the topic with our analyses on decarbonization, IT asset management and cybersecurity.",
+    "seeAll": "See all articles",
+    "readArticle": "Read article"
   }
 }

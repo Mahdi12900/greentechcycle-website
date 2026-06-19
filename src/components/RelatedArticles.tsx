@@ -5,6 +5,7 @@ import Image from "next/image";
 import { blogArticles, type BlogArticle } from "@/lib/blog-data";
 import { ArrowRight, BookOpen, Calendar, Clock, Tag } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+import { useTranslations, useLocale } from "next-intl";
 
 interface RelatedArticlesProps {
   /** Filter by one or more categories (exact match on BlogArticle.category). */
@@ -28,12 +29,17 @@ export default function RelatedArticles({
   categories,
   keywords,
   limit = 3,
-  title = "Articles liés à consulter",
-  subtitle = "Approfondissez le sujet avec nos analyses sur la décarbonisation, la gestion des actifs IT et la cybersécurité.",
+  title,
+  subtitle,
   tone = "light",
-  eyebrow = "Ressources",
+  eyebrow,
   className = "",
 }: RelatedArticlesProps) {
+  const t = useTranslations("RelatedArticles");
+  const locale = useLocale();
+  const resolvedTitle = title ?? t("title");
+  const resolvedSubtitle = subtitle ?? t("subtitle");
+  const resolvedEyebrow = eyebrow ?? t("eyebrow");
   let articles: BlogArticle[] = blogArticles;
 
   if (categories && categories.length > 0) {
@@ -73,18 +79,18 @@ export default function RelatedArticles({
             <div className="max-w-2xl">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
                 <BookOpen className="h-3.5 w-3.5" />
-                {eyebrow}
+                {resolvedEyebrow}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 tracking-tight">
-                {title}
+                {resolvedTitle}
               </h2>
-              <p className="text-gray-600 text-base md:text-lg leading-relaxed">{subtitle}</p>
+              <p className="text-gray-600 text-base md:text-lg leading-relaxed">{resolvedSubtitle}</p>
             </div>
             <Link
               href="/blog"
               className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors group shrink-0"
             >
-              Voir tous les articles
+              {t("seeAll")}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -117,7 +123,7 @@ export default function RelatedArticles({
                   <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
                     <span className="inline-flex items-center gap-1.5">
                       <Calendar className="h-3.5 w-3.5" />
-                      {new Date(article.publishedAt).toLocaleDateString("fr-FR", {
+                      {new Date(article.publishedAt).toLocaleDateString(locale === "en" ? "en-GB" : "fr-FR", {
                         day: "numeric",
                         month: "short",
                         year: "numeric",
@@ -135,7 +141,7 @@ export default function RelatedArticles({
                     {article.description}
                   </p>
                   <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-accent transition-colors">
-                    Lire l&apos;article
+                    {t("readArticle")}
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>

@@ -218,11 +218,11 @@ export default function HomePage() {
                       <FileCheck className="h-5 w-5 text-[#10B981]" aria-hidden="true" />
                     </div>
                     <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                      Audit ACPR
+                      {t("hero.kpiAudit.label")}
                     </p>
                   </div>
-                  <p className="text-2xl font-bold text-[#0F172A] leading-tight">4 jours</p>
-                  <p className="text-xs text-gray-500 mt-1">vs 3 semaines en moyenne</p>
+                  <p className="text-2xl font-bold text-[#0F172A] leading-tight">{t("hero.kpiAudit.value")}</p>
+                  <p className="text-xs text-gray-500 mt-1">{t("hero.kpiAudit.sub")}</p>
                 </div>
 
                 {/* Floating proof card bottom-left */}
@@ -232,11 +232,11 @@ export default function HomePage() {
                       <Euro className="h-5 w-5 text-[#0EA5E9]" aria-hidden="true" />
                     </div>
                     <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                      Valeur récupérée
+                      {t("hero.kpiValue.label")}
                     </p>
                   </div>
-                  <p className="text-2xl font-bold text-[#0F172A] leading-tight">638 k€</p>
-                  <p className="text-xs text-gray-500 mt-1">moyenne / mission grand compte</p>
+                  <p className="text-2xl font-bold text-[#0F172A] leading-tight">{t("hero.kpiValue.value")}</p>
+                  <p className="text-xs text-gray-500 mt-1">{t("hero.kpiValue.sub")}</p>
                 </div>
               </div>
             </FadeIn>
