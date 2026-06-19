@@ -1,0 +1,403 @@
+{
+  "meta": {
+    "home": {
+      "title": "GreenTechCycle - ITAD Platform & Sustainable IT Lifecycle Management",
+      "description": "Certified data erasure, carbon tracking, ESG reporting, and end-to-end IT asset disposition for enterprises."
+    },
+    "blog": {
+      "title": "ITAD & IT Recycling Blog | GreenTechCycle",
+      "description": "News, guides, and analysis on ITAD, IT recycling, compliance, and sustainability."
+    },
+    "faq": {
+      "title": "FAQ | Frequently Asked Questions about ITAD and IT Recycling | GreenTechCycle",
+      "description": "Answers to your questions about ITAD, data erasure, compliance, and IT recycling."
+    },
+    "contact": {
+      "title": "Contact | Request a Free ITAD Quote | GreenTechCycle",
+      "description": "Contact GreenTechCycle for a free, customized ITAD quote."
+    },
+    "careers": {
+      "title": "Careers | Join the GreenTechCycle Team | GreenTechCycle",
+      "description": "Discover our job openings and join a company committed to sustainable IT."
+    },
+    "pricing": {
+      "title": "Pricing | Transparent ITAD Solutions | GreenTechCycle",
+      "description": "Discover our ITAD pricing plans tailored to every business size."
+    }
+  },
+  "nav": {
+    "platform": "Platform",
+    "services": "Services",
+    "sectors": "Sectors",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "contact": "Contact",
+    "bookDemo": "Book a demo",
+    "menu": "Menu"
+  },
+  "footer": {
+    "description": "The leading ITAD platform for sustainable IT lifecycle management.",
+    "platform": "Platform",
+    "company": "Company",
+    "legal": "Legal",
+    "features": "Features",
+    "modules": "Modules",
+    "compliance": "Compliance",
+    "about": "About",
+    "careers": "Careers",
+    "blog": "Blog",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookies",
+    "rights": "All rights reserved.",
+    "tagline": "Sustainable IT Asset Disposition · Certified Data Erasure · ESG Compliance"
+  },
+  "home": {
+    "hero": {
+      "title1": "Sustainable IT Asset",
+      "title2": "Lifecycle Management",
+      "subtitle": "Certified data erasure, carbon tracking, ESG reporting, and end-to-end IT asset disposition — all in one platform.",
+      "cta": "Book a demo",
+      "learnMore": "Learn more"
+    },
+    "stats": {
+      "erasure": { "value": "99.9%", "label": "Data Erasure Compliance" },
+      "assets": { "value": "50K+", "label": "Assets Processed" },
+      "frameworks": { "value": "16", "label": "Regulatory Frameworks" },
+      "carbon": { "value": "40%", "label": "Carbon Reduction" }
+    },
+    "kpi": {
+      "title": "Measurable Results",
+      "subtitle": "Concrete performance for your ITAD operations.",
+      "speed": {
+        "value": "4 days",
+        "label": "PROCESSING TIME",
+        "detail": "vs 3 weeks on average"
+      },
+      "value": {
+        "value": "€32K",
+        "label": "VALUE RECOVERED",
+        "detail": "average / enterprise engagement"
+      },
+      "compliance": {
+        "value": "100%",
+        "label": "COMPLIANCE",
+        "detail": "NIST 800-88 certified"
+      },
+      "carbon": {
+        "value": "-74%",
+        "label": "CARBON FOOTPRINT",
+        "detail": "vs new replacement"
+      }
+    },
+    "features": {
+      "title": "Platform Features",
+      "subtitle": "A unified platform covering security, compliance, and sustainability for your entire IT fleet.",
+      "items": [
+        {
+          "icon": "🔒",
+          "title": "Certified Data Erasure",
+          "desc": "NIST 800-88 compliant erasure with full chain of custody tracking and certificates of destruction."
+        },
+        {
+          "icon": "🌍",
+          "title": "Carbon & ESG Reporting",
+          "desc": "Track carbon footprint per asset, generate CSRD-ready reports, and measure circularity metrics."
+        },
+        {
+          "icon": "📊",
+          "title": "Real-Time Dashboard",
+          "desc": "Live monitoring of ITAD operations, asset lifecycle status, and compliance posture."
+        },
+        {
+          "icon": "⚖️",
+          "title": "Regulatory Compliance",
+          "desc": "Built-in support for GDPR, ISO 27001, DORA, NIS2, and 12 more frameworks."
+        },
+        {
+          "icon": "🤖",
+          "title": "AI Orchestrator",
+          "desc": "Intelligent automation for compliance gap analysis, risk assessment, and remediation."
+        },
+        {
+          "icon": "📦",
+          "title": "WakiBox Integration",
+          "desc": "Smart collection hardware for secure on-site asset intake and diagnostics."
+        }
+      ]
+    },
+    "modules": {
+      "title": "Platform Modules",
+      "subtitle": "Four integrated pillars powering your ITAD operations.",
+      "items": [
+        {
+          "icon": "📊",
+          "title": "Operations",
+          "list": ["Dashboard", "Insights", "Reporting", "Interventions", "Carbon & ESG"]
+        },
+        {
+          "icon": "🖥️",
+          "title": "IT Fleet",
+          "list": ["Asset Inventory", "Intake & Diagnostics", "Software Licenses", "WakiBox"]
+        },
+        {
+          "icon": "🔐",
+          "title": "Security",
+          "list": ["Cybersecurity", "Compliance Audit", "Data Protection", "Phishing Simulation"]
+        },
+        {
+          "icon": "⚙️",
+          "title": "Administration",
+          "list": ["Ticketing", "User Management", "Settings", "Integrations"]
+        }
+      ]
+    },
+    "compliance": {
+      "title": "Enterprise-Grade Compliance",
+      "subtitle": "Pre-built controls and audit trails for the frameworks that matter most."
+    },
+    "cta": {
+      "title": "Ready to transform your ITAD operations?",
+      "subtitle": "Join enterprises worldwide using GreenTechCycle to achieve compliance, reduce carbon footprint, and maximize asset value.",
+      "button": "Book a demo"
+    },
+    "proof": {
+      "title": "Trusted by industry leaders",
+      "subtitle": "Companies of all sizes across various industries.",
+      "sectors": ["Finance & Banking", "Healthcare", "Government", "Manufacturing", "Retail", "Education"]
+    }
+  },
+  "blog": {
+    "title": "ITAD & IT Recycling Blog",
+    "subtitle": "News, guides, and analysis to master your ITAD operations, stay compliant, and accelerate your transition to sustainable IT.",
+    "breadcrumbHome": "Home",
+    "breadcrumbBlog": "Blog",
+    "allCategories": "All",
+    "categories": {
+      "regulation": "Regulation",
+      "security": "Security",
+      "compliance": "Compliance",
+      "sustainability": "Sustainability"
+    },
+    "readArticle": "Read article",
+    "articles": [
+      {
+        "slug": "nist-800-88-guide",
+        "category": "regulation",
+        "title": "Complete NIST 800-88 Guide: Secure Data Erasure",
+        "excerpt": "Everything you need to know about the NIST 800-88 standard and its application in your ITAD processes.",
+        "date": "2026-05-15",
+        "readTime": "8 min"
+      },
+      {
+        "slug": "csrd-reporting-itad",
+        "category": "sustainability",
+        "title": "CSRD and ITAD: How to Integrate ESG Reporting into Your IT Operations",
+        "excerpt": "The CSRD directive imposes new reporting obligations. Discover how ITAD contributes.",
+        "date": "2026-05-02",
+        "readTime": "6 min"
+      },
+      {
+        "slug": "data-breach-prevention",
+        "category": "security",
+        "title": "Preventing Data Breaches During IT Decommissioning",
+        "excerpt": "The risks of data leaks during IT asset retirement and best practices to avoid them.",
+        "date": "2026-04-20",
+        "readTime": "7 min"
+      },
+      {
+        "slug": "iso-27001-itad",
+        "category": "compliance",
+        "title": "ISO 27001 and ITAD: Aligning Your IT Asset Management",
+        "excerpt": "How the ISO 27001 standard applies to IT asset disposition and how to comply.",
+        "date": "2026-04-10",
+        "readTime": "5 min"
+      },
+      {
+        "slug": "circular-economy-it",
+        "category": "sustainability",
+        "title": "Circular Economy and IT: The Key Role of ITAD",
+        "excerpt": "ITAD is a major lever for the circular economy. Analysis of challenges and opportunities.",
+        "date": "2026-03-28",
+        "readTime": "6 min"
+      },
+      {
+        "slug": "dora-nis2-impact",
+        "category": "regulation",
+        "title": "DORA and NIS2: Impact on IT Asset Management",
+        "excerpt": "New European regulations DORA and NIS2 strengthen requirements on the IT lifecycle.",
+        "date": "2026-03-15",
+        "readTime": "7 min"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about ITAD, data erasure, and compliance.",
+    "items": [
+      {
+        "question": "What is ITAD?",
+        "answer": "ITAD (IT Asset Disposition) refers to all end-of-life management processes for IT assets: collection, diagnostics, data erasure, refurbishment, recycling, and certified destruction."
+      },
+      {
+        "question": "How does GreenTechCycle ensure data security?",
+        "answer": "We apply the NIST 800-88 standard for certified data erasure, with full traceability and certificates of destruction for every processed asset."
+      },
+      {
+        "question": "Which compliance frameworks do you cover?",
+        "answer": "Our platform covers 16 frameworks: NIST 800-88, ISO 27001, GDPR, CSRD, DORA, NIS2, ISO 14001, SOC 2, R2, e-Stewards, WEEE, Basel Convention, and more."
+      },
+      {
+        "question": "What is the processing time for an ITAD engagement?",
+        "answer": "On average, our engagements are processed in 4 business days, compared to 3 weeks for traditional processes."
+      },
+      {
+        "question": "Do you offer carbon tracking?",
+        "answer": "Yes, our Carbon & ESG module tracks the carbon footprint of each asset and generates CSRD-ready reports for your ESG reporting."
+      },
+      {
+        "question": "How does the WakiBox work?",
+        "answer": "The WakiBox is a smart hardware device deployed on-site for secure intake, automated diagnostics, and IT asset collection."
+      }
+    ],
+    "blogSection": {
+      "title": "Recommended articles",
+      "seeAll": "See all articles"
+    },
+    "ctaSection": {
+      "askQuestion": "Ask a question",
+      "scheduleDemo": "Schedule a demo"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Request a free ITAD quote or schedule a demo of our platform.",
+    "form": {
+      "name": "Full name",
+      "email": "Professional email",
+      "company": "Company",
+      "phone": "Phone",
+      "role": "Role",
+      "roles": {
+        "dsi": "CIO / IT Director",
+        "rssi": "CISO",
+        "itManager": "IT Manager",
+        "procurement": "Procurement",
+        "other": "Other"
+      },
+      "message": "Your message",
+      "submit": "Request a free quote",
+      "submitDemo": "Book a demo"
+    },
+    "info": {
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "locationValue": "Paris, France"
+    }
+  },
+  "careers": {
+    "badge": "WE'RE HIRING",
+    "title": "Join the GreenTechCycle Team",
+    "subtitle": "Be part of the sustainable IT revolution. We're looking for talented people passionate about technology and the environment.",
+    "values": {
+      "title": "Our Values",
+      "items": [
+        { "icon": "🌱", "title": "Sustainability", "desc": "The environment at the heart of every decision." },
+        { "icon": "🔒", "title": "Security", "desc": "Data protection as an absolute priority." },
+        { "icon": "🚀", "title": "Innovation", "desc": "Pushing the boundaries of ITAD technology." },
+        { "icon": "🤝", "title": "Collaboration", "desc": "Working together for maximum impact." }
+      ]
+    },
+    "positions": {
+      "title": "Open Positions",
+      "items": [
+        {
+          "title": "Full-Stack Engineer",
+          "type": "Full-time",
+          "location": "Paris / Remote",
+          "desc": "Build our Command Center platform with React, Next.js, and Node.js."
+        },
+        {
+          "title": "ITAD Compliance Manager",
+          "type": "Full-time",
+          "location": "Paris",
+          "desc": "Lead regulatory compliance and ITAD audit processes."
+        },
+        {
+          "title": "ITAD Technician",
+          "type": "Full-time",
+          "location": "Île-de-France",
+          "desc": "Perform on-site erasure, diagnostics, and refurbishment operations."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Don't see your role?",
+      "subtitle": "Send us an open application.",
+      "button": "Open application"
+    }
+  },
+  "pricing": {
+    "title": "Transparent Pricing",
+    "subtitle": "Plans tailored to every business size, with no hidden fees.",
+    "plans": [
+      {
+        "name": "Starter",
+        "price": "Custom quote",
+        "description": "For SMBs up to 500 assets/year",
+        "features": [
+          "NIST 800-88 certified erasure",
+          "Basic dashboard",
+          "Compliance reporting",
+          "Email support",
+          "1 user"
+        ],
+        "cta": "Request a quote",
+        "popular": false
+      },
+      {
+        "name": "Business",
+        "price": "Custom quote",
+        "description": "For mid-market, 500 to 5,000 assets/year",
+        "features": [
+          "Everything in Starter, plus:",
+          "Carbon & ESG module",
+          "API & integrations",
+          "Priority support",
+          "5 users",
+          "CSRD reporting"
+        ],
+        "cta": "Request a quote",
+        "popular": true
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom quote",
+        "description": "For large enterprises, 5,000+ assets/year",
+        "features": [
+          "Everything in Business, plus:",
+          "AI Orchestrator",
+          "Integrated WakiBox",
+          "Custom SLA",
+          "Unlimited users",
+          "Dedicated audit & compliance"
+        ],
+        "cta": "Contact sales",
+        "popular": false
+      }
+    ],
+    "cta": {
+      "title": "Need a custom quote?",
+      "subtitle": "Our ITAD experts are ready to build a tailored offer for you.",
+      "button": "Book a demo"
+    }
+  },
+  "chat": {
+    "title": "Need help?",
+    "placeholder": "Ask your question...",
+    "send": "Send",
+    "greeting": "Hello! How can I help you?"
+  }
+}
