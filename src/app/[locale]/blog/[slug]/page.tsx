@@ -7,7 +7,6 @@ import { getArticleContent } from "@/lib/blog-content";
 import { Calendar, Clock, ArrowLeft, Share2, User } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SchemaOrg from "@/components/SchemaOrg";
-import { getTranslations } from "next-intl/server";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -72,11 +71,9 @@ export default async function BlogArticlePage({
   if (!article) notFound();
 
   const content = getArticleContent(slug);
-  const t = await getTranslations({ locale, namespace: "BlogPage" });
-  const categories = t.raw("categories") as Record<string, string>;
 
   const breadcrumbs = [
-    { label: t("breadcrumbHome"), href: `/${locale}` },
+    { label: "Accueil", href: `/${locale}` },
     { label: "Blog", href: `/${locale}/blog` },
     { label: article.title, href: `/${locale}/blog/${slug}` },
   ];
@@ -111,7 +108,6 @@ export default async function BlogArticlePage({
 
   // Related articles (excluding current)
   const related = blogArticles.filter((a) => a.slug !== slug).slice(0, 2);
-  const dateLocale = locale === "en" ? "en-GB" : "fr-FR";
 
   return (
     <>
@@ -124,7 +120,7 @@ export default async function BlogArticlePage({
             <Breadcrumbs items={breadcrumbs} dark />
             <div className="max-w-3xl">
               <span className="inline-block bg-[#047857] text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">
-                {categories[article.category] ?? article.category}
+                {article.category}
               </span>
               <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
                 {article.title}
@@ -136,7 +132,7 @@ export default async function BlogArticlePage({
                 </span>
                 <span className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
-                  {new Date(article.publishedAt).toLocaleDateString(dateLocale, {
+                  {new Date(article.publishedAt).toLocaleDateString("fr-FR", {
                     day: "numeric",
                     month: "long",
                     year: "numeric",
@@ -144,7 +140,7 @@ export default async function BlogArticlePage({
                 </span>
                 <span className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
-                  {article.readingTime} {t("readingTime")}
+                  {article.readingTime} de lecture
                 </span>
               </div>
             </div>
@@ -180,14 +176,14 @@ export default async function BlogArticlePage({
                   className="inline-flex items-center gap-2 text-[#047857] font-semibold hover:text-[#047857] transition-colors"
                 >
                   <ArrowLeft className="h-4 w-4" />
-                  {t("backToBlog")}
+                  Retour au blog
                 </Link>
                 <button
                   className="inline-flex items-center gap-2 text-gray-500 hover:text-[#047857] transition-colors"
-                  aria-label={t("share")}
+                  aria-label="Partager cet article"
                 >
                   <Share2 className="h-4 w-4" />
-                  {t("share")}
+                  Partager
                 </button>
               </div>
             </div>
@@ -197,7 +193,7 @@ export default async function BlogArticlePage({
         {/* Related Articles */}
         <section className="py-16 bg-[#F8FAFC]">
           <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-bold text-[#0F172A] mb-8">{t("relatedArticles")}</h2>
+            <h2 className="text-2xl font-bold text-[#0F172A] mb-8">Articles connexes</h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-3xl">
               {related.map((rel) => (
                 <Link
@@ -205,9 +201,7 @@ export default async function BlogArticlePage({
                   href={`/${locale}/blog/${rel.slug}`}
                   className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow"
                 >
-                  <span className="text-xs font-semibold text-[#047857]">
-                    {categories[rel.category] ?? rel.category}
-                  </span>
+                  <span className="text-xs font-semibold text-[#047857]">{rel.category}</span>
                   <h3 className="text-lg font-bold text-[#0F172A] mt-2 line-clamp-2">{rel.title}</h3>
                   <p className="text-sm text-gray-600 mt-2 line-clamp-2">{rel.description}</p>
                 </Link>

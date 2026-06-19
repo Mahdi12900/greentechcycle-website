@@ -5,35 +5,31 @@ import { blogArticles } from "@/lib/blog-data";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SchemaOrg from "@/components/SchemaOrg";
-import { getTranslations } from "next-intl/server";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "BlogPage" });
-  return {
-    title: t("title"),
-    description: t("metaDescription"),
-    keywords: ["blog ITAD", "recyclage IT", "CSRD", "NIS2", "DEEE", "économie circulaire IT", "sécurité données"],
-    openGraph: {
-      title: `${t("title")} | GreenTechCycle`,
-      description: t("metaDescription"),
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${t("title")} | GreenTechCycle`,
-      description: t("metaDescription"),
-    },
-  };
-}
+export const metadata: Metadata = {
+  title: "Blog ITAD & Recyclage IT",
+  description:
+    "Articles et guides sur l'ITAD, le recyclage IT, la conformité CSRD/NIS2, la sécurité des données et l'économie circulaire pour les entreprises.",
+  keywords: ["blog ITAD", "recyclage IT", "CSRD", "NIS2", "DEEE", "économie circulaire IT", "sécurité données"],
+  openGraph: {
+    title: "Blog ITAD & Recyclage IT | GreenTechCycle",
+    description:
+      "Articles et guides sur l'ITAD, le recyclage IT, la conformité et l'économie circulaire pour les entreprises.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog ITAD & Recyclage IT | GreenTechCycle",
+    description:
+      "Articles et guides sur l'ITAD, le recyclage IT, la conformité et l'économie circulaire pour les entreprises.",
+  },
+};
 
 export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "BlogPage" });
-  const categories = t.raw("categories") as Record<string, string>;
 
   const breadcrumbs = [
-    { label: t("breadcrumbHome"), href: `/${locale}` },
+    { label: "Accueil", href: `/${locale}` },
     { label: "Blog", href: `/${locale}/blog` },
   ];
 
@@ -59,8 +55,6 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
     })),
   };
 
-  const dateLocale = locale === "en" ? "en-GB" : "fr-FR";
-
   return (
     <>
       <SchemaOrg data={schemaData} />
@@ -79,10 +73,10 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
           <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs items={breadcrumbs} dark />
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              {t("title")}
+              Blog ITAD & Recyclage IT
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl">
-              {t("heroSubtitle")}
+              Guides, analyses et actualités sur la gestion responsable des actifs IT, la conformité réglementaire et l&apos;économie circulaire.
             </p>
           </div>
         </section>
@@ -107,7 +101,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                       />
                       <div className="absolute top-4 left-4">
                         <span className="bg-[#047857] text-white text-xs font-semibold px-3 py-1 rounded-full">
-                          {categories[article.category] ?? article.category}
+                          {article.category}
                         </span>
                       </div>
                     </div>
@@ -116,7 +110,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                     <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
                       <span className="flex items-center gap-1">
                         <Calendar className="h-4 w-4" />
-                        {new Date(article.publishedAt).toLocaleDateString(dateLocale, {
+                        {new Date(article.publishedAt).toLocaleDateString("fr-FR", {
                           day: "numeric",
                           month: "long",
                           year: "numeric",
@@ -139,7 +133,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                       href={`/${locale}/blog/${article.slug}`}
                       className="inline-flex items-center gap-1 text-[#047857] font-semibold text-sm hover:text-[#047857] transition-colors"
                     >
-                      {t("readArticle")}
+                      Lire l&apos;article
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>

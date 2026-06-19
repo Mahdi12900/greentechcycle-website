@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -85,13 +87,6 @@
   }
   .animation-delay-400 {
     animation-delay: 0.4s;
-  }
-
-  /* Mobile: prevent chat widget from overlapping body text */
-  @media (max-width: 480px) {
-    main {
-      padding-bottom: 5rem;
-    }
   }
 
   /* Custom scrollbar for chat */

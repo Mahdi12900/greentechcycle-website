@@ -141,7 +141,7 @@ export default function SalesAssistantWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 32, scale: 0.95 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed z-[60] bottom-20 right-4 lg:bottom-28 lg:right-6 w-[calc(100vw-2rem)] max-w-[380px] max-h-[calc(100vh-6rem)] overflow-hidden rounded-2xl bg-white shadow-2xl shadow-black/15 ring-1 ring-black/[0.06]"
+            className="fixed z-[60] bottom-24 right-4 lg:bottom-28 lg:right-6 w-[calc(100vw-2rem)] max-w-[380px] overflow-hidden rounded-2xl bg-white shadow-2xl shadow-black/15 ring-1 ring-black/[0.06]"
             role="dialog"
             aria-label={tx(
               "Assistant commercial GreenTechCycle",

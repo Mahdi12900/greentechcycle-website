@@ -54,7 +54,6 @@ export default function Header() {
     ],
     resources: [
       { href: "/demo", label: t("megaMenu.resources.items.demo") },
-      { href: "/blog", label: t("megaMenu.resources.items.blog") },
       { href: "/faq", label: t("megaMenu.resources.items.faq") },
       { href: "/reglementation", label: t("megaMenu.resources.items.regulation") },
       { href: "/methodologie", label: t("megaMenu.resources.items.methodology") },

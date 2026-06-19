@@ -126,18 +126,18 @@ export default function FAQPage() {
       </section>
 
       <RelatedArticles
-        title={t("relatedTitle")}
-        subtitle={t("relatedSubtitle")}
+        title="Articles recommandés"
+        subtitle="Approfondissez vos questions avec nos guides sur la conformité, la sécurité et l'économie circulaire IT."
         limit={3}
         tone="light"
       />
 
       <CtaSection
-        title={t("cta.title")}
-        subtitle={t("cta.subtitle")}
-        primaryLabel={t("cta.primaryLabel")}
+        title="Votre question n'est pas dans la FAQ ?"
+        subtitle="Notre équipe d'experts ITAD répond sous 24h à toutes vos questions spécifiques."
+        primaryLabel="Poser ma question"
         primaryHref="/contact"
-        secondaryLabel={t("cta.secondaryLabel")}
+        secondaryLabel="Planifier une démo"
         secondaryHref="/demo"
         variant="contact"
         tone="dark"
