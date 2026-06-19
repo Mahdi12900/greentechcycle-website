@@ -37,7 +37,10 @@ import {
   XCircle,
   CalendarClock,
   Gavel,
+  Landmark,
+  Leaf,
 } from "lucide-react";
+import { useState } from "react";
 
 /**
  * Home, refonte vague 4 (avr. 2026)
@@ -88,6 +91,27 @@ export default function HomePage() {
   const beforeItems = t.raw("comparison.before.items") as string[];
   const afterItems = t.raw("comparison.after.items") as string[];
   const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
+  const sectorTrustItems = t.raw("sectorTrust.sectors") as Array<{
+    icon: string;
+    label: string;
+    detail: string;
+  }>;
+  const testimonials = t.raw("testimonials.items") as Array<{
+    quote: string;
+    name: string;
+    role: string;
+    company: string;
+  }>;
+  const enjeuCards = t.raw("enjeuCards.cards") as Array<{
+    title: string;
+    desc: string;
+    href: string;
+    icon: string;
+  }>;
+  const anchorNavItems = t.raw("anchorNav.items") as string[];
+
+  // ROI calculator state
+  const [fleetSize, setFleetSize] = useState("");
 
   // Icons for value chain steps, sober lucide outlines
   const valueStepIcons = [FileCheck, Eraser, Recycle, BarChart3, Lock];
@@ -106,12 +130,16 @@ export default function HomePage() {
       {/* ==========================================================
           1. URGENCY BAND, sober navy, calendrier régulateur précis
          ========================================================== */}
-      <div className="bg-[#0F172A] text-white py-3 px-4 border-b border-white/5">
+      <Link href="/reglementation" className="block bg-[#0F172A] text-white py-3 px-4 border-b border-white/5 hover:bg-[#1E293B] transition-colors group">
         <div className="container mx-auto flex items-center justify-center gap-3 text-sm font-medium text-center">
           <AlertTriangle className="h-5 w-5 flex-shrink-0 text-[#F59E0B]" aria-hidden="true" />
           <p className="leading-snug">{t("urgency.text")}</p>
+          <span className="hidden sm:inline-flex items-center gap-1 text-[#10B981] font-semibold whitespace-nowrap group-hover:underline">
+            {t("urgency.cta")}
+            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+          </span>
         </div>
-      </div>
+      </Link>
 
       {/* ==========================================================
           2. HERO : Direction "Provocation chiffrée"
@@ -138,34 +166,30 @@ export default function HomePage() {
 
               <h1
                 id="hero-title"
-                className="text-[#0F172A] mb-6 tracking-tight leading-[1.02]"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F172A] mb-6 tracking-tight leading-[1.12] max-w-2xl"
               >
-                {/* Giant impact figure, primary green */}
-                <span className="block text-[5.5rem] sm:text-[7rem] lg:text-[9rem] font-bold text-[#10B981] leading-none mb-2 tracking-tighter">
-                  {t("hero.figure")}
-                </span>
-                <span className="block text-xl md:text-2xl lg:text-3xl font-semibold text-gray-500 mb-4 tracking-tight">
-                  {t("hero.figureUnit")}
-                </span>
-                <span className="block text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F172A] tracking-tight max-w-2xl">
-                  {t("hero.title")}
-                </span>
+                {t("hero.title")}
               </h1>
 
-              <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl leading-relaxed">
+              <p className="text-lg md:text-xl text-[#0F172A] font-semibold mb-4 max-w-2xl leading-relaxed">
                 {t("hero.subtitle")}
+              </p>
+
+              {/* Secondary proof point — carbon stat moved here */}
+              <p className="text-sm text-gray-500 mb-8 max-w-2xl leading-relaxed border-l-2 border-[#10B981] pl-3">
+                {t("hero.proofStat")}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Link
-                  href="/contact"
+                  href="/demo"
                   className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/30 hover:-translate-y-0.5 text-base"
                 >
                   {t("hero.cta1")}
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
                 <Link
-                  href="/demo"
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 bg-white text-[#0F172A] border-2 border-[#0EA5E9] hover:bg-[#0EA5E9] hover:text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-base"
                 >
                   {t("hero.cta2")}
@@ -245,6 +269,73 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
+          2-bis. ENJEU CARDS — prospect self-qualification (ST-2)
+         ========================================================== */}
+      <section className="py-16 bg-white border-b border-gray-100">
+        <div className="container mx-auto px-4">
+          <FadeIn>
+            <div className="text-center mb-10">
+              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-2">
+                {t("enjeuCards.eyebrow")}
+              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#0F172A] tracking-tight">
+                {t("enjeuCards.title")}
+              </h2>
+            </div>
+          </FadeIn>
+          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {enjeuCards.map((card, i) => {
+              const iconMap: Record<string, typeof Shield> = { shield: Shield, barChart: BarChart3, lock: Lock, euro: Euro };
+              const CardIcon = iconMap[card.icon] || Shield;
+              const accents = ["#0EA5E9", "#10B981", "#F59E0B", "#8B5CF6"];
+              return (
+                <StaggerItem key={i}>
+                  <Link
+                    href={card.href}
+                    className="group flex flex-col items-center text-center p-6 rounded-2xl border border-gray-100 bg-[#F8FAFC] hover:border-[#10B981]/40 hover:shadow-lg transition-all duration-300 h-full"
+                  >
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                      style={{ backgroundColor: `${accents[i]}15` }}
+                    >
+                      <CardIcon className="h-5 w-5" style={{ color: accents[i] }} aria-hidden="true" />
+                    </div>
+                    <h3 className="text-base font-bold text-[#0F172A] mb-2 tracking-tight">{card.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{card.desc}</p>
+                    <span className="mt-3 text-xs font-semibold text-[#10B981] group-hover:underline flex items-center gap-1">
+                      <ArrowRight className="h-3 w-3" aria-hidden="true" />
+                    </span>
+                  </Link>
+                </StaggerItem>
+              );
+            })}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* ==========================================================
+          2-ter. ANCHOR NAV — sticky section navigation (ME-6)
+         ========================================================== */}
+      <nav className="sticky top-16 lg:top-20 z-30 bg-white/95 backdrop-blur-sm border-b border-gray-100 hidden md:block">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-center gap-1 py-2 overflow-x-auto">
+            {anchorNavItems.map((label, i) => {
+              const anchors = ["#solution", "#differentiators", "#cases", "#compliance", "#pricing"];
+              return (
+                <a
+                  key={i}
+                  href={anchors[i]}
+                  className="px-4 py-2 text-sm font-medium text-gray-500 hover:text-[#10B981] hover:bg-[#10B981]/5 rounded-lg transition-colors whitespace-nowrap"
+                >
+                  {label}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </nav>
+
+      {/* ==========================================================
           3. TRUST BAND, donneurs d'ordre anonymisés (sectoriels)
          ========================================================== */}
       <section className="py-16 bg-white border-y border-gray-100">
@@ -257,15 +348,18 @@ export default function HomePage() {
             </div>
           </FadeIn>
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-4">
-            {trustClients.map((client, i) => (
-              <StaggerItem key={i}>
-                <div className="flex items-center justify-center text-center px-3 py-4 rounded-lg border border-gray-100 bg-[#F8FAFC] h-full">
-                  <p className="text-[13px] leading-tight font-semibold text-gray-700">
-                    {client}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
+            {trustClients.map((client, i) => {
+              const isTF1 = client.startsWith("TF1");
+              return (
+                <StaggerItem key={i}>
+                  <div className={`flex items-center justify-center text-center px-3 py-4 rounded-lg border h-full ${isTF1 ? "border-[#10B981]/30 bg-[#10B981]/5" : "border-gray-100 bg-[#F8FAFC]"}`}>
+                    <p className={`leading-tight font-semibold ${isTF1 ? "text-[15px] text-[#0F172A]" : "text-[13px] text-gray-700"}`}>
+                      {client}
+                    </p>
+                  </div>
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
           <p className="mt-6 text-center text-xs text-gray-500 italic max-w-2xl mx-auto">
             {t("trustBand.note")}
@@ -325,7 +419,7 @@ export default function HomePage() {
       {/* ==========================================================
           4-bis. CALENDRIER RÉGULATEUR, 4 échéances datées
          ========================================================== */}
-      <section className="py-24 lg:py-28 bg-white">
+      <section id="compliance" className="py-24 lg:py-28 bg-white scroll-mt-32">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mb-14">
@@ -398,7 +492,7 @@ export default function HomePage() {
       {/* ==========================================================
           5. SOLUTION : Phrase puissante + Hub-and-spoke
          ========================================================== */}
-      <section className="py-24 lg:py-32 bg-[#F8FAFC]">
+      <section id="solution" className="py-24 lg:py-32 bg-[#F8FAFC] scroll-mt-32">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center max-w-4xl mx-auto mb-16">
@@ -619,7 +713,7 @@ export default function HomePage() {
       {/* ==========================================================
           8. CAS CLIENTS, 3 mini-cas chiffrés liés à /cas-usages
          ========================================================== */}
-      <section className="py-24 lg:py-28 bg-[#F8FAFC]">
+      <section id="cases" className="py-24 lg:py-28 bg-[#F8FAFC] scroll-mt-32">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
@@ -710,7 +804,7 @@ export default function HomePage() {
       {/* ==========================================================
           9. POURQUOI GREENTECHCYCLE, 4 différenciateurs durs
          ========================================================== */}
-      <section className="py-24 lg:py-28 bg-white">
+      <section id="differentiators" className="py-24 lg:py-28 bg-white scroll-mt-32">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mb-16">
@@ -757,49 +851,33 @@ export default function HomePage() {
       {/* ==========================================================
           9-bis. AVANT / APRÈS, comparaison synthétique
          ========================================================== */}
-      <section className="py-24 lg:py-28 bg-[#F8FAFC]">
+      <section className="py-16 lg:py-20 bg-[#F8FAFC]">
         <div className="container mx-auto px-4">
           <FadeIn>
-            <div className="text-center max-w-3xl mx-auto mb-14">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
-                {t("comparison.eyebrow")}
-              </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-[#0F172A] mb-5 tracking-tight leading-[1.1]">
+            <div className="text-center max-w-3xl mx-auto mb-10">
+              <h2 className="text-2xl md:text-4xl font-bold text-[#0F172A] mb-3 tracking-tight leading-[1.1]">
                 {t("comparison.title")}
               </h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-gray-600 text-base leading-relaxed">
                 {t("comparison.subtitle")}
               </p>
             </div>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-5 lg:gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-4 lg:gap-6 max-w-5xl mx-auto">
             {/* BEFORE column */}
             <FadeIn>
-              <div className="bg-white border border-gray-200 rounded-2xl p-7 lg:p-8 h-full">
-                <div className="flex items-center gap-3 mb-6 pb-5 border-b border-gray-100">
-                  <div className="w-11 h-11 rounded-xl bg-gray-100 flex items-center justify-center">
-                    <XCircle className="h-5 w-5 text-gray-500" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-semibold tracking-wider text-gray-500 uppercase">
-                      Avant
-                    </p>
-                    <p className="font-bold text-[#0F172A] text-lg leading-tight">
-                      {t("comparison.before.label")}
-                    </p>
-                  </div>
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 h-full">
+                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-gray-100">
+                  <XCircle className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <p className="font-bold text-[#0F172A] text-base leading-tight">
+                    {t("comparison.before.label")}
+                  </p>
                 </div>
-                <ul className="space-y-3">
+                <ul className="space-y-2">
                   {beforeItems.map((item, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-3 text-sm text-gray-600 leading-relaxed"
-                    >
-                      <XCircle
-                        className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5"
-                        aria-hidden="true"
-                      />
+                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600 leading-snug">
+                      <XCircle className="h-3.5 w-3.5 text-gray-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -809,30 +887,17 @@ export default function HomePage() {
 
             {/* AFTER column */}
             <FadeIn delay={0.1}>
-              <div className="bg-gradient-to-br from-[#10B981] to-[#0E9F6E] border border-[#10B981] rounded-2xl p-7 lg:p-8 h-full text-white shadow-2xl shadow-[#10B981]/30">
-                <div className="flex items-center gap-3 mb-6 pb-5 border-b border-white/20">
-                  <div className="w-11 h-11 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center">
-                    <CheckCircle2 className="h-5 w-5 text-white" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-semibold tracking-wider text-white/80 uppercase">
-                      Après
-                    </p>
-                    <p className="font-bold text-white text-lg leading-tight">
-                      {t("comparison.after.label")}
-                    </p>
-                  </div>
+              <div className="bg-gradient-to-br from-[#10B981] to-[#0E9F6E] border border-[#10B981] rounded-2xl p-6 h-full text-white shadow-xl shadow-[#10B981]/20">
+                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/20">
+                  <CheckCircle2 className="h-5 w-5 text-white" aria-hidden="true" />
+                  <p className="font-bold text-white text-base leading-tight">
+                    {t("comparison.after.label")}
+                  </p>
                 </div>
-                <ul className="space-y-3">
+                <ul className="space-y-2">
                   {afterItems.map((item, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-3 text-sm text-white/95 leading-relaxed"
-                    >
-                      <CheckCircle2
-                        className="h-4 w-4 text-white flex-shrink-0 mt-0.5"
-                        aria-hidden="true"
-                      />
+                    <li key={i} className="flex items-start gap-2 text-sm text-white/95 leading-snug">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-white flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -842,7 +907,7 @@ export default function HomePage() {
           </div>
 
           <FadeIn>
-            <div className="mt-10 text-center">
+            <div className="mt-8 text-center">
               <Link
                 href="/plateforme"
                 className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#0E9F6E] font-semibold text-sm group"
@@ -980,7 +1045,7 @@ export default function HomePage() {
       {/* ==========================================================
           10-ter. TARIFS WAKI BOX TEASER, 3 plans + pilote
          ========================================================== */}
-      <section className="py-24 lg:py-28 bg-[#0F172A] relative overflow-hidden">
+      <section id="pricing" className="py-24 lg:py-28 bg-[#0F172A] relative overflow-hidden scroll-mt-32">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.12),_transparent_60%)] pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
@@ -1145,6 +1210,158 @@ export default function HomePage() {
       </section>
 
       {/* ==========================================================
+          ME-1. SECTOR TRUST — sector icons with compliance badges
+         ========================================================== */}
+      <section className="py-20 lg:py-24 bg-[#F8FAFC]">
+        <div className="container mx-auto px-4">
+          <FadeIn>
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+                {t("sectorTrust.label")}
+              </p>
+              <h2 className="text-2xl md:text-4xl font-bold text-[#0F172A] tracking-tight leading-[1.1]">
+                {t("sectorTrust.title")}
+              </h2>
+            </div>
+          </FadeIn>
+          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+            {sectorTrustItems.map((sector, i) => {
+              const sectorIconMap: Record<string, typeof Building2> = {
+                building: Building2,
+                heartPulse: HeartPulse,
+                factory: Factory,
+                landmark: Landmark,
+              };
+              const SIcon = sectorIconMap[sector.icon] || Building2;
+              const accents = ["#0EA5E9", "#10B981", "#F59E0B", "#8B5CF6"];
+              return (
+                <StaggerItem key={i}>
+                  <div className="bg-white border border-gray-100 rounded-2xl p-6 text-center h-full hover:shadow-lg hover:border-[#10B981]/30 transition-all duration-300">
+                    <div
+                      className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
+                      style={{ backgroundColor: `${accents[i]}15` }}
+                    >
+                      <SIcon className="h-6 w-6" style={{ color: accents[i] }} aria-hidden="true" />
+                    </div>
+                    <h3 className="text-base font-bold text-[#0F172A] mb-2">{sector.label}</h3>
+                    <p className="text-xs text-gray-500 font-medium">{sector.detail}</p>
+                  </div>
+                </StaggerItem>
+              );
+            })}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* ==========================================================
+          ME-2. TESTIMONIALS — 3 anonymized quotes
+         ========================================================== */}
+      <section className="py-20 lg:py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <FadeIn>
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+                {t("testimonials.eyebrow")}
+              </p>
+              <h2 className="text-2xl md:text-4xl font-bold text-[#0F172A] tracking-tight leading-[1.1]">
+                {t("testimonials.title")}
+              </h2>
+            </div>
+          </FadeIn>
+          <StaggerContainer className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {testimonials.map((item, i) => (
+              <StaggerItem key={i}>
+                <div className="bg-[#F8FAFC] border border-gray-100 rounded-2xl p-7 h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                  <Quote className="h-8 w-8 text-[#10B981]/40 mb-4" aria-hidden="true" />
+                  <blockquote className="text-sm text-gray-700 leading-relaxed flex-1 mb-5 italic">
+                    &ldquo;{item.quote}&rdquo;
+                  </blockquote>
+                  <div className="border-t border-gray-100 pt-4">
+                    <p className="font-bold text-[#0F172A] text-sm">{item.name}</p>
+                    <p className="text-xs text-gray-500">{item.role} · {item.company}</p>
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+          <p className="mt-8 text-center text-xs text-gray-500 italic max-w-2xl mx-auto">
+            {t("testimonials.disclaimer")}
+          </p>
+        </div>
+      </section>
+
+      {/* ==========================================================
+          ME-5. MINI ROI CALCULATOR
+         ========================================================== */}
+      <section className="py-20 lg:py-24 bg-gradient-to-br from-[#0F172A] to-[#1E293B] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.12),_transparent_60%)] pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
+          <FadeIn>
+            <div className="max-w-2xl mx-auto text-center">
+              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+                {t("roiCalculator.eyebrow")}
+              </p>
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
+                {t("roiCalculator.title")}
+              </h2>
+
+              <div className="bg-white/[0.06] border border-white/10 rounded-2xl p-8 backdrop-blur-sm">
+                <label htmlFor="fleet-size" className="block text-sm font-medium text-gray-300 mb-3 text-left">
+                  {t("roiCalculator.inputLabel")}
+                </label>
+                <input
+                  id="fleet-size"
+                  type="number"
+                  min="1"
+                  value={fleetSize}
+                  onChange={(e) => setFleetSize(e.target.value)}
+                  placeholder={t("roiCalculator.inputPlaceholder")}
+                  className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white text-lg font-semibold placeholder-gray-500 outline-none focus:ring-2 focus:ring-[#10B981]/50 focus:border-[#10B981] transition-all mb-6"
+                />
+
+                {fleetSize && parseInt(fleetSize) > 0 && (
+                  <FadeIn>
+                    <div className="space-y-4 text-left mb-6">
+                      <p className="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">{t("roiCalculator.resultTitle")}</p>
+                      <div className="flex items-center justify-between py-3 border-b border-white/10">
+                        <span className="text-sm text-gray-300">{t("roiCalculator.riskLabel")}</span>
+                        <span className="text-lg font-bold text-[#F59E0B]">
+                          {(parseInt(fleetSize) * 820).toLocaleString()} €
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between py-3 border-b border-white/10">
+                        <span className="text-sm text-gray-300">{t("roiCalculator.valueLabel")}</span>
+                        <span className="text-lg font-bold text-[#10B981]">
+                          {(parseInt(fleetSize) * 412).toLocaleString()} €
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between py-3">
+                        <span className="text-sm text-gray-300">{t("roiCalculator.carbonLabel")}</span>
+                        <span className="text-lg font-bold text-[#0EA5E9]">
+                          {((parseInt(fleetSize) * 150) / 1000).toFixed(1)} tCO₂e
+                        </span>
+                      </div>
+                    </div>
+                    <Link
+                      href="/demo"
+                      className="inline-flex items-center justify-center gap-2 w-full bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-base"
+                    >
+                      {t("roiCalculator.cta")}
+                      <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                    </Link>
+                  </FadeIn>
+                )}
+
+                <p className="text-[11px] text-gray-500 italic mt-4 leading-relaxed">
+                  {t("roiCalculator.disclaimer")}
+                </p>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ==========================================================
           11. CTA FINAL DOUBLE, audit + démo + bandeau confiance
          ========================================================== */}
       <section className="relative py-28 lg:py-32 overflow-hidden">
@@ -1174,14 +1391,14 @@ export default function HomePage() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Link
-                  href="/contact"
+                  href="/demo"
                   className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-white hover:text-[#10B981] text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 shadow-xl shadow-[#10B981]/30 hover:-translate-y-0.5 text-base"
                 >
                   {t("finalCTA.cta1")}
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
                 <Link
-                  href="/demo"
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white text-white hover:text-[#0F172A] border-2 border-white/40 hover:border-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 backdrop-blur-sm text-base"
                 >
                   {t("finalCTA.cta2")}

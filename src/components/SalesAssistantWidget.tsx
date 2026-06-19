@@ -40,13 +40,25 @@ export default function SalesAssistantWidget() {
     return null;
   }
 
-  /* ---- Auto-bubble after 4s ---- */
+  /* ---- Auto-bubble after 4s, auto-collapse on mobile after 5s ---- */
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!open && !bubbleDismissed) setShowBubble(true);
     }, 4000);
     return () => clearTimeout(timer);
   }, [open, bubbleDismissed]);
+
+  /* ---- Auto-collapse bubble on mobile (<768px) after 5s ---- */
+  useEffect(() => {
+    if (!showBubble) return;
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    if (!isMobile) return;
+    const collapseTimer = setTimeout(() => {
+      setShowBubble(false);
+      setBubbleDismissed(true);
+    }, 5000);
+    return () => clearTimeout(collapseTimer);
+  }, [showBubble]);
 
   /* ---- Hide bubble when panel opens ---- */
   useEffect(() => {
@@ -108,17 +120,17 @@ export default function SalesAssistantWidget() {
   const quickActions = [
     {
       icon: Calendar,
-      label: tx("Demander une démo", "Request a demo"),
+      label: tx("Réserver ma démo (30 min)", "Book my demo (30 min)"),
       href: "/demo",
     },
     {
       icon: FileText,
-      label: tx("Obtenir un devis", "Get a quote"),
+      label: tx("Demander l'audit gratuit", "Request free audit"),
       href: "/contact",
     },
     {
       icon: Sparkles,
-      label: tx("En savoir plus sur nos services", "Discover our services"),
+      label: tx("Découvrir nos services", "Discover our services"),
       href: "/services",
     },
     {
@@ -406,7 +418,7 @@ export default function SalesAssistantWidget() {
         }}
         whileHover={{ scale: 1.07 }}
         whileTap={{ scale: 0.93 }}
-        className="fixed z-[60] bottom-4 right-4 lg:bottom-6 lg:right-6 h-[60px] w-[60px] rounded-full shadow-xl shadow-emerald-900/25 ring-[3px] ring-white flex items-center justify-center overflow-hidden group"
+        className="fixed z-[60] bottom-4 right-4 lg:bottom-6 lg:right-6 h-[48px] w-[48px] md:h-[60px] md:w-[60px] rounded-full shadow-xl shadow-emerald-900/25 ring-[3px] ring-white flex items-center justify-center overflow-hidden group"
         style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 1rem)" }}
       >
         {/* Photo avatar */}

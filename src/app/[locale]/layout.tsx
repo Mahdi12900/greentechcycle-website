@@ -11,7 +11,7 @@ import ExitPopup from "@/components/ExitPopup";
 import SchemaOrg from "@/components/SchemaOrg";
 import SalesAssistantWidget from "@/components/SalesAssistantWidget";
 
-const SITE = "https://greentechcycle-website.vercel.app";
+const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

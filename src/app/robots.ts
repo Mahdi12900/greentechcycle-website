@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/reserver/merci"],
     },
-    sitemap: "https://greentechcycle-website.vercel.app/sitemap.xml",
+    sitemap: "https://cst-greentechcycle--979dplvl.cloud-station.app/sitemap.xml",
   };
 }

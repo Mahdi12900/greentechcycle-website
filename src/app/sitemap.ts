@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { ALL_SECTOR_SLUGS } from "@/data/sectors";
 import { blogArticles } from "@/lib/blog-data";
 
-const BASE = "https://greentechcycle-website.vercel.app";
+const BASE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 const LOCALES = ["fr", "en"] as const;
 const NOW = new Date();
 

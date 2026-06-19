@@ -369,6 +369,12 @@ function ContactInner() {
                           <option value="5000-20000">5 000, 20 000</option>
                           <option value="20000+">{t("form.fields.fleetLarge")}</option>
                         </select>
+                        {(form.fleet === "5000-20000" || form.fleet === "20000+") && (
+                          <p className="mt-2 text-xs font-semibold text-[#10B981] bg-[#10B981]/10 border border-[#10B981]/20 rounded-lg px-3 py-2 flex items-center gap-2">
+                            <Clock className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
+                            {t("form.fields.leadScoringMessage")}
+                          </p>
+                        )}
                       </div>
                       <div>
                         <label

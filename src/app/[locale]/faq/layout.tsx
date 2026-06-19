@@ -62,6 +62,30 @@ const faqSchema = {
         text: "Les équipements sont prioritairement reconditionnés pour le réemploi. Ceux qui ne peuvent être reconditionnés sont recyclés dans des filières certifiées pour récupérer les matières premières (métaux, plastiques). La destruction n'intervient qu'en dernier recours pour les supports ne pouvant être effacés.",
       },
     },
+    {
+      "@type": "Question",
+      name: "Combien de temps faut-il pour décommissionner 1 000 postes ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "11 jours ouvrés en moyenne sur la cohorte 2025 (n=14 missions ≥ 800 actifs), inventaire compris. Engagement contractuel : remboursement au prorata si dépassement supérieur à 15 % sans cause client.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "GreenTechCycle est-elle une entreprise de l'économie sociale et solidaire ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Oui. GreenTechCycle dispose du statut ESUS (Entreprise Solidaire d'Utilité Sociale) et de l'agrément clause d'insertion AGEC. 27 % de l'effectif technique est issu de l'insertion professionnelle, et l'entreprise travaille en partenariat avec des filières ESS comme Envie et les Ateliers du Bocage.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Comment intégrer GreenTechCycle avec notre CMDB existante ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "GreenTechCycle propose des connecteurs natifs ServiceNow, Easyvista et Lansweeper (lecture/écriture), ainsi qu'une API REST OpenAPI 3.0 pour les autres CMDB. La réconciliation automatique est configurable par votre équipe DSI.",
+      },
+    },
   ],
 };
 

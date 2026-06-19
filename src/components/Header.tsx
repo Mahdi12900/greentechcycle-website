@@ -53,16 +53,17 @@ export default function Header() {
       { href: "/secteurs/telecom", label: t("megaMenu.sectors.items.telecom") },
     ],
     resources: [
-      { href: "/demo", label: t("megaMenu.resources.items.demo") },
       { href: "/faq", label: t("megaMenu.resources.items.faq") },
       { href: "/reglementation", label: t("megaMenu.resources.items.regulation") },
       { href: "/methodologie", label: t("megaMenu.resources.items.methodology") },
       { href: "/processus-itad", label: t("megaMenu.resources.items.process") },
       { href: "/securite", label: t("megaMenu.resources.items.security") },
       { href: "/impact", label: t("megaMenu.resources.items.impact") },
+      { href: "/blog", label: t("megaMenu.resources.items.blog") },
     ],
     company: [
       { href: "/pourquoi-gtc", label: t("megaMenu.company.items.whyGtc") },
+      { href: "/resultats-clients", label: t("megaMenu.company.items.results") },
       { href: "/parcours-client", label: t("megaMenu.company.items.journey") },
       { href: "/ecosysteme", label: t("megaMenu.company.items.ecosystem") },
       { href: "/carrieres", label: t("megaMenu.company.items.careers") },
@@ -100,9 +101,14 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
       <div className="container-max mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
+          {/* Logo + tagline */}
           <Link href="/" className="flex items-center gap-2 group">
-            <Image src="/logo/logo-horizontal.svg" alt="GreenTechCycle" width={200} height={40} className="h-10 w-auto" priority />
+            <div className="flex flex-col">
+              <Image src="/logo/logo-horizontal.svg" alt="GreenTechCycle" width={200} height={40} className="h-10 w-auto" priority />
+              <span className="hidden sm:block text-[10px] font-medium text-gray-400 tracking-wider uppercase mt-0.5 ml-0.5">
+                {t("nav.home") === "Accueil" ? "Plateforme ITAD unifiée" : "Unified ITAD Platform"}
+              </span>
+            </div>
           </Link>
 
           {/* Desktop nav with mega-menus */}
@@ -141,6 +147,9 @@ export default function Header() {
                 )}
               </div>
             ))}
+            <Link href="/pourquoi-gtc" className="px-3 py-2 text-sm font-medium text-[#10B981] hover:text-primary transition-colors rounded-lg hover:bg-gray-50">
+              {t("nav.whyGtc")}
+            </Link>
             <Link href="/tarifs" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary transition-colors rounded-lg hover:bg-gray-50">
               {t("nav.pricing")}
             </Link>

@@ -135,10 +135,10 @@ export default function FAQPage() {
       <CtaSection
         title="Votre question n'est pas dans la FAQ ?"
         subtitle="Notre équipe d'experts ITAD répond sous 24h à toutes vos questions spécifiques."
-        primaryLabel="Poser ma question"
-        primaryHref="/contact"
-        secondaryLabel="Planifier une démo"
-        secondaryHref="/demo"
+        primaryLabel="Réserver ma démo (30 min)"
+        primaryHref="/demo"
+        secondaryLabel="Demander l'audit gratuit"
+        secondaryHref="/contact"
         variant="contact"
         tone="dark"
       />

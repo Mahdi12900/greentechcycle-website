@@ -7,6 +7,7 @@
       "sectors": "Sectors",
       "resources": "Resources",
       "company": "Company",
+      "whyGtc": "Why GTC",
       "pricing": "Pricing"
     },
     "megaMenu": {
@@ -61,30 +62,31 @@
       "resources": {
         "title": "Resources",
         "items": {
-          "demo": "Request a demo",
           "faq": "FAQ",
           "regulation": "Regulations",
           "methodology": "Methodology",
           "process": "ITAD process",
           "security": "Security & erasure",
-          "impact": "Environmental impact"
+          "impact": "Environmental impact",
+          "blog": "Blog"
         }
       },
       "company": {
         "title": "Company",
         "items": {
           "whyGtc": "Why GreenTechCycle?",
+          "results": "Client results",
           "journey": "Client journey",
           "ecosystem": "Ecosystem",
           "careers": "Careers"
         }
       }
     },
-    "cta": "Request a demo",
+    "cta": "Book my demo (30 min)",
     "languageSwitch": "FR"
   },
   "TrustBar": {
-    "text": "R2v3 • ISO 14001 • ISO 27001 (in progress) • NIST 800-88 • GDPR & CSRD"
+    "text": "R2v3 • ISO 14001 • ISO 27001 (in progress) • NIST 800-88 • GDPR & CSRD • SSE / ESUS"
   },
   "Footer": {
     "tagline": "Your trusted partner for responsible and secure management of end-of-life IT assets. R2, e-Stewards and ISO 14001 certified.",
@@ -94,7 +96,7 @@
       "phone": "+33 1 86 65 22 10",
       "email": "contact@greentechcycle.fr"
     },
-    "cta": "Request a quote",
+    "cta": "Request free audit",
     "columns": {
       "services": {
         "title": "Services",
@@ -204,8 +206,8 @@
     "link": "Cookie policy"
   },
   "StickyCTA": {
-    "text": "Request a free audit",
-    "default": "Request a free audit",
+    "text": "Book my demo (30 min)",
+    "default": "Book my demo (30 min)",
     "impact": "Estimate my IT scope 3 in 10 min",
     "audit": "Audit my IT fleet",
     "expert": "Talk to an ITAD expert",
@@ -215,16 +217,16 @@
   },
   "Home": {
     "urgency": {
-      "text": "CSRD wave 2: first ESRS E5 disclosure (FY2025) expected by June 2026 for large companies and listed mid-caps (>250 FTE). Audit your ITAD data before fiscal year close."
+      "text": "NIS2 / CSRD: is your ITAD compliance up to date?",
+      "cta": "Check now →"
     },
     "hero": {
       "eyebrow": "ITAD platform · R2v3 · NIST 800-88 · SecNumCloud-ready",
-      "figure": "78%",
-      "figureUnit": "of an IT estate's carbon footprint",
-      "title": "is locked in at manufacturing. You can only act on the remaining 22%.",
-      "subtitle": "End-of-life hardware, sensitive data, residual value, CSRD reporting: one window of opportunity, one platform, operated by 38 cleared specialists across 4 sites in France.",
-      "cta1": "Request an audit (within 48h)",
-      "cta2": "Book a 30-min demo",
+      "title": "The platform that unifies your ITAD: certified erasure, guaranteed compliance, maximum value recovery.",
+      "subtitle": "One dashboard, 38 cleared experts, 4 sites in France, zero gaps.",
+      "proofStat": "78% of an IT estate's carbon footprint is locked at manufacturing. For the remaining 22%, each refurbished device avoids 150 kgCO₂e.",
+      "cta1": "Book my demo (30 min)",
+      "cta2": "Request free audit",
       "source": "Source: ADEME : Environmental Assessment of Digital Technology 2024 (scope 3.1 manufacturing, weighted laptop/desktop/server average).",
       "trust1": "R2v3 · ISO 14001 · ISO 27001",
       "trust2": "NIST 800-88 rev2 · HMG IS5 Enhanced",
@@ -235,11 +237,11 @@
       "note": "Customer identities anonymised at their request, verifiable under NDA.",
       "clients": [
         "Tier-1 European bank · CAC40",
+        "TF1 · Broadcast",
         "Regional teaching hospital · 9,000 beds",
         "Industrial mid-cap · 4,500 FTE",
         "French government ministry",
-        "Retail chain · 220 stores",
-        "Energy operator · OES / NIS2"
+        "Retail chain · 220 stores"
       ]
     },
     "problem": {
@@ -522,7 +524,7 @@
       "title": "Three bricks, three pricing anchors.",
       "subtitle": "Waki Box in three full plans, GTC SaaS Platform and ITAD Service with their starting anchors. Everything displayed, everything signable.",
       "popularLabel": "Most popular",
-      "bookCta": "Book now",
+      "bookCta": "Book my demo (30 min)",
       "setupLabel": "Setup",
       "allPricingLink": "View all pricing and options",
       "platformBrick": "GTC SaaS Platform",
@@ -560,22 +562,82 @@
       "pilot": {
         "label": "Pilot programme",
         "headline": "Waki Box pilot: first month free, then €39 HT/month. Kiosk installed within 10 days.",
-        "cta": "Start the pilot"
+        "cta": "Book my demo (30 min)"
       },
       "piloteAudit": {
         "label": "Packaged pilot - Senior 3-day engagement",
         "headline": "GTC Pilot - Audit & 3-day kickoff",
         "subline": "IT fleet diagnostic + prioritised ITAD action plan + Platform kickoff. Refunded on Year 1 if signed within 90 days.",
         "price": "Starting at €2,900 ex-VAT",
-        "cta": "Book the Pilot"
+        "cta": "Book my demo (30 min)"
       }
+    },
+    "sectorTrust": {
+      "label": "They trust us",
+      "title": "Organisations from every sector trust us with their ITAD.",
+      "sectors": [
+        { "icon": "building", "label": "Banking & Finance", "detail": "DORA · NIS2 · ACPR compliance" },
+        { "icon": "heartPulse", "label": "Healthcare", "detail": "HDS · Health GDPR · CNIL" },
+        { "icon": "factory", "label": "Industry & OT", "detail": "CSRD ESRS E5 · ISO 14001" },
+        { "icon": "landmark", "label": "Public sector", "detail": "IGI 1300 · SecNumCloud" }
+      ]
+    },
+    "testimonials": {
+      "eyebrow": "Client testimonials",
+      "title": "What our clients say.",
+      "items": [
+        {
+          "quote": "The ACPR pre-audit was cleared in 4 days instead of 3 weeks. The eIDAS chain of custody closed every auditor question.",
+          "name": "Marc B.",
+          "role": "CISO",
+          "company": "Tier-1 European bank · CAC40"
+        },
+        {
+          "quote": "Zero operating room interruptions during the erasure of 800 medical imaging drives. Residual value recovered: €142k.",
+          "name": "Dr. Sophie L.",
+          "role": "CIO",
+          "company": "Regional teaching hospital · 9,000 beds"
+        },
+        {
+          "quote": "First ESRS E5 report produced in 4 months. Our statutory auditor signed without reservation. €248k residual value we weren't recovering before.",
+          "name": "Thomas R.",
+          "role": "CSR Director",
+          "company": "Industrial group · 4,500 FTE"
+        }
+      ],
+      "disclaimer": "Testimonials anonymised at the customers' request. Contact details and signed authorisations archived, verifiable under NDA."
+    },
+    "enjeuCards": {
+      "eyebrow": "What is your challenge?",
+      "title": "Identify your priority, find your solution.",
+      "cards": [
+        { "title": "NIS2 / DORA Compliance", "desc": "Opposable chain of custody, ACPR audit in 4 days.", "href": "/reglementation", "icon": "shield" },
+        { "title": "CSRD Reporting", "desc": "11/16 ESRS E5 data points generated automatically.", "href": "/services/reconditionnement-valorisation", "icon": "barChart" },
+        { "title": "Data Security", "desc": "NIST 800-88 rev2 erasure, eIDAS certificate within 24h.", "href": "/services/effacement-securise", "icon": "lock" },
+        { "title": "Fleet Value Recovery", "desc": "€638k average residual value per mission.", "href": "/services/reconditionnement-valorisation", "icon": "euro" }
+      ]
+    },
+    "roiCalculator": {
+      "eyebrow": "Quick calculator",
+      "title": "How much is your ITAD non-compliance costing you?",
+      "inputLabel": "Number of end-of-life IT devices",
+      "inputPlaceholder": "E.g.: 500",
+      "resultTitle": "Estimated risks",
+      "riskLabel": "GDPR regulatory risk",
+      "valueLabel": "Unrecovered residual value",
+      "carbonLabel": "Avoidable emissions",
+      "cta": "Book my demo (30 min)",
+      "disclaimer": "Indicative estimate based on observed averages (2025 cohort). Precise result after audit."
+    },
+    "anchorNav": {
+      "items": ["Platform", "Differentiators", "Client cases", "Compliance", "Pricing"]
     },
     "finalCTA": {
       "eyebrow": "Next step",
       "title": "Decommission without risk on your next fleet refresh.",
       "subtitle": "Free audit of your end-of-life IT fleet (within 48 business hours) or a 30-minute demo, your choice. You speak to a senior engineer, never to a BDR.",
-      "cta1": "Request the free audit",
-      "cta2": "Book the 30-min demo",
+      "cta1": "Book my demo (30 min)",
+      "cta2": "Request free audit",
       "trustBadges": [
         "GDPR compliant",
         "SecNumCloud-ready",
@@ -1910,7 +1972,8 @@
         "timelineExplore": "Exploration without firm calendar",
         "phone": "Direct phone number",
         "message": "Tell us about your context",
-        "messagePlaceholder": "Perimeter, calendar, regulatory constraints, IT environment in place…"
+        "messagePlaceholder": "Perimeter, calendar, regulatory constraints, IT environment in place…",
+        "leadScoringMessage": "A dedicated expert will call you back within 4 hours for fleets of this size."
       }
     },
     "offers": [
@@ -6746,5 +6809,135 @@
       "audit-blanc-itad": "Workshop · ITAD mock audit",
       "plateforme-info": "Documentation · GreenTechCycle platform"
     }
+  },
+  "ResultatsClients": {
+    "hero": {
+      "eyebrow": "Client results",
+      "title": "Measurable results, not promises",
+      "subtitle": "Every GreenTechCycle mission generates auditable evidence: tCO₂e avoided, euros recovered, audit days shortened, compliance rate achieved. Here are the consolidated figures from our latest missions.",
+      "cta1": "Request a demo",
+      "cta2": "See detailed case studies"
+    },
+    "metricsSection": {
+      "eyebrow": "Consolidated figures 2024-2025",
+      "title": "The cumulative impact of our missions"
+    },
+    "metrics": [
+      { "value": "180", "suffix": "+", "label": "Companies supported in 2024-2025" },
+      { "value": "42000", "suffix": "+", "label": "IT assets processed and traced" },
+      { "value": "2800", "suffix": " k€", "label": "Residual value recovered for our clients" },
+      { "value": "1850", "suffix": " tCO₂e", "label": "Emissions avoided (Boavizta v1.4 method)" }
+    ],
+    "casesSection": {
+      "eyebrow": "Results by sector",
+      "title": "What we delivered, sector by sector",
+      "subtitle": "Each case is anonymised in accordance with confidentiality agreements. Metrics come from mission reports validated by clients.",
+      "readMore": "Read full case study"
+    },
+    "cases": [
+      {
+        "slug": "banque-cac40-windows11-nis2",
+        "sector": "Tier-1 Bank",
+        "icon": "building",
+        "title": "W11 migration + NIS2 compliance",
+        "highlights": [
+          "2,400 workstations processed in 11 weeks",
+          "€187k residual value recovered",
+          "312 tCO₂e avoided",
+          "ACPR pre-audit validated in 4 days"
+        ],
+        "quote": "The eIDAS proof closed every ACPR question.",
+        "quoteName": "Marc B.",
+        "quoteRole": "IT Security Director · Tier-1 European bank"
+      },
+      {
+        "slug": "chu-public-rgpd-sante",
+        "sector": "Public healthcare",
+        "icon": "heartPulse",
+        "title": "Erasure of 800 medical imaging drives",
+        "highlights": [
+          "800 drives processed without care disruption",
+          "100% destruction certificates signed",
+          "CNIL compliance validated on audit",
+          "94 tCO₂e avoided"
+        ],
+        "quote": "No examination interruption throughout the entire mission.",
+        "quoteName": "Dr. Isabelle M.",
+        "quoteRole": "DPO · Regional university hospital"
+      },
+      {
+        "slug": "industrie-automobile-csrd",
+        "sector": "Automotive industry",
+        "icon": "factory",
+        "title": "CSRD ESRS E5 reporting across 6 sites",
+        "highlights": [
+          "6 industrial sites audited in 8 weeks",
+          "€421k consolidated residual value",
+          "ESRS E5 report validated by auditors",
+          "528 tCO₂e avoided"
+        ],
+        "quote": "Our statutory auditor validated the ESRS E5 report without reservation.",
+        "quoteName": "Laurent P.",
+        "quoteRole": "CSR Director · European automotive group"
+      },
+      {
+        "slug": "collectivite-territoriale",
+        "sector": "Public sector",
+        "icon": "landmark",
+        "title": "Decommissioning 12,000 school workstations",
+        "highlights": [
+          "12,000 workstations processed across 3 departments",
+          "€310k of refurbished equipment redistributed",
+          "Full GDPR traceability per school",
+          "412 tCO₂e avoided"
+        ],
+        "quote": "The platform allowed each principal to track their assets in real time.",
+        "quoteName": "Catherine D.",
+        "quoteRole": "CIO · Departmental council"
+      },
+      {
+        "slug": "retail-fermeture-sites",
+        "sector": "Retail & Distribution",
+        "icon": "shoppingBag",
+        "title": "Closure of 45 retail stores",
+        "highlights": [
+          "3,200 IT assets collected in 6 weeks",
+          "€156k residual value recovered",
+          "Certified chain of custody per store",
+          "189 tCO₂e avoided"
+        ],
+        "quote": "A single dashboard to track 45 sites in parallel—that's what we were missing.",
+        "quoteName": "Thomas V.",
+        "quoteRole": "IT Director · National retailer"
+      },
+      {
+        "slug": "energie-dora-compliance",
+        "sector": "Energy & Utilities",
+        "icon": "zap",
+        "title": "DORA compliance for critical infrastructure",
+        "highlights": [
+          "1,800 SCADA/OT assets processed",
+          "Complete DORA TPP register in 4 weeks",
+          "NIST 800-88 Purge certification on 100% of assets",
+          "215 tCO₂e avoided"
+        ],
+        "quote": "The DORA art. 28 register was ready before the regulator's deadline.",
+        "quoteName": "Philippe G.",
+        "quoteRole": "CISO · Critical infrastructure operator"
+      }
+    ],
+    "cta": {
+      "title": "Your sector isn't listed?",
+      "subtitle": "We have supported over 180 companies across 16 sectors. Describe your context and we will show you the results closest to yours.",
+      "cta1": "Request a personalised demo",
+      "cta2": "Talk to an expert"
+    },
+    "trustBadges": [
+      "ISO 27001 certified",
+      "NIST 800-88 erasure",
+      "Sovereign hosting",
+      "eIDAS proof",
+      "Boavizta v1.4 reporting"
+    ]
   }
 }

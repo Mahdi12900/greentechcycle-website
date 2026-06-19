@@ -28,7 +28,7 @@ export async function generateMetadata({
   const title = `${content.hero.title} | ITAD GreenTechCycle`;
   const description = content.hero.subtitle;
 
-  const SITE = "https://greentechcycle-website.vercel.app";
+  const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
   return {
     title,

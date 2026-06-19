@@ -21,7 +21,7 @@ export async function generateMetadata({
   const article = getArticleBySlug(slug);
   if (!article) return {};
 
-  const SITE = "https://greentechcycle-website.vercel.app";
+  const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
   return {
     title: article.title,

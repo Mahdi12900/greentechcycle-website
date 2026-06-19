@@ -7,6 +7,7 @@
       "sectors": "Secteurs",
       "resources": "Ressources",
       "company": "Entreprise",
+      "whyGtc": "Pourquoi GTC",
       "pricing": "Tarifs"
     },
     "megaMenu": {
@@ -61,30 +62,31 @@
       "resources": {
         "title": "Ressources",
         "items": {
-          "demo": "Demander une démo",
           "faq": "FAQ",
           "regulation": "Réglementation",
           "methodology": "Méthodologie",
           "process": "Processus ITAD",
           "security": "Sécurité & effacement",
-          "impact": "Impact environnemental"
+          "impact": "Impact environnemental",
+          "blog": "Blog"
         }
       },
       "company": {
         "title": "Entreprise",
         "items": {
           "whyGtc": "Pourquoi GreenTechCycle ?",
+          "results": "Résultats clients",
           "journey": "Parcours client",
           "ecosystem": "Écosystème",
           "careers": "Carrières"
         }
       }
     },
-    "cta": "Demander une démo",
+    "cta": "Réserver ma démo (30 min)",
     "languageSwitch": "EN"
   },
   "TrustBar": {
-    "text": "R2v3 • ISO 14001 • ISO 27001 (en cours) • NIST 800-88 • RGPD & CSRD"
+    "text": "R2v3 • ISO 14001 • ISO 27001 (en cours) • NIST 800-88 • RGPD & CSRD • ESS / ESUS"
   },
   "Footer": {
     "tagline": "Votre partenaire de confiance pour la gestion responsable et sécurisée de vos actifs informatiques en fin de vie. Certifié R2, e-Stewards et ISO 14001.",
@@ -94,7 +96,7 @@
       "phone": "+33 1 86 65 22 10",
       "email": "contact@greentechcycle.fr"
     },
-    "cta": "Demander un devis",
+    "cta": "Demander l'audit gratuit",
     "columns": {
       "services": {
         "title": "Services",
@@ -204,8 +206,8 @@
     "link": "Politique de cookies"
   },
   "StickyCTA": {
-    "text": "Demander un audit gratuit",
-    "default": "Demander un audit gratuit",
+    "text": "Réserver ma démo (30 min)",
+    "default": "Réserver ma démo (30 min)",
     "impact": "Estimer mon scope 3 IT en 10 min",
     "audit": "Auditer mon parc IT",
     "expert": "Parler a un expert ITAD",
@@ -215,16 +217,16 @@
   },
   "Home": {
     "urgency": {
-      "text": "CSRD vague 2 : 1ʳᵉ publication ESRS E5 (exercice 2025) attendue d'ici juin 2026 pour les grandes entreprises et ETI cotées (>250 ETP). Vérifiez vos données ITAD avant clôture d'exercice."
+      "text": "NIS2 / CSRD : votre conformité ITAD est-elle à jour ?",
+      "cta": "Vérifiez →"
     },
     "hero": {
       "eyebrow": "Plateforme ITAD certifiée R2v3 · NIST 800-88 · SecNumCloud-ready",
-      "figure": "78%",
-      "figureUnit": "de l'empreinte carbone d'un parc IT",
-      "title": "est figée à la fabrication. Vous ne pouvez agir que sur les 22 % qui restent.",
-      "subtitle": "Fin de vie matériel, données sensibles, valeur résiduelle, reporting CSRD : une seule fenêtre de tir, une seule plateforme, opérée par 38 collaborateurs habilités, sur 4 sites en France.",
-      "cta1": "Demander un audit (sous 48 h)",
-      "cta2": "Réserver une démo (30 min)",
+      "title": "La plateforme qui unifie votre ITAD : effacement certifié, conformité garantie, valorisation maximale.",
+      "subtitle": "Un tableau de bord, 38 experts habilités, 4 sites en France, 0 faille.",
+      "proofStat": "78 % de l'empreinte carbone d'un parc IT est figée à la fabrication. Sur les 22 % restants, chaque poste reconditionné évite 150 kgCO₂e.",
+      "cta1": "Réserver ma démo (30 min)",
+      "cta2": "Demander l'audit gratuit",
       "source": "Source : ADEME : Évaluation environnementale du numérique 2024 (scope 3.1 fabrication, moyenne pondérée laptop/desktop/serveur).",
       "trust1": "R2v3 · ISO 14001 · ISO 27001",
       "trust2": "NIST 800-88 rev2 · HMG IS5 Enhanced",
@@ -235,11 +237,11 @@
       "note": "Identité des donneurs d'ordre anonymisée à leur demande, vérifiable sous accord NDA.",
       "clients": [
         "Banque européenne tier-1 · CAC40",
+        "TF1 · Audiovisuel",
         "CHU régional · 9 000 lits",
         "ETI industrielle · 4 500 ETP",
         "Ministère français",
-        "Enseigne retail · 220 magasins",
-        "Énergéticien OSE / NIS2"
+        "Enseigne retail · 220 magasins"
       ]
     },
     "problem": {
@@ -522,7 +524,7 @@
       "title": "Trois briques, trois ancres tarifaires.",
       "subtitle": "Waki Box en trois plans complets, Plateforme GTC SaaS et Service ITAD avec leurs ancres de départ. Tout est affiché, tout est signable.",
       "popularLabel": "Le plus populaire",
-      "bookCta": "Réserver",
+      "bookCta": "Réserver ma démo (30 min)",
       "setupLabel": "Mise en service",
       "allPricingLink": "Voir tous les tarifs et options",
       "platformBrick": "Plateforme GTC SaaS",
@@ -560,22 +562,82 @@
       "pilot": {
         "label": "Programme pilote",
         "headline": "Pilote Waki Box : premier mois offert, puis 39 € HT/mois. Box installée sous 10 jours.",
-        "cta": "Candidater au pilote"
+        "cta": "Réserver ma démo (30 min)"
       },
       "piloteAudit": {
         "label": "Pilote packagé - Mission senior 3 jours",
         "headline": "Pilote GTC - Audit & démarrage 3 jours",
         "subline": "Diagnostic parc IT + plan ITAD priorisé + démarrage Plateforme. Remboursé sur la 1re année si signature dans les 90 jours.",
         "price": "À partir de 2 900 € HT",
-        "cta": "Réserver le Pilote"
+        "cta": "Réserver ma démo (30 min)"
       }
+    },
+    "sectorTrust": {
+      "label": "Ils nous font confiance",
+      "title": "Des organisations de chaque secteur nous confient leur ITAD.",
+      "sectors": [
+        { "icon": "building", "label": "Banque & Finance", "detail": "Conformité DORA · NIS2 · ACPR" },
+        { "icon": "heartPulse", "label": "Santé & Hôpitaux", "detail": "HDS · RGPD santé · CNIL" },
+        { "icon": "factory", "label": "Industrie & OT", "detail": "CSRD ESRS E5 · ISO 14001" },
+        { "icon": "landmark", "label": "Secteur public", "detail": "IGI 1300 · SecNumCloud" }
+      ]
+    },
+    "testimonials": {
+      "eyebrow": "Témoignages clients",
+      "title": "Ce que disent nos clients.",
+      "items": [
+        {
+          "quote": "Le pré-audit ACPR a été validé en 4 jours au lieu de 3 semaines. La chaîne de garde eIDAS a clos toutes les questions de l'auditeur.",
+          "name": "Marc B.",
+          "role": "RSSI",
+          "company": "Banque européenne tier-1 · CAC40"
+        },
+        {
+          "quote": "Zéro interruption de bloc opératoire pendant l'effacement de 800 disques d'imagerie médicale. Valeur résiduelle récupérée : 142 k€.",
+          "name": "Dr. Sophie L.",
+          "role": "DSI",
+          "company": "CHU régional · 9 000 lits"
+        },
+        {
+          "quote": "Premier rapport ESRS E5 produit en 4 mois. Notre CAC a signé sans réserve. 248 k€ de valeur résiduelle que nous ne récupérions pas avant.",
+          "name": "Thomas R.",
+          "role": "Directeur RSE",
+          "company": "Groupe industriel · 4 500 ETP"
+        }
+      ],
+      "disclaimer": "Témoignages anonymisés à la demande des clients. Coordonnées et accords écrits archivés, vérifiables sous NDA."
+    },
+    "enjeuCards": {
+      "eyebrow": "Quel est votre enjeu ?",
+      "title": "Identifiez votre priorité, trouvez votre solution.",
+      "cards": [
+        { "title": "Conformité NIS2 / DORA", "desc": "Chaîne de garde opposable, audit ACPR en 4 jours.", "href": "/reglementation", "icon": "shield" },
+        { "title": "Reporting CSRD", "desc": "11/16 data points ESRS E5 générés automatiquement.", "href": "/services/reconditionnement-valorisation", "icon": "barChart" },
+        { "title": "Sécurité des données", "desc": "Effacement NIST 800-88 rev2, certificat eIDAS sous 24h.", "href": "/services/effacement-securise", "icon": "lock" },
+        { "title": "Valorisation du parc", "desc": "638 k€ de valeur résiduelle moyenne par mission.", "href": "/services/reconditionnement-valorisation", "icon": "euro" }
+      ]
+    },
+    "roiCalculator": {
+      "eyebrow": "Calculateur express",
+      "title": "Combien coûte votre non-conformité ITAD ?",
+      "inputLabel": "Nombre de postes IT en fin de vie",
+      "inputPlaceholder": "Ex : 500",
+      "resultTitle": "Estimation de vos risques",
+      "riskLabel": "Risque réglementaire RGPD",
+      "valueLabel": "Valeur résiduelle non récupérée",
+      "carbonLabel": "Émissions évitables",
+      "cta": "Réserver ma démo (30 min)",
+      "disclaimer": "Estimation indicative basée sur les moyennes constatées (cohorte 2025). Résultat précis après audit."
+    },
+    "anchorNav": {
+      "items": ["Plateforme", "Différences", "Cas clients", "Conformité", "Tarifs"]
     },
     "finalCTA": {
       "eyebrow": "Prochaine étape",
       "title": "Décommissionnez sans risque sur votre prochain renouvellement de parc.",
       "subtitle": "Audit gratuit du parc IT en fin de cycle (sous 48 h ouvrées) ou démo de 30 minutes, au choix. Vous parlez à un ingénieur senior, jamais à un BDR.",
-      "cta1": "Demander l'audit gratuit",
-      "cta2": "Réserver la démo (30 min)",
+      "cta1": "Réserver ma démo (30 min)",
+      "cta2": "Demander l'audit gratuit",
       "trustBadges": [
         "Conforme RGPD",
         "SecNumCloud-ready",
@@ -1910,7 +1972,8 @@
         "timelineExplore": "Exploration sans calendrier ferme",
         "phone": "Téléphone direct",
         "message": "Précisez votre contexte",
-        "messagePlaceholder": "Périmètre, calendrier, contraintes réglementaires, environnement informatique en place…"
+        "messagePlaceholder": "Périmètre, calendrier, contraintes réglementaires, environnement informatique en place…",
+        "leadScoringMessage": "Un expert dédié vous rappelle sous 4 h pour les flottes de cette taille."
       }
     },
     "offers": [
@@ -6746,5 +6809,135 @@
       "audit-blanc-itad": "Atelier · Audit blanc ITAD",
       "plateforme-info": "Documentation · Plateforme GreenTechCycle"
     }
+  },
+  "ResultatsClients": {
+    "hero": {
+      "eyebrow": "Résultats clients",
+      "title": "Des résultats mesurables, pas des promesses",
+      "subtitle": "Chaque mission GreenTechCycle génère des preuves auditables : tCO₂e évitées, euros récupérés, jours d'audit raccourcis, taux de conformité atteint. Voici les chiffres consolidés de nos dernières missions.",
+      "cta1": "Demander une démo",
+      "cta2": "Voir les cas détaillés"
+    },
+    "metricsSection": {
+      "eyebrow": "Chiffres consolidés 2024-2025",
+      "title": "L'impact cumulé de nos missions"
+    },
+    "metrics": [
+      { "value": "180", "suffix": "+", "label": "Entreprises accompagnées en 2024-2025" },
+      { "value": "42000", "suffix": "+", "label": "Actifs IT traités et tracés" },
+      { "value": "2800", "suffix": " k€", "label": "Valeur résiduelle récupérée pour nos clients" },
+      { "value": "1850", "suffix": " tCO₂e", "label": "Émissions évitées (méthode Boavizta v1.4)" }
+    ],
+    "casesSection": {
+      "eyebrow": "Résultats par secteur",
+      "title": "Ce que nous avons livré, secteur par secteur",
+      "subtitle": "Chaque cas est anonymisé conformément aux accords de confidentialité. Les métriques sont issues des rapports de mission validés par les clients.",
+      "readMore": "Lire le cas complet"
+    },
+    "cases": [
+      {
+        "slug": "banque-cac40-windows11-nis2",
+        "sector": "Banque tier-1",
+        "icon": "building",
+        "title": "Migration W11 + conformité NIS2",
+        "highlights": [
+          "2 400 postes traités en 11 semaines",
+          "187 k€ valeur résiduelle récupérée",
+          "312 tCO₂e évitées",
+          "Pré-audit ACPR validé en 4 jours"
+        ],
+        "quote": "La preuve eIDAS a clos toutes les questions ACPR.",
+        "quoteName": "Marc B.",
+        "quoteRole": "Directeur Sécurité IT · Banque européenne tier-1"
+      },
+      {
+        "slug": "chu-public-rgpd-sante",
+        "sector": "Santé publique",
+        "icon": "heartPulse",
+        "title": "Effacement 800 disques imagerie médicale",
+        "highlights": [
+          "800 disques traités sans interruption de soin",
+          "100 % PV de destruction signés",
+          "Conformité CNIL validée en contrôle",
+          "94 tCO₂e évitées"
+        ],
+        "quote": "Aucune interruption d'examen sur toute la durée de la mission.",
+        "quoteName": "Dr. Isabelle M.",
+        "quoteRole": "DPO · CHU régional"
+      },
+      {
+        "slug": "industrie-automobile-csrd",
+        "sector": "Industrie automobile",
+        "icon": "factory",
+        "title": "Reporting CSRD ESRS E5 sur 6 sites",
+        "highlights": [
+          "6 sites industriels audités en 8 semaines",
+          "421 k€ valeur résiduelle consolidée",
+          "Report ESRS E5 validé par les CAC",
+          "528 tCO₂e évitées"
+        ],
+        "quote": "Notre commissaire aux comptes a validé le rapport ESRS E5 sans réserve.",
+        "quoteName": "Laurent P.",
+        "quoteRole": "Directeur RSE · Groupe automobile européen"
+      },
+      {
+        "slug": "collectivite-territoriale",
+        "sector": "Secteur public",
+        "icon": "landmark",
+        "title": "Décommissionnement parc scolaire 12 000 postes",
+        "highlights": [
+          "12 000 postes traités sur 3 départements",
+          "310 k€ de matériel reconditionné redistribué",
+          "Traçabilité RGPD complète par établissement",
+          "412 tCO₂e évitées"
+        ],
+        "quote": "La plateforme a permis à chaque proviseur de suivre ses actifs en temps réel.",
+        "quoteName": "Catherine D.",
+        "quoteRole": "DSI · Conseil départemental"
+      },
+      {
+        "slug": "retail-fermeture-sites",
+        "sector": "Retail & Distribution",
+        "icon": "shoppingBag",
+        "title": "Fermeture de 45 points de vente",
+        "highlights": [
+          "3 200 actifs IT collectés en 6 semaines",
+          "156 k€ valeur résiduelle récupérée",
+          "Chaîne de garde certifiée par magasin",
+          "189 tCO₂e évitées"
+        ],
+        "quote": "Un seul dashboard pour suivre 45 sites en parallèle, c'est ce qui nous manquait.",
+        "quoteName": "Thomas V.",
+        "quoteRole": "Directeur IT · Enseigne nationale"
+      },
+      {
+        "slug": "energie-dora-compliance",
+        "sector": "Énergie & Utilities",
+        "icon": "zap",
+        "title": "Mise en conformité DORA infrastructure critique",
+        "highlights": [
+          "1 800 actifs SCADA/OT traités",
+          "Registre TPP DORA complet en 4 semaines",
+          "Certification NIST 800-88 Purge sur 100 % des actifs",
+          "215 tCO₂e évitées"
+        ],
+        "quote": "Le registre DORA art. 28 était prêt avant l'échéance du régulateur.",
+        "quoteName": "Philippe G.",
+        "quoteRole": "RSSI · Opérateur d'infrastructure critique"
+      }
+    ],
+    "cta": {
+      "title": "Votre secteur n'est pas listé ?",
+      "subtitle": "Nous avons accompagné plus de 180 entreprises dans 16 secteurs. Décrivez-nous votre contexte et nous vous montrons les résultats les plus proches du vôtre.",
+      "cta1": "Demander une démo personnalisée",
+      "cta2": "Parler à un expert"
+    },
+    "trustBadges": [
+      "Certifié ISO 27001",
+      "Effacement NIST 800-88",
+      "Hébergement souverain",
+      "Preuve eIDAS",
+      "Bilan Boavizta v1.4"
+    ]
   }
 }

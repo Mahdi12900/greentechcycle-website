@@ -32,9 +32,9 @@ const variantIcon: Record<CTAVariant, ReactNode> = {
 export default function CtaSection({
   title,
   subtitle,
-  primaryLabel = "Demander une démo",
+  primaryLabel = "Réserver ma démo (30 min)",
   primaryHref = "/demo",
-  secondaryLabel = "Nous contacter",
+  secondaryLabel = "Demander l'audit gratuit",
   secondaryHref = "/contact",
   variant = "demo",
   tone = "dark",
