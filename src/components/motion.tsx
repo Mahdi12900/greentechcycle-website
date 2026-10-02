@@ -101,7 +101,14 @@ export function CountUp({
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const count = useMotionValue(0);
-  const format = (v: number) => (decimals > 0 ? v.toFixed(decimals) : Math.round(v).toString());
+  // Séparateur de milliers selon la langue du document (fr : espace fine, en : virgule).
+  const format = (v: number) => {
+    const lang = typeof document !== "undefined" ? document.documentElement.lang || "fr" : "fr";
+    return v.toLocaleString(lang === "en" ? "en-GB" : "fr-FR", {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    });
+  };
   const rounded = useTransform(count, format);
   const [display, setDisplay] = useState<string>(format(0));
 
