@@ -12,11 +12,11 @@ export async function generateMetadata({
 
   const title = isEn
     ? "Professional R2v3 WEEE Recycling | From €15 ex-VAT/device | GreenTechCycle"
-    : "Recyclage DEEE professionnel R2v3 | A partir de 15 € HT/poste | GreenTechCycle";
+    : "Recyclage DEEE professionnel R2v3 | À partir de 15 € HT/poste | GreenTechCycle";
 
   const description = isEn
     ? "Regulatory WEEE recycling certified R2v3 and ISO 14001. Tracking slips, CSRD reporting, sovereign traceability. From €15 ex-VAT/device."
-    : "Recyclage DEEE réglementaire certifié R2v3 et ISO 14001. Bordereaux de suivi, reporting CSRD, traçabilité souveraine. A partir de 15 € HT/poste.";
+    : "Recyclage DEEE réglementaire certifié R2v3 et ISO 14001. Bordereaux de suivi, reporting CSRD, traçabilité souveraine. À partir de 15 € HT/poste.";
 
   return {
     title,

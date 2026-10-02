@@ -4,13 +4,13 @@ import SchemaOrg from "@/components/SchemaOrg";
 const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
 export const metadata: Metadata = {
-  title: "Plateforme ITAD unifiee | Tableau de bord et tracabilite",
+  title: "Plateforme ITAD unifiée | Tableau de bord et traçabilité",
   description:
-    "Plateforme SaaS ITAD unifiee : tableau de bord temps reel, tracabilite blockchain, comptes-rendus automatises et integration API pour la gestion de vos actifs IT en fin de vie.",
-  keywords: ["plateforme ITAD", "SaaS", "tableau de bord", "tracabilite blockchain", "comptes-rendus automatises", "API"],
+    "Plateforme SaaS ITAD unifiée : tableau de bord temps réel, traçabilité blockchain, comptes-rendus automatisés et intégration API pour la gestion de vos actifs IT en fin de vie.",
+  keywords: ["plateforme ITAD", "SaaS", "tableau de bord", "traçabilité blockchain", "comptes-rendus automatisés", "API"],
   openGraph: {
-    title: "Plateforme ITAD unifiee | GreenTechCycle",
-    description: "Plateforme SaaS ITAD : tableau de bord temps reel, tracabilite blockchain et comptes-rendus automatises.",
+    title: "Plateforme ITAD unifiée | GreenTechCycle",
+    description: "Plateforme SaaS ITAD : tableau de bord temps réel, traçabilité blockchain et comptes-rendus automatisés.",
     type: "website",
     images: [
       {
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Plateforme ITAD unifiee | GreenTechCycle",
-    description: "Plateforme SaaS ITAD : tableau de bord temps reel, tracabilite blockchain et comptes-rendus automatises.",
+    title: "Plateforme ITAD unifiée | GreenTechCycle",
+    description: "Plateforme SaaS ITAD : tableau de bord temps réel, traçabilité blockchain et comptes-rendus automatisés.",
     images: [`${SITE}/photos/hp-datacenter-green.jpg`],
   },
 };
@@ -34,7 +34,7 @@ const platformeSchema = {
   "@type": "SoftwareApplication",
   name: "Plateforme GTC - ITAD SaaS",
   description:
-    "Plateforme SaaS ITAD unifiee : tableau de bord temps reel, tracabilite blockchain, comptes-rendus automatises CSRD/ESG et integration API pour la gestion responsable des actifs IT en fin de vie.",
+    "Plateforme SaaS ITAD unifiée : tableau de bord temps réel, traçabilité blockchain, comptes-rendus automatisés CSRD/ESG et intégration API pour la gestion responsable des actifs IT en fin de vie.",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   url: "https://greentechcycle.fr/fr/plateforme",
@@ -54,11 +54,11 @@ const platformeSchema = {
     url: "https://greentechcycle.fr/fr/reserver?offre=audit-decommissionnement",
   },
   featureList: [
-    "Tableau de bord temps reel multi-sites",
-    "Tracabilite blockchain certificats de destruction",
-    "Comptes-rendus CSRD ESRS E5 automatises",
-    "Integration API REST",
-    "Effacement certifie NIST 800-88",
+    "Tableau de bord temps réel multi-sites",
+    "Traçabilité blockchain certificats de destruction",
+    "Comptes-rendus CSRD ESRS E5 automatisés",
+    "Intégration API REST",
+    "Effacement certifié NIST 800-88",
     "Reporting carbone actifs IT",
   ],
   provider: {

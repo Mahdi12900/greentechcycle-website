@@ -17,7 +17,7 @@ export async function generateMetadata({
 
   const description = isEn
     ? "Public Waki Box pricing (from €39 ex-VAT/month), GTC Platform (from €2,500 ex-VAT/month) and ITAD Service (from €15 ex-VAT/device). Personalised studies available."
-    : "Tarifs publics Waki Box (a partir de 39 € HT/mois), Plateforme GTC (a partir de 2 500 € HT/mois) et Service ITAD (a partir de 15 € HT/poste). Etudes personnalisees disponibles.";
+    : "Tarifs publics Waki Box (à partir de 39 € HT/mois), Plateforme GTC (à partir de 2 500 € HT/mois) et Service ITAD (à partir de 15 € HT/poste). Études personnalisées disponibles.";
 
   return {
     title: { absolute: titleStr },
@@ -59,7 +59,7 @@ const wakiBoxEssentielSchema = {
   "@type": "Product",
   name: "Waki Box Essentiel",
   description:
-    "Borne de collecte IT intelligente plan Essentiel : 1 borne, inventaire automatise, attestation de collecte mensuelle.",
+    "Borne de collecte IT intelligente plan Essentiel : 1 borne, inventaire automatisé, attestation de collecte mensuelle.",
   brand: { "@type": "Brand", name: "GreenTechCycle" },
   url: "https://greentechcycle.fr/fr/tarifs#waki-box",
   offers: {
@@ -83,7 +83,7 @@ const wakiBoxConfortSchema = {
   "@type": "Product",
   name: "Waki Box Confort",
   description:
-    "Plan Confort Waki Box : 1 a 2 bornes, reporting mensuel RSE, module CSRD inclus, support prioritaire.",
+    "Plan Confort Waki Box : 1 à 2 bornes, reporting mensuel RSE, module CSRD inclus, support prioritaire.",
   brand: { "@type": "Brand", name: "GreenTechCycle" },
   url: "https://greentechcycle.fr/fr/tarifs#waki-box",
   offers: {
@@ -149,18 +149,18 @@ const faqPageSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Waki Box affiche des tarifs complets, Plateforme et ITAD des ancres : quelle difference ?",
+      name: "Waki Box affiche des tarifs complets, Plateforme et ITAD des ancres : quelle différence ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Waki Box est une offre packagee et standardisee : le tarif affiche est le tarif final, sans variable cachee. Pour la Plateforme GTC SaaS et le Service ITAD, nous affichons des ancres de depart (2 500 EUR HT/mois et 15 EUR HT/poste) qui permettent de calibrer les budgets. Le devis detaille, remis sous 48 heures, affine ces ancres selon votre parc, vos modules et vos contraintes reglementaires.",
+        text: "Waki Box est une offre packagée et standardisée : le tarif affiché est le tarif final, sans variable cachée. Pour la Plateforme GTC SaaS et le Service ITAD, nous affichons des ancres de départ (2 500 EUR HT/mois et 15 EUR HT/poste) qui permettent de calibrer les budgets. Le devis détaillé, remis sous 48 heures, affine ces ancres selon votre parc, vos modules et vos contraintes reglementaires.",
       },
     },
     {
       "@type": "Question",
-      name: "Les prix Waki Box affiches sont-ils HT ou TTC ?",
+      name: "Les prix Waki Box affichés sont-ils HT ou TTC ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Tous les prix sont exprimes hors taxes (HT). La TVA applicable en France metropolitaine est de 20 %. Les factures mentionnent le montant HT, la TVA et le total TTC.",
+        text: "Tous les prix sont exprimés hors taxes (HT). La TVA applicable en France métropolitaine est de 20 %. Les factures mentionnent le montant HT, la TVA et le total TTC.",
       },
     },
     {
@@ -173,26 +173,26 @@ const faqPageSchema = {
     },
     {
       "@type": "Question",
-      name: "Le Pilote GTC a 2 900 EUR HT est-il vraiment rembourse si je signe la Plateforme ?",
+      name: "Le Pilote GTC à 2 900 EUR HT est-il vraiment remboursé si je signe la Plateforme ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Oui. Si vous signez un abonnement Plateforme GTC SaaS dans les 90 jours suivant la restitution ecrite du Pilote, les 2 900 EUR HT sont automatiquement deduits de votre premiere facture annuelle. Cette garantie est inscrite dans le contrat Pilote.",
+        text: "Oui. Si vous signez un abonnement Plateforme GTC SaaS dans les 90 jours suivant la restitution écrite du Pilote, les 2 900 EUR HT sont automatiquement déduits de votre première facture annuelle. Cette garantie est inscrite dans le contrat Pilote.",
       },
     },
     {
       "@type": "Question",
-      name: "Sous quel delai recevrai-je un devis Plateforme ou ITAD ?",
+      name: "Sous quel délai recevrai-je un devis Plateforme ou ITAD ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "48 heures ouvrées apres un echange initial de cadrage de 30 minutes. Le devis detaille le perimetre, les hypotheses retenues, les options et la grille de prix unitaire, pas de chiffrage opaque.",
+        text: "48 heures ouvrées après un échange initial de cadrage de 30 minutes. Le devis détaille le périmètre, les hypothèses retenues, les options et la grille de prix unitaire, pas de chiffrage opaque.",
       },
     },
     {
       "@type": "Question",
-      name: "Les tarifs Waki Box sont-ils indexes ?",
+      name: "Les tarifs Waki Box sont-ils indexés ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Une indexation annuelle est prevue, plafonnee a 3 % et basee sur l'indice INSEE des prix a la consommation. Toute revision est notifiee 60 jours avant application.",
+        text: "Une indexation annuelle est prévue, plafonnée à 3 % et basée sur l'indice INSEE des prix à la consommation. Toute révision est notifiée 60 jours avant application.",
       },
     },
   ],

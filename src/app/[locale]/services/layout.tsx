@@ -6,11 +6,11 @@ const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 export const metadata: Metadata = {
   title: "Services ITAD | Effacement, Collecte, Reconditionnement",
   description:
-    "Decouvrez nos services ITAD complets : effacement certifie NIST 800-88, collecte securisee, reconditionnement, reporting CSRD et tracabilite blockchain pour vos actifs IT.",
-  keywords: ["services ITAD", "effacement certifie", "collecte IT", "reconditionnement", "reporting CSRD", "tracabilite blockchain"],
+    "Découvrez nos services ITAD complets : effacement certifié NIST 800-88, collecte sécurisée, reconditionnement, reporting CSRD et traçabilité blockchain pour vos actifs IT.",
+  keywords: ["services ITAD", "effacement certifié", "collecte IT", "reconditionnement", "reporting CSRD", "traçabilité blockchain"],
   openGraph: {
     title: "Services ITAD | GreenTechCycle",
-    description: "Services ITAD complets : effacement certifie, collecte securisee, reconditionnement et reporting CSRD.",
+    description: "Services ITAD complets : effacement certifié, collecte sécurisée, reconditionnement et reporting CSRD.",
     type: "website",
     images: [
       {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Services ITAD | GreenTechCycle",
-    description: "Services ITAD complets : effacement certifie, collecte securisee, reconditionnement et reporting CSRD.",
+    description: "Services ITAD complets : effacement certifié, collecte sécurisée, reconditionnement et reporting CSRD.",
     images: [`${SITE}/photos/service-audit.jpg`],
   },
 };
@@ -33,7 +33,7 @@ const servicesItemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Services ITAD GreenTechCycle",
-  description: "Liste des services ITAD proposes par GreenTechCycle pour la gestion responsable des actifs IT en fin de vie.",
+  description: "Liste des services ITAD proposés par GreenTechCycle pour la gestion responsable des actifs IT en fin de vie.",
   url: "https://greentechcycle.fr/fr/services",
   numberOfItems: 5,
   itemListElement: [
@@ -43,7 +43,7 @@ const servicesItemListSchema = {
       item: {
         "@type": "Service",
         name: "Audit et inventaire de parc IT",
-        description: "Cartographie exhaustive de vos actifs IT, cotation de l'etat, verification reglementaire et reporting CSRD.",
+        description: "Cartographie exhaustive de vos actifs IT, cotation de l'état, vérification réglementaire et reporting CSRD.",
         url: "https://greentechcycle.fr/fr/services/audit-inventaire",
         provider: { "@type": "Organization", name: "GreenTechCycle" },
       },
@@ -53,8 +53,8 @@ const servicesItemListSchema = {
       position: 2,
       item: {
         "@type": "Service",
-        name: "Effacement securise certifie",
-        description: "Effacement certifie NIST 800-88, DoD 5220.22-M, avec attestation de destruction opposable.",
+        name: "Effacement sécurisé certifié",
+        description: "Effacement certifié NIST 800-88, DoD 5220.22-M, avec attestation de destruction opposable.",
         url: "https://greentechcycle.fr/fr/services/effacement-securise",
         provider: { "@type": "Organization", name: "GreenTechCycle" },
         offers: {
@@ -76,7 +76,7 @@ const servicesItemListSchema = {
       item: {
         "@type": "Service",
         name: "Reconditionnement et valorisation",
-        description: "Reconditionnement, recertification et valorisation des equipements IT avec traçabilite des flux.",
+        description: "Reconditionnement, recertification et valorisation des équipements IT avec traçabilité des flux.",
         url: "https://greentechcycle.fr/fr/services/reconditionnement-valorisation",
         provider: { "@type": "Organization", name: "GreenTechCycle" },
       },
@@ -86,8 +86,8 @@ const servicesItemListSchema = {
       position: 4,
       item: {
         "@type": "Service",
-        name: "Recyclage DEEE reglementaire",
-        description: "Recyclage des dechets d'equipements electriques et electroniques conforme a la directive DEEE et AGEC.",
+        name: "Recyclage DEEE réglementaire",
+        description: "Recyclage des déchets d'équipements électriques et électroniques conforme à la directive DEEE et AGEC.",
         url: "https://greentechcycle.fr/fr/services/recyclage-deee",
         provider: { "@type": "Organization", name: "GreenTechCycle" },
       },
@@ -97,8 +97,8 @@ const servicesItemListSchema = {
       position: 5,
       item: {
         "@type": "Service",
-        name: "Cybersecurite ITAD",
-        description: "Securisation des donnees en fin de vie : destruction certifiee des supports, audit de risques et conformite RGPD.",
+        name: "Cybersécurité ITAD",
+        description: "Sécurisation des données en fin de vie : destruction certifiée des supports, audit de risques et conformité RGPD.",
         url: "https://greentechcycle.fr/fr/services/cybersecurite",
         provider: { "@type": "Organization", name: "GreenTechCycle" },
       },

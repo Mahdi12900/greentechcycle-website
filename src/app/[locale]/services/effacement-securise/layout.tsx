@@ -12,11 +12,11 @@ export async function generateMetadata({
 
   const title = isEn
     ? "NIST 800-88 Certified Data Erasure | From €15 ex-VAT/device | GreenTechCycle"
-    : "Effacement certifié NIST 800-88 | A partir de 15 € HT/poste | GreenTechCycle";
+    : "Effacement certifié NIST 800-88 | À partir de 15 € HT/poste | GreenTechCycle";
 
   const description = isEn
     ? "Certified data erasure NIST 800-88 / DoD 5220.22-M / IEEE 2883-2022. Individual eIDAS-signed certificate per asset, 10-year archive. From €15 ex-VAT/device."
-    : "Effacement de données certifié NIST 800-88 / DoD 5220.22-M / IEEE 2883-2022. Certificat eIDAS signé par actif, archivage 10 ans. A partir de 15 € HT/poste.";
+    : "Effacement de données certifié NIST 800-88 / DoD 5220.22-M / IEEE 2883-2022. Certificat eIDAS signé par actif, archivage 10 ans. À partir de 15 € HT/poste.";
 
   return {
     title,

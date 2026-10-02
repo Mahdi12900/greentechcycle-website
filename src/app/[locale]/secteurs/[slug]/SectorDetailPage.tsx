@@ -612,12 +612,12 @@ export default function SectorDetailPage({
                 </p>
                 <p className="font-bold text-[#0F172A] text-base leading-snug">
                   {isFr
-                    ? "Testez Waki Box - 1er mois offert, puis 39 EUR HT/mois"
+                    ? "Testez Waki Box - 1er mois offert, puis 39 € HT/mois"
                     : "Try Waki Box - 1st month free, then EUR 39 ex-VAT/month"}
                 </p>
                 <p className="text-sm text-gray-600 mt-1 leading-snug">
                   {isFr
-                    ? "Collecte, inventaire automatise et attestation inclus. Resiliable a tout moment."
+                    ? "Collecte, inventaire automatisé et attestation inclus. Résiliable à tout moment."
                     : "Collection, automated inventory and certificate included. Cancel anytime."}
                 </p>
               </div>
@@ -626,7 +626,7 @@ export default function SectorDetailPage({
               href="/reserver?offre=pilote-waki-box"
               className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm flex-shrink-0 whitespace-nowrap"
             >
-              {isFr ? "Demarrer le pilote" : "Start the pilot"}
+              {isFr ? "Démarrer le pilote" : "Start the pilot"}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>

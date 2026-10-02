@@ -876,7 +876,7 @@ export default function TarifsPage() {
               style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
             >
               {tx(
-                <>Tarifs Waki Box,<br /><span className="text-[#10B981]">la seule brique GTC à prix public.</span></>,
+                <>Tarifs Waki Box,{" "}<br /><span className="text-[#10B981]">la seule brique GTC à prix public.</span></>,
                 <>Waki Box pricing,<br /><span className="text-[#10B981]">the only GTC brick with public rates.</span></>
               )}
             </h1>
@@ -1277,7 +1277,7 @@ export default function TarifsPage() {
                   style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
                 >
                   {tx(
-                    <>Premier mois offert,<br />puis 39 € HT/mois.</>,
+                    <>Premier mois offert,{" "}<br />puis 39 € HT/mois.</>,
                     <>First month free,<br />then €39 HT/month.</>
                   )}
                 </h2>

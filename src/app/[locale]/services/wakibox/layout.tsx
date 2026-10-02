@@ -12,7 +12,7 @@ export async function generateMetadata({
 
   const title = isEn
     ? "Waki Box, Connected Professional WEEE Collection Kiosk | From €39 ex-VAT/month | GreenTechCycle"
-    : "Waki Box, box DEEE professionnelle connectée | A partir de 39 € HT/mois | GreenTechCycle";
+    : "Waki Box, box DEEE professionnelle connectée | À partir de 39 € HT/mois | GreenTechCycle";
 
   const description = isEn
     ? "Waki Box: connected WEEE collection kiosk for the workplace. Real-time monitoring, fill alerts, CSRD ESRS E5 reporting. Three plans from €39 ex-VAT/month."
