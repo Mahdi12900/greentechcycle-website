@@ -11,6 +11,7 @@ import ExitPopup from "@/components/ExitPopup";
 import SchemaOrg from "@/components/SchemaOrg";
 import SalesAssistantWidget from "@/components/SalesAssistantWidget";
 import { fontDisplay, fontSans } from "@/app/fonts";
+import { SiteUiProvider } from "@/components/SiteUiContext";
 
 const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
@@ -162,6 +163,7 @@ export default async function LocaleLayout({
         <SchemaOrg data={organizationSchema} />
         <SchemaOrg data={websiteSchema} />
         <NextIntlClientProvider messages={messages}>
+          <SiteUiProvider>
           <Header />
           <TrustBar />
           <main className="pt-[calc(4rem+1.75rem)] lg:pt-[calc(5rem+1.75rem)]">{children}</main>
@@ -170,6 +172,7 @@ export default async function LocaleLayout({
           <StickyCTA />
           <ExitPopup />
           <SalesAssistantWidget />
+          </SiteUiProvider>
         </NextIntlClientProvider>
       </body>
     </html>
