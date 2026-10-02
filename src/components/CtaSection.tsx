@@ -14,6 +14,7 @@ import { ButtonLink } from "@/components/ui/Button";
  * compatibilité des appels existants mais n'ont plus d'effet visuel.
  */
 interface CtaSectionProps {
+  eyebrow?: ReactNode;
   title: ReactNode;
   subtitle?: ReactNode;
   primaryLabel?: string;
@@ -35,6 +36,7 @@ interface CtaSectionProps {
 }
 
 export default function CtaSection({
+  eyebrow,
   title,
   subtitle,
   primaryLabel,
@@ -60,6 +62,7 @@ export default function CtaSection({
     <section id={id} className={`bg-forest py-16 text-ondark lg:py-24 ${className}`}>
       <div className="mx-auto max-w-site px-5 text-center sm:px-6 lg:px-8">
         <FadeIn>
+          {eyebrow && <p className="mb-3 text-eyebrow uppercase text-ondark-muted">{eyebrow}</p>}
           <h2 className="mx-auto max-w-[24ch] text-display-md text-ondark">{title}</h2>
           {subtitle && <p className="mx-auto mt-4 max-w-[65ch] text-body-lg text-ondark-muted">{subtitle}</p>}
           <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">

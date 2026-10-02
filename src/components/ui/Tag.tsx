@@ -22,7 +22,7 @@ export default function Tag({
   icon?: ReactNode;
 }) {
   return (
-    <span className={`inline-flex h-7 items-center gap-2 whitespace-nowrap rounded-full px-3 text-caption font-semibold ${VARIANTS[variant]} ${className}`}>
+    <span className={`inline-flex min-h-[28px] items-center gap-2 rounded-full px-3 py-1 text-caption font-semibold ${VARIANTS[variant]} ${className}`}>
       {icon}
       {children}
     </span>

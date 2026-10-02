@@ -245,7 +245,7 @@ export default function Header() {
             </button>
             <Link
               href="/demo"
-              className="group inline-flex h-11 items-center gap-2 rounded-lg bg-leaf px-5 text-body-sm font-semibold text-white transition-colors hover:bg-leaf-700"
+              className="group inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-lg bg-leaf px-5 text-body-sm font-semibold text-white transition-colors hover:bg-leaf-700"
             >
               {t("cta")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />

@@ -1,53 +1,49 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import TrustBand from "@/components/TrustBand";
-import {
-  FadeIn,
-  StaggerContainer,
-  StaggerItem,
-  CountUp,
-  ScaleIn,
-} from "@/components/motion";
+import { useState } from "react";
 import {
   ArrowRight,
-  ChevronRight,
   AlertTriangle,
-  Shield,
-  ShieldCheck,
-  FileCheck,
-  Recycle,
-  BarChart3,
-  Lock,
-  Building2,
-  HeartPulse,
-  Factory,
-  Quote,
-  Award,
-  Users,
-  LineChart,
-  Scale,
   Euro,
   Cloud,
   Server,
-  Workflow,
-  Eraser,
-  CheckCircle2,
-  XCircle,
-  CalendarClock,
-  Gavel,
+  ShieldCheck,
+  BarChart3,
+  Recycle,
+  Scale,
+  Award,
+  LineChart,
+  Users,
+  Building2,
+  HeartPulse,
+  Factory,
   Landmark,
-  Leaf,
+  Check,
+  Minus,
 } from "lucide-react";
-import { useState } from "react";
+import { FadeIn, StaggerContainer, StaggerItem, CountUp } from "@/components/motion";
+import TrustBand from "@/components/TrustBand";
+import CertificationStrip from "@/components/CertificationStrip";
+import CtaSection from "@/components/CtaSection";
+import { ButtonLink, TextLink } from "@/components/ui/Button";
+import Section from "@/components/ui/Section";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Card, { CardLink } from "@/components/ui/Card";
+import Tag from "@/components/ui/Tag";
+import Pictogram from "@/components/ui/Pictogram";
+import { Stat, StatRow } from "@/components/ui/Stat";
+import Accordion from "@/components/ui/Accordion";
 
 /**
- * Home, refonte vague 4 (avr. 2026)
- * Direction hero retenue : C, "Provocation chiffrée".
- * Cible : DSI, RSSI, RSE, DAF d'ETI cotées et grandes entreprises.
- * Structure narrative chaîne de valeur (problème → solution → preuve → cas → différenciateurs → action).
+ * Accueil — architecture « Épuré » (DESIGN.md §10.1).
+ * paper (hero) → paper (enjeux, confiance) → cream (problème) → paper (solution)
+ * → night (chaîne de valeur) → cream (preuves) → paper (calendrier)
+ * → cream (différenciateurs) → forest (témoignage) → paper (tarifs)
+ * → cream (ROI) → paper (FAQ) → forest (CTA) → night (footer).
+ * Tous les ids d'ancre historiques sont conservés.
  */
 export default function HomePage() {
   const t = useTranslations("Home");
@@ -109,1275 +105,630 @@ export default function HomePage() {
     icon: string;
   }>;
 
+  const locale = useLocale();
+  const isEn = locale === "en";
+  const tx = (fr: string, en: string) => (isEn ? en : fr);
+  const numberLocale = isEn ? "en-GB" : "fr-FR";
+
   // ROI calculator state
   const [fleetSize, setFleetSize] = useState("");
+  const fleet = parseInt(fleetSize) || 0;
 
-  // Icons for value chain steps, sober lucide outlines
-  const valueStepIcons = [FileCheck, Eraser, Recycle, BarChart3, Lock];
+  // « 78 % » isolé en chiffre-argument (display-xl), le reste en texte courant.
+  const proof = t("hero.proofStat");
+  const proofMatch = proof.match(/^(\d+\s?%)\s*(.*)$/);
+  const heroStat = proofMatch?.[1];
+  const heroStatText = proofMatch?.[2] ?? proof;
 
-  // Icons for the 3 client cases
-  const caseIcons = [Building2, HeartPulse, Factory];
-
-  // Icons for differentiators
-  const diffIcons = [Scale, Award, LineChart, Users];
-
-  // Icons for solution pillars (used inside hub-and-spoke diagram)
+  const problemIcons = [AlertTriangle, Euro, Cloud];
   const pillarIcons = [Server, ShieldCheck, BarChart3, Recycle];
+  const diffIcons = [Scale, Award, LineChart, Users];
+  const sectorIconMap: Record<string, typeof Building2> = {
+    building: Building2,
+    heartPulse: HeartPulse,
+    factory: Factory,
+    landmark: Landmark,
+  };
+  const casePhotos = ["/photos/case-banque.jpg", "/photos/case-hopital.jpg", "/photos/case-industrie.jpg"];
+
+  const plans = t.raw("pricingTeaser.plans") as Array<{
+    name: string;
+    price: string;
+    setup: string;
+    pitch: string;
+    slug: string;
+    popular?: boolean;
+  }>;
 
   return (
-    <main className="overflow-hidden bg-white">
+    <div className="bg-paper">
       {/* ==========================================================
-          1. URGENCY BAND, sober navy, calendrier régulateur précis
+          1–2. HERO — notice CSRD intégrée, split 7/5, preuve chiffrée
          ========================================================== */}
-      <Link href="/reglementation" className="block bg-forest-900 text-white py-3 px-4 border-b border-ondark-line hover:bg-forest-950 transition-colors group">
-        <div className="container mx-auto flex items-center justify-center gap-3 text-sm font-medium text-center">
-          <AlertTriangle className="h-5 w-5 flex-shrink-0 text-ochre" aria-hidden="true" />
-          <p className="leading-snug">{t("urgency.text")}</p>
-          <span className="hidden sm:inline-flex items-center gap-1 text-leaf font-semibold whitespace-nowrap group-hover:underline">
-            {t("urgency.cta")}
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-          </span>
-        </div>
-      </Link>
-
-      {/* ==========================================================
-          2. HERO : Direction "Provocation chiffrée"
-             Split layout : argument à gauche, photo à droite.
-             Chiffre choc 78% en grand, sub-titre angle GTC, dual CTA.
-         ========================================================== */}
-      <section
-        className="relative min-h-[88vh] flex items-center bg-gradient-to-br from-white via-cream to-leaf-50 overflow-hidden"
-        aria-labelledby="hero-title"
-      >
-        {/* Decorative ambient gradients (kept very low-key) */}
-        <div className="absolute -top-32 -right-32 w-[36rem] h-[36rem] bg-leaf-100 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-40 -left-32 w-[32rem] h-[32rem] bg-forest/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(16,185,129,0.06),_transparent_55%)] pointer-events-none" />
-
-        <div className="container mx-auto px-4 relative z-10 py-16 lg:py-24">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Argument column, 7/12 */}
-            <FadeIn className="lg:col-span-7">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-line text-ink text-xs font-semibold tracking-wider uppercase mb-8 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-leaf" />
-                {t("hero.eyebrow")}
-              </span>
-
-              <h1
-                id="hero-title"
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink mb-6 tracking-tight leading-[1.12] max-w-2xl"
+      <section className="bg-paper py-16 lg:py-32" aria-labelledby="hero-title">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <FadeIn className="min-w-0 lg:col-span-7">
+              <Link
+                href="/reglementation"
+                className="inline-flex min-h-[28px] max-w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-lg bg-ochre-100 sm:rounded-full px-3 py-1 text-caption font-semibold text-ochre-800 transition-colors hover:text-ink"
               >
+                <AlertTriangle className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
+                <span>{t("urgency.text")}</span>
+                <span className="whitespace-nowrap underline-offset-2 hover:underline">{t("urgency.cta")}</span>
+              </Link>
+
+              <div className="mt-6">
+                <Tag variant="neutral">{t("hero.eyebrow")}</Tag>
+              </div>
+
+              <h1 id="hero-title" className="mt-6 max-w-[22ch] text-display-lg text-ink">
                 {t("hero.title")}
               </h1>
 
-              <p className="text-lg md:text-xl text-ink font-semibold mb-4 max-w-2xl leading-relaxed">
-                {t("hero.subtitle")}
-              </p>
+              <p className="mt-6 max-w-[65ch] text-body-lg text-ink-700">{t("hero.subtitle")}</p>
 
-              {/* Secondary proof point — carbon stat moved here */}
-              <p className="text-sm text-muted mb-8 max-w-2xl leading-relaxed border-l-2 border-leaf pl-3">
-                {t("hero.proofStat")}
-              </p>
+              {heroStat && (
+                <div className="mt-8 flex max-w-[65ch] items-start gap-6 border-l-2 border-leaf pl-6">
+                  <p className="whitespace-nowrap text-display-xl leading-none text-forest">{heroStat.replace(" ", "\u00a0")}</p>
+                  <p className="text-body-sm text-ink-700">{heroStatText}</p>
+                </div>
+              )}
+              {!heroStat && <p className="mt-6 max-w-[65ch] text-body-sm text-ink-700">{proof}</p>}
 
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Link
-                  href="/demo"
-                  className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-base"
-                >
+              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="/demo" size="lg">
                   {t("hero.cta1")}
-                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-ink border-2 border-line hover:bg-forest hover:text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-base"
-                >
+                </ButtonLink>
+                <ButtonLink href="/contact" variant="secondary" size="lg">
                   {t("hero.cta2")}
-                  <ChevronRight className="h-5 w-5" aria-hidden="true" />
-                </Link>
+                </ButtonLink>
               </div>
 
-              <p className="text-xs text-muted italic mb-6 max-w-2xl">
-                {t("hero.source")}
-              </p>
+              <p className="mt-6 max-w-[65ch] text-caption italic text-muted">{t("hero.source")}</p>
+            </FadeIn>
 
-              {/* Inline trust strip */}
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs font-medium text-ink-700">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-leaf" aria-hidden="true" />
-                  <span>{t("hero.trust1")}</span>
+            <FadeIn delay={0.1} className="lg:col-span-5">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
+                <Image
+                  src="/photos/hp-atelier-itad.jpg"
+                  alt={tx(
+                    "Atelier de reconditionnement GreenTechCycle, chaîne d'effacement et de tri certifiée",
+                    "GreenTechCycle refurbishment workshop, certified erasure and sorting line"
+                  )}
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
+              </div>
+              <div className="mt-6 grid grid-cols-2 border-t border-line pt-6">
+                <div className="pr-4">
+                  <p className="text-eyebrow uppercase text-muted">Audit ACPR</p>
+                  <p className="mt-2 font-display text-display-sm text-forest">{tx("4 jours", "4 days")}</p>
+                  <p className="mt-1 text-caption text-muted">{tx("vs 3 semaines en moyenne", "vs 3 weeks on average")}</p>
                 </div>
-                <span className="hidden sm:inline w-px h-4 bg-line" />
-                <div className="flex items-center gap-2">
-                  <Lock className="h-4 w-4 text-leaf" aria-hidden="true" />
-                  <span>{t("hero.trust2")}</span>
-                </div>
-                <span className="hidden sm:inline w-px h-4 bg-line" />
-                <div className="flex items-center gap-2">
-                  <FileCheck className="h-4 w-4 text-leaf" aria-hidden="true" />
-                  <span>{t("hero.trust3")}</span>
+                <div className="border-l border-line pl-4">
+                  <p className="text-eyebrow uppercase text-muted">{tx("Valeur récupérée", "Value recovered")}</p>
+                  <p className="mt-2 font-display text-display-sm text-forest">638 k€</p>
+                  <p className="mt-1 text-caption text-muted">{tx("moyenne / mission grand compte", "average / key-account mission")}</p>
                 </div>
               </div>
             </FadeIn>
+          </div>
 
-            {/* Visual column (5/12) boardroom photo + floating proof card */}
-            <FadeIn delay={0.1} direction="left" className="lg:col-span-5">
-              <div className="relative">
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-line">
-                  <Image
-                    src="/photos/hp-rssi-boardroom.jpg"
-                    alt="Comité de direction RSSI / DSI / RSE / DAF arbitrant le décommissionnement IT"
-                    fill
-                    priority
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent" />
-                </div>
+          <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-line pt-6 text-caption text-ink-700">
+            <span className="inline-flex items-center gap-2">
+              <ShieldCheck className="h-3.5 w-3.5 text-forest" strokeWidth={1.75} aria-hidden="true" />
+              {t("hero.trust1")}
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <ShieldCheck className="h-3.5 w-3.5 text-forest" strokeWidth={1.75} aria-hidden="true" />
+              {t("hero.trust2")}
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <ShieldCheck className="h-3.5 w-3.5 text-forest" strokeWidth={1.75} aria-hidden="true" />
+              {t("hero.trust3")}
+            </span>
+          </div>
+          <CertificationStrip className="mt-3" />
+        </div>
+      </section>
 
-                {/* Floating proof card top-right */}
-                <div className="hidden md:block absolute -top-4 -right-4 bg-white rounded-xl shadow-xl p-4 border border-line w-56">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-9 h-9 rounded-lg bg-leaf-100 flex items-center justify-center">
-                      <FileCheck className="h-5 w-5 text-leaf" aria-hidden="true" />
-                    </div>
-                    <p className="text-xs font-semibold text-muted uppercase tracking-wider">
-                      Audit ACPR
-                    </p>
-                  </div>
-                  <p className="text-2xl font-bold text-ink leading-tight">4 jours</p>
-                  <p className="text-xs text-muted mt-1">vs 3 semaines en moyenne</p>
-                </div>
-
-                {/* Floating proof card bottom-left */}
-                <div className="hidden md:block absolute -bottom-4 -left-4 bg-white rounded-xl shadow-xl p-4 border border-line w-56">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-9 h-9 rounded-lg bg-forest/10 flex items-center justify-center">
-                      <Euro className="h-5 w-5 text-forest" aria-hidden="true" />
-                    </div>
-                    <p className="text-xs font-semibold text-muted uppercase tracking-wider">
-                      Valeur récupérée
-                    </p>
-                  </div>
-                  <p className="text-2xl font-bold text-ink leading-tight">638 k€</p>
-                  <p className="text-xs text-muted mt-1">moyenne / mission grand compte</p>
-                </div>
-              </div>
-            </FadeIn>
+      {/* ==========================================================
+          3. ENJEUX — condensés en une ligne de 4 liens texte
+         ========================================================== */}
+      <section className="border-t border-line bg-paper py-8" aria-labelledby="enjeux-title">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="grid gap-6 lg:grid-cols-[200px_1fr] lg:items-start">
+            <div>
+              <p className="text-eyebrow uppercase text-muted">{t("enjeuCards.eyebrow")}</p>
+              <h2 id="enjeux-title" className="sr-only">
+                {t("enjeuCards.title")}
+              </h2>
+            </div>
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {enjeuCards.map((card) => (
+                <li key={card.title}>
+                  <TextLink href={card.href}>{card.title}</TextLink>
+                  <p className="mt-1 text-caption text-muted">{card.desc}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
       {/* ==========================================================
-          2-bis. ENJEU CARDS — prospect self-qualification (ST-2)
-         ========================================================== */}
-      <section className="py-16 bg-white border-b border-line">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="text-center mb-10">
-              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-2">
-                {t("enjeuCards.eyebrow")}
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-ink tracking-tight">
-                {t("enjeuCards.title")}
-              </h2>
-            </div>
-          </FadeIn>
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {enjeuCards.map((card, i) => {
-              const iconMap: Record<string, typeof Shield> = { shield: Shield, barChart: BarChart3, lock: Lock, euro: Euro };
-              const CardIcon = iconMap[card.icon] || Shield;
-              const accents = ["#0B3B2E", "#047857", "#B45309", "#0B3B2E"];
-              return (
-                <StaggerItem key={i}>
-                  <Link
-                    href={card.href}
-                    className="group flex flex-col items-center text-center p-6 rounded-2xl border border-line bg-cream hover:border-leaf/40 hover:shadow-lg transition-all duration-300 h-full"
-                  >
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                      style={{ backgroundColor: `${accents[i]}15` }}
-                    >
-                      <CardIcon className="h-5 w-5" style={{ color: accents[i] }} aria-hidden="true" />
-                    </div>
-                    <h3 className="text-base font-bold text-ink mb-2 tracking-tight">{card.title}</h3>
-                    <p className="text-sm text-ink-700 leading-relaxed">{card.desc}</p>
-                    <span className="mt-3 text-xs font-semibold text-leaf group-hover:underline flex items-center gap-1">
-                      <ArrowRight className="h-3 w-3" aria-hidden="true" />
-                    </span>
-                  </Link>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-        </div>
-      </section>
-
-
-      {/* ==========================================================
-          3. TRUST BAND, donneurs d'ordre anonymisés (sectoriels)
+          5. BANDEAU DE CONFIANCE — pictogrammes sectoriels
          ========================================================== */}
       <TrustBand />
 
       {/* ==========================================================
-          4. PROBLÈME : Coût caché, 3 risques chiffrés
+          6. PROBLÈME — le coût caché, 3 risques chiffrés
          ========================================================== */}
-      <section className="py-24 lg:py-28 bg-cream">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-3xl mb-14">
-              <p className="text-sm font-semibold tracking-[0.18em] text-ochre uppercase mb-3">
-                {t("problem.eyebrow")}
-              </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]">
-                {t("problem.title")}
-              </h2>
-              <p className="text-ink-700 text-lg leading-relaxed">
-                {t("problem.subtitle")}
-              </p>
-            </div>
-          </FadeIn>
-          <StaggerContainer className="grid md:grid-cols-3 gap-6 lg:gap-8">
-            {problemItems.map((item, i) => {
-              const ProblemIcon = [AlertTriangle, Euro, Cloud][i] || AlertTriangle;
-              return (
-                <StaggerItem key={i}>
-                  <div className="bg-white border border-line rounded-2xl p-7 h-full flex flex-col shadow-sm hover:shadow-lg transition-shadow duration-300">
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="w-11 h-11 rounded-xl bg-ochre/10 flex items-center justify-center">
-                        <ProblemIcon className="h-5 w-5 text-ochre" aria-hidden="true" />
-                      </div>
-                      <span className="text-[11px] font-semibold tracking-wider text-ochre uppercase">
-                        {item.tag}
-                      </span>
-                    </div>
-                    <h3 className="text-lg font-bold text-ink mb-3 leading-snug tracking-tight">
-                      {item.title}
-                    </h3>
-                    <p className="text-ink-700 text-sm leading-relaxed flex-1 mb-4">
-                      {item.body}
-                    </p>
-                    <p className="text-[11px] text-muted italic border-t border-line pt-3 leading-snug">
-                      {item.source}
-                    </p>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-        </div>
-      </section>
+      <Section tone="cream">
+        <FadeIn>
+          <SectionHeader alert eyebrow={t("problem.eyebrow")} title={t("problem.title")} intro={t("problem.subtitle")} />
+        </FadeIn>
+        <StaggerContainer className="grid gap-6 md:grid-cols-3">
+          {problemItems.map((item, i) => (
+            <StaggerItem key={i} className="h-full">
+              <Card className="flex h-full flex-col">
+                <div className="mb-6 flex items-center gap-3">
+                  <Pictogram icon={problemIcons[i] || AlertTriangle} alert />
+                  <span className="text-eyebrow uppercase text-ochre">{item.tag}</span>
+                </div>
+                <h3 className="mb-3 text-heading-lg text-ink">{item.title}</h3>
+                <p className="mb-4 flex-1 text-body-sm text-ink-700">{item.body}</p>
+                <p className="border-t border-line pt-3 text-caption italic text-muted">{item.source}</p>
+              </Card>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </Section>
 
       {/* ==========================================================
-          4-bis. CALENDRIER RÉGULATEUR, 4 échéances datées
+          7. SOLUTION #solution — 4 piliers + avant/après condensé
          ========================================================== */}
-      <section id="compliance" className="py-24 lg:py-28 bg-white scroll-mt-32">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-3xl mb-14">
-              <div className="flex items-center gap-3 mb-3">
-                <CalendarClock className="h-5 w-5 text-ochre" aria-hidden="true" />
-                <p className="text-sm font-semibold tracking-[0.18em] text-ochre uppercase">
-                  {t("regTimeline.eyebrow")}
-                </p>
-              </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]">
-                {t("regTimeline.title")}
-              </h2>
-              <p className="text-ink-700 text-lg leading-relaxed">
-                {t("regTimeline.subtitle")}
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="relative max-w-6xl mx-auto">
-            {/* Horizontal axis (decorative) */}
-            <div
-              className="hidden lg:block absolute top-8 left-0 right-0 h-px bg-gradient-to-r from-ochre via-leaf to-forest"
-              aria-hidden="true"
-            />
-
-            <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-4">
-              {regEvents.map((evt, i) => {
-                const accent = i < 2 ? "#B45309" : i === 2 ? "#047857" : "#0B3B2E";
-                return (
-                  <StaggerItem key={i}>
-                    <div className="relative">
-                      {/* Pin marker on axis */}
-                      <div
-                        className="hidden lg:flex absolute -top-1 left-6 w-4 h-4 rounded-full ring-4 ring-white items-center justify-center"
-                        style={{ backgroundColor: accent }}
-                        aria-hidden="true"
-                      />
-                      <div className="bg-white border border-line rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 mt-12 lg:mt-0 lg:pt-12 h-full flex flex-col">
-                        <p
-                          className="text-xs font-mono font-bold tracking-widest mb-1"
-                          style={{ color: accent }}
-                        >
-                          {evt.date}
-                        </p>
-                        <h3 className="text-lg font-bold text-ink mb-3 leading-tight tracking-tight">
-                          {evt.label}
-                        </h3>
-                        <p className="text-sm text-ink-700 leading-relaxed flex-1 mb-4">
-                          {evt.body}
-                        </p>
-                        <div className="border-t border-line pt-3 flex items-center gap-2">
-                          <Gavel className="h-3.5 w-3.5 text-muted" aria-hidden="true" />
-                          <p className="text-[11px] font-semibold text-ink-700 uppercase tracking-wider">
-                            Sanction max
-                          </p>
-                          <p className="text-[11px] text-ink-700 font-medium ml-auto">
-                            {evt.penalty}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </StaggerItem>
-                );
-              })}
+      <Section id="solution" tone="paper">
+        <FadeIn>
+          <SectionHeader eyebrow={t("solution.eyebrow")} title={t("solution.title")} intro={t("solution.body")} />
+        </FadeIn>
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <p className="text-eyebrow uppercase text-muted">{t("solution.diagramCenter")}</p>
+            <p className="mt-2 text-body-sm text-ink-700">{t("solution.diagramCenterSub")}</p>
+            <StaggerContainer className="mt-6 grid gap-4 sm:grid-cols-2">
+              {solutionPillars.map((p, i) => (
+                <StaggerItem key={i} className="h-full">
+                  <Card pad="sm" className="h-full">
+                    <Pictogram icon={pillarIcons[i] || Server} />
+                    <p className="mt-4 text-heading-md text-ink">{p.label}</p>
+                    <p className="mt-1 text-body-sm text-ink-700">{p.desc}</p>
+                  </Card>
+                </StaggerItem>
+              ))}
             </StaggerContainer>
           </div>
-        </div>
-      </section>
 
-      {/* ==========================================================
-          5. SOLUTION : Phrase puissante + Hub-and-spoke
-         ========================================================== */}
-      <section id="solution" className="py-24 lg:py-32 bg-cream scroll-mt-32">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="text-center max-w-4xl mx-auto mb-16">
-              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
-                {t("solution.eyebrow")}
-              </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-ink mb-6 tracking-tight leading-[1.1]">
-                {t("solution.title")}
-              </h2>
-              <p className="text-ink-700 text-lg leading-relaxed">
-                {t("solution.body")}
-              </p>
-            </div>
-          </FadeIn>
-
-          {/* Hub-and-spoke diagram */}
-          <FadeIn>
-            <div className="relative max-w-5xl mx-auto">
-              <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-14 items-center">
-                {/* Left pillars */}
-                <div className="space-y-5 order-2 lg:order-1">
-                  {[0, 1].map((idx) => {
-                    const PIcon = pillarIcons[idx];
-                    const p = solutionPillars[idx];
-                    return (
-                      <div
-                        key={idx}
-                        className="flex items-start gap-4 bg-cream border border-line rounded-xl p-5 lg:text-right lg:flex-row-reverse hover:border-leaf/40 transition-colors"
-                      >
-                        <div className="w-12 h-12 rounded-xl bg-white border border-line flex items-center justify-center flex-shrink-0 shadow-sm">
-                          <PIcon className="h-5 w-5 text-leaf" aria-hidden="true" />
-                        </div>
-                        <div>
-                          <p className="font-semibold text-ink text-base mb-1 leading-tight">
-                            {p.label}
-                          </p>
-                          <p className="text-sm text-ink-700 leading-snug">{p.desc}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Center hub */}
-                <div className="flex justify-center order-1 lg:order-2">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-leaf to-forest rounded-full blur-2xl opacity-30 scale-110" />
-                    <div className="relative w-44 h-44 lg:w-56 lg:h-56 rounded-full bg-gradient-to-br from-leaf to-forest text-white flex flex-col items-center justify-center text-center shadow-2xl ring-4 ring-white">
-                      <Workflow className="h-7 w-7 mb-2 opacity-80" aria-hidden="true" />
-                      <p className="font-bold text-lg lg:text-xl tracking-tight">
-                        {t("solution.diagramCenter")}
-                      </p>
-                      <p className="text-xs opacity-80 mt-1 px-3">
-                        {t("solution.diagramCenterSub")}
-                      </p>
-                    </div>
-                    {/* Spokes connecting lines (decorative) */}
-                    <div className="hidden lg:block absolute top-1/2 left-0 -translate-x-full w-12 h-px bg-gradient-to-l from-leaf/60 to-transparent" />
-                    <div className="hidden lg:block absolute top-1/2 right-0 translate-x-full w-12 h-px bg-gradient-to-r from-leaf/60 to-transparent" />
-                  </div>
-                </div>
-
-                {/* Right pillars */}
-                <div className="space-y-5 order-3">
-                  {[2, 3].map((idx) => {
-                    const PIcon = pillarIcons[idx];
-                    const p = solutionPillars[idx];
-                    return (
-                      <div
-                        key={idx}
-                        className="flex items-start gap-4 bg-cream border border-line rounded-xl p-5 hover:border-line/40 transition-colors"
-                      >
-                        <div className="w-12 h-12 rounded-xl bg-white border border-line flex items-center justify-center flex-shrink-0 shadow-sm">
-                          <PIcon className="h-5 w-5 text-forest" aria-hidden="true" />
-                        </div>
-                        <div>
-                          <p className="font-semibold text-ink text-base mb-1 leading-tight">
-                            {p.label}
-                          </p>
-                          <p className="text-sm text-ink-700 leading-snug">{p.desc}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ==========================================================
-          6. CHAÎNE DE VALEUR, 5 étapes horizontales
-         ========================================================== */}
-      <section className="py-24 lg:py-28 bg-forest-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.12),_transparent_60%)] pointer-events-none" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-leaf-100 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-3xl mb-16">
-              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
-                {t("valueChain.eyebrow")}
-              </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 tracking-tight leading-[1.1]">
-                {t("valueChain.title")}
-              </h2>
-              <p className="text-ondark-muted text-lg leading-relaxed">
-                {t("valueChain.subtitle")}
-              </p>
-            </div>
-          </FadeIn>
-
-          <StaggerContainer className="grid lg:grid-cols-5 gap-5 lg:gap-4">
-            {valueSteps.map((step, i) => {
-              const StepIcon = valueStepIcons[i] || FileCheck;
-              return (
-                <StaggerItem key={i}>
-                  <div className="relative bg-white/[0.03] border border-ondark-line backdrop-blur-sm rounded-2xl p-6 h-full flex flex-col hover:bg-white/[0.05] hover:border-leaf/40 transition-all duration-300">
-                    {/* Step number ribbon */}
-                    <div className="flex items-center justify-between mb-5">
-                      <span className="text-[11px] font-mono font-semibold tracking-widest text-leaf">
-                        {step.n}
-                      </span>
-                      <div className="w-10 h-10 rounded-xl bg-leaf-100 border border-leaf/30 flex items-center justify-center">
-                        <StepIcon className="h-5 w-5 text-leaf" aria-hidden="true" />
-                      </div>
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-3 tracking-tight leading-tight">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-muted leading-relaxed flex-1 mb-5">
-                      {step.desc}
-                    </p>
-                    <div className="border-t border-ondark-line pt-4">
-                      <p className="text-[11px] uppercase tracking-wider text-muted font-semibold mb-1">
-                        SLA / KPI
-                      </p>
-                      <p className="text-sm font-semibold text-leaf leading-snug">
-                        {step.kpi}
-                      </p>
-                    </div>
-                    {/* Connector arrow (hidden on last) */}
-                    {i < valueSteps.length - 1 && (
-                      <div className="hidden lg:flex absolute top-1/2 -right-3 -translate-y-1/2 z-10 items-center justify-center w-6 h-6 rounded-full bg-leaf text-white shadow-lg">
-                        <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
-                      </div>
-                    )}
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* ==========================================================
-          7. PREUVES & RÉSULTATS, 4 KPIs CountUp avec sources
-         ========================================================== */}
-      <section className="py-24 lg:py-28 bg-white">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="text-center max-w-3xl mx-auto mb-14">
-              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
-                {t("proof.eyebrow")}
-              </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-ink tracking-tight leading-[1.1]">
-                {t("proof.title")}
-              </h2>
-            </div>
-          </FadeIn>
-
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {(["clients", "assets", "value", "carbon"] as const).map((k, i) => {
-              const KIcon = [Users, Server, Euro, Cloud][i];
-              const accent = i % 2 === 0 ? "#047857" : "#0B3B2E";
-              return (
-                <StaggerItem key={k}>
-                  <ScaleIn delay={i * 0.05}>
-                    <div className="bg-gradient-to-br from-cream to-white border border-line rounded-2xl p-7 h-full flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                      <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                        style={{ backgroundColor: `${accent}15` }}
-                      >
-                        <KIcon
-                          className="h-5 w-5"
-                          style={{ color: accent }}
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <p
-                        className="text-4xl md:text-5xl font-bold tracking-tight mb-2 leading-none"
-                        style={{ color: accent }}
-                      >
-                        <CountUp
-                          end={parseInt(t(`proof.items.${k}.value`))}
-                          suffix={t(`proof.items.${k}.suffix`)}
-                        />
-                      </p>
-                      <p className="text-ink-700 text-sm font-medium leading-snug mb-3 flex-1">
-                        {t(`proof.items.${k}.label`)}
-                      </p>
-                      <p className="text-[11px] text-muted italic border-t border-line pt-3 leading-snug">
-                        {t(`proof.items.${k}.source`)}
-                      </p>
-                    </div>
-                  </ScaleIn>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-          <p className="mt-10 text-center text-xs text-muted italic max-w-3xl mx-auto leading-relaxed">
-            {t("proof.footnote")}
-          </p>
-        </div>
-      </section>
-
-      {/* ==========================================================
-          8. CAS CLIENTS, 3 mini-cas chiffrés liés à /cas-usages
-         ========================================================== */}
-      <section id="cases" className="py-24 lg:py-28 bg-cream scroll-mt-32">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
-              <div className="max-w-2xl">
-                <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
-                  {t("cases.eyebrow")}
-                </p>
-                <h2 className="text-3xl md:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]">
-                  {t("cases.title")}
-                </h2>
-                <p className="text-ink-700 text-base leading-relaxed">
-                  {t("cases.subtitle")}
-                </p>
-              </div>
-              <Link
-                href="/cas-usages"
-                className="inline-flex items-center gap-2 text-leaf hover:text-leaf-700 font-semibold whitespace-nowrap text-sm group"
-              >
-                {t("cases.discoverAll")}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              </Link>
-            </div>
-          </FadeIn>
-
-          <StaggerContainer className="grid md:grid-cols-3 gap-6 lg:gap-8">
-            {cases.map((c, i) => {
-              const CIcon = caseIcons[i] || Building2;
-              const photos = [
-                "/photos/case-banque.jpg",
-                "/photos/case-hopital.jpg",
-                "/photos/case-industrie.jpg",
-              ];
-              return (
-                <StaggerItem key={c.slug}>
-                  <Link
-                    href={`/cas-usages#${c.slug}`}
-                    className="group bg-white border border-line rounded-2xl overflow-hidden h-full flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-leaf/30"
-                  >
-                    <div className="relative aspect-[16/9] overflow-hidden">
-                      <Image
-                        src={photos[i]}
-                        alt={`Photo sectorielle illustrant le cas ${c.sector}`}
-                        fill
-                        loading="lazy"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent" />
-                      <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-sm shadow-md">
-                        <CIcon className="h-4 w-4 text-leaf" aria-hidden="true" />
-                        <span className="text-[11px] font-semibold text-ink tracking-wide">
-                          {c.sector}
+          <FadeIn className="min-w-0 lg:col-span-7">
+            <p className="text-eyebrow uppercase text-muted">{t("comparison.eyebrow")}</p>
+            <h3 className="mt-2 text-display-sm text-ink">{t("comparison.title")}</h3>
+            <p className="mt-2 max-w-[65ch] text-body-sm text-ink-700">{t("comparison.subtitle")}</p>
+            <div className="mt-6 overflow-hidden rounded-xl border border-line">
+              <table className="w-full border-collapse text-body-sm">
+                <caption className="sr-only">{t("comparison.title")}</caption>
+                <thead>
+                  <tr className="bg-cream">
+                    <th scope="col" className="w-1/2 px-4 py-3 text-left text-eyebrow uppercase text-muted">
+                      {t("comparison.before.label")}
+                    </th>
+                    <th scope="col" className="w-1/2 border-l border-line px-4 py-3 text-left text-eyebrow uppercase text-forest">
+                      {t("comparison.after.label")}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {beforeItems.map((before, i) => (
+                    <tr key={i} className={`border-t border-line ${i % 2 === 1 ? "bg-leaf-50" : ""}`}>
+                      <td className="px-4 py-3 align-top text-ink-700">
+                        <span className="flex gap-2">
+                          <Minus className="mt-0.5 h-4 w-4 flex-shrink-0 text-muted" aria-hidden="true" />
+                          {before}
                         </span>
-                      </div>
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <span className="inline-block px-2.5 py-1 rounded-md bg-ochre text-[10px] font-semibold text-white uppercase tracking-wider">
-                          {c.regulation}
+                      </td>
+                      <td className="border-l border-line px-4 py-3 align-top font-medium text-ink">
+                        <span className="flex gap-2">
+                          <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+                          {afterItems[i]}
                         </span>
-                      </div>
-                    </div>
-                    <div className="p-6 flex flex-col flex-1">
-                      <h3 className="text-lg font-bold text-ink mb-4 leading-snug tracking-tight">
-                        {c.title}
-                      </h3>
-                      <ul className="space-y-2 mb-5 flex-1">
-                        {c.results.map((r, j) => (
-                          <li key={j} className="flex items-start gap-2 text-sm text-ink-700 leading-snug">
-                            <CheckCircle2 className="h-4 w-4 text-leaf flex-shrink-0 mt-0.5" aria-hidden="true" />
-                            <span>{r}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="border-t border-line pt-4 flex items-center justify-between">
-                        <span className="text-sm font-semibold text-leaf group-hover:text-leaf-700">
-                          {t("cases.cardCta")}
-                        </span>
-                        <ArrowRight className="h-4 w-4 text-leaf transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                      </div>
-                    </div>
-                  </Link>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* ==========================================================
-          9. POURQUOI GREENTECHCYCLE, 4 différenciateurs durs
-         ========================================================== */}
-      <section id="differentiators" className="py-24 lg:py-28 bg-white scroll-mt-32">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-3xl mb-16">
-              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
-                {t("differentiators.eyebrow")}
-              </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]">
-                {t("differentiators.title")}
-              </h2>
-              <p className="text-ink-700 text-lg leading-relaxed">
-                {t("differentiators.subtitle")}
-              </p>
-            </div>
-          </FadeIn>
-
-          <StaggerContainer className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl">
-            {differentiators.map((d, i) => {
-              const DIcon = diffIcons[i] || Award;
-              return (
-                <StaggerItem key={i}>
-                  <div className="relative bg-gradient-to-br from-white to-cream border border-line rounded-2xl p-7 lg:p-8 h-full hover:shadow-xl hover:border-leaf/30 transition-all duration-300">
-                    <div className="flex items-start gap-5 mb-5">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-leaf to-forest flex items-center justify-center text-white flex-shrink-0 shadow-lg ">
-                        <DIcon className="h-6 w-6" aria-hidden="true" />
-                      </div>
-                      <div className="flex-1">
-                        <span className="inline-block px-2.5 py-1 rounded-md bg-leaf-100 text-[11px] font-semibold text-leaf uppercase tracking-wider mb-3">
-                          {d.stat}
-                        </span>
-                        <h3 className="text-xl font-bold text-ink leading-tight tracking-tight">
-                          {d.title}
-                        </h3>
-                      </div>
-                    </div>
-                    <p className="text-ink-700 text-[15px] leading-relaxed">{d.body}</p>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* ==========================================================
-          9-bis. AVANT / APRÈS, comparaison synthétique
-         ========================================================== */}
-      <section className="py-16 lg:py-20 bg-cream">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="text-center max-w-3xl mx-auto mb-10">
-              <h2 className="text-2xl md:text-4xl font-bold text-ink mb-3 tracking-tight leading-[1.1]">
-                {t("comparison.title")}
-              </h2>
-              <p className="text-ink-700 text-base leading-relaxed">
-                {t("comparison.subtitle")}
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-2 gap-4 lg:gap-6 max-w-5xl mx-auto">
-            {/* BEFORE column */}
-            <FadeIn>
-              <div className="bg-white border border-line rounded-2xl p-6 h-full">
-                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-line">
-                  <XCircle className="h-5 w-5 text-muted" aria-hidden="true" />
-                  <p className="font-bold text-ink text-base leading-tight">
-                    {t("comparison.before.label")}
-                  </p>
-                </div>
-                <ul className="space-y-2">
-                  {beforeItems.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-ink-700 leading-snug">
-                      <XCircle className="h-3.5 w-3.5 text-muted flex-shrink-0 mt-0.5" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
+                      </td>
+                    </tr>
                   ))}
-                </ul>
-              </div>
-            </FadeIn>
+                </tbody>
+              </table>
+            </div>
+            <div className="mt-6">
+              <TextLink href="/plateforme">{tx("Voir la plateforme en détail", "See the platform in detail")}</TextLink>
+            </div>
+          </FadeIn>
+        </div>
+      </Section>
 
-            {/* AFTER column */}
-            <FadeIn delay={0.1}>
-              <div className="bg-gradient-to-br from-leaf to-leaf-700 border border-leaf rounded-2xl p-6 h-full text-white shadow-xl ">
-                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/20">
-                  <CheckCircle2 className="h-5 w-5 text-white" aria-hidden="true" />
-                  <p className="font-bold text-white text-base leading-tight">
-                    {t("comparison.after.label")}
-                  </p>
+      {/* ==========================================================
+          8. CHAÎNE DE VALEUR — 5 étapes numérotées (night)
+         ========================================================== */}
+      <Section tone="night">
+        <FadeIn>
+          <SectionHeader tone="dark" eyebrow={t("valueChain.eyebrow")} title={t("valueChain.title")} intro={t("valueChain.subtitle")} />
+        </FadeIn>
+        <StaggerContainer className="grid gap-px overflow-hidden rounded-xl border border-ondark-line bg-ondark-line sm:grid-cols-2 lg:grid-cols-5">
+          {valueSteps.map((step, i) => (
+            <StaggerItem key={i} className="h-full">
+              <div className="flex h-full flex-col bg-forest-900 p-6">
+                <p className="text-eyebrow uppercase text-ondark-muted">{step.n}</p>
+                <h3 className="mt-3 text-heading-md text-ondark">{step.title}</h3>
+                <p className="mt-3 flex-1 text-body-sm text-ondark-muted">{step.desc}</p>
+                <div className="mt-6 border-t border-ondark-line pt-4">
+                  <p className="text-eyebrow uppercase text-ondark-muted">SLA / KPI</p>
+                  <p className="mt-1 text-body-sm font-semibold text-leaf-300">{step.kpi}</p>
                 </div>
-                <ul className="space-y-2">
-                  {afterItems.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-ondark leading-snug">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-white flex-shrink-0 mt-0.5" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
-            </FadeIn>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </Section>
+
+      {/* ==========================================================
+          9. PREUVES #cases — KPI mesurés + 3 cas clients (fusion)
+         ========================================================== */}
+      <Section id="cases" tone="cream">
+        <FadeIn>
+          <SectionHeader eyebrow={t("proof.eyebrow")} title={t("proof.title")} />
+        </FadeIn>
+        <StatRow>
+          {(["clients", "assets", "value", "carbon"] as const).map((k) => (
+            <Stat
+              key={k}
+              value={<CountUp end={parseInt(t(`proof.items.${k}.value`))} suffix={t(`proof.items.${k}.suffix`)} />}
+              label={t(`proof.items.${k}.label`)}
+              source={t(`proof.items.${k}.source`)}
+            />
+          ))}
+        </StatRow>
+        <p className="mt-8 max-w-[65ch] text-caption italic text-muted">{t("proof.footnote")}</p>
+
+        <div className="mt-16 flex flex-col gap-6 border-t border-line pt-12 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="mb-3 text-eyebrow uppercase text-muted">{t("cases.eyebrow")}</p>
+            <h3 className="max-w-[24ch] text-display-sm text-ink">{t("cases.title")}</h3>
+            <p className="mt-3 max-w-[65ch] text-body text-ink-700">{t("cases.subtitle")}</p>
           </div>
-
-          <FadeIn>
-            <div className="mt-8 text-center">
-              <Link
-                href="/plateforme"
-                className="inline-flex items-center gap-2 text-leaf hover:text-leaf-700 font-semibold text-sm group"
-              >
-                Voir la plateforme en détail
-                <ArrowRight
-                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </Link>
-            </div>
-          </FadeIn>
+          <TextLink href="/cas-usages" className="flex-shrink-0">
+            {t("cases.discoverAll")}
+          </TextLink>
         </div>
-      </section>
+        <StaggerContainer className="mt-10 grid gap-6 md:grid-cols-3">
+          {cases.map((c, i) => (
+            <StaggerItem key={c.slug} className="h-full">
+              <CardLink href={`/cas-usages#${c.slug}`} pad="none" cta={t("cases.cardCta")}>
+                <div className="relative aspect-[16/10] overflow-hidden rounded-t-xl border-b border-line">
+                  <Image
+                    src={casePhotos[i]}
+                    alt={tx(`Photo sectorielle illustrant le cas ${c.sector}`, `Sector photo illustrating the ${c.sector} case`)}
+                    fill
+                    loading="lazy"
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col px-6 pt-6">
+                  <div className="flex flex-wrap gap-2">
+                    <Tag variant="brand">{c.sector}</Tag>
+                    <Tag variant="alert">{c.regulation}</Tag>
+                  </div>
+                  <h4 className="mt-4 text-heading-md text-ink transition-colors group-hover:text-leaf">{c.title}</h4>
+                  <ul className="mt-4 space-y-2">
+                    {c.results.map((r, j) => (
+                      <li key={j} className="flex items-start gap-2 text-body-sm text-ink-700">
+                        <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+                        <span>{r}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </CardLink>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </Section>
 
       {/* ==========================================================
-          10. TÉMOIGNAGE FORT, 1 grosse citation Marc B. RSSI
+          10. CALENDRIER RÉGLEMENTAIRE #compliance — timeline verticale
          ========================================================== */}
-      <section className="py-24 lg:py-28 bg-gradient-to-br from-ink via-forest-950 to-ink relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(16,185,129,0.18),_transparent_70%)] pointer-events-none" />
-        <div className="absolute top-10 right-10 w-72 h-72 bg-leaf-100 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-10 left-10 w-72 h-72 bg-forest/10 rounded-full blur-3xl pointer-events-none" />
+      <Section id="compliance" tone="paper">
+        <div className="grid gap-12 lg:grid-cols-12">
+          <FadeIn className="lg:col-span-5">
+            <SectionHeader alert eyebrow={t("regTimeline.eyebrow")} title={t("regTimeline.title")} intro={t("regTimeline.subtitle")} />
+          </FadeIn>
+          <ol className="relative border-l border-line lg:col-span-7">
+            {regEvents.map((evt, i) => (
+              <li key={i} className="relative pb-10 pl-8 last:pb-0">
+                <span
+                  className={`absolute -left-[5px] top-1.5 h-[9px] w-[9px] rounded-full ${i < 2 ? "bg-ochre" : "bg-forest"}`}
+                  aria-hidden="true"
+                />
+                <p className={`text-eyebrow uppercase tabular-nums ${i < 2 ? "text-ochre" : "text-muted"}`}>{evt.date}</p>
+                <h3 className="mt-2 text-heading-lg text-ink">{evt.label}</h3>
+                <p className="mt-2 max-w-[65ch] text-body-sm text-ink-700">{evt.body}</p>
+                <p className="mt-3 text-caption text-muted">
+                  <span className="font-semibold text-ink-700">{tx("Sanction max", "Maximum penalty")}</span> · {evt.penalty}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </Section>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-5xl mx-auto">
-              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-6 text-center">
-                {t("bigQuote.eyebrow")}
-              </p>
-
-              <div className="grid lg:grid-cols-[auto_1fr] gap-10 items-center">
-                {/* Visual, anonymized boardroom photo with mark */}
-                <div className="relative w-48 h-48 lg:w-56 lg:h-56 mx-auto flex-shrink-0">
-                  <div className="absolute inset-0 bg-gradient-to-br from-leaf to-forest rounded-2xl rotate-3" />
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden ring-4 ring-white/10">
-                    <Image
-                      src="/photos/hp-dsi-strategy.jpg"
-                      alt="Décideur RSSI grand compte arbitrant un dossier ITAD (visage anonymisé)"
-                      fill
-                      loading="lazy"
-                      className="object-cover grayscale brightness-90"
-                      sizes="224px"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-br from-ink/40 to-transparent" />
-                  </div>
-                </div>
-
+      {/* ==========================================================
+          11. POURQUOI GREENTECHCYCLE #differentiators
+         ========================================================== */}
+      <Section id="differentiators" tone="cream">
+        <FadeIn>
+          <SectionHeader eyebrow={t("differentiators.eyebrow")} title={t("differentiators.title")} intro={t("differentiators.subtitle")} />
+        </FadeIn>
+        <StaggerContainer className="grid gap-x-12 gap-y-10 md:grid-cols-2">
+          {differentiators.map((d, i) => (
+            <StaggerItem key={i}>
+              <div className="flex gap-4">
+                <Pictogram icon={diffIcons[i] || Award} />
                 <div>
-                  <Quote className="h-12 w-12 text-leaf mb-5 opacity-70" aria-hidden="true" />
-                  <blockquote className="text-xl md:text-2xl lg:text-3xl text-white leading-[1.4] font-medium mb-8 tracking-tight">
-                    &ldquo;{t("bigQuote.quote")}&rdquo;
-                  </blockquote>
-                  <div className="border-l-4 border-leaf pl-5 mb-6">
-                    <p className="font-bold text-white text-lg leading-tight">
-                      {t("bigQuote.name")}
-                    </p>
-                    <p className="text-muted text-sm">
-                      {t("bigQuote.role")} · {t("bigQuote.company")}
-                    </p>
-                  </div>
-                  <p className="text-sm text-muted italic mb-6 leading-relaxed">
-                    <span className="font-semibold text-ondark-muted">Contexte :</span>{" "}
-                    {t("bigQuote.context")}
-                  </p>
-                  <Link
-                    href="/cas-usages#banque-cac40-windows11-nis2"
-                    className="inline-flex items-center gap-2 text-leaf hover:text-white font-semibold text-sm group"
-                  >
-                    {t("bigQuote.ctaLabel")}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                  </Link>
+                  <p className="text-eyebrow uppercase text-leaf">{d.stat}</p>
+                  <h3 className="mt-2 text-heading-lg text-ink">{d.title}</h3>
+                  <p className="mt-2 max-w-[65ch] text-body-sm text-ink-700">{d.body}</p>
                 </div>
               </div>
-              <p className="mt-10 text-center text-[11px] text-muted italic max-w-2xl mx-auto leading-relaxed">
-                {t("bigQuote.consentNote")}
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
 
-      {/* ==========================================================
-          10-bis. FAQ DSI/RSSI, 4 objections frontales
-         ========================================================== */}
-      <section className="py-24 lg:py-28 bg-white">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-14">
-              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
-                {t("faq.eyebrow")}
-              </p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.1]">
-                {t("faq.title")}
-              </h2>
-            </div>
-          </FadeIn>
-
-          <StaggerContainer className="grid md:grid-cols-2 gap-5 lg:gap-6 max-w-5xl mx-auto">
-            {faqItems.map((item, i) => (
-              <StaggerItem key={i}>
-                <div className="bg-cream border border-line rounded-2xl p-7 h-full hover:border-leaf/40 hover:shadow-md transition-all duration-300">
-                  <div className="flex items-start gap-3 mb-4">
-                    <span className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg bg-leaf-100 text-leaf text-sm font-bold">
-                      Q{i + 1}
-                    </span>
-                    <h3 className="font-bold text-ink text-base leading-tight tracking-tight">
-                      {item.q}
-                    </h3>
-                  </div>
-                  <p className="text-sm text-ink-700 leading-relaxed pl-11">
-                    {item.a}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-
-          <FadeIn>
-            <div className="mt-12 text-center">
-              <Link
-                href="/faq"
-                className="inline-flex items-center gap-2 text-leaf hover:text-leaf-700 font-semibold text-sm group"
-              >
-                Voir les 24 questions de la FAQ technique
-                <ArrowRight
-                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </Link>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ==========================================================
-          10-ter. TARIFS WAKI BOX TEASER, 3 plans + pilote
-         ========================================================== */}
-      <section id="pricing" className="py-24 lg:py-28 bg-forest-900 relative overflow-hidden scroll-mt-32">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.12),_transparent_60%)] pointer-events-none" />
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="text-center max-w-3xl mx-auto mb-14">
-              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
-                {t("pricingTeaser.eyebrow")}
-              </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 tracking-tight leading-[1.1]">
-                {t("pricingTeaser.title")}
-              </h2>
-              <p className="text-ondark-muted text-lg leading-relaxed">
-                {t("pricingTeaser.subtitle")}
-              </p>
-            </div>
-          </FadeIn>
-
-          <StaggerContainer className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto mb-10">
-            {(t.raw("pricingTeaser.plans") as Array<{
-              name: string;
-              price: string;
-              setup: string;
-              pitch: string;
-              slug: string;
-              popular?: boolean;
-            }>).map((plan, i) => {
-              const accents = ["#0B3B2E", "#047857", "#B45309"];
-              return (
-                <StaggerItem key={i}>
-                  <div className={`relative bg-white/[0.04] border ${plan.popular ? "border-leaf/60 shadow-xl " : "border-ondark-line"} backdrop-blur-sm rounded-2xl p-7 h-full flex flex-col hover:bg-white/[0.06] transition-all duration-300`}>
-                    {plan.popular && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-leaf text-white text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
-                        {t("pricingTeaser.popularLabel")}
-                      </div>
-                    )}
-                    <h3 className="text-white text-xl font-bold mb-2 tracking-tight">{plan.name}</h3>
-                    <div className="flex items-end gap-1 mb-1">
-                      <span className="text-3xl font-black tabular-nums" style={{ color: accents[i] }}>
-                        {plan.price}
-                      </span>
-                      <span className="text-sm text-muted mb-1">€ HT/mois</span>
-                    </div>
-                    <p className="text-xs text-muted mb-4">{t("pricingTeaser.setupLabel")} {plan.setup} € HT</p>
-                    <p className="text-sm text-ondark-muted leading-relaxed flex-1 mb-6">{plan.pitch}</p>
-                    <Link
-                      href={`/reserver?offre=${plan.slug}`}
-                      className="block w-full text-center rounded-xl px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-90"
-                      style={{ backgroundColor: accents[i] }}
-                    >
-                      {t("pricingTeaser.bookCta")}
-                      <ArrowRight className="inline h-4 w-4 ml-1" />
-                    </Link>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-
-          {/* Pilote Audit 3j encart */}
-          <FadeIn>
-            <div className="max-w-6xl mx-auto bg-leaf/20 border border-leaf/50 rounded-2xl p-6 lg:p-8 flex flex-col md:flex-row items-start gap-6 mb-6">
-              <div className="flex-1">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-leaf-300 mb-2">
-                  {t("pricingTeaser.piloteAudit.label")}
-                </p>
-                <p className="text-white text-xl font-black leading-snug mb-1">
-                  {t("pricingTeaser.piloteAudit.headline")}
-                </p>
-                <p className="text-ondark-muted text-sm leading-relaxed max-w-xl">
-                  {t("pricingTeaser.piloteAudit.subline")}
-                </p>
-              </div>
-              <div className="flex flex-col items-start md:items-end gap-3 flex-shrink-0">
-                <p className="text-leaf text-2xl font-black tabular-nums whitespace-nowrap">
-                  {t("pricingTeaser.piloteAudit.price")}
-                </p>
-                <Link
-                  href="/reserver?offre=pilote-audit-3j"
-                  className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm"
-                >
-                  {t("pricingTeaser.piloteAudit.cta")}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </div>
-            </div>
-          </FadeIn>
-
-          {/* Pilote Waki Box encart */}
-          <FadeIn>
-            <div className="max-w-6xl mx-auto bg-leaf-100 border border-leaf/30 rounded-2xl p-6 lg:p-8 flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
-              <div className="flex-1">
-                <p className="text-xs font-bold uppercase tracking-wider text-leaf-300 mb-2">
-                  {t("pricingTeaser.pilot.label")}
-                </p>
-                <p className="text-white text-lg font-bold leading-snug">
-                  {t("pricingTeaser.pilot.headline")}
-                </p>
-              </div>
-              <Link
-                href="/reserver?offre=waki-box-pilote"
-                className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm flex-shrink-0"
-              >
-                {t("pricingTeaser.pilot.cta")}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </div>
-          </FadeIn>
-
-          {/* Plateforme + ITAD anchors */}
-          <FadeIn>
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-5 mb-10">
-              <div className="bg-white/[0.04] border border-line/30 hover:border-line/60 rounded-2xl p-6 flex flex-col transition-colors">
-                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-leaf-300 mb-3">
-                  {t("pricingTeaser.platformBrick")}
-                </p>
-                <p className="text-2xl lg:text-3xl font-black text-forest tabular-nums mb-2 tracking-tight">
-                  {t("pricingTeaser.platformAnchor")}
-                </p>
-                <p className="text-sm text-muted mb-5 flex-1 leading-relaxed">
-                  {t("pricingTeaser.platformDesc")}
-                </p>
-                <Link
-                  href="/tarifs"
-                  className="inline-flex items-center gap-1.5 text-forest text-sm font-semibold hover:text-white transition-colors"
-                >
-                  {t("pricingTeaser.platformCta")}
-                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                </Link>
-              </div>
-              <div className="bg-white/[0.04] border border-ochre/30 hover:border-ochre/60 rounded-2xl p-6 flex flex-col transition-colors">
-                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-ochre-300 mb-3">
-                  {t("pricingTeaser.itadBrick")}
-                </p>
-                <p className="text-2xl lg:text-3xl font-black text-ochre tabular-nums mb-2 tracking-tight">
-                  {t("pricingTeaser.itadAnchor")}
-                </p>
-                <p className="text-sm text-muted mb-5 flex-1 leading-relaxed">
-                  {t("pricingTeaser.itadDesc")}
-                </p>
-                <Link
-                  href="/tarifs"
-                  className="inline-flex items-center gap-1.5 text-ochre text-sm font-semibold hover:text-white transition-colors"
-                >
-                  {t("pricingTeaser.itadCta")}
-                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                </Link>
-              </div>
-            </div>
-          </FadeIn>
-
-          <FadeIn>
-            <div className="text-center">
-              <Link
-                href="/tarifs"
-                className="inline-flex items-center gap-2 text-leaf hover:text-leaf-300 font-semibold text-sm group"
-              >
-                {t("pricingTeaser.allPricingLink")}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              </Link>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ==========================================================
-          ME-1. SECTOR TRUST — sector icons with compliance badges
-         ========================================================== */}
-      <section className="py-20 lg:py-24 bg-cream">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
-                {t("sectorTrust.label")}
-              </p>
-              <h2 className="text-2xl md:text-4xl font-bold text-ink tracking-tight leading-[1.1]">
-                {t("sectorTrust.title")}
-              </h2>
-            </div>
-          </FadeIn>
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+        <div className="mt-16 border-t border-line pt-10">
+          <p className="text-eyebrow uppercase text-muted">{t("sectorTrust.label")}</p>
+          <h3 className="mt-2 max-w-[32ch] text-display-sm text-ink">{t("sectorTrust.title")}</h3>
+          <ul className="mt-8 grid grid-cols-2 gap-y-8 lg:grid-cols-4">
             {sectorTrustItems.map((sector, i) => {
-              const sectorIconMap: Record<string, typeof Building2> = {
-                building: Building2,
-                heartPulse: HeartPulse,
-                factory: Factory,
-                landmark: Landmark,
-              };
               const SIcon = sectorIconMap[sector.icon] || Building2;
-              const accents = ["#0B3B2E", "#047857", "#B45309", "#0B3B2E"];
               return (
-                <StaggerItem key={i}>
-                  <div className="bg-white border border-line rounded-2xl p-6 text-center h-full hover:shadow-lg hover:border-leaf/30 transition-all duration-300">
-                    <div
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
-                      style={{ backgroundColor: `${accents[i]}15` }}
-                    >
-                      <SIcon className="h-6 w-6" style={{ color: accents[i] }} aria-hidden="true" />
-                    </div>
-                    <h3 className="text-base font-bold text-ink mb-2">{sector.label}</h3>
-                    <p className="text-xs text-muted font-medium">{sector.detail}</p>
+                <li key={i} className={`flex gap-3 pr-4 ${i % 2 === 1 ? "border-l border-line pl-4" : ""} ${i === 2 ? "lg:border-l lg:border-line lg:pl-4" : ""}`}>
+                  <Pictogram icon={SIcon} />
+                  <div>
+                    <p className="text-body-sm font-semibold text-ink">{sector.label}</p>
+                    <p className="mt-1 text-caption text-muted">{sector.detail}</p>
                   </div>
-                </StaggerItem>
+                </li>
               );
             })}
-          </StaggerContainer>
+          </ul>
         </div>
-      </section>
+      </Section>
 
       {/* ==========================================================
-          ME-2. TESTIMONIALS — 3 anonymized quotes
+          12. TÉMOIGNAGE — citation principale + verbatims (forest)
          ========================================================== */}
-      <section className="py-20 lg:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
-                {t("testimonials.eyebrow")}
-              </p>
-              <h2 className="text-2xl md:text-4xl font-bold text-ink tracking-tight leading-[1.1]">
-                {t("testimonials.title")}
-              </h2>
+      <Section tone="forest">
+        <FadeIn>
+          <figure className="grid gap-10 lg:grid-cols-[auto_1fr] lg:items-start">
+            <div className="relative h-40 w-40 overflow-hidden rounded-2xl border border-ondark-line lg:h-48 lg:w-48">
+              <Image
+                src="/photos/hp-dsi-strategy.jpg"
+                alt={tx(
+                  "Décideur RSSI grand compte arbitrant un dossier ITAD (visage anonymisé)",
+                  "Key-account CISO reviewing an ITAD file (face anonymised)"
+                )}
+                fill
+                loading="lazy"
+                className="object-cover"
+                sizes="192px"
+              />
             </div>
-          </FadeIn>
-          <StaggerContainer className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div className="max-w-[65ch]">
+              <p className="text-eyebrow uppercase text-ondark-muted">{t("bigQuote.eyebrow")}</p>
+              <blockquote className="mt-4 font-display text-display-sm text-ondark">&laquo;&nbsp;{t("bigQuote.quote")}&nbsp;&raquo;</blockquote>
+              <figcaption className="mt-6 text-caption text-ondark-muted">
+                <span className="font-semibold text-ondark">{t("bigQuote.name")}</span> · {t("bigQuote.role")} · {t("bigQuote.company")}
+              </figcaption>
+              <p className="mt-4 text-caption text-ondark-muted">
+                <span className="font-semibold text-ondark">{tx("Contexte :", "Context:")}</span> {t("bigQuote.context")}
+              </p>
+              <div className="mt-6">
+                <TextLink href="/cas-usages#banque-cac40-windows11-nis2" tone="dark">
+                  {t("bigQuote.ctaLabel")}
+                </TextLink>
+              </div>
+              <p className="mt-6 text-caption italic text-ondark-muted">{t("bigQuote.consentNote")}</p>
+            </div>
+          </figure>
+        </FadeIn>
+
+        <div className="mt-16 border-t border-ondark-line pt-10">
+          <p className="text-eyebrow uppercase text-ondark-muted">{t("testimonials.eyebrow")}</p>
+          <h2 className="mt-2 max-w-[24ch] text-display-sm text-ondark">{t("testimonials.title")}</h2>
+          <StaggerContainer className="mt-8 grid gap-6 md:grid-cols-3">
             {testimonials.map((item, i) => (
-              <StaggerItem key={i}>
-                <div className="bg-cream border border-line rounded-2xl p-7 h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
-                  <Quote className="h-8 w-8 text-leaf mb-4" aria-hidden="true" />
-                  <blockquote className="text-sm text-ink-700 leading-relaxed flex-1 mb-5 italic">
-                    &ldquo;{item.quote}&rdquo;
-                  </blockquote>
-                  <div className="border-t border-line pt-4">
-                    <p className="font-bold text-ink text-sm">{item.name}</p>
-                    <p className="text-xs text-muted">{item.role} · {item.company}</p>
-                  </div>
-                </div>
+              <StaggerItem key={i} className="h-full">
+                <figure className="flex h-full flex-col rounded-xl border border-ondark-line bg-forest-700 p-6">
+                  <blockquote className="flex-1 text-body-sm text-ondark">&laquo;&nbsp;{item.quote}&nbsp;&raquo;</blockquote>
+                  <figcaption className="mt-6 border-t border-ondark-line pt-4 text-caption text-ondark-muted">
+                    <span className="font-semibold text-ondark">{item.name}</span> · {item.role} · {item.company}
+                  </figcaption>
+                </figure>
               </StaggerItem>
             ))}
           </StaggerContainer>
-          <p className="mt-8 text-center text-xs text-muted italic max-w-2xl mx-auto">
-            {t("testimonials.disclaimer")}
-          </p>
+          <p className="mt-6 max-w-[65ch] text-caption italic text-ondark-muted">{t("testimonials.disclaimer")}</p>
         </div>
-      </section>
+      </Section>
 
       {/* ==========================================================
-          ME-5. MINI ROI CALCULATOR
+          13. TARIFS #pricing — 3 plans Waki Box + pilotes + ancres
          ========================================================== */}
-      <section className="py-20 lg:py-24 bg-gradient-to-br from-ink to-forest-950 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.12),_transparent_60%)] pointer-events-none" />
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-2xl mx-auto text-center">
-              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
-                {t("roiCalculator.eyebrow")}
-              </p>
-              <h2 className="text-2xl md:text-4xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
-                {t("roiCalculator.title")}
-              </h2>
-
-              <div className="bg-white/[0.06] border border-ondark-line rounded-2xl p-8 backdrop-blur-sm">
-                <label htmlFor="fleet-size" className="block text-sm font-medium text-ondark-muted mb-3 text-left">
-                  {t("roiCalculator.inputLabel")}
-                </label>
-                <input
-                  id="fleet-size"
-                  type="number"
-                  min="1"
-                  value={fleetSize}
-                  onChange={(e) => setFleetSize(e.target.value)}
-                  placeholder={t("roiCalculator.inputPlaceholder")}
-                  className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white text-lg font-semibold placeholder-muted outline-none focus:ring-2 focus:ring-leaf/50 focus:border-leaf transition-all mb-6"
-                />
-
-                {fleetSize && parseInt(fleetSize) > 0 && (
-                  <FadeIn>
-                    <div className="space-y-4 text-left mb-6">
-                      <p className="text-xs uppercase tracking-wider text-muted font-semibold mb-2">{t("roiCalculator.resultTitle")}</p>
-                      <div className="flex items-center justify-between py-3 border-b border-ondark-line">
-                        <span className="text-sm text-ondark-muted">{t("roiCalculator.riskLabel")}</span>
-                        <span className="text-lg font-bold text-ochre">
-                          {(parseInt(fleetSize) * 820).toLocaleString()} €
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between py-3 border-b border-ondark-line">
-                        <span className="text-sm text-ondark-muted">{t("roiCalculator.valueLabel")}</span>
-                        <span className="text-lg font-bold text-leaf">
-                          {(parseInt(fleetSize) * 412).toLocaleString()} €
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between py-3">
-                        <span className="text-sm text-ondark-muted">{t("roiCalculator.carbonLabel")}</span>
-                        <span className="text-lg font-bold text-forest">
-                          {((parseInt(fleetSize) * 150) / 1000).toFixed(1)} tCO₂e
-                        </span>
-                      </div>
-                    </div>
-                    <Link
-                      href="/demo"
-                      className="inline-flex items-center justify-center gap-2 w-full bg-leaf hover:bg-leaf-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-base"
-                    >
-                      {t("roiCalculator.cta")}
-                      <ArrowRight className="h-5 w-5" aria-hidden="true" />
-                    </Link>
-                  </FadeIn>
-                )}
-
-                <p className="text-[11px] text-muted italic mt-4 leading-relaxed">
-                  {t("roiCalculator.disclaimer")}
+      <Section id="pricing" tone="paper">
+        <FadeIn>
+          <SectionHeader eyebrow={t("pricingTeaser.eyebrow")} title={t("pricingTeaser.title")} intro={t("pricingTeaser.subtitle")} />
+        </FadeIn>
+        <StaggerContainer className="grid gap-6 md:grid-cols-3">
+          {plans.map((plan) => (
+            <StaggerItem key={plan.slug} className="h-full">
+              <div className={`flex h-full flex-col rounded-xl border bg-paper p-6 ${plan.popular ? "border-leaf" : "border-line"}`}>
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-heading-lg text-ink">{plan.name}</h3>
+                  {plan.popular && <Tag variant="brand">{t("pricingTeaser.popularLabel")}</Tag>}
+                </div>
+                <p className="mt-4 flex items-baseline gap-1">
+                  <span className="font-display text-display-md tabular-nums text-forest">{plan.price}</span>
+                  <span className="text-body-sm text-muted">€ HT/{tx("mois", "month")}</span>
                 </p>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ==========================================================
-          11. CTA FINAL DOUBLE, audit + démo + bandeau confiance
-         ========================================================== */}
-      <section className="relative py-28 lg:py-32 overflow-hidden">
-        <Image
-          src="/photos/hp-atelier-itad.jpg"
-          alt="Atelier de reconditionnement GreenTechCycle, chaîne d'effacement et de tri certifiée"
-          fill
-          loading="lazy"
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-ink/95 via-leaf/85 to-forest/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.12),_transparent_60%)] pointer-events-none" />
-
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-4xl mx-auto text-center text-white">
-              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-4">
-                {t("finalCTA.eyebrow")}
-              </p>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight leading-[1.05]">
-                {t("finalCTA.title")}
-              </h2>
-              <p className="text-lg md:text-xl text-ondark mb-12 max-w-3xl mx-auto leading-relaxed">
-                {t("finalCTA.subtitle")}
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <Link
-                  href="/demo"
-                  className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-white hover:text-leaf text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 shadow-xl hover:-translate-y-0.5 text-base"
-                >
-                  {t("finalCTA.cta1")}
-                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white text-white hover:text-ink border-2 border-white/40 hover:border-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 backdrop-blur-sm text-base"
-                >
-                  {t("finalCTA.cta2")}
-                  <ChevronRight className="h-5 w-5" aria-hidden="true" />
-                </Link>
-              </div>
-
-              {/* Trust badges row */}
-              <div className="pt-8 border-t border-white/15">
-                <p className="text-[11px] uppercase tracking-[0.18em] text-ondark-muted mb-5 font-semibold">
-                  Garanties contractuelles
+                <p className="mt-1 text-caption text-muted">
+                  {t("pricingTeaser.setupLabel")} {plan.setup} € HT
                 </p>
-                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-                  {trustBadges.map((badge, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-ondark">
-                      <Shield className="h-4 w-4 text-leaf" aria-hidden="true" />
-                      <span className="font-medium">{badge}</span>
-                      {i < trustBadges.length - 1 && (
-                        <span className="hidden sm:inline w-px h-4 bg-white/20 ml-3" />
-                      )}
-                    </div>
-                  ))}
+                <p className="mt-4 flex-1 text-body-sm text-ink-700">{plan.pitch}</p>
+                <div className="mt-6">
+                  <ButtonLink href={`/reserver?offre=${plan.slug}`} variant={plan.popular ? "primary" : "secondary"} fullWidth>
+                    {t("pricingTeaser.bookCta")}
+                  </ButtonLink>
                 </div>
               </div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+
+        <ul className="mt-10 divide-y divide-line border-y border-line">
+          <li className="grid gap-4 py-6 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <p className="text-eyebrow uppercase text-muted">{t("pricingTeaser.piloteAudit.label")}</p>
+              <p className="mt-2 text-heading-md text-ink">{t("pricingTeaser.piloteAudit.headline")}</p>
+              <p className="mt-1 max-w-[65ch] text-body-sm text-ink-700">{t("pricingTeaser.piloteAudit.subline")}</p>
             </div>
+            <div className="flex flex-col items-start gap-3 md:items-end">
+              <p className="text-body font-semibold tabular-nums text-forest">{t("pricingTeaser.piloteAudit.price")}</p>
+              <TextLink href="/reserver?offre=pilote-audit-3j">{t("pricingTeaser.piloteAudit.cta")}</TextLink>
+            </div>
+          </li>
+          <li className="grid gap-4 py-6 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <p className="text-eyebrow uppercase text-muted">{t("pricingTeaser.pilot.label")}</p>
+              <p className="mt-2 text-heading-md text-ink">{t("pricingTeaser.pilot.headline")}</p>
+            </div>
+            <TextLink href="/reserver?offre=waki-box-pilote">{t("pricingTeaser.pilot.cta")}</TextLink>
+          </li>
+          <li className="grid gap-4 py-6 md:grid-cols-2">
+            <div>
+              <p className="text-eyebrow uppercase text-muted">{t("pricingTeaser.platformBrick")}</p>
+              <p className="mt-2 text-heading-md tabular-nums text-forest">{t("pricingTeaser.platformAnchor")}</p>
+              <p className="mt-1 text-body-sm text-ink-700">{t("pricingTeaser.platformDesc")}</p>
+              <TextLink href="/tarifs" className="mt-3">{t("pricingTeaser.platformCta")}</TextLink>
+            </div>
+            <div className="md:border-l md:border-line md:pl-6">
+              <p className="text-eyebrow uppercase text-muted">{t("pricingTeaser.itadBrick")}</p>
+              <p className="mt-2 text-heading-md tabular-nums text-forest">{t("pricingTeaser.itadAnchor")}</p>
+              <p className="mt-1 text-body-sm text-ink-700">{t("pricingTeaser.itadDesc")}</p>
+              <TextLink href="/tarifs" className="mt-3">{t("pricingTeaser.itadCta")}</TextLink>
+            </div>
+          </li>
+        </ul>
+        <div className="mt-8">
+          <TextLink href="/tarifs">{t("pricingTeaser.allPricingLink")}</TextLink>
+        </div>
+      </Section>
+
+      {/* ==========================================================
+          14. CALCULATEUR ROI #fleet-size — carte unique sur cream
+         ========================================================== */}
+      <Section tone="cream">
+        <div className="mx-auto max-w-[720px]">
+          <FadeIn>
+            <SectionHeader eyebrow={t("roiCalculator.eyebrow")} title={t("roiCalculator.title")} />
+            <Card pad="lg">
+              <label htmlFor="fleet-size" className="block text-body-sm font-medium text-ink">
+                {t("roiCalculator.inputLabel")}
+              </label>
+              <input
+                id="fleet-size"
+                type="number"
+                min="1"
+                inputMode="numeric"
+                value={fleetSize}
+                onChange={(e) => setFleetSize(e.target.value)}
+                placeholder={t("roiCalculator.inputPlaceholder")}
+                className="mt-2 h-12 w-full rounded-lg border border-line bg-paper px-3 text-body-lg tabular-nums text-ink placeholder:text-muted focus:border-leaf focus:outline-none focus:ring-2 focus:ring-leaf/20"
+              />
+
+              {fleet > 0 && (
+                <div className="mt-8" aria-live="polite">
+                  <p className="text-eyebrow uppercase text-muted">{t("roiCalculator.resultTitle")}</p>
+                  <dl className="mt-3 divide-y divide-line border-y border-line">
+                    <div className="flex items-baseline justify-between gap-4 py-3">
+                      <dt className="text-body-sm text-ink-700">{t("roiCalculator.riskLabel")}</dt>
+                      <dd className="text-heading-md tabular-nums text-ochre">{(fleet * 820).toLocaleString(numberLocale)} €</dd>
+                    </div>
+                    <div className="flex items-baseline justify-between gap-4 py-3">
+                      <dt className="text-body-sm text-ink-700">{t("roiCalculator.valueLabel")}</dt>
+                      <dd className="text-heading-md tabular-nums text-leaf">{(fleet * 412).toLocaleString(numberLocale)} €</dd>
+                    </div>
+                    <div className="flex items-baseline justify-between gap-4 py-3">
+                      <dt className="text-body-sm text-ink-700">{t("roiCalculator.carbonLabel")}</dt>
+                      <dd className="text-heading-md tabular-nums text-forest">
+                        {((fleet * 150) / 1000).toLocaleString(numberLocale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })} tCO₂e
+                      </dd>
+                    </div>
+                  </dl>
+                  <div className="mt-6">
+                    <ButtonLink href="/demo" size="lg" fullWidth>
+                      {t("roiCalculator.cta")}
+                    </ButtonLink>
+                  </div>
+                </div>
+              )}
+              <p className="mt-4 text-caption italic text-muted">{t("roiCalculator.disclaimer")}</p>
+            </Card>
           </FadeIn>
         </div>
-      </section>
-    </main>
+      </Section>
+
+      {/* ==========================================================
+          15. FAQ — accordéon
+         ========================================================== */}
+      <Section tone="paper">
+        <div className="mx-auto max-w-[720px]">
+          <FadeIn>
+            <SectionHeader eyebrow={t("faq.eyebrow")} title={t("faq.title")} />
+          </FadeIn>
+          <Accordion items={faqItems.map((f) => ({ question: f.q, answer: f.a }))} />
+          <div className="mt-8">
+            <TextLink href="/faq">{tx("Voir les 24 questions de la FAQ technique", "See the 24 questions of the technical FAQ")}</TextLink>
+          </div>
+        </div>
+      </Section>
+
+      {/* ==========================================================
+          16. CTA FINAL — un seul bloc
+         ========================================================== */}
+      <CtaSection
+        eyebrow={t("finalCTA.eyebrow")}
+        title={t("finalCTA.title")}
+        subtitle={t("finalCTA.subtitle")}
+        primaryLabel={t("finalCTA.cta1")}
+        primaryHref="/demo"
+        secondaryLabel={t("finalCTA.cta2")}
+        secondaryHref="/contact"
+        reassurance={
+          <>
+            <span className="sr-only">{tx("Garanties contractuelles : ", "Contractual guarantees: ")}</span>
+            {trustBadges.join(" · ")}
+          </>
+        }
+      />
+    </div>
   );
 }
