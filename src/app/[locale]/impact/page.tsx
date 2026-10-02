@@ -33,6 +33,9 @@ import {
 } from "lucide-react";
 import RelatedArticles from "@/components/RelatedArticles";
 import CtaSection from "@/components/CtaSection";
+import { ButtonLink } from "@/components/ui/Button";
+import Tag from "@/components/ui/Tag";
+import { Stat, StatRow } from "@/components/ui/Stat";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SchemaOrg from "@/components/SchemaOrg";
 import CarbonCalculator from "@/components/CarbonCalculator";
@@ -173,113 +176,59 @@ export default function ImpactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-light">
+    <div className="bg-cream">
       <SchemaOrg data={pageSchema} />
       <SchemaOrg data={breadcrumbSchema} />
 
       {/* =====================================================================
           SECTION 1 (HERO ÉDITORIAL) split sombre + photo droite
           ===================================================================== */}
-      <section
-        className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-forest-900"
-        aria-labelledby="impact-hero"
-      >
-
-        {/* Numéro fantôme XXL */}
-
-        <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-16 pb-12 lg:py-20">
-          <div className="text-ondark mb-6">
-            <Breadcrumbs
-              dark
-              items={[
-                { label: t("breadcrumb.home"), href: "/" },
-                { label: t("breadcrumb.current"), href: "/impact" },
-              ]}
-            />
-          </div>
-
-          <FadeIn>
-            <div className="flex items-center gap-3 mb-8">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-muted uppercase text-eyebrow">
-                <span
-                  className="w-1.5 h-1.5 rounded-full bg-leaf"
-                  style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
-                />
-                {t("hero.eyebrow")}
-              </span>
-            </div>
-
-            <h1
-              id="impact-hero"
-              className="text-display-lg text-white mb-6"
-            >
-              {t("hero.title")}
-            </h1>
-
-            <p className="text-ondark-muted text-base lg:text-body-lg max-w-xl mb-8">
-              {t("hero.subtitle")}
-            </p>
-
-            <div className="flex flex-wrap gap-2 mb-8">
-              {heroChips.map((chip) => (
-                <span
-                  key={chip}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/15 text-caption font-medium text-ondark-muted"
-                >
-                  <CheckCircle2 className="w-3 h-3 text-leaf" />
-                  {chip}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 mb-10">
-              <Link
-                href="#calculator"
-                className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-colors duration-150 hover:shadow-card hover: text-sm"
-              >
-                {t("hero.ctaPrimary")}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/reserver?offre=methodologie-csrd"
-                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-colors duration-150 text-sm"
-              >
-                <Download className="w-4 h-4" />
-                {t("hero.ctaSecondary")}
-              </Link>
-            </div>
-
-            <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-2xl">
-              {heroKpis.map((kpi, i) => (
-                <StaggerItem key={i}>
-                  <div className="h-full bg-white/[0.04] border border-ondark-line rounded-xl p-4">
-                    <div className="text-xl md:text-2xl font-semibold text-leaf mb-1 tracking-tight tabular-nums">
-                      {kpi.value}
-                    </div>
-                    <p className="text-caption text-ondark-muted leading-snug mb-2">
-                      {kpi.label}
-                    </p>
-                    <p className="text-[9px] text-muted italic leading-snug">
-                      {kpi.source}
-                    </p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-          </FadeIn>
-        </div>
-
-        <div className="relative w-full lg:w-[45%] min-h-[42vh] lg:min-h-0 overflow-hidden flex-shrink-0">
-          <Image
-            src="/photos/impact-sustainability.jpg"
-            alt="Forêt et infrastructure énergétique, symbole de la décarbonation du numérique d'entreprise"
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 45vw"
+      <section className="bg-paper py-16 lg:py-24" aria-labelledby="impact-hero">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { label: t("breadcrumb.home"), href: "/" },
+              { label: t("breadcrumb.current"), href: "/impact" },
+            ]}
           />
-          <div className="absolute inset-0 bg-ink/85" />
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-ink/55" />
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <FadeIn className="min-w-0 lg:col-span-7">
+              <p className="text-eyebrow uppercase text-muted">{t("hero.eyebrow")}</p>
+              <h1 id="impact-hero" className="mt-3 max-w-[20ch] text-display-lg text-ink">{t("hero.title")}</h1>
+              <p className="mt-6 max-w-[65ch] text-body-lg text-ink-700">{t("hero.subtitle")}</p>
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {heroChips.map((chip) => (
+                  <li key={chip}><Tag variant="neutral">{chip}</Tag></li>
+                ))}
+              </ul>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="#calculator" size="lg">{t("hero.ctaPrimary")}</ButtonLink>
+                <ButtonLink href="/reserver?offre=methodologie-csrd" variant="secondary" size="lg">
+                  <Download className="h-4 w-4" aria-hidden="true" />
+                  {t("hero.ctaSecondary")}
+                </ButtonLink>
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.1} className="lg:col-span-5">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
+                <Image
+                  src="/photos/impact-sustainability.jpg"
+                  alt="Forêt et infrastructure énergétique, symbole de la décarbonation du numérique d'entreprise"
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
+              </div>
+            </FadeIn>
+          </div>
+          <div className="mt-12 border-t border-line pt-8">
+            <StatRow>
+              {heroKpis.map((kpi, i) => (
+                <Stat key={i} value={kpi.value} label={kpi.label} source={kpi.source} />
+              ))}
+            </StatRow>
+          </div>
         </div>
       </section>
 
@@ -493,36 +442,21 @@ export default function ImpactPage() {
       {/* =====================================================================
           MID-PAGE CTA (after calculator)
           ===================================================================== */}
-      <section className="px-6 border-y border-primary/10 bg-primary/10 py-12 lg:py-16">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn>
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] items-center gap-8">
-              <div>
-                <h3 className="text-heading-lg text-dark mb-2">
-                  {t("midCta.title")}
-                </h3>
-                <p className="text-ink-700 leading-relaxed">
-                  {t("midCta.subtitle")}
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/demo"
-                  className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors whitespace-nowrap"
-                >
-                  {t("midCta.primary")}
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="/reserver?offre=esrs-pack"
-                  className="inline-flex items-center justify-center gap-2 border-2 border-primary/30 text-primary hover:bg-primary hover:text-white font-semibold px-6 py-3 rounded-xl transition-colors whitespace-nowrap"
-                >
-                  <Download className="w-4 h-4" />
-                  {t("midCta.secondary")}
-                </Link>
-              </div>
+      <section className="border-y border-line bg-paper py-12 lg:py-16" aria-label={t("midCta.title")}>
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-6 lg:grid-cols-[1fr_auto]">
+            <div>
+              <h3 className="text-heading-lg text-ink">{t("midCta.title")}</h3>
+              <p className="mt-2 max-w-[65ch] text-body text-ink-700">{t("midCta.subtitle")}</p>
             </div>
-          </FadeIn>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/demo" variant="secondary">{t("midCta.primary")}</ButtonLink>
+              <ButtonLink href="/reserver?offre=esrs-pack" variant="ghost">
+                <Download className="h-4 w-4" aria-hidden="true" />
+                {t("midCta.secondary")}
+              </ButtonLink>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -918,6 +852,6 @@ export default function ImpactPage() {
         variant="audit"
         tone="gradient"
       />
-    </main>
+    </div>
   );
 }
