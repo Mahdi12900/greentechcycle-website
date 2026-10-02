@@ -62,8 +62,7 @@ function SectorCard({ sector, locale, labels, size }: { sector: SectorDef; local
         {/* TF1 badge */}
         {isMedias && (
           <div className="absolute top-4 left-4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-forest text-white text-xs font-bold shadow-lg">
-              <Star className="w-3.5 h-3.5" />
+            <span className="inline-flex h-7 items-center rounded-full bg-leaf-100 px-3 text-caption font-semibold text-forest">
               {labels.tf1Badge}
             </span>
           </div>

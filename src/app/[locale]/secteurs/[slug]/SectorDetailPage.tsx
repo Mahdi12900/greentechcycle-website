@@ -21,6 +21,7 @@ import {
 import type { SectorSlug } from "@/data/sectors";
 import { SECTORS, getSectorDef } from "@/data/sectors";
 import { getSectorContent, getSectorName } from "@/data/sectors-i18n";
+import ClientReference from "@/components/ClientReference";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Sticky nav anchor IDs and labels
@@ -203,33 +204,15 @@ export default function SectorDetailPage({
           TF1 REFERENCE (medias-audiovisuel only)
       ════════════════════════════════════════════ */}
       {content.tf1Reference && (
-        <section className="py-12 bg-gradient-to-r from-forest via-forest to-forest">
-          <div className="container mx-auto px-4">
-            <FadeIn>
-              <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
-                <div className="flex-shrink-0">
-                  <div className="w-24 h-24 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                    <Star className="w-12 h-12 text-white" />
-                  </div>
-                </div>
-                <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-sm font-semibold text-white mb-3">
-                    <Sparkles className="w-4 h-4" />
-                    {isFr ? "Référence client" : "Client reference"} : TF1
-                  </div>
-                  <p className="text-white text-lg leading-relaxed">
-                    {content.tf1Reference}
-                  </p>
-                  <p className="text-ondark text-sm mt-3 font-medium">
-                    {isFr
-                      ? "Contrat annuel récurrent, parc IT et broadcast"
-                      : "Recurring annual contract, IT and broadcast fleet"}
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </section>
+        <ClientReference
+          eyebrow={isFr ? "Référence client · TF1" : "Client reference · TF1"}
+          quote={content.tf1Reference}
+          meta={
+            isFr
+              ? "Contrat annuel récurrent, parc IT et broadcast"
+              : "Recurring annual contract, IT and broadcast fleet"
+          }
+        />
       )}
 
       {/* ════════════════════════════════════════════
