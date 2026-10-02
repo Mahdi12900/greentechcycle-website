@@ -91,14 +91,16 @@ export default function SectorDetailPage({
           HERO
       ════════════════════════════════════════════ */}
       <section className="relative bg-[#0F1115] py-24 lg:py-32 overflow-hidden">
-        <Image
-          src={sectorDef.image}
-          alt={content.hero.title}
-          fill
-          priority
-          className="object-cover opacity-15"
-          sizes="100vw"
-        />
+        {sectorDef.image && (
+          <Image
+            src={sectorDef.image}
+            alt={content.hero.title}
+            fill
+            priority
+            className="object-cover opacity-15"
+            sizes="100vw"
+          />
+        )}
         {/* Ghost number */}
         <div className="absolute top-8 right-8 lg:top-12 lg:right-16 select-none pointer-events-none">
           <span className="text-[8rem] lg:text-[12rem] font-black text-white/[0.04] leading-none">
@@ -178,15 +180,19 @@ export default function SectorDetailPage({
                 </div>
               </FadeIn>
               <FadeIn direction="right">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
-                  <Image
-                    src={sectorDef.image}
-                    alt={content.hero.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 400px"
-                  />
-                </div>
+                {sectorDef.image ? (
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
+                    <Image
+                      src={sectorDef.image}
+                      alt={content.hero.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 400px"
+                    />
+                  </div>
+                ) : (
+                  <div className="aspect-[4/3] rounded-2xl bg-forest" aria-hidden="true" />
+                )}
               </FadeIn>
             </div>
           </div>

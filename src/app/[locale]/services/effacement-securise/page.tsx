@@ -38,7 +38,7 @@ export default function EffacementSecurisePage() {
       "Operator applying NIST 800-88 erasure on a hard drive"
     ),
     imageSecondary:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1600&q=80",
+      "/photos/service-effacement.jpg",
     imageSecondaryAlt: tx(
       "Salle d'effacement sécurisée avec disques en attente de traitement",
       "Secure erasure room with drives awaiting processing"

@@ -38,7 +38,7 @@ export default function ReconditionnementPage() {
       "GreenTechCycle engineers inspecting laptops before refurbishment"
     ),
     imageSecondary:
-      "https://images.unsplash.com/photo-1593104547489-5cfb3839a3b5?auto=format&fit=crop&w=1600&q=80",
+      "/photos/service-reconditionnement.jpg",
     imageSecondaryAlt: tx(
       "Atelier de reconditionnement d'ordinateurs portables",
       "Laptop refurbishment workshop"

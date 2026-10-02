@@ -159,7 +159,7 @@ export default function ServicesPage() {
       badge: tx("100 % traçable", "100% traceable"),
       icon: Recycle,
       image:
-        "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+        "/photos/tech-datacenter.jpg",
       imageAlt: tx(
         "Carte électronique en gros plan prête au démantèlement DEEE",
         "Close-up of an electronic board ready for WEEE dismantling"
@@ -190,7 +190,7 @@ export default function ServicesPage() {
       badge: tx("Niveau Défense", "Defence-grade"),
       icon: Shield,
       image:
-        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
+        "/photos/hp-atelier-itad.jpg",
       imageAlt: tx(
         "Console cryptographique de supervision cybersécurité",
         "Cryptographic supervision console for cybersecurity"

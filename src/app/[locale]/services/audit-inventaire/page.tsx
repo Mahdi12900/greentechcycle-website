@@ -38,7 +38,7 @@ export default function AuditInventairePage() {
       "GreenTechCycle technician qualifying a server during an IT audit"
     ),
     imageSecondary:
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=80",
+      "/photos/service-audit.jpg",
     imageSecondaryAlt: tx(
       "Inventaire physique d'un parc informatique en cours",
       "Physical inventory of an IT estate in progress"

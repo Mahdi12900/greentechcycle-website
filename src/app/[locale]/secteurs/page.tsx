@@ -39,13 +39,17 @@ function SectorCard({ sector, locale, labels, size }: { sector: SectorDef; local
       className="group relative block rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
     >
       <div className={`relative ${heights[size]} w-full`}>
-        <Image
-          src={sector.image}
-          alt={name}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes={size === "lg" ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
-        />
+        {sector.image ? (
+          <Image
+            src={sector.image}
+            alt={name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes={size === "lg" ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
+          />
+        ) : (
+          <div className="absolute inset-0 bg-forest" aria-hidden="true" />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
         {/* Ghost number */}

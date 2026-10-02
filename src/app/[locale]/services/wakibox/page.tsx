@@ -40,7 +40,7 @@ export default function WakiBoxPage() {
       "WakiBox connected collection kiosk installed in office premises"
     ),
     imageSecondary:
-      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1600&q=80",
+      "/photos/service-wakibox.jpg",
     imageSecondaryAlt: tx(
       "Équipe en entreprise utilisant un dispositif de collecte connecté",
       "Team using a connected collection device in a workplace"

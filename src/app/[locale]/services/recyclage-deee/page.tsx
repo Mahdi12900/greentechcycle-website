@@ -33,13 +33,13 @@ export default function RecyclageDEEEPage() {
     icon: Recycle,
     badge: tx("100 % traçable", "100% traceable"),
     image:
-      "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=1600&q=80",
+      "/images/recycling.jpg",
     imageAlt: tx(
       "Démantèlement et tri de cartes électroniques en filière DEEE certifiée",
       "Dismantling and sorting of electronic boards in a certified WEEE channel"
     ),
     imageSecondary:
-      "https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&w=1600&q=80",
+      "/photos/hands-electronics.jpg",
     imageSecondaryAlt: tx(
       "Atelier de recyclage de matériel informatique",
       "IT material recycling workshop"
