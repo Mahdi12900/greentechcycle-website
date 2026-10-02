@@ -236,12 +236,12 @@
       "label": "Ils nous confient leur décommissionnement IT",
       "note": "Identité des donneurs d'ordre anonymisée à leur demande, vérifiable sous accord NDA.",
       "clients": [
-        "Banque européenne tier-1 · CAC40",
-        "TF1 · Audiovisuel",
-        "CHU régional · 9 000 lits",
-        "ETI industrielle · 4 500 ETP",
-        "Ministère français",
-        "Enseigne retail · 220 magasins"
+        { "name": "Banque européenne tier-1", "metric": "CAC40", "icon": "Landmark" },
+        { "name": "TF1", "metric": "Audiovisuel", "icon": "Tv" },
+        { "name": "CHU régional", "metric": "9 000 lits", "icon": "HeartPulse" },
+        { "name": "ETI industrielle", "metric": "4 500 ETP", "icon": "Factory" },
+        { "name": "Ministère français", "metric": "", "icon": "Building2" },
+        { "name": "Enseigne retail", "metric": "220 magasins", "icon": "Store" }
       ]
     },
     "problem": {

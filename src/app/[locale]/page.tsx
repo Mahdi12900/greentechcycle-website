@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
+import TrustBand from "@/components/TrustBand";
 import {
   FadeIn,
   StaggerContainer,
@@ -51,7 +52,6 @@ import { useState } from "react";
 export default function HomePage() {
   const t = useTranslations("Home");
 
-  const trustClients = t.raw("trustBand.clients") as string[];
   const problemItems = t.raw("problem.items") as Array<{
     tag: string;
     title: string;
@@ -316,34 +316,7 @@ export default function HomePage() {
       {/* ==========================================================
           3. TRUST BAND, donneurs d'ordre anonymisés (sectoriels)
          ========================================================== */}
-      <section className="py-16 bg-white border-y border-line">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="text-center mb-8">
-              <p className="text-xs font-semibold tracking-[0.18em] text-muted uppercase">
-                {t("trustBand.label")}
-              </p>
-            </div>
-          </FadeIn>
-          <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-4">
-            {trustClients.map((client, i) => {
-              const isTF1 = client.startsWith("TF1");
-              return (
-                <StaggerItem key={i}>
-                  <div className={`flex items-center justify-center text-center px-3 py-4 rounded-lg border h-full ${isTF1 ? "border-leaf/30 bg-leaf-50" : "border-line bg-cream"}`}>
-                    <p className={`leading-tight font-semibold ${isTF1 ? "text-[15px] text-ink" : "text-[13px] text-ink-700"}`}>
-                      {client}
-                    </p>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-          <p className="mt-6 text-center text-xs text-muted italic max-w-2xl mx-auto">
-            {t("trustBand.note")}
-          </p>
-        </div>
-      </section>
+      <TrustBand />
 
       {/* ==========================================================
           4. PROBLÈME : Coût caché, 3 risques chiffrés

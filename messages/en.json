@@ -236,12 +236,12 @@
       "label": "They trust us with their IT decommissioning",
       "note": "Customer identities anonymised at their request, verifiable under NDA.",
       "clients": [
-        "Tier-1 European bank · CAC40",
-        "TF1 · Broadcast",
-        "Regional teaching hospital · 9,000 beds",
-        "Industrial mid-cap · 4,500 FTE",
-        "French government ministry",
-        "Retail chain · 220 stores"
+        { "name": "Tier-1 European bank", "metric": "CAC40", "icon": "Landmark" },
+        { "name": "TF1", "metric": "Broadcast", "icon": "Tv" },
+        { "name": "Regional teaching hospital", "metric": "9,000 beds", "icon": "HeartPulse" },
+        { "name": "Industrial mid-cap", "metric": "4,500 FTE", "icon": "Factory" },
+        { "name": "French government ministry", "metric": "", "icon": "Building2" },
+        { "name": "Retail chain", "metric": "220 stores", "icon": "Store" }
       ]
     },
     "problem": {
