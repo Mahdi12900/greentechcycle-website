@@ -13,13 +13,16 @@ Sources : `reports/audit-greentechcycle.md` (audit live, captures, axe-core) + l
 
 > **Un site B2B de conformité, calme et dense en preuves : beaucoup de blanc cassé chaud, un seul vert d'action, des titres en serif éditorial, des hairlines plutôt que des ombres, zéro dégradé décoratif.**
 
-Références (ce qu'on leur emprunte, rien d'autre) :
+Références (vérifiées le 2026-10-02, HTTP 200, captures dans `reports/screenshots/references/` du projet) — ce qu'on leur emprunte, rien d'autre :
 
 | Référence | Ce qu'on reprend | Ce qu'on ne reprend pas |
 |---|---|---|
-| **Linear** | Discipline typographique, une seule couleur d'accent, bordures 1 px, densité maîtrisée, hover sobres | Le mode sombre intégral, le côté « dev tool » |
-| **Watershed** | Palette vert profond + crème, serif éditorial pour les titres, data storytelling propre (chiffres clés, tableaux) | Les illustrations 3D |
-| **Vanta** | Grilles de cartes régulières, bandeau de confiance structuré, hiérarchie accroche → preuve → CTA | Le bleu/violet |
+| **Watershed — /customers** (principale) https://watershed.com/customers | Pairing serif display + sans texte (Crimson Text + Messina Sans → Fraunces + Inter), filets verticaux fins, bandeau de logos en cellules à filets, ton « preuve avant adjectif » | Le bouton bleu, la vidéo plein cadre, les logos réels |
+| **Linear — /customers** (principale) https://linear.app/customers | Grille régulière 3 colonnes à filets, onglets de filtre en texte simple (actif = plus foncé), lien « → » discret, zéro ombre/dégradé | Le mode sombre, Inter en titres, visuels plein cadre dans chaque carte |
+| Watershed — accueil https://watershed.com/ | Hero typographique (eyebrow à pastille, H1 18–24 caractères, un CTA), nav sobre | Palette blanc + bleu + aplats colorés, bannière promo |
+| Vanta — /customers https://www.vanta.com/customers | Mur de confiance chiffré, pairing serif (Reckless) + sans (Söhne) | Le violet, logos flottants à ombre, boutons pilule |
+| Greenly — FR https://greenly.earth/fr-fr | Bandeau clients en cellules à filets sans boîtes, bouton vert sobre, vocabulaire CSRD français | Inter en titres, teinte verte diffuse, hero en biais |
+| Linear — accueil https://linear.app/ | Hero minimal, transitions discrètes, 6 entrées de nav max | Fond noir |
 
 Ce que le site n'est plus : un template SaaS Tailwind (Inter par défaut, dégradés vert→bleu, blobs flous, cartes à ombres, rose/magenta, 3 barres sticky empilées).
 
