@@ -184,34 +184,8 @@ export default function ImpactPage() {
         className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-forest-900"
         aria-labelledby="impact-hero"
       >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 12% 10%, rgba(16,185,129,0.18) 0%, transparent 60%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 88% 90%, rgba(34,197,94,0.10) 0%, transparent 55%)",
-          }}
-        />
 
         {/* Numéro fantôme XXL */}
-        <div
-          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-          style={{
-            fontSize: "clamp(8rem, 22vw, 18rem)",
-            color: "rgba(255,255,255,0.04)",
-            right: "0.5rem",
-            bottom: "-0.1em",
-          }}
-          aria-hidden="true"
-        >
-          78
-        </div>
 
         <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-16 pb-12 lg:py-20">
           <div className="text-ondark mb-6">
@@ -226,7 +200,7 @@ export default function ImpactPage() {
 
           <FadeIn>
             <div className="flex items-center gap-3 mb-8">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-muted uppercase">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-muted uppercase text-eyebrow">
                 <span
                   className="w-1.5 h-1.5 rounded-full bg-leaf"
                   style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
@@ -237,13 +211,12 @@ export default function ImpactPage() {
 
             <h1
               id="impact-hero"
-              className="text-white font-black tracking-tight mb-6"
-              style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
+              className="text-display-lg text-white mb-6"
             >
               {t("hero.title")}
             </h1>
 
-            <p className="text-ondark-muted text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-8">
+            <p className="text-ondark-muted text-base lg:text-body-lg max-w-xl mb-8">
               {t("hero.subtitle")}
             </p>
 
@@ -251,7 +224,7 @@ export default function ImpactPage() {
               {heroChips.map((chip) => (
                 <span
                   key={chip}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/15 text-[11px] font-medium text-ondark-muted"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/15 text-caption font-medium text-ondark-muted"
                 >
                   <CheckCircle2 className="w-3 h-3 text-leaf" />
                   {chip}
@@ -262,14 +235,14 @@ export default function ImpactPage() {
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <Link
                 href="#calculator"
-                className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-colors duration-150 hover:shadow-card hover: text-sm"
               >
                 {t("hero.ctaPrimary")}
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/reserver?offre=methodologie-csrd"
-                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-colors duration-150 text-sm"
               >
                 <Download className="w-4 h-4" />
                 {t("hero.ctaSecondary")}
@@ -279,11 +252,11 @@ export default function ImpactPage() {
             <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-2xl">
               {heroKpis.map((kpi, i) => (
                 <StaggerItem key={i}>
-                  <div className="h-full bg-white/[0.04] backdrop-blur border border-ondark-line rounded-xl p-4">
-                    <div className="text-xl md:text-2xl font-black text-leaf mb-1 tracking-tight tabular-nums">
+                  <div className="h-full bg-white/[0.04] border border-ondark-line rounded-xl p-4">
+                    <div className="text-xl md:text-2xl font-semibold text-leaf mb-1 tracking-tight tabular-nums">
                       {kpi.value}
                     </div>
-                    <p className="text-[11px] text-ondark-muted leading-snug mb-2">
+                    <p className="text-caption text-ondark-muted leading-snug mb-2">
                       {kpi.label}
                     </p>
                     <p className="text-[9px] text-muted italic leading-snug">
@@ -305,21 +278,21 @@ export default function ImpactPage() {
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 45vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/25 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-ink/55 to-transparent" />
+          <div className="absolute inset-0 bg-ink/85" />
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-ink/55" />
         </div>
       </section>
 
       {/* =====================================================================
           SECTION 2, WEIGHT OF DIGITAL
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-white">
+      <section className="px-6 bg-white py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-primary text-xs font-semibold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-muted uppercase text-eyebrow">
               {t("weight.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-dark max-w-4xl">
               {t("weight.title")}
             </h2>
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
@@ -330,9 +303,9 @@ export default function ImpactPage() {
           <StaggerContainer className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             {weightStats.map((stat, i) => (
               <StaggerItem key={i}>
-                <div className="h-full bg-gradient-to-br from-light to-white rounded-2xl p-7 border border-line shadow-sm hover:shadow-lg transition-shadow">
+                <div className="h-full rounded-2xl p-7 border border-line hover:shadow-card transition-shadow bg-light">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="text-4xl md:text-5xl font-bold text-primary leading-none">
+                    <div className="text-4xl md:text-5xl font-semibold text-primary leading-none">
                       {stat.value}
                     </div>
                     <div className="w-10 h-10 rounded-xl bg-leaf-100 flex items-center justify-center text-primary">
@@ -341,13 +314,13 @@ export default function ImpactPage() {
                       {i === 2 && <LineChart className="w-5 h-5" />}
                     </div>
                   </div>
-                  <h3 className="text-base font-semibold text-dark mb-2 leading-snug">
+                  <h3 className="text-heading-md text-dark mb-2">
                     {stat.title}
                   </h3>
                   <p className="text-sm text-ink-700 leading-relaxed mb-4">
                     {stat.desc}
                   </p>
-                  <p className="text-[11px] text-ink-700 italic border-t border-line pt-3">
+                  <p className="text-caption text-ink-700 italic border-t border-line pt-3">
                     Source : {stat.source}
                   </p>
                 </div>
@@ -357,7 +330,7 @@ export default function ImpactPage() {
 
           <FadeIn>
             <div className="mt-10 bg-secondary/5 border-l-4 border-secondary rounded-r-xl p-6 md:p-8">
-              <h3 className="text-base font-semibold text-dark flex items-center gap-2 mb-2">
+              <h3 className="text-heading-md text-dark flex items-center gap-2 mb-2">
                 <Sparkles className="w-4 h-4 text-secondary" />
                 {t("weight.analogy.title")}
               </h3>
@@ -372,13 +345,13 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 3, METHODOLOGY
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-gradient-to-b from-light to-white">
+      <section className="px-6 bg-light py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary uppercase text-eyebrow">
               {t("methodology.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-dark max-w-4xl">
               {t("methodology.title")}
             </h2>
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
@@ -389,7 +362,7 @@ export default function ImpactPage() {
           {/* Scopes */}
           <div className="mt-14">
             <FadeIn>
-              <h3 className="text-xl md:text-2xl font-bold text-dark flex items-center gap-2 mb-3">
+              <h3 className="text-heading-lg text-dark flex items-center gap-2 mb-3">
                 <Layers className="w-5 h-5 text-primary" />
                 {t("methodology.scopeTitle")}
               </h3>
@@ -400,11 +373,11 @@ export default function ImpactPage() {
             <StaggerContainer className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
               {scopes.map((scope, i) => (
                 <StaggerItem key={i}>
-                  <div className="h-full bg-white rounded-2xl p-6 border border-line shadow-sm">
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-primary text-white text-xs font-bold mb-4">
+                  <div className="h-full bg-white rounded-2xl p-6 border border-line">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-primary text-white text-xs font-semibold mb-4">
                       {scope.code}
                     </div>
-                    <h4 className="text-lg font-bold text-dark mb-2">
+                    <h4 className="text-lg font-semibold text-dark mb-2">
                       {scope.title}
                     </h4>
                     <p className="text-sm text-ink-700 leading-relaxed">
@@ -419,7 +392,7 @@ export default function ImpactPage() {
           {/* Frameworks */}
           <div className="mt-16">
             <FadeIn>
-              <h3 className="text-xl md:text-2xl font-bold text-dark flex items-center gap-2 mb-6">
+              <h3 className="text-heading-lg text-dark flex items-center gap-2 mb-6">
                 <BookOpen className="w-5 h-5 text-secondary" />
                 {t("methodology.frameworksTitle")}
               </h3>
@@ -448,9 +421,8 @@ export default function ImpactPage() {
           {/* Boundary */}
           <FadeIn>
             <div className="mt-14 bg-dark text-white rounded-2xl p-7 md:p-10 relative overflow-hidden">
-              <div className="absolute -top-12 -right-12 w-72 h-72 bg-primary/20 rounded-full blur-3xl" />
               <div className="relative z-10">
-                <h3 className="text-xl md:text-2xl font-bold flex items-center gap-2 mb-3">
+                <h3 className="text-heading-lg flex items-center gap-2 mb-3">
                   <Globe className="w-5 h-5 text-primary-300" />
                   {t("methodology.boundaryTitle")}
                 </h3>
@@ -464,7 +436,7 @@ export default function ImpactPage() {
           {/* Indicators */}
           <div className="mt-16">
             <FadeIn>
-              <h3 className="text-xl md:text-2xl font-bold text-dark flex items-center gap-2 mb-6">
+              <h3 className="text-heading-lg text-dark flex items-center gap-2 mb-6">
                 <Gauge className="w-5 h-5 text-primary" />
                 {t("methodology.indicatorsTitle")}
               </h3>
@@ -473,7 +445,7 @@ export default function ImpactPage() {
               {indicators.map((ind, i) => (
                 <StaggerItem key={i}>
                   <div className="h-full bg-white rounded-xl p-5 border border-line text-center">
-                    <div className="text-xs font-bold text-primary uppercase tracking-wider mb-1">
+                    <div className="text-muted uppercase mb-1 text-eyebrow">
                       {ind.unit}
                     </div>
                     <h4 className="text-sm font-semibold text-dark mb-2">
@@ -495,14 +467,14 @@ export default function ImpactPage() {
           ===================================================================== */}
       <section
         id="calculator"
-        className="py-20 md:py-24 px-6 bg-white scroll-mt-24"
+        className="px-6 bg-white scroll-mt-24 py-16 lg:py-24"
       >
         <div className="max-w-6xl mx-auto">
           <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-primary text-xs font-semibold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-muted uppercase text-eyebrow">
               {t("calculator.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-dark max-w-4xl">
               {t("calculator.title")}
             </h2>
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
@@ -521,12 +493,12 @@ export default function ImpactPage() {
       {/* =====================================================================
           MID-PAGE CTA (after calculator)
           ===================================================================== */}
-      <section className="py-12 md:py-16 px-6 bg-gradient-to-r from-primary/10 via-secondary/5 to-accent/10 border-y border-primary/10">
+      <section className="px-6 border-y border-primary/10 bg-primary/10 py-12 lg:py-16">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] items-center gap-8">
               <div>
-                <h3 className="text-2xl md:text-3xl font-bold text-dark mb-2 leading-tight">
+                <h3 className="text-heading-lg text-dark mb-2">
                   {t("midCta.title")}
                 </h3>
                 <p className="text-ink-700 leading-relaxed">
@@ -557,13 +529,13 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 5, COMPARISON NEW vs REFURBISHED
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-light">
+      <section className="px-6 bg-light py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ochre/10 text-ochre text-xs font-semibold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ochre/10 text-ochre uppercase text-eyebrow">
               {t("comparison.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-dark max-w-4xl">
               {t("comparison.title")}
             </h2>
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
@@ -572,7 +544,7 @@ export default function ImpactPage() {
           </FadeIn>
 
           <FadeIn>
-            <div className="mt-10 overflow-x-auto bg-white rounded-2xl border border-line shadow-sm">
+            <div className="mt-10 overflow-x-auto bg-white rounded-2xl border border-line">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-dark text-white">
@@ -590,9 +562,7 @@ export default function ImpactPage() {
                   {comparisonRows.map((row, i) => (
                     <tr
                       key={i}
-                      className={`${
-                        i % 2 === 0 ? "bg-white" : "bg-light"
-                      } border-b border-line last:border-0`}
+                      className={`${ i % 2 === 0 ? "bg-white" : "bg-light" } border-b border-line last:border-0`}
                     >
                       <td className="px-4 md:px-6 py-4 font-semibold text-dark whitespace-nowrap">
                         {row.category}
@@ -604,7 +574,7 @@ export default function ImpactPage() {
                         {row.refurbCo2}
                       </td>
                       <td className="px-4 md:px-6 py-4">
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-leaf-100 text-primary text-xs font-bold">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-leaf-100 text-primary text-xs font-semibold">
                           <ArrowDownRight className="w-3 h-3" />
                           {row.savings}
                         </span>
@@ -625,7 +595,7 @@ export default function ImpactPage() {
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
             <FadeIn>
               <div className="h-full bg-white rounded-2xl p-6 border border-line">
-                <h3 className="text-base font-semibold text-dark flex items-center gap-2 mb-3">
+                <h3 className="text-heading-md text-dark flex items-center gap-2 mb-3">
                   <FileText className="w-4 h-4 text-secondary" />
                   {t("comparison.footnoteTitle")}
                 </h3>
@@ -636,7 +606,7 @@ export default function ImpactPage() {
             </FadeIn>
             <FadeIn>
               <div className="h-full bg-white rounded-2xl p-6 border border-line">
-                <h3 className="text-base font-semibold text-dark flex items-center gap-2 mb-3">
+                <h3 className="text-heading-md text-dark flex items-center gap-2 mb-3">
                   <Database className="w-4 h-4 text-primary" />
                   {t("comparison.sourcesTitle")}
                 </h3>
@@ -660,13 +630,13 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 6, ESRS E5 MAPPING
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-white">
+      <section className="px-6 bg-white py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary uppercase text-eyebrow">
               {t("esrs.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-dark max-w-4xl">
               {t("esrs.title")}
             </h2>
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
@@ -675,7 +645,7 @@ export default function ImpactPage() {
           </FadeIn>
 
           <FadeIn>
-            <div className="mt-10 overflow-x-auto bg-light rounded-2xl border border-line shadow-sm">
+            <div className="mt-10 overflow-x-auto bg-light rounded-2xl border border-line">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-secondary text-white">
@@ -696,7 +666,7 @@ export default function ImpactPage() {
                       className="bg-white border-b border-line last:border-0 hover:bg-light/50 transition-colors"
                     >
                       <td className="px-4 md:px-5 py-4 align-top">
-                        <span className="inline-flex items-center px-2 py-1 rounded-md bg-secondary text-white text-xs font-bold">
+                        <span className="inline-flex items-center px-2 py-1 rounded-md bg-secondary text-white text-xs font-semibold">
                           {row.code}
                         </span>
                       </td>
@@ -724,9 +694,9 @@ export default function ImpactPage() {
           </FadeIn>
 
           <FadeIn>
-            <div className="mt-8 bg-gradient-to-br from-secondary/5 to-primary/5 rounded-2xl p-6 md:p-8 border border-secondary/20 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-6 items-center">
+            <div className="mt-8 rounded-2xl p-6 md:p-8 border border-secondary/20 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-6 items-center bg-secondary/5">
               <div>
-                <h3 className="text-lg font-bold text-dark flex items-center gap-2 mb-2">
+                <h3 className="text-heading-md text-dark flex items-center gap-2 mb-2">
                   <BarChart3 className="w-5 h-5 text-secondary" />
                   {t("esrs.exportTitle")}
                 </h3>
@@ -749,13 +719,13 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 7, PROOF & CERTIFICATIONS
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-gradient-to-b from-light to-white">
+      <section className="px-6 bg-light py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-primary text-xs font-semibold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-muted uppercase text-eyebrow">
               {t("proof.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-dark max-w-4xl">
               {t("proof.title")}
             </h2>
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
@@ -766,7 +736,7 @@ export default function ImpactPage() {
           <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div>
               <FadeIn>
-                <h3 className="text-xl md:text-2xl font-bold text-dark flex items-center gap-2 mb-6">
+                <h3 className="text-heading-lg text-dark flex items-center gap-2 mb-6">
                   <Shield className="w-5 h-5 text-primary" />
                   {t("proof.methodsTitle")}
                 </h3>
@@ -794,7 +764,7 @@ export default function ImpactPage() {
 
             <div>
               <FadeIn>
-                <h3 className="text-xl md:text-2xl font-bold text-dark flex items-center gap-2 mb-6">
+                <h3 className="text-heading-lg text-dark flex items-center gap-2 mb-6">
                   <Globe className="w-5 h-5 text-secondary" />
                   {t("proof.ecosystemTitle")}
                 </h3>
@@ -826,13 +796,13 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 8, CASES
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-white">
+      <section className="px-6 bg-white py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ochre/10 text-ochre text-xs font-semibold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ochre/10 text-ochre uppercase text-eyebrow">
               {t("cases.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-dark max-w-4xl">
               {t("cases.title")}
             </h2>
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
@@ -843,19 +813,19 @@ export default function ImpactPage() {
           <StaggerContainer className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
             {caseItems.map((c, i) => (
               <StaggerItem key={i}>
-                <div className="h-full bg-gradient-to-br from-light to-white rounded-2xl p-7 border border-line shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col">
+                <div className="h-full rounded-2xl p-7 border border-line hover:shadow-card transition-colors flex flex-col bg-light">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-9 h-9 rounded-lg bg-primary text-white flex items-center justify-center">
                       {i === 0 && <Target className="w-4 h-4" />}
                       {i === 1 && <Leaf className="w-4 h-4" />}
                       {i === 2 && <ClipboardCheck className="w-4 h-4" />}
                     </div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-primary">
+                    <span className="uppercase text-muted text-eyebrow">
                       {c.sector}
                     </span>
                   </div>
                   <p className="text-xs text-ink-700 mb-3">{c.scope}</p>
-                  <p className="text-2xl md:text-3xl font-bold text-dark leading-tight">
+                  <p className="text-2xl md:text-3xl font-semibold text-dark leading-tight">
                     {c.metric}
                   </p>
                   <p className="text-sm font-semibold text-secondary mt-1 mb-4">
@@ -881,13 +851,13 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 9, RESOURCES
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-light">
+      <section className="px-6 bg-light py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary uppercase text-eyebrow">
               {t("resources.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-dark max-w-4xl">
               {t("resources.title")}
             </h2>
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
@@ -898,7 +868,7 @@ export default function ImpactPage() {
           <StaggerContainer className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {resources.map((r, i) => (
               <StaggerItem key={i}>
-                <div className="h-full bg-white rounded-2xl p-6 border border-line hover:border-primary/30 hover:shadow-md transition-all flex flex-col">
+                <div className="h-full bg-white rounded-2xl p-6 border border-line hover:border-primary/30 hover:shadow-card transition-colors flex flex-col">
                   <div className="w-10 h-10 rounded-lg bg-leaf-100 text-primary flex items-center justify-center mb-4">
                     {i === 0 && <FileText className="w-5 h-5" />}
                     {i === 1 && <Database className="w-5 h-5" />}
@@ -906,7 +876,7 @@ export default function ImpactPage() {
                     {i === 3 && <BarChart3 className="w-5 h-5" />}
                     {i === 4 && <Sparkles className="w-5 h-5" />}
                   </div>
-                  <h3 className="text-base font-bold text-dark mb-2 leading-snug">
+                  <h3 className="text-heading-md text-dark mb-2">
                     {r.title}
                   </h3>
                   <p className="text-sm text-ink-700 leading-relaxed flex-1">

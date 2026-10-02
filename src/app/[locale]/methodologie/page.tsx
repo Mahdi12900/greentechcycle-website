@@ -74,7 +74,7 @@ function RoadmapBadge({ status, tx }: { status: RoadmapStatus; tx: ReturnType<ty
   };
   const s = labels[status];
   return (
-    <span className={`inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-full border ${s.cls}`}>
+    <span className={`inline-flex items-center gap-1 px-2 py-0.5 text-caption font-semibold rounded-full border ${s.cls}`}>
       <CircleDot className="w-2.5 h-2.5" />
       {s.label}
     </span>
@@ -341,22 +341,19 @@ export default function MethodologyPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* ═══════════════ HERO ═══════════════ */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-forest-900 via-forest-900 to-primary py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-forest-900 py-16 lg:py-24">
         <div className="absolute inset-0 opacity-[0.08]">
-          <div className="absolute top-10 left-10 w-96 h-96 bg-accent rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-20 w-96 h-96 bg-leaf rounded-full blur-3xl" />
         </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.12),transparent_50%)]" />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-5xl mx-auto">
             <FadeIn>
               <div className="flex justify-center mb-6">
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur border border-white/20 text-accent text-sm font-medium">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-accent text-sm font-medium">
                   <Activity className="w-4 h-4" />
                   {tx("Ingénierie de processus ITAD", "ITAD process engineering")}
                 </span>
               </div>
-              <h1 className="text-center text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1]">
+              <h1 className="text-display-lg text-center text-white mb-6">
                 {tx("Une ingénierie de processus", "Process engineering")}{" "}
                 <span className="text-accent">{tx("certifiable à chaque étape", "certifiable at every step")}</span>
               </h1>
@@ -370,15 +367,15 @@ export default function MethodologyPage() {
               {/* Hero KPIs */}
               <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto">
                 {heroKpis.map((k, i) => (
-                  <div key={i} className="rounded-2xl bg-white/5 backdrop-blur border border-ondark-line px-5 py-6 text-center">
-                    <div className="text-3xl md:text-4xl font-black text-accent">
+                  <div key={i} className="rounded-2xl bg-white/5 border border-ondark-line px-5 py-6 text-center">
+                    <div className="text-3xl md:text-4xl font-semibold text-accent">
                       {k.displayValue ? (
                         <span>{k.displayValue}</span>
                       ) : (
                         <CountUp end={k.value} decimals={k.decimals || 0} suffix={k.suffix} />
                       )}
                     </div>
-                    <p className="text-xs uppercase tracking-wider text-ondark-muted mt-2">{k.label}</p>
+                    <p className="uppercase text-ondark-muted mt-2 text-eyebrow">{k.label}</p>
                   </div>
                 ))}
               </div>
@@ -386,14 +383,14 @@ export default function MethodologyPage() {
               <div className="flex flex-col sm:flex-row gap-3 justify-center mt-12">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl shadow-lg shadow-accent/25 transition"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl transition"
                 >
                   {tx("Demander une évaluation", "Request an assessment")}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <a
                   href="#modules"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/20 backdrop-blur transition"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/20 transition"
                 >
                   {tx("Explorer les 8 modules", "Explore the 8 modules")}
                 </a>
@@ -404,15 +401,15 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══════════════ 8 ENGINEERING MODULES ═══════════════ */}
-      <section id="modules" className="py-20 lg:py-28 bg-white">
-        <div className="container mx-auto px-4">
+      <section id="modules" className="bg-white py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-primary text-xs font-semibold uppercase tracking-widest mb-4">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-muted uppercase mb-4 text-eyebrow">
                 <Layers className="w-3.5 h-3.5" />
                 {tx("Processus ITAD (8 modules d'ingénierie", "ITAD Process) 8 engineering modules")}
               </span>
-              <h2 className="text-3xl md:text-5xl font-bold text-ink mb-4">
+              <h2 className="text-display-md text-ink mb-4">
                 {tx("Chaque module est un bloc d'ingénierie validé", "Every module is a validated engineering block")}
               </h2>
               <p className="text-lg text-ink-700">
@@ -429,18 +426,18 @@ export default function MethodologyPage() {
               const Icon = m.icon;
               return (
                 <FadeIn key={m.num} delay={i * 0.04}>
-                  <article className={`group relative rounded-3xl border ${m.border} bg-white overflow-hidden hover:shadow-xl transition-all`}>
-                    <div className={`absolute top-0 left-0 h-full w-1.5 bg-gradient-to-b ${m.color}`} />
+                  <article className={`group relative rounded-2xl border ${m.border} bg-white overflow-hidden hover:shadow-card transition-colors`}>
+                    <div className={`absolute top-0 left-0 h-full w-1.5 ${m.color}`} />
                     <div className="p-6 md:p-8 pl-8 md:pl-12">
                       {/* Header */}
                       <div className="flex items-start gap-4 md:gap-6 mb-6">
-                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${m.color} flex items-center justify-center shadow-lg flex-shrink-0`}>
+                        <div className={`w-16 h-16 rounded-2xl ${m.color} flex items-center justify-center flex-shrink-0`}>
                           <Icon className="w-8 h-8 text-white" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-3 flex-wrap">
-                            <span className={`text-4xl font-black ${m.accent} leading-none`}>{m.num}</span>
-                            <h3 className="text-xl md:text-2xl font-bold text-ink">{m.title}</h3>
+                            <span className={`text-4xl font-semibold ${m.accent} leading-none`}>{m.num}</span>
+                            <h3 className="text-heading-lg text-ink">{m.title}</h3>
                           </div>
                           <div className="flex items-center gap-3 mt-2 flex-wrap">
                             <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full ${m.bg} ${m.accent} text-xs font-semibold`}>
@@ -458,25 +455,25 @@ export default function MethodologyPage() {
                       {/* I/O + Checkpoints + Proofs grid */}
                       <div className="grid sm:grid-cols-2 gap-4 mb-6">
                         <div className={`rounded-xl ${m.bg} border ${m.border} p-4`}>
-                          <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-2 flex items-center gap-1">
+                          <p className="uppercase text-muted mb-2 flex items-center gap-1 text-eyebrow">
                             <ArrowDownUp className="w-3 h-3" /> Inputs
                           </p>
                           <p className="text-sm text-ink-700 leading-relaxed">{m.inputs}</p>
                         </div>
                         <div className={`rounded-xl ${m.bg} border ${m.border} p-4`}>
-                          <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-2 flex items-center gap-1">
+                          <p className="uppercase text-muted mb-2 flex items-center gap-1 text-eyebrow">
                             <Box className="w-3 h-3" /> Outputs
                           </p>
                           <p className="text-sm text-ink-700 leading-relaxed">{m.outputs}</p>
                         </div>
                         <div className="rounded-xl bg-cream border border-line p-4">
-                          <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-2 flex items-center gap-1">
+                          <p className="uppercase text-muted mb-2 flex items-center gap-1 text-eyebrow">
                             <CheckCircle2 className="w-3 h-3" /> {tx("Points de contrôle", "Checkpoints")}
                           </p>
                           <p className="text-sm text-ink-700 leading-relaxed">{m.checkpoints}</p>
                         </div>
                         <div className="rounded-xl bg-cream border border-line p-4">
-                          <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-2 flex items-center gap-1">
+                          <p className="uppercase text-muted mb-2 flex items-center gap-1 text-eyebrow">
                             <FileText className="w-3 h-3" /> {tx("Preuves générées", "Generated evidence")}
                           </p>
                           <p className="text-sm text-ink-700 leading-relaxed">{m.proofs}</p>
@@ -502,15 +499,15 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══════════════ ROADMAP 2026/2027 ═══════════════ */}
-      <section className="py-20 lg:py-24 bg-cream">
-        <div className="container mx-auto px-4">
+      <section className="bg-cream py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-forest text-xs font-semibold uppercase tracking-widest mb-4">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-forest uppercase mb-4 text-eyebrow">
                 <Brain className="w-3.5 h-3.5" />
                 {tx("Feuille de route technologique", "Technology roadmap")}
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
+              <h2 className="text-display-md text-ink mb-4">
                 {tx("Feuille de route technologique 2026 / 2027", "Technology roadmap 2026 / 2027")}
               </h2>
               <p className="text-lg text-ink-700">
@@ -531,12 +528,12 @@ export default function MethodologyPage() {
                     {/* Dot */}
                     <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-forest ring-4 ring-line" />
                     {/* Period */}
-                    <p className="text-sm font-bold uppercase tracking-widest text-forest mb-4">{period.period}</p>
+                    <p className="uppercase text-forest mb-4 text-eyebrow">{period.period}</p>
                     <div className="grid sm:grid-cols-2 gap-4">
                       {period.items.map((item, j) => (
-                        <div key={j} className="bg-white rounded-2xl p-5 border border-line hover:shadow-lg hover:border-line transition">
+                        <div key={j} className="bg-white rounded-2xl p-5 border border-line hover:shadow-card hover:border-line transition">
                           <div className="flex items-center justify-between mb-2">
-                            <h4 className="font-bold text-ink text-sm">{item.title}</h4>
+                            <h4 className="font-semibold text-ink text-sm">{item.title}</h4>
                             <RoadmapBadge status={item.status} tx={tx} />
                           </div>
                           <p className="text-sm text-ink-700 leading-relaxed">{item.desc}</p>
@@ -552,18 +549,17 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══════════════ SLA & GARANTIES ═══════════════ */}
-      <section className="py-20 lg:py-24 bg-forest-900 relative overflow-hidden">
+      <section className="bg-forest-900 relative overflow-hidden py-16 lg:py-24">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-accent rounded-full blur-3xl" />
         </div>
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 border border-accent/20 text-accent text-xs font-semibold uppercase tracking-widest mb-4">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 border border-accent/20 text-muted uppercase mb-4 text-eyebrow">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 {tx("Garanties & SLA contractuels", "Guarantees & contractual SLAs")}
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <h2 className="text-display-md text-white mb-4">
                 {tx("Des engagements chiffrés et contractualisés", "Quantified and contractualized commitments")}
               </h2>
               <p className="text-lg text-ondark-muted">
@@ -577,7 +573,7 @@ export default function MethodologyPage() {
 
           {/* SLA table */}
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white/5 backdrop-blur border border-ondark-line rounded-2xl overflow-hidden">
+            <div className="bg-white/5 border border-ondark-line rounded-2xl overflow-hidden">
               <div className="grid grid-cols-[1fr_auto] divide-y divide-ondark-line">
                 {slas.map((sla, i) => {
                   const Icon = sla.icon;
@@ -590,7 +586,7 @@ export default function MethodologyPage() {
                         <p className="text-white font-semibold">{sla.metric}</p>
                       </div>
                       <div className="flex items-center px-6 py-5">
-                        <p className={`text-xl md:text-2xl font-black ${sla.color}`}>{sla.value}</p>
+                        <p className={`text-xl md:text-2xl font-semibold ${sla.color}`}>{sla.value}</p>
                       </div>
                     </div>
                   );
@@ -602,15 +598,14 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══════════════ CTA ═══════════════ */}
-      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-primary via-primary-700 to-forest-900 overflow-hidden">
+      <section className="relative overflow-hidden bg-primary py-16 lg:py-24">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-accent rounded-full blur-3xl" />
         </div>
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
               <Activity className="w-10 h-10 text-accent mx-auto mb-6" />
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              <h2 className="text-display-md text-white mb-6">
                 {tx("Mettez notre ingénierie de processus à l'épreuve", "Put our process engineering to the test")}
               </h2>
               <p className="text-xl text-ondark-muted mb-10 max-w-2xl mx-auto">
@@ -622,14 +617,14 @@ export default function MethodologyPage() {
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl shadow-lg shadow-accent/25 transition"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl transition"
                 >
                   {tx("Demander une évaluation", "Request an assessment")}
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
                   href="/reglementation"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/20 backdrop-blur transition"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/20 transition"
                 >
                   <BookOpen className="w-5 h-5" />
                   {tx("Cadre réglementaire", "Regulatory framework")}

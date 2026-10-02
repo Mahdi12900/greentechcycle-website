@@ -209,15 +209,15 @@ export default function CarbonCalculator() {
   const outputs = t.raw("outputs") as Record<string, string>;
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl border border-line overflow-hidden">
+    <div className="bg-white rounded-2xl border border-line overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-primary/10 via-secondary/5 to-accent/10 px-6 md:px-10 py-6 border-b border-line">
+      <div className="px-6 md:px-10 py-6 border-b border-line bg-primary/10">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center shadow-md shadow-primary/30">
+          <div className="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center">
             <Calculator className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="text-xl md:text-2xl font-bold text-dark">
+            <h3 className="text-heading-lg text-dark">
               {t("title")}
             </h3>
             <p className="text-sm text-ink-700">{t("subtitle")}</p>
@@ -228,7 +228,7 @@ export default function CarbonCalculator() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
         {/* Inputs column */}
         <div className="p-6 md:p-10 border-b lg:border-b-0 lg:border-r border-line">
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-ink-700 mb-6">
+          <h4 className="uppercase text-ink-700 mb-6 text-eyebrow">
             {t("inputsTitle")}
           </h4>
 
@@ -280,9 +280,9 @@ export default function CarbonCalculator() {
         </div>
 
         {/* Results column */}
-        <div className="p-6 md:p-10 bg-gradient-to-br from-light to-white">
+        <div className="p-6 md:p-10 bg-light">
           {/* Scenario comparison */}
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-ink-700 mb-4">
+          <h4 className="uppercase text-ink-700 mb-4 text-eyebrow">
             {t("scenarioTitle")}
           </h4>
           <div className="space-y-3 mb-6">
@@ -303,7 +303,7 @@ export default function CarbonCalculator() {
           </div>
 
           {/* Outputs */}
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-ink-700 mb-4">
+          <h4 className="uppercase text-ink-700 mb-4 text-eyebrow">
             {t("outputsTitle")}
           </h4>
           <div className="grid grid-cols-2 gap-3">
@@ -442,9 +442,7 @@ function NumberField({
           max={max}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className={`w-full ${
-            compact ? "px-3 py-2 text-base" : "px-4 py-2.5 text-lg"
-          } font-semibold text-dark rounded-lg border border-line focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white`}
+          className={`w-full ${ compact ? "px-3 py-2 text-base" : "px-4 py-2.5 text-lg" } font-semibold text-dark rounded-lg border border-line focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors bg-white`}
         />
         {suffix && (
           <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-ink-700 font-medium pointer-events-none">
@@ -474,7 +472,7 @@ function ScenarioBar({
     <div>
       <div className="flex justify-between items-center mb-1.5">
         <span className="text-xs font-medium text-ink">{label}</span>
-        <span className="text-xs font-bold text-dark">
+        <span className="text-xs font-semibold text-dark">
           {value.toLocaleString("fr-FR", {
             minimumFractionDigits: 1,
             maximumFractionDigits: 1,
@@ -484,7 +482,7 @@ function ScenarioBar({
       </div>
       <div className="h-3 bg-sand rounded-full overflow-hidden">
         <div
-          className={`h-full ${color} rounded-full transition-all duration-500`}
+          className={`h-full ${color} rounded-full transition-colors duration-150`}
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -504,12 +502,12 @@ function OutputCard({
   accent: string;
 }) {
   return (
-    <div className="bg-white rounded-xl p-4 border border-line shadow-sm">
+    <div className="bg-white rounded-xl p-4 border border-line">
       <div className={`flex items-center gap-2 mb-2 ${accent}`}>{icon}</div>
-      <div className="text-xl md:text-2xl font-bold text-dark leading-tight">
+      <div className="text-xl md:text-2xl font-semibold text-dark leading-tight">
         {value}
       </div>
-      <div className="text-[11px] text-ink-700 mt-1 leading-snug">{label}</div>
+      <div className="text-caption text-ink-700 mt-1 leading-snug">{label}</div>
     </div>
   );
 }

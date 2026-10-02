@@ -179,20 +179,19 @@ export default function WakiBoxPage() {
       <ServicePageTemplate data={data} />
 
       {/* ── Pricing summary section inserted before the conversion CTA ── */}
-      <section className="relative w-full overflow-hidden bg-cream py-20 lg:py-28 -mt-px">
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="relative w-full overflow-hidden bg-cream -mt-px py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf mb-4">
+              <p className="uppercase text-muted mb-4 text-eyebrow">
                 {tx("Tarifs WakiBox", "WakiBox pricing")}
               </p>
               <h2
-                className="text-ink font-bold tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+                className="text-display-md text-ink mb-6"
               >
                 {tx("À partir de 39 € HT/mois.", "From €39 ex-VAT/month.")}
               </h2>
-              <p className="text-ink-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+              <p className="text-ink-700 text-body lg:text-body-lg">
                 {tx(
                   "Trois plans, un programme pilote à 19 € pour les premiers signataires, et des options à la carte. Tous les détails sur la page tarifs.",
                   "Three plans, a €19 pilot programme for early signers, and à la carte options. Full details on the pricing page."
@@ -204,16 +203,16 @@ export default function WakiBoxPage() {
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mb-10">
             {plans.map((plan, i) => (
               <FadeIn key={plan.slug}>
-                <div className={`relative bg-white border ${plan.popular ? "border-leaf shadow-lg" : "border-line"} rounded-2xl p-7 h-full flex flex-col`}>
+                <div className={`relative bg-white border ${plan.popular ? "border-leaf" : "border-line"} rounded-2xl p-7 h-full flex flex-col`}>
                   {plan.popular && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-leaf text-white text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full flex items-center gap-1">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-leaf text-white uppercase px-3 py-1 rounded-full flex items-center gap-1 text-eyebrow">
                       <Sparkles className="h-3 w-3" aria-hidden="true" />
                       {tx("Le plus populaire", "Most popular")}
                     </div>
                   )}
-                  <h3 className="text-lg font-bold text-ink mb-2">{plan.name}</h3>
+                  <h3 className="text-heading-md text-ink mb-2">{plan.name}</h3>
                   <div className="flex items-end gap-1 mb-1">
-                    <span className="text-3xl font-black tabular-nums" style={{ color: plan.accent }}>
+                    <span className="text-3xl font-semibold tabular-nums" style={{ color: plan.accent }}>
                       {plan.price}
                     </span>
                     <span className="text-sm text-muted mb-1">€ HT/mois</span>
@@ -239,10 +238,10 @@ export default function WakiBoxPage() {
           <FadeIn>
             <div className="max-w-5xl bg-leaf-100 border border-leaf/25 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
               <div className="flex-1">
-                <p className="text-xs font-bold uppercase tracking-wider text-leaf mb-1">
+                <p className="uppercase text-muted mb-1 text-eyebrow">
                   {tx("Programme pilote", "Pilot programme")}
                 </p>
-                <p className="text-ink font-bold leading-snug">
+                <p className="text-ink font-semibold leading-snug">
                   {tx(
                     "3 premiers signataires : mise en service offerte + 19 € HT/mois pendant 6 mois",
                     "First 3 signers: free setup + €19 ex-VAT/month for 6 months"
@@ -251,7 +250,7 @@ export default function WakiBoxPage() {
               </div>
               <Link
                 href="/reserver?offre=waki-box-pilote"
-                className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-all text-sm flex-shrink-0"
+                className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-colors text-sm flex-shrink-0"
               >
                 {tx("Candidater au pilote", "Apply for the pilot")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -265,7 +264,7 @@ export default function WakiBoxPage() {
               className="inline-flex items-center gap-2 text-leaf hover:text-leaf-700 font-semibold text-sm group"
             >
               {tx("Voir tous les tarifs, add-ons et FAQ tarifaire", "View all pricing, add-ons and pricing FAQ")}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
           </FadeIn>
         </div>

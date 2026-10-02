@@ -149,9 +149,7 @@ function CaseSection({
       aria-labelledby={`case-title-${c.slug}`}
     >
       <div
-        className={`flex flex-col lg:flex-row min-h-[90vh] ${
-          !photoOnLeft ? "lg:flex-row-reverse" : ""
-        }`}
+        className={`flex flex-col lg:flex-row min-h-[90vh] ${ !photoOnLeft ? "lg:flex-row-reverse" : "" }`}
       >
         {/* ── Photo panel, 52% cinematic ── */}
         <div className="relative w-full lg:w-[52%] min-h-[60vw] lg:min-h-0 overflow-hidden flex-shrink-0">
@@ -160,49 +158,24 @@ function CaseSection({
             alt={c.photoAlt}
             fill
             loading="lazy"
-            className="object-cover transition-transform duration-[1400ms] hover:scale-[1.04]"
+            className="object-cover transition-transform duration-150"
             sizes="(max-width: 1024px) 100vw, 48vw"
           />
           {/* Gradient overlay, blend with content panel */}
           <div
-            className={`absolute inset-0 ${
-              isDark
-                ? photoOnLeft
-                  ? "bg-gradient-to-r from-transparent via-transparent to-ink/70"
-                  : "bg-gradient-to-l from-transparent via-transparent to-ink/70"
-                : photoOnLeft
-                ? "bg-gradient-to-r from-transparent to-white/15"
-                : "bg-gradient-to-l from-transparent to-white/15"
-            }`}
+            className={`absolute inset-0 ${ isDark ? photoOnLeft ? "bg-gradient-to-r from-transparent via-transparent to-ink/70" : "bg-gradient-to-l from-transparent via-transparent to-ink/70" : photoOnLeft ? "bg-gradient-to-r from-transparent to-white/15" : "bg-gradient-to-l from-transparent to-white/15" }`}
           />
           {/* Bottom fade */}
           <div
-            className={`absolute bottom-0 left-0 right-0 h-1/4 ${
-              isDark
-                ? "bg-gradient-to-t from-ink/50 to-transparent"
-                : "bg-gradient-to-t from-black/20 to-transparent"
-            }`}
+            className={`absolute bottom-0 left-0 right-0 h-1/4 ${ isDark ? "bg-gradient-to-t from-ink/50 to-transparent" : "bg-gradient-to-t from-black/20 to-transparent" }`}
           />
 
           {/* Ghost case number watermark, bleeds off bottom, reinforced opacity */}
-          <div
-            className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-            style={{
-              fontSize: "clamp(10rem, 28vw, 22rem)",
-              color: isDark ? "rgba(255,255,255,0.055)" : "rgba(0,0,0,0.05)",
-              right: photoOnLeft ? "-0.5rem" : "auto",
-              left: photoOnLeft ? "auto" : "-0.5rem",
-              bottom: "-0.15em",
-            }}
-            aria-hidden="true"
-          >
-            {caseNumber}
-          </div>
 
           {/* Sector badge */}
-          <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/92 backdrop-blur-sm shadow-lg">
+          <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/92">
             <CaseIcon className="h-3.5 w-3.5 text-ink" aria-hidden="true" />
-            <span className="text-[11px] font-semibold text-ink tracking-wide uppercase">
+            <span className="text-ink uppercase text-eyebrow">
               {c.sector}
             </span>
           </div>
@@ -222,7 +195,7 @@ function CaseSection({
               {/* Case number + accent line */}
               <div className="flex items-center gap-4 mb-6">
                 <span
-                  className="text-5xl lg:text-6xl font-black leading-none tracking-tighter tabular-nums"
+                  className="text-5xl lg:text-6xl font-semibold leading-none tabular-nums"
                   style={{ color: accentColor }}
                 >
                   {caseNumber}
@@ -237,13 +210,13 @@ function CaseSection({
               {/* Title, editorial XXL */}
               <h2
                 id={`case-title-${c.slug}`}
-                className={`text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight mb-6 ${textColor}`}
+                className={`text-display-md mb-6 ${textColor}`}
               >
                 {c.title}
               </h2>
 
               {/* Editorial body, prose with drop cap */}
-              <p className={`text-[1.05rem] lg:text-[1.1rem] leading-[1.82] mb-8 first-letter:text-[3.2em] first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:leading-[0.8] ${subTextColor} ${isDark ? "first-letter:text-ondark-muted" : "first-letter:text-ink"}`}>
+              <p className={`text-body-lg lg:text-body-lg mb-8 first-letter:text-[3.2em] first-letter:font-semibold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter: ${subTextColor} ${isDark ? "first-letter:text-ondark-muted" : "first-letter:text-ink"}`}>
                 {editorialBody}
               </p>
 
@@ -254,19 +227,17 @@ function CaseSection({
                 {kpis.map((kpi, j) => (
                   <div key={j} className="flex flex-col gap-1.5">
                     <span
-                      className="text-3xl lg:text-[2.4rem] font-black tracking-tight leading-none tabular-nums"
+                      className="text-3xl lg:text-[2.4rem] font-semibold tracking-tight leading-none tabular-nums"
                       style={{ color: accentColor }}
                     >
                       {kpi.value}
                     </span>
                     <span
-                      className={`text-[11px] font-semibold leading-tight mt-1 ${
-                        isDark ? "text-ondark-muted" : "text-ink"
-                      }`}
+                      className={`text-caption font-semibold leading-tight mt-1 ${ isDark ? "text-ondark-muted" : "text-ink" }`}
                     >
                       {kpi.label}
                     </span>
-                    <span className={`text-[10px] leading-snug ${kpiLabelColor}`}>
+                    <span className={`text-caption leading-snug ${kpiLabelColor}`}>
                       {kpi.detail}
                     </span>
                   </div>
@@ -286,16 +257,12 @@ function CaseSection({
                   &ldquo;
                 </span>
                 <p
-                  className={`italic text-lg lg:text-xl leading-[1.6] mb-4 font-medium ${
-                    isDark ? "text-ondark" : "text-ink-700"
-                  }`}
+                  className={`italic text-lg lg:text-xl mb-4 font-medium ${ isDark ? "text-ondark" : "text-ink-700" }`}
                 >
                   {c.quote}
                 </p>
                 <footer
-                  className={`text-sm font-semibold not-italic ${
-                    isDark ? "text-muted" : "text-muted"
-                  }`}
+                  className={`text-sm font-semibold not-italic ${ isDark ? "text-muted" : "text-muted" }`}
                 >
                  , {c.quoteName}, {c.quoteRole},{" "}
                   <span className="italic font-normal">{c.quoteSector}</span>
@@ -306,11 +273,7 @@ function CaseSection({
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 flex-wrap mb-5">
                 <Link
                   href={`/contact?cas=${c.slug}`}
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${
-                    isDark
-                      ? "bg-white text-ink hover:bg-sand hover:shadow-white/20"
-                      : "text-white hover:opacity-90"
-                  }`}
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors duration-150 hover:shadow-card ${ isDark ? "bg-white text-ink hover:bg-sand hover:shadow-white/20" : "text-white hover:opacity-90" }`}
                   style={
                     isDark
                       ? {}
@@ -329,13 +292,9 @@ function CaseSection({
               {sectorLink && (
                 <Link
                   href={`/secteurs/${sectorLink.slug}`}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm transition-all duration-200 hover:-translate-y-0.5 ${
-                    isDark
-                      ? "border-white/15 bg-white/[0.04] text-ondark-muted hover:border-white/30 hover:text-white"
-                      : "border-line bg-white/60 text-ink-700 hover:border-line hover:text-ink"
-                  }`}
+                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm transition-colors duration-150 ${ isDark ? "border-white/15 bg-white/[0.04] text-ondark-muted hover:border-white/30 hover:text-white" : "border-line bg-white/60 text-ink-700 hover:border-line hover:text-ink" }`}
                 >
-                  <span className={`text-[10px] font-bold uppercase tracking-[0.12em] ${isDark ? "text-muted" : "text-muted"}`}>
+                  <span className={`uppercase text-eyebrow ${isDark ? "text-muted" : "text-muted"}`}>
                     {isFr ? "Voir la fiche secteur" : "View sector profile"}
                   </span>
                   <span className="font-semibold">{sectorLink[isFr ? "labelFr" : "labelEn"]}</span>
@@ -367,7 +326,7 @@ function ComparativeBar({
   return (
     <div className="flex items-center gap-3">
       <div className="w-28 flex-shrink-0 text-right">
-        <span className="text-[12px] font-semibold text-ink leading-tight">
+        <span className="text-caption font-semibold text-ink leading-tight">
           {label}
         </span>
       </div>
@@ -381,13 +340,13 @@ function ComparativeBar({
           }}
         />
         <div className="absolute inset-0 flex items-center pl-3">
-          <span className="text-[11px] font-bold text-white drop-shadow-sm">
+          <span className="text-caption font-semibold text-white drop-shadow-sm">
             {pct}%
           </span>
         </div>
       </div>
       <div className="w-20 flex-shrink-0 text-left">
-        <span className="text-[12px] font-semibold text-ink tabular-nums">
+        <span className="text-caption font-semibold text-ink tabular-nums">
           {value}
         </span>
       </div>
@@ -453,7 +412,7 @@ export default function CasUsagesPage() {
 
       {/* Urgency band, same pattern as home */}
       <div className="bg-forest-900 text-white py-3 px-4 border-b border-ondark-line">
-        <div className="container mx-auto flex items-center justify-center gap-3 text-sm font-medium text-center">
+        <div className="mx-auto max-w-site flex items-center justify-center gap-3 text-sm font-medium text-center">
           <ShieldCheck className="h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
           <p className="text-xs leading-snug text-ondark-muted">
             <span className="font-semibold text-white">38 000+</span> certificats NIST 800-88 émis ·{" "}
@@ -478,27 +437,13 @@ export default function CasUsagesPage() {
         aria-labelledby="hero-editorial-title"
       >
         {/* Ambient glow layers */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 10% 10%, rgba(16,185,129,0.18) 0%, transparent 60%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 90% 90%, rgba(14,165,233,0.12) 0%, transparent 55%)",
-          }}
-        />
 
         {/* ── Left content column (55%) ── */}
         <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-24">
           <FadeIn>
             {/* Featured badge */}
             <div className="flex items-center gap-3 mb-10">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-muted uppercase">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-muted uppercase text-eyebrow">
                 <span
                   className="w-1.5 h-1.5 rounded-full bg-leaf"
                   style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
@@ -510,14 +455,13 @@ export default function CasUsagesPage() {
             {/* Main headline, XXL editorial */}
             <h1
               id="hero-editorial-title"
-              className="text-white font-black tracking-tight mb-8"
-              style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
+              className="text-display-lg text-white mb-8"
             >
               {t("editorialHero.headline")}
             </h1>
 
             {/* Sub-title prose */}
-            <p className="text-ondark-muted text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-10">
+            <p className="text-ondark-muted text-base lg:text-body-lg max-w-xl mb-10">
               {t("editorialHero.subtitle")}
             </p>
 
@@ -530,7 +474,7 @@ export default function CasUsagesPage() {
               ].map((item, i) => (
                 <div key={i} className="flex flex-col">
                   <span
-                    className="text-3xl lg:text-4xl font-black tracking-tight leading-none tabular-nums"
+                    className="text-3xl lg:text-4xl font-semibold tracking-tight leading-none tabular-nums"
                     style={{ color: item.color }}
                   >
                     {item.v}
@@ -549,14 +493,14 @@ export default function CasUsagesPage() {
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-colors duration-150 hover:shadow-card hover: text-sm"
               >
                 {t("editorialHero.cta1")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link
                 href="/demo"
-                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-colors duration-150 text-sm"
               >
                 {t("editorialHero.cta2")}
                 <ChevronRight className="h-4 w-4" aria-hidden="true" />
@@ -566,10 +510,10 @@ export default function CasUsagesPage() {
             {/* Scroll anchor */}
             <a
               href="#cas-banque-cac40"
-              className="inline-flex items-center gap-2 text-ink-700 hover:text-ondark-muted text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
+              className="inline-flex items-center gap-2 text-ink-700 hover:text-ondark-muted uppercase transition-colors group text-eyebrow"
             >
               <ArrowDown
-                className="h-4 w-4 transition-transform group-hover:translate-y-1"
+                className="h-4 w-4 transition-transform"
                 aria-hidden="true"
               />
               {t("editorialHero.scrollCta")}
@@ -588,14 +532,14 @@ export default function CasUsagesPage() {
             sizes="(max-width: 1024px) 100vw, 45vw"
           />
           {/* Left blend gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/25 to-transparent" />
+          <div className="absolute inset-0 bg-ink/85" />
           {/* Bottom fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-ink/55 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-ink/55" />
 
           {/* Floating testimonial card */}
-          <div className="absolute bottom-8 right-5 sm:right-8 max-w-[270px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-line hidden sm:block">
+          <div className="absolute bottom-8 right-5 sm:right-8 max-w-[270px] bg-white/96 rounded-2xl p-5 ring-1 ring-line hidden sm:block">
             <Quote className="h-6 w-6 text-forest mb-3" aria-hidden="true" />
-            <p className="text-[12px] text-ink leading-snug font-medium mb-3">
+            <p className="text-caption text-ink leading-snug font-medium mb-3">
               &ldquo;GTC a transformé notre contrainte réglementaire en avantage compétitif concret.&rdquo;
             </p>
             <div className="flex items-center gap-2.5 pt-3 border-t border-line">
@@ -603,8 +547,8 @@ export default function CasUsagesPage() {
                 <Building2 className="h-3.5 w-3.5 text-forest" aria-hidden="true" />
               </div>
               <div>
-                <p className="text-[11px] font-bold text-ink leading-none">Marc B.</p>
-                <p className="text-[10px] text-muted mt-0.5 leading-tight">
+                <p className="text-caption font-semibold text-ink leading-none">Marc B.</p>
+                <p className="text-caption text-muted mt-0.5 leading-tight">
                   {t("editorialHero.featuredMeta")}
                 </p>
               </div>
@@ -621,15 +565,8 @@ export default function CasUsagesPage() {
         aria-label="Chiffres clés GreenTechCycle"
       >
         {/* Ambient radial */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(16,185,129,0.09) 0%, transparent 65%)",
-          }}
-        />
 
-        <div className="container mx-auto px-4 relative z-10 py-16 lg:py-20">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-20">
           <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-ondark-line">
             {kpiItems.map((kpi, i) => {
               const KIcon = [Leaf, Euro, FileCheck, Server][i] ?? Leaf;
@@ -649,7 +586,7 @@ export default function CasUsagesPage() {
 
                     {/* Giant CountUp number */}
                     <p
-                      className="font-black tracking-tighter leading-none mb-3 tabular-nums"
+                      className="font-semibold leading-none mb-3 tabular-nums"
                       style={{
                         fontSize: "clamp(2.8rem, 6.5vw, 5.5rem)",
                         color: accent,
@@ -662,17 +599,17 @@ export default function CasUsagesPage() {
                       )}
                     </p>
 
-                    <p className="text-[13px] font-medium text-muted leading-snug max-w-[15ch] mx-auto mb-1.5">
+                    <p className="text-body-sm font-medium text-muted leading-snug max-w-[15ch] mx-auto mb-1.5">
                       {kpi.label}
                     </p>
-                    <p className="text-[10px] text-ink-700 italic">{kpi.source}</p>
+                    <p className="text-caption text-ink-700 italic">{kpi.source}</p>
                   </div>
                 </StaggerItem>
               );
             })}
           </StaggerContainer>
 
-          <p className="mt-4 text-center text-[11px] text-ink-700 italic max-w-3xl mx-auto">
+          <p className="mt-4 text-center text-caption text-ink-700 italic max-w-3xl mx-auto">
             {t("kpis.footnote")}
           </p>
         </div>
@@ -681,8 +618,8 @@ export default function CasUsagesPage() {
       {/* ════════════════════════════════════════════════════════════════
           S2b (TROIS DIFFÉRENCIATEURS ÉDITORIAUX) fond #F7F5F0
          ════════════════════════════════════════════════════════════════ */}
-      <section className="py-16 lg:py-20 bg-cream border-b border-line">
-        <div className="container mx-auto px-4">
+      <section className="bg-cream border-b border-line py-12 lg:py-16">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <StaggerContainer className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {[
               {
@@ -710,7 +647,7 @@ export default function CasUsagesPage() {
               const DIcon = d.icon;
               return (
                 <StaggerItem key={i}>
-                  <div className="bg-white rounded-2xl p-7 border border-line h-full hover:shadow-lg hover:border-line transition-all duration-300">
+                  <div className="bg-white rounded-2xl p-7 border border-line h-full hover:shadow-card hover:border-line transition-colors duration-150">
                     <div className="flex items-start gap-4 mb-5">
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -724,17 +661,17 @@ export default function CasUsagesPage() {
                       </div>
                       <div>
                         <span
-                          className="inline-block text-[10px] font-bold uppercase tracking-[0.1em] mb-1"
+                          className="inline-block uppercase mb-1 text-eyebrow"
                           style={{ color: d.accent }}
                         >
                           {d.tag}
                         </span>
-                        <h3 className="text-base font-bold text-ink leading-snug tracking-tight">
+                        <h3 className="text-heading-md text-ink">
                           {d.title}
                         </h3>
                       </div>
                     </div>
-                    <p className="text-[13px] text-ink-700 leading-relaxed">{d.body}</p>
+                    <p className="text-body-sm text-ink-700 leading-relaxed">{d.body}</p>
                   </div>
                 </StaggerItem>
               );
@@ -746,19 +683,19 @@ export default function CasUsagesPage() {
       {/* ════════════════════════════════════════════════════════════════
           S3 (INTRODUCTION ÉDITORIALE) fond blanc
          ════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 lg:py-32 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="bg-white py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-leaf uppercase mb-6">
+              <p className="text-muted uppercase mb-6 text-eyebrow">
                 {t("cases.eyebrow")}
               </p>
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink mb-8 tracking-tight leading-[1.1]">
+              <h2 className="text-display-md text-ink mb-8">
                 {t("editorialIntro.headline")}
               </h2>
 
-              <p className="text-lg lg:text-xl text-muted leading-[1.82] mb-10 font-light max-w-2xl mx-auto">
+              <p className="text-lg lg:text-xl text-muted mb-10 font-light max-w-2xl mx-auto">
                 {t("editorialIntro.text")}
               </p>
 
@@ -768,7 +705,7 @@ export default function CasUsagesPage() {
               >
                 {t("editorialIntro.cta")}
                 <ArrowRight
-                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                   aria-hidden="true"
                 />
               </Link>
@@ -777,7 +714,7 @@ export default function CasUsagesPage() {
 
           {/* Sector anchor nav, desktop only */}
           <div className="hidden lg:block mt-16 pt-10 border-t border-line">
-            <p className="text-[10px] font-semibold tracking-[0.2em] text-muted uppercase text-center mb-6">
+            <p className="text-muted uppercase text-center mb-6 text-eyebrow">
               {t("nav.label")}
             </p>
             <nav
@@ -790,7 +727,7 @@ export default function CasUsagesPage() {
                   <a
                     key={c.slug}
                     href={`#cas-${c.slug}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-line bg-white hover:border-leaf/50 hover:bg-leaf/4 text-[12px] font-semibold text-ink-700 hover:text-ink transition-all duration-200 group"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-line bg-white hover:border-leaf/50 hover:bg-leaf/4 text-caption font-semibold text-ink-700 hover:text-ink transition-colors duration-150 group"
                   >
                     <NavIcon
                       className="h-3.5 w-3.5 text-muted group-hover:text-leaf transition-colors"
@@ -808,10 +745,10 @@ export default function CasUsagesPage() {
       {/* ════════════════════════════════════════════════════════════════
           S3b (PARTENAIRES & CERTIFICATIONS) bandeau discret fond blanc
          ════════════════════════════════════════════════════════════════ */}
-      <section className="py-12 bg-white border-y border-line">
-        <div className="container mx-auto px-4">
+      <section className="bg-white border-y border-line py-12 lg:py-16">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <FadeIn>
-            <p className="text-[10px] font-semibold tracking-[0.2em] text-muted uppercase text-center mb-8">
+            <p className="text-muted uppercase text-center mb-8 text-eyebrow">
               {t("partners.eyebrow")}
             </p>
           </FadeIn>
@@ -819,13 +756,13 @@ export default function CasUsagesPage() {
             {(t.raw("partners.items") as string[]).map((p, i) => (
               <StaggerItem key={i}>
                 <div className="px-5 py-2.5 rounded-lg border border-line bg-cream hover:border-leaf/30 transition-colors">
-                  <span className="text-[13px] font-semibold text-ink-700">{p}</span>
+                  <span className="text-body-sm font-semibold text-ink-700">{p}</span>
                 </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
           <FadeIn>
-            <p className="mt-6 text-center text-[11px] text-muted italic max-w-xl mx-auto">
+            <p className="mt-6 text-center text-caption text-muted italic max-w-xl mx-auto">
               {t("partners.note")}
             </p>
           </FadeIn>
@@ -851,46 +788,19 @@ export default function CasUsagesPage() {
             aria-labelledby="tf1-featured-title"
           >
             {/* Ambient glow */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse 80% 60% at 15% 20%, rgba(245,158,11,0.14) 0%, transparent 55%)",
-              }}
-            />
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse 60% 50% at 85% 80%, rgba(14,165,233,0.10) 0%, transparent 50%)",
-              }}
-            />
 
             {/* Ghost watermark TF1 */}
-            <div
-              className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-              style={{
-                fontSize: "clamp(12rem, 30vw, 26rem)",
-                color: "rgba(255,255,255,0.03)",
-                right: "2rem",
-                top: "50%",
-                transform: "translateY(-50%)",
-              }}
-              aria-hidden="true"
-            >
-              TF1
-            </div>
 
             {/* ── Left content column (55%) ── */}
             <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-28">
               <FadeIn>
                 {/* Badge */}
                 <div className="flex items-center gap-3 mb-8">
-                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ochre/30 bg-ochre/10 text-[11px] font-bold tracking-[0.12em] text-ochre uppercase">
+                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ochre/30 bg-ochre/10 text-ochre uppercase text-eyebrow">
                     <MonitorPlay className="h-3.5 w-3.5" aria-hidden="true" />
                     {tf1.badge}
                   </span>
-                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-ondark-line bg-white/5 text-[10px] font-semibold tracking-[0.1em] text-muted uppercase">
+                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-ondark-line bg-white/5 text-muted uppercase text-eyebrow">
                     <span
                       className="w-1.5 h-1.5 rounded-full bg-ochre"
                       style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
@@ -902,19 +812,18 @@ export default function CasUsagesPage() {
                 {/* Headline */}
                 <h2
                   id="tf1-featured-title"
-                  className="text-white font-black tracking-tight mb-6"
-                  style={{ fontSize: "clamp(2rem, 5vw, 4.2rem)", lineHeight: 1.04 }}
+                  className="text-display-md text-white mb-6"
                 >
                   {tf1.title}
                 </h2>
 
                 {/* Subtitle */}
-                <p className="text-muted text-sm font-semibold tracking-wide uppercase mb-6">
+                <p className="text-muted uppercase mb-6 text-eyebrow">
                   {tf1.subtitle}
                 </p>
 
                 {/* Body, editorial prose */}
-                <p className="text-ondark-muted text-base lg:text-[1.08rem] leading-[1.78] max-w-xl mb-10 first-letter:text-[2.8em] first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:leading-[0.8] first-letter:text-ondark-muted">
+                <p className="text-ondark-muted text-base lg:text-body-lg max-w-xl mb-10 first-letter:text-[2.8em] first-letter:font-semibold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter: first-letter:text-ondark-muted">
                   {tf1.body}
                 </p>
 
@@ -922,13 +831,13 @@ export default function CasUsagesPage() {
                 <div className="grid grid-cols-2 gap-x-8 gap-y-5 mb-10 pb-10 border-b border-ondark-line">
                   {tf1.metrics.map((kpi: KPIItem, j: number) => (
                     <div key={j} className="flex flex-col gap-1">
-                      <span className="text-3xl lg:text-4xl font-black tracking-tight leading-none tabular-nums text-ochre">
+                      <span className="text-3xl lg:text-4xl font-semibold tracking-tight leading-none tabular-nums text-ochre">
                         {kpi.value}
                       </span>
-                      <span className="text-[12px] font-semibold text-white leading-tight mt-1">
+                      <span className="text-caption font-semibold text-white leading-tight mt-1">
                         {kpi.label}
                       </span>
-                      <span className="text-[10px] text-muted leading-snug">
+                      <span className="text-caption text-muted leading-snug">
                         {kpi.detail}
                       </span>
                     </div>
@@ -944,7 +853,7 @@ export default function CasUsagesPage() {
                   >
                     &ldquo;
                   </span>
-                  <p className="italic text-lg lg:text-xl leading-[1.6] mb-3 font-medium text-ondark">
+                  <p className="italic text-lg lg:text-xl mb-3 font-medium text-ondark">
                     {tf1.quote}
                   </p>
                   <footer className="text-sm font-semibold not-italic text-muted">
@@ -957,14 +866,14 @@ export default function CasUsagesPage() {
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Link
                     href={tf1.ctaHref}
-                    className="inline-flex items-center justify-center gap-2 bg-ochre hover:bg-ochre text-ink font-bold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
+                    className="inline-flex items-center justify-center gap-2 bg-ochre hover:bg-ochre text-ink font-semibold px-7 py-4 rounded-xl transition-colors duration-150 hover:shadow-card hover: text-sm"
                   >
                     {tf1.cta}
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                   <a
                     href={tf1.scrollTarget}
-                    className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
+                    className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-colors duration-150 text-sm"
                   >
                     {tf1.ctaSecondary}
                     <ArrowDown className="h-4 w-4" aria-hidden="true" />
@@ -984,18 +893,18 @@ export default function CasUsagesPage() {
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
               {/* Left blend gradient */}
-              <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/20 to-transparent" />
+              <div className="absolute inset-0 bg-ink/80" />
               {/* Bottom fade */}
-              <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-ink/50 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-ink/50" />
 
               {/* Floating KPI card, 65k overlay */}
-              <div className="absolute bottom-8 right-5 sm:right-8 max-w-[240px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-line hidden sm:block">
+              <div className="absolute bottom-8 right-5 sm:right-8 max-w-[240px] bg-white/96 rounded-2xl p-5 ring-1 ring-line hidden sm:block">
                 <Tv className="h-6 w-6 text-ochre mb-3" aria-hidden="true" />
-                <p className="text-2xl font-black text-ink tabular-nums leading-none mb-1">
+                <p className="text-2xl font-semibold text-ink tabular-nums leading-none mb-1">
                   {tf1.metrics[0]?.value}{" "}
                   <span className="text-xs font-semibold text-muted">{tf1.metrics[0]?.detail?.split("·")[0]?.trim()}</span>
                 </p>
-                <p className="text-[11px] text-ink-700 leading-snug font-medium">
+                <p className="text-caption text-ink-700 leading-snug font-medium">
                   {tf1.metrics[0]?.label}
                 </p>
               </div>
@@ -1011,12 +920,12 @@ export default function CasUsagesPage() {
       {/* Sticky side nav, desktop only */}
       <div className="hidden xl:block fixed right-4 top-1/2 -translate-y-1/2 z-40">
         <nav
-          className="flex flex-col gap-2 bg-white/90 backdrop-blur-md rounded-2xl p-2.5 shadow-lg ring-1 ring-line"
+          className="flex flex-col gap-2 bg-white/90 rounded-2xl p-2.5 ring-1 ring-line"
           aria-label="Navigation cas"
         >
           <a
             href="#cas-tf1-media"
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-ochre/10 text-[10px] font-bold text-muted hover:text-ochre transition-colors uppercase tracking-wider"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-ochre/10 text-muted hover:text-ochre transition-colors uppercase text-eyebrow"
             title="TF1 Média"
           >
             <Tv className="h-3 w-3" aria-hidden="true" />
@@ -1028,7 +937,7 @@ export default function CasUsagesPage() {
               <a
                 key={c.slug}
                 href={`#cas-${c.slug}`}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-leaf/10 text-[10px] font-bold text-muted hover:text-leaf transition-colors uppercase tracking-wider"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-leaf/10 text-muted hover:text-muted transition-colors uppercase text-eyebrow"
                 title={c.sector}
               >
                 <NavIcon className="h-3 w-3" aria-hidden="true" />
@@ -1054,18 +963,18 @@ export default function CasUsagesPage() {
           Liste éditoriale avec barres de progression, pas de tableau
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-24 lg:py-32 bg-white"
+        className="bg-white py-16 lg:py-24"
         aria-labelledby="comparative-title"
       >
-        <div className="container mx-auto px-4">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-forest uppercase mb-4">
+              <p className="text-forest uppercase mb-4 text-eyebrow">
                 {t("matrix.eyebrow")}
               </p>
               <h2
                 id="comparative-title"
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]"
+                className="text-display-md text-ink mb-5"
               >
                 {t("matrix.title")}
               </h2>
@@ -1083,7 +992,7 @@ export default function CasUsagesPage() {
                 <div>
                   <div className="flex items-center gap-2 mb-6 pb-4 border-b border-line">
                     <TrendingUp className="h-4 w-4 text-leaf" aria-hidden="true" />
-                    <h3 className="text-[11px] font-bold text-ink uppercase tracking-[0.12em]">
+                    <h3 className="text-heading-md text-ink uppercase">
                       Taux de récupération actifs
                     </h3>
                   </div>
@@ -1098,7 +1007,7 @@ export default function CasUsagesPage() {
                       />
                     ))}
                   </div>
-                  <p className="mt-4 text-[10px] text-muted italic">
+                  <p className="mt-4 text-caption text-muted italic">
                     Actifs récupérés (revente + reconditionnement + recyclage) vs total traité
                   </p>
                 </div>
@@ -1109,7 +1018,7 @@ export default function CasUsagesPage() {
                 <div>
                   <div className="flex items-center gap-2 mb-6 pb-4 border-b border-line">
                     <BarChart3 className="h-4 w-4 text-forest" aria-hidden="true" />
-                    <h3 className="text-[11px] font-bold text-ink uppercase tracking-[0.12em]">
+                    <h3 className="text-heading-md text-ink uppercase">
                       Valeur récupérée &amp; impact CO₂
                     </h3>
                   </div>
@@ -1121,20 +1030,20 @@ export default function CasUsagesPage() {
                         className="flex items-center gap-3 px-4 py-3 rounded-xl bg-cream hover:bg-leaf-50 transition-colors group cursor-pointer"
                       >
                         <span
-                          className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 text-[10px] font-black text-white"
+                          className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 text-caption font-semibold text-white"
                           style={{ backgroundColor: row.accentColor }}
                         >
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <div className="flex-1 min-w-0">
-                          <p className="text-[12px] font-semibold text-ink truncate group-hover:text-forest transition-colors">
+                          <p className="text-caption font-semibold text-ink truncate group-hover:text-forest transition-colors">
                             {row.label}
                           </p>
                         </div>
                         <div className="flex items-center gap-5 flex-shrink-0">
                           <div className="text-right">
                             <p
-                              className="text-[13px] font-black leading-none tabular-nums"
+                              className="text-body-sm font-semibold leading-none tabular-nums"
                               style={{ color: row.accentColor }}
                             >
                               {row.value}
@@ -1144,7 +1053,7 @@ export default function CasUsagesPage() {
                             </p>
                           </div>
                           <div className="text-right">
-                            <p className="text-[13px] font-black text-leaf leading-none tabular-nums">
+                            <p className="text-body-sm font-semibold text-leaf leading-none tabular-nums">
                               {row.co2}
                             </p>
                             <p className="text-[9px] text-muted mt-0.5 uppercase tracking-wider">
@@ -1164,7 +1073,7 @@ export default function CasUsagesPage() {
               <div className="bg-cream rounded-2xl p-6 lg:p-8 border border-line">
                 <div className="flex items-center gap-2 mb-6">
                   <Award className="h-4 w-4 text-ochre" aria-hidden="true" />
-                  <h3 className="text-[11px] font-bold text-ink uppercase tracking-[0.12em]">
+                  <h3 className="text-heading-md text-ink uppercase">
                     Conformités réglementaires atteintes
                   </h3>
                 </div>
@@ -1172,29 +1081,29 @@ export default function CasUsagesPage() {
                   {comparativeData.map((row, i) => (
                     <div
                       key={i}
-                      className="bg-white rounded-xl px-4 py-3.5 border border-line hover:shadow-md transition-shadow"
+                      className="bg-white rounded-xl px-4 py-3.5 border border-line hover:shadow-card transition-shadow"
                     >
                       <div className="flex items-center gap-2 mb-2.5">
                         <span
-                          className="w-6 h-6 rounded-md flex items-center justify-center text-[9px] font-black text-white flex-shrink-0"
+                          className="w-6 h-6 rounded-md flex items-center justify-center text-[9px] font-semibold text-white flex-shrink-0"
                           style={{ backgroundColor: row.accentColor }}
                         >
                           {String(i + 1).padStart(2, "0")}
                         </span>
-                        <p className="text-[11px] font-bold text-ink truncate leading-none">
+                        <p className="text-caption font-semibold text-ink truncate leading-none">
                           {row.label}
                         </p>
                       </div>
-                      <p className="text-[11px] text-muted leading-relaxed">
+                      <p className="text-caption text-muted leading-relaxed">
                         {row.conformite}
                       </p>
-                      <p className="text-[10px] text-muted mt-1.5 font-medium">
+                      <p className="text-caption text-muted mt-1.5 font-medium">
                         {row.duree}
                       </p>
                     </div>
                   ))}
                 </div>
-                <p className="mt-5 text-[10px] text-muted italic text-center leading-relaxed">
+                <p className="mt-5 text-caption text-muted italic text-center leading-relaxed">
                   {t("matrix.footnote")}
                 </p>
               </div>
@@ -1207,25 +1116,18 @@ export default function CasUsagesPage() {
           S12b (TÉMOIGNAGES 4 PERSONAS) fond sombre #1C1917
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-24 lg:py-32 bg-forest-900 relative overflow-hidden"
+        className="bg-forest-900 relative overflow-hidden py-16 lg:py-24"
         aria-labelledby="testimonials-title"
       >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 70% at 50% 50%, rgba(16,185,129,0.08) 0%, transparent 65%)",
-          }}
-        />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-leaf uppercase mb-4">
+              <p className="text-muted uppercase mb-4 text-eyebrow">
                 {t("testimonials.eyebrow")}
               </p>
               <h2
                 id="testimonials-title"
-                className="text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.1]"
+                className="text-display-md text-white"
               >
                 {t("testimonials.title")}
               </h2>
@@ -1244,14 +1146,14 @@ export default function CasUsagesPage() {
               const accent = accentColors[i] ?? "#047857";
               return (
                 <StaggerItem key={i}>
-                  <div className="bg-white/[0.04] border border-ondark-line rounded-2xl p-6 h-full flex flex-col hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300">
+                  <div className="bg-white/[0.04] border border-ondark-line rounded-2xl p-6 h-full flex flex-col hover:bg-white/[0.07] hover:border-white/20 transition-colors duration-150">
                     <Quote
                       className="h-7 w-7 mb-4 flex-shrink-0"
                       style={{ color: accent }}
                       aria-hidden="true"
                     />
                     <blockquote className="flex-1 mb-5">
-                      <p className="text-[13px] text-ondark-muted leading-relaxed italic">
+                      <p className="text-body-sm text-ondark-muted leading-relaxed italic">
                         &ldquo;{item.quote}&rdquo;
                       </p>
                     </blockquote>
@@ -1267,10 +1169,10 @@ export default function CasUsagesPage() {
                         />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[12px] font-bold text-white leading-none truncate">
+                        <p className="text-caption font-semibold text-white leading-none truncate">
                           {item.name}
                         </p>
-                        <p className="text-[10px] text-muted mt-0.5 truncate">
+                        <p className="text-caption text-muted mt-0.5 truncate">
                           {item.role} · {item.sector}
                         </p>
                       </div>
@@ -1282,7 +1184,7 @@ export default function CasUsagesPage() {
           </StaggerContainer>
 
           <FadeIn>
-            <p className="mt-8 text-center text-[11px] text-ink-700 italic">
+            <p className="mt-8 text-center text-caption text-ink-700 italic">
               {t("testimonials.consentNote")}
             </p>
           </FadeIn>
@@ -1293,18 +1195,18 @@ export default function CasUsagesPage() {
           S12c (FAQ DSI/RSSI) fond blanc
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-24 lg:py-32 bg-white"
+        className="bg-white py-16 lg:py-24"
         aria-labelledby="faq-cas-title"
       >
-        <div className="container mx-auto px-4">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-leaf uppercase mb-4">
+              <p className="text-muted uppercase mb-4 text-eyebrow">
                 {t("faq.eyebrow")}
               </p>
               <h2
                 id="faq-cas-title"
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.1]"
+                className="text-display-md text-ink"
               >
                 {t("faq.title")}
               </h2>
@@ -1315,15 +1217,15 @@ export default function CasUsagesPage() {
             {(t.raw("faq.items") as Array<{ q: string; a: string }>).map(
               (item, i) => (
                 <StaggerItem key={i}>
-                  <div className="bg-cream border border-line rounded-2xl p-7 h-full hover:border-leaf/30 hover:shadow-md transition-all duration-300">
+                  <div className="bg-cream border border-line rounded-2xl p-7 h-full hover:border-leaf/30 hover:shadow-card transition-colors duration-150">
                     <div className="flex items-start gap-3 mb-4">
                       <span
-                        className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg text-leaf text-sm font-bold"
+                        className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg text-leaf text-sm font-semibold"
                         style={{ backgroundColor: "#047857" + "15" }}
                       >
                         Q{i + 1}
                       </span>
-                      <h3 className="font-bold text-ink text-[15px] leading-snug tracking-tight">
+                      <h3 className="text-heading-md text-ink">
                         {item.q}
                       </h3>
                     </div>
@@ -1344,7 +1246,7 @@ export default function CasUsagesPage() {
               >
                 {t("faq.allQuestionsLink")}
                 <ArrowRight
-                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                   aria-hidden="true"
                 />
               </Link>
@@ -1358,40 +1260,21 @@ export default function CasUsagesPage() {
           Pointe vers le hub /secteurs sans dupliquer le contenu
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-24 bg-forest-900 overflow-hidden"
+        className="relative bg-forest-900 overflow-hidden py-16 lg:py-24"
         aria-labelledby="cross-secteurs-title"
       >
         {/* Ghost watermark 16 */}
-        <div
-          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none text-ondark-muted"
-          style={{
-            fontSize: "clamp(10rem, 26vw, 22rem)",
-            right: "-0.05em",
-            bottom: "-0.15em",
-          }}
-          aria-hidden="true"
-        >
-          16
-        </div>
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 55% at 20% 30%, rgba(14,165,233,0.12) 0%, transparent 60%)",
-          }}
-        />
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-center max-w-6xl mx-auto">
             <FadeIn>
               <div>
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-leaf-300 uppercase mb-5">
+                <p className="text-ondark-muted uppercase mb-5 text-eyebrow">
                   {isFr ? "Au-delà des 8 cas chiffrés" : "Beyond the 8 quantified cases"}
                 </p>
                 <h2
                   id="cross-secteurs-title"
-                  className="text-white font-bold tracking-tight mb-6"
-                  style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+                  className="text-display-md text-white mb-6"
                 >
                   {isFr ? (
                     <>16 fiches sectorielles complètes,<br /><span className="text-forest">de la banque au broadcast.</span></>
@@ -1399,7 +1282,7 @@ export default function CasUsagesPage() {
                     <>16 complete sector profiles,<br /><span className="text-forest">from banking to broadcast.</span></>
                   )}
                 </h2>
-                <p className="text-ondark-muted text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-8 max-w-xl">
+                <p className="text-ondark-muted text-body lg:text-body-lg mb-8 max-w-xl">
                   {isFr
                     ? "Chaque secteur a son audit, ses douleurs, son ROI, ses personas et ses objections. Le hub /secteurs synthétise les 16 marchés que nous couvrons en France et en Europe, y compris la référence broadcast TF1."
                     : "Each sector has its audit, its pain points, its ROI, its personas and its objections. The /secteurs hub synthesises the 16 markets we cover in France and Europe, including the TF1 broadcast reference."}
@@ -1408,14 +1291,14 @@ export default function CasUsagesPage() {
                 <div className="flex flex-col sm:flex-row gap-3 mb-10">
                   <Link
                     href="/secteurs"
-                    className="inline-flex items-center justify-center gap-2 bg-forest hover:bg-leaf text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
+                    className="inline-flex items-center justify-center gap-2 bg-forest hover:bg-leaf text-white font-semibold px-7 py-4 rounded-xl transition-colors duration-150 hover:shadow-card hover: text-sm"
                   >
                     {isFr ? "Explorer les 16 secteurs" : "Explore the 16 sectors"}
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                   <Link
                     href="/secteurs/medias-audiovisuel"
-                    className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
+                    className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-colors duration-150 text-sm"
                   >
                     <Tv className="h-4 w-4 text-ochre" aria-hidden="true" />
                     {isFr ? "Voir la fiche TF1 / Médias" : "See the TF1 / Media profile"}
@@ -1430,12 +1313,12 @@ export default function CasUsagesPage() {
                   ].map((it, k) => (
                     <div key={k} className="flex flex-col">
                       <span
-                        className="text-2xl lg:text-3xl font-black tracking-tight leading-none tabular-nums"
+                        className="text-2xl lg:text-3xl font-semibold tracking-tight leading-none tabular-nums"
                         style={{ color: it.c }}
                       >
                         {it.v}
                       </span>
-                      <span className="text-[10px] text-muted mt-1.5 font-medium uppercase tracking-wider">
+                      <span className="text-muted mt-1.5 uppercase text-eyebrow">
                         {it.l}
                       </span>
                     </div>
@@ -1457,11 +1340,11 @@ export default function CasUsagesPage() {
                   <Link
                     key={s.slug}
                     href={`/secteurs/${s.slug}`}
-                    className="group relative aspect-[4/3] rounded-xl border border-ondark-line hover:border-white/30 bg-white/[0.03] hover:bg-white/[0.07] transition-all duration-300 overflow-hidden"
+                    className="group relative aspect-[4/3] rounded-xl border border-ondark-line hover:border-white/30 bg-white/[0.03] hover:bg-white/[0.07] transition-colors duration-150 overflow-hidden"
                   >
                     {s.featured && (
                       <span
-                        className="absolute top-2 right-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider z-10"
+                        className="absolute top-2 right-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider z-10"
                         style={{ backgroundColor: s.accent, color: "#0F1F1A" }}
                       >
                         <Award className="w-2.5 h-2.5" aria-hidden="true" />
@@ -1470,20 +1353,20 @@ export default function CasUsagesPage() {
                     )}
                     <div className="absolute inset-0 flex flex-col justify-end p-4">
                       <span
-                        className="absolute top-3 left-3 font-black leading-none text-ondark-muted"
+                        className="absolute top-3 left-3 font-semibold leading-none text-ondark-muted"
                         style={{ fontSize: "2.5rem" }}
                         aria-hidden="true"
                       >
                         {s.slug === "medias-audiovisuel" ? "TF1" : ""}
                       </span>
                       <span
-                        className="text-[10px] font-bold uppercase tracking-[0.12em] mb-1"
+                        className="uppercase mb-1 text-eyebrow"
                         style={{ color: s.accent }}
                       >
                         {isFr ? "Secteur" : "Sector"}
                       </span>
-                      <span className="text-sm font-bold text-white leading-tight">{s.name}</span>
-                      <span className="inline-flex items-center gap-1 text-[11px] text-muted group-hover:text-white mt-2 transition-colors">
+                      <span className="text-sm font-semibold text-white leading-tight">{s.name}</span>
+                      <span className="inline-flex items-center gap-1 text-caption text-muted group-hover:text-white mt-2 transition-colors">
                         {isFr ? "Voir la fiche" : "View profile"}
                         <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
                       </span>
@@ -1491,7 +1374,7 @@ export default function CasUsagesPage() {
                   </Link>
                 ))}
               </div>
-              <p className="mt-4 text-[11px] text-muted text-center italic">
+              <p className="mt-4 text-caption text-muted text-center italic">
                 {isFr ? "+ 10 autres secteurs : retail, telco, éducation, BTP, HoReCa, agro, transport, pharma, conseil, tech." : "+ 10 more sectors: retail, telco, education, construction, hospitality, agro, transport, pharma, consulting, tech."}
               </p>
             </FadeIn>
@@ -1503,29 +1386,21 @@ export default function CasUsagesPage() {
           S13 (ENCART CONVERSION) fond #047857 pleine largeur
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-20 lg:py-28 bg-leaf relative overflow-hidden"
+        className="bg-leaf relative overflow-hidden py-16 lg:py-24"
         aria-labelledby="conversion-title"
       >
         {/* Ambient */}
-        <div
-          className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none opacity-30"
-          style={{ background: "white" }}
-        />
-        <div
-          className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl pointer-events-none"
-          style={{ background: "rgba(5,150,105,0.5)" }}
-        />
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
             <FadeIn>
               <div className="text-center mb-10">
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-ondark-muted uppercase mb-4">
+                <p className="text-ondark-muted uppercase mb-4 text-eyebrow">
                   {t("conversion.eyebrow")}
                 </p>
                 <h2
                   id="conversion-title"
-                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-5 tracking-tight leading-[1.1]"
+                  className="text-display-md text-white mb-5"
                 >
                   {t("conversion.title")}
                 </h2>
@@ -1537,12 +1412,12 @@ export default function CasUsagesPage() {
 
             {submitted ? (
               <FadeIn>
-                <div className="bg-white rounded-2xl p-10 text-center max-w-md mx-auto shadow-2xl">
+                <div className="bg-white rounded-2xl p-10 text-center max-w-md mx-auto">
                   <CheckCircle2
                     className="h-14 w-14 text-leaf mx-auto mb-5"
                     aria-hidden="true"
                   />
-                  <h3 className="text-2xl font-bold text-ink mb-3">
+                  <h3 className="text-heading-lg text-ink mb-3">
                     {t("conversion.successTitle")}
                   </h3>
                   <p className="text-ink-700 leading-relaxed text-sm">
@@ -1554,7 +1429,7 @@ export default function CasUsagesPage() {
               <FadeIn>
                 <form
                   onSubmit={handleSubmit}
-                  className="bg-white rounded-2xl p-6 lg:p-8 shadow-2xl max-w-2xl mx-auto"
+                  className="bg-white rounded-2xl p-6 lg:p-8 max-w-2xl mx-auto"
                   noValidate
                 >
                   <div className="grid md:grid-cols-3 gap-4 mb-6">
@@ -1581,7 +1456,7 @@ export default function CasUsagesPage() {
                       <div key={field.id}>
                         <label
                           htmlFor={field.id}
-                          className="block text-[10px] font-bold text-ink mb-2 uppercase tracking-[0.12em]"
+                          className="block text-ink mb-2 uppercase text-eyebrow"
                         >
                           {field.label}
                         </label>
@@ -1604,12 +1479,12 @@ export default function CasUsagesPage() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <p className="text-[10px] text-muted italic leading-snug max-w-[28ch]">
+                    <p className="text-caption text-muted italic leading-snug max-w-[28ch]">
                       {t("conversion.privacy")}
                     </p>
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover: hover:-translate-y-0.5 text-sm whitespace-nowrap flex-shrink-0"
+                      className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-3.5 rounded-xl transition-colors duration-150 hover:shadow-card hover: text-sm whitespace-nowrap flex-shrink-0"
                     >
                       <Send className="h-4 w-4" aria-hidden="true" />
                       {t("conversion.cta")}
@@ -1625,21 +1500,10 @@ export default function CasUsagesPage() {
       {/* ════════════════════════════════════════════════════════════════
           S14 (CITATION FINALE LARGE) magazine-style
          ════════════════════════════════════════════════════════════════ */}
-      <section className="py-28 lg:py-40 bg-white relative overflow-hidden">
+      <section className="bg-white relative overflow-hidden py-16 lg:py-24">
         {/* Enormous ghost quote mark background */}
-        <div
-          className="absolute inset-x-0 top-0 flex justify-center overflow-hidden pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          <span
-            className="text-ondark font-black leading-none"
-            style={{ fontSize: "clamp(14rem, 38vw, 32rem)" }}
-          >
-            &ldquo;
-          </span>
-        </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
               {/* Green accent bar */}
@@ -1649,13 +1513,13 @@ export default function CasUsagesPage() {
               />
 
               <blockquote>
-                <p className="text-2xl md:text-3xl lg:text-[2.2rem] font-bold text-ink leading-[1.38] tracking-tight mb-10">
+                <p className="text-2xl md:text-3xl lg:text-[2.2rem] font-semibold text-ink tracking-tight mb-10">
                   &ldquo;{t("editorialFinalQuote.text")}&rdquo;
                 </p>
                 <footer className="flex items-center justify-center gap-5">
                   <div className="w-16 h-px bg-line" aria-hidden="true" />
                   <div>
-                    <p className="font-bold text-ink text-base leading-none">
+                    <p className="font-semibold text-ink text-base leading-none">
                       {t("editorialFinalQuote.name")}
                     </p>
                     <p className="text-muted text-sm mt-1">
@@ -1666,7 +1530,7 @@ export default function CasUsagesPage() {
                 </footer>
               </blockquote>
 
-              <p className="mt-8 text-[11px] text-muted italic">
+              <p className="mt-8 text-caption text-muted italic">
                 {t("editorialFinalQuote.consentNote")}
               </p>
 
@@ -1677,7 +1541,7 @@ export default function CasUsagesPage() {
                 >
                   Voir le cas Banque CAC40 complet
                   <ArrowRight
-                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                     aria-hidden="true"
                   />
                 </Link>
@@ -1690,35 +1554,22 @@ export default function CasUsagesPage() {
       {/* ════════════════════════════════════════════════════════════════
           S14b (PASSERELLE VERS LES 16 SECTEURS) fond #F7F5F0
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative py-20 lg:py-28 bg-cream overflow-hidden">
-        <div
-          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-          style={{
-            fontSize: "clamp(10rem, 22vw, 18rem)",
-            color: "rgba(0,0,0,0.035)",
-            right: "-0.05em",
-            bottom: "-0.12em",
-          }}
-          aria-hidden="true"
-        >
-          16
-        </div>
+      <section className="relative bg-cream overflow-hidden py-16 lg:py-24">
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-12">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-leaf uppercase mb-4">
+              <p className="text-muted uppercase mb-4 text-eyebrow">
                 {isFr ? "Catalogue sectoriel complet" : "Full sector catalogue"}
               </p>
               <h2
-                className="text-ink font-bold tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+                className="text-display-md text-ink mb-6"
               >
                 {isFr
                   ? "Au-delà de ces 8 cas : 16 fiches sectorielles détaillées."
                   : "Beyond these 8 cases: 16 detailed sector profiles."}
               </h2>
-              <p className="text-ink-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] max-w-2xl">
+              <p className="text-ink-700 text-body lg:text-body-lg max-w-2xl">
                 {isFr
                   ? "Chaque secteur dispose d'une fiche complète : profil réglementaire, douleurs spécifiques, cas d'usage prioritaires, ROI attendu, personas décideurs et objections. De la finance à la pharma, du retail à l'éducation."
                   : "Each sector has a complete profile: regulatory framework, specific pain points, priority use cases, expected ROI, decision-maker personas and objections. From finance to pharma, from retail to education."}
@@ -1743,12 +1594,12 @@ export default function CasUsagesPage() {
                   <StaggerItem key={s.slug}>
                     <Link
                       href={`/secteurs/${s.slug}`}
-                      className="group flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-white border border-line hover:border-leaf/40 hover:shadow-md transition-all duration-200"
+                      className="group flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-white border border-line hover:border-leaf/40 hover:shadow-card transition-colors duration-150"
                     >
-                      <span className="text-[12px] font-semibold text-ink leading-tight group-hover:text-leaf transition-colors line-clamp-2">
+                      <span className="text-caption font-semibold text-ink leading-tight group-hover:text-leaf transition-colors line-clamp-2">
                         {isFr ? s.labelFr : s.labelEn}
                       </span>
-                      <ChevronRight className="h-3.5 w-3.5 text-muted group-hover:text-leaf flex-shrink-0 transition-all group-hover:translate-x-0.5" aria-hidden="true" />
+                      <ChevronRight className="h-3.5 w-3.5 text-muted group-hover:text-leaf flex-shrink-0 transition-colors group-hover:translate-x-0.5" aria-hidden="true" />
                     </Link>
                   </StaggerItem>
                 ))}
@@ -1757,7 +1608,7 @@ export default function CasUsagesPage() {
             <FadeIn>
               <Link
                 href="/secteurs"
-                className="inline-flex items-center gap-2 bg-forest-900 hover:bg-forest-950 text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
+                className="inline-flex items-center gap-2 bg-forest-900 hover:bg-forest-950 text-white font-semibold px-7 py-4 rounded-xl transition-colors duration-150 hover:shadow-card text-sm"
               >
                 {isFr ? "Voir les 16 fiches secteurs" : "View the 16 sector profiles"}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -1771,7 +1622,7 @@ export default function CasUsagesPage() {
           S15, CTA FINAL DOUBLE + BANDEAU CONFIANCE
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-28 lg:py-32 overflow-hidden bg-forest-900"
+        className="relative overflow-hidden bg-forest-900 py-16 lg:py-24"
         aria-labelledby="final-cta-title"
       >
         {/* Background photo, very subtle */}
@@ -1784,26 +1635,19 @@ export default function CasUsagesPage() {
           sizes="100vw"
         />
         {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-ink/96 via-ink/92 to-ink/88" />
+        <div className="absolute inset-0 bg-ink/96" />
         {/* Green radial accent */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 60% at 75% 20%, rgba(16,185,129,0.16) 0%, transparent 55%)",
-          }}
-        />
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center text-white">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-leaf uppercase mb-5">
+              <p className="text-muted uppercase mb-5 text-eyebrow">
                 {t("finalCta.eyebrow")}
               </p>
 
               <h2
                 id="final-cta-title"
-                className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight leading-[1.05]"
+                className="text-display-md mb-6"
               >
                 {t("finalCta.title")}
               </h2>
@@ -1824,8 +1668,8 @@ export default function CasUsagesPage() {
                     key={i}
                     className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/8 border border-white/12"
                   >
-                    <span className="text-[11px] font-black text-leaf">{step.n}</span>
-                    <span className="text-[12px] font-semibold text-ondark">{step.l}</span>
+                    <span className="text-caption font-semibold text-leaf">{step.n}</span>
+                    <span className="text-caption font-semibold text-ondark">{step.l}</span>
                     {i < 3 && (
                       <ChevronRight className="h-3 w-3 text-ondark-muted ml-1" aria-hidden="true" />
                     )}
@@ -1837,14 +1681,14 @@ export default function CasUsagesPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-14">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-white hover:text-leaf text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 shadow-xl hover:-translate-y-0.5 text-base"
+                  className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-white hover:text-leaf text-white font-semibold px-10 py-5 rounded-xl transition-colors duration-150 text-base"
                 >
                   {t("finalCta.cta1")}
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
                 <Link
                   href="/demo"
-                  className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white text-white hover:text-ink border-2 border-white/25 hover:border-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 text-base"
+                  className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white text-white hover:text-ink border-2 border-white/25 hover:border-white font-semibold px-10 py-5 rounded-xl transition-colors duration-150 text-base"
                 >
                   {t("finalCta.cta2")}
                   <ChevronRight className="h-5 w-5" aria-hidden="true" />
@@ -1853,7 +1697,7 @@ export default function CasUsagesPage() {
 
               {/* Trust badges */}
               <div className="pt-8 border-t border-ondark-line">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-ondark-muted mb-5 font-semibold">
+                <p className="uppercase text-ondark-muted mb-5 text-eyebrow">
                   Garanties contractuelles
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">

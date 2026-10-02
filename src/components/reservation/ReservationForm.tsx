@@ -146,12 +146,12 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
     <form
       onSubmit={submit}
       noValidate
-      className="bg-white rounded-3xl border border-line shadow-xl p-6 lg:p-10 max-w-3xl mx-auto"
+      className="bg-white rounded-2xl border border-line p-6 lg:p-10 max-w-3xl mx-auto"
       aria-label="Formulaire de réservation"
     >
       {/* Stepper */}
       <div className="flex items-center justify-between mb-8">
-        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted">
+        <p className="uppercase text-muted text-eyebrow">
           {stepCounter}
         </p>
         <div className="flex items-center gap-1.5">
@@ -159,13 +159,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
             <span
               key={i}
               aria-hidden="true"
-              className={`h-1.5 rounded-full transition-all ${
-                i + 1 === step
-                  ? "w-8 bg-leaf"
-                  : i + 1 < step
-                  ? "w-4 bg-leaf/60"
-                  : "w-4 bg-line"
-              }`}
+              className={`h-1.5 rounded-full transition-colors ${ i + 1 === step ? "w-8 bg-leaf" : i + 1 < step ? "w-4 bg-leaf/60" : "w-4 bg-line" }`}
             />
           ))}
         </div>
@@ -174,7 +168,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       {/* Step 1, coordonnées */}
       {step === 1 && (
         <FadeIn>
-          <h3 className="text-xl lg:text-2xl font-bold text-ink mb-6 tracking-tight">
+          <h3 className="text-heading-lg text-ink mb-6">
             {t("form.step1Title")}
           </h3>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -215,7 +209,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       {/* Step 2, organisation */}
       {step === 2 && (
         <FadeIn>
-          <h3 className="text-xl lg:text-2xl font-bold text-ink mb-6 tracking-tight">
+          <h3 className="text-heading-lg text-ink mb-6">
             {t("form.step2Title")}
           </h3>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -252,7 +246,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       {/* Step 3, besoin */}
       {step === 3 && (
         <FadeIn>
-          <h3 className="text-xl lg:text-2xl font-bold text-ink mb-6 tracking-tight">
+          <h3 className="text-heading-lg text-ink mb-6">
             {t("form.step3Title")}
           </h3>
           <div className="grid gap-4">
@@ -291,10 +285,10 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       {/* Step 4, créneaux + consent */}
       {step === 4 && (
         <FadeIn>
-          <h3 className="text-xl lg:text-2xl font-bold text-ink mb-2 tracking-tight">
+          <h3 className="text-heading-lg text-ink mb-2">
             {t("form.step4Title")}
           </h3>
-          <p className="text-[13px] text-muted mb-6">{t("form.labels.slots")}</p>
+          <p className="text-body-sm text-muted mb-6">{t("form.labels.slots")}</p>
           <div className="grid sm:grid-cols-2 gap-3 mb-6">
             {slots.map((s) => {
               const checked = data.slots.includes(s.value);
@@ -302,13 +296,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
               return (
                 <label
                   key={s.value}
-                  className={`flex items-start gap-3 px-4 py-3 rounded-xl border cursor-pointer transition ${
-                    checked
-                      ? "bg-leaf/8 border-leaf/40"
-                      : disabled
-                      ? "bg-cream border-line cursor-not-allowed opacity-60"
-                      : "bg-white border-line hover:border-leaf/30"
-                  }`}
+                  className={`flex items-start gap-3 px-4 py-3 rounded-xl border cursor-pointer transition ${ checked ? "bg-leaf/8 border-leaf/40" : disabled ? "bg-cream border-line cursor-not-allowed opacity-60" : "bg-white border-line hover:border-leaf/30" }`}
                 >
                   <input
                     type="checkbox"
@@ -317,7 +305,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
                     onChange={() => toggleSlot(s.value)}
                     className="mt-0.5 h-4 w-4 accent-[#047857]"
                   />
-                  <span className="text-[13px] text-ink leading-snug">{s.label}</span>
+                  <span className="text-body-sm text-ink leading-snug">{s.label}</span>
                 </label>
               );
             })}
@@ -331,7 +319,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
               onChange={(e) => update("consent", e.target.checked)}
               className="mt-1 h-4 w-4 accent-[#047857]"
             />
-            <span className="text-[12px] text-ink-700 leading-relaxed">
+            <span className="text-caption text-ink-700 leading-relaxed">
               {t("form.labels.consent")}
             </span>
           </label>
@@ -347,11 +335,11 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
             aria-hidden="true"
           />
           <div>
-            <p className="text-[13px] font-semibold text-ink mb-1">{t("fallback.title")}</p>
-            <p className="text-[12px] text-ink-700 leading-relaxed">{t("fallback.body")}</p>
+            <p className="text-body-sm font-semibold text-ink mb-1">{t("fallback.title")}</p>
+            <p className="text-caption text-ink-700 leading-relaxed">{t("fallback.body")}</p>
             <a
               href="mailto:mahdi@greentechcycle.fr"
-              className="inline-flex items-center gap-1 text-[12px] font-semibold text-ink underline underline-offset-4 mt-1"
+              className="inline-flex items-center gap-1 text-caption font-semibold text-ink underline underline-offset-4 mt-1"
             >
               {t("fallback.mailtoLabel")}
               <ArrowRight className="h-3 w-3" aria-hidden="true" />
@@ -363,8 +351,8 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
         <div className="mt-6 flex items-start gap-3 px-5 py-4 rounded-xl bg-ochre-100 border border-danger">
           <AlertTriangle className="h-5 w-5 text-danger flex-shrink-0 mt-0.5" aria-hidden="true" />
           <div>
-            <p className="text-[13px] font-semibold text-ink mb-1">{t("error.title")}</p>
-            <p className="text-[12px] text-ink-700 leading-relaxed">{t("error.body")}</p>
+            <p className="text-body-sm font-semibold text-ink mb-1">{t("error.title")}</p>
+            <p className="text-caption text-ink-700 leading-relaxed">{t("error.body")}</p>
           </div>
         </div>
       )}
@@ -387,7 +375,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
           <button
             type="button"
             onClick={goNext}
-            className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover: hover:-translate-y-0.5 text-sm"
+            className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-150 hover:shadow-card hover: text-sm"
           >
             {t("form.next")}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -396,7 +384,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover: hover:-translate-y-0.5 text-sm"
+            className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-7 py-3.5 rounded-xl transition-colors duration-150 hover:shadow-card hover: text-sm"
           >
             {submitting ? (
               <>
@@ -446,7 +434,7 @@ function Field({
     <div className={className}>
       <label
         htmlFor={id}
-        className="block text-[10px] font-bold text-ink mb-2 uppercase tracking-[0.12em]"
+        className="block text-ink mb-2 uppercase text-eyebrow"
       >
         {label}
         {!optional && <span className="text-leaf ml-1">*</span>}
@@ -459,11 +447,9 @@ function Field({
         placeholder={placeholder}
         autoComplete={autoComplete}
         aria-invalid={!!error}
-        className={`w-full px-4 py-3 rounded-xl border text-ink text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-leaf/40 focus:border-leaf transition ${
-          error ? "border-danger bg-ochre-100/40" : "border-line bg-cream"
-        }`}
+        className={`w-full px-4 py-3 rounded-xl border text-ink text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-leaf/40 focus:border-leaf transition ${ error ? "border-danger bg-ochre-100/40" : "border-line bg-cream" }`}
       />
-      {error && <p className="mt-1.5 text-[11px] text-danger">{error}</p>}
+      {error && <p className="mt-1.5 text-caption text-danger">{error}</p>}
     </div>
   );
 }
@@ -491,7 +477,7 @@ function TextareaField({
     <div>
       <label
         htmlFor={id}
-        className="block text-[10px] font-bold text-ink mb-2 uppercase tracking-[0.12em]"
+        className="block text-ink mb-2 uppercase text-eyebrow"
       >
         {label}
         {!optional && <span className="text-leaf ml-1">*</span>}
@@ -503,11 +489,9 @@ function TextareaField({
         placeholder={placeholder}
         rows={rows}
         aria-invalid={!!error}
-        className={`w-full px-4 py-3 rounded-xl border text-ink text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-leaf/40 focus:border-leaf transition resize-y ${
-          error ? "border-danger bg-ochre-100/40" : "border-line bg-cream"
-        }`}
+        className={`w-full px-4 py-3 rounded-xl border text-ink text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-leaf/40 focus:border-leaf transition resize-y ${ error ? "border-danger bg-ochre-100/40" : "border-line bg-cream" }`}
       />
-      {error && <p className="mt-1.5 text-[11px] text-danger">{error}</p>}
+      {error && <p className="mt-1.5 text-caption text-danger">{error}</p>}
     </div>
   );
 }
@@ -531,7 +515,7 @@ function SelectField({
     <div>
       <label
         htmlFor={id}
-        className="block text-[10px] font-bold text-ink mb-2 uppercase tracking-[0.12em]"
+        className="block text-ink mb-2 uppercase text-eyebrow"
       >
         {label}
         <span className="text-leaf ml-1">*</span>
@@ -541,9 +525,7 @@ function SelectField({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         aria-invalid={!!error}
-        className={`w-full px-4 py-3 rounded-xl border text-ink text-sm focus:outline-none focus:ring-2 focus:ring-leaf/40 focus:border-leaf transition ${
-          error ? "border-danger bg-ochre-100/40" : "border-line bg-cream"
-        }`}
+        className={`w-full px-4 py-3 rounded-xl border text-ink text-sm focus:outline-none focus:ring-2 focus:ring-leaf/40 focus:border-leaf transition ${ error ? "border-danger bg-ochre-100/40" : "border-line bg-cream" }`}
       >
         <option value="">-</option>
         {options.map((opt) => (
@@ -552,7 +534,7 @@ function SelectField({
           </option>
         ))}
       </select>
-      {error && <p className="mt-1.5 text-[11px] text-danger">{error}</p>}
+      {error && <p className="mt-1.5 text-caption text-danger">{error}</p>}
     </div>
   );
 }

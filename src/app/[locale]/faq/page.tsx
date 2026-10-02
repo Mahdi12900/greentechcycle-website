@@ -44,15 +44,15 @@ export default function FAQPage() {
   return (
     <main className="min-h-screen">
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-primary to-dark py-24 md:py-32">
+      <section className="relative bg-primary py-16 lg:py-24">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
               <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <HelpCircle className="w-8 h-8 text-accent" />
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              <h1 className="text-display-lg text-white mb-6">
                 {t("hero.title")}
               </h1>
               <p className="text-lg md:text-xl text-ondark">
@@ -64,8 +64,8 @@ export default function FAQPage() {
       </section>
 
       {/* Tabs + Accordion */}
-      <section className="py-20 bg-light">
-        <div className="container mx-auto px-4 max-w-4xl">
+      <section className="bg-light py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 max-w-4xl">
           {/* Tab Navigation */}
           <FadeIn>
             <div className="flex flex-wrap justify-center gap-2 mb-12">
@@ -75,11 +75,7 @@ export default function FAQPage() {
                   <button
                     key={tab}
                     onClick={() => handleTabChange(tab)}
-                    className={`inline-flex items-center gap-2 px-5 md:px-6 py-3 rounded-full font-medium text-sm md:text-base transition-all ${
-                      activeTab === tab
-                        ? "bg-primary text-white shadow-lg shadow-primary/25"
-                        : "bg-white text-ink-700 hover:bg-primary/5 hover:text-primary border border-line"
-                    }`}
+                    className={`inline-flex items-center gap-2 px-5 md:px-6 py-3 rounded-full font-medium text-sm md:text-base transition-colors ${ activeTab === tab ? "bg-primary text-white" : "bg-white text-ink-700 hover:bg-primary/5 hover:text-primary border border-line" }`}
                   >
                     <TabIcon className="h-4 w-4" />
                     {tabLabels[tab]}
@@ -94,7 +90,7 @@ export default function FAQPage() {
             <div className="space-y-3">
               {questions.map((item, index) => (
                 <StaggerItem key={`${activeTab}-${index}`}>
-                  <div className="bg-white rounded-xl shadow-sm border border-line overflow-hidden">
+                  <div className="bg-white rounded-xl border border-line overflow-hidden">
                     <button
                       onClick={() => toggleQuestion(index)}
                       className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-cream transition-colors"
@@ -103,15 +99,11 @@ export default function FAQPage() {
                         {item.q}
                       </span>
                       <ChevronDown
-                        className={`w-5 h-5 text-primary shrink-0 transition-transform duration-300 ${
-                          openIndex === index ? "rotate-180" : ""
-                        }`}
+                        className={`w-5 h-5 text-primary shrink-0 transition-transform duration-150 ${ openIndex === index ? "rotate-180" : "" }`}
                       />
                     </button>
                     <div
-                      className={`overflow-hidden transition-all duration-300 ${
-                        openIndex === index ? "max-h-96" : "max-h-0"
-                      }`}
+                      className={`overflow-hidden transition-colors duration-150 ${ openIndex === index ? "max-h-96" : "max-h-0" }`}
                     >
                       <div className="px-5 md:px-6 pb-5 md:pb-6 text-ink-700 text-sm md:text-base leading-relaxed border-t border-line pt-4">
                         {item.a}

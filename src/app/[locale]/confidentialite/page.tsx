@@ -50,8 +50,8 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
       >
         {/* Table of contents */}
         <FadeIn>
-          <div className="mb-10 bg-gradient-to-br from-primary-50 to-white rounded-2xl p-6 md:p-7 border border-primary/10">
-            <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">
+          <div className="mb-10 rounded-2xl p-6 md:p-7 border border-primary/10 bg-primary-50">
+            <h2 className="text-display-md text-primary uppercase mb-4">
               Sommaire
             </h2>
             <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
@@ -76,7 +76,7 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
             <StaggerItem key={key}>
               <div
                 id={`section-${key}`}
-                className="scroll-mt-24 bg-white rounded-2xl p-6 md:p-8 border border-line shadow-sm hover:shadow-md transition-all duration-300"
+                className="scroll-mt-24 bg-white rounded-2xl p-6 md:p-8 border border-line hover:shadow-card transition-colors duration-150"
               >
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-leaf-100 border border-accent/20 flex items-center justify-center text-accent">
@@ -87,7 +87,7 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
                       <span className="text-xs font-mono text-leaf">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <h2 className="text-xl md:text-2xl font-semibold text-ink tracking-tight">
+                      <h2 className="text-display-md text-ink">
                         {t(`content.${key}.title`)}
                       </h2>
                     </div>

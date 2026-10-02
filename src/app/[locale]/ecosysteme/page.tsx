@@ -130,7 +130,7 @@ export default function EcosystemPage({
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-24 lg:py-32 overflow-hidden">
+      <section className="relative overflow-hidden py-16 lg:py-24">
         <Image
           src="/photos/server-technician.jpg"
           alt="Technicien GreenTechCycle intégrant la plateforme au data center client"
@@ -139,19 +139,17 @@ export default function EcosystemPage({
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-ink/92 via-forest/88 to-leaf/90" />
+        <div className="absolute inset-0 bg-ink/92" />
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-20 w-96 h-96 bg-primary rounded-full blur-3xl" />
         </div>
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-leaf-100 border border-accent/20 text-accent text-sm font-medium mb-6">
                 <Plug className="w-4 h-4" />
                 Intégrations & API
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              <h1 className="text-display-lg text-white mb-6">
                 Un écosystème ouvert,{" "}
                 <span className="text-accent">connecté à votre SI</span>
               </h1>
@@ -163,14 +161,14 @@ export default function EcosystemPage({
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-accent/25"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl transition-colors duration-150"
                 >
                   Demander une démo
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <a
                   href="#api"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-all duration-300 border border-white/20"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-colors duration-150 border border-white/20"
                 >
                   <Code2 className="w-5 h-5" />
                   Explorer l&apos;API
@@ -182,11 +180,11 @@ export default function EcosystemPage({
       </section>
 
       {/* Native Integrations */}
-      <section className="py-20 lg:py-28 bg-light">
-        <div className="container mx-auto px-4">
+      <section className="bg-light py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">
+              <h2 className="text-display-md text-dark mb-4">
                 Intégrations natives
               </h2>
               <p className="text-lg text-ink-700 max-w-2xl mx-auto">
@@ -199,11 +197,11 @@ export default function EcosystemPage({
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {integrations.map((integration) => (
               <StaggerItem key={integration.name}>
-                <div className="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-line hover:border-accent/30 h-full">
-                  <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="group bg-white rounded-2xl p-8 hover:shadow-card transition-colors duration-150 border border-line hover:border-accent/30 h-full">
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform duration-150 bg-primary/10">
                     <integration.icon className="w-7 h-7 text-primary" />
                   </div>
-                  <h3 className="text-xl font-bold text-dark mb-3">
+                  <h3 className="text-heading-lg text-dark mb-3">
                     {integration.name}
                   </h3>
                   <p className="text-ink-700 mb-5 leading-relaxed">
@@ -227,8 +225,8 @@ export default function EcosystemPage({
       </section>
 
       {/* Open API Section */}
-      <section id="api" className="py-20 lg:py-28 bg-white">
-        <div className="container mx-auto px-4">
+      <section id="api" className="bg-white py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
             <FadeIn>
               <div>
@@ -236,7 +234,7 @@ export default function EcosystemPage({
                   <Webhook className="w-4 h-4" />
                   API ouverte
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-dark mb-6">
+                <h2 className="text-display-md text-dark mb-6">
                   Une API pensée pour les développeurs
                 </h2>
                 <p className="text-lg text-ink-700 mb-8">
@@ -261,8 +259,8 @@ export default function EcosystemPage({
 
             <ScaleIn>
               <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-primary/5 to-accent/5 rounded-3xl blur-xl" />
-                <div className="relative bg-dark rounded-2xl p-6 shadow-2xl overflow-hidden">
+                <div className="absolute -inset-4 rounded-2xl blur-xl bg-primary/5" />
+                <div className="relative bg-dark rounded-2xl p-6 overflow-hidden">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-3 h-3 rounded-full bg-ochre" />
                     <div className="w-3 h-3 rounded-full bg-ochre" />
@@ -282,11 +280,11 @@ export default function EcosystemPage({
       </section>
 
       {/* SSO / Auth Section */}
-      <section className="py-20 lg:py-28 bg-cream">
-        <div className="container mx-auto px-4">
+      <section className="bg-cream py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">
+              <h2 className="text-display-md text-dark mb-4">
                 Sécurité & Authentification
               </h2>
               <p className="text-lg text-ink-700 max-w-2xl mx-auto">
@@ -300,11 +298,11 @@ export default function EcosystemPage({
           <StaggerContainer className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {authFeatures.map((feature) => (
               <StaggerItem key={feature.title}>
-                <div className="bg-white rounded-2xl p-8 shadow-sm border border-line hover:shadow-lg transition-shadow duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-br from-secondary/10 to-primary/10 rounded-xl flex items-center justify-center mb-5">
+                <div className="bg-white rounded-2xl p-8 border border-line hover:shadow-card transition-shadow duration-150">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-secondary/10">
                     <feature.icon className="w-6 h-6 text-secondary" />
                   </div>
-                  <h3 className="text-lg font-bold text-dark mb-2">
+                  <h3 className="text-heading-md text-dark mb-2">
                     {feature.title}
                   </h3>
                   <p className="text-ink-700 leading-relaxed">
@@ -318,14 +316,13 @@ export default function EcosystemPage({
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-28 bg-gradient-to-br from-primary to-dark relative overflow-hidden">
+      <section className="relative overflow-hidden bg-primary py-16 lg:py-24">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent rounded-full blur-3xl" />
         </div>
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              <h2 className="text-display-md text-white mb-6">
                 Prêt à connecter votre SI ?
               </h2>
               <p className="text-xl text-ondark-muted mb-8">
@@ -335,14 +332,14 @@ export default function EcosystemPage({
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-accent/25"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl transition-colors duration-150"
                 >
                   Planifier un appel
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
                   href="/services"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-all duration-300 border border-white/20"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-colors duration-150 border border-white/20"
                 >
                   Voir les solutions
                 </Link>

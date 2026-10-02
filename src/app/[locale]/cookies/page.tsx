@@ -33,8 +33,8 @@ function CookiesContent({ locale }: { locale: string }) {
         <div className="space-y-10">
           {/* Intro */}
           <FadeIn delay={0.05}>
-            <div className="bg-white rounded-2xl p-6 md:p-8 border border-line shadow-sm">
-              <h2 className="text-xl md:text-2xl font-semibold text-ink mb-3 tracking-tight">
+            <div className="bg-white rounded-2xl p-6 md:p-8 border border-line">
+              <h2 className="text-display-md text-ink mb-3">
                 {t("content.intro.title")}
               </h2>
               <p className="text-ink-700 whitespace-pre-line leading-relaxed">
@@ -46,7 +46,7 @@ function CookiesContent({ locale }: { locale: string }) {
           {/* Categories */}
           <FadeIn delay={0.1}>
             <div>
-              <h2 className="text-xl md:text-2xl font-semibold text-ink mb-6 tracking-tight">
+              <h2 className="text-display-md text-ink mb-6">
                 {t("content.categories.title")}
               </h2>
 
@@ -54,12 +54,12 @@ function CookiesContent({ locale }: { locale: string }) {
                 {categories.map(({ key, icon: Icon, color }) => (
                   <div
                     key={key}
-                    className="bg-white rounded-2xl p-6 border border-line shadow-sm hover:shadow-md transition-all duration-300"
+                    className="bg-white rounded-2xl p-6 border border-line hover:shadow-card transition-colors duration-150"
                   >
                     <div className={`inline-flex items-center justify-center w-11 h-11 rounded-xl border mb-4 ${color}`}>
                       <Icon className="h-5 w-5" />
                     </div>
-                    <h3 className="text-lg font-bold text-ink mb-2">
+                    <h3 className="text-heading-md text-ink mb-2">
                       {t(`content.categories.${key}.title`)}
                     </h3>
                     <p className="text-sm text-ink-700 whitespace-pre-line leading-relaxed">
@@ -73,8 +73,8 @@ function CookiesContent({ locale }: { locale: string }) {
 
           {/* Management */}
           <FadeIn delay={0.2}>
-            <div className="bg-gradient-to-br from-primary-50 to-accent/5 rounded-2xl p-6 md:p-8 border border-primary/10">
-              <h2 className="text-xl md:text-2xl font-semibold text-ink mb-3 tracking-tight">
+            <div className="rounded-2xl p-6 md:p-8 border border-primary/10 bg-primary-50">
+              <h2 className="text-display-md text-ink mb-3">
                 {t("content.management.title")}
               </h2>
               <p className="text-ink-700 whitespace-pre-line leading-relaxed">
@@ -85,8 +85,8 @@ function CookiesContent({ locale }: { locale: string }) {
 
           {/* Duration */}
           <FadeIn delay={0.3}>
-            <div className="bg-white rounded-2xl p-6 md:p-8 border border-line shadow-sm">
-              <h2 className="text-xl md:text-2xl font-semibold text-ink mb-3 tracking-tight">
+            <div className="bg-white rounded-2xl p-6 md:p-8 border border-line">
+              <h2 className="text-display-md text-ink mb-3">
                 {t("content.duration.title")}
               </h2>
               <p className="text-ink-700 whitespace-pre-line leading-relaxed">

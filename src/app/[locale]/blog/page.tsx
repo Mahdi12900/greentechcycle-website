@@ -60,7 +60,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
       <SchemaOrg data={schemaData} />
       <main className="min-h-screen">
         {/* Hero */}
-        <section className="relative bg-forest-900 py-24 md:py-32 overflow-hidden">
+        <section className="relative bg-forest-900 overflow-hidden py-16 lg:py-24">
           <div className="absolute inset-0">
             <Image
               src="/photos/blog-economie-circulaire.jpg"
@@ -70,9 +70,9 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
               priority
             />
           </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
             <Breadcrumbs items={breadcrumbs} dark />
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="text-display-lg text-white mb-6">
               Blog ITAD & Recyclage IT
             </h1>
             <p className="text-xl text-ondark-muted max-w-2xl">
@@ -82,13 +82,13 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
         </section>
 
         {/* Articles Grid */}
-        <section className="py-16 bg-cream">
-          <div className="container mx-auto px-4">
+        <section className="bg-cream py-12 lg:py-16">
+          <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogArticles.map((article) => (
                 <article
                   key={article.slug}
-                  className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-line"
+                  className="bg-white rounded-2xl overflow-hidden hover:shadow-card transition-shadow duration-150 border border-line"
                 >
                   <Link href={`/${locale}/blog/${article.slug}`}>
                     <div className="relative aspect-[16/9]">
@@ -122,7 +122,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                       </span>
                     </div>
                     <Link href={`/${locale}/blog/${article.slug}`}>
-                      <h2 className="text-lg font-bold text-ink mb-2 hover:text-leaf transition-colors line-clamp-2">
+                      <h2 className="text-display-md text-ink mb-2 hover:text-leaf transition-colors line-clamp-2">
                         {article.title}
                       </h2>
                     </Link>

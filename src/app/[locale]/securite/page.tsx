@@ -51,14 +51,12 @@ export default function SecurityPage({
   return (
     <main className="min-h-screen bg-light">
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-secondary to-dark py-24 px-6 overflow-hidden">
+      <section className="relative px-6 overflow-hidden bg-secondary py-16 lg:py-24">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20 w-64 h-64 bg-accent rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-20 w-96 h-96 bg-primary rounded-full blur-3xl" />
         </div>
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <FadeIn>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="text-display-lg text-white mb-6">
               {t("hero.title")}
             </h1>
             <p className="text-lg md:text-xl text-ondark-muted max-w-3xl mx-auto">
@@ -69,10 +67,10 @@ export default function SecurityPage({
       </section>
 
       {/* Erasure Levels */}
-      <section className="py-20 px-6">
+      <section className="px-6 py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-dark text-center mb-16">
+            <h2 className="text-display-md text-dark text-center mb-16">
               {t("levels.title")}
             </h2>
           </FadeIn>
@@ -82,11 +80,11 @@ export default function SecurityPage({
               const Icon = style.icon;
               return (
                 <StaggerItem key={index}>
-                  <div className={`${style.bg} ${style.border} border rounded-2xl p-6 h-full flex flex-col items-center text-center hover:shadow-lg transition-shadow`}>
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${style.color} flex items-center justify-center mb-4 shadow-lg`}>
+                  <div className={`${style.bg} ${style.border} border rounded-2xl p-6 h-full flex flex-col items-center text-center hover:shadow-card transition-shadow`}>
+                    <div className={`w-14 h-14 rounded-xl ${style.color} flex items-center justify-center mb-4`}>
                       <Icon className="w-7 h-7 text-white" />
                     </div>
-                    <div className="text-3xl font-bold text-dark mb-2">Niveau {item.level}</div>
+                    <div className="text-3xl font-semibold text-dark mb-2">Niveau {item.level}</div>
                     <h3 className="text-sm font-semibold text-dark mb-1">{item.name}</h3>
                     <p className="text-xs text-ink-700 mb-2">{item.desc}</p>
                     <span className="text-xs text-accent font-medium">{item.norm}</span>
@@ -99,10 +97,10 @@ export default function SecurityPage({
       </section>
 
       {/* Chain of Custody */}
-      <section className="py-20 px-6 bg-white">
+      <section className="px-6 bg-white py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-dark text-center mb-4">
+            <h2 className="text-display-md text-dark text-center mb-4">
               {t("chainOfCustody.title")}
             </h2>
             <p className="text-center text-ink-700 mb-16 max-w-2xl mx-auto">
@@ -116,7 +114,7 @@ export default function SecurityPage({
                 return (
                   <div key={index} className="flex items-center gap-2 md:gap-4">
                     <div className="flex flex-col items-center gap-3 w-28 md:w-32">
-                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
+                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-primary">
                         <Icon className="w-7 h-7 text-white" />
                       </div>
                       <span className="text-xs md:text-sm font-medium text-ink text-center leading-tight">
@@ -135,17 +133,17 @@ export default function SecurityPage({
       </section>
 
       {/* Certifications */}
-      <section className="py-20 px-6 bg-gradient-to-b from-light to-white">
+      <section className="px-6 bg-light py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-dark text-center mb-16">
+            <h2 className="text-display-md text-dark text-center mb-16">
               {t("certifications.title")}
             </h2>
           </FadeIn>
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {certificationItems.map((cert, index) => (
               <StaggerItem key={index}>
-                <div className="bg-white rounded-2xl p-6 border border-line shadow-sm hover:shadow-xl transition-all h-full flex flex-col items-center text-center">
+                <div className="bg-white rounded-2xl p-6 border border-line hover:shadow-card transition-colors h-full flex flex-col items-center text-center">
                   <div className="w-16 h-16 rounded-full bg-leaf-100 flex items-center justify-center mb-4">
                     <Award className="w-8 h-8 text-accent" />
                   </div>
@@ -158,17 +156,17 @@ export default function SecurityPage({
       </section>
 
       {/* Architecture */}
-      <section className="py-20 px-6 bg-dark">
+      <section className="px-6 bg-dark py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
+            <h2 className="text-display-md text-white text-center mb-16">
               {t("architecture.title")}
             </h2>
           </FadeIn>
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {architectureItems.map((item, index) => (
               <StaggerItem key={index}>
-                <div className="bg-white/5 backdrop-blur-sm border border-ondark-line rounded-2xl p-6 hover:bg-white/10 transition-all h-full">
+                <div className="bg-white/5 border border-ondark-line rounded-2xl p-6 hover:bg-white/10 transition-colors h-full">
                   <Server className="w-10 h-10 text-accent mb-4" />
                   <p className="text-sm text-ondark">{item}</p>
                 </div>

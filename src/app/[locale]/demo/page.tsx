@@ -35,10 +35,10 @@ export default function DemoPage() {
   return (
     <main className="min-h-screen bg-light">
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-primary to-dark py-24 px-6">
+      <section className="relative px-6 bg-primary py-16 lg:py-24">
         <div className="max-w-6xl mx-auto text-center">
           <FadeIn>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="text-display-lg text-white mb-6">
               {t("hero.title")}
             </h1>
             <p className="text-lg md:text-xl text-ondark max-w-3xl mx-auto">
@@ -49,26 +49,26 @@ export default function DemoPage() {
       </section>
 
       {/* Video Placeholder */}
-      <section className="py-20 px-6">
+      <section className="px-6 py-16 lg:py-24">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-dark text-center mb-8">
+            <h2 className="text-display-md text-dark text-center mb-8">
               {t("video.title")}
             </h2>
-            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl group">
+            <div className="relative aspect-video rounded-2xl overflow-hidden group">
               <Image
                 src="/images/hero-dashboard.jpg"
                 alt="Aperçu de la plateforme GreenTechCycle - Demandez une démo"
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover transition-transform duration-150"
                 sizes="(max-width: 768px) 100vw, 1024px"
               />
-              <div className="absolute inset-0 bg-dark/40 group-hover:bg-dark/30 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-dark/40 group-hover:bg-dark/30 transition-colors duration-150" />
               <button
                 className="absolute inset-0 flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-accent/40 rounded-2xl"
                 aria-label="Lire la vidéo de démonstration"
               >
-                <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center shadow-lg shadow-accent/40 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center transition-transform duration-150">
                   <Play className="w-8 h-8 text-white ml-1" fill="white" aria-hidden="true" />
                 </div>
               </button>
@@ -81,17 +81,17 @@ export default function DemoPage() {
       </section>
 
       {/* Screenshots */}
-      <section className="py-20 px-6 bg-white">
+      <section className="px-6 bg-white py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-dark text-center mb-16">
+            <h2 className="text-display-md text-dark text-center mb-16">
               {t("screenshots.title")}
             </h2>
           </FadeIn>
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {screenshotItems.map((item, index) => (
               <StaggerItem key={index}>
-                <div className="bg-dark rounded-xl overflow-hidden shadow-xl border border-ondark-line">
+                <div className="bg-dark rounded-xl overflow-hidden border border-ondark-line">
                   <div className="h-8 bg-dark/80 flex items-center px-4 gap-2 border-b border-ondark-line">
                     <div className="w-3 h-3 rounded-full bg-ochre" />
                     <div className="w-3 h-3 rounded-full bg-ochre" />
@@ -111,10 +111,10 @@ export default function DemoPage() {
       </section>
 
       {/* Form Section */}
-      <section className="py-20 px-6 bg-gradient-to-b from-light to-white">
+      <section className="px-6 bg-light py-16 lg:py-24">
         <div className="max-w-3xl mx-auto">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-dark text-center mb-4">
+            <h2 className="text-display-md text-dark text-center mb-4">
               {t("form.title")}
             </h2>
             <p className="text-center text-ink-700 mb-12">
@@ -124,7 +124,7 @@ export default function DemoPage() {
 
           {submitted ? (
             <ScaleIn>
-              <div className="bg-white rounded-2xl shadow-xl p-12 text-center">
+              <div className="bg-white rounded-2xl p-12 text-center">
                 <CheckCircle className="w-16 h-16 text-accent mx-auto mb-6" />
                 <p className="text-lg text-dark">
                   {t("form.success")}
@@ -135,7 +135,7 @@ export default function DemoPage() {
             <FadeIn>
               <form
                 onSubmit={handleSubmit}
-                className="bg-white rounded-2xl shadow-xl p-8 md:p-12 space-y-6"
+                className="bg-white rounded-2xl p-8 md:p-12 space-y-6"
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -148,7 +148,7 @@ export default function DemoPage() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-colors"
                     />
                   </div>
                   <div>
@@ -161,7 +161,7 @@ export default function DemoPage() {
                       value={formData.company}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -177,7 +177,7 @@ export default function DemoPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-colors"
                     />
                   </div>
                   <div>
@@ -189,7 +189,7 @@ export default function DemoPage() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -203,7 +203,7 @@ export default function DemoPage() {
                     value={formData.equipment}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all bg-white"
+                    className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-colors bg-white"
                   >
                     <option value="">--</option>
                     {equipmentOptions.map((option, index) => (
@@ -223,13 +223,13 @@ export default function DemoPage() {
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-colors resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-accent/25"
+                  className="w-full py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
                 >
                   <Send className="w-5 h-5" />
                   {t("form.submit")}

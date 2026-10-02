@@ -79,49 +79,19 @@ function FAQItem({ q, a }: { q: string; a: string }) {
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between gap-4 text-left group"
       >
-        <span className="font-semibold text-ink text-[15px] leading-snug">
+        <span className="font-semibold text-ink text-body leading-snug">
           {q}
         </span>
         <ChevronDown
-          className={`w-5 h-5 text-muted flex-shrink-0 transition-transform ${
-            open ? "rotate-180 text-leaf" : ""
-          }`}
+          className={`w-5 h-5 text-muted flex-shrink-0 transition-transform ${ open ? "rotate-180 text-leaf" : "" }`}
           aria-hidden="true"
         />
       </button>
       {open && (
-        <p className="mt-4 text-[14.5px] text-ink-700 leading-[1.78] pr-8">
+        <p className="mt-4 text-body-sm text-ink-700 pr-8">
           {a}
         </p>
       )}
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   GhostNumber, watermark XXL en arrière-plan
-───────────────────────────────────────────────────────────────────────────── */
-function GhostNumber({
-  n,
-  isDark,
-  align = "right",
-}: {
-  n: string;
-  isDark: boolean;
-  align?: "left" | "right";
-}) {
-  return (
-    <div
-      className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-      style={{
-        fontSize: "clamp(8rem, 22vw, 18rem)",
-        color: isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.035)",
-        [align === "right" ? "right" : "left"]: "-0.05em",
-        bottom: "-0.12em",
-      }}
-      aria-hidden="true"
-    >
-      {n}
     </div>
   );
 }
@@ -173,33 +143,19 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
         aria-labelledby="service-hero-title"
       >
         {/* Ambient glow layers */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 12% 18%, rgba(16,185,129,0.18) 0%, transparent 60%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 45% at 92% 88%, rgba(14,165,233,0.12) 0%, transparent 55%)",
-          }}
-        />
 
         {/* Left content */}
         <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-24">
           <FadeIn>
             <div className="flex items-center gap-3 mb-10">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-muted uppercase">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-muted uppercase text-eyebrow">
                 <span
                   className="w-1.5 h-1.5 rounded-full bg-leaf"
                   style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
                 />
                 {data.eyebrow}
               </span>
-              <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/8 text-[11px] font-semibold text-white border border-white/15">
+              <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/8 text-caption font-semibold text-white border border-white/15">
                 <Icon className="h-3.5 w-3.5 text-leaf-300" aria-hidden="true" />
                 {data.badge}
               </span>
@@ -207,13 +163,12 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
 
             <h1
               id="service-hero-title"
-              className="text-white font-black tracking-tight mb-8"
-              style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
+              className="text-display-lg text-white mb-8"
             >
               {data.title}
             </h1>
 
-            <p className="text-ondark-muted text-base lg:text-[1.12rem] leading-[1.72] max-w-xl mb-10">
+            <p className="text-ondark-muted text-base lg:text-body-lg max-w-xl mb-10">
               {data.subtitle}
             </p>
 
@@ -221,7 +176,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
               {data.proof.map((kpi, i) => (
                 <div key={i} className="flex flex-col">
                   <span
-                    className="text-3xl lg:text-4xl font-black tracking-tight leading-none tabular-nums"
+                    className="text-3xl lg:text-4xl font-semibold tracking-tight leading-none tabular-nums"
                     style={{ color: kpi.color ?? "#047857" }}
                   >
                     {kpi.value}
@@ -244,7 +199,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
                   href={data.pricingHref ?? "/tarifs"}
                   className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-ochre/15 border border-ochre/30 hover:bg-ochre/25 transition-colors group"
                 >
-                  <span className="text-xl lg:text-2xl font-black text-ochre tabular-nums tracking-tight">
+                  <span className="text-xl lg:text-2xl font-semibold text-ochre tabular-nums tracking-tight">
                     {data.pricingAnchor}
                   </span>
                   <span className="text-sm font-medium text-ondark-muted underline underline-offset-4 decoration-1 group-hover:text-white transition-colors">
@@ -258,14 +213,14 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <Link
                 href={reserverHref}
-                className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-colors duration-150 hover:shadow-card hover: text-sm"
               >
                 {L.bookCta}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link
                 href={data.ctaSecondaryHref}
-                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-colors duration-150 text-sm"
               >
                 {data.ctaSecondaryLabel}
               </Link>
@@ -273,10 +228,10 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
 
             <a
               href="#methodologie"
-              className="inline-flex items-center gap-2 text-ink-700 hover:text-ondark-muted text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
+              className="inline-flex items-center gap-2 text-ink-700 hover:text-ondark-muted uppercase transition-colors group text-eyebrow"
             >
               <ArrowDown
-                className="h-4 w-4 transition-transform group-hover:translate-y-1"
+                className="h-4 w-4 transition-transform"
                 aria-hidden="true"
               />
               {L.scrollCta}
@@ -294,8 +249,8 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 45vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/25 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-ink/55 to-transparent" />
+          <div className="absolute inset-0 bg-ink/85" />
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-ink/55" />
         </div>
       </section>
 
@@ -310,11 +265,10 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
               alt={data.imageSecondaryAlt}
               fill
               loading="lazy"
-              className="object-cover transition-transform duration-[1400ms] hover:scale-[1.03]"
+              className="object-cover transition-transform duration-150"
               sizes="(max-width: 1024px) 100vw, 44vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/15" />
-            <GhostNumber n="01" isDark={false} align="right" />
+            <div className="absolute inset-0 bg-paper/15" />
           </div>
 
           <div className="relative w-full lg:flex-1 flex items-center px-6 sm:px-10 lg:px-14 xl:px-20 py-16 lg:py-24">
@@ -323,28 +277,27 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
             <div className="max-w-2xl">
               <FadeIn>
                 <div className="flex items-center gap-4 mb-7">
-                  <span className="text-5xl lg:text-6xl font-black leading-none tracking-tighter text-leaf tabular-nums">
+                  <span className="text-5xl lg:text-6xl font-semibold leading-none text-leaf tabular-nums">
                     01
                   </span>
                   <span className="flex-1 h-[1px] bg-leaf/25" aria-hidden="true" />
                 </div>
 
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf mb-4">
+                <p className="uppercase text-muted mb-4 text-eyebrow">
                   {L.pourquoi}
                 </p>
 
                 <h2
-                  className="text-ink font-bold tracking-tight mb-7"
-                  style={{ fontSize: "clamp(1.9rem, 3.5vw, 2.75rem)", lineHeight: 1.08 }}
+                  className="text-display-md text-ink mb-7"
                 >
                   {data.title}
                 </h2>
 
-                <p className="text-ink-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-10">
+                <p className="text-ink-700 text-body lg:text-body-lg mb-10">
                   {data.description}
                 </p>
 
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted mb-5">
+                <p className="uppercase text-muted mb-5 text-eyebrow">
                   {L.benefits}
                 </p>
                 <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5">
@@ -352,7 +305,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
                     <StaggerItem key={j}>
                       <div className="flex items-start gap-3">
                         <CheckCircle2 className="h-5 w-5 text-leaf flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        <span className="text-[14.5px] text-ink-700 leading-snug">{b}</span>
+                        <span className="text-body-sm text-ink-700 leading-snug">{b}</span>
                       </div>
                     </StaggerItem>
                   ))}
@@ -368,30 +321,21 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
          ════════════════════════════════════════════════════════════════ */}
       <section
         id="methodologie"
-        className="relative w-full overflow-hidden bg-forest-900 py-20 lg:py-28"
+        className="relative w-full overflow-hidden bg-forest-900 py-16 lg:py-24"
       >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 55% at 50% 30%, rgba(16,185,129,0.10) 0%, transparent 60%)",
-          }}
-        />
-        <GhostNumber n="02" isDark={true} align="left" />
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-16">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf-300 mb-4">
+              <p className="uppercase text-ondark-muted mb-4 text-eyebrow">
                 {L.methodology}
               </p>
               <h2
-                className="text-white font-bold tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+                className="text-display-md text-white mb-6"
               >
                 {data.methodology.title}
               </h2>
-              <p className="text-ondark-muted text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+              <p className="text-ondark-muted text-body lg:text-body-lg">
                 {data.narrative}
               </p>
             </div>
@@ -400,17 +344,17 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
           <StaggerContainer className="max-w-5xl space-y-5">
             {data.methodology.steps.map((step, i) => (
               <StaggerItem key={i}>
-                <div className="group flex flex-col sm:flex-row gap-6 items-start p-7 lg:p-9 rounded-2xl bg-white/[0.04] border border-ondark-line hover:bg-white/[0.07] hover:border-white/20 transition-all">
+                <div className="group flex flex-col sm:flex-row gap-6 items-start p-7 lg:p-9 rounded-2xl bg-white/[0.04] border border-ondark-line hover:bg-white/[0.07] hover:border-white/20 transition-colors">
                   <div className="flex-shrink-0">
-                    <span className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-leaf-100 text-leaf-300 font-black text-xl tabular-nums border border-leaf/25">
+                    <span className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-leaf-100 text-leaf-300 font-semibold text-xl tabular-nums border border-leaf/25">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-white font-bold text-lg lg:text-xl mb-3 tracking-tight">
+                    <h3 className="text-heading-lg text-white mb-3">
                       {step.title}
                     </h3>
-                    <p className="text-muted text-[14.5px] lg:text-[15px] leading-[1.78]">
+                    <p className="text-muted text-body-sm lg:text-body">
                       {step.desc}
                     </p>
                   </div>
@@ -424,22 +368,20 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
       {/* ════════════════════════════════════════════════════════════════
           S4 (LIVRABLES / SLA / CERTIFS) fond #F7F5F0, ghost number 03
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-cream py-20 lg:py-28">
-        <GhostNumber n="03" isDark={false} align="right" />
+      <section className="relative w-full overflow-hidden bg-cream py-16 lg:py-24">
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf mb-4">
+              <p className="uppercase text-muted mb-4 text-eyebrow">
                 {L.deliverables}
               </p>
               <h2
-                className="text-ink font-bold tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+                className="text-display-md text-ink mb-6"
               >
                 {isEn ? "What lands in your hands." : "Ce qui arrive entre vos mains."}
               </h2>
-              <p className="text-ink-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+              <p className="text-ink-700 text-body lg:text-body-lg">
                 {data.deliveryNarrative}
               </p>
             </div>
@@ -447,15 +389,15 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
 
           <div className="grid lg:grid-cols-3 gap-6 max-w-6xl">
             <FadeIn>
-              <div className="bg-white rounded-2xl p-8 border border-line h-full shadow-sm">
-                <h3 className="text-sm font-bold uppercase tracking-[0.15em] text-leaf mb-6">
+              <div className="bg-white rounded-2xl p-8 border border-line h-full">
+                <h3 className="uppercase text-muted mb-6 text-eyebrow">
                   {L.deliverables}
                 </h3>
                 <ul className="space-y-4">
                   {data.deliverables.map((d, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <CheckCircle2 className="h-4 w-4 text-leaf flex-shrink-0 mt-1" aria-hidden="true" />
-                      <span className="text-[14px] text-ink-700 leading-snug">{d}</span>
+                      <span className="text-body-sm text-ink-700 leading-snug">{d}</span>
                     </li>
                   ))}
                 </ul>
@@ -463,21 +405,14 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
             </FadeIn>
 
             <FadeIn>
-              <div className="bg-forest-900 rounded-2xl p-8 h-full shadow-sm relative overflow-hidden">
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background:
-                      "radial-gradient(ellipse 90% 70% at 30% 0%, rgba(16,185,129,0.18) 0%, transparent 60%)",
-                  }}
-                />
-                <h3 className="relative text-sm font-bold uppercase tracking-[0.15em] text-leaf-300 mb-6">
+              <div className="bg-forest-900 rounded-2xl p-8 h-full relative overflow-hidden">
+                <h3 className="relative uppercase text-ondark-muted mb-6 text-eyebrow">
                   {L.sla}
                 </h3>
                 <ul className="relative space-y-5">
                   {data.sla.map((s, i) => (
                     <li key={i} className="border-b border-ondark-line pb-4 last:border-0 last:pb-0">
-                      <p className="text-3xl font-black text-white tabular-nums tracking-tight leading-none">
+                      <p className="text-3xl font-semibold text-white tabular-nums tracking-tight leading-none">
                         {s.value}
                       </p>
                       <p className="text-xs text-muted mt-2 leading-snug">
@@ -490,8 +425,8 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
             </FadeIn>
 
             <FadeIn>
-              <div className="bg-white rounded-2xl p-8 border border-line h-full shadow-sm">
-                <h3 className="text-sm font-bold uppercase tracking-[0.15em] text-leaf mb-6">
+              <div className="bg-white rounded-2xl p-8 border border-line h-full">
+                <h3 className="uppercase text-muted mb-6 text-eyebrow">
                   {L.certifications}
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -514,19 +449,12 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
       {/* ════════════════════════════════════════════════════════════════
           S5 (CITATION MAGAZINE) fond #0B3B2E, pleine largeur
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-forest py-20 lg:py-28">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(16,185,129,0.10) 0%, transparent 65%)",
-          }}
-        />
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="relative w-full overflow-hidden bg-forest py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
               <Quote className="h-10 w-10 text-leaf mx-auto mb-8" aria-hidden="true" />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf-300 mb-6">
+              <p className="uppercase text-ondark-muted mb-6 text-eyebrow">
                 {L.quoteEyebrow}
               </p>
               <blockquote
@@ -549,20 +477,18 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
           S6 (FAQ) fond blanc
          ════════════════════════════════════════════════════════════════ */}
       {data.faq.length > 0 && (
-        <section className="relative w-full overflow-hidden bg-white py-20 lg:py-28">
-          <GhostNumber n="04" isDark={false} align="left" />
-          <div className="container mx-auto px-4 relative z-10">
+        <section className="relative w-full overflow-hidden bg-white py-16 lg:py-24">
+          <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
             <FadeIn>
               <div className="max-w-3xl mx-auto">
                 <div className="flex items-center gap-3 mb-3">
                   <HelpCircle className="w-5 h-5 text-leaf" aria-hidden="true" />
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf">
+                  <p className="uppercase text-muted text-eyebrow">
                     {L.faqTitle}
                   </p>
                 </div>
                 <h2
-                  className="text-ink font-bold tracking-tight mb-12"
-                  style={{ fontSize: "clamp(1.7rem, 3.2vw, 2.4rem)", lineHeight: 1.1 }}
+                  className="text-display-md text-ink mb-12"
                 >
                   {isEn ? "Straight answers, no fine print." : "Des réponses directes, sans astérisque."}
                 </h2>
@@ -582,41 +508,32 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
           S7 (ENCART CONVERSION) fond #047857 plein
          ════════════════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden bg-leaf">
-        <div
-          className="absolute inset-0 pointer-events-none opacity-30"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 80% 0%, rgba(255,255,255,0.25) 0%, transparent 55%)",
-          }}
-        />
-        <GhostNumber n="05" isDark={true} align="right" />
 
-        <div className="container mx-auto px-4 py-20 lg:py-24 relative z-10">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 py-20 lg:py-24 relative z-10">
           <FadeIn>
             <div className="max-w-4xl">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-ondark mb-5">
+              <p className="uppercase text-ondark mb-5 text-eyebrow">
                 {isEn ? "Take the next step" : "Passer à l'action"}
               </p>
               <h2
-                className="text-white font-black tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+                className="text-display-md text-white mb-6"
               >
                 {L.ctaTitle}
               </h2>
-              <p className="text-ondark text-[1.05rem] lg:text-[1.15rem] leading-[1.65] max-w-2xl mb-10">
+              <p className="text-ondark text-body-lg lg:text-body-lg max-w-2xl mb-10">
                 {L.ctaSubtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   href={reserverHref}
-                  className="inline-flex items-center justify-center gap-2 bg-forest-900 hover:bg-forest text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-forest-900 hover:bg-forest text-white font-semibold px-8 py-4 rounded-xl transition-colors duration-150 hover:shadow-card text-sm"
                 >
                   {L.bookCta}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link
                   href={data.ctaSecondaryHref}
-                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/40 hover:border-white/60 font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/40 hover:border-white/60 font-semibold px-8 py-4 rounded-xl transition-colors duration-150 text-sm"
                 >
                   {data.ctaSecondaryLabel}
                 </Link>

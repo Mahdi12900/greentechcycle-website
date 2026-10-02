@@ -33,11 +33,11 @@ function MentionsLegalesContent({ locale }: { locale: string }) {
         <StaggerContainer className="grid sm:grid-cols-2 gap-6">
           {sections.map(({ key, icon: Icon }) => (
             <StaggerItem key={key}>
-              <div className="h-full bg-white rounded-2xl p-6 md:p-7 border border-line shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="h-full bg-white rounded-2xl p-6 md:p-7 border border-line hover:shadow-card transition-colors duration-150">
                 <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-leaf-100 text-primary border border-primary/20 mb-4">
                   <Icon className="h-5 w-5" />
                 </div>
-                <h2 className="text-lg md:text-xl font-semibold text-ink mb-3 tracking-tight">
+                <h2 className="text-display-md text-ink mb-3">
                   {t(`content.${key}.title`)}
                 </h2>
                 <p className="text-sm text-ink-700 whitespace-pre-line leading-relaxed">

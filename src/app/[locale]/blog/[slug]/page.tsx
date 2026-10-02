@@ -114,15 +114,14 @@ export default async function BlogArticlePage({
       <SchemaOrg data={schemaData} />
       <main className="min-h-screen">
         {/* Hero */}
-        <section className="relative bg-gradient-to-br from-leaf to-forest py-20 md:py-28">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(16,185,129,0.15),_transparent_50%)]" />
-          <div className="container mx-auto px-4 relative z-10">
+        <section className="relative bg-leaf py-16 lg:py-24">
+          <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
             <Breadcrumbs items={breadcrumbs} dark />
             <div className="max-w-3xl">
               <span className="inline-block bg-leaf text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">
                 {article.category}
               </span>
-              <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              <h1 className="text-display-lg text-white mb-6">
                 {article.title}
               </h1>
               <div className="flex flex-wrap items-center gap-6 text-ondark-muted text-sm">
@@ -148,11 +147,11 @@ export default async function BlogArticlePage({
         </section>
 
         {/* Article Content */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
+        <section className="bg-white py-12 lg:py-16">
+          <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
               {/* Featured Image */}
-              <div className="relative aspect-[16/9] rounded-2xl overflow-hidden mb-10 shadow-lg">
+              <div className="relative aspect-[16/9] rounded-2xl overflow-hidden mb-10">
                 <Image
                   src={article.image}
                   alt={article.imageAlt}
@@ -165,7 +164,7 @@ export default async function BlogArticlePage({
 
               {/* Content */}
               <div
-                className="prose prose-lg prose-slate max-w-none prose-headings:text-ink prose-headings:font-bold prose-a:text-leaf prose-a:no-underline hover:prose-a:underline prose-strong:text-ink prose-li:text-ink-700"
+                className="prose prose-lg prose-slate max-w-none prose-headings:text-ink prose-headings:font-semibold prose-a:text-leaf prose-a:no-underline hover:prose-a:underline prose-strong:text-ink prose-li:text-ink-700"
                 dangerouslySetInnerHTML={{ __html: content }}
               />
 
@@ -191,18 +190,18 @@ export default async function BlogArticlePage({
         </section>
 
         {/* Related Articles */}
-        <section className="py-16 bg-cream">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-bold text-ink mb-8">Articles connexes</h2>
+        <section className="bg-cream py-12 lg:py-16">
+          <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+            <h2 className="text-display-md text-ink mb-8">Articles connexes</h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-3xl">
               {related.map((rel) => (
                 <Link
                   key={rel.slug}
                   href={`/${locale}/blog/${rel.slug}`}
-                  className="bg-white rounded-xl p-6 border border-line hover:shadow-md transition-shadow"
+                  className="bg-white rounded-xl p-6 border border-line hover:shadow-card transition-shadow"
                 >
                   <span className="text-xs font-semibold text-leaf">{rel.category}</span>
-                  <h3 className="text-lg font-bold text-ink mt-2 line-clamp-2">{rel.title}</h3>
+                  <h3 className="text-heading-md text-ink mt-2 line-clamp-2">{rel.title}</h3>
                   <p className="text-sm text-ink-700 mt-2 line-clamp-2">{rel.description}</p>
                 </Link>
               ))}
