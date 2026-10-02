@@ -12,7 +12,7 @@ export default function AuditInventairePage() {
 
   const data: ServicePageData = {
     slug: "audit-inventaire",
-    eyebrow: tx("01 (Cartographie", "01) Mapping"),
+    eyebrow: tx("01 · Cartographie", "01 · Mapping"),
     title: tx("Audit & inventaire IT", "IT audit & inventory"),
     subtitle: tx(
       "Avant d'effacer, valoriser ou recycler, il faut savoir ce que l'on possède réellement. Notre audit pose le socle de toute décision : un inventaire physique, certifié et opposable, livré en cinq jours ouvrés.",

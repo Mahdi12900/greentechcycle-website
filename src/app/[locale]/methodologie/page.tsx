@@ -293,29 +293,29 @@ export default function MethodologyPage() {
     {
       period: tx("2026 S1", "2026 H1"),
       items: [
-        { title: tx("IA pour scoring prédictif", "AI for predictive scoring"), desc: tx("Prédire la fin de vie des assets avant qu'elle ne survienne (maintenance prédictive ITAD", "Predict asset end-of-life before it happens) ITAD predictive maintenance"), status: "dev" as RoadmapStatus },
+        { title: tx("IA pour scoring prédictif", "AI for predictive scoring"), desc: tx("Prédire la fin de vie des assets avant qu'elle ne survienne · maintenance prédictive ITAD", "Predict asset end-of-life before it happens · ITAD predictive maintenance"), status: "dev" as RoadmapStatus },
         { title: tx("Connecteurs SAP, ServiceNow, Intune", "SAP, ServiceNow, Intune connectors"), desc: tx("Intégration native avec les ITSM et ERP leaders du marché", "Native integration with market-leading ITSM and ERP"), status: "dev" as RoadmapStatus },
       ],
     },
     {
       period: tx("2026 S2", "2026 H2"),
       items: [
-        { title: tx("Module Quantum-Ready Assessment", "Quantum-Ready Assessment module"), desc: tx("Évaluation de la vulnérabilité post-quantum de votre parc (standards NIST PQC 2024", "Post-quantum vulnerability assessment of your fleet) NIST PQC 2024 standards"), status: "beta" as RoadmapStatus },
+        { title: tx("Module Quantum-Ready Assessment", "Quantum-Ready Assessment module"), desc: tx("Évaluation de la vulnérabilité post-quantum de votre parc · standards NIST PQC 2024", "Post-quantum vulnerability assessment of your fleet · NIST PQC 2024 standards"), status: "beta" as RoadmapStatus },
         { title: tx("Robotique & Cobots", "Robotics & Cobots"), desc: tx("Intégration des assets robotiques et cobots dans le cycle ITAD, firmware, trajectoires, modèles", "Robotics and cobots integration in ITAD lifecycle, firmware, trajectories, models"), status: "planned" as RoadmapStatus },
       ],
     },
     {
       period: tx("2027 S1", "2027 H1"),
       items: [
-        { title: tx("Computer Vision pour inventaire", "Computer Vision for inventory"), desc: tx("Reconnaissance visuelle automatique des assets (inventaire par caméra sans scan manuel", "Automatic visual asset recognition) camera inventory without manual scanning"), status: "planned" as RoadmapStatus },
-        { title: tx("Digital Product Passport", "Digital Product Passport"), desc: tx("Conformité Règlement Batteries & EcoDesign (passeport numérique par asset", "Batteries Regulation & EcoDesign compliance) digital passport per asset"), status: "planned" as RoadmapStatus },
+        { title: tx("Computer Vision pour inventaire", "Computer Vision for inventory"), desc: tx("Reconnaissance visuelle automatique des assets · inventaire par caméra sans scan manuel", "Automatic visual asset recognition · camera inventory without manual scanning"), status: "planned" as RoadmapStatus },
+        { title: tx("Digital Product Passport", "Digital Product Passport"), desc: tx("Conformité Règlement Batteries & EcoDesign · passeport numérique par asset", "Batteries Regulation & EcoDesign compliance · digital passport per asset"), status: "planned" as RoadmapStatus },
       ],
     },
     {
       period: tx("2027 S2", "2027 H2"),
       items: [
         { title: tx("Architecture Edge Computing", "Edge Computing Architecture"), desc: tx("Processing distribué pour les clients multi-sites, réduction des latences et des transferts", "Distributed processing for multi-site clients, reduced latency and transfers"), status: "planned" as RoadmapStatus },
-        { title: tx("API Marketplace", "API Marketplace"), desc: tx("Connecteurs tiers certifiés (écosystème ouvert de partenaires intégrés", "Certified third-party connectors) open integrated partner ecosystem"), status: "planned" as RoadmapStatus },
+        { title: tx("API Marketplace", "API Marketplace"), desc: tx("Connecteurs tiers certifiés · écosystème ouvert de partenaires intégrés", "Certified third-party connectors · open integrated partner ecosystem"), status: "planned" as RoadmapStatus },
       ],
     },
   ];
@@ -407,7 +407,7 @@ export default function MethodologyPage() {
             <div className="max-w-3xl mx-auto text-center mb-16">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-muted uppercase mb-4 text-eyebrow">
                 <Layers className="w-3.5 h-3.5" />
-                {tx("Processus ITAD (8 modules d'ingénierie", "ITAD Process) 8 engineering modules")}
+                {tx("Processus ITAD · 8 modules d'ingénierie", "ITAD Process · 8 engineering modules")}
               </span>
               <h2 className="text-display-md text-ink mb-4">
                 {tx("Chaque module est un bloc d'ingénierie validé", "Every module is a validated engineering block")}

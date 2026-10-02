@@ -12,7 +12,7 @@ export default function CybersecuritePage() {
 
   const data: ServicePageData = {
     slug: "cybersecurite-itad",
-    eyebrow: tx("05 (Niveau Défense", "05) Defence-grade"),
+    eyebrow: tx("05 · Niveau Défense", "05 · Defence-grade"),
     title: tx("Cybersécurité ITAD", "ITAD cybersecurity"),
     subtitle: tx(
       "Les autres acteurs traitent la sécurité comme une case à cocher. Pour nous, c'est la colonne vertébrale du métier : huissier, scellés numérotés, GPS, vidéosurveillance archivée dix ans, registre signé eIDAS.",

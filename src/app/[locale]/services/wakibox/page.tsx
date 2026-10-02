@@ -14,7 +14,7 @@ export default function WakiBoxPage() {
 
   const data: ServicePageData = {
     slug: "wakibox",
-    eyebrow: tx("06 (Collecte connectée", "06) Connected collection"),
+    eyebrow: tx("06 · Collecte connectée", "06 · Connected collection"),
     title: "WakiBox",
     subtitle: tx(
       "Une borne installée dans le hall, et la collecte se fait toute seule. Détection automatique par RFID, pesée intégrée, alerte de remplissage en temps réel et un brin de ludification : pour multiplier par trois le geste utile.",

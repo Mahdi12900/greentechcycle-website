@@ -12,7 +12,7 @@ export default function ReconditionnementPage() {
 
   const data: ServicePageData = {
     slug: "reconditionnement-valorisation",
-    eyebrow: tx("03 (Valorisation", "03) Value recovery"),
+    eyebrow: tx("03 · Valorisation", "03 · Value recovery"),
     title: tx("Reconditionnement et valorisation", "Refurbishment and value recovery"),
     subtitle: tx(
       "Un poste de quatre ans n'est pas un déchet : c'est un budget mal lu. Notre atelier remet en état, classe, vend ou cède chaque actif éligible, et reverse une part contractuelle de la valeur récupérée.",

@@ -12,7 +12,7 @@ export default function EffacementSecurisePage() {
 
   const data: ServicePageData = {
     slug: "effacement-securise",
-    eyebrow: tx("02 (Sécurité des données", "02) Data security"),
+    eyebrow: tx("02 · Sécurité des données", "02 · Data security"),
     title: tx("Effacement sécurisé", "Secure data erasure"),
     subtitle: tx(
       "Quand un poste sort de votre organisation, ce n'est pas la machine qui inquiète : ce sont les fichiers qu'elle a hébergés. Nous garantissons un effacement opposable, certifié actif par actif, archivé dix ans.",

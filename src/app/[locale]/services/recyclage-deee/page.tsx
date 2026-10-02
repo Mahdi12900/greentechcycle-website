@@ -12,7 +12,7 @@ export default function RecyclageDEEEPage() {
 
   const data: ServicePageData = {
     slug: "recyclage-deee",
-    eyebrow: tx("04 (Économie circulaire", "04) Circular economy"),
+    eyebrow: tx("04 · Économie circulaire", "04 · Circular economy"),
     title: tx("Recyclage responsable des DEEE", "Responsible WEEE recycling"),
     subtitle: tx(
       "Pour ce qui ne peut plus servir, nous orchestrons un recyclage entièrement conforme à la directive DEEE et à la responsabilité élargie du producteur. Chaque matière est tracée, pesée, valorisée, et nourrit directement votre rapport CSRD.",
