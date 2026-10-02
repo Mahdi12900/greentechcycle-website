@@ -244,7 +244,7 @@ function ReserverInner() {
   };
 
   return (
-    <main className="overflow-hidden bg-white">
+    <div className="overflow-hidden bg-white">
       {/* Hero · sombre court */}
       <section className="relative bg-forest-900 overflow-hidden border-b border-ondark-line">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-24">
@@ -252,13 +252,13 @@ function ReserverInner() {
             <div className="max-w-3xl">
               <Link
                 href="/"
-                className="inline-flex items-center gap-1.5 text-caption font-medium text-muted hover:text-white transition-colors mb-7"
+                className="inline-flex items-center gap-1.5 text-caption font-medium text-ondark-muted hover:text-white transition-colors mb-7"
               >
                 <ChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
                 GreenTechCycle
               </Link>
 
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-ondark-muted uppercase mb-6 text-eyebrow">
+              <span className="block mb-6 text-eyebrow uppercase text-ondark-muted">
                 <span
                   className="w-1.5 h-1.5 rounded-full bg-leaf"
                   style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
@@ -286,14 +286,14 @@ function ReserverInner() {
                   {pricing && (
                     <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-caption">
                       <div className="flex flex-col">
-                        <dt className="text-muted uppercase text-eyebrow">
+                        <dt className="text-ondark-muted uppercase text-eyebrow">
                           {labels.price}
                         </dt>
                         <dd className="text-white font-semibold tabular-nums">{pricing.price[lang]}</dd>
                       </div>
                       {pricing.setup && (
                         <div className="flex flex-col">
-                          <dt className="text-muted uppercase text-eyebrow">
+                          <dt className="text-ondark-muted uppercase text-eyebrow">
                             {labels.setup}
                           </dt>
                           <dd className="text-white font-semibold tabular-nums">{pricing.setup[lang]}</dd>
@@ -301,7 +301,7 @@ function ReserverInner() {
                       )}
                       {pricing.engagement && (
                         <div className="flex flex-col">
-                          <dt className="text-muted uppercase text-eyebrow">
+                          <dt className="text-ondark-muted uppercase text-eyebrow">
                             {labels.engagement}
                           </dt>
                           <dd className="text-white font-semibold">{pricing.engagement[lang]}</dd>
@@ -342,7 +342,7 @@ function ReserverInner() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
 

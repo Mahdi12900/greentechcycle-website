@@ -42,15 +42,15 @@ export default function FAQPage() {
   };
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative bg-primary py-16 lg:py-24">
+      <section className="relative bg-forest py-16 lg:py-24">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
-              <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <HelpCircle className="w-8 h-8 text-accent" />
+              <div className="w-16 h-16 bg-leaf/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <HelpCircle className="w-8 h-8 text-leaf-300" />
               </div>
               <h1 className="text-display-lg text-white mb-6">
                 {t("hero.title")}
@@ -64,7 +64,7 @@ export default function FAQPage() {
       </section>
 
       {/* Tabs + Accordion */}
-      <section className="bg-light py-16 lg:py-24">
+      <section className="bg-cream py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 max-w-4xl">
           {/* Tab Navigation */}
           <FadeIn>
@@ -75,7 +75,7 @@ export default function FAQPage() {
                   <button
                     key={tab}
                     onClick={() => handleTabChange(tab)}
-                    className={`inline-flex items-center gap-2 px-5 md:px-6 py-3 rounded-full font-medium text-sm md:text-base transition-colors ${ activeTab === tab ? "bg-primary text-white" : "bg-white text-ink-700 hover:bg-primary/5 hover:text-primary border border-line" }`}
+                    className={`inline-flex items-center gap-2 px-5 md:px-6 py-3 rounded-full font-medium text-sm md:text-base transition-colors ${ activeTab === tab ? "bg-leaf text-white" : "bg-white text-ink-700 hover:bg-leaf/5 hover:text-leaf border border-line" }`}
                   >
                     <TabIcon className="h-4 w-4" />
                     {tabLabels[tab]}
@@ -95,11 +95,11 @@ export default function FAQPage() {
                       onClick={() => toggleQuestion(index)}
                       className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-cream transition-colors"
                     >
-                      <span className="font-medium text-dark pr-4 text-sm md:text-base">
+                      <span className="font-medium text-ink pr-4 text-sm md:text-base">
                         {item.q}
                       </span>
                       <ChevronDown
-                        className={`w-5 h-5 text-primary shrink-0 transition-transform duration-150 ${ openIndex === index ? "rotate-180" : "" }`}
+                        className={`w-5 h-5 text-leaf shrink-0 transition-transform duration-150 ${ openIndex === index ? "rotate-180" : "" }`}
                       />
                     </button>
                     <div
@@ -134,6 +134,6 @@ export default function FAQPage() {
         variant="contact"
         tone="dark"
       />
-    </main>
+    </div>
   );
 }

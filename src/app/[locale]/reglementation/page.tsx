@@ -74,7 +74,7 @@ type Status = "active" | "upcoming" | "update";
 
 function StatusBadge({ status, tx }: { status: Status; tx: ReturnType<typeof useTx> }) {
   const labels = {
-    active: { label: tx("En vigueur", "In force"), cls: "bg-leaf-100 text-accent border-accent/30" },
+    active: { label: tx("En vigueur", "In force"), cls: "bg-leaf-100 text-leaf border-leaf/30" },
     upcoming: { label: tx("À venir 2026", "Upcoming 2026"), cls: "bg-ochre-100 text-ochre-800 border-ochre-100" },
     update: { label: tx("Mise à jour 2025", "Updated 2025"), cls: "bg-leaf-100 text-forest border-line" },
   };
@@ -194,8 +194,8 @@ function SectorSection({
                   </div>
 
                   {/* GTC help */}
-                  <div className="flex items-start gap-2 bg-leaf-50 rounded-xl p-3 border border-accent/10">
-                    <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-2 bg-leaf-50 rounded-xl p-3 border border-leaf/10">
+                    <CheckCircle2 className="w-4 h-4 text-leaf flex-shrink-0 mt-0.5" />
                     <p className="text-xs text-ink-700 leading-relaxed">
                       <span className="font-semibold text-ink">{tx("Comment GTC aide", "How GTC helps")} :</span>{" "}
                       {reg.gtcHelp}
@@ -1112,7 +1112,7 @@ export default function RegulationPage() {
               const Icon = reg.icon;
               return (
                 <StaggerItem key={reg.name}>
-                  <article className="group relative h-full bg-white rounded-2xl border border-line/80 hover:border-accent/30 hover:shadow-card hover: transition-colors duration-150 overflow-hidden">
+                  <article className="group relative h-full bg-white rounded-2xl border border-line/80 hover:border-leaf/30 hover:shadow-card hover: transition-colors duration-150 overflow-hidden">
                     {/* Decorative corner glow */}
 
                     <div className="relative p-7">
@@ -1304,7 +1304,7 @@ export default function RegulationPage() {
                       </div>
                       <div className="space-y-4">
                         {section.items.map((item, j) => (
-                          <div key={j} className="relative pl-5 border-l-2 border-line hover:border-accent transition-colors">
+                          <div key={j} className="relative pl-5 border-l-2 border-line hover:border-leaf transition-colors">
                             <h4 className="font-semibold text-ink mb-1.5 text-sm tracking-tight">{item.title}</h4>
                             <p className="text-sm text-ink-700 leading-relaxed">{item.text}</p>
                           </div>
@@ -1346,7 +1346,7 @@ export default function RegulationPage() {
               const VPIcon = vp.icon;
               return (
                 <StaggerItem key={i}>
-                  <div className="group relative h-full bg-white rounded-2xl p-7 border border-line hover:shadow-card hover: hover:border-accent/30 transition-colors duration-150 overflow-hidden">
+                  <div className="group relative h-full bg-white rounded-2xl p-7 border border-line hover:shadow-card hover: hover:border-leaf/30 transition-colors duration-150 overflow-hidden">
                     <div className="relative">
                       <Pictogram icon={VPIcon as LucideIcon} size="lg" className="mb-5" />
                       <h3 className="text-heading-md text-ink mb-2.5">{vp.title}</h3>
@@ -1363,42 +1363,42 @@ export default function RegulationPage() {
             <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-4">
               <Link
                 href="/services"
-                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-line hover:border-primary hover:shadow-card transition-colors"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-line hover:border-leaf hover:shadow-card transition-colors"
               >
                 <div className="w-12 h-12 rounded-xl bg-leaf-100 flex items-center justify-center flex-shrink-0">
-                  <Workflow className="w-6 h-6 text-primary" />
+                  <Workflow className="w-6 h-6 text-leaf" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-ink mb-0.5">{tx("Nos services", "Our services")}</p>
                   <p className="text-xs text-muted">{tx("ITAD, destruction, reconditionnement", "ITAD, destruction, refurbishment")}</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted group-hover:text-primary group-hover:translate-x-0.5 transition" />
+                <ArrowRight className="w-5 h-5 text-muted group-hover:text-leaf group-hover:translate-x-0.5 transition" />
               </Link>
               <Link
                 href="/securite"
-                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-line hover:border-accent hover:shadow-card transition-colors"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-line hover:border-leaf hover:shadow-card transition-colors"
               >
                 <div className="w-12 h-12 rounded-xl bg-leaf-100 flex items-center justify-center flex-shrink-0">
-                  <ShieldCheck className="w-6 h-6 text-accent" />
+                  <ShieldCheck className="w-6 h-6 text-leaf" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-ink mb-0.5">{tx("Nos certifications", "Our certifications")}</p>
                   <p className="text-xs text-muted">{tx("ISO 27001, R2v3, NIST, DoD", "ISO 27001, R2v3, NIST, DoD")}</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted group-hover:text-accent group-hover:translate-x-0.5 transition" />
+                <ArrowRight className="w-5 h-5 text-muted group-hover:text-leaf group-hover:translate-x-0.5 transition" />
               </Link>
               <Link
                 href="/methodologie"
-                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-line hover:border-secondary hover:shadow-card transition-colors"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-line hover:border-forest hover:shadow-card transition-colors"
               >
-                <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-6 h-6 text-secondary" />
+                <div className="w-12 h-12 rounded-xl bg-forest/10 flex items-center justify-center flex-shrink-0">
+                  <BookOpen className="w-6 h-6 text-forest" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-ink mb-0.5">{tx("Notre méthodologie", "Our methodology")}</p>
                   <p className="text-xs text-muted">{tx("Processus ITAD 7 étapes", "ITAD 7-step process")}</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted group-hover:text-secondary group-hover:translate-x-0.5 transition" />
+                <ArrowRight className="w-5 h-5 text-muted group-hover:text-forest group-hover:translate-x-0.5 transition" />
               </Link>
             </div>
           </FadeIn>
@@ -1492,13 +1492,13 @@ export default function RegulationPage() {
                     </div>
 
                     <div className="flex-1 p-6 flex flex-col">
-                      <h3 className="text-heading-md text-ink mb-3 group-hover:text-primary transition">
+                      <h3 className="text-heading-md text-ink mb-3 group-hover:text-leaf transition">
                         {article.title}
                       </h3>
                       <p className="text-sm text-ink-700 leading-relaxed mb-5 flex-1">
                         {article.excerpt}
                       </p>
-                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent group-hover:gap-2.5 transition-colors">
+                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-leaf group-hover:gap-2.5 transition-colors">
                         {tx("Lire l'article", "Read article")}
                         <ArrowRight className="w-4 h-4" />
                       </span>
@@ -1544,7 +1544,7 @@ export default function RegulationPage() {
           </FadeIn>
           <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {sources.map((s, i) => (
-              <div key={i} className="group bg-cream hover:bg-white rounded-xl p-4 border border-line hover:border-accent/30 hover:shadow-card transition-colors">
+              <div key={i} className="group bg-cream hover:bg-white rounded-xl p-4 border border-line hover:border-leaf/30 hover:shadow-card transition-colors">
                 <div className="flex items-center gap-2 mb-1.5">
                   <div className="h-5 w-1 rounded-full bg-leaf" aria-hidden="true" />
                   <p className="font-semibold text-ink text-sm">{s.name}</p>

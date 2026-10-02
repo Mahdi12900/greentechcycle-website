@@ -38,15 +38,15 @@ export default function ClientJourneyPage({
 
   const stepIcons = [Phone, FileSearch, Settings, Rocket, HeadphonesIcon];
   const stepColors = [
-    "bg-accent",
+    "bg-leaf",
     "bg-forest",
     "bg-forest",
     "bg-ochre",
-    "bg-primary",
+    "bg-leaf",
   ];
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-16 lg:py-24">
         <Image
@@ -73,14 +73,14 @@ export default function ClientJourneyPage({
       </section>
 
       {/* Timeline Section */}
-      <section className="bg-light py-16 lg:py-24">
+      <section className="bg-cream py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           {/* Desktop Timeline (Horizontal) */}
           <div className="hidden lg:block max-w-6xl mx-auto">
             <StaggerContainer>
               <div className="relative">
                 {/* Connecting Line */}
-                <div className="absolute top-16 left-[10%] right-[10%] h-1 rounded-full bg-accent" />
+                <div className="absolute top-16 left-[10%] right-[10%] h-1 rounded-full bg-leaf" />
 
                 <div className="grid grid-cols-5 gap-6 relative">
                   {steps.map((step, index) => {
@@ -101,13 +101,13 @@ export default function ClientJourneyPage({
 
                           {/* Content */}
                           <div className="bg-white rounded-2xl p-6 border border-line w-full">
-                            <h3 className="text-heading-md text-dark mb-2">
+                            <h3 className="text-heading-md text-ink mb-2">
                               {step.title}
                             </h3>
                             <p className="text-sm text-ink-700 mb-4 leading-relaxed">
                               {step.description}
                             </p>
-                            <div className="inline-flex items-center gap-1.5 bg-leaf-100 text-accent px-3 py-1.5 rounded-full text-xs font-semibold">
+                            <div className="inline-flex items-center gap-1.5 bg-leaf-100 text-leaf px-3 py-1.5 rounded-full text-xs font-semibold">
                               <Clock className="w-3.5 h-3.5" />
                               {step.duration}
                             </div>
@@ -126,7 +126,7 @@ export default function ClientJourneyPage({
             <StaggerContainer>
               <div className="relative">
                 {/* Vertical Line */}
-                <div className="absolute top-0 bottom-0 left-8 w-1 rounded-full bg-accent" />
+                <div className="absolute top-0 bottom-0 left-8 w-1 rounded-full bg-leaf" />
 
                 <div className="space-y-8">
                   {steps.map((step, index) => {
@@ -148,12 +148,12 @@ export default function ClientJourneyPage({
                               <span className="text-ink-700 uppercase text-eyebrow">
                                 {step.number}
                               </span>
-                              <div className="inline-flex items-center gap-1 bg-leaf-100 text-accent px-2 py-0.5 rounded-full text-xs font-semibold ml-auto">
+                              <div className="inline-flex items-center gap-1 bg-leaf-100 text-leaf px-2 py-0.5 rounded-full text-xs font-semibold ml-auto">
                                 <Clock className="w-3 h-3" />
                                 {step.duration}
                               </div>
                             </div>
-                            <h3 className="text-heading-md text-dark mb-1.5">
+                            <h3 className="text-heading-md text-ink mb-1.5">
                               {step.title}
                             </h3>
                             <p className="text-sm text-ink-700 leading-relaxed">
@@ -188,6 +188,6 @@ export default function ClientJourneyPage({
         variant="call"
         tone="dark"
       />
-    </main>
+    </div>
   );
 }

@@ -28,13 +28,13 @@ function MentionsLegalesContent({ locale }: { locale: string }) {
         title={t("title")}
         subtitle="Informations légales de l'entreprise éditrice, de l'hébergeur et des droits associés à la plateforme GreenTechCycle."
         breadcrumbLabel="Mentions légales"
-        icon={<Scale className="h-7 w-7 text-accent" />}
+        icon={<Scale className="h-7 w-7 text-leaf" />}
       >
         <StaggerContainer className="grid sm:grid-cols-2 gap-6">
           {sections.map(({ key, icon: Icon }) => (
             <StaggerItem key={key}>
               <div className="h-full bg-white rounded-2xl p-6 md:p-7 border border-line hover:shadow-card transition-colors duration-150">
-                <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-leaf-100 text-primary border border-primary/20 mb-4">
+                <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-leaf-100 text-leaf border border-leaf/20 mb-4">
                   <Icon className="h-5 w-5" />
                 </div>
                 <h2 className="text-display-md text-ink mb-3">

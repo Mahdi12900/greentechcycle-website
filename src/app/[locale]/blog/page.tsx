@@ -58,7 +58,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
   return (
     <>
       <SchemaOrg data={schemaData} />
-      <main className="min-h-screen">
+      <div className="min-h-screen">
         {/* Hero */}
         <section className="relative bg-forest-900 overflow-hidden py-16 lg:py-24">
           <div className="absolute inset-0">
@@ -142,7 +142,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

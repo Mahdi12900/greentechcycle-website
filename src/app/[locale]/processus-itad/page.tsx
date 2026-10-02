@@ -14,7 +14,7 @@ export default function ProcessITADPage() {
   const stepIcons = [ClipboardList, Truck, ScanLine, HardDrive, RefreshCcw, Recycle, FileBarChart];
 
   return (
-    <main className="overflow-hidden">
+    <div className="overflow-hidden">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-16 lg:py-24">
         <div className="absolute inset-0 bg-leaf" />
@@ -129,7 +129,7 @@ export default function ProcessITADPage() {
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="text-center max-w-3xl mx-auto">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-accent text-white mb-6">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-leaf text-white mb-6">
                 <Sparkles className="h-7 w-7" />
               </div>
               <h2 className="text-display-md text-white mb-5">
@@ -141,7 +141,7 @@ export default function ProcessITADPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-600 text-white font-semibold px-10 py-4 rounded-xl transition-colors duration-150 hover:shadow-card text-lg"
+                  className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-600 text-white font-semibold px-10 py-4 rounded-xl transition-colors duration-150 hover:shadow-card text-lg"
                 >
                   Demander un audit gratuit
                   <ArrowRight className="h-5 w-5" />
@@ -157,6 +157,6 @@ export default function ProcessITADPage() {
           </FadeIn>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

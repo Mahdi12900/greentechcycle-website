@@ -303,7 +303,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
                     checked={checked}
                     disabled={disabled}
                     onChange={() => toggleSlot(s.value)}
-                    className="mt-0.5 h-4 w-4 accent-[#047857]"
+                    className="mt-0.5 h-4 w-4 accent-leaf"
                   />
                   <span className="text-body-sm text-ink leading-snug">{s.label}</span>
                 </label>
@@ -317,7 +317,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
               type="checkbox"
               checked={data.consent}
               onChange={(e) => update("consent", e.target.checked)}
-              className="mt-1 h-4 w-4 accent-[#047857]"
+              className="mt-1 h-4 w-4 accent-leaf"
             />
             <span className="text-caption text-ink-700 leading-relaxed">
               {t("form.labels.consent")}

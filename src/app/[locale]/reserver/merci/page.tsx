@@ -16,13 +16,13 @@ function MerciInner() {
   const isFallback = mode === "fallback";
 
   return (
-    <main className="bg-white">
+    <div className="bg-white">
       <section className="relative bg-forest-900 overflow-hidden">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10 py-24 lg:py-32">
           <FadeIn>
             <div className="max-w-2xl mx-auto text-center text-white">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-leaf-100 border border-leaf/30 mb-7">
-                <CheckCircle2 className="h-8 w-8 text-leaf" aria-hidden="true" />
+                <CheckCircle2 className="h-8 w-8 text-leaf-300" aria-hidden="true" />
               </div>
 
               <h1
@@ -37,7 +37,7 @@ function MerciInner() {
 
               {ref && (
                 <div className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-white/8 border border-white/15 mb-10">
-                  <span className="uppercase text-muted text-eyebrow">
+                  <span className="uppercase text-ondark-muted text-eyebrow">
                     {t("success.ref")}
                   </span>
                   <code className="text-caption font-mono text-leaf-300 tracking-tight break-all">
@@ -66,7 +66,7 @@ function MerciInner() {
           </FadeIn>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
 

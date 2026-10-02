@@ -33,7 +33,7 @@ export default function NotFound() {
         {/* CTA Button */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors mb-12"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-leaf text-white font-medium rounded-lg hover:bg-leaf/90 transition-colors mb-12"
         >
           <Home className="w-5 h-5" />
           {t("cta")}
@@ -47,7 +47,7 @@ export default function NotFound() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-line text-ink-700 hover:border-primary hover:text-primary transition-colors"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-line text-ink-700 hover:border-leaf hover:text-leaf transition-colors"
               >
                 <link.icon className="w-4 h-4" />
                 {link.label}

@@ -64,13 +64,13 @@ export default function ResultatsClientsPage() {
   const metricAccents = ["#047857", "#0B3B2E", "#B45309", "#0B3B2E"];
 
   return (
-    <main className="overflow-hidden bg-white">
+    <div className="overflow-hidden bg-white">
       {/* Hero */}
       <section className="relative overflow-hidden bg-ink py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
-              <p className="text-muted uppercase mb-4 text-eyebrow">
+              <p className="text-ondark-muted uppercase mb-4 text-eyebrow">
                 {t("hero.eyebrow")}
               </p>
               <h1 className="text-display-lg text-white mb-6">
@@ -223,7 +223,7 @@ export default function ResultatsClientsPage() {
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
-              <TrendingUp className="h-10 w-10 text-leaf mx-auto mb-6" aria-hidden="true" />
+              <TrendingUp className="h-10 w-10 text-leaf-300 mx-auto mb-6" aria-hidden="true" />
               <h2 className="text-display-md text-white mb-6">
                 {t("cta.title")}
               </h2>
@@ -250,7 +250,7 @@ export default function ResultatsClientsPage() {
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
                 {trustBadges.map((badge, i) => (
                   <div key={i} className="flex items-center gap-2 text-sm text-ondark">
-                    <Shield className="h-4 w-4 text-leaf" aria-hidden="true" />
+                    <Shield className="h-4 w-4 text-leaf-300" aria-hidden="true" />
                     <span className="font-medium">{badge}</span>
                   </div>
                 ))}
@@ -259,6 +259,6 @@ export default function ResultatsClientsPage() {
           </FadeIn>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

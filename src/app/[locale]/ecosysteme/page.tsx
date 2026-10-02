@@ -128,7 +128,7 @@ export default function EcosystemPage({
 }) {
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-16 lg:py-24">
         <Image
@@ -145,13 +145,13 @@ export default function EcosystemPage({
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-leaf-100 border border-accent/20 text-accent text-sm font-medium mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-leaf-100 border border-leaf/20 text-leaf text-sm font-medium mb-6">
                 <Plug className="w-4 h-4" />
                 Intégrations & API
               </span>
               <h1 className="text-display-lg text-white mb-6">
                 Un écosystème ouvert,{" "}
-                <span className="text-accent">connecté à votre SI</span>
+                <span className="text-leaf">connecté à votre SI</span>
               </h1>
               <p className="text-xl text-ondark-muted mb-8 max-w-2xl mx-auto">
                 Connecteurs natifs, API REST documentée et authentification
@@ -161,7 +161,7 @@ export default function EcosystemPage({
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl transition-colors duration-150"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-leaf hover:bg-leaf/90 text-white font-semibold rounded-xl transition-colors duration-150"
                 >
                   Demander une démo
                   <ArrowRight className="w-5 h-5" />
@@ -180,11 +180,11 @@ export default function EcosystemPage({
       </section>
 
       {/* Native Integrations */}
-      <section className="bg-light py-16 lg:py-24">
+      <section className="bg-cream py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-16">
-              <h2 className="text-display-md text-dark mb-4">
+              <h2 className="text-display-md text-ink mb-4">
                 Intégrations natives
               </h2>
               <p className="text-lg text-ink-700 max-w-2xl mx-auto">
@@ -197,11 +197,11 @@ export default function EcosystemPage({
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {integrations.map((integration) => (
               <StaggerItem key={integration.name}>
-                <div className="group bg-white rounded-2xl p-8 hover:shadow-card transition-colors duration-150 border border-line hover:border-accent/30 h-full">
-                  <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform duration-150 bg-primary/10">
-                    <integration.icon className="w-7 h-7 text-primary" />
+                <div className="group bg-white rounded-2xl p-8 hover:shadow-card transition-colors duration-150 border border-line hover:border-leaf/30 h-full">
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform duration-150 bg-leaf/10">
+                    <integration.icon className="w-7 h-7 text-leaf" />
                   </div>
-                  <h3 className="text-heading-lg text-dark mb-3">
+                  <h3 className="text-heading-lg text-ink mb-3">
                     {integration.name}
                   </h3>
                   <p className="text-ink-700 mb-5 leading-relaxed">
@@ -211,7 +211,7 @@ export default function EcosystemPage({
                     {integration.features.map((feature) => (
                       <span
                         key={feature}
-                        className="px-3 py-1 bg-leaf-50 text-accent text-xs font-medium rounded-full border border-accent/10"
+                        className="px-3 py-1 bg-leaf-50 text-leaf text-xs font-medium rounded-full border border-leaf/10"
                       >
                         {feature}
                       </span>
@@ -230,11 +230,11 @@ export default function EcosystemPage({
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
             <FadeIn>
               <div>
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-primary text-sm font-medium mb-4">
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-leaf text-sm font-medium mb-4">
                   <Webhook className="w-4 h-4" />
                   API ouverte
                 </span>
-                <h2 className="text-display-md text-dark mb-6">
+                <h2 className="text-display-md text-ink mb-6">
                   Une API pensée pour les développeurs
                 </h2>
                 <p className="text-lg text-ink-700 mb-8">
@@ -247,7 +247,7 @@ export default function EcosystemPage({
                     <StaggerItem key={feature}>
                       <div className="flex items-start gap-3">
                         <div className="w-5 h-5 rounded-full bg-leaf-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <div className="w-2 h-2 rounded-full bg-accent" />
+                          <div className="w-2 h-2 rounded-full bg-leaf" />
                         </div>
                         <span className="text-ink-700">{feature}</span>
                       </div>
@@ -259,8 +259,8 @@ export default function EcosystemPage({
 
             <ScaleIn>
               <div className="relative">
-                <div className="absolute -inset-4 rounded-2xl blur-xl bg-primary/5" />
-                <div className="relative bg-dark rounded-2xl p-6 overflow-hidden">
+                <div className="absolute -inset-4 rounded-2xl blur-xl bg-leaf/5" />
+                <div className="relative bg-forest-900 rounded-2xl p-6 overflow-hidden">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-3 h-3 rounded-full bg-ochre" />
                     <div className="w-3 h-3 rounded-full bg-ochre" />
@@ -284,7 +284,7 @@ export default function EcosystemPage({
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-16">
-              <h2 className="text-display-md text-dark mb-4">
+              <h2 className="text-display-md text-ink mb-4">
                 Sécurité & Authentification
               </h2>
               <p className="text-lg text-ink-700 max-w-2xl mx-auto">
@@ -299,10 +299,10 @@ export default function EcosystemPage({
             {authFeatures.map((feature) => (
               <StaggerItem key={feature.title}>
                 <div className="bg-white rounded-2xl p-8 border border-line hover:shadow-card transition-shadow duration-150">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-secondary/10">
-                    <feature.icon className="w-6 h-6 text-secondary" />
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-forest/10">
+                    <feature.icon className="w-6 h-6 text-forest" />
                   </div>
-                  <h3 className="text-heading-md text-dark mb-2">
+                  <h3 className="text-heading-md text-ink mb-2">
                     {feature.title}
                   </h3>
                   <p className="text-ink-700 leading-relaxed">
@@ -316,7 +316,7 @@ export default function EcosystemPage({
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden bg-primary py-16 lg:py-24">
+      <section className="relative overflow-hidden bg-forest py-16 lg:py-24">
         <div className="absolute inset-0 opacity-10">
         </div>
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
@@ -332,7 +332,7 @@ export default function EcosystemPage({
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl transition-colors duration-150"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-leaf hover:bg-leaf/90 text-white font-semibold rounded-xl transition-colors duration-150"
                 >
                   Planifier un appel
                   <ArrowRight className="w-5 h-5" />
@@ -356,6 +356,6 @@ export default function EcosystemPage({
         limit={3}
         tone="light"
       />
-    </main>
+    </div>
   );
 }

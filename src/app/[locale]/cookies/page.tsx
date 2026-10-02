@@ -28,7 +28,7 @@ function CookiesContent({ locale }: { locale: string }) {
         title={t("title")}
         subtitle="Transparence sur les cookies déposés par GreenTechCycle : finalités, durées et outils de gestion de vos préférences."
         breadcrumbLabel="Cookies"
-        icon={<Cookie className="h-7 w-7 text-accent" />}
+        icon={<Cookie className="h-7 w-7 text-leaf" />}
       >
         <div className="space-y-10">
           {/* Intro */}
@@ -73,7 +73,7 @@ function CookiesContent({ locale }: { locale: string }) {
 
           {/* Management */}
           <FadeIn delay={0.2}>
-            <div className="rounded-2xl p-6 md:p-8 border border-primary/10 bg-primary-50">
+            <div className="rounded-2xl p-6 md:p-8 border border-leaf/10 bg-leaf-50">
               <h2 className="text-display-md text-ink mb-3">
                 {t("content.management.title")}
               </h2>

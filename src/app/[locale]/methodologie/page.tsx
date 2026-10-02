@@ -215,10 +215,10 @@ export default function MethodologyPage() {
       num: "06",
       duration: tx("J+14 → J+15", "D+14 → D+15"),
       icon: Eye,
-      color: "from-primary to-leaf-700",
-      accent: "text-primary",
+      color: "from-leaf to-leaf-700",
+      accent: "text-leaf",
       bg: "bg-leaf-50",
-      border: "border-primary/20",
+      border: "border-leaf/20",
       title: tx("Verification & Audit", "Verification & Audit"),
       description: tx(
         "Double vérification indépendante : l'auditeur n'est jamais l'opérateur. Échantillonnage aléatoire 10% minimum + vérification exhaustive sur tous les assets critiques (C3/C4).",
@@ -322,13 +322,13 @@ export default function MethodologyPage() {
 
   // ---------- SLAs ----------
   const slas = [
-    { metric: tx("Délai diagnostic", "Diagnostic time"), value: "48h max", icon: Clock, color: "text-forest" },
+    { metric: tx("Délai diagnostic", "Diagnostic time"), value: "48h max", icon: Clock, color: "text-leaf-300" },
     { metric: tx("Délai traitement complet", "Full processing time"), value: tx("14 jours ouvrés", "14 business days"), icon: Calendar, color: "text-ochre" },
     { metric: tx("Taux conformité audit", "Audit compliance rate"), value: "99,97%", icon: ShieldCheck, color: "text-leaf" },
-    { metric: tx("Taux valorisation", "Recovery rate"), value: "72%", icon: TrendingUp, color: "text-accent" },
-    { metric: tx("Disponibilité plateforme", "Platform uptime"), value: "99,9%", icon: Signal, color: "text-forest" },
-    { metric: tx("Temps de réponse support", "Support response time"), value: tx("4h ouvrées", "4 business hours"), icon: Zap, color: "text-forest" },
-    { metric: tx("Incidents sécurité (historique)", "Security incidents (history)"), value: tx("Zéro", "Zero"), icon: Shield, color: "text-forest" },
+    { metric: tx("Taux valorisation", "Recovery rate"), value: "72%", icon: TrendingUp, color: "text-leaf" },
+    { metric: tx("Disponibilité plateforme", "Platform uptime"), value: "99,9%", icon: Signal, color: "text-leaf-300" },
+    { metric: tx("Temps de réponse support", "Support response time"), value: tx("4h ouvrées", "4 business hours"), icon: Zap, color: "text-leaf-300" },
+    { metric: tx("Incidents sécurité (historique)", "Security incidents (history)"), value: tx("Zéro", "Zero"), icon: Shield, color: "text-leaf-300" },
   ];
 
   // ---------- Hero KPIs ----------
@@ -339,7 +339,7 @@ export default function MethodologyPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* ═══════════════ HERO ═══════════════ */}
       <section className="relative overflow-hidden bg-forest-900 py-16 lg:py-24">
         <div className="absolute inset-0 opacity-[0.08]">
@@ -348,14 +348,14 @@ export default function MethodologyPage() {
           <div className="max-w-5xl mx-auto">
             <FadeIn>
               <div className="flex justify-center mb-6">
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-accent text-sm font-medium">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-leaf-300 text-sm font-medium">
                   <Activity className="w-4 h-4" />
                   {tx("Ingénierie de processus ITAD", "ITAD process engineering")}
                 </span>
               </div>
               <h1 className="text-display-lg text-center text-white mb-6">
                 {tx("Une ingénierie de processus", "Process engineering")}{" "}
-                <span className="text-accent">{tx("certifiable à chaque étape", "certifiable at every step")}</span>
+                <span className="text-leaf-300">{tx("certifiable à chaque étape", "certifiable at every step")}</span>
               </h1>
               <p className="text-center text-lg md:text-xl text-ondark-muted mb-12 max-w-3xl mx-auto leading-relaxed">
                 {tx(
@@ -368,7 +368,7 @@ export default function MethodologyPage() {
               <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto">
                 {heroKpis.map((k, i) => (
                   <div key={i} className="rounded-2xl bg-white/5 border border-ondark-line px-5 py-6 text-center">
-                    <div className="text-3xl md:text-4xl font-semibold text-accent">
+                    <div className="text-3xl md:text-4xl font-semibold text-leaf-300">
                       {k.displayValue ? (
                         <span>{k.displayValue}</span>
                       ) : (
@@ -383,7 +383,7 @@ export default function MethodologyPage() {
               <div className="flex flex-col sm:flex-row gap-3 justify-center mt-12">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl transition"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-leaf hover:bg-leaf/90 text-white font-semibold rounded-xl transition"
                 >
                   {tx("Demander une évaluation", "Request an assessment")}
                   <ArrowRight className="w-4 h-4" />
@@ -405,8 +405,7 @@ export default function MethodologyPage() {
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-muted uppercase mb-4 text-eyebrow">
-                <Layers className="w-3.5 h-3.5" />
+              <span className="block mb-4 text-eyebrow uppercase text-muted">
                 {tx("Processus ITAD · 8 modules d'ingénierie", "ITAD Process · 8 engineering modules")}
               </span>
               <h2 className="text-display-md text-ink mb-4">
@@ -503,8 +502,7 @@ export default function MethodologyPage() {
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-forest uppercase mb-4 text-eyebrow">
-                <Brain className="w-3.5 h-3.5" />
+              <span className="block mb-4 text-eyebrow uppercase text-muted">
                 {tx("Feuille de route technologique", "Technology roadmap")}
               </span>
               <h2 className="text-display-md text-ink mb-4">
@@ -555,8 +553,7 @@ export default function MethodologyPage() {
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 border border-accent/20 text-muted uppercase mb-4 text-eyebrow">
-                <ShieldCheck className="w-3.5 h-3.5" />
+              <span className="block mb-4 text-eyebrow uppercase text-ondark-muted">
                 {tx("Garanties & SLA contractuels", "Guarantees & contractual SLAs")}
               </span>
               <h2 className="text-display-md text-white mb-4">
@@ -598,13 +595,13 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══════════════ CTA ═══════════════ */}
-      <section className="relative overflow-hidden bg-primary py-16 lg:py-24">
+      <section className="relative overflow-hidden bg-forest py-16 lg:py-24">
         <div className="absolute inset-0 opacity-10">
         </div>
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
-              <Activity className="w-10 h-10 text-accent mx-auto mb-6" />
+              <Activity className="w-10 h-10 text-leaf-300 mx-auto mb-6" />
               <h2 className="text-display-md text-white mb-6">
                 {tx("Mettez notre ingénierie de processus à l'épreuve", "Put our process engineering to the test")}
               </h2>
@@ -617,7 +614,7 @@ export default function MethodologyPage() {
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl transition"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-leaf hover:bg-leaf/90 text-white font-semibold rounded-xl transition"
                 >
                   {tx("Demander une évaluation", "Request an assessment")}
                   <ArrowRight className="w-5 h-5" />
@@ -641,6 +638,6 @@ export default function MethodologyPage() {
         limit={3}
         tone="light"
       />
-    </main>
+    </div>
   );
 }

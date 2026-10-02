@@ -32,15 +32,15 @@ function CguContent({ locale }: { locale: string }) {
         title={t("title")}
         subtitle="Conditions générales d'utilisation de la plateforme GreenTechCycle, engagements, responsabilités et cadre contractuel."
         breadcrumbLabel="CGU"
-        icon={<FileText className="h-7 w-7 text-accent" />}
+        icon={<FileText className="h-7 w-7 text-leaf" />}
       >
         <StaggerContainer className="space-y-6 md:space-y-8">
           {articles.map((article, idx) => (
             <StaggerItem key={article}>
               <div className="group relative bg-white rounded-2xl p-6 md:p-8 border border-line hover:shadow-card transition-colors duration-150">
-                <div className="absolute -left-[3px] top-6 w-1 h-12 rounded-full bg-accent" />
+                <div className="absolute -left-[3px] top-6 w-1 h-12 rounded-full bg-leaf" />
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-leaf-50 border border-primary/10 flex items-center justify-center text-primary font-semibold text-sm">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-leaf-50 border border-leaf/10 flex items-center justify-center text-leaf font-semibold text-sm">
                     {String(idx + 1).padStart(2, "0")}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -58,15 +58,15 @@ function CguContent({ locale }: { locale: string }) {
         </StaggerContainer>
 
         <FadeIn delay={0.2}>
-          <div className="mt-12 border border-primary/10 rounded-2xl p-6 md:p-8 flex items-start gap-5 bg-primary-50">
-            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center">
+          <div className="mt-12 border border-leaf/10 rounded-2xl p-6 md:p-8 flex items-start gap-5 bg-leaf-50">
+            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-leaf text-white flex items-center justify-center">
               <ShieldCheck className="h-6 w-6" />
             </div>
             <div>
               <h3 className="text-heading-md text-ink mb-1">Besoin d&apos;éclaircissements ?</h3>
               <p className="text-sm text-ink-700">
                 Notre équipe juridique répond sous 48h aux questions contractuelles.{" "}
-                <a href={`/${locale}/contact`} className="text-primary font-semibold hover:text-accent underline underline-offset-2">
+                <a href={`/${locale}/contact`} className="text-leaf font-semibold hover:text-leaf underline underline-offset-2">
                   Nous contacter
                 </a>
               </p>

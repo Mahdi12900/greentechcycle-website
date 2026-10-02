@@ -46,12 +46,12 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
         title={t("title")}
         subtitle="Votre confiance est notre priorité. Découvrez comment GreenTechCycle traite, protège et sécurise vos données personnelles conformément au RGPD."
         breadcrumbLabel="Confidentialité"
-        icon={<Lock className="h-7 w-7 text-accent" />}
+        icon={<Lock className="h-7 w-7 text-leaf" />}
       >
         {/* Table of contents */}
         <FadeIn>
-          <div className="mb-10 rounded-2xl p-6 md:p-7 border border-primary/10 bg-primary-50">
-            <h2 className="text-display-md text-primary uppercase mb-4">
+          <div className="mb-10 rounded-2xl p-6 md:p-7 border border-leaf/10 bg-leaf-50">
+            <h2 className="text-display-md text-leaf uppercase mb-4">
               Sommaire
             </h2>
             <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
@@ -59,7 +59,7 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
                 <a
                   key={key}
                   href={`#section-${key}`}
-                  className="flex items-center gap-2 text-sm text-ink-700 hover:text-primary transition-colors py-1"
+                  className="flex items-center gap-2 text-sm text-ink-700 hover:text-leaf transition-colors py-1"
                 >
                   <span className="text-xs font-mono text-leaf w-6">
                     {String(i + 1).padStart(2, "0")}
@@ -79,7 +79,7 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
                 className="scroll-mt-24 bg-white rounded-2xl p-6 md:p-8 border border-line hover:shadow-card transition-colors duration-150"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-leaf-100 border border-accent/20 flex items-center justify-center text-accent">
+                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-leaf-100 border border-leaf/20 flex items-center justify-center text-leaf">
                     <Icon className="h-5 w-5" />
                   </div>
                   <div className="flex-1 min-w-0">

@@ -49,9 +49,9 @@ export default function SecurityPage({
   const custodyIcons = [ClipboardCheck, Truck, Warehouse, HardDrive, FileCheck, PackageCheck, Award];
 
   return (
-    <main className="min-h-screen bg-light">
+    <div className="min-h-screen bg-cream">
       {/* Hero */}
-      <section className="relative px-6 overflow-hidden bg-secondary py-16 lg:py-24">
+      <section className="relative px-6 overflow-hidden bg-forest py-16 lg:py-24">
         <div className="absolute inset-0 opacity-10">
         </div>
         <div className="max-w-6xl mx-auto text-center relative z-10">
@@ -70,7 +70,7 @@ export default function SecurityPage({
       <section className="px-6 py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
-            <h2 className="text-display-md text-dark text-center mb-16">
+            <h2 className="text-display-md text-ink text-center mb-16">
               {t("levels.title")}
             </h2>
           </FadeIn>
@@ -84,10 +84,10 @@ export default function SecurityPage({
                     <div className={`w-14 h-14 rounded-xl ${style.color} flex items-center justify-center mb-4`}>
                       <Icon className="w-7 h-7 text-white" />
                     </div>
-                    <div className="text-3xl font-semibold text-dark mb-2">Niveau {item.level}</div>
-                    <h3 className="text-sm font-semibold text-dark mb-1">{item.name}</h3>
+                    <div className="text-3xl font-semibold text-ink mb-2">Niveau {item.level}</div>
+                    <h3 className="text-sm font-semibold text-ink mb-1">{item.name}</h3>
                     <p className="text-xs text-ink-700 mb-2">{item.desc}</p>
-                    <span className="text-xs text-accent font-medium">{item.norm}</span>
+                    <span className="text-xs text-leaf font-medium">{item.norm}</span>
                   </div>
                 </StaggerItem>
               );
@@ -100,7 +100,7 @@ export default function SecurityPage({
       <section className="px-6 bg-white py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
-            <h2 className="text-display-md text-dark text-center mb-4">
+            <h2 className="text-display-md text-ink text-center mb-4">
               {t("chainOfCustody.title")}
             </h2>
             <p className="text-center text-ink-700 mb-16 max-w-2xl mx-auto">
@@ -114,7 +114,7 @@ export default function SecurityPage({
                 return (
                   <div key={index} className="flex items-center gap-2 md:gap-4">
                     <div className="flex flex-col items-center gap-3 w-28 md:w-32">
-                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-primary">
+                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-leaf">
                         <Icon className="w-7 h-7 text-white" />
                       </div>
                       <span className="text-xs md:text-sm font-medium text-ink text-center leading-tight">
@@ -122,7 +122,7 @@ export default function SecurityPage({
                       </span>
                     </div>
                     {index < custodySteps.length - 1 && (
-                      <ChevronRight className="w-5 h-5 text-accent shrink-0 hidden md:block" />
+                      <ChevronRight className="w-5 h-5 text-leaf shrink-0 hidden md:block" />
                     )}
                   </div>
                 );
@@ -133,10 +133,10 @@ export default function SecurityPage({
       </section>
 
       {/* Certifications */}
-      <section className="px-6 bg-light py-16 lg:py-24">
+      <section className="px-6 bg-cream py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
-            <h2 className="text-display-md text-dark text-center mb-16">
+            <h2 className="text-display-md text-ink text-center mb-16">
               {t("certifications.title")}
             </h2>
           </FadeIn>
@@ -145,9 +145,9 @@ export default function SecurityPage({
               <StaggerItem key={index}>
                 <div className="bg-white rounded-2xl p-6 border border-line hover:shadow-card transition-colors h-full flex flex-col items-center text-center">
                   <div className="w-16 h-16 rounded-full bg-leaf-100 flex items-center justify-center mb-4">
-                    <Award className="w-8 h-8 text-accent" />
+                    <Award className="w-8 h-8 text-leaf" />
                   </div>
-                  <p className="text-sm font-medium text-dark">{cert}</p>
+                  <p className="text-sm font-medium text-ink">{cert}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -156,7 +156,7 @@ export default function SecurityPage({
       </section>
 
       {/* Architecture */}
-      <section className="px-6 bg-dark py-16 lg:py-24">
+      <section className="px-6 bg-forest-900 py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
             <h2 className="text-display-md text-white text-center mb-16">
@@ -167,7 +167,7 @@ export default function SecurityPage({
             {architectureItems.map((item, index) => (
               <StaggerItem key={index}>
                 <div className="bg-white/5 border border-ondark-line rounded-2xl p-6 hover:bg-white/10 transition-colors h-full">
-                  <Server className="w-10 h-10 text-accent mb-4" />
+                  <Server className="w-10 h-10 text-leaf-300 mb-4" />
                   <p className="text-sm text-ondark">{item}</p>
                 </div>
               </StaggerItem>
@@ -194,6 +194,6 @@ export default function SecurityPage({
         variant="download"
         tone="dark"
       />
-    </main>
+    </div>
   );
 }
