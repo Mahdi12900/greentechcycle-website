@@ -114,18 +114,18 @@ export default async function BlogArticlePage({
       <SchemaOrg data={schemaData} />
       <main className="min-h-screen">
         {/* Hero */}
-        <section className="relative bg-gradient-to-br from-[#047857] to-[#1E40AF] py-20 md:py-28">
+        <section className="relative bg-gradient-to-br from-leaf to-forest py-20 md:py-28">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(16,185,129,0.15),_transparent_50%)]" />
           <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs items={breadcrumbs} dark />
             <div className="max-w-3xl">
-              <span className="inline-block bg-[#047857] text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">
+              <span className="inline-block bg-leaf text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">
                 {article.category}
               </span>
               <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
                 {article.title}
               </h1>
-              <div className="flex flex-wrap items-center gap-6 text-gray-300 text-sm">
+              <div className="flex flex-wrap items-center gap-6 text-ondark-muted text-sm">
                 <span className="flex items-center gap-2">
                   <User className="h-4 w-4" />
                   {article.author}
@@ -165,21 +165,21 @@ export default async function BlogArticlePage({
 
               {/* Content */}
               <div
-                className="prose prose-lg prose-slate max-w-none prose-headings:text-[#0F172A] prose-headings:font-bold prose-a:text-[#047857] prose-a:no-underline hover:prose-a:underline prose-strong:text-[#0F172A] prose-li:text-gray-700"
+                className="prose prose-lg prose-slate max-w-none prose-headings:text-ink prose-headings:font-bold prose-a:text-leaf prose-a:no-underline hover:prose-a:underline prose-strong:text-ink prose-li:text-ink-700"
                 dangerouslySetInnerHTML={{ __html: content }}
               />
 
               {/* Share & Back */}
-              <div className="flex items-center justify-between mt-12 pt-8 border-t border-gray-200">
+              <div className="flex items-center justify-between mt-12 pt-8 border-t border-line">
                 <Link
                   href={`/${locale}/blog`}
-                  className="inline-flex items-center gap-2 text-[#047857] font-semibold hover:text-[#047857] transition-colors"
+                  className="inline-flex items-center gap-2 text-leaf font-semibold hover:text-leaf transition-colors"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Retour au blog
                 </Link>
                 <button
-                  className="inline-flex items-center gap-2 text-gray-500 hover:text-[#047857] transition-colors"
+                  className="inline-flex items-center gap-2 text-muted hover:text-leaf transition-colors"
                   aria-label="Partager cet article"
                 >
                   <Share2 className="h-4 w-4" />
@@ -191,19 +191,19 @@ export default async function BlogArticlePage({
         </section>
 
         {/* Related Articles */}
-        <section className="py-16 bg-[#F8FAFC]">
+        <section className="py-16 bg-cream">
           <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-bold text-[#0F172A] mb-8">Articles connexes</h2>
+            <h2 className="text-2xl font-bold text-ink mb-8">Articles connexes</h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-3xl">
               {related.map((rel) => (
                 <Link
                   key={rel.slug}
                   href={`/${locale}/blog/${rel.slug}`}
-                  className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow"
+                  className="bg-white rounded-xl p-6 border border-line hover:shadow-md transition-shadow"
                 >
-                  <span className="text-xs font-semibold text-[#047857]">{rel.category}</span>
-                  <h3 className="text-lg font-bold text-[#0F172A] mt-2 line-clamp-2">{rel.title}</h3>
-                  <p className="text-sm text-gray-600 mt-2 line-clamp-2">{rel.description}</p>
+                  <span className="text-xs font-semibold text-leaf">{rel.category}</span>
+                  <h3 className="text-lg font-bold text-ink mt-2 line-clamp-2">{rel.title}</h3>
+                  <p className="text-sm text-ink-700 mt-2 line-clamp-2">{rel.description}</p>
                 </Link>
               ))}
             </div>

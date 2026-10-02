@@ -52,9 +52,9 @@ export default function AuditInventairePage() {
       tx("Rapport exécutif PDF prêt pour le COMEX", "Executive PDF report ready for the leadership"),
     ],
     proof: [
-      { value: "5", unit: "jours", label: tx("livrable garanti", "guaranteed delivery"), color: "#10B981" },
-      { value: "99,2", unit: "%", label: tx("précision moyenne mesurée", "measured average accuracy"), color: "#0EA5E9" },
-      { value: "12", unit: "k+", label: tx("actifs cartographiés en 2025", "assets mapped in 2025"), color: "#F59E0B" },
+      { value: "5", unit: "jours", label: tx("livrable garanti", "guaranteed delivery"), color: "#047857" },
+      { value: "99,2", unit: "%", label: tx("précision moyenne mesurée", "measured average accuracy"), color: "#0B3B2E" },
+      { value: "12", unit: "k+", label: tx("actifs cartographiés en 2025", "assets mapped in 2025"), color: "#B45309" },
     ],
     methodology: {
       title: tx("Quatre étapes, un seul référentiel", "Four steps, a single source of truth"),

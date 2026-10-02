@@ -68,10 +68,10 @@ export default function PlateformePage() {
   return (
     <main className="overflow-hidden bg-white">
       {/* ═══════════════ Bandeau urgence ═══════════════ */}
-      <div className="bg-[#0F172A] text-white py-3 px-4 border-b border-white/5">
+      <div className="bg-forest-900 text-white py-3 px-4 border-b border-ondark-line">
         <div className="container mx-auto flex items-center justify-center gap-3 text-xs sm:text-sm font-medium text-center">
-          <ShieldCheck className="h-4 w-4 flex-shrink-0 text-[#10B981]" aria-hidden="true" />
-          <p className="leading-snug text-gray-300">{t("urgency.text")}</p>
+          <ShieldCheck className="h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+          <p className="leading-snug text-ondark-muted">{t("urgency.text")}</p>
         </div>
       </div>
 
@@ -79,7 +79,7 @@ export default function PlateformePage() {
           S1 (HERO ÉDITORIAL) split sombre, photo plateau audit à droite
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
+        className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-forest-900"
         aria-labelledby="plateforme-hero"
       >
         <div
@@ -101,9 +101,9 @@ export default function PlateformePage() {
         <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-24">
           <FadeIn>
             <div className="flex items-center gap-3 mb-10">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-muted uppercase">
                 <span
-                  className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
+                  className="w-1.5 h-1.5 rounded-full bg-leaf"
                   style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
                 />
                 {t("hero.eyebrow")}
@@ -118,12 +118,12 @@ export default function PlateformePage() {
               {t("hero.title")}
             </h1>
 
-            <p className="text-gray-300 text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-10">
+            <p className="text-ondark-muted text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-10">
               {t("hero.subtitle")}
             </p>
 
             {/* Bandeau preuves chiffrées */}
-            <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10 pb-10 border-b border-white/10">
+            <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10 pb-10 border-b border-ondark-line">
               {heroProofs.map((p, i) => (
                 <div key={i} className="flex flex-col">
                   <span
@@ -137,7 +137,7 @@ export default function PlateformePage() {
                       </span>
                     )}
                   </span>
-                  <span className="text-xs text-gray-500 mt-1.5 font-medium">
+                  <span className="text-xs text-muted mt-1.5 font-medium">
                     {p.label}
                   </span>
                 </div>
@@ -147,7 +147,7 @@ export default function PlateformePage() {
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <Link
                 href="/reserver?offre=demo-plateforme"
-                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
               >
                 {t("hero.cta1")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -163,7 +163,7 @@ export default function PlateformePage() {
 
             <a
               href="#parcours"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-300 text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
+              className="inline-flex items-center gap-2 text-ink-700 hover:text-ondark-muted text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
             >
               <ArrowDown
                 className="h-4 w-4 transition-transform group-hover:translate-y-1"
@@ -184,24 +184,24 @@ export default function PlateformePage() {
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 45vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/85 via-[#0F172A]/25 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F172A]/55 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/25 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-ink/55 to-transparent" />
 
           {/* Carte preuve flottante */}
-          <div className="absolute bottom-8 right-5 sm:right-8 max-w-[290px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-gray-100 hidden sm:block">
-            <Quote className="h-6 w-6 text-[#0EA5E9] mb-3" aria-hidden="true" />
-            <p className="text-[12px] text-[#0F172A] leading-snug font-medium mb-3">
+          <div className="absolute bottom-8 right-5 sm:right-8 max-w-[290px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-line hidden sm:block">
+            <Quote className="h-6 w-6 text-forest mb-3" aria-hidden="true" />
+            <p className="text-[12px] text-ink leading-snug font-medium mb-3">
               &ldquo;{t("hero.floatQuote")}&rdquo;
             </p>
-            <div className="flex items-center gap-2.5 pt-3 border-t border-gray-100">
-              <div className="w-7 h-7 rounded-full bg-[#0EA5E9]/12 flex items-center justify-center flex-shrink-0">
-                <ShieldCheck className="h-3.5 w-3.5 text-[#0EA5E9]" aria-hidden="true" />
+            <div className="flex items-center gap-2.5 pt-3 border-t border-line">
+              <div className="w-7 h-7 rounded-full bg-forest/12 flex items-center justify-center flex-shrink-0">
+                <ShieldCheck className="h-3.5 w-3.5 text-forest" aria-hidden="true" />
               </div>
               <div>
-                <p className="text-[11px] font-bold text-[#0F172A] leading-none">
+                <p className="text-[11px] font-bold text-ink leading-none">
                   {t("hero.floatName")}
                 </p>
-                <p className="text-[10px] text-gray-500 mt-0.5 leading-tight">
+                <p className="text-[10px] text-muted mt-0.5 leading-tight">
                   {t("hero.floatRole")}
                 </p>
               </div>
@@ -217,32 +217,32 @@ export default function PlateformePage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("promise.eyebrow")}
               </p>
               <h2
-                className="text-[#0F172A] font-bold tracking-tight leading-[1.05] mb-6"
+                className="text-ink font-bold tracking-tight leading-[1.05] mb-6"
                 style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)" }}
               >
                 {t("promise.title")}
               </h2>
-              <p className="text-gray-600 text-lg leading-[1.78] mb-4">
+              <p className="text-ink-700 text-lg leading-[1.78] mb-4">
                 {t("promise.body1")}
               </p>
-              <p className="text-gray-600 text-lg leading-[1.78] mb-5">
+              <p className="text-ink-700 text-lg leading-[1.78] mb-5">
                 {t("promise.body2")}
               </p>
-              <p className="text-base text-[#0F172A] font-medium leading-[1.78] max-w-2xl">
+              <p className="text-base text-ink font-medium leading-[1.78] max-w-2xl">
                 {isEn ? (
                   <>
                     The GTC SaaS platform is accessible{" "}
-                    <strong className="text-[#10B981]">starting at €2,500 HT/month</strong>{" "}
+                    <strong className="text-leaf">starting at €2,500 HT/month</strong>{" "}
                     (base 500 devices, one module). Pricing adapts to your fleet, modules and maturity level.{" "}
-                    <Link href="/tarifs" className="underline underline-offset-4 text-[#10B981] hover:text-[#0E9F6E] transition-colors font-semibold">
+                    <Link href="/tarifs" className="underline underline-offset-4 text-leaf hover:text-leaf-700 transition-colors font-semibold">
                       View pricing
                     </Link>{" "}
                     - or start with a{" "}
-                    <Link href="/tarifs#pilote" className="underline underline-offset-4 text-[#10B981] hover:text-[#0E9F6E] transition-colors font-semibold">
+                    <Link href="/tarifs#pilote" className="underline underline-offset-4 text-leaf hover:text-leaf-700 transition-colors font-semibold">
                       3-day Pilot at €2,900 ex-VAT
                     </Link>
                     , refunded on Year 1 if signed within 90 days.
@@ -250,13 +250,13 @@ export default function PlateformePage() {
                 ) : (
                   <>
                     La plateforme GTC SaaS est accessible{" "}
-                    <strong className="text-[#10B981]">à partir de 2 500 € HT/mois</strong>{" "}
+                    <strong className="text-leaf">à partir de 2 500 € HT/mois</strong>{" "}
                     (base 500 postes, un module). La tarification s&apos;affine selon votre parc, vos modules et votre maturité.{" "}
-                    <Link href="/tarifs" className="underline underline-offset-4 text-[#10B981] hover:text-[#0E9F6E] transition-colors font-semibold">
+                    <Link href="/tarifs" className="underline underline-offset-4 text-leaf hover:text-leaf-700 transition-colors font-semibold">
                       Voir les tarifs
                     </Link>{" "}
                     - ou démarrez par un{" "}
-                    <Link href="/tarifs#pilote" className="underline underline-offset-4 text-[#10B981] hover:text-[#0E9F6E] transition-colors font-semibold">
+                    <Link href="/tarifs#pilote" className="underline underline-offset-4 text-leaf hover:text-leaf-700 transition-colors font-semibold">
                       Pilote 3 j à 2 900 € HT
                     </Link>
                     , remboursé sur la 1re année si signature sous 90 j.
@@ -279,22 +279,22 @@ export default function PlateformePage() {
         const Icon = chapterIcons[index] ?? ScanLine;
         const accent =
           index === 0
-            ? "#10B981"
+            ? "#047857"
             : index === 1
-            ? "#0EA5E9"
+            ? "#0B3B2E"
             : index === 2
-            ? "#F59E0B"
+            ? "#B45309"
             : index === 3
-            ? "#10B981"
-            : "#0EA5E9";
+            ? "#047857"
+            : "#0B3B2E";
 
         let bg = "bg-white";
-        if (isDark) bg = "bg-[#0F172A]";
-        else if (index % 2 === 1) bg = "bg-[#F8FAFC]";
+        if (isDark) bg = "bg-forest-900";
+        else if (index % 2 === 1) bg = "bg-cream";
 
-        const textColor = isDark ? "text-white" : "text-[#0F172A]";
-        const subText = isDark ? "text-gray-300" : "text-gray-600";
-        const border = isDark ? "border-white/10" : "border-gray-100";
+        const textColor = isDark ? "text-white" : "text-ink";
+        const subText = isDark ? "text-ondark-muted" : "text-ink-700";
+        const border = isDark ? "border-ondark-line" : "border-line";
 
         return (
           <section
@@ -322,8 +322,8 @@ export default function PlateformePage() {
                   className={`absolute inset-0 ${
                     isDark
                       ? photoOnLeft
-                        ? "bg-gradient-to-r from-transparent via-transparent to-[#0F172A]/70"
-                        : "bg-gradient-to-l from-transparent via-transparent to-[#0F172A]/70"
+                        ? "bg-gradient-to-r from-transparent via-transparent to-ink/70"
+                        : "bg-gradient-to-l from-transparent via-transparent to-ink/70"
                       : photoOnLeft
                       ? "bg-gradient-to-r from-transparent to-white/15"
                       : "bg-gradient-to-l from-transparent to-white/15"
@@ -344,8 +344,8 @@ export default function PlateformePage() {
                   {number}
                 </div>
                 <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/92 backdrop-blur-sm shadow-lg">
-                  <Icon className="h-3.5 w-3.5 text-[#0F172A]" aria-hidden="true" />
-                  <span className="text-[11px] font-semibold text-[#0F172A] tracking-wide uppercase">
+                  <Icon className="h-3.5 w-3.5 text-ink" aria-hidden="true" />
+                  <span className="text-[11px] font-semibold text-ink tracking-wide uppercase">
                     {chap.eyebrow}
                   </span>
                 </div>
@@ -396,14 +396,14 @@ export default function PlateformePage() {
                       </p>
                       <p
                         className={`text-[12px] font-semibold uppercase tracking-wider ${
-                          isDark ? "text-gray-300" : "text-[#0F172A]"
+                          isDark ? "text-ondark-muted" : "text-ink"
                         }`}
                       >
                         {chap.proofLabel}
                       </p>
                       <p
                         className={`text-[11px] mt-1 ${
-                          isDark ? "text-gray-400" : "text-gray-500"
+                          isDark ? "text-muted" : "text-muted"
                         }`}
                       >
                         {chap.proofDetail}
@@ -436,7 +436,7 @@ export default function PlateformePage() {
       {/* ════════════════════════════════════════════════════════════════
           S4 (CITATION MAGAZINE) fond sombre intercalé
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative py-24 lg:py-28 bg-[#022C22] text-white overflow-hidden">
+      <section className="relative py-24 lg:py-28 bg-forest text-white overflow-hidden">
         <div className="absolute inset-0 opacity-25">
           <Image
             src="/photos/hp-atelier-itad.jpg"
@@ -446,12 +446,12 @@ export default function PlateformePage() {
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-[#022C22]/95 via-[#022C22]/92 to-[#0F172A]/95" />
+        <div className="absolute inset-0 bg-gradient-to-br from-forest/95 via-forest/92 to-ink/95" />
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto">
               <Quote
-                className="h-12 w-12 text-[#10B981] mb-6 opacity-80"
+                className="h-12 w-12 text-leaf mb-6 opacity-80"
                 aria-hidden="true"
               />
               <blockquote
@@ -460,11 +460,11 @@ export default function PlateformePage() {
               >
                 &ldquo;{t("editorialQuote.quote")}&rdquo;
               </blockquote>
-              <div className="border-l-4 border-[#10B981] pl-5">
+              <div className="border-l-4 border-leaf pl-5">
                 <p className="font-bold text-white text-base leading-tight">
                   {t("editorialQuote.name")}
                 </p>
-                <p className="text-gray-400 text-sm mt-0.5">
+                <p className="text-muted text-sm mt-0.5">
                   {t("editorialQuote.role")}
                 </p>
               </div>
@@ -476,7 +476,7 @@ export default function PlateformePage() {
       {/* ════════════════════════════════════════════════════════════════
           S5 (CHIFFRES D'EXPLOITATION) bandeau preuves
          ════════════════════════════════════════════════════════════════ */}
-      <section className="bg-[#0F172A] relative overflow-hidden border-t border-white/5">
+      <section className="bg-forest-900 relative overflow-hidden border-t border-ondark-line">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -485,10 +485,10 @@ export default function PlateformePage() {
           }}
         />
         <div className="container mx-auto px-4 relative z-10 py-16 lg:py-20">
-          <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-white/5">
+          <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-ondark-line">
             {(["assets", "value", "carbon", "audit"] as const).map((k, i) => {
-              const accents = ["#10B981", "#0EA5E9", "#F59E0B", "#10B981"];
-              const accent = accents[i] ?? "#10B981";
+              const accents = ["#047857", "#0B3B2E", "#B45309", "#047857"];
+              const accent = accents[i] ?? "#047857";
               const value = parseInt(t(`liveProofs.${k}.value`));
               return (
                 <StaggerItem key={k}>
@@ -502,10 +502,10 @@ export default function PlateformePage() {
                     >
                       <CountUp end={value} suffix={t(`liveProofs.${k}.suffix`)} />
                     </p>
-                    <p className="text-[13px] font-medium text-gray-400 leading-snug max-w-[18ch] mx-auto mb-1.5">
+                    <p className="text-[13px] font-medium text-muted leading-snug max-w-[18ch] mx-auto mb-1.5">
                       {t(`liveProofs.${k}.label`)}
                     </p>
-                    <p className="text-[10px] text-gray-600 italic">
+                    <p className="text-[10px] text-ink-700 italic">
                       {t(`liveProofs.${k}.source`)}
                     </p>
                   </div>
@@ -519,20 +519,20 @@ export default function PlateformePage() {
       {/* ════════════════════════════════════════════════════════════════
           S6 (OFFRES D'ENTRÉE) 3 packs avec bouton Réserver
          ════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 lg:py-28 bg-[#F8FAFC]">
+      <section className="py-24 lg:py-28 bg-cream">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mb-14">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("offers.eyebrow")}
               </p>
               <h2
-                className="text-[#0F172A] font-bold tracking-tight leading-[1.05] mb-5"
+                className="text-ink font-bold tracking-tight leading-[1.05] mb-5"
                 style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}
               >
                 {t("offers.title")}
               </h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-ink-700 text-lg leading-relaxed">
                 {t("offers.subtitle")}
               </p>
             </div>
@@ -541,27 +541,27 @@ export default function PlateformePage() {
           <StaggerContainer className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl">
             {offers.map((o) => (
               <StaggerItem key={o.slug}>
-                <div className="relative bg-white border border-gray-100 rounded-2xl p-7 lg:p-8 h-full flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <div className="relative bg-white border border-line rounded-2xl p-7 lg:p-8 h-full flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                   <div className="flex items-center gap-2 mb-5">
-                    <CalendarCheck className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
-                    <span className="text-[11px] font-semibold text-[#10B981] tracking-wider uppercase">
+                    <CalendarCheck className="h-4 w-4 text-leaf" aria-hidden="true" />
+                    <span className="text-[11px] font-semibold text-leaf tracking-wider uppercase">
                       {o.duration}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-[#0F172A] mb-3 leading-tight tracking-tight">
+                  <h3 className="text-xl font-bold text-ink mb-3 leading-tight tracking-tight">
                     {o.name}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed flex-1 mb-6">
+                  <p className="text-ink-700 text-sm leading-relaxed flex-1 mb-6">
                     {o.pitch}
                   </p>
-                  <div className="border-t border-gray-100 pt-5 mb-5">
-                    <p className="text-2xl font-black text-[#0F172A] tracking-tight leading-none">
+                  <div className="border-t border-line pt-5 mb-5">
+                    <p className="text-2xl font-black text-ink tracking-tight leading-none">
                       {o.price}
                     </p>
                   </div>
                   <Link
                     href={`/reserver?offre=${o.slug}`}
-                    className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-5 py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#10B981]/25 text-sm"
+                    className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-5 py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover: text-sm"
                   >
                     {t("offers.reserveLabel")}
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -580,10 +580,10 @@ export default function PlateformePage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("faq.eyebrow")}
               </p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F172A] tracking-tight leading-[1.1]">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.1]">
                 {t("faq.title")}
               </h2>
             </div>
@@ -591,16 +591,16 @@ export default function PlateformePage() {
           <StaggerContainer className="grid md:grid-cols-2 gap-5 lg:gap-6 max-w-5xl mx-auto">
             {faqItems.map((item, i) => (
               <StaggerItem key={i}>
-                <div className="bg-[#F8FAFC] border border-gray-100 rounded-2xl p-7 h-full hover:border-[#10B981]/40 hover:shadow-md transition-all duration-300">
+                <div className="bg-cream border border-line rounded-2xl p-7 h-full hover:border-leaf/40 hover:shadow-md transition-all duration-300">
                   <div className="flex items-start gap-3 mb-4">
-                    <span className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#10B981]/10 text-[#10B981] text-sm font-bold">
+                    <span className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg bg-leaf-100 text-leaf text-sm font-bold">
                       Q{i + 1}
                     </span>
-                    <h3 className="font-bold text-[#0F172A] text-base leading-tight tracking-tight">
+                    <h3 className="font-bold text-ink text-base leading-tight tracking-tight">
                       {item.q}
                     </h3>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed pl-11">
+                  <p className="text-sm text-ink-700 leading-relaxed pl-11">
                     {item.a}
                   </p>
                 </div>
@@ -613,12 +613,12 @@ export default function PlateformePage() {
       {/* ════════════════════════════════════════════════════════════════
           S8, CONVERSION FOND VERT PLEIN
          ════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-24 bg-[#10B981] text-white relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-leaf text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.15),_transparent_60%)] pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <FadeIn>
-              <p className="text-sm font-semibold tracking-[0.18em] text-white/80 uppercase mb-4">
+              <p className="text-sm font-semibold tracking-[0.18em] text-ondark uppercase mb-4">
                 {t("conversion.eyebrow")}
               </p>
               <h2
@@ -627,13 +627,13 @@ export default function PlateformePage() {
               >
                 {t("conversion.title")}
               </h2>
-              <p className="text-white/85 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+              <p className="text-ondark text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
                 {t("conversion.subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   href="/reserver?offre=demo-plateforme"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-[#0F172A] hover:bg-[#F8FAFC] font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-ink hover:bg-cream font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 text-sm"
                 >
                   {t("conversion.cta1")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -662,11 +662,11 @@ export default function PlateformePage() {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F172A]/95 via-[#022C22]/85 to-[#0F172A]/95" />
+        <div className="absolute inset-0 bg-gradient-to-br from-ink/95 via-forest/85 to-ink/95" />
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center text-white">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-4">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-4">
                 {t("finalCta.eyebrow")}
               </p>
               <h2
@@ -675,13 +675,13 @@ export default function PlateformePage() {
               >
                 {t("finalCta.title")}
               </h2>
-              <p className="text-gray-200 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+              <p className="text-ondark text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
                 {t("finalCta.subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
                 <Link
                   href="/reserver?offre=audit-decommissionnement"
-                  className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/30 hover:-translate-y-0.5 text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
                 >
                   {t("finalCta.cta1")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -693,19 +693,19 @@ export default function PlateformePage() {
                   {t("finalCta.cta2")}
                 </Link>
               </div>
-              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs text-white/80 pt-6 border-t border-white/10">
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs text-ondark pt-6 border-t border-ondark-line">
                 <span className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+                  <ShieldCheck className="h-4 w-4 text-leaf" aria-hidden="true" />
                   {t("finalCta.trust1")}
                 </span>
                 <span className="hidden sm:inline w-px h-3 bg-white/20" />
                 <span className="flex items-center gap-2">
-                  <FileCheck className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+                  <FileCheck className="h-4 w-4 text-leaf" aria-hidden="true" />
                   {t("finalCta.trust2")}
                 </span>
                 <span className="hidden sm:inline w-px h-3 bg-white/20" />
                 <span className="flex items-center gap-2">
-                  <Recycle className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+                  <Recycle className="h-4 w-4 text-leaf" aria-hidden="true" />
                   {t("finalCta.trust3")}
                 </span>
               </div>

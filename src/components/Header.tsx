@@ -98,14 +98,14 @@ export default function Header() {
   }, [pathname]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-line">
       <div className="container-max mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo + tagline */}
           <Link href="/" className="flex items-center gap-2 group">
             <div className="flex flex-col">
               <Image src="/logo/logo-horizontal.svg" alt="GreenTechCycle" width={200} height={40} className="h-10 w-auto" priority />
-              <span className="hidden sm:block text-[10px] font-medium text-gray-400 tracking-wider uppercase mt-0.5 ml-0.5">
+              <span className="hidden sm:block text-[10px] font-medium text-muted tracking-wider uppercase mt-0.5 ml-0.5">
                 {t("nav.home") === "Accueil" ? "Plateforme ITAD unifiée" : "Unified ITAD Platform"}
               </span>
             </div>
@@ -113,7 +113,7 @@ export default function Header() {
 
           {/* Desktop nav with mega-menus */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Navigation principale">
-            <Link href="/" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary transition-colors rounded-lg hover:bg-gray-50">
+            <Link href="/" className="px-3 py-2 text-sm font-medium text-ink-700 hover:text-primary transition-colors rounded-lg hover:bg-cream">
               {t("nav.home")}
             </Link>
             {navItems.map((item) => (
@@ -124,7 +124,7 @@ export default function Header() {
                 onMouseLeave={handleMouseLeave}
               >
                 <button
-                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary transition-colors rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1"
+                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-ink-700 hover:text-primary transition-colors rounded-lg hover:bg-cream focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1"
                   aria-expanded={openMenu === item.key}
                   aria-haspopup="true"
                 >
@@ -132,12 +132,12 @@ export default function Header() {
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform ${openMenu === item.key ? "rotate-180" : ""}`} aria-hidden="true" />
                 </button>
                 {openMenu === item.key && (
-                  <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50" role="menu">
+                  <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-line py-2 z-50" role="menu">
                     {megaMenus[item.key].map((link) => (
                       <Link
                         key={link.href}
                         href={link.href}
-                        className="block px-4 py-2.5 text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-colors focus:outline-none focus:bg-gray-50 focus:text-primary"
+                        className="block px-4 py-2.5 text-sm text-ink-700 hover:text-primary hover:bg-cream transition-colors focus:outline-none focus:bg-cream focus:text-primary"
                         role="menuitem"
                       >
                         {link.label}
@@ -147,10 +147,10 @@ export default function Header() {
                 )}
               </div>
             ))}
-            <Link href="/pourquoi-gtc" className="px-3 py-2 text-sm font-medium text-[#10B981] hover:text-primary transition-colors rounded-lg hover:bg-gray-50">
+            <Link href="/pourquoi-gtc" className="px-3 py-2 text-sm font-medium text-leaf hover:text-primary transition-colors rounded-lg hover:bg-cream">
               {t("nav.whyGtc")}
             </Link>
-            <Link href="/tarifs" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary transition-colors rounded-lg hover:bg-gray-50">
+            <Link href="/tarifs" className="px-3 py-2 text-sm font-medium text-ink-700 hover:text-primary transition-colors rounded-lg hover:bg-cream">
               {t("nav.pricing")}
             </Link>
           </nav>
@@ -159,7 +159,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <button
               onClick={switchLocale}
-              className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-500 hover:text-primary transition-colors rounded-lg hover:bg-gray-50"
+              className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-muted hover:text-primary transition-colors rounded-lg hover:bg-cream"
               aria-label="Switch language"
             >
               <Globe className="w-4 h-4" />
@@ -174,7 +174,7 @@ export default function Header() {
           </div>
 
           {/* Mobile toggle */}
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg" aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={mobileOpen}>
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 text-ink-700 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg" aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={mobileOpen}>
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
@@ -182,24 +182,24 @@ export default function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 max-h-[80vh] overflow-y-auto" role="navigation" aria-label="Menu mobile">
+        <div className="lg:hidden bg-white border-t border-line max-h-[80vh] overflow-y-auto" role="navigation" aria-label="Menu mobile">
           <div className="px-4 py-4 space-y-1">
-            <Link href="/" className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">
+            <Link href="/" className="block px-4 py-3 text-base font-medium text-ink-700 hover:bg-cream rounded-lg">
               {t("nav.home")}
             </Link>
-            <Link href="/tarifs" className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">
+            <Link href="/tarifs" className="block px-4 py-3 text-base font-medium text-ink-700 hover:bg-cream rounded-lg">
               {t("nav.pricing")}
             </Link>
             {navItems.map((item) => (
               <div key={item.key}>
-                <div className="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider mt-3">
+                <div className="px-4 py-2 text-xs font-bold text-muted uppercase tracking-wider mt-3">
                   {item.label}
                 </div>
                 {megaMenus[item.key].map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="block px-6 py-2.5 text-sm text-gray-600 hover:bg-gray-50 rounded-lg"
+                    className="block px-6 py-2.5 text-sm text-ink-700 hover:bg-cream rounded-lg"
                   >
                     {link.label}
                   </Link>
@@ -207,7 +207,7 @@ export default function Header() {
               </div>
             ))}
             <div className="pt-3 flex items-center gap-2">
-              <button onClick={switchLocale} className="flex-1 text-center px-4 py-3 border border-gray-200 text-gray-600 font-medium rounded-lg">
+              <button onClick={switchLocale} className="flex-1 text-center px-4 py-3 border border-line text-ink-700 font-medium rounded-lg">
                 <Globe className="w-4 h-4 inline mr-1.5" />{locale === "fr" ? "English" : "Français"}
               </button>
               <Link href="/demo" className="flex-1 text-center px-4 py-3 bg-primary text-white font-semibold rounded-lg">

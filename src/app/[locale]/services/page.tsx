@@ -80,7 +80,7 @@ export default function ServicesPage() {
         { value: "5", unit: tx("jours", "days"), label: tx("livrable garanti", "guaranteed delivery") },
         { value: "99,2", unit: "%", label: tx("précision moyenne", "average accuracy") },
       ],
-      accent: "#10B981",
+      accent: "#047857",
     },
     {
       slug: "effacement-securise",
@@ -108,7 +108,7 @@ export default function ServicesPage() {
         { value: "24", unit: "h", label: tx("certificat délivré", "certificate delivered") },
         { value: "99,97", unit: "%", label: tx("réussite mesurée", "measured success rate") },
       ],
-      accent: "#0EA5E9",
+      accent: "#0B3B2E",
       pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
       pricingHref: "/tarifs",
     },
@@ -138,7 +138,7 @@ export default function ServicesPage() {
         { value: "+40", unit: "%", label: tx("valeur récupérée", "recovered value") },
         { value: "72", unit: "%", label: tx("taux de réemploi", "reuse rate") },
       ],
-      accent: "#F59E0B",
+      accent: "#B45309",
       pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
       pricingHref: "/tarifs",
     },
@@ -169,7 +169,7 @@ export default function ServicesPage() {
         { value: "98,1", unit: "%", label: tx("matière valorisée", "material recovery") },
         { value: "0", unit: "%", label: tx("mise en décharge", "landfill rate") },
       ],
-      accent: "#10B981",
+      accent: "#047857",
       pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
       pricingHref: "/tarifs",
     },
@@ -200,7 +200,7 @@ export default function ServicesPage() {
         { value: "100", unit: "%", label: tx("intervenants vérifiés", "verified operators") },
         { value: "10", unit: tx("ans", "yrs"), label: tx("archivage des preuves", "evidence archival") },
       ],
-      accent: "#0EA5E9",
+      accent: "#0B3B2E",
     },
     {
       slug: "wakibox",
@@ -228,16 +228,16 @@ export default function ServicesPage() {
         { value: "x3", label: tx("vs bacs passifs", "vs passive bins") },
         { value: "99,5", unit: "%", label: tx("disponibilité borne", "kiosk uptime") },
       ],
-      accent: "#F59E0B",
+      accent: "#B45309",
       pricingNote: tx("À partir de 39 € HT/mois", "From €39 ex-VAT/month"),
       pricingHref: "/tarifs",
     },
   ];
 
   const heroFigures = [
-    { v: "38 000+", l: tx("certificats NIST 800-88 émis", "NIST 800-88 certificates issued"), color: "#10B981" },
-    { v: "6 200", unit: "tCO₂e", l: tx("évitées en quatre ans", "avoided in four years"), color: "#0EA5E9" },
-    { v: "72 h", l: tx("réponse audit garantie", "guaranteed audit response"), color: "#F59E0B" },
+    { v: "38 000+", l: tx("certificats NIST 800-88 émis", "NIST 800-88 certificates issued"), color: "#047857" },
+    { v: "6 200", unit: "tCO₂e", l: tx("évitées en quatre ans", "avoided in four years"), color: "#0B3B2E" },
+    { v: "72 h", l: tx("réponse audit garantie", "guaranteed audit response"), color: "#B45309" },
   ];
 
   const trustBadges = [
@@ -252,10 +252,10 @@ export default function ServicesPage() {
     <main className="overflow-hidden bg-white">
 
       {/* Bandeau d'urgence */}
-      <div className="bg-[#0F172A] text-white py-3 px-4 border-b border-white/5">
+      <div className="bg-forest-900 text-white py-3 px-4 border-b border-ondark-line">
         <div className="container mx-auto flex items-center justify-center gap-3 text-sm font-medium text-center">
-          <ShieldCheck className="h-4 w-4 flex-shrink-0 text-[#10B981]" aria-hidden="true" />
-          <p className="text-xs leading-snug text-gray-300">
+          <ShieldCheck className="h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+          <p className="text-xs leading-snug text-ondark-muted">
             {tx(
               <>
                 <span className="font-semibold text-white">Six services intégrés</span>, un seul interlocuteur, {" "}
@@ -269,7 +269,7 @@ export default function ServicesPage() {
           </p>
           <Link
             href="/reserver"
-            className="hidden sm:inline-flex items-center gap-1 text-[#10B981] hover:text-[#34D399] font-semibold text-xs transition-colors"
+            className="hidden sm:inline-flex items-center gap-1 text-leaf hover:text-leaf-300 font-semibold text-xs transition-colors"
           >
             {tx("Réserver", "Book")} <ArrowRight className="h-3 w-3" aria-hidden="true" />
           </Link>
@@ -280,7 +280,7 @@ export default function ServicesPage() {
           S1 (HERO ÉDITORIAL) split sombre, content gauche, photo droite
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full min-h-[88vh] flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
+        className="relative w-full min-h-[88vh] flex flex-col lg:flex-row overflow-hidden bg-forest-900"
         aria-labelledby="services-hero-title"
       >
         <div
@@ -301,9 +301,9 @@ export default function ServicesPage() {
         <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-24">
           <FadeIn>
             <div className="flex items-center gap-3 mb-10">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-muted uppercase">
                 <span
-                  className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
+                  className="w-1.5 h-1.5 rounded-full bg-leaf"
                   style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
                 />
                 {tx("Six services, une seule chaîne", "Six services, one chain")}
@@ -316,12 +316,12 @@ export default function ServicesPage() {
               style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
             >
               {tx(
-                <>L'ITAD n'est pas <span className="text-[#10B981]">un produit</span>.<br/>C'est une chaîne de preuves.</>,
-                <>ITAD is not <span className="text-[#10B981]">a product</span>.<br/>It is a chain of evidence.</>
+                <>L'ITAD n'est pas <span className="text-leaf">un produit</span>.<br/>C'est une chaîne de preuves.</>,
+                <>ITAD is not <span className="text-leaf">a product</span>.<br/>It is a chain of evidence.</>
               )}
             </h1>
 
-            <p className="text-gray-300 text-base lg:text-[1.12rem] leading-[1.72] max-w-xl mb-10">
+            <p className="text-ondark-muted text-base lg:text-[1.12rem] leading-[1.72] max-w-xl mb-10">
               {tx(
                 "Audit, effacement, reconditionnement, recyclage, sécurité, collecte connectée. Six métiers, un seul interlocuteur, une seule donnée, versée jour après jour à votre rapport CSRD et à votre dossier RSSI.",
                 "Audit, erasure, refurbishment, recycling, security, connected collection. Six trades, one point of contact, one dataset, fed day after day into your CSRD report and your CISO file."
@@ -342,7 +342,7 @@ export default function ServicesPage() {
                       </span>
                     )}
                   </span>
-                  <span className="text-xs text-gray-500 mt-1.5 font-medium">{item.l}</span>
+                  <span className="text-xs text-muted mt-1.5 font-medium">{item.l}</span>
                 </div>
               ))}
             </div>
@@ -350,7 +350,7 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <Link
                 href="/reserver"
-                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
               >
                 {tx("Réserver un créneau", "Book a slot")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -365,7 +365,7 @@ export default function ServicesPage() {
 
             <a
               href="#services-grille"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-300 text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
+              className="inline-flex items-center gap-2 text-ink-700 hover:text-ondark-muted text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
             >
               <ArrowDown
                 className="h-4 w-4 transition-transform group-hover:translate-y-1"
@@ -388,25 +388,25 @@ export default function ServicesPage() {
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 45vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/85 via-[#0F172A]/25 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F172A]/55 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/25 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-ink/55 to-transparent" />
 
           {/* Floating quote card */}
-          <div className="absolute bottom-8 right-5 sm:right-8 max-w-[280px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-gray-100 hidden sm:block">
-            <Quote className="h-6 w-6 text-[#0EA5E9] mb-3" aria-hidden="true" />
-            <p className="text-[12px] text-[#0F172A] leading-snug font-medium mb-3">
+          <div className="absolute bottom-8 right-5 sm:right-8 max-w-[280px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-line hidden sm:block">
+            <Quote className="h-6 w-6 text-forest mb-3" aria-hidden="true" />
+            <p className="text-[12px] text-ink leading-snug font-medium mb-3">
               {tx(
                 "« Six prestataires devenus un seul. Notre comité d'audit a soufflé. »",
                 "« Six vendors became one. Our audit committee finally exhaled. »"
               )}
             </p>
-            <div className="flex items-center gap-2.5 pt-3 border-t border-gray-100">
-              <div className="w-7 h-7 rounded-full bg-[#0EA5E9]/12 flex items-center justify-center flex-shrink-0">
-                <Users className="h-3.5 w-3.5 text-[#0EA5E9]" aria-hidden="true" />
+            <div className="flex items-center gap-2.5 pt-3 border-t border-line">
+              <div className="w-7 h-7 rounded-full bg-forest/12 flex items-center justify-center flex-shrink-0">
+                <Users className="h-3.5 w-3.5 text-forest" aria-hidden="true" />
               </div>
               <div>
-                <p className="text-[11px] font-bold text-[#0F172A] leading-none">Sophie L.</p>
-                <p className="text-[10px] text-gray-500 mt-0.5 leading-tight">
+                <p className="text-[11px] font-bold text-ink leading-none">Sophie L.</p>
+                <p className="text-[10px] text-muted mt-0.5 leading-tight">
                   {tx("DSI, groupe industriel coté", "CIO, listed industrial group")}
                 </p>
               </div>
@@ -416,20 +416,20 @@ export default function ServicesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S2 (BANDEAU CERTIFICATIONS) fond #0F172A
+          S2 (BANDEAU CERTIFICATIONS) fond #1C1917
          ════════════════════════════════════════════════════════════════ */}
-      <section className="bg-[#0F172A] py-10 border-t border-white/5">
+      <section className="bg-forest-900 py-10 border-t border-ondark-line">
         <div className="container mx-auto px-4">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 text-center mb-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted text-center mb-6">
             {tx("Certifications et référentiels appliqués", "Applied certifications and frameworks")}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
             {trustBadges.map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-ondark-line text-ondark-muted"
               >
-                <Icon className="h-4 w-4 text-[#6EE7B7]" aria-hidden="true" />
+                <Icon className="h-4 w-4 text-leaf-300" aria-hidden="true" />
                 <span className="text-xs font-semibold tracking-wide">{label}</span>
               </div>
             ))}
@@ -440,26 +440,26 @@ export default function ServicesPage() {
       {/* ════════════════════════════════════════════════════════════════
           S2b (PILOTE GTC - PORTE D'ENTREE SENIOR 3 JOURS)
          ════════════════════════════════════════════════════════════════ */}
-      <section className="bg-[#F8FAFC] py-12 lg:py-14 border-b border-gray-100">
+      <section className="bg-cream py-12 lg:py-14 border-b border-line">
         <div className="container mx-auto px-4">
           <FadeIn>
-            <div className="max-w-6xl mx-auto rounded-2xl bg-white border border-[#10B981]/30 shadow-sm hover:shadow-lg transition-shadow duration-300 p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
-              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#10B981]/15 flex items-center justify-center">
-                <ClipboardList className="h-6 w-6 text-[#10B981]" aria-hidden="true" />
+            <div className="max-w-6xl mx-auto rounded-2xl bg-white border border-leaf/30 shadow-sm hover:shadow-lg transition-shadow duration-300 p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-leaf-100 flex items-center justify-center">
+                <ClipboardList className="h-6 w-6 text-leaf" aria-hidden="true" />
               </div>
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="inline-flex px-2.5 py-1 rounded-full bg-[#10B981]/12 text-[#047857] text-[10px] font-bold uppercase tracking-wider">
+                  <span className="inline-flex px-2.5 py-1 rounded-full bg-leaf/12 text-leaf text-[10px] font-bold uppercase tracking-wider">
                     {tx("Porte d'entrée senior", "Senior entry point")}
                   </span>
-                  <span className="text-[#10B981] text-base font-black tabular-nums">
+                  <span className="text-leaf text-base font-black tabular-nums">
                     {tx("2 900 € HT / 3 jours", "€2,900 ex-VAT / 3 days")}
                   </span>
                 </div>
-                <h2 className="text-[#0F172A] text-xl font-bold tracking-tight mb-2">
+                <h2 className="text-ink text-xl font-bold tracking-tight mb-2">
                   {tx("Pilote GTC - Audit & démarrage 3 jours", "GTC Pilot - Audit & 3-day kickoff")}
                 </h2>
-                <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
+                <p className="text-ink-700 text-sm leading-relaxed max-w-2xl">
                   {tx(
                     "Diagnostic parc IT, plan ITAD priorisé et démarrage Plateforme. Mission senior conduite par notre équipe ITAM, carbone et cyber. Pilote remboursé sur la 1re année de Plateforme si signature dans les 90 jours apres la restitution.",
                     "IT fleet diagnostic, prioritised ITAD action plan and Platform kickoff. Senior engagement by our ITAM, carbon and cyber team. Pilot refunded on Year 1 Platform subscription if signed within 90 days of debrief."
@@ -469,13 +469,13 @@ export default function ServicesPage() {
               <div className="flex-shrink-0">
                 <Link
                   href="/reserver?offre=pilote-audit-3j"
-                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#10B981]/25 text-sm whitespace-nowrap"
+                  className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover: text-sm whitespace-nowrap"
                 >
                   {tx("Réserver le Pilote", "Book the Pilot")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
-                <p className="text-[11px] text-gray-400 text-center mt-2">
-                  <Link href="/tarifs#pilote" className="underline hover:text-[#047857] transition-colors">
+                <p className="text-[11px] text-muted text-center mt-2">
+                  <Link href="/tarifs#pilote" className="underline hover:text-leaf transition-colors">
                     {tx("Détails et garantie remboursement", "Details and refund guarantee")}
                   </Link>
                 </p>
@@ -493,12 +493,12 @@ export default function ServicesPage() {
           const photoOnLeft = i % 2 === 0;
           const isDark = i === 2 || i === 5;
           let bgStyle: string;
-          if (isDark) bgStyle = "bg-[#0F172A]";
-          else if (i % 2 === 1) bgStyle = "bg-[#F8FAFC]";
+          if (isDark) bgStyle = "bg-forest-900";
+          else if (i % 2 === 1) bgStyle = "bg-cream";
           else bgStyle = "bg-white";
 
-          const textColor = isDark ? "text-white" : "text-[#0F172A]";
-          const subTextColor = isDark ? "text-gray-300" : "text-gray-700";
+          const textColor = isDark ? "text-white" : "text-ink";
+          const subTextColor = isDark ? "text-ondark-muted" : "text-ink-700";
           const Icon = s.icon;
 
           return (
@@ -527,8 +527,8 @@ export default function ServicesPage() {
                     className={`absolute inset-0 ${
                       isDark
                         ? photoOnLeft
-                          ? "bg-gradient-to-r from-transparent via-transparent to-[#0F172A]/70"
-                          : "bg-gradient-to-l from-transparent via-transparent to-[#0F172A]/70"
+                          ? "bg-gradient-to-r from-transparent via-transparent to-ink/70"
+                          : "bg-gradient-to-l from-transparent via-transparent to-ink/70"
                         : photoOnLeft
                         ? "bg-gradient-to-r from-transparent to-white/15"
                         : "bg-gradient-to-l from-transparent to-white/15"
@@ -550,8 +550,8 @@ export default function ServicesPage() {
                   </div>
                   {/* Badge */}
                   <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/92 backdrop-blur-sm shadow-lg">
-                    <Icon className="h-3.5 w-3.5 text-[#0F172A]" aria-hidden="true" />
-                    <span className="text-[11px] font-semibold text-[#0F172A] tracking-wide uppercase">
+                    <Icon className="h-3.5 w-3.5 text-ink" aria-hidden="true" />
+                    <span className="text-[11px] font-semibold text-ink tracking-wide uppercase">
                       {s.eyebrow}
                     </span>
                   </div>
@@ -581,7 +581,7 @@ export default function ServicesPage() {
                         />
                         <span
                           className={`text-[10px] font-semibold uppercase tracking-[0.15em] ${
-                            isDark ? "text-gray-400" : "text-gray-500"
+                            isDark ? "text-muted" : "text-muted"
                           }`}
                         >
                           {s.badge}
@@ -597,7 +597,7 @@ export default function ServicesPage() {
 
                       <p
                         className={`text-[1.05rem] lg:text-[1.1rem] font-medium italic mb-5 ${
-                          isDark ? "text-gray-200" : "text-gray-600"
+                          isDark ? "text-ondark" : "text-ink-700"
                         }`}
                       >
                         {s.pitch}
@@ -610,7 +610,7 @@ export default function ServicesPage() {
                       {/* Proof */}
                       <div
                         className={`grid grid-cols-2 gap-4 mb-8 pb-8 border-b ${
-                          isDark ? "border-white/10" : "border-gray-200"
+                          isDark ? "border-ondark-line" : "border-line"
                         }`}
                       >
                         {s.proof.map((p, j) => (
@@ -628,7 +628,7 @@ export default function ServicesPage() {
                             </span>
                             <span
                               className={`text-[11px] leading-snug ${
-                                isDark ? "text-gray-400" : "text-gray-500"
+                                isDark ? "text-muted" : "text-muted"
                               }`}
                             >
                               {p.label}
@@ -639,7 +639,7 @@ export default function ServicesPage() {
 
                       {/* Pricing note */}
                       {s.pricingNote && (
-                        <div className={`mb-8 pb-8 border-b ${isDark ? "border-white/10" : "border-gray-200"}`}>
+                        <div className={`mb-8 pb-8 border-b ${isDark ? "border-ondark-line" : "border-line"}`}>
                           <Link
                             href={s.pricingHref ?? "/tarifs"}
                             className="inline-flex items-center gap-3 group"
@@ -652,7 +652,7 @@ export default function ServicesPage() {
                             </span>
                             <span
                               className={`text-sm font-medium underline underline-offset-4 decoration-1 transition-opacity group-hover:opacity-80 ${
-                                isDark ? "text-gray-300" : "text-gray-600"
+                                isDark ? "text-ondark-muted" : "text-ink-700"
                               }`}
                             >
                               {tx("Voir les tarifs", "View pricing")}
@@ -667,7 +667,7 @@ export default function ServicesPage() {
                           href={`/reserver?offre=${s.slug}`}
                           className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${
                             isDark
-                              ? "bg-white text-[#0F172A] hover:bg-gray-100 hover:shadow-white/20"
+                              ? "bg-white text-ink hover:bg-sand hover:shadow-white/20"
                               : "text-white hover:opacity-90"
                           }`}
                           style={
@@ -685,7 +685,7 @@ export default function ServicesPage() {
                         <Link
                           href={s.href}
                           className={`text-sm font-medium underline underline-offset-4 decoration-1 transition-opacity hover:opacity-80 inline-flex items-center gap-1 ${
-                            isDark ? "text-gray-300" : "text-gray-600"
+                            isDark ? "text-ondark-muted" : "text-ink-700"
                           }`}
                         >
                           {tx("Lire la fiche complète", "Read the full sheet")}
@@ -702,9 +702,9 @@ export default function ServicesPage() {
       </div>
 
       {/* ════════════════════════════════════════════════════════════════
-          S4 (CITATION MAGAZINE) fond #022C22
+          S4 (CITATION MAGAZINE) fond #0B3B2E
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#022C22] py-20 lg:py-28">
+      <section className="relative w-full overflow-hidden bg-forest py-20 lg:py-28">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -715,8 +715,8 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
-              <Quote className="h-10 w-10 text-[#10B981] mx-auto mb-8" aria-hidden="true" />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#6EE7B7] mb-6">
+              <Quote className="h-10 w-10 text-leaf mx-auto mb-8" aria-hidden="true" />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf-300 mb-6">
                 {tx("Témoignage RSSI", "CISO testimonial")}
               </p>
               <blockquote
@@ -728,10 +728,10 @@ export default function ServicesPage() {
                   "« GreenTechCycle turned our ITAD into a line of defence. When the regulatory inspection arrived, I put a single PDF on the table. Fifteen minutes later, the topic was closed. »"
                 )}
               </blockquote>
-              <footer className="text-sm text-gray-300">
+              <footer className="text-sm text-ondark-muted">
                 <span className="font-semibold text-white">Marc B.</span>
-                <span className="mx-2 text-gray-500">·</span>
-                <span className="italic text-gray-400">{tx("RSSI, banque CAC 40", "CISO, CAC 40 bank")}</span>
+                <span className="mx-2 text-muted">·</span>
+                <span className="italic text-muted">{tx("RSSI, banque CAC 40", "CISO, CAC 40 bank")}</span>
               </footer>
             </div>
           </FadeIn>
@@ -758,11 +758,11 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl">
             <FadeIn>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf mb-4">
                 {tx("Pourquoi un seul interlocuteur change tout", "Why a single point of contact changes everything")}
               </p>
               <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-8"
+                className="text-ink font-bold tracking-tight mb-8"
                 style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
               >
                 {tx(
@@ -770,7 +770,7 @@ export default function ServicesPage() {
                   "Six scattered vendors means six dossiers to reassemble at the slightest audit."
                 )}
               </h2>
-              <p className="text-gray-700 text-[1.02rem] lg:text-[1.1rem] leading-[1.78] mb-10 max-w-3xl">
+              <p className="text-ink-700 text-[1.02rem] lg:text-[1.1rem] leading-[1.78] mb-10 max-w-3xl">
                 {tx(
                   "La plupart de nos clients arrivaient avec un assemblage hérité : un transporteur ici, un broyeur là, un brocanteur de matériel reconditionné, un cabinet pour le rapport carbone. Quand l'autorité demande la chaîne complète, plus personne n'arrive à recoller les bordereaux. GreenTechCycle a été conçu pour produire une preuve unique, la même donnée nourrit la console DSI, le dossier RSSI et le rapport CSRD.",
                   "Most of our clients arrived with an inherited patchwork: a carrier here, a shredder there, a refurbished hardware reseller, an external firm for the carbon report. When the regulator asks for the full chain, nobody can put the slips back together. GreenTechCycle was built to produce a single proof, the same data feeds the CIO console, the CISO file and the CSRD report."
@@ -806,14 +806,14 @@ export default function ServicesPage() {
                 },
               ].map((b, i) => (
                 <StaggerItem key={i}>
-                  <div className="bg-[#F8FAFC] rounded-2xl p-7 border border-gray-100 h-full hover:border-[#047857]/30 transition-colors">
-                    <div className="w-11 h-11 rounded-xl bg-[#047857]/10 flex items-center justify-center mb-5">
-                      <b.icon className="h-5 w-5 text-[#047857]" aria-hidden="true" />
+                  <div className="bg-cream rounded-2xl p-7 border border-line h-full hover:border-leaf/30 transition-colors">
+                    <div className="w-11 h-11 rounded-xl bg-leaf-100 flex items-center justify-center mb-5">
+                      <b.icon className="h-5 w-5 text-leaf" aria-hidden="true" />
                     </div>
-                    <h3 className="text-base font-bold text-[#0F172A] mb-3 tracking-tight">
+                    <h3 className="text-base font-bold text-ink mb-3 tracking-tight">
                       {b.title}
                     </h3>
-                    <p className="text-sm text-gray-600 leading-[1.7]">{b.body}</p>
+                    <p className="text-sm text-ink-700 leading-[1.7]">{b.body}</p>
                   </div>
                 </StaggerItem>
               ))}
@@ -823,9 +823,9 @@ export default function ServicesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S6 (ENCART CONVERSION) fond #10B981
+          S6 (ENCART CONVERSION) fond #047857
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#10B981]">
+      <section className="relative w-full overflow-hidden bg-leaf">
         <div
           className="absolute inset-0 pointer-events-none opacity-30"
           style={{
@@ -849,7 +849,7 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 py-20 lg:py-24 relative z-10">
           <FadeIn>
             <div className="max-w-4xl">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-5">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-ondark mb-5">
                 {tx("Passer à l'action", "Take the next step")}
               </p>
               <h2
@@ -861,7 +861,7 @@ export default function ServicesPage() {
                   "Thirty minutes with a senior expert. A quoted action plan within 48 hours."
                 )}
               </h2>
-              <p className="text-white/90 text-[1.05rem] lg:text-[1.15rem] leading-[1.65] max-w-2xl mb-10">
+              <p className="text-ondark text-[1.05rem] lg:text-[1.15rem] leading-[1.65] max-w-2xl mb-10">
                 {tx(
                   "Pas d'appel commercial scripté, pas de questionnaire en ligne. Un échange direct avec un ingénieur qui a déjà piloté une mission équivalente, banque, santé, distribution, industrie ou administration.",
                   "No scripted sales call, no online form maze. A direct conversation with an engineer who has already run an equivalent mission, banking, healthcare, retail, industry or public administration."
@@ -870,7 +870,7 @@ export default function ServicesPage() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   href="/reserver"
-                  className="inline-flex items-center justify-center gap-2 bg-[#0F172A] hover:bg-[#022C22] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-forest-900 hover:bg-forest text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
                 >
                   {tx("Réserver un créneau", "Book a slot")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -883,7 +883,7 @@ export default function ServicesPage() {
                 </Link>
               </div>
 
-              <div className="flex flex-wrap items-center gap-x-8 gap-y-2 mt-12 text-white/80 text-xs">
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-2 mt-12 text-ondark text-xs">
                 <span className="inline-flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
                   {tx("Réponse sous 24 heures ouvrées", "Response within 24 business hours")}

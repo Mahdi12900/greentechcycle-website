@@ -54,7 +54,7 @@ export default function StickyCTA() {
     <div className="fixed bottom-0 inset-x-0 z-50 lg:hidden p-3 bg-gradient-to-t from-white via-white to-transparent pointer-events-none">
       <Link
         href={ctx.href}
-        className="pointer-events-auto flex items-center justify-center gap-2 w-full py-3.5 bg-[#10B981] text-white font-semibold rounded-xl shadow-lg shadow-[#10B981]/30 hover:bg-[#0E9F6E] transition-colors text-sm"
+        className="pointer-events-auto flex items-center justify-center gap-2 w-full py-3.5 bg-leaf text-white font-semibold rounded-xl shadow-lg hover:bg-leaf-700 transition-colors text-sm"
       >
         {label}
         <ArrowRight className="w-4 h-4" />

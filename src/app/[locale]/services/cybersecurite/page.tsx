@@ -55,9 +55,9 @@ export default function CybersecuritePage() {
       tx("Preuves cryptographiques chaînées SHA-256", "SHA-256 chained cryptographic proofs"),
     ],
     proof: [
-      { value: "100", unit: "%", label: tx("intervenants vérifiés", "verified operators"), color: "#10B981" },
-      { value: "10", unit: tx("ans", "yrs"), label: tx("archivage des preuves", "evidence archival"), color: "#0EA5E9" },
-      { value: "<500", unit: "m", label: tx("alerte écart GPS", "GPS deviation alert"), color: "#F59E0B" },
+      { value: "100", unit: "%", label: tx("intervenants vérifiés", "verified operators"), color: "#047857" },
+      { value: "10", unit: tx("ans", "yrs"), label: tx("archivage des preuves", "evidence archival"), color: "#0B3B2E" },
+      { value: "<500", unit: "m", label: tx("alerte écart GPS", "GPS deviation alert"), color: "#B45309" },
     ],
     methodology: {
       title: tx("Huit contrôles, un seul dossier opposable", "Eight controls, one admissible dossier"),

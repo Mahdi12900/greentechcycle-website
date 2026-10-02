@@ -80,10 +80,10 @@ function ContactInner() {
   return (
     <main className="overflow-hidden bg-white">
       {/* ═══════════════ Bandeau urgence ═══════════════ */}
-      <div className="bg-[#0F172A] text-white py-3 px-4 border-b border-white/5">
+      <div className="bg-forest-900 text-white py-3 px-4 border-b border-ondark-line">
         <div className="container mx-auto flex items-center justify-center gap-3 text-xs sm:text-sm font-medium text-center">
-          <CalendarCheck className="h-4 w-4 flex-shrink-0 text-[#10B981]" aria-hidden="true" />
-          <p className="leading-snug text-gray-300">{t("urgency.text")}</p>
+          <CalendarCheck className="h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+          <p className="leading-snug text-ondark-muted">{t("urgency.text")}</p>
         </div>
       </div>
 
@@ -91,7 +91,7 @@ function ContactInner() {
           S1 (HERO) split sombre, photo équipe à droite
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full min-h-[78vh] flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
+        className="relative w-full min-h-[78vh] flex flex-col lg:flex-row overflow-hidden bg-forest-900"
         aria-labelledby="contact-hero"
       >
         <div
@@ -104,9 +104,9 @@ function ContactInner() {
         <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-16 pb-12 lg:py-20">
           <FadeIn>
             <div className="flex items-center gap-3 mb-8">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-muted uppercase">
                 <span
-                  className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
+                  className="w-1.5 h-1.5 rounded-full bg-leaf"
                   style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
                 />
                 {t("hero.eyebrow")}
@@ -119,28 +119,28 @@ function ContactInner() {
             >
               {t("hero.title")}
             </h1>
-            <p className="text-gray-300 text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-8">
+            <p className="text-ondark-muted text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-8">
               {t("hero.subtitle")}
             </p>
 
-            <div className="flex flex-wrap gap-x-6 gap-y-3 mb-8 pb-8 border-b border-white/10">
-              <span className="flex items-center gap-2 text-xs text-gray-400">
-                <Clock className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+            <div className="flex flex-wrap gap-x-6 gap-y-3 mb-8 pb-8 border-b border-ondark-line">
+              <span className="flex items-center gap-2 text-xs text-muted">
+                <Clock className="h-4 w-4 text-leaf" aria-hidden="true" />
                 {t("hero.trust1")}
               </span>
-              <span className="flex items-center gap-2 text-xs text-gray-400">
-                <ShieldCheck className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+              <span className="flex items-center gap-2 text-xs text-muted">
+                <ShieldCheck className="h-4 w-4 text-leaf" aria-hidden="true" />
                 {t("hero.trust2")}
               </span>
-              <span className="flex items-center gap-2 text-xs text-gray-400">
-                <Leaf className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+              <span className="flex items-center gap-2 text-xs text-muted">
+                <Leaf className="h-4 w-4 text-leaf" aria-hidden="true" />
                 {t("hero.trust3")}
               </span>
             </div>
 
             <a
               href="#formulaire"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-300 text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
+              className="inline-flex items-center gap-2 text-ink-700 hover:text-ondark-muted text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
             >
               <ArrowDown
                 className="h-4 w-4 transition-transform group-hover:translate-y-1"
@@ -160,22 +160,22 @@ function ContactInner() {
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 45vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/85 via-[#0F172A]/25 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/25 to-transparent" />
 
-          <div className="absolute bottom-8 right-5 sm:right-8 max-w-[280px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-gray-100 hidden sm:block">
-            <Quote className="h-6 w-6 text-[#0EA5E9] mb-3" aria-hidden="true" />
-            <p className="text-[12px] text-[#0F172A] leading-snug font-medium mb-3">
+          <div className="absolute bottom-8 right-5 sm:right-8 max-w-[280px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-line hidden sm:block">
+            <Quote className="h-6 w-6 text-forest mb-3" aria-hidden="true" />
+            <p className="text-[12px] text-ink leading-snug font-medium mb-3">
               &ldquo;{t("hero.floatQuote")}&rdquo;
             </p>
-            <div className="flex items-center gap-2.5 pt-3 border-t border-gray-100">
-              <div className="w-7 h-7 rounded-full bg-[#0EA5E9]/12 flex items-center justify-center flex-shrink-0">
-                <ShieldCheck className="h-3.5 w-3.5 text-[#0EA5E9]" aria-hidden="true" />
+            <div className="flex items-center gap-2.5 pt-3 border-t border-line">
+              <div className="w-7 h-7 rounded-full bg-forest/12 flex items-center justify-center flex-shrink-0">
+                <ShieldCheck className="h-3.5 w-3.5 text-forest" aria-hidden="true" />
               </div>
               <div>
-                <p className="text-[11px] font-bold text-[#0F172A] leading-none">
+                <p className="text-[11px] font-bold text-ink leading-none">
                   {t("hero.floatName")}
                 </p>
-                <p className="text-[10px] text-gray-500 mt-0.5 leading-tight">
+                <p className="text-[10px] text-muted mt-0.5 leading-tight">
                   {t("hero.floatRole")}
                 </p>
               </div>
@@ -187,20 +187,20 @@ function ContactInner() {
       {/* ════════════════════════════════════════════════════════════════
           S2 (FORMULAIRE QUALIFIÉ) clair, panneau d'offre à gauche
          ════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-24 bg-[#F8FAFC]" id="formulaire">
+      <section className="py-20 lg:py-24 bg-cream" id="formulaire">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mb-12">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("form.eyebrow")}
               </p>
               <h2
-                className="text-[#0F172A] font-bold tracking-tight leading-[1.05] mb-4"
+                className="text-ink font-bold tracking-tight leading-[1.05] mb-4"
                 style={{ fontSize: "clamp(2rem, 4.5vw, 3.25rem)" }}
               >
                 {t("form.title")}
               </h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-ink-700 text-lg leading-relaxed">
                 {t("form.subtitle")}
               </p>
             </div>
@@ -209,25 +209,25 @@ function ContactInner() {
           <div className="grid lg:grid-cols-[360px_1fr] gap-8 lg:gap-12 max-w-6xl">
             {/* Panneau de l'offre sélectionnée */}
             <FadeIn>
-              <aside className="bg-[#0F172A] text-white rounded-2xl p-7 lg:sticky lg:top-24">
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <aside className="bg-forest-900 text-white rounded-2xl p-7 lg:sticky lg:top-24">
+                <p className="text-[11px] font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                   {t("form.selectedOfferLabel")}
                 </p>
                 <h3 className="text-xl font-bold leading-tight mb-3 tracking-tight">
                   {selectedOffer.name}
                 </h3>
-                <p className="text-sm text-gray-300 leading-relaxed mb-5">
+                <p className="text-sm text-ondark-muted leading-relaxed mb-5">
                   {selectedOffer.pitch}
                 </p>
-                <div className="flex items-center gap-2 mb-5 text-xs text-[#10B981]">
+                <div className="flex items-center gap-2 mb-5 text-xs text-leaf">
                   <Clock className="h-4 w-4" aria-hidden="true" />
                   <span className="font-semibold">{selectedOffer.duration}</span>
                 </div>
-                <div className="border-t border-white/10 pt-5">
-                  <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2">
+                <div className="border-t border-ondark-line pt-5">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-muted mb-2">
                     {t("form.nextStepLabel")}
                   </p>
-                  <p className="text-sm text-gray-200 leading-relaxed">
+                  <p className="text-sm text-ondark leading-relaxed">
                     {selectedOffer.nextStep}
                   </p>
                 </div>
@@ -236,18 +236,18 @@ function ContactInner() {
 
             {/* Formulaire */}
             <FadeIn>
-              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-7 lg:p-9">
+              <div className="bg-white rounded-2xl border border-line shadow-sm p-7 lg:p-9">
                 {submitted ? (
                   <div className="text-center py-12">
                     <ScaleIn>
-                      <div className="w-16 h-16 mx-auto rounded-full bg-[#10B981]/10 flex items-center justify-center mb-4">
-                        <CheckCircle2 className="w-8 h-8 text-[#10B981]" />
+                      <div className="w-16 h-16 mx-auto rounded-full bg-leaf-100 flex items-center justify-center mb-4">
+                        <CheckCircle2 className="w-8 h-8 text-leaf" />
                       </div>
                     </ScaleIn>
-                    <p className="text-xl font-bold text-[#0F172A] mb-2 tracking-tight">
+                    <p className="text-xl font-bold text-ink mb-2 tracking-tight">
                       {t("form.successTitle")}
                     </p>
-                    <p className="text-gray-600 text-sm leading-relaxed max-w-md mx-auto">
+                    <p className="text-ink-700 text-sm leading-relaxed max-w-md mx-auto">
                       {t("form.successBody")}
                     </p>
                   </div>
@@ -256,7 +256,7 @@ function ContactInner() {
                     <div>
                       <label
                         htmlFor="offre"
-                        className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
+                        className="block text-xs font-semibold text-ink tracking-wider uppercase mb-1.5"
                       >
                         {t("form.fields.offer")}
                       </label>
@@ -264,7 +264,7 @@ function ContactInner() {
                         id="offre"
                         value={form.offre}
                         onChange={(e) => setForm({ ...form, offre: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none bg-white"
+                        className="w-full px-4 py-3 border border-line rounded-lg text-sm focus:ring-2 focus:ring-leaf focus:border-leaf outline-none bg-white"
                       >
                         {offers.map((o) => (
                           <option key={o.slug} value={o.slug}>
@@ -278,7 +278,7 @@ function ContactInner() {
                       <div>
                         <label
                           htmlFor="name"
-                          className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
+                          className="block text-xs font-semibold text-ink tracking-wider uppercase mb-1.5"
                         >
                           {t("form.fields.name")} *
                         </label>
@@ -288,13 +288,13 @@ function ContactInner() {
                           required
                           value={form.name}
                           onChange={(e) => setForm({ ...form, name: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none"
+                          className="w-full px-4 py-3 border border-line rounded-lg text-sm focus:ring-2 focus:ring-leaf focus:border-leaf outline-none"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="email"
-                          className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
+                          className="block text-xs font-semibold text-ink tracking-wider uppercase mb-1.5"
                         >
                           {t("form.fields.email")} *
                         </label>
@@ -304,7 +304,7 @@ function ContactInner() {
                           required
                           value={form.email}
                           onChange={(e) => setForm({ ...form, email: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none"
+                          className="w-full px-4 py-3 border border-line rounded-lg text-sm focus:ring-2 focus:ring-leaf focus:border-leaf outline-none"
                         />
                       </div>
                     </div>
@@ -313,7 +313,7 @@ function ContactInner() {
                       <div>
                         <label
                           htmlFor="company"
-                          className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
+                          className="block text-xs font-semibold text-ink tracking-wider uppercase mb-1.5"
                         >
                           {t("form.fields.company")} *
                         </label>
@@ -323,13 +323,13 @@ function ContactInner() {
                           required
                           value={form.company}
                           onChange={(e) => setForm({ ...form, company: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none"
+                          className="w-full px-4 py-3 border border-line rounded-lg text-sm focus:ring-2 focus:ring-leaf focus:border-leaf outline-none"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="role"
-                          className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
+                          className="block text-xs font-semibold text-ink tracking-wider uppercase mb-1.5"
                         >
                           {t("form.fields.role")} *
                         </label>
@@ -337,7 +337,7 @@ function ContactInner() {
                           id="role"
                           value={form.role}
                           onChange={(e) => setForm({ ...form, role: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none bg-white"
+                          className="w-full px-4 py-3 border border-line rounded-lg text-sm focus:ring-2 focus:ring-leaf focus:border-leaf outline-none bg-white"
                         >
                           <option value="DSI">DSI / Direction informatique</option>
                           <option value="RSSI">RSSI / Sécurité</option>
@@ -353,7 +353,7 @@ function ContactInner() {
                       <div>
                         <label
                           htmlFor="fleet"
-                          className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
+                          className="block text-xs font-semibold text-ink tracking-wider uppercase mb-1.5"
                         >
                           {t("form.fields.fleet")} *
                         </label>
@@ -361,7 +361,7 @@ function ContactInner() {
                           id="fleet"
                           value={form.fleet}
                           onChange={(e) => setForm({ ...form, fleet: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none bg-white"
+                          className="w-full px-4 py-3 border border-line rounded-lg text-sm focus:ring-2 focus:ring-leaf focus:border-leaf outline-none bg-white"
                         >
                           <option value="0-500">{t("form.fields.fleetSmall")}</option>
                           <option value="500-1000">500, 1 000</option>
@@ -370,7 +370,7 @@ function ContactInner() {
                           <option value="20000+">{t("form.fields.fleetLarge")}</option>
                         </select>
                         {(form.fleet === "5000-20000" || form.fleet === "20000+") && (
-                          <p className="mt-2 text-xs font-semibold text-[#10B981] bg-[#10B981]/10 border border-[#10B981]/20 rounded-lg px-3 py-2 flex items-center gap-2">
+                          <p className="mt-2 text-xs font-semibold text-leaf bg-leaf-100 border border-leaf/20 rounded-lg px-3 py-2 flex items-center gap-2">
                             <Clock className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
                             {t("form.fields.leadScoringMessage")}
                           </p>
@@ -379,7 +379,7 @@ function ContactInner() {
                       <div>
                         <label
                           htmlFor="timeline"
-                          className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
+                          className="block text-xs font-semibold text-ink tracking-wider uppercase mb-1.5"
                         >
                           {t("form.fields.timeline")} *
                         </label>
@@ -387,7 +387,7 @@ function ContactInner() {
                           id="timeline"
                           value={form.timeline}
                           onChange={(e) => setForm({ ...form, timeline: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none bg-white"
+                          className="w-full px-4 py-3 border border-line rounded-lg text-sm focus:ring-2 focus:ring-leaf focus:border-leaf outline-none bg-white"
                         >
                           <option value="immediat">{t("form.fields.timelineNow")}</option>
                           <option value="1-3-mois">{t("form.fields.timeline13")}</option>
@@ -400,7 +400,7 @@ function ContactInner() {
                     <div>
                       <label
                         htmlFor="phone"
-                        className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
+                        className="block text-xs font-semibold text-ink tracking-wider uppercase mb-1.5"
                       >
                         {t("form.fields.phone")}
                       </label>
@@ -409,14 +409,14 @@ function ContactInner() {
                         type="tel"
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none"
+                        className="w-full px-4 py-3 border border-line rounded-lg text-sm focus:ring-2 focus:ring-leaf focus:border-leaf outline-none"
                       />
                     </div>
 
                     <div>
                       <label
                         htmlFor="message"
-                        className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
+                        className="block text-xs font-semibold text-ink tracking-wider uppercase mb-1.5"
                       >
                         {t("form.fields.message")}
                       </label>
@@ -426,17 +426,17 @@ function ContactInner() {
                         value={form.message}
                         onChange={(e) => setForm({ ...form, message: e.target.value })}
                         placeholder={t("form.fields.messagePlaceholder")}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none resize-none"
+                        className="w-full px-4 py-3 border border-line rounded-lg text-sm focus:ring-2 focus:ring-leaf focus:border-leaf outline-none resize-none"
                       />
                     </div>
 
-                    <label className="flex items-start gap-3 text-xs text-gray-600 leading-relaxed cursor-pointer">
+                    <label className="flex items-start gap-3 text-xs text-ink-700 leading-relaxed cursor-pointer">
                       <input
                         type="checkbox"
                         required
                         checked={form.consent}
                         onChange={(e) => setForm({ ...form, consent: e.target.checked })}
-                        className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#10B981] focus:ring-[#10B981]"
+                        className="mt-0.5 h-4 w-4 rounded border-line text-leaf focus:ring-leaf"
                       />
                       <span>{t("form.consent")}</span>
                     </label>
@@ -444,7 +444,7 @@ function ContactInner() {
                     <button
                       type="submit"
                       disabled={pending || !form.consent}
-                      className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+                      className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
                     >
                       {pending ? (
                         <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -464,7 +464,7 @@ function ContactInner() {
       {/* ════════════════════════════════════════════════════════════════
           S3 (COORDONNÉES & VOIES DIRECTES) split sombre
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#0F172A] text-white">
+      <section className="relative w-full overflow-hidden bg-forest-900 text-white">
         <div className="flex flex-col lg:flex-row min-h-[60vh]">
           <div className="relative w-full lg:w-[42%] min-h-[40vh] lg:min-h-0 overflow-hidden flex-shrink-0">
             <Image
@@ -475,47 +475,47 @@ function ContactInner() {
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 42vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0F172A]/70" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-ink/70" />
           </div>
           <div className="relative w-full lg:flex-1 flex items-center px-6 sm:px-10 lg:px-14 xl:px-18 py-14 lg:py-20">
             <div className="max-w-xl w-full">
               <FadeIn>
-                <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-4">
+                <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-4">
                   {t("info.eyebrow")}
                 </p>
                 <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold leading-[1.1] tracking-tight mb-8">
                   {t("info.title")}
                 </h2>
-                <p className="text-gray-300 text-base leading-[1.78] mb-10">
+                <p className="text-ondark-muted text-base leading-[1.78] mb-10">
                   {t("info.body")}
                 </p>
                 <ul className="space-y-5">
                   <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-ondark-line flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-4 w-4 text-leaf" aria-hidden="true" />
                     </div>
-                    <p className="text-sm text-gray-200 whitespace-pre-line leading-relaxed pt-1.5">
+                    <p className="text-sm text-ondark whitespace-pre-line leading-relaxed pt-1.5">
                       {t("info.address")}
                     </p>
                   </li>
                   <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                      <Phone className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-ondark-line flex items-center justify-center flex-shrink-0">
+                      <Phone className="h-4 w-4 text-leaf" aria-hidden="true" />
                     </div>
                     <a
                       href="tel:+33186652210"
-                      className="text-sm text-gray-200 hover:text-[#10B981] transition-colors pt-1.5"
+                      className="text-sm text-ondark hover:text-leaf transition-colors pt-1.5"
                     >
                       {t("info.phone")}
                     </a>
                   </li>
                   <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                      <Mail className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-ondark-line flex items-center justify-center flex-shrink-0">
+                      <Mail className="h-4 w-4 text-leaf" aria-hidden="true" />
                     </div>
                     <a
                       href="mailto:contact@greentechcycle.fr"
-                      className="text-sm text-gray-200 hover:text-[#10B981] transition-colors pt-1.5"
+                      className="text-sm text-ondark hover:text-leaf transition-colors pt-1.5"
                     >
                       {t("info.email")}
                     </a>
@@ -530,12 +530,12 @@ function ContactInner() {
       {/* ════════════════════════════════════════════════════════════════
           S4, CONVERSION FOND VERT PLEIN
          ════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-24 bg-[#10B981] text-white relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-leaf text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.15),_transparent_60%)] pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <FadeIn>
-              <p className="text-sm font-semibold tracking-[0.18em] text-white/80 uppercase mb-4">
+              <p className="text-sm font-semibold tracking-[0.18em] text-ondark uppercase mb-4">
                 {t("conversion.eyebrow")}
               </p>
               <h2
@@ -544,13 +544,13 @@ function ContactInner() {
               >
                 {t("conversion.title")}
               </h2>
-              <p className="text-white/85 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+              <p className="text-ondark text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
                 {t("conversion.subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   href="/cas-usages"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-[#0F172A] hover:bg-[#F8FAFC] font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-ink hover:bg-cream font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 text-sm"
                 >
                   {t("conversion.cta1")}
                 </Link>

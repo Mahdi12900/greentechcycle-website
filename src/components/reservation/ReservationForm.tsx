@@ -146,12 +146,12 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
     <form
       onSubmit={submit}
       noValidate
-      className="bg-white rounded-3xl border border-gray-150 shadow-xl shadow-[#0F172A]/5 p-6 lg:p-10 max-w-3xl mx-auto"
+      className="bg-white rounded-3xl border border-line shadow-xl p-6 lg:p-10 max-w-3xl mx-auto"
       aria-label="Formulaire de réservation"
     >
       {/* Stepper */}
       <div className="flex items-center justify-between mb-8">
-        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-400">
+        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted">
           {stepCounter}
         </p>
         <div className="flex items-center gap-1.5">
@@ -161,10 +161,10 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
               aria-hidden="true"
               className={`h-1.5 rounded-full transition-all ${
                 i + 1 === step
-                  ? "w-8 bg-[#10B981]"
+                  ? "w-8 bg-leaf"
                   : i + 1 < step
-                  ? "w-4 bg-[#10B981]/60"
-                  : "w-4 bg-gray-200"
+                  ? "w-4 bg-leaf/60"
+                  : "w-4 bg-line"
               }`}
             />
           ))}
@@ -174,7 +174,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       {/* Step 1, coordonnées */}
       {step === 1 && (
         <FadeIn>
-          <h3 className="text-xl lg:text-2xl font-bold text-[#0F172A] mb-6 tracking-tight">
+          <h3 className="text-xl lg:text-2xl font-bold text-ink mb-6 tracking-tight">
             {t("form.step1Title")}
           </h3>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -215,7 +215,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       {/* Step 2, organisation */}
       {step === 2 && (
         <FadeIn>
-          <h3 className="text-xl lg:text-2xl font-bold text-[#0F172A] mb-6 tracking-tight">
+          <h3 className="text-xl lg:text-2xl font-bold text-ink mb-6 tracking-tight">
             {t("form.step2Title")}
           </h3>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -252,7 +252,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       {/* Step 3, besoin */}
       {step === 3 && (
         <FadeIn>
-          <h3 className="text-xl lg:text-2xl font-bold text-[#0F172A] mb-6 tracking-tight">
+          <h3 className="text-xl lg:text-2xl font-bold text-ink mb-6 tracking-tight">
             {t("form.step3Title")}
           </h3>
           <div className="grid gap-4">
@@ -291,10 +291,10 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       {/* Step 4, créneaux + consent */}
       {step === 4 && (
         <FadeIn>
-          <h3 className="text-xl lg:text-2xl font-bold text-[#0F172A] mb-2 tracking-tight">
+          <h3 className="text-xl lg:text-2xl font-bold text-ink mb-2 tracking-tight">
             {t("form.step4Title")}
           </h3>
-          <p className="text-[13px] text-gray-500 mb-6">{t("form.labels.slots")}</p>
+          <p className="text-[13px] text-muted mb-6">{t("form.labels.slots")}</p>
           <div className="grid sm:grid-cols-2 gap-3 mb-6">
             {slots.map((s) => {
               const checked = data.slots.includes(s.value);
@@ -304,10 +304,10 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
                   key={s.value}
                   className={`flex items-start gap-3 px-4 py-3 rounded-xl border cursor-pointer transition ${
                     checked
-                      ? "bg-[#10B981]/8 border-[#10B981]/40"
+                      ? "bg-leaf/8 border-leaf/40"
                       : disabled
-                      ? "bg-gray-50 border-gray-100 cursor-not-allowed opacity-60"
-                      : "bg-white border-gray-200 hover:border-[#10B981]/30"
+                      ? "bg-cream border-line cursor-not-allowed opacity-60"
+                      : "bg-white border-line hover:border-leaf/30"
                   }`}
                 >
                   <input
@@ -315,43 +315,43 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
                     checked={checked}
                     disabled={disabled}
                     onChange={() => toggleSlot(s.value)}
-                    className="mt-0.5 h-4 w-4 accent-[#10B981]"
+                    className="mt-0.5 h-4 w-4 accent-[#047857]"
                   />
-                  <span className="text-[13px] text-[#0F172A] leading-snug">{s.label}</span>
+                  <span className="text-[13px] text-ink leading-snug">{s.label}</span>
                 </label>
               );
             })}
           </div>
-          {errors.slots && <p className="text-xs text-red-600 mb-4">{errors.slots}</p>}
+          {errors.slots && <p className="text-xs text-danger mb-4">{errors.slots}</p>}
 
           <label className="flex items-start gap-3 mt-4 cursor-pointer">
             <input
               type="checkbox"
               checked={data.consent}
               onChange={(e) => update("consent", e.target.checked)}
-              className="mt-1 h-4 w-4 accent-[#10B981]"
+              className="mt-1 h-4 w-4 accent-[#047857]"
             />
-            <span className="text-[12px] text-gray-600 leading-relaxed">
+            <span className="text-[12px] text-ink-700 leading-relaxed">
               {t("form.labels.consent")}
             </span>
           </label>
-          {errors.consent && <p className="text-xs text-red-600 mt-2">{errors.consent}</p>}
+          {errors.consent && <p className="text-xs text-danger mt-2">{errors.consent}</p>}
         </FadeIn>
       )}
 
       {/* Status banners */}
       {submitState === "fallback" && (
-        <div className="mt-6 flex items-start gap-3 px-5 py-4 rounded-xl bg-[#FEF3F2] border border-[#F59E0B]/30">
+        <div className="mt-6 flex items-start gap-3 px-5 py-4 rounded-xl bg-ochre-100 border border-ochre/30">
           <AlertTriangle
-            className="h-5 w-5 text-[#F59E0B] flex-shrink-0 mt-0.5"
+            className="h-5 w-5 text-ochre flex-shrink-0 mt-0.5"
             aria-hidden="true"
           />
           <div>
-            <p className="text-[13px] font-semibold text-[#0F172A] mb-1">{t("fallback.title")}</p>
-            <p className="text-[12px] text-gray-600 leading-relaxed">{t("fallback.body")}</p>
+            <p className="text-[13px] font-semibold text-ink mb-1">{t("fallback.title")}</p>
+            <p className="text-[12px] text-ink-700 leading-relaxed">{t("fallback.body")}</p>
             <a
               href="mailto:mahdi@greentechcycle.fr"
-              className="inline-flex items-center gap-1 text-[12px] font-semibold text-[#0F172A] underline underline-offset-4 mt-1"
+              className="inline-flex items-center gap-1 text-[12px] font-semibold text-ink underline underline-offset-4 mt-1"
             >
               {t("fallback.mailtoLabel")}
               <ArrowRight className="h-3 w-3" aria-hidden="true" />
@@ -360,22 +360,22 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
         </div>
       )}
       {submitState === "error" && (
-        <div className="mt-6 flex items-start gap-3 px-5 py-4 rounded-xl bg-[#FEF3F2] border border-red-300">
-          <AlertTriangle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
+        <div className="mt-6 flex items-start gap-3 px-5 py-4 rounded-xl bg-ochre-100 border border-danger">
+          <AlertTriangle className="h-5 w-5 text-danger flex-shrink-0 mt-0.5" aria-hidden="true" />
           <div>
-            <p className="text-[13px] font-semibold text-[#0F172A] mb-1">{t("error.title")}</p>
-            <p className="text-[12px] text-gray-600 leading-relaxed">{t("error.body")}</p>
+            <p className="text-[13px] font-semibold text-ink mb-1">{t("error.title")}</p>
+            <p className="text-[12px] text-ink-700 leading-relaxed">{t("error.body")}</p>
           </div>
         </div>
       )}
 
       {/* Navigation */}
-      <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between gap-4 flex-wrap">
+      <div className="mt-8 pt-6 border-t border-line flex items-center justify-between gap-4 flex-wrap">
         {step > 1 ? (
           <button
             type="button"
             onClick={goPrev}
-            className="inline-flex items-center gap-2 text-[#0F172A] hover:text-[#10B981] font-semibold text-sm transition-colors"
+            className="inline-flex items-center gap-2 text-ink hover:text-leaf font-semibold text-sm transition-colors"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             {t("form.previous")}
@@ -387,7 +387,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
           <button
             type="button"
             onClick={goNext}
-            className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
+            className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover: hover:-translate-y-0.5 text-sm"
           >
             {t("form.next")}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -396,7 +396,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
+            className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover: hover:-translate-y-0.5 text-sm"
           >
             {submitting ? (
               <>
@@ -446,10 +446,10 @@ function Field({
     <div className={className}>
       <label
         htmlFor={id}
-        className="block text-[10px] font-bold text-[#0F172A] mb-2 uppercase tracking-[0.12em]"
+        className="block text-[10px] font-bold text-ink mb-2 uppercase tracking-[0.12em]"
       >
         {label}
-        {!optional && <span className="text-[#10B981] ml-1">*</span>}
+        {!optional && <span className="text-leaf ml-1">*</span>}
       </label>
       <input
         id={id}
@@ -459,11 +459,11 @@ function Field({
         placeholder={placeholder}
         autoComplete={autoComplete}
         aria-invalid={!!error}
-        className={`w-full px-4 py-3 rounded-xl border text-[#0F172A] text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#10B981]/40 focus:border-[#10B981] transition ${
-          error ? "border-red-300 bg-red-50/40" : "border-gray-200 bg-[#F8FAFC]"
+        className={`w-full px-4 py-3 rounded-xl border text-ink text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-leaf/40 focus:border-leaf transition ${
+          error ? "border-danger bg-ochre-100/40" : "border-line bg-cream"
         }`}
       />
-      {error && <p className="mt-1.5 text-[11px] text-red-600">{error}</p>}
+      {error && <p className="mt-1.5 text-[11px] text-danger">{error}</p>}
     </div>
   );
 }
@@ -491,10 +491,10 @@ function TextareaField({
     <div>
       <label
         htmlFor={id}
-        className="block text-[10px] font-bold text-[#0F172A] mb-2 uppercase tracking-[0.12em]"
+        className="block text-[10px] font-bold text-ink mb-2 uppercase tracking-[0.12em]"
       >
         {label}
-        {!optional && <span className="text-[#10B981] ml-1">*</span>}
+        {!optional && <span className="text-leaf ml-1">*</span>}
       </label>
       <textarea
         id={id}
@@ -503,11 +503,11 @@ function TextareaField({
         placeholder={placeholder}
         rows={rows}
         aria-invalid={!!error}
-        className={`w-full px-4 py-3 rounded-xl border text-[#0F172A] text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#10B981]/40 focus:border-[#10B981] transition resize-y ${
-          error ? "border-red-300 bg-red-50/40" : "border-gray-200 bg-[#F8FAFC]"
+        className={`w-full px-4 py-3 rounded-xl border text-ink text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-leaf/40 focus:border-leaf transition resize-y ${
+          error ? "border-danger bg-ochre-100/40" : "border-line bg-cream"
         }`}
       />
-      {error && <p className="mt-1.5 text-[11px] text-red-600">{error}</p>}
+      {error && <p className="mt-1.5 text-[11px] text-danger">{error}</p>}
     </div>
   );
 }
@@ -531,18 +531,18 @@ function SelectField({
     <div>
       <label
         htmlFor={id}
-        className="block text-[10px] font-bold text-[#0F172A] mb-2 uppercase tracking-[0.12em]"
+        className="block text-[10px] font-bold text-ink mb-2 uppercase tracking-[0.12em]"
       >
         {label}
-        <span className="text-[#10B981] ml-1">*</span>
+        <span className="text-leaf ml-1">*</span>
       </label>
       <select
         id={id}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         aria-invalid={!!error}
-        className={`w-full px-4 py-3 rounded-xl border text-[#0F172A] text-sm focus:outline-none focus:ring-2 focus:ring-[#10B981]/40 focus:border-[#10B981] transition ${
-          error ? "border-red-300 bg-red-50/40" : "border-gray-200 bg-[#F8FAFC]"
+        className={`w-full px-4 py-3 rounded-xl border text-ink text-sm focus:outline-none focus:ring-2 focus:ring-leaf/40 focus:border-leaf transition ${
+          error ? "border-danger bg-ochre-100/40" : "border-line bg-cream"
         }`}
       >
         <option value="">-</option>
@@ -552,7 +552,7 @@ function SelectField({
           </option>
         ))}
       </select>
-      {error && <p className="mt-1.5 text-[11px] text-red-600">{error}</p>}
+      {error && <p className="mt-1.5 text-[11px] text-danger">{error}</p>}
     </div>
   );
 }

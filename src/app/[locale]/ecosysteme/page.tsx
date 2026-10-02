@@ -139,7 +139,7 @@ export default function EcosystemPage({
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F172A]/92 via-[#1E40AF]/88 to-[#047857]/90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-ink/92 via-forest/88 to-leaf/90" />
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-20 w-96 h-96 bg-primary rounded-full blur-3xl" />
@@ -147,7 +147,7 @@ export default function EcosystemPage({
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-leaf-100 border border-accent/20 text-accent text-sm font-medium mb-6">
                 <Plug className="w-4 h-4" />
                 Intégrations & API
               </span>
@@ -155,7 +155,7 @@ export default function EcosystemPage({
                 Un écosystème ouvert,{" "}
                 <span className="text-accent">connecté à votre SI</span>
               </h1>
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-ondark-muted mb-8 max-w-2xl mx-auto">
                 Connecteurs natifs, API REST documentée et authentification
                 enterprise-grade. GreenTechCycle s'intègre sans friction à votre
                 environnement existant.
@@ -189,7 +189,7 @@ export default function EcosystemPage({
               <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">
                 Intégrations natives
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-ink-700 max-w-2xl mx-auto">
                 Connectez GreenTechCycle à vos outils en quelques clics.
                 Configuration guidée, synchronisation temps réel.
               </p>
@@ -199,21 +199,21 @@ export default function EcosystemPage({
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {integrations.map((integration) => (
               <StaggerItem key={integration.name}>
-                <div className="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-accent/30 h-full">
+                <div className="group bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-line hover:border-accent/30 h-full">
                   <div className="w-14 h-14 bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <integration.icon className="w-7 h-7 text-primary" />
                   </div>
                   <h3 className="text-xl font-bold text-dark mb-3">
                     {integration.name}
                   </h3>
-                  <p className="text-gray-600 mb-5 leading-relaxed">
+                  <p className="text-ink-700 mb-5 leading-relaxed">
                     {integration.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {integration.features.map((feature) => (
                       <span
                         key={feature}
-                        className="px-3 py-1 bg-accent/5 text-accent text-xs font-medium rounded-full border border-accent/10"
+                        className="px-3 py-1 bg-leaf-50 text-accent text-xs font-medium rounded-full border border-accent/10"
                       >
                         {feature}
                       </span>
@@ -232,14 +232,14 @@ export default function EcosystemPage({
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
             <FadeIn>
               <div>
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-primary text-sm font-medium mb-4">
                   <Webhook className="w-4 h-4" />
                   API ouverte
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-dark mb-6">
                   Une API pensée pour les développeurs
                 </h2>
-                <p className="text-lg text-gray-600 mb-8">
+                <p className="text-lg text-ink-700 mb-8">
                   Automatisez vos processus ITAD avec notre API REST complète.
                   Documentation interactive, SDKs multi-langages et
                   environnement de test dédié.
@@ -248,10 +248,10 @@ export default function EcosystemPage({
                   {apiFeatures.map((feature) => (
                     <StaggerItem key={feature}>
                       <div className="flex items-start gap-3">
-                        <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-5 h-5 rounded-full bg-leaf-100 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <div className="w-2 h-2 rounded-full bg-accent" />
                         </div>
-                        <span className="text-gray-700">{feature}</span>
+                        <span className="text-ink-700">{feature}</span>
                       </div>
                     </StaggerItem>
                   ))}
@@ -264,14 +264,14 @@ export default function EcosystemPage({
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/5 to-accent/5 rounded-3xl blur-xl" />
                 <div className="relative bg-dark rounded-2xl p-6 shadow-2xl overflow-hidden">
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-red-400" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                    <div className="w-3 h-3 rounded-full bg-green-400" />
-                    <span className="ml-3 text-gray-400 text-sm font-mono">
+                    <div className="w-3 h-3 rounded-full bg-ochre" />
+                    <div className="w-3 h-3 rounded-full bg-ochre" />
+                    <div className="w-3 h-3 rounded-full bg-leaf" />
+                    <span className="ml-3 text-muted text-sm font-mono">
                       api-example.ts
                     </span>
                   </div>
-                  <pre className="text-sm text-gray-300 overflow-x-auto font-mono leading-relaxed">
+                  <pre className="text-sm text-ondark-muted overflow-x-auto font-mono leading-relaxed">
                     <code>{codeSnippet}</code>
                   </pre>
                 </div>
@@ -282,14 +282,14 @@ export default function EcosystemPage({
       </section>
 
       {/* SSO / Auth Section */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-cream">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">
                 Sécurité & Authentification
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-ink-700 max-w-2xl mx-auto">
                 Authentification enterprise-grade avec SSO, MFA et
                 provisionnement automatique. Conforme aux exigences les plus
                 strictes.
@@ -300,14 +300,14 @@ export default function EcosystemPage({
           <StaggerContainer className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {authFeatures.map((feature) => (
               <StaggerItem key={feature.title}>
-                <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                <div className="bg-white rounded-2xl p-8 shadow-sm border border-line hover:shadow-lg transition-shadow duration-300">
                   <div className="w-12 h-12 bg-gradient-to-br from-secondary/10 to-primary/10 rounded-xl flex items-center justify-center mb-5">
                     <feature.icon className="w-6 h-6 text-secondary" />
                   </div>
                   <h3 className="text-lg font-bold text-dark mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-ink-700 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -328,7 +328,7 @@ export default function EcosystemPage({
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 Prêt à connecter votre SI ?
               </h2>
-              <p className="text-xl text-gray-300 mb-8">
+              <p className="text-xl text-ondark-muted mb-8">
                 Notre équipe technique vous accompagne dans l'intégration.
                 Planifiez une session de découverte de 30 minutes.
               </p>

@@ -209,9 +209,9 @@ export default function CarbonCalculator() {
   const outputs = t.raw("outputs") as Record<string, string>;
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+    <div className="bg-white rounded-3xl shadow-xl border border-line overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-primary/10 via-secondary/5 to-accent/10 px-6 md:px-10 py-6 border-b border-gray-100">
+      <div className="bg-gradient-to-r from-primary/10 via-secondary/5 to-accent/10 px-6 md:px-10 py-6 border-b border-line">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center shadow-md shadow-primary/30">
             <Calculator className="w-6 h-6" />
@@ -220,15 +220,15 @@ export default function CarbonCalculator() {
             <h3 className="text-xl md:text-2xl font-bold text-dark">
               {t("title")}
             </h3>
-            <p className="text-sm text-dark/60">{t("subtitle")}</p>
+            <p className="text-sm text-ink-700">{t("subtitle")}</p>
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
         {/* Inputs column */}
-        <div className="p-6 md:p-10 border-b lg:border-b-0 lg:border-r border-gray-100">
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-dark/60 mb-6">
+        <div className="p-6 md:p-10 border-b lg:border-b-0 lg:border-r border-line">
+          <h4 className="text-sm font-semibold uppercase tracking-wider text-ink-700 mb-6">
             {t("inputsTitle")}
           </h4>
 
@@ -258,7 +258,7 @@ export default function CarbonCalculator() {
               onChange={(v) => update("smartphones", v)}
             />
 
-            <div className="pt-4 border-t border-gray-100 grid grid-cols-2 gap-4">
+            <div className="pt-4 border-t border-line grid grid-cols-2 gap-4">
               <NumberField
                 label={fields.renewalRate}
                 value={fleet.renewalRate}
@@ -282,7 +282,7 @@ export default function CarbonCalculator() {
         {/* Results column */}
         <div className="p-6 md:p-10 bg-gradient-to-br from-light to-white">
           {/* Scenario comparison */}
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-dark/60 mb-4">
+          <h4 className="text-sm font-semibold uppercase tracking-wider text-ink-700 mb-4">
             {t("scenarioTitle")}
           </h4>
           <div className="space-y-3 mb-6">
@@ -290,7 +290,7 @@ export default function CarbonCalculator() {
               label={t("scenarioA")}
               value={results.scenarioANewT}
               max={Math.max(results.scenarioANewT, results.scenarioBRefurbT, 1)}
-              color="bg-gradient-to-r from-orange-400 to-red-500"
+              color="bg-gradient-to-r from-ochre to-ochre"
               suffix="tCO₂e/an"
             />
             <ScenarioBar
@@ -303,7 +303,7 @@ export default function CarbonCalculator() {
           </div>
 
           {/* Outputs */}
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-dark/60 mb-4">
+          <h4 className="text-sm font-semibold uppercase tracking-wider text-ink-700 mb-4">
             {t("outputsTitle")}
           </h4>
           <div className="grid grid-cols-2 gap-3">
@@ -323,35 +323,35 @@ export default function CarbonCalculator() {
               icon={<Euro className="w-5 h-5" />}
               value={formatNumber(results.euroSaved, 0)}
               label={outputs.money}
-              accent="text-amber-500"
+              accent="text-ochre"
             />
             <OutputCard
               icon={<Recycle className="w-5 h-5" />}
               value={formatNumber(results.weeeAvoidedKg, 0)}
               label={outputs.weee}
-              accent="text-emerald-600"
+              accent="text-leaf"
             />
           </div>
 
           {/* Disclaimer */}
-          <p className="mt-5 text-xs text-dark/50 leading-relaxed">
+          <p className="mt-5 text-xs text-ink-700 leading-relaxed">
             {t("disclaimer")}
           </p>
         </div>
       </div>
 
       {/* Email capture */}
-      <div className="border-t border-gray-100 bg-light px-6 md:px-10 py-6">
+      <div className="border-t border-line bg-light px-6 md:px-10 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] items-center gap-4">
           <div>
             <p className="text-base font-semibold text-dark flex items-center gap-2">
               <Mail className="w-4 h-4 text-primary" />
               {t("ctaResults")}
             </p>
-            <p className="text-sm text-dark/60 mt-1">{t("ctaResultsHint")}</p>
+            <p className="text-sm text-ink-700 mt-1">{t("ctaResultsHint")}</p>
           </div>
           {submitted ? (
-            <p className="text-sm text-primary font-medium bg-primary/10 border border-primary/30 rounded-lg px-4 py-3">
+            <p className="text-sm text-primary font-medium bg-leaf-100 border border-primary/30 rounded-lg px-4 py-3">
               {t("emailSuccess")}
             </p>
           ) : (
@@ -365,7 +365,7 @@ export default function CarbonCalculator() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t("emailPlaceholder")}
-                className="flex-1 lg:w-72 px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-sm"
+                className="flex-1 lg:w-72 px-4 py-3 rounded-lg border border-line focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-sm"
               />
               <button
                 type="submit"
@@ -380,7 +380,7 @@ export default function CarbonCalculator() {
       </div>
 
       {/* Methodology accordion */}
-      <div className="border-t border-gray-100 px-6 md:px-10 py-5">
+      <div className="border-t border-line px-6 md:px-10 py-5">
         <button
           type="button"
           onClick={() => setMethodOpen((v) => !v)}
@@ -398,7 +398,7 @@ export default function CarbonCalculator() {
           )}
         </button>
         {methodOpen && (
-          <div className="mt-4 text-sm text-dark/70 leading-relaxed bg-light rounded-xl p-5 border border-gray-100">
+          <div className="mt-4 text-sm text-ink-700 leading-relaxed bg-light rounded-xl p-5 border border-line">
             <p className="font-semibold text-dark mb-2">{t("methodTitle")}</p>
             <p>{t("methodBody")}</p>
           </div>
@@ -431,7 +431,7 @@ function NumberField({
 }) {
   return (
     <label className="block">
-      <span className="text-xs font-medium text-dark/70 mb-1.5 flex items-center gap-1.5">
+      <span className="text-xs font-medium text-ink-700 mb-1.5 flex items-center gap-1.5">
         {icon}
         {label}
       </span>
@@ -444,10 +444,10 @@ function NumberField({
           onChange={(e) => onChange(Number(e.target.value))}
           className={`w-full ${
             compact ? "px-3 py-2 text-base" : "px-4 py-2.5 text-lg"
-          } font-semibold text-dark rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white`}
+          } font-semibold text-dark rounded-lg border border-line focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white`}
         />
         {suffix && (
-          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-dark/50 font-medium pointer-events-none">
+          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-ink-700 font-medium pointer-events-none">
             {suffix}
           </span>
         )}
@@ -473,7 +473,7 @@ function ScenarioBar({
   return (
     <div>
       <div className="flex justify-between items-center mb-1.5">
-        <span className="text-xs font-medium text-dark/80">{label}</span>
+        <span className="text-xs font-medium text-ink">{label}</span>
         <span className="text-xs font-bold text-dark">
           {value.toLocaleString("fr-FR", {
             minimumFractionDigits: 1,
@@ -482,7 +482,7 @@ function ScenarioBar({
           {suffix}
         </span>
       </div>
-      <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
+      <div className="h-3 bg-sand rounded-full overflow-hidden">
         <div
           className={`h-full ${color} rounded-full transition-all duration-500`}
           style={{ width: `${pct}%` }}
@@ -504,12 +504,12 @@ function OutputCard({
   accent: string;
 }) {
   return (
-    <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+    <div className="bg-white rounded-xl p-4 border border-line shadow-sm">
       <div className={`flex items-center gap-2 mb-2 ${accent}`}>{icon}</div>
       <div className="text-xl md:text-2xl font-bold text-dark leading-tight">
         {value}
       </div>
-      <div className="text-[11px] text-dark/60 mt-1 leading-snug">{label}</div>
+      <div className="text-[11px] text-ink-700 mt-1 leading-snug">{label}</div>
     </div>
   );
 }

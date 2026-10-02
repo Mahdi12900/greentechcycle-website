@@ -68,9 +68,9 @@ const useTx = () => {
 type RoadmapStatus = "dev" | "beta" | "planned";
 function RoadmapBadge({ status, tx }: { status: RoadmapStatus; tx: ReturnType<typeof useTx> }) {
   const labels = {
-    dev: { label: tx("En développement", "In development"), cls: "bg-amber-100 text-amber-700 border-amber-200" },
-    beta: { label: "Beta", cls: "bg-sky-100 text-sky-700 border-sky-200" },
-    planned: { label: tx("Planifié", "Planned"), cls: "bg-slate-100 text-slate-600 border-slate-200" },
+    dev: { label: tx("En développement", "In development"), cls: "bg-ochre-100 text-ochre-800 border-ochre-100" },
+    beta: { label: "Beta", cls: "bg-leaf-100 text-forest border-line" },
+    planned: { label: tx("Planifié", "Planned"), cls: "bg-sand text-ink-700 border-line" },
   };
   const s = labels[status];
   return (
@@ -90,10 +90,10 @@ export default function MethodologyPage() {
       num: "01",
       duration: tx("J+0 → J+2", "D+0 → D+2"),
       icon: Search,
-      color: "from-sky-500 to-blue-600",
-      accent: "text-sky-700",
-      bg: "bg-sky-50",
-      border: "border-sky-200",
+      color: "from-forest to-forest",
+      accent: "text-forest",
+      bg: "bg-leaf-50",
+      border: "border-line",
       title: tx("Discovery & Cartographie", "Discovery & Mapping"),
       description: tx(
         "Scan automatique du réseau, déploiement d'agents, identification RFID/code-barres. Cartographie exhaustive du parc IT/OT avec réconciliation CMDB.",
@@ -115,10 +115,10 @@ export default function MethodologyPage() {
       num: "02",
       duration: tx("J+2 → J+4", "D+2 → D+4"),
       icon: Gauge,
-      color: "from-violet-500 to-indigo-600",
-      accent: "text-violet-700",
-      bg: "bg-violet-50",
-      border: "border-violet-200",
+      color: "from-forest to-forest",
+      accent: "text-forest",
+      bg: "bg-leaf-50",
+      border: "border-line",
       title: tx("Risk Assessment & Scoring", "Risk Assessment & Scoring"),
       description: tx(
         "Scoring multicritère : criticité des données (classification C1-C4), vulnérabilités CVE, âge, état physique. Moteur à 12 critères pondérés inspiré du NIST CSF et ISO 31000.",
@@ -140,10 +140,10 @@ export default function MethodologyPage() {
       num: "03",
       duration: tx("J+4 → J+5", "D+4 → D+5"),
       icon: CheckSquare,
-      color: "from-emerald-500 to-teal-600",
-      accent: "text-emerald-700",
-      bg: "bg-emerald-50",
-      border: "border-emerald-200",
+      color: "from-leaf to-leaf",
+      accent: "text-leaf",
+      bg: "bg-leaf-50",
+      border: "border-leaf-200",
       title: tx("Decision Engine", "Decision Engine"),
       description: tx(
         "4 voies de traitement : Reconditionner / Recycler / Valoriser / Détruire. Validation multi-niveaux (principe des 4 yeux), comité de décision incluant le client, DPO et RSSI.",
@@ -165,10 +165,10 @@ export default function MethodologyPage() {
       num: "04",
       duration: tx("J+5 → J+7", "D+5 → D+7"),
       icon: Truck,
-      color: "from-amber-500 to-orange-600",
-      accent: "text-amber-700",
-      bg: "bg-amber-50",
-      border: "border-amber-200",
+      color: "from-ochre to-ochre",
+      accent: "text-ochre-800",
+      bg: "bg-ochre-100",
+      border: "border-ochre-100",
       title: tx("Logistique sécurisée", "Secure Logistics"),
       description: tx(
         "Transport sécurisé avec scellés numérotés inviolables, suivi GPS temps réel, plaques et chauffeurs enregistrés. Assurance spécifique valeur déclarée. Chaîne de traçabilité physique documentée à chaque transfert.",
@@ -190,10 +190,10 @@ export default function MethodologyPage() {
       num: "05",
       duration: tx("J+7 → J+14", "D+7 → D+14"),
       icon: Settings,
-      color: "from-rose-500 to-red-600",
-      accent: "text-rose-700",
-      bg: "bg-rose-50",
-      border: "border-rose-200",
+      color: "from-forest to-ochre",
+      accent: "text-forest",
+      bg: "bg-leaf-50",
+      border: "border-line",
       title: tx("Processing", "Processing"),
       description: tx(
         "4 filières selon la décision du module 03. Chaque filière suit un protocole spécifique avec preuves dédiées.",
@@ -215,9 +215,9 @@ export default function MethodologyPage() {
       num: "06",
       duration: tx("J+14 → J+15", "D+14 → D+15"),
       icon: Eye,
-      color: "from-primary to-emerald-700",
+      color: "from-primary to-leaf-700",
       accent: "text-primary",
-      bg: "bg-primary/5",
+      bg: "bg-leaf-50",
       border: "border-primary/20",
       title: tx("Verification & Audit", "Verification & Audit"),
       description: tx(
@@ -240,10 +240,10 @@ export default function MethodologyPage() {
       num: "07",
       duration: tx("J+15 → J+16", "D+15 → D+16"),
       icon: Award,
-      color: "from-indigo-500 to-purple-600",
-      accent: "text-indigo-700",
-      bg: "bg-indigo-50",
-      border: "border-indigo-200",
+      color: "from-forest to-forest",
+      accent: "text-forest",
+      bg: "bg-leaf-50",
+      border: "border-line",
       title: tx("Certification & Livrables", "Certification & Deliverables"),
       description: tx(
         "Génération automatique de l'ensemble des livrables certifiés : certificats d'effacement avec hash SHA-256 vérifiable, rapport RSE/Carbone, rapport financier, PV d'huissier si Chain of Custody premium.",
@@ -265,10 +265,10 @@ export default function MethodologyPage() {
       num: "08",
       duration: tx("Permanent", "Permanent"),
       icon: Radar,
-      color: "from-cyan-500 to-teal-600",
-      accent: "text-cyan-700",
-      bg: "bg-cyan-50",
-      border: "border-cyan-200",
+      color: "from-forest to-leaf",
+      accent: "text-forest",
+      bg: "bg-leaf-50",
+      border: "border-line",
       title: tx("Supervision continue", "Continuous Monitoring"),
       description: tx(
         "Tableau de bord temps réel avec KPI en direct. Alertes proactives sur anomalies. Veille réglementaire automatique : dès qu'une nouvelle norme sort, nous mettons à jour vos parcours. Notation continue du parc restant.",
@@ -322,13 +322,13 @@ export default function MethodologyPage() {
 
   // ---------- SLAs ----------
   const slas = [
-    { metric: tx("Délai diagnostic", "Diagnostic time"), value: "48h max", icon: Clock, color: "text-sky-600" },
-    { metric: tx("Délai traitement complet", "Full processing time"), value: tx("14 jours ouvrés", "14 business days"), icon: Calendar, color: "text-amber-600" },
-    { metric: tx("Taux conformité audit", "Audit compliance rate"), value: "99,97%", icon: ShieldCheck, color: "text-emerald-600" },
+    { metric: tx("Délai diagnostic", "Diagnostic time"), value: "48h max", icon: Clock, color: "text-forest" },
+    { metric: tx("Délai traitement complet", "Full processing time"), value: tx("14 jours ouvrés", "14 business days"), icon: Calendar, color: "text-ochre" },
+    { metric: tx("Taux conformité audit", "Audit compliance rate"), value: "99,97%", icon: ShieldCheck, color: "text-leaf" },
     { metric: tx("Taux valorisation", "Recovery rate"), value: "72%", icon: TrendingUp, color: "text-accent" },
-    { metric: tx("Disponibilité plateforme", "Platform uptime"), value: "99,9%", icon: Signal, color: "text-indigo-600" },
-    { metric: tx("Temps de réponse support", "Support response time"), value: tx("4h ouvrées", "4 business hours"), icon: Zap, color: "text-purple-600" },
-    { metric: tx("Incidents sécurité (historique)", "Security incidents (history)"), value: tx("Zéro", "Zero"), icon: Shield, color: "text-rose-600" },
+    { metric: tx("Disponibilité plateforme", "Platform uptime"), value: "99,9%", icon: Signal, color: "text-forest" },
+    { metric: tx("Temps de réponse support", "Support response time"), value: tx("4h ouvrées", "4 business hours"), icon: Zap, color: "text-forest" },
+    { metric: tx("Incidents sécurité (historique)", "Security incidents (history)"), value: tx("Zéro", "Zero"), icon: Shield, color: "text-forest" },
   ];
 
   // ---------- Hero KPIs ----------
@@ -341,10 +341,10 @@ export default function MethodologyPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* ═══════════════ HERO ═══════════════ */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-primary py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-gradient-to-br from-forest-900 via-forest-900 to-primary py-20 lg:py-28">
         <div className="absolute inset-0 opacity-[0.08]">
           <div className="absolute top-10 left-10 w-96 h-96 bg-accent rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-20 w-96 h-96 bg-emerald-400 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-20 w-96 h-96 bg-leaf rounded-full blur-3xl" />
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.12),transparent_50%)]" />
         <div className="container mx-auto px-4 relative z-10">
@@ -360,7 +360,7 @@ export default function MethodologyPage() {
                 {tx("Une ingénierie de processus", "Process engineering")}{" "}
                 <span className="text-accent">{tx("certifiable à chaque étape", "certifiable at every step")}</span>
               </h1>
-              <p className="text-center text-lg md:text-xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-center text-lg md:text-xl text-ondark-muted mb-12 max-w-3xl mx-auto leading-relaxed">
                 {tx(
                   "Chaque action est validée, authentifiée, auditable et reproductible. 8 modules d'ingénierie avec inputs, outputs, points de contrôle et preuves, pas une simple liste d'étapes.",
                   "Every action is validated, authenticated, auditable and reproducible. 8 engineering modules with inputs, outputs, checkpoints and evidence, not just a list of steps."
@@ -370,7 +370,7 @@ export default function MethodologyPage() {
               {/* Hero KPIs */}
               <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto">
                 {heroKpis.map((k, i) => (
-                  <div key={i} className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 px-5 py-6 text-center">
+                  <div key={i} className="rounded-2xl bg-white/5 backdrop-blur border border-ondark-line px-5 py-6 text-center">
                     <div className="text-3xl md:text-4xl font-black text-accent">
                       {k.displayValue ? (
                         <span>{k.displayValue}</span>
@@ -378,7 +378,7 @@ export default function MethodologyPage() {
                         <CountUp end={k.value} decimals={k.decimals || 0} suffix={k.suffix} />
                       )}
                     </div>
-                    <p className="text-xs uppercase tracking-wider text-slate-300 mt-2">{k.label}</p>
+                    <p className="text-xs uppercase tracking-wider text-ondark-muted mt-2">{k.label}</p>
                   </div>
                 ))}
               </div>
@@ -408,14 +408,14 @@ export default function MethodologyPage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-widest mb-4">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-primary text-xs font-semibold uppercase tracking-widest mb-4">
                 <Layers className="w-3.5 h-3.5" />
                 {tx("Processus ITAD (8 modules d'ingénierie", "ITAD Process) 8 engineering modules")}
               </span>
-              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">
+              <h2 className="text-3xl md:text-5xl font-bold text-ink mb-4">
                 {tx("Chaque module est un bloc d'ingénierie validé", "Every module is a validated engineering block")}
               </h2>
-              <p className="text-lg text-slate-600">
+              <p className="text-lg text-ink-700">
                 {tx(
                   "Inputs, outputs, points de contrôle qualité, preuves générées et SLA spécifique. Durées indicatives pour un parc de 500 assets.",
                   "Inputs, outputs, quality checkpoints, generated evidence and specific SLA. Indicative times for a 500-asset fleet."
@@ -440,53 +440,53 @@ export default function MethodologyPage() {
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-3 flex-wrap">
                             <span className={`text-4xl font-black ${m.accent} leading-none`}>{m.num}</span>
-                            <h3 className="text-xl md:text-2xl font-bold text-slate-900">{m.title}</h3>
+                            <h3 className="text-xl md:text-2xl font-bold text-ink">{m.title}</h3>
                           </div>
                           <div className="flex items-center gap-3 mt-2 flex-wrap">
                             <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full ${m.bg} ${m.accent} text-xs font-semibold`}>
                               <Clock className="w-3 h-3" /> {m.duration}
                             </span>
-                            <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold`}>
+                            <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-sand text-ink-700 text-xs font-semibold`}>
                               <Target className="w-3 h-3" /> {m.sla}
                             </span>
                           </div>
                         </div>
                       </div>
 
-                      <p className="text-slate-700 leading-relaxed mb-6">{m.description}</p>
+                      <p className="text-ink-700 leading-relaxed mb-6">{m.description}</p>
 
                       {/* I/O + Checkpoints + Proofs grid */}
                       <div className="grid sm:grid-cols-2 gap-4 mb-6">
                         <div className={`rounded-xl ${m.bg} border ${m.border} p-4`}>
-                          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2 flex items-center gap-1">
+                          <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-2 flex items-center gap-1">
                             <ArrowDownUp className="w-3 h-3" /> Inputs
                           </p>
-                          <p className="text-sm text-slate-700 leading-relaxed">{m.inputs}</p>
+                          <p className="text-sm text-ink-700 leading-relaxed">{m.inputs}</p>
                         </div>
                         <div className={`rounded-xl ${m.bg} border ${m.border} p-4`}>
-                          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2 flex items-center gap-1">
+                          <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-2 flex items-center gap-1">
                             <Box className="w-3 h-3" /> Outputs
                           </p>
-                          <p className="text-sm text-slate-700 leading-relaxed">{m.outputs}</p>
+                          <p className="text-sm text-ink-700 leading-relaxed">{m.outputs}</p>
                         </div>
-                        <div className="rounded-xl bg-slate-50 border border-slate-200 p-4">
-                          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2 flex items-center gap-1">
+                        <div className="rounded-xl bg-cream border border-line p-4">
+                          <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-2 flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3" /> {tx("Points de contrôle", "Checkpoints")}
                           </p>
-                          <p className="text-sm text-slate-700 leading-relaxed">{m.checkpoints}</p>
+                          <p className="text-sm text-ink-700 leading-relaxed">{m.checkpoints}</p>
                         </div>
-                        <div className="rounded-xl bg-slate-50 border border-slate-200 p-4">
-                          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2 flex items-center gap-1">
+                        <div className="rounded-xl bg-cream border border-line p-4">
+                          <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-2 flex items-center gap-1">
                             <FileText className="w-3 h-3" /> {tx("Preuves générées", "Generated evidence")}
                           </p>
-                          <p className="text-sm text-slate-700 leading-relaxed">{m.proofs}</p>
+                          <p className="text-sm text-ink-700 leading-relaxed">{m.proofs}</p>
                         </div>
                       </div>
 
                       {/* Details */}
                       <ul className="grid sm:grid-cols-2 gap-2">
                         {m.details.map((d, j) => (
-                          <li key={j} className="flex items-start gap-2 text-sm text-slate-600">
+                          <li key={j} className="flex items-start gap-2 text-sm text-ink-700">
                             <CheckCircle2 className={`w-4 h-4 ${m.accent} flex-shrink-0 mt-0.5`} />
                             {d}
                           </li>
@@ -502,18 +502,18 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══════════════ ROADMAP 2026/2027 ═══════════════ */}
-      <section className="py-20 lg:py-24 bg-slate-50">
+      <section className="py-20 lg:py-24 bg-cream">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-700 text-xs font-semibold uppercase tracking-widest mb-4">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-forest text-xs font-semibold uppercase tracking-widest mb-4">
                 <Brain className="w-3.5 h-3.5" />
                 {tx("Feuille de route technologique", "Technology roadmap")}
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
                 {tx("Feuille de route technologique 2026 / 2027", "Technology roadmap 2026 / 2027")}
               </h2>
-              <p className="text-lg text-slate-600">
+              <p className="text-lg text-ink-700">
                 {tx(
                   "IA prédictive, quantum-ready, computer vision, digital product passport, les prochaines évolutions de la plateforme GTC.",
                   "Predictive AI, quantum-ready, computer vision, digital product passport, the next evolutions of the GTC platform."
@@ -524,22 +524,22 @@ export default function MethodologyPage() {
 
           <div className="max-w-4xl mx-auto">
             {/* Vertical timeline */}
-            <div className="relative border-l-2 border-purple-200 ml-4 md:ml-8">
+            <div className="relative border-l-2 border-line ml-4 md:ml-8">
               {roadmap.map((period, i) => (
                 <FadeIn key={i} delay={i * 0.06}>
                   <div className="mb-10 last:mb-0 pl-8 md:pl-12 relative">
                     {/* Dot */}
-                    <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-purple-500 ring-4 ring-purple-100" />
+                    <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-forest ring-4 ring-line" />
                     {/* Period */}
-                    <p className="text-sm font-bold uppercase tracking-widest text-purple-700 mb-4">{period.period}</p>
+                    <p className="text-sm font-bold uppercase tracking-widest text-forest mb-4">{period.period}</p>
                     <div className="grid sm:grid-cols-2 gap-4">
                       {period.items.map((item, j) => (
-                        <div key={j} className="bg-white rounded-2xl p-5 border border-slate-200 hover:shadow-lg hover:border-purple-200 transition">
+                        <div key={j} className="bg-white rounded-2xl p-5 border border-line hover:shadow-lg hover:border-line transition">
                           <div className="flex items-center justify-between mb-2">
-                            <h4 className="font-bold text-slate-900 text-sm">{item.title}</h4>
+                            <h4 className="font-bold text-ink text-sm">{item.title}</h4>
                             <RoadmapBadge status={item.status} tx={tx} />
                           </div>
-                          <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
+                          <p className="text-sm text-ink-700 leading-relaxed">{item.desc}</p>
                         </div>
                       ))}
                     </div>
@@ -552,21 +552,21 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══════════════ SLA & GARANTIES ═══════════════ */}
-      <section className="py-20 lg:py-24 bg-slate-950 relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-forest-900 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-accent rounded-full blur-3xl" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold uppercase tracking-widest mb-4">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 border border-accent/20 text-accent text-xs font-semibold uppercase tracking-widest mb-4">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 {tx("Garanties & SLA contractuels", "Guarantees & contractual SLAs")}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 {tx("Des engagements chiffrés et contractualisés", "Quantified and contractualized commitments")}
               </h2>
-              <p className="text-lg text-slate-300">
+              <p className="text-lg text-ondark-muted">
                 {tx(
                   "Chaque SLA est mesuré en continu sur le tableau de bord client et garanti contractuellement.",
                   "Every SLA is continuously measured on the client dashboard and contractually guaranteed."
@@ -577,8 +577,8 @@ export default function MethodologyPage() {
 
           {/* SLA table */}
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white/5 backdrop-blur border border-white/10 rounded-2xl overflow-hidden">
-              <div className="grid grid-cols-[1fr_auto] divide-y divide-white/10">
+            <div className="bg-white/5 backdrop-blur border border-ondark-line rounded-2xl overflow-hidden">
+              <div className="grid grid-cols-[1fr_auto] divide-y divide-ondark-line">
                 {slas.map((sla, i) => {
                   const Icon = sla.icon;
                   return (
@@ -602,7 +602,7 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══════════════ CTA ═══════════════ */}
-      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-primary via-primary-700 to-slate-900 overflow-hidden">
+      <section className="relative py-20 lg:py-28 bg-gradient-to-br from-primary via-primary-700 to-forest-900 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-accent rounded-full blur-3xl" />
         </div>
@@ -613,7 +613,7 @@ export default function MethodologyPage() {
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
                 {tx("Mettez notre ingénierie de processus à l'épreuve", "Put our process engineering to the test")}
               </h2>
-              <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+              <p className="text-xl text-ondark-muted mb-10 max-w-2xl mx-auto">
                 {tx(
                   "Planifiez une évaluation avec un expert senior : nous déroulons notre processus sur un échantillon de votre parc et vous remettons une projection chiffrée.",
                   "Schedule an assessment with a senior expert: we run our process on a sample of your fleet and deliver a quantified projection."

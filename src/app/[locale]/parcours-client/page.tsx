@@ -39,9 +39,9 @@ export default function ClientJourneyPage({
   const stepIcons = [Phone, FileSearch, Settings, Rocket, HeadphonesIcon];
   const stepColors = [
     "bg-accent",
-    "bg-blue-500",
-    "bg-purple-500",
-    "bg-orange-500",
+    "bg-forest",
+    "bg-forest",
+    "bg-ochre",
     "bg-primary",
   ];
 
@@ -57,7 +57,7 @@ export default function ClientJourneyPage({
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#047857]/90 via-[#047857]/85 to-[#1E40AF]/90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-leaf/90 via-leaf/85 to-forest/90" />
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5" />
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
@@ -65,7 +65,7 @@ export default function ClientJourneyPage({
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
                 {t("hero.title")}
               </h1>
-              <p className="text-xl md:text-2xl text-white/80 leading-relaxed">
+              <p className="text-xl md:text-2xl text-ondark leading-relaxed">
                 {t("hero.subtitle")}
               </p>
             </div>
@@ -81,7 +81,7 @@ export default function ClientJourneyPage({
             <StaggerContainer>
               <div className="relative">
                 {/* Connecting Line */}
-                <div className="absolute top-16 left-[10%] right-[10%] h-1 bg-gradient-to-r from-accent via-blue-500 via-purple-500 via-orange-500 to-primary rounded-full" />
+                <div className="absolute top-16 left-[10%] right-[10%] h-1 bg-gradient-to-r from-accent via-forest via-forest via-ochre to-primary rounded-full" />
 
                 <div className="grid grid-cols-5 gap-6 relative">
                   {steps.map((step, index) => {
@@ -94,21 +94,21 @@ export default function ClientJourneyPage({
                           <div
                             className={`relative z-10 w-32 h-32 ${color} rounded-full flex flex-col items-center justify-center shadow-xl mb-6`}
                           >
-                            <span className="text-white/60 text-sm font-medium">
+                            <span className="text-ondark-muted text-sm font-medium">
                               {step.number}
                             </span>
                             <Icon className="w-10 h-10 text-white mt-1" />
                           </div>
 
                           {/* Content */}
-                          <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 w-full">
+                          <div className="bg-white rounded-2xl p-6 shadow-md border border-line w-full">
                             <h3 className="text-lg font-bold text-dark mb-2">
                               {step.title}
                             </h3>
-                            <p className="text-sm text-dark/60 mb-4 leading-relaxed">
+                            <p className="text-sm text-ink-700 mb-4 leading-relaxed">
                               {step.description}
                             </p>
-                            <div className="inline-flex items-center gap-1.5 bg-accent/10 text-accent px-3 py-1.5 rounded-full text-xs font-semibold">
+                            <div className="inline-flex items-center gap-1.5 bg-leaf-100 text-accent px-3 py-1.5 rounded-full text-xs font-semibold">
                               <Clock className="w-3.5 h-3.5" />
                               {step.duration}
                             </div>
@@ -127,7 +127,7 @@ export default function ClientJourneyPage({
             <StaggerContainer>
               <div className="relative">
                 {/* Vertical Line */}
-                <div className="absolute top-0 bottom-0 left-8 w-1 bg-gradient-to-b from-accent via-blue-500 via-purple-500 via-orange-500 to-primary rounded-full" />
+                <div className="absolute top-0 bottom-0 left-8 w-1 bg-gradient-to-b from-accent via-forest via-forest via-ochre to-primary rounded-full" />
 
                 <div className="space-y-8">
                   {steps.map((step, index) => {
@@ -144,12 +144,12 @@ export default function ClientJourneyPage({
                           </div>
 
                           {/* Content Card */}
-                          <div className="flex-1 bg-white rounded-2xl p-5 shadow-md border border-gray-100">
+                          <div className="flex-1 bg-white rounded-2xl p-5 shadow-md border border-line">
                             <div className="flex items-center gap-2 mb-2">
-                              <span className="text-xs font-semibold text-dark/40 uppercase tracking-wider">
+                              <span className="text-xs font-semibold text-ink-700 uppercase tracking-wider">
                                 {step.number}
                               </span>
-                              <div className="inline-flex items-center gap-1 bg-accent/10 text-accent px-2 py-0.5 rounded-full text-xs font-semibold ml-auto">
+                              <div className="inline-flex items-center gap-1 bg-leaf-100 text-accent px-2 py-0.5 rounded-full text-xs font-semibold ml-auto">
                                 <Clock className="w-3 h-3" />
                                 {step.duration}
                               </div>
@@ -157,7 +157,7 @@ export default function ClientJourneyPage({
                             <h3 className="text-lg font-bold text-dark mb-1.5">
                               {step.title}
                             </h3>
-                            <p className="text-sm text-dark/60 leading-relaxed">
+                            <p className="text-sm text-ink-700 leading-relaxed">
                               {step.description}
                             </p>
                           </div>

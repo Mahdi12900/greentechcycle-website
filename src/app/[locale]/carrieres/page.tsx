@@ -10,10 +10,10 @@ export default function CareersPage() {
   const t = useTranslations("Careers");
 
   const values = [
-    { icon: Target, color: "bg-primary/10 text-primary" },
-    { icon: Eye, color: "bg-accent/10 text-accent" },
+    { icon: Target, color: "bg-leaf-100 text-primary" },
+    { icon: Eye, color: "bg-leaf-100 text-accent" },
     { icon: Award, color: "bg-secondary/10 text-secondary" },
-    { icon: Lightbulb, color: "bg-amber-100 text-amber-600" },
+    { icon: Lightbulb, color: "bg-ochre-100 text-ochre" },
   ];
 
   return (
@@ -21,7 +21,7 @@ export default function CareersPage() {
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-primary via-dark to-secondary py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(16,185,129,0.18),_transparent_55%)]" />
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute -top-20 -right-20 w-96 h-96 bg-leaf-100 rounded-full blur-3xl animate-pulse-slow" />
         <div className="absolute -bottom-20 -left-20 w-[28rem] h-[28rem] bg-secondary/20 rounded-full blur-3xl animate-pulse-slower" />
         <div className="container-max mx-auto px-4 relative z-10">
           <FadeIn>
@@ -33,7 +33,7 @@ export default function CareersPage() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
                 {t("hero.title")}
               </h1>
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+              <p className="text-lg md:text-xl text-ondark leading-relaxed">
                 {t("hero.subtitle")}
               </p>
             </div>
@@ -49,7 +49,7 @@ export default function CareersPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-dark mb-8">
                 {t("mission.title")}
               </h2>
-              <p className="text-lg md:text-xl text-dark/70 leading-relaxed">
+              <p className="text-lg md:text-xl text-ink-700 leading-relaxed">
                 {t("mission.description")}
               </p>
             </div>
@@ -79,7 +79,7 @@ export default function CareersPage() {
                       <h3 className="text-lg font-bold text-dark mb-3">
                         {t(`values.items.${index}.title`)}
                       </h3>
-                      <p className="text-dark/60 text-sm leading-relaxed">
+                      <p className="text-ink-700 text-sm leading-relaxed">
                         {t(`values.items.${index}.desc`)}
                       </p>
                     </div>
@@ -97,14 +97,14 @@ export default function CareersPage() {
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
               <ScaleIn>
-                <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-8">
+                <div className="w-20 h-20 bg-leaf-100 rounded-full flex items-center justify-center mx-auto mb-8">
                   <Mail className="w-10 h-10 text-accent" />
                 </div>
               </ScaleIn>
               <h2 className="text-3xl md:text-4xl font-bold text-dark mb-6">
                 {t("spontaneous.title")}
               </h2>
-              <p className="text-dark/70 text-lg mb-8 leading-relaxed">
+              <p className="text-ink-700 text-lg mb-8 leading-relaxed">
                 {t("spontaneous.description")}
               </p>
               <a
@@ -130,7 +130,7 @@ export default function CareersPage() {
       {/* Final CTA */}
       <section className="relative py-20 md:py-24 bg-gradient-to-br from-primary via-dark to-secondary overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(16,185,129,0.12),_transparent_55%)]" />
-        <div className="absolute -top-10 -left-10 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute -top-10 -left-10 w-80 h-80 bg-leaf-100 rounded-full blur-3xl animate-pulse-slow" />
         <div className="container-max mx-auto px-4 text-center relative z-10">
           <FadeIn>
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-accent text-white mb-6 shadow-lg shadow-accent/30">
@@ -139,7 +139,7 @@ export default function CareersPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
               {t("hero.title")}
             </h2>
-            <p className="text-white/75 max-w-2xl mx-auto mb-8">
+            <p className="text-ondark-muted max-w-2xl mx-auto mb-8">
               Rejoignez une équipe engagée pour transformer la gestion des actifs IT en levier de décarbonisation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

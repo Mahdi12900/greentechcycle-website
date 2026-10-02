@@ -12,10 +12,10 @@ interface BreadcrumbsProps {
 }
 
 export default function Breadcrumbs({ items, dark = false }: BreadcrumbsProps) {
-  const textColor = dark ? "text-gray-300" : "text-gray-600";
-  const activeColor = dark ? "text-white" : "text-[#0F172A]";
-  const hoverColor = dark ? "hover:text-white" : "hover:text-[#047857]";
-  const separatorColor = dark ? "text-gray-500" : "text-gray-400";
+  const textColor = dark ? "text-ondark-muted" : "text-ink-700";
+  const activeColor = dark ? "text-white" : "text-ink";
+  const hoverColor = dark ? "hover:text-white" : "hover:text-leaf";
+  const separatorColor = dark ? "text-muted" : "text-muted";
 
   const schemaData = {
     "@context": "https://schema.org",

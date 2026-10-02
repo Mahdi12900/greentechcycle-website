@@ -90,12 +90,12 @@ const CASE_TO_SECTOR: Record<string, { slug: string; labelFr: string; labelEn: s
 /* ─────────────────────────────────────────────────────────────────────────────
    Layout logic per case index, dramatic alternation v3
    index 0 → white bg,          photo left     (Banque)
-   index 1 → #F8FAFC,           photo right    (CHU)
-   index 2 → #0F172A dark,      photo left     (Industrie)
+   index 1 → #F7F5F0,           photo right    (CHU)
+   index 2 → #1C1917 dark,      photo left     (Industrie)
    index 3 → white bg,          photo right    (Public)
-   index 4 → #0C1E1A tinted,    photo left     (Retail), deep teal tinted
-   index 5 → #F8FAFC,           photo right    (Énergie)
-   index 6 → #0F172A dark,      photo left     (Telco)
+   index 4 → #0F1F1A tinted,    photo left     (Retail), deep teal tinted
+   index 5 → #F7F5F0,           photo right    (Énergie)
+   index 6 → #1C1917 dark,      photo left     (Telco)
    index 7 → white bg,          photo right    (Éducation)
 ───────────────────────────────────────────────────────────────────────────── */
 function getCaseLayout(index: number) {
@@ -103,11 +103,11 @@ function getCaseLayout(index: number) {
   const isDark = index === 2 || index === 4 || index === 6;
   let bgStyle: string;
   if (index === 4) {
-    bgStyle = "bg-[#0C1E1A]";
+    bgStyle = "bg-forest-900";
   } else if (index === 2 || index === 6) {
-    bgStyle = "bg-[#0F172A]";
+    bgStyle = "bg-forest-900";
   } else if (index % 2 === 1) {
-    bgStyle = "bg-[#F8FAFC]";
+    bgStyle = "bg-cream";
   } else {
     bgStyle = "bg-white";
   }
@@ -137,10 +137,10 @@ function CaseSection({
 
   const kpis = c.metrics.slice(0, 3);
 
-  const textColor = isDark ? "text-white" : "text-[#0F172A]";
-  const subTextColor = isDark ? "text-gray-300" : "text-gray-600";
-  const borderColor = isDark ? "border-white/10" : "border-gray-100";
-  const kpiLabelColor = isDark ? "text-gray-400" : "text-gray-500";
+  const textColor = isDark ? "text-white" : "text-ink";
+  const subTextColor = isDark ? "text-ondark-muted" : "text-ink-700";
+  const borderColor = isDark ? "border-ondark-line" : "border-line";
+  const kpiLabelColor = isDark ? "text-muted" : "text-muted";
 
   return (
     <section
@@ -168,8 +168,8 @@ function CaseSection({
             className={`absolute inset-0 ${
               isDark
                 ? photoOnLeft
-                  ? "bg-gradient-to-r from-transparent via-transparent to-[#0F172A]/70"
-                  : "bg-gradient-to-l from-transparent via-transparent to-[#0F172A]/70"
+                  ? "bg-gradient-to-r from-transparent via-transparent to-ink/70"
+                  : "bg-gradient-to-l from-transparent via-transparent to-ink/70"
                 : photoOnLeft
                 ? "bg-gradient-to-r from-transparent to-white/15"
                 : "bg-gradient-to-l from-transparent to-white/15"
@@ -179,7 +179,7 @@ function CaseSection({
           <div
             className={`absolute bottom-0 left-0 right-0 h-1/4 ${
               isDark
-                ? "bg-gradient-to-t from-[#0F172A]/50 to-transparent"
+                ? "bg-gradient-to-t from-ink/50 to-transparent"
                 : "bg-gradient-to-t from-black/20 to-transparent"
             }`}
           />
@@ -201,8 +201,8 @@ function CaseSection({
 
           {/* Sector badge */}
           <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/92 backdrop-blur-sm shadow-lg">
-            <CaseIcon className="h-3.5 w-3.5 text-[#0F172A]" aria-hidden="true" />
-            <span className="text-[11px] font-semibold text-[#0F172A] tracking-wide uppercase">
+            <CaseIcon className="h-3.5 w-3.5 text-ink" aria-hidden="true" />
+            <span className="text-[11px] font-semibold text-ink tracking-wide uppercase">
               {c.sector}
             </span>
           </div>
@@ -243,7 +243,7 @@ function CaseSection({
               </h2>
 
               {/* Editorial body, prose with drop cap */}
-              <p className={`text-[1.05rem] lg:text-[1.1rem] leading-[1.82] mb-8 first-letter:text-[3.2em] first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:leading-[0.8] ${subTextColor} ${isDark ? "first-letter:text-white/60" : "first-letter:text-[#0F172A]"}`}>
+              <p className={`text-[1.05rem] lg:text-[1.1rem] leading-[1.82] mb-8 first-letter:text-[3.2em] first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:leading-[0.8] ${subTextColor} ${isDark ? "first-letter:text-ondark-muted" : "first-letter:text-ink"}`}>
                 {editorialBody}
               </p>
 
@@ -261,7 +261,7 @@ function CaseSection({
                     </span>
                     <span
                       className={`text-[11px] font-semibold leading-tight mt-1 ${
-                        isDark ? "text-gray-300" : "text-[#0F172A]"
+                        isDark ? "text-ondark-muted" : "text-ink"
                       }`}
                     >
                       {kpi.label}
@@ -287,14 +287,14 @@ function CaseSection({
                 </span>
                 <p
                   className={`italic text-lg lg:text-xl leading-[1.6] mb-4 font-medium ${
-                    isDark ? "text-gray-200" : "text-gray-700"
+                    isDark ? "text-ondark" : "text-ink-700"
                   }`}
                 >
                   {c.quote}
                 </p>
                 <footer
                   className={`text-sm font-semibold not-italic ${
-                    isDark ? "text-gray-400" : "text-gray-500"
+                    isDark ? "text-muted" : "text-muted"
                   }`}
                 >
                  , {c.quoteName}, {c.quoteRole},{" "}
@@ -308,7 +308,7 @@ function CaseSection({
                   href={`/contact?cas=${c.slug}`}
                   className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${
                     isDark
-                      ? "bg-white text-[#0F172A] hover:bg-gray-100 hover:shadow-white/20"
+                      ? "bg-white text-ink hover:bg-sand hover:shadow-white/20"
                       : "text-white hover:opacity-90"
                   }`}
                   style={
@@ -331,11 +331,11 @@ function CaseSection({
                   href={`/secteurs/${sectorLink.slug}`}
                   className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm transition-all duration-200 hover:-translate-y-0.5 ${
                     isDark
-                      ? "border-white/15 bg-white/[0.04] text-gray-300 hover:border-white/30 hover:text-white"
-                      : "border-gray-200 bg-white/60 text-gray-600 hover:border-gray-300 hover:text-[#0F172A]"
+                      ? "border-white/15 bg-white/[0.04] text-ondark-muted hover:border-white/30 hover:text-white"
+                      : "border-line bg-white/60 text-ink-700 hover:border-line hover:text-ink"
                   }`}
                 >
-                  <span className={`text-[10px] font-bold uppercase tracking-[0.12em] ${isDark ? "text-gray-500" : "text-gray-400"}`}>
+                  <span className={`text-[10px] font-bold uppercase tracking-[0.12em] ${isDark ? "text-muted" : "text-muted"}`}>
                     {isFr ? "Voir la fiche secteur" : "View sector profile"}
                   </span>
                   <span className="font-semibold">{sectorLink[isFr ? "labelFr" : "labelEn"]}</span>
@@ -367,11 +367,11 @@ function ComparativeBar({
   return (
     <div className="flex items-center gap-3">
       <div className="w-28 flex-shrink-0 text-right">
-        <span className="text-[12px] font-semibold text-[#0F172A] leading-tight">
+        <span className="text-[12px] font-semibold text-ink leading-tight">
           {label}
         </span>
       </div>
-      <div className="flex-1 relative h-7 bg-[#F1F5F9] rounded-lg overflow-hidden">
+      <div className="flex-1 relative h-7 bg-sand rounded-lg overflow-hidden">
         <div
           className="absolute top-0 left-0 h-full rounded-lg"
           style={{
@@ -387,7 +387,7 @@ function ComparativeBar({
         </div>
       </div>
       <div className="w-20 flex-shrink-0 text-left">
-        <span className="text-[12px] font-semibold text-[#0F172A] tabular-nums">
+        <span className="text-[12px] font-semibold text-ink tabular-nums">
           {value}
         </span>
       </div>
@@ -428,14 +428,14 @@ export default function CasUsagesPage() {
 
   // Bar colors cycling per case
   const barColors = [
-    "#0EA5E9",
-    "#10B981",
-    "#F59E0B",
-    "#0EA5E9",
-    "#10B981",
-    "#F59E0B",
-    "#0EA5E9",
-    "#10B981",
+    "#0B3B2E",
+    "#047857",
+    "#B45309",
+    "#0B3B2E",
+    "#047857",
+    "#B45309",
+    "#0B3B2E",
+    "#047857",
   ];
 
   const comparativeData = matrixRows.map((row, i) => ({
@@ -445,24 +445,24 @@ export default function CasUsagesPage() {
     co2: row[2] ?? "",
     conformite: row[3] ?? "",
     duree: row[4] ?? "",
-    accentColor: barColors[i] ?? "#10B981",
+    accentColor: barColors[i] ?? "#047857",
   }));
 
   return (
     <main className="overflow-hidden bg-white">
 
       {/* Urgency band, same pattern as home */}
-      <div className="bg-[#0F172A] text-white py-3 px-4 border-b border-white/5">
+      <div className="bg-forest-900 text-white py-3 px-4 border-b border-ondark-line">
         <div className="container mx-auto flex items-center justify-center gap-3 text-sm font-medium text-center">
-          <ShieldCheck className="h-4 w-4 flex-shrink-0 text-[#10B981]" aria-hidden="true" />
-          <p className="text-xs leading-snug text-gray-300">
+          <ShieldCheck className="h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+          <p className="text-xs leading-snug text-ondark-muted">
             <span className="font-semibold text-white">38 000+</span> certificats NIST 800-88 émis ·{" "}
             <span className="font-semibold text-white">6 200 tCO2e</span> évitées · Réponse audit sous{" "}
             <span className="font-semibold text-white">72h</span>
           </p>
           <Link
             href="/contact"
-            className="hidden sm:inline-flex items-center gap-1 text-[#10B981] hover:text-[#34D399] font-semibold text-xs transition-colors"
+            className="hidden sm:inline-flex items-center gap-1 text-leaf hover:text-leaf-300 font-semibold text-xs transition-colors"
           >
             Demander un audit <ArrowRight className="h-3 w-3" aria-hidden="true" />
           </Link>
@@ -474,7 +474,7 @@ export default function CasUsagesPage() {
           Full-viewport split dark: content LEFT (55%) + photo RIGHT (45%)
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
+        className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-forest-900"
         aria-labelledby="hero-editorial-title"
       >
         {/* Ambient glow layers */}
@@ -498,9 +498,9 @@ export default function CasUsagesPage() {
           <FadeIn>
             {/* Featured badge */}
             <div className="flex items-center gap-3 mb-10">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-muted uppercase">
                 <span
-                  className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
+                  className="w-1.5 h-1.5 rounded-full bg-leaf"
                   style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
                 />
                 {t("editorialHero.featuredLabel")}
@@ -517,16 +517,16 @@ export default function CasUsagesPage() {
             </h1>
 
             {/* Sub-title prose */}
-            <p className="text-gray-300 text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-10">
+            <p className="text-ondark-muted text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-10">
               {t("editorialHero.subtitle")}
             </p>
 
             {/* Proof strip, 3 key figures */}
             <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10 pb-10 border-b border-white/8">
               {[
-                { v: "1 850", unit: "tCO₂e", l: "évitées en 4 ans", color: "#10B981" },
-                { v: "638 k€", unit: "", l: "valeur récupérée", color: "#0EA5E9" },
-                { v: "4 jours", unit: "", l: "audit ACPR réussi", color: "#F59E0B" },
+                { v: "1 850", unit: "tCO₂e", l: "évitées en 4 ans", color: "#047857" },
+                { v: "638 k€", unit: "", l: "valeur récupérée", color: "#0B3B2E" },
+                { v: "4 jours", unit: "", l: "audit ACPR réussi", color: "#B45309" },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col">
                   <span
@@ -540,7 +540,7 @@ export default function CasUsagesPage() {
                       </span>
                     )}
                   </span>
-                  <span className="text-xs text-gray-500 mt-1.5 font-medium">{item.l}</span>
+                  <span className="text-xs text-muted mt-1.5 font-medium">{item.l}</span>
                 </div>
               ))}
             </div>
@@ -549,7 +549,7 @@ export default function CasUsagesPage() {
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
               >
                 {t("editorialHero.cta1")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -566,7 +566,7 @@ export default function CasUsagesPage() {
             {/* Scroll anchor */}
             <a
               href="#cas-banque-cac40"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-300 text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
+              className="inline-flex items-center gap-2 text-ink-700 hover:text-ondark-muted text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
             >
               <ArrowDown
                 className="h-4 w-4 transition-transform group-hover:translate-y-1"
@@ -588,23 +588,23 @@ export default function CasUsagesPage() {
             sizes="(max-width: 1024px) 100vw, 45vw"
           />
           {/* Left blend gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/85 via-[#0F172A]/25 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/25 to-transparent" />
           {/* Bottom fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F172A]/55 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-ink/55 to-transparent" />
 
           {/* Floating testimonial card */}
-          <div className="absolute bottom-8 right-5 sm:right-8 max-w-[270px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-gray-100 hidden sm:block">
-            <Quote className="h-6 w-6 text-[#0EA5E9] mb-3" aria-hidden="true" />
-            <p className="text-[12px] text-[#0F172A] leading-snug font-medium mb-3">
+          <div className="absolute bottom-8 right-5 sm:right-8 max-w-[270px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-line hidden sm:block">
+            <Quote className="h-6 w-6 text-forest mb-3" aria-hidden="true" />
+            <p className="text-[12px] text-ink leading-snug font-medium mb-3">
               &ldquo;GTC a transformé notre contrainte réglementaire en avantage compétitif concret.&rdquo;
             </p>
-            <div className="flex items-center gap-2.5 pt-3 border-t border-gray-100">
-              <div className="w-7 h-7 rounded-full bg-[#0EA5E9]/12 flex items-center justify-center flex-shrink-0">
-                <Building2 className="h-3.5 w-3.5 text-[#0EA5E9]" aria-hidden="true" />
+            <div className="flex items-center gap-2.5 pt-3 border-t border-line">
+              <div className="w-7 h-7 rounded-full bg-forest/12 flex items-center justify-center flex-shrink-0">
+                <Building2 className="h-3.5 w-3.5 text-forest" aria-hidden="true" />
               </div>
               <div>
-                <p className="text-[11px] font-bold text-[#0F172A] leading-none">Marc B.</p>
-                <p className="text-[10px] text-gray-500 mt-0.5 leading-tight">
+                <p className="text-[11px] font-bold text-ink leading-none">Marc B.</p>
+                <p className="text-[10px] text-muted mt-0.5 leading-tight">
                   {t("editorialHero.featuredMeta")}
                 </p>
               </div>
@@ -614,10 +614,10 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S2 (BANDEAU CHIFFRES XXVL) fond #0F172A
+          S2 (BANDEAU CHIFFRES XXVL) fond #1C1917
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="bg-[#0F172A] relative overflow-hidden border-t border-white/5"
+        className="bg-forest-900 relative overflow-hidden border-t border-ondark-line"
         aria-label="Chiffres clés GreenTechCycle"
       >
         {/* Ambient radial */}
@@ -630,11 +630,11 @@ export default function CasUsagesPage() {
         />
 
         <div className="container mx-auto px-4 relative z-10 py-16 lg:py-20">
-          <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-white/5">
+          <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-ondark-line">
             {kpiItems.map((kpi, i) => {
               const KIcon = [Leaf, Euro, FileCheck, Server][i] ?? Leaf;
-              const accentColors = ["#10B981", "#0EA5E9", "#F59E0B", "#10B981"];
-              const accent = accentColors[i] ?? "#10B981";
+              const accentColors = ["#047857", "#0B3B2E", "#B45309", "#047857"];
+              const accent = accentColors[i] ?? "#047857";
               const isMillions = kpi.value >= 1000000;
               return (
                 <StaggerItem key={i}>
@@ -662,46 +662,46 @@ export default function CasUsagesPage() {
                       )}
                     </p>
 
-                    <p className="text-[13px] font-medium text-gray-400 leading-snug max-w-[15ch] mx-auto mb-1.5">
+                    <p className="text-[13px] font-medium text-muted leading-snug max-w-[15ch] mx-auto mb-1.5">
                       {kpi.label}
                     </p>
-                    <p className="text-[10px] text-gray-600 italic">{kpi.source}</p>
+                    <p className="text-[10px] text-ink-700 italic">{kpi.source}</p>
                   </div>
                 </StaggerItem>
               );
             })}
           </StaggerContainer>
 
-          <p className="mt-4 text-center text-[11px] text-gray-600 italic max-w-3xl mx-auto">
+          <p className="mt-4 text-center text-[11px] text-ink-700 italic max-w-3xl mx-auto">
             {t("kpis.footnote")}
           </p>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S2b (TROIS DIFFÉRENCIATEURS ÉDITORIAUX) fond #F8FAFC
+          S2b (TROIS DIFFÉRENCIATEURS ÉDITORIAUX) fond #F7F5F0
          ════════════════════════════════════════════════════════════════ */}
-      <section className="py-16 lg:py-20 bg-[#F8FAFC] border-b border-gray-100">
+      <section className="py-16 lg:py-20 bg-cream border-b border-line">
         <div className="container mx-auto px-4">
           <StaggerContainer className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {[
               {
                 icon: ShieldCheck,
-                accent: "#10B981",
+                accent: "#047857",
                 tag: "Sécurité irréprochable",
                 title: "Traçabilité end-to-end certifiée",
                 body: "Chaque support traité reçoit un certificat NIST 800-88 r2 individuel, horodaté, avec hash SHA-256. Piste d'audit exploitable immédiatement par vos auditeurs ACPR, Big 4 ou DPO.",
               },
               {
                 icon: Euro,
-                accent: "#0EA5E9",
+                accent: "#0B3B2E",
                 tag: "ROI démontrable",
                 title: "Valeur récupérée bien au-delà des estimations",
                 body: "Notre réseau d'acheteurs qualifiés en secondaire international permet de récupérer en moyenne 3× la valeur estimée en interne. Le ROI de chaque mission est documenté à J+30.",
               },
               {
                 icon: Leaf,
-                accent: "#F59E0B",
+                accent: "#B45309",
                 tag: "Impact mesurable",
                 title: "Scope 3 audit-ready, première itération",
                 body: "Nos bilans CO₂ suivent la méthodologie Boavizta/ADEME, exportables directement au format GRI/ESRS E5. Validés sans réserve par les cabinets Big 4 dès la première publication CSRD.",
@@ -710,7 +710,7 @@ export default function CasUsagesPage() {
               const DIcon = d.icon;
               return (
                 <StaggerItem key={i}>
-                  <div className="bg-white rounded-2xl p-7 border border-gray-100 h-full hover:shadow-lg hover:border-gray-200 transition-all duration-300">
+                  <div className="bg-white rounded-2xl p-7 border border-line h-full hover:shadow-lg hover:border-line transition-all duration-300">
                     <div className="flex items-start gap-4 mb-5">
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -729,12 +729,12 @@ export default function CasUsagesPage() {
                         >
                           {d.tag}
                         </span>
-                        <h3 className="text-base font-bold text-[#0F172A] leading-snug tracking-tight">
+                        <h3 className="text-base font-bold text-ink leading-snug tracking-tight">
                           {d.title}
                         </h3>
                       </div>
                     </div>
-                    <p className="text-[13px] text-gray-600 leading-relaxed">{d.body}</p>
+                    <p className="text-[13px] text-ink-700 leading-relaxed">{d.body}</p>
                   </div>
                 </StaggerItem>
               );
@@ -750,21 +750,21 @@ export default function CasUsagesPage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-6">
+              <p className="text-[11px] font-semibold tracking-[0.18em] text-leaf uppercase mb-6">
                 {t("cases.eyebrow")}
               </p>
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F172A] mb-8 tracking-tight leading-[1.1]">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink mb-8 tracking-tight leading-[1.1]">
                 {t("editorialIntro.headline")}
               </h2>
 
-              <p className="text-lg lg:text-xl text-gray-500 leading-[1.82] mb-10 font-light max-w-2xl mx-auto">
+              <p className="text-lg lg:text-xl text-muted leading-[1.82] mb-10 font-light max-w-2xl mx-auto">
                 {t("editorialIntro.text")}
               </p>
 
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#0E9F6E] font-semibold text-sm group transition-colors"
+                className="inline-flex items-center gap-2 text-leaf hover:text-leaf-700 font-semibold text-sm group transition-colors"
               >
                 {t("editorialIntro.cta")}
                 <ArrowRight
@@ -776,8 +776,8 @@ export default function CasUsagesPage() {
           </FadeIn>
 
           {/* Sector anchor nav, desktop only */}
-          <div className="hidden lg:block mt-16 pt-10 border-t border-gray-100">
-            <p className="text-[10px] font-semibold tracking-[0.2em] text-gray-400 uppercase text-center mb-6">
+          <div className="hidden lg:block mt-16 pt-10 border-t border-line">
+            <p className="text-[10px] font-semibold tracking-[0.2em] text-muted uppercase text-center mb-6">
               {t("nav.label")}
             </p>
             <nav
@@ -790,10 +790,10 @@ export default function CasUsagesPage() {
                   <a
                     key={c.slug}
                     href={`#cas-${c.slug}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-gray-200 bg-white hover:border-[#10B981]/50 hover:bg-[#10B981]/4 text-[12px] font-semibold text-gray-600 hover:text-[#0F172A] transition-all duration-200 group"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-line bg-white hover:border-leaf/50 hover:bg-leaf/4 text-[12px] font-semibold text-ink-700 hover:text-ink transition-all duration-200 group"
                   >
                     <NavIcon
-                      className="h-3.5 w-3.5 text-gray-400 group-hover:text-[#10B981] transition-colors"
+                      className="h-3.5 w-3.5 text-muted group-hover:text-leaf transition-colors"
                       aria-hidden="true"
                     />
                     {c.sector}
@@ -808,24 +808,24 @@ export default function CasUsagesPage() {
       {/* ════════════════════════════════════════════════════════════════
           S3b (PARTENAIRES & CERTIFICATIONS) bandeau discret fond blanc
          ════════════════════════════════════════════════════════════════ */}
-      <section className="py-12 bg-white border-y border-gray-100">
+      <section className="py-12 bg-white border-y border-line">
         <div className="container mx-auto px-4">
           <FadeIn>
-            <p className="text-[10px] font-semibold tracking-[0.2em] text-gray-400 uppercase text-center mb-8">
+            <p className="text-[10px] font-semibold tracking-[0.2em] text-muted uppercase text-center mb-8">
               {t("partners.eyebrow")}
             </p>
           </FadeIn>
           <StaggerContainer className="flex flex-wrap items-center justify-center gap-4 lg:gap-6">
             {(t.raw("partners.items") as string[]).map((p, i) => (
               <StaggerItem key={i}>
-                <div className="px-5 py-2.5 rounded-lg border border-gray-150 bg-[#F8FAFC] hover:border-[#10B981]/30 transition-colors">
-                  <span className="text-[13px] font-semibold text-gray-600">{p}</span>
+                <div className="px-5 py-2.5 rounded-lg border border-line bg-cream hover:border-leaf/30 transition-colors">
+                  <span className="text-[13px] font-semibold text-ink-700">{p}</span>
                 </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
           <FadeIn>
-            <p className="mt-6 text-center text-[11px] text-gray-400 italic max-w-xl mx-auto">
+            <p className="mt-6 text-center text-[11px] text-muted italic max-w-xl mx-auto">
               {t("partners.note")}
             </p>
           </FadeIn>
@@ -834,7 +834,7 @@ export default function CasUsagesPage() {
 
       {/* ════════════════════════════════════════════════════════════════
           S3c (CAS PHARE TF1) FEATURED STORY PLEINE LARGEUR
-          Fond sombre cinéma #0F172A, photo full-bleed à droite (45%)
+          Fond sombre cinéma #1C1917, photo full-bleed à droite (45%)
          ════════════════════════════════════════════════════════════════ */}
       {(() => {
         const tf1 = t.raw("featuredTf1") as {
@@ -847,7 +847,7 @@ export default function CasUsagesPage() {
         return (
           <section
             id="cas-tf1-media"
-            className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
+            className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-forest-900"
             aria-labelledby="tf1-featured-title"
           >
             {/* Ambient glow */}
@@ -886,13 +886,13 @@ export default function CasUsagesPage() {
               <FadeIn>
                 {/* Badge */}
                 <div className="flex items-center gap-3 mb-8">
-                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#F59E0B]/30 bg-[#F59E0B]/10 text-[11px] font-bold tracking-[0.12em] text-[#F59E0B] uppercase">
+                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ochre/30 bg-ochre/10 text-[11px] font-bold tracking-[0.12em] text-ochre uppercase">
                     <MonitorPlay className="h-3.5 w-3.5" aria-hidden="true" />
                     {tf1.badge}
                   </span>
-                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] font-semibold tracking-[0.1em] text-gray-500 uppercase">
+                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-ondark-line bg-white/5 text-[10px] font-semibold tracking-[0.1em] text-muted uppercase">
                     <span
-                      className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"
+                      className="w-1.5 h-1.5 rounded-full bg-ochre"
                       style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
                     />
                     {tf1.eyebrow}
@@ -909,26 +909,26 @@ export default function CasUsagesPage() {
                 </h2>
 
                 {/* Subtitle */}
-                <p className="text-gray-400 text-sm font-semibold tracking-wide uppercase mb-6">
+                <p className="text-muted text-sm font-semibold tracking-wide uppercase mb-6">
                   {tf1.subtitle}
                 </p>
 
                 {/* Body, editorial prose */}
-                <p className="text-gray-300 text-base lg:text-[1.08rem] leading-[1.78] max-w-xl mb-10 first-letter:text-[2.8em] first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:leading-[0.8] first-letter:text-white/70">
+                <p className="text-ondark-muted text-base lg:text-[1.08rem] leading-[1.78] max-w-xl mb-10 first-letter:text-[2.8em] first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:leading-[0.8] first-letter:text-ondark-muted">
                   {tf1.body}
                 </p>
 
                 {/* 4 KPIs, grid */}
-                <div className="grid grid-cols-2 gap-x-8 gap-y-5 mb-10 pb-10 border-b border-white/10">
+                <div className="grid grid-cols-2 gap-x-8 gap-y-5 mb-10 pb-10 border-b border-ondark-line">
                   {tf1.metrics.map((kpi: KPIItem, j: number) => (
                     <div key={j} className="flex flex-col gap-1">
-                      <span className="text-3xl lg:text-4xl font-black tracking-tight leading-none tabular-nums text-[#F59E0B]">
+                      <span className="text-3xl lg:text-4xl font-black tracking-tight leading-none tabular-nums text-ochre">
                         {kpi.value}
                       </span>
                       <span className="text-[12px] font-semibold text-white leading-tight mt-1">
                         {kpi.label}
                       </span>
-                      <span className="text-[10px] text-gray-500 leading-snug">
+                      <span className="text-[10px] text-muted leading-snug">
                         {kpi.detail}
                       </span>
                     </div>
@@ -936,7 +936,7 @@ export default function CasUsagesPage() {
                 </div>
 
                 {/* Pull quote */}
-                <blockquote className="mb-10 pl-5 border-l-[4px] border-[#F59E0B]/40 relative">
+                <blockquote className="mb-10 pl-5 border-l-[4px] border-ochre/40 relative">
                   <span
                     className="absolute -top-4 -left-1 font-serif leading-none select-none pointer-events-none"
                     style={{ fontSize: "3.5rem", color: "rgba(245,158,11,0.15)" }}
@@ -944,10 +944,10 @@ export default function CasUsagesPage() {
                   >
                     &ldquo;
                   </span>
-                  <p className="italic text-lg lg:text-xl leading-[1.6] mb-3 font-medium text-gray-200">
+                  <p className="italic text-lg lg:text-xl leading-[1.6] mb-3 font-medium text-ondark">
                     {tf1.quote}
                   </p>
-                  <footer className="text-sm font-semibold not-italic text-gray-400">
+                  <footer className="text-sm font-semibold not-italic text-muted">
                    , {tf1.quoteName}, {tf1.quoteRole},{" "}
                     <span className="italic font-normal">{tf1.quoteSector}</span>
                   </footer>
@@ -957,7 +957,7 @@ export default function CasUsagesPage() {
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Link
                     href={tf1.ctaHref}
-                    className="inline-flex items-center justify-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0F172A] font-bold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#F59E0B]/25 hover:-translate-y-0.5 text-sm"
+                    className="inline-flex items-center justify-center gap-2 bg-ochre hover:bg-ochre text-ink font-bold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
                   >
                     {tf1.cta}
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -984,18 +984,18 @@ export default function CasUsagesPage() {
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
               {/* Left blend gradient */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/80 via-[#0F172A]/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/20 to-transparent" />
               {/* Bottom fade */}
-              <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F172A]/50 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-ink/50 to-transparent" />
 
               {/* Floating KPI card, 65k overlay */}
-              <div className="absolute bottom-8 right-5 sm:right-8 max-w-[240px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-gray-100 hidden sm:block">
-                <Tv className="h-6 w-6 text-[#F59E0B] mb-3" aria-hidden="true" />
-                <p className="text-2xl font-black text-[#0F172A] tabular-nums leading-none mb-1">
+              <div className="absolute bottom-8 right-5 sm:right-8 max-w-[240px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-line hidden sm:block">
+                <Tv className="h-6 w-6 text-ochre mb-3" aria-hidden="true" />
+                <p className="text-2xl font-black text-ink tabular-nums leading-none mb-1">
                   {tf1.metrics[0]?.value}{" "}
-                  <span className="text-xs font-semibold text-gray-500">{tf1.metrics[0]?.detail?.split("·")[0]?.trim()}</span>
+                  <span className="text-xs font-semibold text-muted">{tf1.metrics[0]?.detail?.split("·")[0]?.trim()}</span>
                 </p>
-                <p className="text-[11px] text-gray-600 leading-snug font-medium">
+                <p className="text-[11px] text-ink-700 leading-snug font-medium">
                   {tf1.metrics[0]?.label}
                 </p>
               </div>
@@ -1011,12 +1011,12 @@ export default function CasUsagesPage() {
       {/* Sticky side nav, desktop only */}
       <div className="hidden xl:block fixed right-4 top-1/2 -translate-y-1/2 z-40">
         <nav
-          className="flex flex-col gap-2 bg-white/90 backdrop-blur-md rounded-2xl p-2.5 shadow-lg ring-1 ring-gray-100"
+          className="flex flex-col gap-2 bg-white/90 backdrop-blur-md rounded-2xl p-2.5 shadow-lg ring-1 ring-line"
           aria-label="Navigation cas"
         >
           <a
             href="#cas-tf1-media"
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-[#F59E0B]/10 text-[10px] font-bold text-gray-500 hover:text-[#F59E0B] transition-colors uppercase tracking-wider"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-ochre/10 text-[10px] font-bold text-muted hover:text-ochre transition-colors uppercase tracking-wider"
             title="TF1 Média"
           >
             <Tv className="h-3 w-3" aria-hidden="true" />
@@ -1028,7 +1028,7 @@ export default function CasUsagesPage() {
               <a
                 key={c.slug}
                 href={`#cas-${c.slug}`}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-[#10B981]/10 text-[10px] font-bold text-gray-500 hover:text-[#10B981] transition-colors uppercase tracking-wider"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-leaf/10 text-[10px] font-bold text-muted hover:text-leaf transition-colors uppercase tracking-wider"
                 title={c.sector}
               >
                 <NavIcon className="h-3 w-3" aria-hidden="true" />
@@ -1060,16 +1060,16 @@ export default function CasUsagesPage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#0EA5E9] uppercase mb-4">
+              <p className="text-[11px] font-semibold tracking-[0.18em] text-forest uppercase mb-4">
                 {t("matrix.eyebrow")}
               </p>
               <h2
                 id="comparative-title"
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F172A] mb-5 tracking-tight leading-[1.1]"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]"
               >
                 {t("matrix.title")}
               </h2>
-              <p className="text-gray-600 text-base lg:text-lg leading-relaxed">
+              <p className="text-ink-700 text-base lg:text-lg leading-relaxed">
                 {t("matrix.subtitle")}
               </p>
             </div>
@@ -1081,9 +1081,9 @@ export default function CasUsagesPage() {
               {/* Left : Recovery rate bars */}
               <FadeIn direction="right">
                 <div>
-                  <div className="flex items-center gap-2 mb-6 pb-4 border-b border-gray-100">
-                    <TrendingUp className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
-                    <h3 className="text-[11px] font-bold text-[#0F172A] uppercase tracking-[0.12em]">
+                  <div className="flex items-center gap-2 mb-6 pb-4 border-b border-line">
+                    <TrendingUp className="h-4 w-4 text-leaf" aria-hidden="true" />
+                    <h3 className="text-[11px] font-bold text-ink uppercase tracking-[0.12em]">
                       Taux de récupération actifs
                     </h3>
                   </div>
@@ -1098,7 +1098,7 @@ export default function CasUsagesPage() {
                       />
                     ))}
                   </div>
-                  <p className="mt-4 text-[10px] text-gray-400 italic">
+                  <p className="mt-4 text-[10px] text-muted italic">
                     Actifs récupérés (revente + reconditionnement + recyclage) vs total traité
                   </p>
                 </div>
@@ -1107,9 +1107,9 @@ export default function CasUsagesPage() {
               {/* Right, Value + CO2 card list */}
               <FadeIn direction="left">
                 <div>
-                  <div className="flex items-center gap-2 mb-6 pb-4 border-b border-gray-100">
-                    <BarChart3 className="h-4 w-4 text-[#0EA5E9]" aria-hidden="true" />
-                    <h3 className="text-[11px] font-bold text-[#0F172A] uppercase tracking-[0.12em]">
+                  <div className="flex items-center gap-2 mb-6 pb-4 border-b border-line">
+                    <BarChart3 className="h-4 w-4 text-forest" aria-hidden="true" />
+                    <h3 className="text-[11px] font-bold text-ink uppercase tracking-[0.12em]">
                       Valeur récupérée &amp; impact CO₂
                     </h3>
                   </div>
@@ -1118,7 +1118,7 @@ export default function CasUsagesPage() {
                       <a
                         key={i}
                         href={`#cas-${cases[i]?.slug ?? ""}`}
-                        className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#F8FAFC] hover:bg-[#EFF6FF] transition-colors group cursor-pointer"
+                        className="flex items-center gap-3 px-4 py-3 rounded-xl bg-cream hover:bg-leaf-50 transition-colors group cursor-pointer"
                       >
                         <span
                           className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 text-[10px] font-black text-white"
@@ -1127,7 +1127,7 @@ export default function CasUsagesPage() {
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <div className="flex-1 min-w-0">
-                          <p className="text-[12px] font-semibold text-[#0F172A] truncate group-hover:text-[#0EA5E9] transition-colors">
+                          <p className="text-[12px] font-semibold text-ink truncate group-hover:text-forest transition-colors">
                             {row.label}
                           </p>
                         </div>
@@ -1139,15 +1139,15 @@ export default function CasUsagesPage() {
                             >
                               {row.value}
                             </p>
-                            <p className="text-[9px] text-gray-400 mt-0.5 uppercase tracking-wider">
+                            <p className="text-[9px] text-muted mt-0.5 uppercase tracking-wider">
                               économies
                             </p>
                           </div>
                           <div className="text-right">
-                            <p className="text-[13px] font-black text-[#10B981] leading-none tabular-nums">
+                            <p className="text-[13px] font-black text-leaf leading-none tabular-nums">
                               {row.co2}
                             </p>
-                            <p className="text-[9px] text-gray-400 mt-0.5 uppercase tracking-wider">
+                            <p className="text-[9px] text-muted mt-0.5 uppercase tracking-wider">
                               tCO2e
                             </p>
                           </div>
@@ -1161,10 +1161,10 @@ export default function CasUsagesPage() {
 
             {/* Bottom, Compliance matrix */}
             <FadeIn>
-              <div className="bg-[#F8FAFC] rounded-2xl p-6 lg:p-8 border border-gray-100">
+              <div className="bg-cream rounded-2xl p-6 lg:p-8 border border-line">
                 <div className="flex items-center gap-2 mb-6">
-                  <Award className="h-4 w-4 text-[#F59E0B]" aria-hidden="true" />
-                  <h3 className="text-[11px] font-bold text-[#0F172A] uppercase tracking-[0.12em]">
+                  <Award className="h-4 w-4 text-ochre" aria-hidden="true" />
+                  <h3 className="text-[11px] font-bold text-ink uppercase tracking-[0.12em]">
                     Conformités réglementaires atteintes
                   </h3>
                 </div>
@@ -1172,7 +1172,7 @@ export default function CasUsagesPage() {
                   {comparativeData.map((row, i) => (
                     <div
                       key={i}
-                      className="bg-white rounded-xl px-4 py-3.5 border border-gray-100 hover:shadow-md transition-shadow"
+                      className="bg-white rounded-xl px-4 py-3.5 border border-line hover:shadow-md transition-shadow"
                     >
                       <div className="flex items-center gap-2 mb-2.5">
                         <span
@@ -1181,20 +1181,20 @@ export default function CasUsagesPage() {
                         >
                           {String(i + 1).padStart(2, "0")}
                         </span>
-                        <p className="text-[11px] font-bold text-[#0F172A] truncate leading-none">
+                        <p className="text-[11px] font-bold text-ink truncate leading-none">
                           {row.label}
                         </p>
                       </div>
-                      <p className="text-[11px] text-gray-500 leading-relaxed">
+                      <p className="text-[11px] text-muted leading-relaxed">
                         {row.conformite}
                       </p>
-                      <p className="text-[10px] text-gray-400 mt-1.5 font-medium">
+                      <p className="text-[10px] text-muted mt-1.5 font-medium">
                         {row.duree}
                       </p>
                     </div>
                   ))}
                 </div>
-                <p className="mt-5 text-[10px] text-gray-400 italic text-center leading-relaxed">
+                <p className="mt-5 text-[10px] text-muted italic text-center leading-relaxed">
                   {t("matrix.footnote")}
                 </p>
               </div>
@@ -1204,10 +1204,10 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S12b (TÉMOIGNAGES 4 PERSONAS) fond sombre #0F172A
+          S12b (TÉMOIGNAGES 4 PERSONAS) fond sombre #1C1917
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-24 lg:py-32 bg-[#0F172A] relative overflow-hidden"
+        className="py-24 lg:py-32 bg-forest-900 relative overflow-hidden"
         aria-labelledby="testimonials-title"
       >
         <div
@@ -1220,7 +1220,7 @@ export default function CasUsagesPage() {
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-4">
+              <p className="text-[11px] font-semibold tracking-[0.18em] text-leaf uppercase mb-4">
                 {t("testimonials.eyebrow")}
               </p>
               <h2
@@ -1240,18 +1240,18 @@ export default function CasUsagesPage() {
               sector: string;
             }>).map((item, i) => {
               const TIcon = CASE_ICONS[i] ?? Building2;
-              const accentColors = ["#0EA5E9", "#10B981", "#F59E0B", "#0EA5E9"];
-              const accent = accentColors[i] ?? "#10B981";
+              const accentColors = ["#0B3B2E", "#047857", "#B45309", "#0B3B2E"];
+              const accent = accentColors[i] ?? "#047857";
               return (
                 <StaggerItem key={i}>
-                  <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 h-full flex flex-col hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300">
+                  <div className="bg-white/[0.04] border border-ondark-line rounded-2xl p-6 h-full flex flex-col hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300">
                     <Quote
                       className="h-7 w-7 mb-4 flex-shrink-0"
                       style={{ color: accent }}
                       aria-hidden="true"
                     />
                     <blockquote className="flex-1 mb-5">
-                      <p className="text-[13px] text-gray-300 leading-relaxed italic">
+                      <p className="text-[13px] text-ondark-muted leading-relaxed italic">
                         &ldquo;{item.quote}&rdquo;
                       </p>
                     </blockquote>
@@ -1270,7 +1270,7 @@ export default function CasUsagesPage() {
                         <p className="text-[12px] font-bold text-white leading-none truncate">
                           {item.name}
                         </p>
-                        <p className="text-[10px] text-gray-500 mt-0.5 truncate">
+                        <p className="text-[10px] text-muted mt-0.5 truncate">
                           {item.role} · {item.sector}
                         </p>
                       </div>
@@ -1282,7 +1282,7 @@ export default function CasUsagesPage() {
           </StaggerContainer>
 
           <FadeIn>
-            <p className="mt-8 text-center text-[11px] text-gray-600 italic">
+            <p className="mt-8 text-center text-[11px] text-ink-700 italic">
               {t("testimonials.consentNote")}
             </p>
           </FadeIn>
@@ -1299,12 +1299,12 @@ export default function CasUsagesPage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-4">
+              <p className="text-[11px] font-semibold tracking-[0.18em] text-leaf uppercase mb-4">
                 {t("faq.eyebrow")}
               </p>
               <h2
                 id="faq-cas-title"
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F172A] tracking-tight leading-[1.1]"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.1]"
               >
                 {t("faq.title")}
               </h2>
@@ -1315,19 +1315,19 @@ export default function CasUsagesPage() {
             {(t.raw("faq.items") as Array<{ q: string; a: string }>).map(
               (item, i) => (
                 <StaggerItem key={i}>
-                  <div className="bg-[#F8FAFC] border border-gray-100 rounded-2xl p-7 h-full hover:border-[#10B981]/30 hover:shadow-md transition-all duration-300">
+                  <div className="bg-cream border border-line rounded-2xl p-7 h-full hover:border-leaf/30 hover:shadow-md transition-all duration-300">
                     <div className="flex items-start gap-3 mb-4">
                       <span
-                        className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg text-[#10B981] text-sm font-bold"
-                        style={{ backgroundColor: "#10B981" + "15" }}
+                        className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg text-leaf text-sm font-bold"
+                        style={{ backgroundColor: "#047857" + "15" }}
                       >
                         Q{i + 1}
                       </span>
-                      <h3 className="font-bold text-[#0F172A] text-[15px] leading-snug tracking-tight">
+                      <h3 className="font-bold text-ink text-[15px] leading-snug tracking-tight">
                         {item.q}
                       </h3>
                     </div>
-                    <p className="text-sm text-gray-600 leading-relaxed pl-11">
+                    <p className="text-sm text-ink-700 leading-relaxed pl-11">
                       {item.a}
                     </p>
                   </div>
@@ -1340,7 +1340,7 @@ export default function CasUsagesPage() {
             <div className="mt-12 text-center">
               <Link
                 href="/faq"
-                className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#0E9F6E] font-semibold text-sm group transition-colors"
+                className="inline-flex items-center gap-2 text-leaf hover:text-leaf-700 font-semibold text-sm group transition-colors"
               >
                 {t("faq.allQuestionsLink")}
                 <ArrowRight
@@ -1354,16 +1354,16 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S12d (CROSS-LINK 16 SECTEURS) bandeau éditorial fond #0F1115
+          S12d (CROSS-LINK 16 SECTEURS) bandeau éditorial fond #0F1F1A
           Pointe vers le hub /secteurs sans dupliquer le contenu
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-24 bg-[#0F1115] overflow-hidden"
+        className="relative py-20 lg:py-24 bg-forest-900 overflow-hidden"
         aria-labelledby="cross-secteurs-title"
       >
         {/* Ghost watermark 16 */}
         <div
-          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none text-white/[0.025]"
+          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none text-ondark-muted"
           style={{
             fontSize: "clamp(10rem, 26vw, 22rem)",
             right: "-0.05em",
@@ -1385,7 +1385,7 @@ export default function CasUsagesPage() {
           <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-center max-w-6xl mx-auto">
             <FadeIn>
               <div>
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-[#67E8F9] uppercase mb-5">
+                <p className="text-[11px] font-semibold tracking-[0.18em] text-leaf-300 uppercase mb-5">
                   {isFr ? "Au-delà des 8 cas chiffrés" : "Beyond the 8 quantified cases"}
                 </p>
                 <h2
@@ -1394,12 +1394,12 @@ export default function CasUsagesPage() {
                   style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
                 >
                   {isFr ? (
-                    <>16 fiches sectorielles complètes,<br /><span className="text-[#0EA5E9]">de la banque au broadcast.</span></>
+                    <>16 fiches sectorielles complètes,<br /><span className="text-forest">de la banque au broadcast.</span></>
                   ) : (
-                    <>16 complete sector profiles,<br /><span className="text-[#0EA5E9]">from banking to broadcast.</span></>
+                    <>16 complete sector profiles,<br /><span className="text-forest">from banking to broadcast.</span></>
                   )}
                 </h2>
-                <p className="text-gray-300 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-8 max-w-xl">
+                <p className="text-ondark-muted text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-8 max-w-xl">
                   {isFr
                     ? "Chaque secteur a son audit, ses douleurs, son ROI, ses personas et ses objections. Le hub /secteurs synthétise les 16 marchés que nous couvrons en France et en Europe, y compris la référence broadcast TF1."
                     : "Each sector has its audit, its pain points, its ROI, its personas and its objections. The /secteurs hub synthesises the 16 markets we cover in France and Europe, including the TF1 broadcast reference."}
@@ -1408,7 +1408,7 @@ export default function CasUsagesPage() {
                 <div className="flex flex-col sm:flex-row gap-3 mb-10">
                   <Link
                     href="/secteurs"
-                    className="inline-flex items-center justify-center gap-2 bg-[#0EA5E9] hover:bg-[#0284C7] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#0EA5E9]/25 hover:-translate-y-0.5 text-sm"
+                    className="inline-flex items-center justify-center gap-2 bg-forest hover:bg-leaf text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
                   >
                     {isFr ? "Explorer les 16 secteurs" : "Explore the 16 sectors"}
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -1417,16 +1417,16 @@ export default function CasUsagesPage() {
                     href="/secteurs/medias-audiovisuel"
                     className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
                   >
-                    <Tv className="h-4 w-4 text-[#F59E0B]" aria-hidden="true" />
+                    <Tv className="h-4 w-4 text-ochre" aria-hidden="true" />
                     {isFr ? "Voir la fiche TF1 / Médias" : "See the TF1 / Media profile"}
                   </Link>
                 </div>
 
                 <div className="grid grid-cols-3 gap-4 max-w-md">
                   {[
-                    { v: "16", l: isFr ? "secteurs couverts" : "sectors covered", c: "#10B981" },
-                    { v: "TF1", l: isFr ? "référence broadcast" : "broadcast reference", c: "#F59E0B" },
-                    { v: "3", l: isFr ? "phases priorité" : "priority phases", c: "#0EA5E9" },
+                    { v: "16", l: isFr ? "secteurs couverts" : "sectors covered", c: "#047857" },
+                    { v: "TF1", l: isFr ? "référence broadcast" : "broadcast reference", c: "#B45309" },
+                    { v: "3", l: isFr ? "phases priorité" : "priority phases", c: "#0B3B2E" },
                   ].map((it, k) => (
                     <div key={k} className="flex flex-col">
                       <span
@@ -1435,7 +1435,7 @@ export default function CasUsagesPage() {
                       >
                         {it.v}
                       </span>
-                      <span className="text-[10px] text-gray-500 mt-1.5 font-medium uppercase tracking-wider">
+                      <span className="text-[10px] text-muted mt-1.5 font-medium uppercase tracking-wider">
                         {it.l}
                       </span>
                     </div>
@@ -1447,22 +1447,22 @@ export default function CasUsagesPage() {
             <FadeIn>
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 {[
-                  { name: isFr ? "Médias / TF1" : "Media / TF1", slug: "medias-audiovisuel", accent: "#F59E0B", featured: true },
-                  { name: isFr ? "Banque" : "Banking", slug: "finance", accent: "#0EA5E9" },
-                  { name: isFr ? "Santé" : "Healthcare", slug: "sante", accent: "#10B981" },
-                  { name: isFr ? "Industrie" : "Industry", slug: "industrie", accent: "#0EA5E9" },
-                  { name: isFr ? "Public" : "Public", slug: "public", accent: "#10B981" },
-                  { name: isFr ? "Énergie" : "Energy", slug: "energie", accent: "#F59E0B" },
+                  { name: isFr ? "Médias / TF1" : "Media / TF1", slug: "medias-audiovisuel", accent: "#B45309", featured: true },
+                  { name: isFr ? "Banque" : "Banking", slug: "finance", accent: "#0B3B2E" },
+                  { name: isFr ? "Santé" : "Healthcare", slug: "sante", accent: "#047857" },
+                  { name: isFr ? "Industrie" : "Industry", slug: "industrie", accent: "#0B3B2E" },
+                  { name: isFr ? "Public" : "Public", slug: "public", accent: "#047857" },
+                  { name: isFr ? "Énergie" : "Energy", slug: "energie", accent: "#B45309" },
                 ].map((s) => (
                   <Link
                     key={s.slug}
                     href={`/secteurs/${s.slug}`}
-                    className="group relative aspect-[4/3] rounded-xl border border-white/10 hover:border-white/30 bg-white/[0.03] hover:bg-white/[0.07] transition-all duration-300 overflow-hidden"
+                    className="group relative aspect-[4/3] rounded-xl border border-ondark-line hover:border-white/30 bg-white/[0.03] hover:bg-white/[0.07] transition-all duration-300 overflow-hidden"
                   >
                     {s.featured && (
                       <span
                         className="absolute top-2 right-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider z-10"
-                        style={{ backgroundColor: s.accent, color: "#0F1115" }}
+                        style={{ backgroundColor: s.accent, color: "#0F1F1A" }}
                       >
                         <Award className="w-2.5 h-2.5" aria-hidden="true" />
                         {isFr ? "Phare" : "Featured"}
@@ -1470,7 +1470,7 @@ export default function CasUsagesPage() {
                     )}
                     <div className="absolute inset-0 flex flex-col justify-end p-4">
                       <span
-                        className="absolute top-3 left-3 font-black leading-none text-white/[0.18]"
+                        className="absolute top-3 left-3 font-black leading-none text-ondark-muted"
                         style={{ fontSize: "2.5rem" }}
                         aria-hidden="true"
                       >
@@ -1483,7 +1483,7 @@ export default function CasUsagesPage() {
                         {isFr ? "Secteur" : "Sector"}
                       </span>
                       <span className="text-sm font-bold text-white leading-tight">{s.name}</span>
-                      <span className="inline-flex items-center gap-1 text-[11px] text-gray-400 group-hover:text-white mt-2 transition-colors">
+                      <span className="inline-flex items-center gap-1 text-[11px] text-muted group-hover:text-white mt-2 transition-colors">
                         {isFr ? "Voir la fiche" : "View profile"}
                         <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
                       </span>
@@ -1491,7 +1491,7 @@ export default function CasUsagesPage() {
                   </Link>
                 ))}
               </div>
-              <p className="mt-4 text-[11px] text-gray-500 text-center italic">
+              <p className="mt-4 text-[11px] text-muted text-center italic">
                 {isFr ? "+ 10 autres secteurs : retail, telco, éducation, BTP, HoReCa, agro, transport, pharma, conseil, tech." : "+ 10 more sectors: retail, telco, education, construction, hospitality, agro, transport, pharma, consulting, tech."}
               </p>
             </FadeIn>
@@ -1500,10 +1500,10 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S13 (ENCART CONVERSION) fond #10B981 pleine largeur
+          S13 (ENCART CONVERSION) fond #047857 pleine largeur
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-20 lg:py-28 bg-[#10B981] relative overflow-hidden"
+        className="py-20 lg:py-28 bg-leaf relative overflow-hidden"
         aria-labelledby="conversion-title"
       >
         {/* Ambient */}
@@ -1520,7 +1520,7 @@ export default function CasUsagesPage() {
           <div className="max-w-4xl mx-auto">
             <FadeIn>
               <div className="text-center mb-10">
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-white/65 uppercase mb-4">
+                <p className="text-[11px] font-semibold tracking-[0.18em] text-ondark-muted uppercase mb-4">
                   {t("conversion.eyebrow")}
                 </p>
                 <h2
@@ -1529,7 +1529,7 @@ export default function CasUsagesPage() {
                 >
                   {t("conversion.title")}
                 </h2>
-                <p className="text-white/80 text-base lg:text-lg leading-relaxed max-w-2xl mx-auto">
+                <p className="text-ondark text-base lg:text-lg leading-relaxed max-w-2xl mx-auto">
                   {t("conversion.subtitle")}
                 </p>
               </div>
@@ -1539,13 +1539,13 @@ export default function CasUsagesPage() {
               <FadeIn>
                 <div className="bg-white rounded-2xl p-10 text-center max-w-md mx-auto shadow-2xl">
                   <CheckCircle2
-                    className="h-14 w-14 text-[#10B981] mx-auto mb-5"
+                    className="h-14 w-14 text-leaf mx-auto mb-5"
                     aria-hidden="true"
                   />
-                  <h3 className="text-2xl font-bold text-[#0F172A] mb-3">
+                  <h3 className="text-2xl font-bold text-ink mb-3">
                     {t("conversion.successTitle")}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed text-sm">
+                  <p className="text-ink-700 leading-relaxed text-sm">
                     {t("conversion.successBody")}
                   </p>
                 </div>
@@ -1554,7 +1554,7 @@ export default function CasUsagesPage() {
               <FadeIn>
                 <form
                   onSubmit={handleSubmit}
-                  className="bg-white rounded-2xl p-6 lg:p-8 shadow-2xl shadow-[#0F172A]/15 max-w-2xl mx-auto"
+                  className="bg-white rounded-2xl p-6 lg:p-8 shadow-2xl max-w-2xl mx-auto"
                   noValidate
                 >
                   <div className="grid md:grid-cols-3 gap-4 mb-6">
@@ -1581,7 +1581,7 @@ export default function CasUsagesPage() {
                       <div key={field.id}>
                         <label
                           htmlFor={field.id}
-                          className="block text-[10px] font-bold text-[#0F172A] mb-2 uppercase tracking-[0.12em]"
+                          className="block text-[10px] font-bold text-ink mb-2 uppercase tracking-[0.12em]"
                         >
                           {field.label}
                         </label>
@@ -1597,19 +1597,19 @@ export default function CasUsagesPage() {
                           }
                           placeholder={field.placeholder}
                           required
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#F8FAFC] text-[#0F172A] text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#10B981]/40 focus:border-[#10B981] transition"
+                          className="w-full px-4 py-3 rounded-xl border border-line bg-cream text-ink text-sm placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-leaf/40 focus:border-leaf transition"
                         />
                       </div>
                     ))}
                   </div>
 
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <p className="text-[10px] text-gray-400 italic leading-snug max-w-[28ch]">
+                    <p className="text-[10px] text-muted italic leading-snug max-w-[28ch]">
                       {t("conversion.privacy")}
                     </p>
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm whitespace-nowrap flex-shrink-0"
+                      className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover: hover:-translate-y-0.5 text-sm whitespace-nowrap flex-shrink-0"
                     >
                       <Send className="h-4 w-4" aria-hidden="true" />
                       {t("conversion.cta")}
@@ -1632,7 +1632,7 @@ export default function CasUsagesPage() {
           aria-hidden="true"
         >
           <span
-            className="text-gray-50 font-black leading-none"
+            className="text-ondark font-black leading-none"
             style={{ fontSize: "clamp(14rem, 38vw, 32rem)" }}
           >
             &ldquo;
@@ -1644,36 +1644,36 @@ export default function CasUsagesPage() {
             <div className="max-w-4xl mx-auto text-center">
               {/* Green accent bar */}
               <div
-                className="w-10 h-[3px] bg-[#10B981] mx-auto mb-12 rounded-full"
+                className="w-10 h-[3px] bg-leaf mx-auto mb-12 rounded-full"
                 aria-hidden="true"
               />
 
               <blockquote>
-                <p className="text-2xl md:text-3xl lg:text-[2.2rem] font-bold text-[#0F172A] leading-[1.38] tracking-tight mb-10">
+                <p className="text-2xl md:text-3xl lg:text-[2.2rem] font-bold text-ink leading-[1.38] tracking-tight mb-10">
                   &ldquo;{t("editorialFinalQuote.text")}&rdquo;
                 </p>
                 <footer className="flex items-center justify-center gap-5">
-                  <div className="w-16 h-px bg-gray-200" aria-hidden="true" />
+                  <div className="w-16 h-px bg-line" aria-hidden="true" />
                   <div>
-                    <p className="font-bold text-[#0F172A] text-base leading-none">
+                    <p className="font-bold text-ink text-base leading-none">
                       {t("editorialFinalQuote.name")}
                     </p>
-                    <p className="text-gray-500 text-sm mt-1">
+                    <p className="text-muted text-sm mt-1">
                       {t("editorialFinalQuote.role")}
                     </p>
                   </div>
-                  <div className="w-16 h-px bg-gray-200" aria-hidden="true" />
+                  <div className="w-16 h-px bg-line" aria-hidden="true" />
                 </footer>
               </blockquote>
 
-              <p className="mt-8 text-[11px] text-gray-400 italic">
+              <p className="mt-8 text-[11px] text-muted italic">
                 {t("editorialFinalQuote.consentNote")}
               </p>
 
               <div className="mt-10">
                 <Link
                   href="#cas-banque-cac40"
-                  className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#0E9F6E] font-semibold text-sm group transition-colors"
+                  className="inline-flex items-center gap-2 text-leaf hover:text-leaf-700 font-semibold text-sm group transition-colors"
                 >
                   Voir le cas Banque CAC40 complet
                   <ArrowRight
@@ -1688,9 +1688,9 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S14b (PASSERELLE VERS LES 16 SECTEURS) fond #F8FAFC
+          S14b (PASSERELLE VERS LES 16 SECTEURS) fond #F7F5F0
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative py-20 lg:py-28 bg-[#F8FAFC] overflow-hidden">
+      <section className="relative py-20 lg:py-28 bg-cream overflow-hidden">
         <div
           className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
           style={{
@@ -1707,18 +1707,18 @@ export default function CasUsagesPage() {
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-12">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-4">
+              <p className="text-[11px] font-semibold tracking-[0.18em] text-leaf uppercase mb-4">
                 {isFr ? "Catalogue sectoriel complet" : "Full sector catalogue"}
               </p>
               <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-6"
+                className="text-ink font-bold tracking-tight mb-6"
                 style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
               >
                 {isFr
                   ? "Au-delà de ces 8 cas : 16 fiches sectorielles détaillées."
                   : "Beyond these 8 cases: 16 detailed sector profiles."}
               </h2>
-              <p className="text-gray-600 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] max-w-2xl">
+              <p className="text-ink-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] max-w-2xl">
                 {isFr
                   ? "Chaque secteur dispose d'une fiche complète : profil réglementaire, douleurs spécifiques, cas d'usage prioritaires, ROI attendu, personas décideurs et objections. De la finance à la pharma, du retail à l'éducation."
                   : "Each sector has a complete profile: regulatory framework, specific pain points, priority use cases, expected ROI, decision-maker personas and objections. From finance to pharma, from retail to education."}
@@ -1743,12 +1743,12 @@ export default function CasUsagesPage() {
                   <StaggerItem key={s.slug}>
                     <Link
                       href={`/secteurs/${s.slug}`}
-                      className="group flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-white border border-gray-150 hover:border-[#10B981]/40 hover:shadow-md transition-all duration-200"
+                      className="group flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-white border border-line hover:border-leaf/40 hover:shadow-md transition-all duration-200"
                     >
-                      <span className="text-[12px] font-semibold text-[#0F172A] leading-tight group-hover:text-[#047857] transition-colors line-clamp-2">
+                      <span className="text-[12px] font-semibold text-ink leading-tight group-hover:text-leaf transition-colors line-clamp-2">
                         {isFr ? s.labelFr : s.labelEn}
                       </span>
-                      <ChevronRight className="h-3.5 w-3.5 text-gray-400 group-hover:text-[#10B981] flex-shrink-0 transition-all group-hover:translate-x-0.5" aria-hidden="true" />
+                      <ChevronRight className="h-3.5 w-3.5 text-muted group-hover:text-leaf flex-shrink-0 transition-all group-hover:translate-x-0.5" aria-hidden="true" />
                     </Link>
                   </StaggerItem>
                 ))}
@@ -1757,7 +1757,7 @@ export default function CasUsagesPage() {
             <FadeIn>
               <Link
                 href="/secteurs"
-                className="inline-flex items-center gap-2 bg-[#0F172A] hover:bg-[#1E293B] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
+                className="inline-flex items-center gap-2 bg-forest-900 hover:bg-forest-950 text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
               >
                 {isFr ? "Voir les 16 fiches secteurs" : "View the 16 sector profiles"}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -1771,7 +1771,7 @@ export default function CasUsagesPage() {
           S15, CTA FINAL DOUBLE + BANDEAU CONFIANCE
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-28 lg:py-32 overflow-hidden bg-[#0F172A]"
+        className="relative py-28 lg:py-32 overflow-hidden bg-forest-900"
         aria-labelledby="final-cta-title"
       >
         {/* Background photo, very subtle */}
@@ -1784,7 +1784,7 @@ export default function CasUsagesPage() {
           sizes="100vw"
         />
         {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F172A]/96 via-[#0F172A]/92 to-[#0F172A]/88" />
+        <div className="absolute inset-0 bg-gradient-to-br from-ink/96 via-ink/92 to-ink/88" />
         {/* Green radial accent */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -1797,7 +1797,7 @@ export default function CasUsagesPage() {
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center text-white">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-5">
+              <p className="text-[11px] font-semibold tracking-[0.18em] text-leaf uppercase mb-5">
                 {t("finalCta.eyebrow")}
               </p>
 
@@ -1808,7 +1808,7 @@ export default function CasUsagesPage() {
                 {t("finalCta.title")}
               </h2>
 
-              <p className="text-gray-400 text-base lg:text-xl mb-12 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-muted text-base lg:text-xl mb-12 max-w-3xl mx-auto leading-relaxed">
                 {t("finalCta.subtitle")}
               </p>
 
@@ -1824,10 +1824,10 @@ export default function CasUsagesPage() {
                     key={i}
                     className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/8 border border-white/12"
                   >
-                    <span className="text-[11px] font-black text-[#10B981]">{step.n}</span>
-                    <span className="text-[12px] font-semibold text-white/80">{step.l}</span>
+                    <span className="text-[11px] font-black text-leaf">{step.n}</span>
+                    <span className="text-[12px] font-semibold text-ondark">{step.l}</span>
                     {i < 3 && (
-                      <ChevronRight className="h-3 w-3 text-white/25 ml-1" aria-hidden="true" />
+                      <ChevronRight className="h-3 w-3 text-ondark-muted ml-1" aria-hidden="true" />
                     )}
                   </div>
                 ))}
@@ -1837,14 +1837,14 @@ export default function CasUsagesPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-14">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-white hover:text-[#10B981] text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 shadow-xl shadow-[#10B981]/25 hover:-translate-y-0.5 text-base"
+                  className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-white hover:text-leaf text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 shadow-xl hover:-translate-y-0.5 text-base"
                 >
                   {t("finalCta.cta1")}
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
                 <Link
                   href="/demo"
-                  className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white text-white hover:text-[#0F172A] border-2 border-white/25 hover:border-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 text-base"
+                  className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white text-white hover:text-ink border-2 border-white/25 hover:border-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 text-base"
                 >
                   {t("finalCta.cta2")}
                   <ChevronRight className="h-5 w-5" aria-hidden="true" />
@@ -1852,14 +1852,14 @@ export default function CasUsagesPage() {
               </div>
 
               {/* Trust badges */}
-              <div className="pt-8 border-t border-white/10">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-white/35 mb-5 font-semibold">
+              <div className="pt-8 border-t border-ondark-line">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-ondark-muted mb-5 font-semibold">
                   Garanties contractuelles
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
                   {trustBadges.map((badge, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-white/75">
-                      <Shield className="h-4 w-4 text-[#10B981] flex-shrink-0" aria-hidden="true" />
+                    <div key={i} className="flex items-center gap-2 text-sm text-ondark-muted">
+                      <Shield className="h-4 w-4 text-leaf flex-shrink-0" aria-hidden="true" />
                       <span className="font-medium">{badge}</span>
                       {i < trustBadges.length - 1 && (
                         <span

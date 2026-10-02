@@ -17,7 +17,7 @@ function MerciInner() {
 
   return (
     <main className="bg-white">
-      <section className="relative bg-[#0F172A] overflow-hidden">
+      <section className="relative bg-forest-900 overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -28,8 +28,8 @@ function MerciInner() {
         <div className="container mx-auto px-4 relative z-10 py-24 lg:py-32">
           <FadeIn>
             <div className="max-w-2xl mx-auto text-center text-white">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#10B981]/15 border border-[#10B981]/30 mb-7">
-                <CheckCircle2 className="h-8 w-8 text-[#10B981]" aria-hidden="true" />
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-leaf-100 border border-leaf/30 mb-7">
+                <CheckCircle2 className="h-8 w-8 text-leaf" aria-hidden="true" />
               </div>
 
               <h1
@@ -39,16 +39,16 @@ function MerciInner() {
                 {isFallback ? t("fallback.title") : t("success.title")}
               </h1>
 
-              <p className="text-gray-300 text-base lg:text-lg leading-[1.7] mb-10">
+              <p className="text-ondark-muted text-base lg:text-lg leading-[1.7] mb-10">
                 {isFallback ? t("fallback.body") : t("success.body")}
               </p>
 
               {ref && (
                 <div className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-white/8 border border-white/15 mb-10">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-gray-400">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-muted">
                     {t("success.ref")}
                   </span>
-                  <code className="text-[12px] font-mono text-[#6EE7B7] tracking-tight break-all">
+                  <code className="text-[12px] font-mono text-leaf-300 tracking-tight break-all">
                     {ref}
                   </code>
                 </div>
@@ -57,7 +57,7 @@ function MerciInner() {
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   href="/"
-                  className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
                 >
                   {t("success.cta")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -80,7 +80,7 @@ function MerciInner() {
 
 export default function MerciPage() {
   return (
-    <Suspense fallback={<div className="min-h-[60vh] bg-[#0F172A]" />}>
+    <Suspense fallback={<div className="min-h-[60vh] bg-forest-900" />}>
       <MerciInner />
     </Suspense>
   );

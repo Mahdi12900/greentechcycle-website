@@ -39,11 +39,11 @@ export default function SecurityPage({
   const architectureItems = t.raw("architecture.items") as string[];
 
   const levelStyles = [
-    { color: "from-yellow-400 to-yellow-500", bg: "bg-yellow-50", border: "border-yellow-200", icon: Shield },
-    { color: "from-orange-400 to-orange-500", bg: "bg-orange-50", border: "border-orange-200", icon: Shield },
-    { color: "from-red-400 to-red-500", bg: "bg-red-50", border: "border-red-200", icon: ShieldCheck },
-    { color: "from-rose-500 to-rose-600", bg: "bg-rose-50", border: "border-rose-200", icon: ShieldAlert },
-    { color: "from-rose-600 to-red-700", bg: "bg-rose-100", border: "border-rose-300", icon: Lock },
+    { color: "from-ochre to-ochre", bg: "bg-ochre-100", border: "border-ochre-100", icon: Shield },
+    { color: "from-ochre to-ochre", bg: "bg-ochre-100", border: "border-ochre-100", icon: Shield },
+    { color: "from-ochre to-ochre", bg: "bg-ochre-100", border: "border-ochre-100", icon: ShieldCheck },
+    { color: "from-forest to-forest", bg: "bg-leaf-50", border: "border-line", icon: ShieldAlert },
+    { color: "from-forest to-ochre", bg: "bg-leaf-100", border: "border-line", icon: Lock },
   ];
 
   const custodyIcons = [ClipboardCheck, Truck, Warehouse, HardDrive, FileCheck, PackageCheck, Award];
@@ -61,7 +61,7 @@ export default function SecurityPage({
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               {t("hero.title")}
             </h1>
-            <p className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-ondark-muted max-w-3xl mx-auto">
               {t("hero.subtitle")}
             </p>
           </FadeIn>
@@ -88,7 +88,7 @@ export default function SecurityPage({
                     </div>
                     <div className="text-3xl font-bold text-dark mb-2">Niveau {item.level}</div>
                     <h3 className="text-sm font-semibold text-dark mb-1">{item.name}</h3>
-                    <p className="text-xs text-dark/60 mb-2">{item.desc}</p>
+                    <p className="text-xs text-ink-700 mb-2">{item.desc}</p>
                     <span className="text-xs text-accent font-medium">{item.norm}</span>
                   </div>
                 </StaggerItem>
@@ -105,7 +105,7 @@ export default function SecurityPage({
             <h2 className="text-3xl md:text-4xl font-bold text-dark text-center mb-4">
               {t("chainOfCustody.title")}
             </h2>
-            <p className="text-center text-dark/60 mb-16 max-w-2xl mx-auto">
+            <p className="text-center text-ink-700 mb-16 max-w-2xl mx-auto">
               {t("chainOfCustody.subtitle")}
             </p>
           </FadeIn>
@@ -119,7 +119,7 @@ export default function SecurityPage({
                       <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
                         <Icon className="w-7 h-7 text-white" />
                       </div>
-                      <span className="text-xs md:text-sm font-medium text-dark/80 text-center leading-tight">
+                      <span className="text-xs md:text-sm font-medium text-ink text-center leading-tight">
                         {step}
                       </span>
                     </div>
@@ -145,8 +145,8 @@ export default function SecurityPage({
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {certificationItems.map((cert, index) => (
               <StaggerItem key={index}>
-                <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-xl transition-all h-full flex flex-col items-center text-center">
-                  <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+                <div className="bg-white rounded-2xl p-6 border border-line shadow-sm hover:shadow-xl transition-all h-full flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-leaf-100 flex items-center justify-center mb-4">
                     <Award className="w-8 h-8 text-accent" />
                   </div>
                   <p className="text-sm font-medium text-dark">{cert}</p>
@@ -168,9 +168,9 @@ export default function SecurityPage({
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {architectureItems.map((item, index) => (
               <StaggerItem key={index}>
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all h-full">
+                <div className="bg-white/5 backdrop-blur-sm border border-ondark-line rounded-2xl p-6 hover:bg-white/10 transition-all h-full">
                   <Server className="w-10 h-10 text-accent mb-4" />
-                  <p className="text-sm text-white/80">{item}</p>
+                  <p className="text-sm text-ondark">{item}</p>
                 </div>
               </StaggerItem>
             ))}

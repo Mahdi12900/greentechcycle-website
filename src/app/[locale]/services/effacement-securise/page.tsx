@@ -52,9 +52,9 @@ export default function EffacementSecurisePage() {
       tx("Destruction physique si le support est irrécupérable", "Physical destruction if the device is unrecoverable"),
     ],
     proof: [
-      { value: "24", unit: "h", label: tx("certificat délivré", "certificate delivered"), color: "#10B981" },
-      { value: "99,97", unit: "%", label: tx("taux de réussite mesuré", "measured success rate"), color: "#0EA5E9" },
-      { value: "10", unit: tx("ans", "yrs"), label: tx("archivage des preuves", "evidence archival"), color: "#F59E0B" },
+      { value: "24", unit: "h", label: tx("certificat délivré", "certificate delivered"), color: "#047857" },
+      { value: "99,97", unit: "%", label: tx("taux de réussite mesuré", "measured success rate"), color: "#0B3B2E" },
+      { value: "10", unit: tx("ans", "yrs"), label: tx("archivage des preuves", "evidence archival"), color: "#B45309" },
     ],
     methodology: {
       title: tx("Quatre étapes, zéro angle mort", "Four steps, zero blind spot"),

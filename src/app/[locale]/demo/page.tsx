@@ -41,7 +41,7 @@ export default function DemoPage() {
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               {t("hero.title")}
             </h1>
-            <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-ondark max-w-3xl mx-auto">
               {t("hero.subtitle")}
             </p>
           </FadeIn>
@@ -72,7 +72,7 @@ export default function DemoPage() {
                   <Play className="w-8 h-8 text-white ml-1" fill="white" aria-hidden="true" />
                 </div>
               </button>
-              <div className="absolute bottom-4 left-4 text-white/60 text-sm">
+              <div className="absolute bottom-4 left-4 text-ondark-muted text-sm">
                 {t("video.placeholder")}
               </div>
             </div>
@@ -91,16 +91,16 @@ export default function DemoPage() {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {screenshotItems.map((item, index) => (
               <StaggerItem key={index}>
-                <div className="bg-dark rounded-xl overflow-hidden shadow-xl border border-white/10">
-                  <div className="h-8 bg-dark/80 flex items-center px-4 gap-2 border-b border-white/10">
-                    <div className="w-3 h-3 rounded-full bg-red-500" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                <div className="bg-dark rounded-xl overflow-hidden shadow-xl border border-ondark-line">
+                  <div className="h-8 bg-dark/80 flex items-center px-4 gap-2 border-b border-ondark-line">
+                    <div className="w-3 h-3 rounded-full bg-ochre" />
+                    <div className="w-3 h-3 rounded-full bg-ochre" />
+                    <div className="w-3 h-3 rounded-full bg-leaf" />
                   </div>
                   <div className="p-4 h-56 flex items-center justify-center">
                     <div className="text-center">
                       <Monitor className="w-10 h-10 text-accent mx-auto mb-3" />
-                      <p className="text-white/70 text-sm font-medium">{item}</p>
+                      <p className="text-ondark-muted text-sm font-medium">{item}</p>
                     </div>
                   </div>
                 </div>
@@ -117,7 +117,7 @@ export default function DemoPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-dark text-center mb-4">
               {t("form.title")}
             </h2>
-            <p className="text-center text-dark/60 mb-12">
+            <p className="text-center text-ink-700 mb-12">
               {t("form.subtitle")}
             </p>
           </FadeIn>
@@ -148,7 +148,7 @@ export default function DemoPage() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
                     />
                   </div>
                   <div>
@@ -161,7 +161,7 @@ export default function DemoPage() {
                       value={formData.company}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
                     />
                   </div>
                 </div>
@@ -177,7 +177,7 @@ export default function DemoPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
                     />
                   </div>
                   <div>
@@ -189,7 +189,7 @@ export default function DemoPage() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
                     />
                   </div>
                 </div>
@@ -203,7 +203,7 @@ export default function DemoPage() {
                     value={formData.equipment}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all bg-white"
+                    className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all bg-white"
                   >
                     <option value="">--</option>
                     {equipmentOptions.map((option, index) => (
@@ -223,7 +223,7 @@ export default function DemoPage() {
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-lg border border-line focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all resize-none"
                   />
                 </div>
 

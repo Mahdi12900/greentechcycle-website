@@ -22,10 +22,10 @@ export default function DecorativeBackdrop({
 }: DecorativeBackdropProps) {
   const palette =
     variant === "secondary"
-      ? { blob1: "bg-secondary/20", blob2: "bg-accent/15", radial: "rgba(16,185,129,0.10)" }
+      ? { blob1: "bg-secondary/20", blob2: "bg-leaf-100", radial: "rgba(16,185,129,0.10)" }
       : variant === "neutral"
-      ? { blob1: "bg-gray-200/40", blob2: "bg-primary/10", radial: "rgba(13,80,60,0.08)" }
-      : { blob1: "bg-accent/15", blob2: "bg-secondary/20", radial: "rgba(16,185,129,0.12)" };
+      ? { blob1: "bg-line/40", blob2: "bg-leaf-100", radial: "rgba(13,80,60,0.08)" }
+      : { blob1: "bg-leaf-100", blob2: "bg-secondary/20", radial: "rgba(16,185,129,0.12)" };
 
   return (
     <div aria-hidden className={`pointer-events-none absolute inset-0 ${className}`}>

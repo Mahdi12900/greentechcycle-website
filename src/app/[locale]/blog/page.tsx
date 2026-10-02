@@ -60,7 +60,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
       <SchemaOrg data={schemaData} />
       <main className="min-h-screen">
         {/* Hero */}
-        <section className="relative bg-[#0F172A] py-24 md:py-32 overflow-hidden">
+        <section className="relative bg-forest-900 py-24 md:py-32 overflow-hidden">
           <div className="absolute inset-0">
             <Image
               src="/photos/blog-economie-circulaire.jpg"
@@ -75,20 +75,20 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               Blog ITAD & Recyclage IT
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl">
+            <p className="text-xl text-ondark-muted max-w-2xl">
               Guides, analyses et actualités sur la gestion responsable des actifs IT, la conformité réglementaire et l&apos;économie circulaire.
             </p>
           </div>
         </section>
 
         {/* Articles Grid */}
-        <section className="py-16 bg-[#F8FAFC]">
+        <section className="py-16 bg-cream">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogArticles.map((article) => (
                 <article
                   key={article.slug}
-                  className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+                  className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-line"
                 >
                   <Link href={`/${locale}/blog/${article.slug}`}>
                     <div className="relative aspect-[16/9]">
@@ -100,14 +100,14 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                       <div className="absolute top-4 left-4">
-                        <span className="bg-[#047857] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                        <span className="bg-leaf text-white text-xs font-semibold px-3 py-1 rounded-full">
                           {article.category}
                         </span>
                       </div>
                     </div>
                   </Link>
                   <div className="p-6">
-                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                    <div className="flex items-center gap-4 text-sm text-muted mb-3">
                       <span className="flex items-center gap-1">
                         <Calendar className="h-4 w-4" />
                         {new Date(article.publishedAt).toLocaleDateString("fr-FR", {
@@ -122,16 +122,16 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                       </span>
                     </div>
                     <Link href={`/${locale}/blog/${article.slug}`}>
-                      <h2 className="text-lg font-bold text-[#0F172A] mb-2 hover:text-[#047857] transition-colors line-clamp-2">
+                      <h2 className="text-lg font-bold text-ink mb-2 hover:text-leaf transition-colors line-clamp-2">
                         {article.title}
                       </h2>
                     </Link>
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                    <p className="text-ink-700 text-sm mb-4 line-clamp-3">
                       {article.description}
                     </p>
                     <Link
                       href={`/${locale}/blog/${article.slug}`}
-                      className="inline-flex items-center gap-1 text-[#047857] font-semibold text-sm hover:text-[#047857] transition-colors"
+                      className="inline-flex items-center gap-1 text-leaf font-semibold text-sm hover:text-leaf transition-colors"
                     >
                       Lire l&apos;article
                       <ArrowRight className="h-4 w-4" />

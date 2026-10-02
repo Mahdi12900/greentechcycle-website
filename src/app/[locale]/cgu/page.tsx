@@ -37,17 +37,17 @@ function CguContent({ locale }: { locale: string }) {
         <StaggerContainer className="space-y-6 md:space-y-8">
           {articles.map((article, idx) => (
             <StaggerItem key={article}>
-              <div className="group relative bg-white rounded-2xl p-6 md:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="group relative bg-white rounded-2xl p-6 md:p-8 border border-line shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="absolute -left-[3px] top-6 w-1 h-12 bg-gradient-to-b from-accent to-primary rounded-full" />
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary font-bold text-sm">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-leaf-50 border border-primary/10 flex items-center justify-center text-primary font-bold text-sm">
                     {String(idx + 1).padStart(2, "0")}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3 tracking-tight">
+                    <h2 className="text-xl md:text-2xl font-semibold text-ink mb-3 tracking-tight">
                       {t(`content.${article}.title`)}
                     </h2>
-                    <p className="text-gray-600 whitespace-pre-line leading-relaxed">
+                    <p className="text-ink-700 whitespace-pre-line leading-relaxed">
                       {t(`content.${article}.text`)}
                     </p>
                   </div>
@@ -63,8 +63,8 @@ function CguContent({ locale }: { locale: string }) {
               <ShieldCheck className="h-6 w-6" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-1">Besoin d&apos;éclaircissements ?</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="text-lg font-bold text-ink mb-1">Besoin d&apos;éclaircissements ?</h3>
+              <p className="text-sm text-ink-700">
                 Notre équipe juridique répond sous 48h aux questions contractuelles.{" "}
                 <a href={`/${locale}/contact`} className="text-primary font-semibold hover:text-accent underline underline-offset-2">
                   Nous contacter

@@ -1,14 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
-import { useLocale } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import {
-  Mail, Phone, MapPin, Linkedin, Twitter, ArrowUpRight,
-  ShieldCheck, Award, Leaf, Recycle, Send,
-} from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Twitter, ArrowUpRight, Send } from "lucide-react";
+import CertificationStrip from "@/components/CertificationStrip";
 
 export default function Footer() {
   const t = useTranslations("Footer");
@@ -90,64 +87,55 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-[#0B1220] text-gray-300">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
-      <div className="pointer-events-none absolute -top-40 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-40 left-0 w-96 h-96 bg-primary-400/10 rounded-full blur-3xl" />
-
-      <div className="container-max mx-auto section-padding relative">
-        {/* Top: Logo + Contact + Newsletter */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 pb-14 mb-14 border-b border-white/10">
+    <footer className="bg-forest-900 text-ondark-muted">
+      <div className="container-max px-5 sm:px-6 lg:px-8 py-16 lg:py-24">
+        {/* Haut : marque + contact + newsletter */}
+        <div className="grid grid-cols-1 gap-12 border-b border-ondark-line pb-12 mb-12 lg:grid-cols-3">
           <div>
-            <Link href="/" className="inline-flex items-center gap-2.5 group">
-              <Image src="/logo/logo-mono-white.svg" alt="GreenTechCycle" width={200} height={40} className="h-10 w-auto" />
+            <Link href="/" className="inline-flex items-center">
+              <Image src="/logo/logo-mono-white.svg" alt="GreenTechCycle" width={180} height={36} className="h-9 w-auto" />
             </Link>
-            <p className="mt-5 text-sm leading-relaxed text-gray-400 max-w-md">{t("tagline")}</p>
-            <div className="mt-6 flex flex-wrap gap-2.5">
-              {[
-                { icon: ShieldCheck, label: "NIST 800-88" },
-                { icon: Award, label: "R2v3" },
-                { icon: Leaf, label: "ISO 14001" },
-              ].map((b) => (
-                <span key={b.label} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-gray-300">
-                  <b.icon className="w-3.5 h-3.5 text-accent" />{b.label}
-                </span>
-              ))}
-            </div>
+            <p className="mt-6 max-w-[65ch] text-body-sm text-ondark-muted">{t("tagline")}</p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm p-6">
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider">{t("contact.title")}</h4>
-            <ul className="mt-5 space-y-3.5 text-sm">
+          <div>
+            <h2 className="text-eyebrow uppercase text-ondark font-sans tracking-[0.12em]">{t("contact.title")}</h2>
+            <ul className="mt-6 space-y-3 text-body-sm">
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                <span className="text-gray-300 whitespace-pre-line">{t("contact.address")}</span>
+                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf-300" strokeWidth={1.75} aria-hidden="true" />
+                <span className="whitespace-pre-line">{t("contact.address")}</span>
               </li>
               <li>
-                <a href="tel:+33186652210" className="flex items-center gap-3 text-gray-300 hover:text-accent transition-colors">
-                  <Phone className="w-4 h-4 text-accent flex-shrink-0" />{t("contact.phone")}
+                <a href="tel:+33186652210" className="inline-flex items-center gap-3 hover:text-ondark">
+                  <Phone className="h-4 w-4 flex-shrink-0 text-leaf-300" strokeWidth={1.75} aria-hidden="true" />
+                  {t("contact.phone")}
                 </a>
               </li>
               <li>
-                <a href="mailto:contact@greentechcycle.fr" className="flex items-center gap-3 text-gray-300 hover:text-accent transition-colors">
-                  <Mail className="w-4 h-4 text-accent flex-shrink-0" />{t("contact.email")}
+                <a href="mailto:contact@greentechcycle.fr" className="inline-flex items-center gap-3 hover:text-ondark">
+                  <Mail className="h-4 w-4 flex-shrink-0 text-leaf-300" strokeWidth={1.75} aria-hidden="true" />
+                  {t("contact.email")}
                 </a>
               </li>
             </ul>
-            <Link href="/contact" className="mt-6 inline-flex items-center justify-center w-full px-5 py-3 rounded-xl bg-gradient-to-r from-accent-500 to-accent-400 text-white text-sm font-semibold shadow-[0_8px_30px_-8px_rgba(16,185,129,0.6)] hover:shadow-[0_12px_40px_-8px_rgba(16,185,129,0.8)] transition-all">
-              {t("cta")}<ArrowUpRight className="ml-1.5 w-4 h-4" />
+            <Link
+              href="/contact"
+              className="mt-6 inline-flex h-11 items-center gap-2 rounded-lg bg-ondark px-5 text-body-sm font-semibold text-forest transition-colors hover:bg-white"
+            >
+              {t("cta")}
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm p-6">
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider">{t("newsletter.title")}</h4>
-            <p className="mt-3 text-sm text-gray-400">
+          <div>
+            <h2 className="text-eyebrow uppercase text-ondark font-sans tracking-[0.12em]">{t("newsletter.title")}</h2>
+            <p className="mt-6 text-body-sm">
               {isEn
                 ? "Receive our latest ITAD news, guides and regulatory updates."
                 : "Recevez nos dernières actualités ITAD, guides et réglementations."}
             </p>
             {success ? (
-              <p className="mt-5 text-sm font-semibold text-[#10B981]">
+              <p className="mt-4 text-body-sm font-semibold text-leaf-300" role="status">
                 {isEn ? "Subscribed, thanks!" : "Inscription validée, merci !"}
               </p>
             ) : (
@@ -174,28 +162,33 @@ export default function Footer() {
                     setSubmitting(false);
                   }
                 }}
-                className="mt-5 flex gap-2"
+                className="mt-4 flex gap-2"
               >
+                <label htmlFor="footer-newsletter-email" className="sr-only">
+                  {t("newsletter.placeholder")}
+                </label>
                 <input
+                  id="footer-newsletter-email"
                   type="email"
                   required
                   value={email}
                   onChange={(e) => { setEmail(e.target.value); setError(false); }}
                   placeholder={t("newsletter.placeholder")}
-                  className="flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder-gray-500 focus:ring-2 focus:ring-accent focus:border-accent outline-none"
+                  aria-invalid={error || undefined}
+                  className="h-11 min-w-0 flex-1 rounded-lg border border-ondark-line bg-forest-950 px-3 text-body-sm text-ondark placeholder:text-ondark-muted focus:border-leaf-300 focus:outline-none focus:ring-2 focus:ring-leaf-300/30"
                 />
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-4 py-2.5 bg-accent rounded-lg text-white hover:bg-accent-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="flex h-11 w-11 items-center justify-center rounded-lg bg-ondark text-forest transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
                   aria-label={t("newsletter.cta")}
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="h-4 w-4" aria-hidden="true" />
                 </button>
               </form>
             )}
             {error && (
-              <p className="mt-2 text-xs text-red-400">
+              <p className="mt-2 text-caption text-ochre-300" role="alert">
                 {isEn
                   ? "Invalid address, please check your email."
                   : "Adresse invalide, vérifiez votre email."}
@@ -204,41 +197,41 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 5-column links */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10">
+        {/* Colonnes de liens */}
+        <nav aria-label={isEn ? "Footer" : "Pied de page"} className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
           {columns.map((col) => (
             <div key={col.title}>
-              <h4 className="text-xs font-bold text-white uppercase tracking-[0.15em] mb-5">{col.title}</h4>
-              <ul className="space-y-3">
+              <h2 className="mb-4 text-eyebrow uppercase text-ondark font-sans tracking-[0.12em]">{col.title}</h2>
+              <ul className="space-y-2">
                 {col.links.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="group inline-flex items-start gap-1 text-sm text-gray-400 hover:text-accent transition-colors">
-                      <span className="relative">
-                        {link.name}
-                        <span className="absolute inset-x-0 -bottom-0.5 h-px bg-accent scale-x-0 origin-left group-hover:scale-x-100 transition-transform" />
-                      </span>
+                    <Link href={link.href} className="text-body-sm text-ondark-muted transition-colors hover:text-ondark">
+                      {link.name}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
-        </div>
+        </nav>
 
-        {/* Bottom bar */}
-        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-5">
-          <p className="text-xs text-gray-500">{t("copyright")}</p>
-          <div className="flex items-center gap-5">
-            <Link href="/mentions-legales" className="text-xs text-gray-500 hover:text-accent transition-colors">{t("bottomLinks.legal")}</Link>
-            <Link href="/confidentialite" className="text-xs text-gray-500 hover:text-accent transition-colors">{t("bottomLinks.privacy")}</Link>
-            <Link href="/cookies" className="text-xs text-gray-500 hover:text-accent transition-colors">{t("bottomLinks.cookies")}</Link>
-            <div className="h-4 w-px bg-white/10" />
-            <a href="https://linkedin.com/company/greentechcycle" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-accent transition-colors" aria-label="LinkedIn">
-              <Linkedin className="w-4 h-4" />
-            </a>
-            <a href="https://twitter.com/greentechcycle" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-accent transition-colors" aria-label="Twitter">
-              <Twitter className="w-4 h-4" />
-            </a>
+        {/* Ligne du bas : certifications + mentions */}
+        <div className="mt-12 space-y-6 border-t border-ondark-line pt-8">
+          <CertificationStrip variant="dark" />
+          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+            <p className="text-caption">{t("copyright")}</p>
+            <div className="flex flex-wrap items-center gap-4">
+              <Link href="/mentions-legales" className="text-caption hover:text-ondark">{t("bottomLinks.legal")}</Link>
+              <Link href="/confidentialite" className="text-caption hover:text-ondark">{t("bottomLinks.privacy")}</Link>
+              <Link href="/cookies" className="text-caption hover:text-ondark">{t("bottomLinks.cookies")}</Link>
+              <span className="h-4 w-px bg-ondark-line" aria-hidden="true" />
+              <a href="https://linkedin.com/company/greentechcycle" target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center hover:text-ondark" aria-label="LinkedIn">
+                <Linkedin className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a href="https://twitter.com/greentechcycle" target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center hover:text-ondark" aria-label="Twitter">
+                <Twitter className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

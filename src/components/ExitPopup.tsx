@@ -91,16 +91,16 @@ export default function ExitPopup() {
   return (
     <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label={tx(ctx.titleKey, "title")}>
       <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
-        <button onClick={dismiss} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg p-1" aria-label="Fermer">
+        <button onClick={dismiss} className="absolute top-4 right-4 text-muted hover:text-ink-700 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg p-1" aria-label="Fermer">
           <X className="w-5 h-5" aria-hidden="true" />
         </button>
-        <div className="flex items-center justify-center w-14 h-14 bg-[#10B981]/10 rounded-xl mb-5">
-          <BookOpen className="w-7 h-7 text-[#10B981]" />
+        <div className="flex items-center justify-center w-14 h-14 bg-leaf-100 rounded-xl mb-5">
+          <BookOpen className="w-7 h-7 text-leaf" />
         </div>
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{tx(ctx.titleKey, "title")}</h3>
-        <p className="text-sm text-gray-600 mb-6">{tx(ctx.subtitleKey, "subtitle")}</p>
+        <h3 className="text-xl font-bold text-ink mb-2">{tx(ctx.titleKey, "title")}</h3>
+        <p className="text-sm text-ink-700 mb-6">{tx(ctx.subtitleKey, "subtitle")}</p>
         {submitted ? (
-          <p className="text-[#10B981] font-semibold text-center py-4">Merci !</p>
+          <p className="text-leaf font-semibold text-center py-4">Merci !</p>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-3">
             <input
@@ -109,18 +109,18 @@ export default function ExitPopup() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t("placeholder")}
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none"
+              className="w-full px-4 py-3 border border-line rounded-lg text-sm focus:ring-2 focus:ring-leaf focus:border-leaf outline-none"
             />
             <button
               type="submit"
               disabled={submitting}
-              className="w-full py-3 bg-[#10B981] text-white font-semibold rounded-lg hover:bg-[#0E9F6E] transition-colors text-sm disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-leaf text-white font-semibold rounded-lg hover:bg-leaf-700 transition-colors text-sm disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {submitting ? "..." : tx(ctx.ctaKey, "cta")}
             </button>
           </form>
         )}
-        <button onClick={dismiss} className="mt-3 w-full text-center text-xs text-gray-400 hover:text-gray-600">
+        <button onClick={dismiss} className="mt-3 w-full text-center text-xs text-muted hover:text-ink-700">
           {t("dismiss")}
         </button>
       </div>

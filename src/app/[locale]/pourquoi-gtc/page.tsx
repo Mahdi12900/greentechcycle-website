@@ -52,10 +52,10 @@ export default function PourquoiGtcPage() {
   return (
     <main className="overflow-hidden bg-white">
       {/* ═══════════════ Bandeau urgence ═══════════════ */}
-      <div className="bg-[#0F172A] text-white py-3 px-4 border-b border-white/5">
+      <div className="bg-forest-900 text-white py-3 px-4 border-b border-ondark-line">
         <div className="container mx-auto flex items-center justify-center gap-3 text-xs sm:text-sm font-medium text-center">
-          <Leaf className="h-4 w-4 flex-shrink-0 text-[#10B981]" aria-hidden="true" />
-          <p className="leading-snug text-gray-300">{t("urgency.text")}</p>
+          <Leaf className="h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+          <p className="leading-snug text-ondark-muted">{t("urgency.text")}</p>
         </div>
       </div>
 
@@ -63,7 +63,7 @@ export default function PourquoiGtcPage() {
           S1 (HERO MANIFESTE) sombre, provocation chiffrée 50 millions de tonnes
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
+        className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-forest-900"
         aria-labelledby="why-hero"
       >
         <div
@@ -84,9 +84,9 @@ export default function PourquoiGtcPage() {
         <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-24">
           <FadeIn>
             <div className="flex items-center gap-3 mb-10">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-muted uppercase">
                 <span
-                  className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
+                  className="w-1.5 h-1.5 rounded-full bg-leaf"
                   style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
                 />
                 {t("hero.eyebrow")}
@@ -99,7 +99,7 @@ export default function PourquoiGtcPage() {
               style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
             >
               <span
-                className="block text-[#10B981] mb-2"
+                className="block text-leaf mb-2"
                 style={{ fontSize: "clamp(3.5rem, 9vw, 7.5rem)" }}
               >
                 {t("hero.figure")}
@@ -107,14 +107,14 @@ export default function PourquoiGtcPage() {
               <span className="block">{t("hero.title")}</span>
             </h1>
 
-            <p className="text-gray-300 text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-10">
+            <p className="text-ondark-muted text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-10">
               {t("hero.subtitle")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <Link
                 href="/reserver?offre=audit-decommissionnement"
-                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
               >
                 {t("hero.cta1")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -128,13 +128,13 @@ export default function PourquoiGtcPage() {
               </Link>
             </div>
 
-            <p className="text-[11px] text-gray-500 italic max-w-xl mb-6">
+            <p className="text-[11px] text-muted italic max-w-xl mb-6">
               {t("hero.source")}
             </p>
 
             <a
               href="#manifeste"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-300 text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
+              className="inline-flex items-center gap-2 text-ink-700 hover:text-ondark-muted text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
             >
               <ArrowDown
                 className="h-4 w-4 transition-transform group-hover:translate-y-1"
@@ -154,7 +154,7 @@ export default function PourquoiGtcPage() {
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 45vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/85 via-[#0F172A]/25 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/25 to-transparent" />
         </div>
       </section>
 
@@ -166,23 +166,23 @@ export default function PourquoiGtcPage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("manifesto.eyebrow")}
               </p>
               <h2
-                className="text-[#0F172A] font-bold tracking-tight leading-[1.05] mb-8"
+                className="text-ink font-bold tracking-tight leading-[1.05] mb-8"
                 style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)" }}
               >
                 {t("manifesto.title")}
               </h2>
               <div className="space-y-5">
-                <p className="text-gray-700 text-lg leading-[1.78]">
+                <p className="text-ink-700 text-lg leading-[1.78]">
                   {t("manifesto.body1")}
                 </p>
-                <p className="text-gray-700 text-lg leading-[1.78]">
+                <p className="text-ink-700 text-lg leading-[1.78]">
                   {t("manifesto.body2")}
                 </p>
-                <p className="text-gray-700 text-lg leading-[1.78]">
+                <p className="text-ink-700 text-lg leading-[1.78]">
                   {t("manifesto.body3")}
                 </p>
               </div>
@@ -194,7 +194,7 @@ export default function PourquoiGtcPage() {
       {/* ════════════════════════════════════════════════════════════════
           S3 (LE MOT DU FONDATEUR) section split sombre, photo + citation magazine
          ════════════════════════════════════════════════════════════════ */}
-      <section id="fondateur" className="relative w-full overflow-hidden bg-[#0F172A]">
+      <section id="fondateur" className="relative w-full overflow-hidden bg-forest-900">
         <div className="flex flex-col lg:flex-row min-h-[80vh]">
           <div className="relative w-full lg:w-[42%] min-h-[50vw] lg:min-h-0 overflow-hidden flex-shrink-0">
             <Image
@@ -205,7 +205,7 @@ export default function PourquoiGtcPage() {
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 42vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#0F172A]/70" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-ink/70" />
             <div
               className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
               style={{
@@ -223,28 +223,28 @@ export default function PourquoiGtcPage() {
           <div className="relative w-full lg:flex-1 flex items-center px-6 sm:px-10 lg:px-14 xl:px-18 py-14 lg:py-20 text-white">
             <div className="max-w-xl w-full">
               <FadeIn>
-                <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-4">
+                <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-4">
                   {t("founder.eyebrow")}
                 </p>
                 <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold leading-[1.1] tracking-tight mb-8">
                   {t("founder.title")}
                 </h2>
                 <Quote
-                  className="h-10 w-10 text-[#10B981] mb-5 opacity-80"
+                  className="h-10 w-10 text-leaf mb-5 opacity-80"
                   aria-hidden="true"
                 />
                 <blockquote className="text-xl lg:text-2xl text-white leading-[1.45] font-medium mb-8">
                   &ldquo;{t("founder.quote")}&rdquo;
                 </blockquote>
-                <div className="border-l-4 border-[#10B981] pl-5 mb-6">
+                <div className="border-l-4 border-leaf pl-5 mb-6">
                   <p className="font-bold text-white text-base leading-tight">
                     {t("founder.name")}
                   </p>
-                  <p className="text-gray-400 text-sm mt-0.5">
+                  <p className="text-muted text-sm mt-0.5">
                     {t("founder.role")}
                   </p>
                 </div>
-                <p className="text-sm text-gray-300 leading-relaxed">
+                <p className="text-sm text-ondark-muted leading-relaxed">
                   {t("founder.bio")}
                 </p>
               </FadeIn>
@@ -264,22 +264,22 @@ export default function PourquoiGtcPage() {
         const Icon = convictionIcons[index] ?? Leaf;
         const accent =
           index === 0
-            ? "#10B981"
+            ? "#047857"
             : index === 1
-            ? "#0EA5E9"
+            ? "#0B3B2E"
             : index === 2
-            ? "#F59E0B"
+            ? "#B45309"
             : index === 3
-            ? "#10B981"
-            : "#0EA5E9";
+            ? "#047857"
+            : "#0B3B2E";
 
         let bg = "bg-white";
-        if (isDark) bg = "bg-[#022C22] text-white";
-        else if (index % 2 === 1) bg = "bg-[#F8FAFC]";
+        if (isDark) bg = "bg-forest text-white";
+        else if (index % 2 === 1) bg = "bg-cream";
 
-        const textColor = isDark ? "text-white" : "text-[#0F172A]";
-        const subText = isDark ? "text-gray-300" : "text-gray-600";
-        const border = isDark ? "border-white/10" : "border-gray-100";
+        const textColor = isDark ? "text-white" : "text-ink";
+        const subText = isDark ? "text-ondark-muted" : "text-ink-700";
+        const border = isDark ? "border-ondark-line" : "border-line";
 
         return (
           <section
@@ -306,8 +306,8 @@ export default function PourquoiGtcPage() {
                   className={`absolute inset-0 ${
                     isDark
                       ? photoOnLeft
-                        ? "bg-gradient-to-r from-transparent via-transparent to-[#022C22]/70"
-                        : "bg-gradient-to-l from-transparent via-transparent to-[#022C22]/70"
+                        ? "bg-gradient-to-r from-transparent via-transparent to-forest/70"
+                        : "bg-gradient-to-l from-transparent via-transparent to-forest/70"
                       : photoOnLeft
                       ? "bg-gradient-to-r from-transparent to-white/15"
                       : "bg-gradient-to-l from-transparent to-white/15"
@@ -327,8 +327,8 @@ export default function PourquoiGtcPage() {
                   {number}
                 </div>
                 <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/92 backdrop-blur-sm shadow-lg">
-                  <Icon className="h-3.5 w-3.5 text-[#0F172A]" aria-hidden="true" />
-                  <span className="text-[11px] font-semibold text-[#0F172A] tracking-wide uppercase">
+                  <Icon className="h-3.5 w-3.5 text-ink" aria-hidden="true" />
+                  <span className="text-[11px] font-semibold text-ink tracking-wide uppercase">
                     {c.eyebrow}
                   </span>
                 </div>
@@ -378,14 +378,14 @@ export default function PourquoiGtcPage() {
                       </p>
                       <p
                         className={`text-[12px] font-semibold uppercase tracking-wider ${
-                          isDark ? "text-gray-300" : "text-[#0F172A]"
+                          isDark ? "text-ondark-muted" : "text-ink"
                         }`}
                       >
                         {c.proofLabel}
                       </p>
                       <p
                         className={`text-[11px] mt-1 ${
-                          isDark ? "text-gray-400" : "text-gray-500"
+                          isDark ? "text-muted" : "text-muted"
                         }`}
                       >
                         {c.proofDetail}
@@ -418,7 +418,7 @@ export default function PourquoiGtcPage() {
       {/* ════════════════════════════════════════════════════════════════
           S5 (ENGAGEMENTS CHIFFRÉS) bandeau preuves
          ════════════════════════════════════════════════════════════════ */}
-      <section id="engagement" className="bg-[#0F172A] relative overflow-hidden border-t border-white/5">
+      <section id="engagement" className="bg-forest-900 relative overflow-hidden border-t border-ondark-line">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -429,7 +429,7 @@ export default function PourquoiGtcPage() {
         <div className="container mx-auto px-4 relative z-10 py-16 lg:py-20">
           <FadeIn>
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("commitments.eyebrow")}
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1]">
@@ -440,19 +440,19 @@ export default function PourquoiGtcPage() {
           <StaggerContainer className="grid grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {commitments.map((c, i) => {
               const accents = [
-                "#10B981",
-                "#0EA5E9",
-                "#F59E0B",
-                "#10B981",
-                "#0EA5E9",
-                "#F59E0B",
+                "#047857",
+                "#0B3B2E",
+                "#B45309",
+                "#047857",
+                "#0B3B2E",
+                "#B45309",
               ];
               const accent = accents[i % accents.length];
               const numericValue = parseFloat(c.metric.replace(/[^0-9.]/g, ""));
               const showCount = !Number.isNaN(numericValue) && numericValue > 0;
               return (
                 <StaggerItem key={i}>
-                  <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-7 backdrop-blur-sm hover:bg-white/[0.07] transition-all">
+                  <div className="bg-white/[0.04] border border-ondark-line rounded-2xl p-7 backdrop-blur-sm hover:bg-white/[0.07] transition-all">
                     <p
                       className="font-black tracking-tighter leading-none mb-3 tabular-nums"
                       style={{
@@ -474,10 +474,10 @@ export default function PourquoiGtcPage() {
                         c.metric
                       )}
                     </p>
-                    <p className="text-sm text-gray-300 leading-snug mb-3">
+                    <p className="text-sm text-ondark-muted leading-snug mb-3">
                       {c.label}
                     </p>
-                    <p className="text-[10px] text-gray-500 italic leading-snug">
+                    <p className="text-[10px] text-muted italic leading-snug">
                       {c.source}
                     </p>
                   </div>
@@ -491,7 +491,7 @@ export default function PourquoiGtcPage() {
       {/* ════════════════════════════════════════════════════════════════
           S6 (CITATION MAGAZINE) fond sombre intercalé
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative py-24 lg:py-28 bg-[#022C22] text-white overflow-hidden">
+      <section className="relative py-24 lg:py-28 bg-forest text-white overflow-hidden">
         <div className="absolute inset-0 opacity-25">
           <Image
             src="/photos/diverse-team.jpg"
@@ -501,12 +501,12 @@ export default function PourquoiGtcPage() {
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-[#022C22]/95 via-[#022C22]/92 to-[#0F172A]/95" />
+        <div className="absolute inset-0 bg-gradient-to-br from-forest/95 via-forest/92 to-ink/95" />
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto">
               <Quote
-                className="h-12 w-12 text-[#10B981] mb-6 opacity-80"
+                className="h-12 w-12 text-leaf mb-6 opacity-80"
                 aria-hidden="true"
               />
               <blockquote
@@ -515,11 +515,11 @@ export default function PourquoiGtcPage() {
               >
                 &ldquo;{t("editorialQuote.quote")}&rdquo;
               </blockquote>
-              <div className="border-l-4 border-[#10B981] pl-5">
+              <div className="border-l-4 border-leaf pl-5">
                 <p className="font-bold text-white text-base leading-tight">
                   {t("editorialQuote.name")}
                 </p>
-                <p className="text-gray-400 text-sm mt-0.5">
+                <p className="text-muted text-sm mt-0.5">
                   {t("editorialQuote.role")}
                 </p>
               </div>
@@ -531,12 +531,12 @@ export default function PourquoiGtcPage() {
       {/* ════════════════════════════════════════════════════════════════
           S7, CONVERSION FOND VERT PLEIN
          ════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-24 bg-[#10B981] text-white relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-leaf text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.15),_transparent_60%)] pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <FadeIn>
-              <p className="text-sm font-semibold tracking-[0.18em] text-white/80 uppercase mb-4">
+              <p className="text-sm font-semibold tracking-[0.18em] text-ondark uppercase mb-4">
                 {t("conversion.eyebrow")}
               </p>
               <h2
@@ -545,13 +545,13 @@ export default function PourquoiGtcPage() {
               >
                 {t("conversion.title")}
               </h2>
-              <p className="text-white/85 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+              <p className="text-ondark text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
                 {t("conversion.subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   href="/reserver?offre=audit-decommissionnement"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-[#0F172A] hover:bg-[#F8FAFC] font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-ink hover:bg-cream font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 text-sm"
                 >
                   {t("conversion.cta1")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />

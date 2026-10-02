@@ -59,9 +59,9 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
                 <a
                   key={key}
                   href={`#section-${key}`}
-                  className="flex items-center gap-2 text-sm text-gray-700 hover:text-primary transition-colors py-1"
+                  className="flex items-center gap-2 text-sm text-ink-700 hover:text-primary transition-colors py-1"
                 >
-                  <span className="text-xs font-mono text-primary/60 w-6">
+                  <span className="text-xs font-mono text-leaf w-6">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span>{t(`content.${key}.title`)}</span>
@@ -76,22 +76,22 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
             <StaggerItem key={key}>
               <div
                 id={`section-${key}`}
-                className="scroll-mt-24 bg-white rounded-2xl p-6 md:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300"
+                className="scroll-mt-24 bg-white rounded-2xl p-6 md:p-8 border border-line shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-leaf-100 border border-accent/20 flex items-center justify-center text-accent">
                     <Icon className="h-5 w-5" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="text-xs font-mono text-primary/60">
+                      <span className="text-xs font-mono text-leaf">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <h2 className="text-xl md:text-2xl font-semibold text-gray-900 tracking-tight">
+                      <h2 className="text-xl md:text-2xl font-semibold text-ink tracking-tight">
                         {t(`content.${key}.title`)}
                       </h2>
                     </div>
-                    <p className="text-gray-600 whitespace-pre-line leading-relaxed">
+                    <p className="text-ink-700 whitespace-pre-line leading-relaxed">
                       {t(`content.${key}.text`)}
                     </p>
                   </div>

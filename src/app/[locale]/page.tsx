@@ -130,11 +130,11 @@ export default function HomePage() {
       {/* ==========================================================
           1. URGENCY BAND, sober navy, calendrier régulateur précis
          ========================================================== */}
-      <Link href="/reglementation" className="block bg-[#0F172A] text-white py-3 px-4 border-b border-white/5 hover:bg-[#1E293B] transition-colors group">
+      <Link href="/reglementation" className="block bg-forest-900 text-white py-3 px-4 border-b border-ondark-line hover:bg-forest-950 transition-colors group">
         <div className="container mx-auto flex items-center justify-center gap-3 text-sm font-medium text-center">
-          <AlertTriangle className="h-5 w-5 flex-shrink-0 text-[#F59E0B]" aria-hidden="true" />
+          <AlertTriangle className="h-5 w-5 flex-shrink-0 text-ochre" aria-hidden="true" />
           <p className="leading-snug">{t("urgency.text")}</p>
-          <span className="hidden sm:inline-flex items-center gap-1 text-[#10B981] font-semibold whitespace-nowrap group-hover:underline">
+          <span className="hidden sm:inline-flex items-center gap-1 text-leaf font-semibold whitespace-nowrap group-hover:underline">
             {t("urgency.cta")}
             <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
           </span>
@@ -147,74 +147,74 @@ export default function HomePage() {
              Chiffre choc 78% en grand, sub-titre angle GTC, dual CTA.
          ========================================================== */}
       <section
-        className="relative min-h-[88vh] flex items-center bg-gradient-to-br from-white via-[#F8FAFC] to-[#ECFDF5] overflow-hidden"
+        className="relative min-h-[88vh] flex items-center bg-gradient-to-br from-white via-cream to-leaf-50 overflow-hidden"
         aria-labelledby="hero-title"
       >
         {/* Decorative ambient gradients (kept very low-key) */}
-        <div className="absolute -top-32 -right-32 w-[36rem] h-[36rem] bg-[#10B981]/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-40 -left-32 w-[32rem] h-[32rem] bg-[#0EA5E9]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-32 -right-32 w-[36rem] h-[36rem] bg-leaf-100 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-40 -left-32 w-[32rem] h-[32rem] bg-forest/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(16,185,129,0.06),_transparent_55%)] pointer-events-none" />
 
         <div className="container mx-auto px-4 relative z-10 py-16 lg:py-24">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Argument column, 7/12 */}
             <FadeIn className="lg:col-span-7">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-200 text-[#0F172A] text-xs font-semibold tracking-wider uppercase mb-8 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-[#10B981]" />
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-line text-ink text-xs font-semibold tracking-wider uppercase mb-8 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-leaf" />
                 {t("hero.eyebrow")}
               </span>
 
               <h1
                 id="hero-title"
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F172A] mb-6 tracking-tight leading-[1.12] max-w-2xl"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink mb-6 tracking-tight leading-[1.12] max-w-2xl"
               >
                 {t("hero.title")}
               </h1>
 
-              <p className="text-lg md:text-xl text-[#0F172A] font-semibold mb-4 max-w-2xl leading-relaxed">
+              <p className="text-lg md:text-xl text-ink font-semibold mb-4 max-w-2xl leading-relaxed">
                 {t("hero.subtitle")}
               </p>
 
               {/* Secondary proof point — carbon stat moved here */}
-              <p className="text-sm text-gray-500 mb-8 max-w-2xl leading-relaxed border-l-2 border-[#10B981] pl-3">
+              <p className="text-sm text-muted mb-8 max-w-2xl leading-relaxed border-l-2 border-leaf pl-3">
                 {t("hero.proofStat")}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/30 hover:-translate-y-0.5 text-base"
+                  className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-base"
                 >
                   {t("hero.cta1")}
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-[#0F172A] border-2 border-[#0EA5E9] hover:bg-[#0EA5E9] hover:text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-base"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-ink border-2 border-line hover:bg-forest hover:text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-base"
                 >
                   {t("hero.cta2")}
                   <ChevronRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
               </div>
 
-              <p className="text-xs text-gray-500 italic mb-6 max-w-2xl">
+              <p className="text-xs text-muted italic mb-6 max-w-2xl">
                 {t("hero.source")}
               </p>
 
               {/* Inline trust strip */}
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs font-medium text-gray-700">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs font-medium text-ink-700">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+                  <ShieldCheck className="h-4 w-4 text-leaf" aria-hidden="true" />
                   <span>{t("hero.trust1")}</span>
                 </div>
-                <span className="hidden sm:inline w-px h-4 bg-gray-300" />
+                <span className="hidden sm:inline w-px h-4 bg-line" />
                 <div className="flex items-center gap-2">
-                  <Lock className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+                  <Lock className="h-4 w-4 text-leaf" aria-hidden="true" />
                   <span>{t("hero.trust2")}</span>
                 </div>
-                <span className="hidden sm:inline w-px h-4 bg-gray-300" />
+                <span className="hidden sm:inline w-px h-4 bg-line" />
                 <div className="flex items-center gap-2">
-                  <FileCheck className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+                  <FileCheck className="h-4 w-4 text-leaf" aria-hidden="true" />
                   <span>{t("hero.trust3")}</span>
                 </div>
               </div>
@@ -223,7 +223,7 @@ export default function HomePage() {
             {/* Visual column (5/12) boardroom photo + floating proof card */}
             <FadeIn delay={0.1} direction="left" className="lg:col-span-5">
               <div className="relative">
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-200">
+                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-line">
                   <Image
                     src="/photos/hp-rssi-boardroom.jpg"
                     alt="Comité de direction RSSI / DSI / RSE / DAF arbitrant le décommissionnement IT"
@@ -232,35 +232,35 @@ export default function HomePage() {
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 40vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/40 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent" />
                 </div>
 
                 {/* Floating proof card top-right */}
-                <div className="hidden md:block absolute -top-4 -right-4 bg-white rounded-xl shadow-xl p-4 border border-gray-100 w-56">
+                <div className="hidden md:block absolute -top-4 -right-4 bg-white rounded-xl shadow-xl p-4 border border-line w-56">
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="w-9 h-9 rounded-lg bg-[#10B981]/10 flex items-center justify-center">
-                      <FileCheck className="h-5 w-5 text-[#10B981]" aria-hidden="true" />
+                    <div className="w-9 h-9 rounded-lg bg-leaf-100 flex items-center justify-center">
+                      <FileCheck className="h-5 w-5 text-leaf" aria-hidden="true" />
                     </div>
-                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    <p className="text-xs font-semibold text-muted uppercase tracking-wider">
                       Audit ACPR
                     </p>
                   </div>
-                  <p className="text-2xl font-bold text-[#0F172A] leading-tight">4 jours</p>
-                  <p className="text-xs text-gray-500 mt-1">vs 3 semaines en moyenne</p>
+                  <p className="text-2xl font-bold text-ink leading-tight">4 jours</p>
+                  <p className="text-xs text-muted mt-1">vs 3 semaines en moyenne</p>
                 </div>
 
                 {/* Floating proof card bottom-left */}
-                <div className="hidden md:block absolute -bottom-4 -left-4 bg-white rounded-xl shadow-xl p-4 border border-gray-100 w-56">
+                <div className="hidden md:block absolute -bottom-4 -left-4 bg-white rounded-xl shadow-xl p-4 border border-line w-56">
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="w-9 h-9 rounded-lg bg-[#0EA5E9]/10 flex items-center justify-center">
-                      <Euro className="h-5 w-5 text-[#0EA5E9]" aria-hidden="true" />
+                    <div className="w-9 h-9 rounded-lg bg-forest/10 flex items-center justify-center">
+                      <Euro className="h-5 w-5 text-forest" aria-hidden="true" />
                     </div>
-                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    <p className="text-xs font-semibold text-muted uppercase tracking-wider">
                       Valeur récupérée
                     </p>
                   </div>
-                  <p className="text-2xl font-bold text-[#0F172A] leading-tight">638 k€</p>
-                  <p className="text-xs text-gray-500 mt-1">moyenne / mission grand compte</p>
+                  <p className="text-2xl font-bold text-ink leading-tight">638 k€</p>
+                  <p className="text-xs text-muted mt-1">moyenne / mission grand compte</p>
                 </div>
               </div>
             </FadeIn>
@@ -271,14 +271,14 @@ export default function HomePage() {
       {/* ==========================================================
           2-bis. ENJEU CARDS — prospect self-qualification (ST-2)
          ========================================================== */}
-      <section className="py-16 bg-white border-b border-gray-100">
+      <section className="py-16 bg-white border-b border-line">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center mb-10">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-2">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-2">
                 {t("enjeuCards.eyebrow")}
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#0F172A] tracking-tight">
+              <h2 className="text-2xl md:text-3xl font-bold text-ink tracking-tight">
                 {t("enjeuCards.title")}
               </h2>
             </div>
@@ -287,12 +287,12 @@ export default function HomePage() {
             {enjeuCards.map((card, i) => {
               const iconMap: Record<string, typeof Shield> = { shield: Shield, barChart: BarChart3, lock: Lock, euro: Euro };
               const CardIcon = iconMap[card.icon] || Shield;
-              const accents = ["#0EA5E9", "#10B981", "#F59E0B", "#8B5CF6"];
+              const accents = ["#0B3B2E", "#047857", "#B45309", "#0B3B2E"];
               return (
                 <StaggerItem key={i}>
                   <Link
                     href={card.href}
-                    className="group flex flex-col items-center text-center p-6 rounded-2xl border border-gray-100 bg-[#F8FAFC] hover:border-[#10B981]/40 hover:shadow-lg transition-all duration-300 h-full"
+                    className="group flex flex-col items-center text-center p-6 rounded-2xl border border-line bg-cream hover:border-leaf/40 hover:shadow-lg transition-all duration-300 h-full"
                   >
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
@@ -300,9 +300,9 @@ export default function HomePage() {
                     >
                       <CardIcon className="h-5 w-5" style={{ color: accents[i] }} aria-hidden="true" />
                     </div>
-                    <h3 className="text-base font-bold text-[#0F172A] mb-2 tracking-tight">{card.title}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">{card.desc}</p>
-                    <span className="mt-3 text-xs font-semibold text-[#10B981] group-hover:underline flex items-center gap-1">
+                    <h3 className="text-base font-bold text-ink mb-2 tracking-tight">{card.title}</h3>
+                    <p className="text-sm text-ink-700 leading-relaxed">{card.desc}</p>
+                    <span className="mt-3 text-xs font-semibold text-leaf group-hover:underline flex items-center gap-1">
                       <ArrowRight className="h-3 w-3" aria-hidden="true" />
                     </span>
                   </Link>
@@ -316,7 +316,7 @@ export default function HomePage() {
       {/* ==========================================================
           2-ter. ANCHOR NAV — sticky section navigation (ME-6)
          ========================================================== */}
-      <nav className="sticky top-16 lg:top-20 z-30 bg-white/95 backdrop-blur-sm border-b border-gray-100 hidden md:block">
+      <nav className="sticky top-16 lg:top-20 z-30 bg-white/95 backdrop-blur-sm border-b border-line hidden md:block">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center gap-1 py-2 overflow-x-auto">
             {anchorNavItems.map((label, i) => {
@@ -325,7 +325,7 @@ export default function HomePage() {
                 <a
                   key={i}
                   href={anchors[i]}
-                  className="px-4 py-2 text-sm font-medium text-gray-500 hover:text-[#10B981] hover:bg-[#10B981]/5 rounded-lg transition-colors whitespace-nowrap"
+                  className="px-4 py-2 text-sm font-medium text-muted hover:text-leaf hover:bg-leaf/5 rounded-lg transition-colors whitespace-nowrap"
                 >
                   {label}
                 </a>
@@ -338,11 +338,11 @@ export default function HomePage() {
       {/* ==========================================================
           3. TRUST BAND, donneurs d'ordre anonymisés (sectoriels)
          ========================================================== */}
-      <section className="py-16 bg-white border-y border-gray-100">
+      <section className="py-16 bg-white border-y border-line">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center mb-8">
-              <p className="text-xs font-semibold tracking-[0.18em] text-gray-500 uppercase">
+              <p className="text-xs font-semibold tracking-[0.18em] text-muted uppercase">
                 {t("trustBand.label")}
               </p>
             </div>
@@ -352,8 +352,8 @@ export default function HomePage() {
               const isTF1 = client.startsWith("TF1");
               return (
                 <StaggerItem key={i}>
-                  <div className={`flex items-center justify-center text-center px-3 py-4 rounded-lg border h-full ${isTF1 ? "border-[#10B981]/30 bg-[#10B981]/5" : "border-gray-100 bg-[#F8FAFC]"}`}>
-                    <p className={`leading-tight font-semibold ${isTF1 ? "text-[15px] text-[#0F172A]" : "text-[13px] text-gray-700"}`}>
+                  <div className={`flex items-center justify-center text-center px-3 py-4 rounded-lg border h-full ${isTF1 ? "border-leaf/30 bg-leaf-50" : "border-line bg-cream"}`}>
+                    <p className={`leading-tight font-semibold ${isTF1 ? "text-[15px] text-ink" : "text-[13px] text-ink-700"}`}>
                       {client}
                     </p>
                   </div>
@@ -361,7 +361,7 @@ export default function HomePage() {
               );
             })}
           </StaggerContainer>
-          <p className="mt-6 text-center text-xs text-gray-500 italic max-w-2xl mx-auto">
+          <p className="mt-6 text-center text-xs text-muted italic max-w-2xl mx-auto">
             {t("trustBand.note")}
           </p>
         </div>
@@ -370,17 +370,17 @@ export default function HomePage() {
       {/* ==========================================================
           4. PROBLÈME : Coût caché, 3 risques chiffrés
          ========================================================== */}
-      <section className="py-24 lg:py-28 bg-[#F8FAFC]">
+      <section className="py-24 lg:py-28 bg-cream">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mb-14">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#F59E0B] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-ochre uppercase mb-3">
                 {t("problem.eyebrow")}
               </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-[#0F172A] mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-3xl md:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]">
                 {t("problem.title")}
               </h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-ink-700 text-lg leading-relaxed">
                 {t("problem.subtitle")}
               </p>
             </div>
@@ -390,22 +390,22 @@ export default function HomePage() {
               const ProblemIcon = [AlertTriangle, Euro, Cloud][i] || AlertTriangle;
               return (
                 <StaggerItem key={i}>
-                  <div className="bg-white border border-gray-100 rounded-2xl p-7 h-full flex flex-col shadow-sm hover:shadow-lg transition-shadow duration-300">
+                  <div className="bg-white border border-line rounded-2xl p-7 h-full flex flex-col shadow-sm hover:shadow-lg transition-shadow duration-300">
                     <div className="flex items-center gap-3 mb-5">
-                      <div className="w-11 h-11 rounded-xl bg-[#F59E0B]/10 flex items-center justify-center">
-                        <ProblemIcon className="h-5 w-5 text-[#F59E0B]" aria-hidden="true" />
+                      <div className="w-11 h-11 rounded-xl bg-ochre/10 flex items-center justify-center">
+                        <ProblemIcon className="h-5 w-5 text-ochre" aria-hidden="true" />
                       </div>
-                      <span className="text-[11px] font-semibold tracking-wider text-[#F59E0B] uppercase">
+                      <span className="text-[11px] font-semibold tracking-wider text-ochre uppercase">
                         {item.tag}
                       </span>
                     </div>
-                    <h3 className="text-lg font-bold text-[#0F172A] mb-3 leading-snug tracking-tight">
+                    <h3 className="text-lg font-bold text-ink mb-3 leading-snug tracking-tight">
                       {item.title}
                     </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed flex-1 mb-4">
+                    <p className="text-ink-700 text-sm leading-relaxed flex-1 mb-4">
                       {item.body}
                     </p>
-                    <p className="text-[11px] text-gray-500 italic border-t border-gray-100 pt-3 leading-snug">
+                    <p className="text-[11px] text-muted italic border-t border-line pt-3 leading-snug">
                       {item.source}
                     </p>
                   </div>
@@ -424,15 +424,15 @@ export default function HomePage() {
           <FadeIn>
             <div className="max-w-3xl mb-14">
               <div className="flex items-center gap-3 mb-3">
-                <CalendarClock className="h-5 w-5 text-[#F59E0B]" aria-hidden="true" />
-                <p className="text-sm font-semibold tracking-[0.18em] text-[#F59E0B] uppercase">
+                <CalendarClock className="h-5 w-5 text-ochre" aria-hidden="true" />
+                <p className="text-sm font-semibold tracking-[0.18em] text-ochre uppercase">
                   {t("regTimeline.eyebrow")}
                 </p>
               </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-[#0F172A] mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-3xl md:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]">
                 {t("regTimeline.title")}
               </h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-ink-700 text-lg leading-relaxed">
                 {t("regTimeline.subtitle")}
               </p>
             </div>
@@ -441,13 +441,13 @@ export default function HomePage() {
           <div className="relative max-w-6xl mx-auto">
             {/* Horizontal axis (decorative) */}
             <div
-              className="hidden lg:block absolute top-8 left-0 right-0 h-px bg-gradient-to-r from-[#F59E0B] via-[#10B981] to-[#0EA5E9]"
+              className="hidden lg:block absolute top-8 left-0 right-0 h-px bg-gradient-to-r from-ochre via-leaf to-forest"
               aria-hidden="true"
             />
 
             <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-4">
               {regEvents.map((evt, i) => {
-                const accent = i < 2 ? "#F59E0B" : i === 2 ? "#10B981" : "#0EA5E9";
+                const accent = i < 2 ? "#B45309" : i === 2 ? "#047857" : "#0B3B2E";
                 return (
                   <StaggerItem key={i}>
                     <div className="relative">
@@ -457,25 +457,25 @@ export default function HomePage() {
                         style={{ backgroundColor: accent }}
                         aria-hidden="true"
                       />
-                      <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 mt-12 lg:mt-0 lg:pt-12 h-full flex flex-col">
+                      <div className="bg-white border border-line rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 mt-12 lg:mt-0 lg:pt-12 h-full flex flex-col">
                         <p
                           className="text-xs font-mono font-bold tracking-widest mb-1"
                           style={{ color: accent }}
                         >
                           {evt.date}
                         </p>
-                        <h3 className="text-lg font-bold text-[#0F172A] mb-3 leading-tight tracking-tight">
+                        <h3 className="text-lg font-bold text-ink mb-3 leading-tight tracking-tight">
                           {evt.label}
                         </h3>
-                        <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-4">
+                        <p className="text-sm text-ink-700 leading-relaxed flex-1 mb-4">
                           {evt.body}
                         </p>
-                        <div className="border-t border-gray-100 pt-3 flex items-center gap-2">
-                          <Gavel className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
-                          <p className="text-[11px] font-semibold text-gray-700 uppercase tracking-wider">
+                        <div className="border-t border-line pt-3 flex items-center gap-2">
+                          <Gavel className="h-3.5 w-3.5 text-muted" aria-hidden="true" />
+                          <p className="text-[11px] font-semibold text-ink-700 uppercase tracking-wider">
                             Sanction max
                           </p>
-                          <p className="text-[11px] text-gray-700 font-medium ml-auto">
+                          <p className="text-[11px] text-ink-700 font-medium ml-auto">
                             {evt.penalty}
                           </p>
                         </div>
@@ -492,17 +492,17 @@ export default function HomePage() {
       {/* ==========================================================
           5. SOLUTION : Phrase puissante + Hub-and-spoke
          ========================================================== */}
-      <section id="solution" className="py-24 lg:py-32 bg-[#F8FAFC] scroll-mt-32">
+      <section id="solution" className="py-24 lg:py-32 bg-cream scroll-mt-32">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center max-w-4xl mx-auto mb-16">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("solution.eyebrow")}
               </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-[#0F172A] mb-6 tracking-tight leading-[1.1]">
+              <h2 className="text-3xl md:text-5xl font-bold text-ink mb-6 tracking-tight leading-[1.1]">
                 {t("solution.title")}
               </h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-ink-700 text-lg leading-relaxed">
                 {t("solution.body")}
               </p>
             </div>
@@ -520,16 +520,16 @@ export default function HomePage() {
                     return (
                       <div
                         key={idx}
-                        className="flex items-start gap-4 bg-[#F8FAFC] border border-gray-100 rounded-xl p-5 lg:text-right lg:flex-row-reverse hover:border-[#10B981]/40 transition-colors"
+                        className="flex items-start gap-4 bg-cream border border-line rounded-xl p-5 lg:text-right lg:flex-row-reverse hover:border-leaf/40 transition-colors"
                       >
-                        <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
-                          <PIcon className="h-5 w-5 text-[#10B981]" aria-hidden="true" />
+                        <div className="w-12 h-12 rounded-xl bg-white border border-line flex items-center justify-center flex-shrink-0 shadow-sm">
+                          <PIcon className="h-5 w-5 text-leaf" aria-hidden="true" />
                         </div>
                         <div>
-                          <p className="font-semibold text-[#0F172A] text-base mb-1 leading-tight">
+                          <p className="font-semibold text-ink text-base mb-1 leading-tight">
                             {p.label}
                           </p>
-                          <p className="text-sm text-gray-600 leading-snug">{p.desc}</p>
+                          <p className="text-sm text-ink-700 leading-snug">{p.desc}</p>
                         </div>
                       </div>
                     );
@@ -539,8 +539,8 @@ export default function HomePage() {
                 {/* Center hub */}
                 <div className="flex justify-center order-1 lg:order-2">
                   <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#10B981] to-[#0EA5E9] rounded-full blur-2xl opacity-30 scale-110" />
-                    <div className="relative w-44 h-44 lg:w-56 lg:h-56 rounded-full bg-gradient-to-br from-[#10B981] to-[#0EA5E9] text-white flex flex-col items-center justify-center text-center shadow-2xl ring-4 ring-white">
+                    <div className="absolute inset-0 bg-gradient-to-br from-leaf to-forest rounded-full blur-2xl opacity-30 scale-110" />
+                    <div className="relative w-44 h-44 lg:w-56 lg:h-56 rounded-full bg-gradient-to-br from-leaf to-forest text-white flex flex-col items-center justify-center text-center shadow-2xl ring-4 ring-white">
                       <Workflow className="h-7 w-7 mb-2 opacity-80" aria-hidden="true" />
                       <p className="font-bold text-lg lg:text-xl tracking-tight">
                         {t("solution.diagramCenter")}
@@ -550,8 +550,8 @@ export default function HomePage() {
                       </p>
                     </div>
                     {/* Spokes connecting lines (decorative) */}
-                    <div className="hidden lg:block absolute top-1/2 left-0 -translate-x-full w-12 h-px bg-gradient-to-l from-[#10B981]/60 to-transparent" />
-                    <div className="hidden lg:block absolute top-1/2 right-0 translate-x-full w-12 h-px bg-gradient-to-r from-[#10B981]/60 to-transparent" />
+                    <div className="hidden lg:block absolute top-1/2 left-0 -translate-x-full w-12 h-px bg-gradient-to-l from-leaf/60 to-transparent" />
+                    <div className="hidden lg:block absolute top-1/2 right-0 translate-x-full w-12 h-px bg-gradient-to-r from-leaf/60 to-transparent" />
                   </div>
                 </div>
 
@@ -563,16 +563,16 @@ export default function HomePage() {
                     return (
                       <div
                         key={idx}
-                        className="flex items-start gap-4 bg-[#F8FAFC] border border-gray-100 rounded-xl p-5 hover:border-[#0EA5E9]/40 transition-colors"
+                        className="flex items-start gap-4 bg-cream border border-line rounded-xl p-5 hover:border-line/40 transition-colors"
                       >
-                        <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
-                          <PIcon className="h-5 w-5 text-[#0EA5E9]" aria-hidden="true" />
+                        <div className="w-12 h-12 rounded-xl bg-white border border-line flex items-center justify-center flex-shrink-0 shadow-sm">
+                          <PIcon className="h-5 w-5 text-forest" aria-hidden="true" />
                         </div>
                         <div>
-                          <p className="font-semibold text-[#0F172A] text-base mb-1 leading-tight">
+                          <p className="font-semibold text-ink text-base mb-1 leading-tight">
                             {p.label}
                           </p>
-                          <p className="text-sm text-gray-600 leading-snug">{p.desc}</p>
+                          <p className="text-sm text-ink-700 leading-snug">{p.desc}</p>
                         </div>
                       </div>
                     );
@@ -587,20 +587,20 @@ export default function HomePage() {
       {/* ==========================================================
           6. CHAÎNE DE VALEUR, 5 étapes horizontales
          ========================================================== */}
-      <section className="py-24 lg:py-28 bg-[#0F172A] relative overflow-hidden">
+      <section className="py-24 lg:py-28 bg-forest-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.12),_transparent_60%)] pointer-events-none" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#10B981]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-leaf-100 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-16">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("valueChain.eyebrow")}
               </p>
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 tracking-tight leading-[1.1]">
                 {t("valueChain.title")}
               </h2>
-              <p className="text-gray-300 text-lg leading-relaxed">
+              <p className="text-ondark-muted text-lg leading-relaxed">
                 {t("valueChain.subtitle")}
               </p>
             </div>
@@ -611,33 +611,33 @@ export default function HomePage() {
               const StepIcon = valueStepIcons[i] || FileCheck;
               return (
                 <StaggerItem key={i}>
-                  <div className="relative bg-white/[0.03] border border-white/10 backdrop-blur-sm rounded-2xl p-6 h-full flex flex-col hover:bg-white/[0.05] hover:border-[#10B981]/40 transition-all duration-300">
+                  <div className="relative bg-white/[0.03] border border-ondark-line backdrop-blur-sm rounded-2xl p-6 h-full flex flex-col hover:bg-white/[0.05] hover:border-leaf/40 transition-all duration-300">
                     {/* Step number ribbon */}
                     <div className="flex items-center justify-between mb-5">
-                      <span className="text-[11px] font-mono font-semibold tracking-widest text-[#10B981]">
+                      <span className="text-[11px] font-mono font-semibold tracking-widest text-leaf">
                         {step.n}
                       </span>
-                      <div className="w-10 h-10 rounded-xl bg-[#10B981]/10 border border-[#10B981]/30 flex items-center justify-center">
-                        <StepIcon className="h-5 w-5 text-[#10B981]" aria-hidden="true" />
+                      <div className="w-10 h-10 rounded-xl bg-leaf-100 border border-leaf/30 flex items-center justify-center">
+                        <StepIcon className="h-5 w-5 text-leaf" aria-hidden="true" />
                       </div>
                     </div>
                     <h3 className="text-lg font-bold text-white mb-3 tracking-tight leading-tight">
                       {step.title}
                     </h3>
-                    <p className="text-sm text-gray-400 leading-relaxed flex-1 mb-5">
+                    <p className="text-sm text-muted leading-relaxed flex-1 mb-5">
                       {step.desc}
                     </p>
-                    <div className="border-t border-white/10 pt-4">
-                      <p className="text-[11px] uppercase tracking-wider text-gray-500 font-semibold mb-1">
+                    <div className="border-t border-ondark-line pt-4">
+                      <p className="text-[11px] uppercase tracking-wider text-muted font-semibold mb-1">
                         SLA / KPI
                       </p>
-                      <p className="text-sm font-semibold text-[#10B981] leading-snug">
+                      <p className="text-sm font-semibold text-leaf leading-snug">
                         {step.kpi}
                       </p>
                     </div>
                     {/* Connector arrow (hidden on last) */}
                     {i < valueSteps.length - 1 && (
-                      <div className="hidden lg:flex absolute top-1/2 -right-3 -translate-y-1/2 z-10 items-center justify-center w-6 h-6 rounded-full bg-[#10B981] text-white shadow-lg">
+                      <div className="hidden lg:flex absolute top-1/2 -right-3 -translate-y-1/2 z-10 items-center justify-center w-6 h-6 rounded-full bg-leaf text-white shadow-lg">
                         <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
                       </div>
                     )}
@@ -656,10 +656,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center max-w-3xl mx-auto mb-14">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("proof.eyebrow")}
               </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-[#0F172A] tracking-tight leading-[1.1]">
+              <h2 className="text-3xl md:text-5xl font-bold text-ink tracking-tight leading-[1.1]">
                 {t("proof.title")}
               </h2>
             </div>
@@ -668,11 +668,11 @@ export default function HomePage() {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {(["clients", "assets", "value", "carbon"] as const).map((k, i) => {
               const KIcon = [Users, Server, Euro, Cloud][i];
-              const accent = i % 2 === 0 ? "#10B981" : "#0EA5E9";
+              const accent = i % 2 === 0 ? "#047857" : "#0B3B2E";
               return (
                 <StaggerItem key={k}>
                   <ScaleIn delay={i * 0.05}>
-                    <div className="bg-gradient-to-br from-[#F8FAFC] to-white border border-gray-100 rounded-2xl p-7 h-full flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div className="bg-gradient-to-br from-cream to-white border border-line rounded-2xl p-7 h-full flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                         style={{ backgroundColor: `${accent}15` }}
@@ -692,10 +692,10 @@ export default function HomePage() {
                           suffix={t(`proof.items.${k}.suffix`)}
                         />
                       </p>
-                      <p className="text-gray-700 text-sm font-medium leading-snug mb-3 flex-1">
+                      <p className="text-ink-700 text-sm font-medium leading-snug mb-3 flex-1">
                         {t(`proof.items.${k}.label`)}
                       </p>
-                      <p className="text-[11px] text-gray-500 italic border-t border-gray-100 pt-3 leading-snug">
+                      <p className="text-[11px] text-muted italic border-t border-line pt-3 leading-snug">
                         {t(`proof.items.${k}.source`)}
                       </p>
                     </div>
@@ -704,7 +704,7 @@ export default function HomePage() {
               );
             })}
           </StaggerContainer>
-          <p className="mt-10 text-center text-xs text-gray-500 italic max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-10 text-center text-xs text-muted italic max-w-3xl mx-auto leading-relaxed">
             {t("proof.footnote")}
           </p>
         </div>
@@ -713,24 +713,24 @@ export default function HomePage() {
       {/* ==========================================================
           8. CAS CLIENTS, 3 mini-cas chiffrés liés à /cas-usages
          ========================================================== */}
-      <section id="cases" className="py-24 lg:py-28 bg-[#F8FAFC] scroll-mt-32">
+      <section id="cases" className="py-24 lg:py-28 bg-cream scroll-mt-32">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
               <div className="max-w-2xl">
-                <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+                <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                   {t("cases.eyebrow")}
                 </p>
-                <h2 className="text-3xl md:text-5xl font-bold text-[#0F172A] mb-5 tracking-tight leading-[1.1]">
+                <h2 className="text-3xl md:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]">
                   {t("cases.title")}
                 </h2>
-                <p className="text-gray-600 text-base leading-relaxed">
+                <p className="text-ink-700 text-base leading-relaxed">
                   {t("cases.subtitle")}
                 </p>
               </div>
               <Link
                 href="/cas-usages"
-                className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#0E9F6E] font-semibold whitespace-nowrap text-sm group"
+                className="inline-flex items-center gap-2 text-leaf hover:text-leaf-700 font-semibold whitespace-nowrap text-sm group"
               >
                 {t("cases.discoverAll")}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -750,7 +750,7 @@ export default function HomePage() {
                 <StaggerItem key={c.slug}>
                   <Link
                     href={`/cas-usages#${c.slug}`}
-                    className="group bg-white border border-gray-100 rounded-2xl overflow-hidden h-full flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#10B981]/30"
+                    className="group bg-white border border-line rounded-2xl overflow-hidden h-full flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-leaf/30"
                   >
                     <div className="relative aspect-[16/9] overflow-hidden">
                       <Image
@@ -761,36 +761,36 @@ export default function HomePage() {
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/80 via-[#0F172A]/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent" />
                       <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-sm shadow-md">
-                        <CIcon className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
-                        <span className="text-[11px] font-semibold text-[#0F172A] tracking-wide">
+                        <CIcon className="h-4 w-4 text-leaf" aria-hidden="true" />
+                        <span className="text-[11px] font-semibold text-ink tracking-wide">
                           {c.sector}
                         </span>
                       </div>
                       <div className="absolute bottom-4 left-4 right-4">
-                        <span className="inline-block px-2.5 py-1 rounded-md bg-[#F59E0B] text-[10px] font-semibold text-white uppercase tracking-wider">
+                        <span className="inline-block px-2.5 py-1 rounded-md bg-ochre text-[10px] font-semibold text-white uppercase tracking-wider">
                           {c.regulation}
                         </span>
                       </div>
                     </div>
                     <div className="p-6 flex flex-col flex-1">
-                      <h3 className="text-lg font-bold text-[#0F172A] mb-4 leading-snug tracking-tight">
+                      <h3 className="text-lg font-bold text-ink mb-4 leading-snug tracking-tight">
                         {c.title}
                       </h3>
                       <ul className="space-y-2 mb-5 flex-1">
                         {c.results.map((r, j) => (
-                          <li key={j} className="flex items-start gap-2 text-sm text-gray-700 leading-snug">
-                            <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" aria-hidden="true" />
+                          <li key={j} className="flex items-start gap-2 text-sm text-ink-700 leading-snug">
+                            <CheckCircle2 className="h-4 w-4 text-leaf flex-shrink-0 mt-0.5" aria-hidden="true" />
                             <span>{r}</span>
                           </li>
                         ))}
                       </ul>
-                      <div className="border-t border-gray-100 pt-4 flex items-center justify-between">
-                        <span className="text-sm font-semibold text-[#10B981] group-hover:text-[#0E9F6E]">
+                      <div className="border-t border-line pt-4 flex items-center justify-between">
+                        <span className="text-sm font-semibold text-leaf group-hover:text-leaf-700">
                           {t("cases.cardCta")}
                         </span>
-                        <ArrowRight className="h-4 w-4 text-[#10B981] transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                        <ArrowRight className="h-4 w-4 text-leaf transition-transform group-hover:translate-x-1" aria-hidden="true" />
                       </div>
                     </div>
                   </Link>
@@ -808,13 +808,13 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mb-16">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("differentiators.eyebrow")}
               </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-[#0F172A] mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-3xl md:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]">
                 {t("differentiators.title")}
               </h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-ink-700 text-lg leading-relaxed">
                 {t("differentiators.subtitle")}
               </p>
             </div>
@@ -825,21 +825,21 @@ export default function HomePage() {
               const DIcon = diffIcons[i] || Award;
               return (
                 <StaggerItem key={i}>
-                  <div className="relative bg-gradient-to-br from-white to-[#F8FAFC] border border-gray-100 rounded-2xl p-7 lg:p-8 h-full hover:shadow-xl hover:border-[#10B981]/30 transition-all duration-300">
+                  <div className="relative bg-gradient-to-br from-white to-cream border border-line rounded-2xl p-7 lg:p-8 h-full hover:shadow-xl hover:border-leaf/30 transition-all duration-300">
                     <div className="flex items-start gap-5 mb-5">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#10B981] to-[#0EA5E9] flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-[#10B981]/20">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-leaf to-forest flex items-center justify-center text-white flex-shrink-0 shadow-lg ">
                         <DIcon className="h-6 w-6" aria-hidden="true" />
                       </div>
                       <div className="flex-1">
-                        <span className="inline-block px-2.5 py-1 rounded-md bg-[#10B981]/10 text-[11px] font-semibold text-[#10B981] uppercase tracking-wider mb-3">
+                        <span className="inline-block px-2.5 py-1 rounded-md bg-leaf-100 text-[11px] font-semibold text-leaf uppercase tracking-wider mb-3">
                           {d.stat}
                         </span>
-                        <h3 className="text-xl font-bold text-[#0F172A] leading-tight tracking-tight">
+                        <h3 className="text-xl font-bold text-ink leading-tight tracking-tight">
                           {d.title}
                         </h3>
                       </div>
                     </div>
-                    <p className="text-gray-600 text-[15px] leading-relaxed">{d.body}</p>
+                    <p className="text-ink-700 text-[15px] leading-relaxed">{d.body}</p>
                   </div>
                 </StaggerItem>
               );
@@ -851,14 +851,14 @@ export default function HomePage() {
       {/* ==========================================================
           9-bis. AVANT / APRÈS, comparaison synthétique
          ========================================================== */}
-      <section className="py-16 lg:py-20 bg-[#F8FAFC]">
+      <section className="py-16 lg:py-20 bg-cream">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center max-w-3xl mx-auto mb-10">
-              <h2 className="text-2xl md:text-4xl font-bold text-[#0F172A] mb-3 tracking-tight leading-[1.1]">
+              <h2 className="text-2xl md:text-4xl font-bold text-ink mb-3 tracking-tight leading-[1.1]">
                 {t("comparison.title")}
               </h2>
-              <p className="text-gray-600 text-base leading-relaxed">
+              <p className="text-ink-700 text-base leading-relaxed">
                 {t("comparison.subtitle")}
               </p>
             </div>
@@ -867,17 +867,17 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-4 lg:gap-6 max-w-5xl mx-auto">
             {/* BEFORE column */}
             <FadeIn>
-              <div className="bg-white border border-gray-200 rounded-2xl p-6 h-full">
-                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-gray-100">
-                  <XCircle className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                  <p className="font-bold text-[#0F172A] text-base leading-tight">
+              <div className="bg-white border border-line rounded-2xl p-6 h-full">
+                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-line">
+                  <XCircle className="h-5 w-5 text-muted" aria-hidden="true" />
+                  <p className="font-bold text-ink text-base leading-tight">
                     {t("comparison.before.label")}
                   </p>
                 </div>
                 <ul className="space-y-2">
                   {beforeItems.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600 leading-snug">
-                      <XCircle className="h-3.5 w-3.5 text-gray-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                    <li key={i} className="flex items-start gap-2 text-sm text-ink-700 leading-snug">
+                      <XCircle className="h-3.5 w-3.5 text-muted flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -887,7 +887,7 @@ export default function HomePage() {
 
             {/* AFTER column */}
             <FadeIn delay={0.1}>
-              <div className="bg-gradient-to-br from-[#10B981] to-[#0E9F6E] border border-[#10B981] rounded-2xl p-6 h-full text-white shadow-xl shadow-[#10B981]/20">
+              <div className="bg-gradient-to-br from-leaf to-leaf-700 border border-leaf rounded-2xl p-6 h-full text-white shadow-xl ">
                 <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/20">
                   <CheckCircle2 className="h-5 w-5 text-white" aria-hidden="true" />
                   <p className="font-bold text-white text-base leading-tight">
@@ -896,7 +896,7 @@ export default function HomePage() {
                 </div>
                 <ul className="space-y-2">
                   {afterItems.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-white/95 leading-snug">
+                    <li key={i} className="flex items-start gap-2 text-sm text-ondark leading-snug">
                       <CheckCircle2 className="h-3.5 w-3.5 text-white flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <span>{item}</span>
                     </li>
@@ -910,7 +910,7 @@ export default function HomePage() {
             <div className="mt-8 text-center">
               <Link
                 href="/plateforme"
-                className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#0E9F6E] font-semibold text-sm group"
+                className="inline-flex items-center gap-2 text-leaf hover:text-leaf-700 font-semibold text-sm group"
               >
                 Voir la plateforme en détail
                 <ArrowRight
@@ -926,22 +926,22 @@ export default function HomePage() {
       {/* ==========================================================
           10. TÉMOIGNAGE FORT, 1 grosse citation Marc B. RSSI
          ========================================================== */}
-      <section className="py-24 lg:py-28 bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A] relative overflow-hidden">
+      <section className="py-24 lg:py-28 bg-gradient-to-br from-ink via-forest-950 to-ink relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(16,185,129,0.18),_transparent_70%)] pointer-events-none" />
-        <div className="absolute top-10 right-10 w-72 h-72 bg-[#10B981]/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-10 left-10 w-72 h-72 bg-[#0EA5E9]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-10 right-10 w-72 h-72 bg-leaf-100 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 left-10 w-72 h-72 bg-forest/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-5xl mx-auto">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-6 text-center">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-6 text-center">
                 {t("bigQuote.eyebrow")}
               </p>
 
               <div className="grid lg:grid-cols-[auto_1fr] gap-10 items-center">
                 {/* Visual, anonymized boardroom photo with mark */}
                 <div className="relative w-48 h-48 lg:w-56 lg:h-56 mx-auto flex-shrink-0">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#10B981] to-[#0EA5E9] rounded-2xl rotate-3" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-leaf to-forest rounded-2xl rotate-3" />
                   <div className="relative w-full h-full rounded-2xl overflow-hidden ring-4 ring-white/10">
                     <Image
                       src="/photos/hp-dsi-strategy.jpg"
@@ -951,37 +951,37 @@ export default function HomePage() {
                       className="object-cover grayscale brightness-90"
                       sizes="224px"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#0F172A]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-ink/40 to-transparent" />
                   </div>
                 </div>
 
                 <div>
-                  <Quote className="h-12 w-12 text-[#10B981] mb-5 opacity-70" aria-hidden="true" />
+                  <Quote className="h-12 w-12 text-leaf mb-5 opacity-70" aria-hidden="true" />
                   <blockquote className="text-xl md:text-2xl lg:text-3xl text-white leading-[1.4] font-medium mb-8 tracking-tight">
                     &ldquo;{t("bigQuote.quote")}&rdquo;
                   </blockquote>
-                  <div className="border-l-4 border-[#10B981] pl-5 mb-6">
+                  <div className="border-l-4 border-leaf pl-5 mb-6">
                     <p className="font-bold text-white text-lg leading-tight">
                       {t("bigQuote.name")}
                     </p>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-muted text-sm">
                       {t("bigQuote.role")} · {t("bigQuote.company")}
                     </p>
                   </div>
-                  <p className="text-sm text-gray-400 italic mb-6 leading-relaxed">
-                    <span className="font-semibold text-gray-300">Contexte :</span>{" "}
+                  <p className="text-sm text-muted italic mb-6 leading-relaxed">
+                    <span className="font-semibold text-ondark-muted">Contexte :</span>{" "}
                     {t("bigQuote.context")}
                   </p>
                   <Link
                     href="/cas-usages#banque-cac40-windows11-nis2"
-                    className="inline-flex items-center gap-2 text-[#10B981] hover:text-white font-semibold text-sm group"
+                    className="inline-flex items-center gap-2 text-leaf hover:text-white font-semibold text-sm group"
                   >
                     {t("bigQuote.ctaLabel")}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                   </Link>
                 </div>
               </div>
-              <p className="mt-10 text-center text-[11px] text-gray-500 italic max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-10 text-center text-[11px] text-muted italic max-w-2xl mx-auto leading-relaxed">
                 {t("bigQuote.consentNote")}
               </p>
             </div>
@@ -996,10 +996,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-14">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("faq.eyebrow")}
               </p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F172A] tracking-tight leading-[1.1]">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.1]">
                 {t("faq.title")}
               </h2>
             </div>
@@ -1008,16 +1008,16 @@ export default function HomePage() {
           <StaggerContainer className="grid md:grid-cols-2 gap-5 lg:gap-6 max-w-5xl mx-auto">
             {faqItems.map((item, i) => (
               <StaggerItem key={i}>
-                <div className="bg-[#F8FAFC] border border-gray-100 rounded-2xl p-7 h-full hover:border-[#10B981]/40 hover:shadow-md transition-all duration-300">
+                <div className="bg-cream border border-line rounded-2xl p-7 h-full hover:border-leaf/40 hover:shadow-md transition-all duration-300">
                   <div className="flex items-start gap-3 mb-4">
-                    <span className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#10B981]/10 text-[#10B981] text-sm font-bold">
+                    <span className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg bg-leaf-100 text-leaf text-sm font-bold">
                       Q{i + 1}
                     </span>
-                    <h3 className="font-bold text-[#0F172A] text-base leading-tight tracking-tight">
+                    <h3 className="font-bold text-ink text-base leading-tight tracking-tight">
                       {item.q}
                     </h3>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed pl-11">
+                  <p className="text-sm text-ink-700 leading-relaxed pl-11">
                     {item.a}
                   </p>
                 </div>
@@ -1029,7 +1029,7 @@ export default function HomePage() {
             <div className="mt-12 text-center">
               <Link
                 href="/faq"
-                className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#0E9F6E] font-semibold text-sm group"
+                className="inline-flex items-center gap-2 text-leaf hover:text-leaf-700 font-semibold text-sm group"
               >
                 Voir les 24 questions de la FAQ technique
                 <ArrowRight
@@ -1045,18 +1045,18 @@ export default function HomePage() {
       {/* ==========================================================
           10-ter. TARIFS WAKI BOX TEASER, 3 plans + pilote
          ========================================================== */}
-      <section id="pricing" className="py-24 lg:py-28 bg-[#0F172A] relative overflow-hidden scroll-mt-32">
+      <section id="pricing" className="py-24 lg:py-28 bg-forest-900 relative overflow-hidden scroll-mt-32">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.12),_transparent_60%)] pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="text-center max-w-3xl mx-auto mb-14">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("pricingTeaser.eyebrow")}
               </p>
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 tracking-tight leading-[1.1]">
                 {t("pricingTeaser.title")}
               </h2>
-              <p className="text-gray-300 text-lg leading-relaxed">
+              <p className="text-ondark-muted text-lg leading-relaxed">
                 {t("pricingTeaser.subtitle")}
               </p>
             </div>
@@ -1071,12 +1071,12 @@ export default function HomePage() {
               slug: string;
               popular?: boolean;
             }>).map((plan, i) => {
-              const accents = ["#0EA5E9", "#10B981", "#F59E0B"];
+              const accents = ["#0B3B2E", "#047857", "#B45309"];
               return (
                 <StaggerItem key={i}>
-                  <div className={`relative bg-white/[0.04] border ${plan.popular ? "border-[#10B981]/60 shadow-xl shadow-[#10B981]/10" : "border-white/10"} backdrop-blur-sm rounded-2xl p-7 h-full flex flex-col hover:bg-white/[0.06] transition-all duration-300`}>
+                  <div className={`relative bg-white/[0.04] border ${plan.popular ? "border-leaf/60 shadow-xl " : "border-ondark-line"} backdrop-blur-sm rounded-2xl p-7 h-full flex flex-col hover:bg-white/[0.06] transition-all duration-300`}>
                     {plan.popular && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#10B981] text-white text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-leaf text-white text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
                         {t("pricingTeaser.popularLabel")}
                       </div>
                     )}
@@ -1085,10 +1085,10 @@ export default function HomePage() {
                       <span className="text-3xl font-black tabular-nums" style={{ color: accents[i] }}>
                         {plan.price}
                       </span>
-                      <span className="text-sm text-gray-400 mb-1">€ HT/mois</span>
+                      <span className="text-sm text-muted mb-1">€ HT/mois</span>
                     </div>
-                    <p className="text-xs text-gray-500 mb-4">{t("pricingTeaser.setupLabel")} {plan.setup} € HT</p>
-                    <p className="text-sm text-gray-300 leading-relaxed flex-1 mb-6">{plan.pitch}</p>
+                    <p className="text-xs text-muted mb-4">{t("pricingTeaser.setupLabel")} {plan.setup} € HT</p>
+                    <p className="text-sm text-ondark-muted leading-relaxed flex-1 mb-6">{plan.pitch}</p>
                     <Link
                       href={`/reserver?offre=${plan.slug}`}
                       className="block w-full text-center rounded-xl px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-90"
@@ -1105,25 +1105,25 @@ export default function HomePage() {
 
           {/* Pilote Audit 3j encart */}
           <FadeIn>
-            <div className="max-w-6xl mx-auto bg-[#10B981]/20 border border-[#10B981]/50 rounded-2xl p-6 lg:p-8 flex flex-col md:flex-row items-start gap-6 mb-6">
+            <div className="max-w-6xl mx-auto bg-leaf/20 border border-leaf/50 rounded-2xl p-6 lg:p-8 flex flex-col md:flex-row items-start gap-6 mb-6">
               <div className="flex-1">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-[#6EE7B7] mb-2">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-leaf-300 mb-2">
                   {t("pricingTeaser.piloteAudit.label")}
                 </p>
                 <p className="text-white text-xl font-black leading-snug mb-1">
                   {t("pricingTeaser.piloteAudit.headline")}
                 </p>
-                <p className="text-gray-300 text-sm leading-relaxed max-w-xl">
+                <p className="text-ondark-muted text-sm leading-relaxed max-w-xl">
                   {t("pricingTeaser.piloteAudit.subline")}
                 </p>
               </div>
               <div className="flex flex-col items-start md:items-end gap-3 flex-shrink-0">
-                <p className="text-[#10B981] text-2xl font-black tabular-nums whitespace-nowrap">
+                <p className="text-leaf text-2xl font-black tabular-nums whitespace-nowrap">
                   {t("pricingTeaser.piloteAudit.price")}
                 </p>
                 <Link
                   href="/reserver?offre=pilote-audit-3j"
-                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm"
+                  className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm"
                 >
                   {t("pricingTeaser.piloteAudit.cta")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -1134,9 +1134,9 @@ export default function HomePage() {
 
           {/* Pilote Waki Box encart */}
           <FadeIn>
-            <div className="max-w-6xl mx-auto bg-[#10B981]/15 border border-[#10B981]/30 rounded-2xl p-6 lg:p-8 flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
+            <div className="max-w-6xl mx-auto bg-leaf-100 border border-leaf/30 rounded-2xl p-6 lg:p-8 flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
               <div className="flex-1">
-                <p className="text-xs font-bold uppercase tracking-wider text-[#6EE7B7] mb-2">
+                <p className="text-xs font-bold uppercase tracking-wider text-leaf-300 mb-2">
                   {t("pricingTeaser.pilot.label")}
                 </p>
                 <p className="text-white text-lg font-bold leading-snug">
@@ -1145,7 +1145,7 @@ export default function HomePage() {
               </div>
               <Link
                 href="/reserver?offre=waki-box-pilote"
-                className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm flex-shrink-0"
+                className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm flex-shrink-0"
               >
                 {t("pricingTeaser.pilot.cta")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -1156,37 +1156,37 @@ export default function HomePage() {
           {/* Plateforme + ITAD anchors */}
           <FadeIn>
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-5 mb-10">
-              <div className="bg-white/[0.04] border border-[#0EA5E9]/30 hover:border-[#0EA5E9]/60 rounded-2xl p-6 flex flex-col transition-colors">
-                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#67E8F9] mb-3">
+              <div className="bg-white/[0.04] border border-line/30 hover:border-line/60 rounded-2xl p-6 flex flex-col transition-colors">
+                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-leaf-300 mb-3">
                   {t("pricingTeaser.platformBrick")}
                 </p>
-                <p className="text-2xl lg:text-3xl font-black text-[#0EA5E9] tabular-nums mb-2 tracking-tight">
+                <p className="text-2xl lg:text-3xl font-black text-forest tabular-nums mb-2 tracking-tight">
                   {t("pricingTeaser.platformAnchor")}
                 </p>
-                <p className="text-sm text-gray-400 mb-5 flex-1 leading-relaxed">
+                <p className="text-sm text-muted mb-5 flex-1 leading-relaxed">
                   {t("pricingTeaser.platformDesc")}
                 </p>
                 <Link
                   href="/tarifs"
-                  className="inline-flex items-center gap-1.5 text-[#0EA5E9] text-sm font-semibold hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1.5 text-forest text-sm font-semibold hover:text-white transition-colors"
                 >
                   {t("pricingTeaser.platformCta")}
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </Link>
               </div>
-              <div className="bg-white/[0.04] border border-[#F59E0B]/30 hover:border-[#F59E0B]/60 rounded-2xl p-6 flex flex-col transition-colors">
-                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#FCD34D] mb-3">
+              <div className="bg-white/[0.04] border border-ochre/30 hover:border-ochre/60 rounded-2xl p-6 flex flex-col transition-colors">
+                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-ochre-300 mb-3">
                   {t("pricingTeaser.itadBrick")}
                 </p>
-                <p className="text-2xl lg:text-3xl font-black text-[#F59E0B] tabular-nums mb-2 tracking-tight">
+                <p className="text-2xl lg:text-3xl font-black text-ochre tabular-nums mb-2 tracking-tight">
                   {t("pricingTeaser.itadAnchor")}
                 </p>
-                <p className="text-sm text-gray-400 mb-5 flex-1 leading-relaxed">
+                <p className="text-sm text-muted mb-5 flex-1 leading-relaxed">
                   {t("pricingTeaser.itadDesc")}
                 </p>
                 <Link
                   href="/tarifs"
-                  className="inline-flex items-center gap-1.5 text-[#F59E0B] text-sm font-semibold hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1.5 text-ochre text-sm font-semibold hover:text-white transition-colors"
                 >
                   {t("pricingTeaser.itadCta")}
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -1199,7 +1199,7 @@ export default function HomePage() {
             <div className="text-center">
               <Link
                 href="/tarifs"
-                className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#6EE7B7] font-semibold text-sm group"
+                className="inline-flex items-center gap-2 text-leaf hover:text-leaf-300 font-semibold text-sm group"
               >
                 {t("pricingTeaser.allPricingLink")}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
@@ -1212,14 +1212,14 @@ export default function HomePage() {
       {/* ==========================================================
           ME-1. SECTOR TRUST — sector icons with compliance badges
          ========================================================== */}
-      <section className="py-20 lg:py-24 bg-[#F8FAFC]">
+      <section className="py-20 lg:py-24 bg-cream">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("sectorTrust.label")}
               </p>
-              <h2 className="text-2xl md:text-4xl font-bold text-[#0F172A] tracking-tight leading-[1.1]">
+              <h2 className="text-2xl md:text-4xl font-bold text-ink tracking-tight leading-[1.1]">
                 {t("sectorTrust.title")}
               </h2>
             </div>
@@ -1233,18 +1233,18 @@ export default function HomePage() {
                 landmark: Landmark,
               };
               const SIcon = sectorIconMap[sector.icon] || Building2;
-              const accents = ["#0EA5E9", "#10B981", "#F59E0B", "#8B5CF6"];
+              const accents = ["#0B3B2E", "#047857", "#B45309", "#0B3B2E"];
               return (
                 <StaggerItem key={i}>
-                  <div className="bg-white border border-gray-100 rounded-2xl p-6 text-center h-full hover:shadow-lg hover:border-[#10B981]/30 transition-all duration-300">
+                  <div className="bg-white border border-line rounded-2xl p-6 text-center h-full hover:shadow-lg hover:border-leaf/30 transition-all duration-300">
                     <div
                       className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
                       style={{ backgroundColor: `${accents[i]}15` }}
                     >
                       <SIcon className="h-6 w-6" style={{ color: accents[i] }} aria-hidden="true" />
                     </div>
-                    <h3 className="text-base font-bold text-[#0F172A] mb-2">{sector.label}</h3>
-                    <p className="text-xs text-gray-500 font-medium">{sector.detail}</p>
+                    <h3 className="text-base font-bold text-ink mb-2">{sector.label}</h3>
+                    <p className="text-xs text-muted font-medium">{sector.detail}</p>
                   </div>
                 </StaggerItem>
               );
@@ -1260,10 +1260,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("testimonials.eyebrow")}
               </p>
-              <h2 className="text-2xl md:text-4xl font-bold text-[#0F172A] tracking-tight leading-[1.1]">
+              <h2 className="text-2xl md:text-4xl font-bold text-ink tracking-tight leading-[1.1]">
                 {t("testimonials.title")}
               </h2>
             </div>
@@ -1271,20 +1271,20 @@ export default function HomePage() {
           <StaggerContainer className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {testimonials.map((item, i) => (
               <StaggerItem key={i}>
-                <div className="bg-[#F8FAFC] border border-gray-100 rounded-2xl p-7 h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
-                  <Quote className="h-8 w-8 text-[#10B981]/40 mb-4" aria-hidden="true" />
-                  <blockquote className="text-sm text-gray-700 leading-relaxed flex-1 mb-5 italic">
+                <div className="bg-cream border border-line rounded-2xl p-7 h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                  <Quote className="h-8 w-8 text-leaf mb-4" aria-hidden="true" />
+                  <blockquote className="text-sm text-ink-700 leading-relaxed flex-1 mb-5 italic">
                     &ldquo;{item.quote}&rdquo;
                   </blockquote>
-                  <div className="border-t border-gray-100 pt-4">
-                    <p className="font-bold text-[#0F172A] text-sm">{item.name}</p>
-                    <p className="text-xs text-gray-500">{item.role} · {item.company}</p>
+                  <div className="border-t border-line pt-4">
+                    <p className="font-bold text-ink text-sm">{item.name}</p>
+                    <p className="text-xs text-muted">{item.role} · {item.company}</p>
                   </div>
                 </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
-          <p className="mt-8 text-center text-xs text-gray-500 italic max-w-2xl mx-auto">
+          <p className="mt-8 text-center text-xs text-muted italic max-w-2xl mx-auto">
             {t("testimonials.disclaimer")}
           </p>
         </div>
@@ -1293,20 +1293,20 @@ export default function HomePage() {
       {/* ==========================================================
           ME-5. MINI ROI CALCULATOR
          ========================================================== */}
-      <section className="py-20 lg:py-24 bg-gradient-to-br from-[#0F172A] to-[#1E293B] relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-gradient-to-br from-ink to-forest-950 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.12),_transparent_60%)] pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-2xl mx-auto text-center">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-3">
                 {t("roiCalculator.eyebrow")}
               </p>
               <h2 className="text-2xl md:text-4xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
                 {t("roiCalculator.title")}
               </h2>
 
-              <div className="bg-white/[0.06] border border-white/10 rounded-2xl p-8 backdrop-blur-sm">
-                <label htmlFor="fleet-size" className="block text-sm font-medium text-gray-300 mb-3 text-left">
+              <div className="bg-white/[0.06] border border-ondark-line rounded-2xl p-8 backdrop-blur-sm">
+                <label htmlFor="fleet-size" className="block text-sm font-medium text-ondark-muted mb-3 text-left">
                   {t("roiCalculator.inputLabel")}
                 </label>
                 <input
@@ -1316,35 +1316,35 @@ export default function HomePage() {
                   value={fleetSize}
                   onChange={(e) => setFleetSize(e.target.value)}
                   placeholder={t("roiCalculator.inputPlaceholder")}
-                  className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white text-lg font-semibold placeholder-gray-500 outline-none focus:ring-2 focus:ring-[#10B981]/50 focus:border-[#10B981] transition-all mb-6"
+                  className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white text-lg font-semibold placeholder-muted outline-none focus:ring-2 focus:ring-leaf/50 focus:border-leaf transition-all mb-6"
                 />
 
                 {fleetSize && parseInt(fleetSize) > 0 && (
                   <FadeIn>
                     <div className="space-y-4 text-left mb-6">
-                      <p className="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">{t("roiCalculator.resultTitle")}</p>
-                      <div className="flex items-center justify-between py-3 border-b border-white/10">
-                        <span className="text-sm text-gray-300">{t("roiCalculator.riskLabel")}</span>
-                        <span className="text-lg font-bold text-[#F59E0B]">
+                      <p className="text-xs uppercase tracking-wider text-muted font-semibold mb-2">{t("roiCalculator.resultTitle")}</p>
+                      <div className="flex items-center justify-between py-3 border-b border-ondark-line">
+                        <span className="text-sm text-ondark-muted">{t("roiCalculator.riskLabel")}</span>
+                        <span className="text-lg font-bold text-ochre">
                           {(parseInt(fleetSize) * 820).toLocaleString()} €
                         </span>
                       </div>
-                      <div className="flex items-center justify-between py-3 border-b border-white/10">
-                        <span className="text-sm text-gray-300">{t("roiCalculator.valueLabel")}</span>
-                        <span className="text-lg font-bold text-[#10B981]">
+                      <div className="flex items-center justify-between py-3 border-b border-ondark-line">
+                        <span className="text-sm text-ondark-muted">{t("roiCalculator.valueLabel")}</span>
+                        <span className="text-lg font-bold text-leaf">
                           {(parseInt(fleetSize) * 412).toLocaleString()} €
                         </span>
                       </div>
                       <div className="flex items-center justify-between py-3">
-                        <span className="text-sm text-gray-300">{t("roiCalculator.carbonLabel")}</span>
-                        <span className="text-lg font-bold text-[#0EA5E9]">
+                        <span className="text-sm text-ondark-muted">{t("roiCalculator.carbonLabel")}</span>
+                        <span className="text-lg font-bold text-forest">
                           {((parseInt(fleetSize) * 150) / 1000).toFixed(1)} tCO₂e
                         </span>
                       </div>
                     </div>
                     <Link
                       href="/demo"
-                      className="inline-flex items-center justify-center gap-2 w-full bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-base"
+                      className="inline-flex items-center justify-center gap-2 w-full bg-leaf hover:bg-leaf-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-base"
                     >
                       {t("roiCalculator.cta")}
                       <ArrowRight className="h-5 w-5" aria-hidden="true" />
@@ -1352,7 +1352,7 @@ export default function HomePage() {
                   </FadeIn>
                 )}
 
-                <p className="text-[11px] text-gray-500 italic mt-4 leading-relaxed">
+                <p className="text-[11px] text-muted italic mt-4 leading-relaxed">
                   {t("roiCalculator.disclaimer")}
                 </p>
               </div>
@@ -1373,33 +1373,33 @@ export default function HomePage() {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F172A]/95 via-[#10B981]/85 to-[#0EA5E9]/90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-ink/95 via-leaf/85 to-forest/90" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.12),_transparent_60%)] pointer-events-none" />
 
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center text-white">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-4">
+              <p className="text-sm font-semibold tracking-[0.18em] text-leaf uppercase mb-4">
                 {t("finalCTA.eyebrow")}
               </p>
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight leading-[1.05]">
                 {t("finalCTA.title")}
               </h2>
-              <p className="text-lg md:text-xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-ondark mb-12 max-w-3xl mx-auto leading-relaxed">
                 {t("finalCTA.subtitle")}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-white hover:text-[#10B981] text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 shadow-xl shadow-[#10B981]/30 hover:-translate-y-0.5 text-base"
+                  className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-white hover:text-leaf text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 shadow-xl hover:-translate-y-0.5 text-base"
                 >
                   {t("finalCTA.cta1")}
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white text-white hover:text-[#0F172A] border-2 border-white/40 hover:border-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 backdrop-blur-sm text-base"
+                  className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white text-white hover:text-ink border-2 border-white/40 hover:border-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 backdrop-blur-sm text-base"
                 >
                   {t("finalCTA.cta2")}
                   <ChevronRight className="h-5 w-5" aria-hidden="true" />
@@ -1408,13 +1408,13 @@ export default function HomePage() {
 
               {/* Trust badges row */}
               <div className="pt-8 border-t border-white/15">
-                <p className="text-[11px] uppercase tracking-[0.18em] text-white/60 mb-5 font-semibold">
+                <p className="text-[11px] uppercase tracking-[0.18em] text-ondark-muted mb-5 font-semibold">
                   Garanties contractuelles
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
                   {trustBadges.map((badge, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-white/90">
-                      <Shield className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+                    <div key={i} className="flex items-center gap-2 text-sm text-ondark">
+                      <Shield className="h-4 w-4 text-leaf" aria-hidden="true" />
                       <span className="font-medium">{badge}</span>
                       {i < trustBadges.length - 1 && (
                         <span className="hidden sm:inline w-px h-4 bg-white/20 ml-3" />

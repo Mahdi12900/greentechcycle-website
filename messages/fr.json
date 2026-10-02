@@ -210,10 +210,10 @@
     "default": "Réserver ma démo (30 min)",
     "impact": "Estimer mon scope 3 IT en 10 min",
     "audit": "Auditer mon parc IT",
-    "expert": "Parler a un expert ITAD",
+    "expert": "Parler à un expert ITAD",
     "quote": "Demander un devis sous 48h",
-    "compliance": "Recevoir le memo conformite",
-    "demo": "Reserver une demo de la plateforme"
+    "compliance": "Recevoir le mémo conformité",
+    "demo": "Réserver une démo de la plateforme"
   },
   "Home": {
     "urgency": {

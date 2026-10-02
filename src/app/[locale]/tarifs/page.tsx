@@ -10,7 +10,7 @@
  *   S1  Hero clarifié, « Tarifs Waki Box, la seule brique GTC à prix public »
  *   S2  Bandeau 3 briques GTC (pédagogie, Waki Box mise en avant)
  *   S3  Trois plans Waki Box, composition asymétrique avec photos
- *   S4  Programme pilote, fond #10B981 + illustration
+ *   S4  Programme pilote, fond #047857 + illustration
  *   S5  Comparatif Waki Box, visualisation par barres
  *   S6  Modules complémentaires, card-grid asymétrique
  *   S7  Plateforme & ITAD, sur devis (deux grandes cartes éditoriales)
@@ -61,24 +61,24 @@ import { useState } from "react";
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-gray-200 py-5">
+    <div className="border-b border-line py-5">
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between gap-4 text-left group"
         aria-expanded={open}
       >
-        <span className="font-semibold text-[#0F172A] text-[15px] leading-snug">
+        <span className="font-semibold text-ink text-[15px] leading-snug">
           {q}
         </span>
         <ChevronDown
-          className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform ${
-            open ? "rotate-180 text-[#047857]" : ""
+          className={`w-5 h-5 text-muted flex-shrink-0 transition-transform ${
+            open ? "rotate-180 text-leaf" : ""
           }`}
           aria-hidden="true"
         />
       </button>
       {open && (
-        <p className="mt-4 text-[14.5px] text-gray-600 leading-[1.78] pr-8">
+        <p className="mt-4 text-[14.5px] text-ink-700 leading-[1.78] pr-8">
           {a}
         </p>
       )}
@@ -121,9 +121,9 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
   const [checkedAddons, setCheckedAddons] = useState<Set<string>>(new Set());
 
   const plans = {
-    essentiel: { price: 39, setup: 150, name: "Essentiel", accent: "#0EA5E9" },
-    confort: { price: 79, setup: 290, name: "Confort", accent: "#10B981" },
-    premium: { price: 149, setup: 490, name: "Premium", accent: "#F59E0B" },
+    essentiel: { price: 39, setup: 150, name: "Essentiel", accent: "#0B3B2E" },
+    confort: { price: 79, setup: 290, name: "Confort", accent: "#047857" },
+    premium: { price: 149, setup: 490, name: "Premium", accent: "#B45309" },
   };
 
   const addonList = [
@@ -169,8 +169,8 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
           onClick={() => setBilling("monthly")}
           className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
             billing === "monthly"
-              ? "bg-[#10B981] text-white shadow-lg shadow-[#10B981]/25"
-              : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+              ? "bg-leaf text-white shadow-lg "
+              : "bg-sand text-muted hover:bg-line"
           }`}
         >
           {tx("Mensuel", "Monthly")}
@@ -179,12 +179,12 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
           onClick={() => setBilling("annual")}
           className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
             billing === "annual"
-              ? "bg-[#10B981] text-white shadow-lg shadow-[#10B981]/25"
-              : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+              ? "bg-leaf text-white shadow-lg "
+              : "bg-sand text-muted hover:bg-line"
           }`}
         >
           {tx("Annuel", "Annual")}
-          <span className="ml-1 px-1.5 py-0.5 rounded bg-[#F59E0B] text-white text-[10px] font-bold">-15%</span>
+          <span className="ml-1 px-1.5 py-0.5 rounded bg-ochre text-white text-[10px] font-bold">-15%</span>
         </button>
       </div>
 
@@ -199,12 +199,12 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
               className={`rounded-2xl border p-5 text-left transition-all duration-200 hover:-translate-y-0.5 ${
                 isSelected
                   ? "ring-2 shadow-lg"
-                  : "border-gray-200 hover:border-gray-300 bg-white"
+                  : "border-line hover:border-line bg-white"
               }`}
               style={isSelected ? { borderColor: p.accent, boxShadow: `0 8px 24px ${p.accent}20` } : {}}
             >
               {isSelected && key === "confort" && (
-                <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#10B981] text-white text-[10px] font-bold mb-2">
+                <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-leaf text-white text-[10px] font-bold mb-2">
                   <Sparkles className="h-2.5 w-2.5" />
                   {tx("Le plus choisi", "Most chosen")}
                 </div>
@@ -212,16 +212,16 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
               <p className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: p.accent }}>
                 {tx("Plan", "Plan")} {p.name}
               </p>
-              <p className="text-2xl font-black" style={{ color: isSelected ? p.accent : "#0F172A" }}>
+              <p className="text-2xl font-black" style={{ color: isSelected ? p.accent : "#1C1917" }}>
                 {billing === "annual" ? Math.round(p.price * 0.85) : p.price}
                 <span className="text-sm font-semibold ml-1 opacity-70">€ HT{tx("/mois", "/mo")}</span>
               </p>
               {billing === "annual" && (
-                <p className="text-[11px] text-gray-400 mt-1">
+                <p className="text-[11px] text-muted mt-1">
                   {tx(`soit ${Math.round(p.price * 0.85 * 12)} € HT/an`, `i.e. €${Math.round(p.price * 0.85 * 12)} ex-VAT/year`)}
                 </p>
               )}
-              <p className="text-[11px] text-gray-500 mt-2">
+              <p className="text-[11px] text-muted mt-2">
                 {tx("Mise en service", "Setup")} : {p.setup} € HT
               </p>
             </button>
@@ -231,8 +231,8 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
 
       <div className="grid lg:grid-cols-[1fr_320px] gap-6">
         {/* Add-ons checklist */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-          <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-500 mb-4">
+        <div className="bg-white rounded-2xl border border-line shadow-sm p-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted mb-4">
             {tx("Modules à ajouter (optionnel)", "Add-on modules (optional)")}
           </p>
           <div className="space-y-3">
@@ -243,20 +243,20 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
                   key={addon.slug}
                   className={`flex items-start gap-3 p-3.5 rounded-xl border cursor-pointer transition-all ${
                     checked
-                      ? "bg-[#F0FDF9] border-[#10B981]/40"
-                      : "border-gray-100 hover:border-gray-200 hover:bg-gray-50"
+                      ? "bg-leaf-50 border-leaf/40"
+                      : "border-line hover:border-line hover:bg-cream"
                   }`}
                 >
                   <input
                     type="checkbox"
                     checked={checked}
                     onChange={() => toggleAddon(addon.slug)}
-                    className="mt-0.5 h-4 w-4 rounded accent-[#10B981] cursor-pointer"
+                    className="mt-0.5 h-4 w-4 rounded accent-[#047857] cursor-pointer"
                   />
                   <div className="flex-1 min-w-0">
-                    <p className="text-[13px] font-semibold text-[#0F172A] leading-snug">{addon.name}</p>
-                    <p className="text-[11px] text-gray-500 mt-0.5">
-                      <span className="font-bold text-[#047857]">{addon.price.toLocaleString("fr-FR")} € HT</span>
+                    <p className="text-[13px] font-semibold text-ink leading-snug">{addon.name}</p>
+                    <p className="text-[11px] text-muted mt-0.5">
+                      <span className="font-bold text-leaf">{addon.price.toLocaleString("fr-FR")} € HT</span>
                       {addon.recurrence !== "one-shot" && <span className="ml-1">{addon.recurrence}</span>}
                       {addon.recurrence === "one-shot" && <span className="ml-1 italic">{tx("one-shot", "one-time")}</span>}
                     </p>
@@ -269,58 +269,58 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
 
         {/* Total dynamique */}
         <div className="space-y-4">
-          <div className="bg-[#0F172A] rounded-2xl p-6 text-white">
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-400 mb-4">
+          <div className="bg-forest-900 rounded-2xl p-6 text-white">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted mb-4">
               {tx("Estimation mensuelle", "Monthly estimate")}
             </p>
-            <div className="space-y-2 mb-4 pb-4 border-b border-white/10">
+            <div className="space-y-2 mb-4 pb-4 border-b border-ondark-line">
               <div className="flex justify-between text-sm">
-                <span className="text-gray-300">Waki Box {plans[selectedPlan].name}</span>
+                <span className="text-ondark-muted">Waki Box {plans[selectedPlan].name}</span>
                 <span className="font-semibold">{baseMonthly} € HT{tx("/mois", "/mo")}</span>
               </div>
               {addonMonthlyContrib > 0 && (
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-300">{tx("Modules récurrents", "Recurring modules")}</span>
+                  <span className="text-ondark-muted">{tx("Modules récurrents", "Recurring modules")}</span>
                   <span className="font-semibold">+{addonMonthlyContrib} € HT{tx("/mois", "/mo")}</span>
                 </div>
               )}
             </div>
             <div className="flex items-end justify-between">
-              <p className="text-[11px] text-gray-500">{tx("Total récurrent", "Recurring total")}</p>
-              <p className="text-3xl font-black tabular-nums text-[#10B981]">
+              <p className="text-[11px] text-muted">{tx("Total récurrent", "Recurring total")}</p>
+              <p className="text-3xl font-black tabular-nums text-leaf">
                 {totalMonthly} <span className="text-base font-semibold opacity-80">€ HT{tx("/mois", "/mo")}</span>
               </p>
             </div>
             {billing === "annual" && (
-              <p className="text-[11px] text-gray-500 mt-2 text-right">
+              <p className="text-[11px] text-muted mt-2 text-right">
                 {tx("soit", "i.e.")} {totalAnnual.toLocaleString("fr-FR")} € HT{tx("/an", "/year")}
               </p>
             )}
-            <div className="mt-4 pt-4 border-t border-white/10">
+            <div className="mt-4 pt-4 border-t border-ondark-line">
               <div className="flex justify-between text-sm">
-                <span className="text-gray-400">{tx("Mise en service (one-shot)", "Setup (one-time)")}</span>
-                <span className="text-gray-300">{plan.setup} € HT</span>
+                <span className="text-muted">{tx("Mise en service (one-shot)", "Setup (one-time)")}</span>
+                <span className="text-ondark-muted">{plan.setup} € HT</span>
               </div>
             </div>
           </div>
 
           {/* Bundle suggestion */}
           {bundle && (
-            <div className="bg-gradient-to-br from-[#F0FDF9] to-[#ECFDF5] border border-[#10B981]/30 rounded-2xl p-5">
+            <div className="bg-gradient-to-br from-leaf-50 to-leaf-50 border border-leaf/30 rounded-2xl p-5">
               <div className="flex items-start gap-2 mb-3">
-                <Gift className="h-5 w-5 text-[#047857] flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <Gift className="h-5 w-5 text-leaf flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#047857] mb-1">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-leaf mb-1">
                     {tx("Bundle suggéré", "Suggested bundle")}
                   </p>
-                  <p className="text-[14px] font-bold text-[#0F172A] leading-snug">{bundle.name}</p>
+                  <p className="text-[14px] font-bold text-ink leading-snug">{bundle.name}</p>
                 </div>
               </div>
-              <p className="text-2xl font-black text-[#047857] mb-1">
+              <p className="text-2xl font-black text-leaf mb-1">
                 {bundle.price.toLocaleString("fr-FR")} € HT
                 <span className="text-sm font-semibold opacity-70 ml-1">one-shot</span>
               </p>
-              <p className="text-[12px] text-[#047857] font-semibold">
+              <p className="text-[12px] text-leaf font-semibold">
                 {tx(`Économie : ${bundle.saving} €`, `Saving: €${bundle.saving}`)} (-{Math.round((bundle.saving / (bundle.price + bundle.saving)) * 100)}%)
               </p>
             </div>
@@ -329,7 +329,7 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
           {/* CTA */}
           <Link
             href={`/reserver?offre=waki-box-${selectedPlan}`}
-            className="w-full inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#10B981]/25 text-sm"
+            className="w-full inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover: text-sm"
           >
             {tx("Réserver Waki Box", "Book Waki Box")} {plans[selectedPlan].name}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -364,7 +364,7 @@ export default function TarifsPage() {
       ),
       ctaLabel: tx("Voir la plateforme", "Explore the platform"),
       ctaHref: "/plateforme",
-      accent: "#0EA5E9",
+      accent: "#0B3B2E",
       photo: "/photos/hp-datacenter-green.jpg",
       photoAlt: tx(
         "Salle serveurs sécurisée : Plateforme GTC SaaS",
@@ -382,7 +382,7 @@ export default function TarifsPage() {
       price: tx("Dès 39 € HT/mois", "From €39 ex-VAT/month"),
       ctaLabel: tx("Voir les plans Waki Box", "See Waki Box plans"),
       ctaHref: "#plans",
-      accent: "#10B981",
+      accent: "#047857",
       featured: true,
       photo: "/photos/ewaste-recycling.jpg",
       photoAlt: tx(
@@ -405,7 +405,7 @@ export default function TarifsPage() {
       ),
       ctaLabel: tx("Voir le service ITAD", "Explore the ITAD service"),
       ctaHref: "/services/recyclage-deee",
-      accent: "#F59E0B",
+      accent: "#B45309",
       photo: "/photos/hp-atelier-itad.jpg",
       photoAlt: tx(
         "Atelier de reconditionnement et effacement certifié",
@@ -451,7 +451,7 @@ export default function TarifsPage() {
           "Email support : D+2",
         ]
       ),
-      accent: "#0EA5E9",
+      accent: "#0B3B2E",
     },
     {
       slug: "waki-box-confort",
@@ -491,7 +491,7 @@ export default function TarifsPage() {
           "Priority support : D+1",
         ]
       ),
-      accent: "#10B981",
+      accent: "#047857",
     },
     {
       slug: "waki-box-premium",
@@ -530,7 +530,7 @@ export default function TarifsPage() {
           "Dedicated support, 4h SLA",
         ]
       ),
-      accent: "#F59E0B",
+      accent: "#B45309",
     },
   ];
 
@@ -730,7 +730,7 @@ export default function TarifsPage() {
         "Strategic decision room : bespoke GTC Platform study"
       ),
       icon: Monitor,
-      accent: "#0EA5E9",
+      accent: "#0B3B2E",
       ctaLabel: tx("Demander un devis Plateforme", "Request a Platform quote"),
       ctaHref: "/reserver?offre=demo-conseil&brique=plateforme",
       secondaryLabel: tx("Voir la plateforme", "Explore the platform"),
@@ -769,7 +769,7 @@ export default function TarifsPage() {
         "ITAD refurbishment and value recovery workshop"
       ),
       icon: Wrench,
-      accent: "#F59E0B",
+      accent: "#B45309",
       ctaLabel: tx("Demander un devis ITAD", "Request an ITAD quote"),
       ctaHref: "/reserver?offre=demo-conseil&brique=itad",
       secondaryLabel: tx("Voir le service ITAD", "Explore the ITAD service"),
@@ -823,10 +823,10 @@ export default function TarifsPage() {
     <main className="overflow-hidden bg-white">
 
       {/* ════════════════════════════════════════════════════════════════
-          S1 (HERO ÉDITORIAL) split sombre #0F1115 (aligné /secteurs)
+          S1 (HERO ÉDITORIAL) split sombre #0F1F1A (aligné /secteurs)
          ════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full min-h-[78vh] flex flex-col lg:flex-row overflow-hidden bg-[#0F1115]"
+        className="relative w-full min-h-[78vh] flex flex-col lg:flex-row overflow-hidden bg-forest-900"
         aria-labelledby="tarifs-hero-title"
       >
         <div
@@ -846,7 +846,7 @@ export default function TarifsPage() {
 
         {/* Ghost watermark XXL */}
         <div
-          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none text-white/[0.025]"
+          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none text-ondark-muted"
           style={{
             fontSize: "clamp(10rem, 28vw, 24rem)",
             right: "-0.05em",
@@ -860,11 +860,11 @@ export default function TarifsPage() {
         <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-24">
           <FadeIn>
             <div className="flex items-center gap-3 mb-10 flex-wrap">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-muted uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-leaf" />
                 {tx("Tarifs Waki Box", "Waki Box pricing")}
               </span>
-              <span className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/10 text-[11px] font-semibold tracking-[0.1em] text-[#67E8F9] uppercase">
+              <span className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-line/30 bg-forest/10 text-[11px] font-semibold tracking-[0.1em] text-leaf-300 uppercase">
                 <Layers className="w-3 h-3" aria-hidden="true" />
                 {tx("Plateforme dès 2 500 €/mois · ITAD dès 15 €/poste", "Platform from €2,500/month · ITAD from €15/device")}
               </span>
@@ -876,12 +876,12 @@ export default function TarifsPage() {
               style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
             >
               {tx(
-                <>Tarifs Waki Box,{" "}<br /><span className="text-[#10B981]">la seule brique GTC à prix public.</span></>,
-                <>Waki Box pricing,<br /><span className="text-[#10B981]">the only GTC brick with public rates.</span></>
+                <>Tarifs Waki Box,{" "}<br /><span className="text-leaf">la seule brique GTC à prix public.</span></>,
+                <>Waki Box pricing,<br /><span className="text-leaf">the only GTC brick with public rates.</span></>
               )}
             </h1>
 
-            <p className="text-gray-300 text-base lg:text-[1.12rem] leading-[1.72] max-w-xl mb-10">
+            <p className="text-ondark-muted text-base lg:text-[1.12rem] leading-[1.72] max-w-xl mb-10">
               {tx(
                 "Trois ancres tarifaires claires : Waki Box dès 39 € HT/mois, Plateforme GTC SaaS à partir de 2 500 € HT/mois, Service ITAD à partir de 15 € HT/poste. Trois plans Waki Box et un programme pilote ci-dessous.",
                 "Three clear pricing anchors: Waki Box from €39 HT/month, GTC SaaS Platform starting at €2,500 HT/month, ITAD Service starting at €15 HT/device. Three Waki Box plans and one pilot programme below."
@@ -890,9 +890,9 @@ export default function TarifsPage() {
 
             <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10 pb-10 border-b border-white/8">
               {[
-                { v: "3", l: tx("plans Waki Box publics", "public Waki Box plans"), color: "#10B981" },
-                { v: "1", l: tx("programme pilote, 1er mois offert", "pilot: 1st month free"), color: "#0EA5E9" },
-                { v: "48 h", l: tx("devis Plateforme & ITAD", "Platform & ITAD quote"), color: "#F59E0B" },
+                { v: "3", l: tx("plans Waki Box publics", "public Waki Box plans"), color: "#047857" },
+                { v: "1", l: tx("programme pilote, 1er mois offert", "pilot: 1st month free"), color: "#0B3B2E" },
+                { v: "48 h", l: tx("devis Plateforme & ITAD", "Platform & ITAD quote"), color: "#B45309" },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col">
                   <span
@@ -901,7 +901,7 @@ export default function TarifsPage() {
                   >
                     {item.v}
                   </span>
-                  <span className="text-xs text-gray-500 mt-1.5 font-medium">{item.l}</span>
+                  <span className="text-xs text-muted mt-1.5 font-medium">{item.l}</span>
                 </div>
               ))}
             </div>
@@ -909,7 +909,7 @@ export default function TarifsPage() {
             <div className="flex flex-col sm:flex-row gap-3">
               <a
                 href="#plans"
-                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
+                className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
               >
                 {tx("Voir les plans Waki Box", "See Waki Box plans")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -936,21 +936,21 @@ export default function TarifsPage() {
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 45vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F1115]/85 via-[#0F1115]/25 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F1115]/55 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-forest-900/85 via-forest-900/25 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-forest-900/55 to-transparent" />
         </div>
       </section>
 
       {/* Certifications band */}
-      <section className="bg-[#0F1115] py-8 border-t border-white/5">
+      <section className="bg-forest-900 py-8 border-t border-ondark-line">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
             {trustBadges.map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-ondark-line text-ondark-muted"
               >
-                <Icon className="h-4 w-4 text-[#6EE7B7]" aria-hidden="true" />
+                <Icon className="h-4 w-4 text-leaf-300" aria-hidden="true" />
                 <span className="text-xs font-semibold tracking-wide">{label}</span>
               </div>
             ))}
@@ -966,16 +966,16 @@ export default function TarifsPage() {
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf mb-4">
                 {tx("Comment lire nos tarifs", "How to read our pricing")}
               </p>
               <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-6"
+                className="text-ink font-bold tracking-tight mb-6"
                 style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
               >
                 {tx("Trois briques GTC. Trois ancres tarifaires.", "Three GTC bricks. Three pricing anchors.")}
               </h2>
-              <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+              <p className="text-ink-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
                 {tx(
                   "Trois briques complémentaires, trois ancres tarifaires. Waki Box affiche ses plans complets (dès 39 € HT/mois). La Plateforme GTC SaaS part de 2 500 € HT/mois, le Service ITAD de 15 € HT/poste : des ancres de départ affinées sur mesure selon votre parc et vos contraintes.",
                   "Three complementary bricks, three pricing anchors. Waki Box shows its full plans (from €39 HT/month). The GTC SaaS Platform starts at €2,500 HT/month, the ITAD Service at €15 HT/device: starting anchors refined to your fleet and constraints."
@@ -994,12 +994,12 @@ export default function TarifsPage() {
                   <div
                     className={`relative h-full rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
                       isFeatured
-                        ? "ring-2 ring-[#10B981] shadow-xl shadow-[#10B981]/15 lg:scale-[1.03]"
-                        : "ring-1 ring-gray-100 hover:ring-gray-200 shadow-sm"
+                        ? "ring-2 ring-leaf shadow-xl  lg:scale-[1.03]"
+                        : "ring-1 ring-line hover:ring-line shadow-sm"
                     }`}
                   >
                     {isFeatured && (
-                      <div className="absolute top-0 left-0 right-0 z-20 bg-[#10B981] text-white text-center text-[11px] font-bold uppercase tracking-[0.15em] py-1.5">
+                      <div className="absolute top-0 left-0 right-0 z-20 bg-leaf text-white text-center text-[11px] font-bold uppercase tracking-[0.15em] py-1.5">
                         {tx("Tarifs publics ci-dessous", "Public pricing below")}
                       </div>
                     )}
@@ -1021,7 +1021,7 @@ export default function TarifsPage() {
                         <Icon className="w-5 h-5 text-white" aria-hidden="true" />
                       </div>
                       <span
-                        className="absolute top-3 right-3 select-none pointer-events-none font-black leading-none text-white/[0.18]"
+                        className="absolute top-3 right-3 select-none pointer-events-none font-black leading-none text-ondark-muted"
                         style={{ fontSize: "4rem" }}
                         aria-hidden="true"
                       >
@@ -1037,13 +1037,13 @@ export default function TarifsPage() {
                       >
                         {b.tag}
                       </p>
-                      <h3 className="text-2xl font-bold text-[#0F172A] mb-3 tracking-tight leading-tight">
+                      <h3 className="text-2xl font-bold text-ink mb-3 tracking-tight leading-tight">
                         {b.name}
                       </h3>
-                      <p className="text-sm text-gray-600 leading-relaxed mb-5">
+                      <p className="text-sm text-ink-700 leading-relaxed mb-5">
                         {b.pitch}
                       </p>
-                      <div className="flex items-center justify-between gap-3 pt-5 border-t border-gray-100">
+                      <div className="flex items-center justify-between gap-3 pt-5 border-t border-line">
                         <div className="flex flex-col gap-0.5">
                           <span
                             className="text-base font-black tracking-tight"
@@ -1052,7 +1052,7 @@ export default function TarifsPage() {
                             {b.price}
                           </span>
                           {"subline" in b && b.subline && (
-                            <span className="text-[10.5px] text-gray-500 leading-snug max-w-[22ch]">
+                            <span className="text-[10.5px] text-muted leading-snug max-w-[22ch]">
                               {b.subline as string}
                             </span>
                           )}
@@ -1092,9 +1092,9 @@ export default function TarifsPage() {
       <div id="plans">
         {plans.map((plan, i) => {
           const isDark = i === 1;
-          const bgClass = isDark ? "bg-[#0F1115]" : i === 2 ? "bg-[#F8FAFC]" : "bg-white";
-          const textColor = isDark ? "text-white" : "text-[#0F172A]";
-          const subTextColor = isDark ? "text-gray-300" : "text-gray-700";
+          const bgClass = isDark ? "bg-forest-900" : i === 2 ? "bg-cream" : "bg-white";
+          const textColor = isDark ? "text-white" : "text-ink";
+          const subTextColor = isDark ? "text-ondark-muted" : "text-ink-700";
           const Icon = plan.icon;
           const photoOnRight = i === 1; // Confort photo right
           const isPhotoLeft = i === 0 || i === 2;
@@ -1124,8 +1124,8 @@ export default function TarifsPage() {
                     className={`absolute inset-0 ${
                       isDark
                         ? isPhotoLeft
-                          ? "bg-gradient-to-r from-transparent via-transparent to-[#0F1115]/70"
-                          : "bg-gradient-to-l from-transparent via-transparent to-[#0F1115]/70"
+                          ? "bg-gradient-to-r from-transparent via-transparent to-forest-900/70"
+                          : "bg-gradient-to-l from-transparent via-transparent to-forest-900/70"
                         : isPhotoLeft
                         ? "bg-gradient-to-r from-transparent to-white/10"
                         : "bg-gradient-to-l from-transparent to-white/10"
@@ -1133,7 +1133,7 @@ export default function TarifsPage() {
                   />
                   <div className="absolute top-6 left-6 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm shadow-lg">
                     <Icon className="h-3.5 w-3.5" style={{ color: plan.accent }} aria-hidden="true" />
-                    <span className="text-[11px] font-semibold text-[#0F172A] tracking-wide uppercase">
+                    <span className="text-[11px] font-semibold text-ink tracking-wide uppercase">
                       {plan.audience.split(",")[0]?.trim() ?? plan.name}
                     </span>
                   </div>
@@ -1162,14 +1162,14 @@ export default function TarifsPage() {
                           aria-hidden="true"
                         />
                         {"popular" in plan && plan.popular && (
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#10B981] text-white text-[11px] font-semibold uppercase tracking-wider">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-leaf text-white text-[11px] font-semibold uppercase tracking-wider">
                             <Sparkles className="h-3 w-3" aria-hidden="true" />
                             {tx("Le plus choisi", "Most chosen")}
                           </span>
                         )}
                       </div>
 
-                      <p className={`text-[11px] font-semibold uppercase tracking-[0.15em] mb-3 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                      <p className={`text-[11px] font-semibold uppercase tracking-[0.15em] mb-3 ${isDark ? "text-muted" : "text-muted"}`}>
                         {plan.audience}
                       </p>
 
@@ -1186,9 +1186,9 @@ export default function TarifsPage() {
                       </p>
 
                       {/* Prix */}
-                      <div className={`flex flex-wrap items-end gap-7 mb-8 pb-8 border-b ${isDark ? "border-white/10" : "border-gray-200"}`}>
+                      <div className={`flex flex-wrap items-end gap-7 mb-8 pb-8 border-b ${isDark ? "border-ondark-line" : "border-line"}`}>
                         <div className="flex flex-col">
-                          <span className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                          <span className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${isDark ? "text-muted" : "text-muted"}`}>
                             {tx("Abonnement mensuel", "Monthly subscription")}
                           </span>
                           <span
@@ -1199,7 +1199,7 @@ export default function TarifsPage() {
                           </span>
                         </div>
                         <div className="flex flex-col">
-                          <span className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                          <span className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${isDark ? "text-muted" : "text-muted"}`}>
                             {tx("Mise en service", "Installation")}
                           </span>
                           <span className={`text-xl font-bold ${textColor}`}>
@@ -1207,7 +1207,7 @@ export default function TarifsPage() {
                           </span>
                         </div>
                         <div className="flex flex-col">
-                          <span className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                          <span className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${isDark ? "text-muted" : "text-muted"}`}>
                             {tx("Engagement", "Commitment")}
                           </span>
                           <span className={`text-xl font-bold ${textColor}`}>
@@ -1231,7 +1231,7 @@ export default function TarifsPage() {
                         href={`/reserver?offre=${plan.slug}`}
                         className={`inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${
                           isDark
-                            ? "bg-white text-[#0F172A] hover:bg-gray-100"
+                            ? "bg-white text-ink hover:bg-sand"
                             : "text-white"
                         }`}
                         style={isDark ? {} : { backgroundColor: plan.accent, boxShadow: `0 4px 16px ${plan.accent}30` }}
@@ -1249,9 +1249,9 @@ export default function TarifsPage() {
       </div>
 
       {/* ════════════════════════════════════════════════════════════════
-          S4 (PROGRAMME PILOTE) fond #10B981 + illustration
+          S4 (PROGRAMME PILOTE) fond #047857 + illustration
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#10B981]">
+      <section className="relative w-full overflow-hidden bg-leaf">
         <div
           className="absolute inset-0 pointer-events-none opacity-30"
           style={{
@@ -1266,8 +1266,8 @@ export default function TarifsPage() {
             <FadeIn>
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <Sparkles className="h-5 w-5 text-white/80" aria-hidden="true" />
-                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
+                  <Sparkles className="h-5 w-5 text-ondark" aria-hidden="true" />
+                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-ondark">
                     {tx("Programme pilote (3 places", "Pilot programme) 3 spots")}
                   </span>
                 </div>
@@ -1282,7 +1282,7 @@ export default function TarifsPage() {
                   )}
                 </h2>
 
-                <p className="text-white/90 text-[1.05rem] lg:text-[1.15rem] leading-[1.65] max-w-2xl mb-8">
+                <p className="text-ondark text-[1.05rem] lg:text-[1.15rem] leading-[1.65] max-w-2xl mb-8">
                   {tx(
                     "Installez votre première box dans un site pilote, testez la collecte connectée, mesurez votre impact sur 3 mois. Désengagement à tout moment.",
                     "Install your first kiosk at a pilot site, test connected collection, measure your impact over 3 months. Cancel anytime."
@@ -1304,7 +1304,7 @@ export default function TarifsPage() {
                       "Cancel anytime, no penalty",
                     ]
                   ).map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-white/95 text-[15px] leading-snug">
+                    <li key={i} className="flex items-start gap-3 text-ondark text-[15px] leading-snug">
                       <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <span>{item}</span>
                     </li>
@@ -1313,7 +1313,7 @@ export default function TarifsPage() {
 
                 <Link
                   href="/reserver?offre=pilote-waki-box"
-                  className="inline-flex items-center justify-center gap-2 bg-[#0F1115] hover:bg-[#022C22] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-forest-900 hover:bg-forest text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
                 >
                   {tx("Démarrer le pilote", "Start a pilot")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -1334,14 +1334,14 @@ export default function TarifsPage() {
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#0F1115]/30 via-transparent to-[#10B981]/10" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-forest-900/30 via-transparent to-leaf/10" />
                 <div className="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md rounded-2xl px-5 py-4 shadow-lg">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#047857] mb-1">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-leaf mb-1">
                     {tx("Offre pilote", "Pilot offer")}
                   </p>
-                  <p className="text-3xl font-black text-[#0F172A] leading-none tabular-nums">
+                  <p className="text-3xl font-black text-ink leading-none tabular-nums">
                     {tx("1er mois offert", "1st month free")}
-                    <span className="text-sm font-semibold text-gray-500 block mt-1">{tx("puis 39 € HT/mois", "then €39 HT/month")}</span>
+                    <span className="text-sm font-semibold text-muted block mt-1">{tx("puis 39 € HT/mois", "then €39 HT/month")}</span>
                   </p>
                 </div>
               </div>
@@ -1353,22 +1353,22 @@ export default function TarifsPage() {
       {/* ════════════════════════════════════════════════════════════════
           S5 (COMPARATIF WAKI BOX) visualisation par barres
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#F8FAFC] py-20 lg:py-28">
+      <section className="relative w-full overflow-hidden bg-cream py-20 lg:py-28">
         <GhostNumber n="05" isDark={false} align="left" />
 
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf mb-4">
                 {tx("Comparatif Waki Box", "Waki Box comparison")}
               </p>
               <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-6"
+                className="text-ink font-bold tracking-tight mb-6"
                 style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
               >
                 {tx("Quel plan pour votre organisation ?", "Which plan for your organisation?")}
               </h2>
-              <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+              <p className="text-ink-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
                 {tx(
                   "Quatre critères chiffrés visualisés en barres, plus six fonctions clés en mode présence/absence. Une lecture en dix secondes.",
                   "Four numeric criteria visualised as bars, plus six key features as presence/absence. A ten-second read."
@@ -1378,25 +1378,25 @@ export default function TarifsPage() {
           </FadeIn>
 
           <FadeIn>
-            <div className="max-w-5xl bg-white rounded-3xl shadow-sm ring-1 ring-gray-100 p-6 lg:p-10">
+            <div className="max-w-5xl bg-white rounded-3xl shadow-sm ring-1 ring-line p-6 lg:p-10">
               {/* Plan headers */}
-              <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-3 lg:gap-6 pb-5 mb-6 border-b-2 border-gray-100 items-end">
+              <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-3 lg:gap-6 pb-5 mb-6 border-b-2 border-line items-end">
                 <div />
                 <div className="text-center">
-                  <span className="block text-[10px] font-bold uppercase tracking-[0.12em] text-[#0EA5E9]">Essentiel</span>
-                  <span className="block text-xl font-black text-[#0F172A] mt-1 tabular-nums">39 €</span>
+                  <span className="block text-[10px] font-bold uppercase tracking-[0.12em] text-forest">Essentiel</span>
+                  <span className="block text-xl font-black text-ink mt-1 tabular-nums">39 €</span>
                 </div>
                 <div className="text-center relative">
-                  <span className="absolute -top-7 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#10B981] text-white text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">
+                  <span className="absolute -top-7 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-leaf text-white text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">
                     <Sparkles className="h-2.5 w-2.5" aria-hidden="true" />
                     {tx("Le plus choisi", "Most chosen")}
                   </span>
-                  <span className="block text-[10px] font-bold uppercase tracking-[0.12em] text-[#10B981]">Confort</span>
-                  <span className="block text-xl font-black text-[#0F172A] mt-1 tabular-nums">79 €</span>
+                  <span className="block text-[10px] font-bold uppercase tracking-[0.12em] text-leaf">Confort</span>
+                  <span className="block text-xl font-black text-ink mt-1 tabular-nums">79 €</span>
                 </div>
                 <div className="text-center">
-                  <span className="block text-[10px] font-bold uppercase tracking-[0.12em] text-[#F59E0B]">Premium</span>
-                  <span className="block text-xl font-black text-[#0F172A] mt-1 tabular-nums">{tx("dès 149 €", "from €149")}</span>
+                  <span className="block text-[10px] font-bold uppercase tracking-[0.12em] text-ochre">Premium</span>
+                  <span className="block text-xl font-black text-ink mt-1 tabular-nums">{tx("dès 149 €", "from €149")}</span>
                 </div>
               </div>
 
@@ -1404,17 +1404,17 @@ export default function TarifsPage() {
               <div className="space-y-7 mb-10">
                 {comparisonRows.map((row) => (
                   <div key={row.label}>
-                    <p className="text-[12px] font-bold text-[#0F172A] uppercase tracking-[0.1em] mb-3">
+                    <p className="text-[12px] font-bold text-ink uppercase tracking-[0.1em] mb-3">
                       {row.label}
                     </p>
                     <div className="grid grid-cols-3 gap-3 lg:gap-6">
                       {[
-                        { ...row.essentiel, accent: "#0EA5E9" },
-                        { ...row.confort, accent: "#10B981" },
-                        { ...row.premium, accent: "#F59E0B" },
+                        { ...row.essentiel, accent: "#0B3B2E" },
+                        { ...row.confort, accent: "#047857" },
+                        { ...row.premium, accent: "#B45309" },
                       ].map((cell, j) => (
                         <div key={j} className="flex flex-col gap-2">
-                          <div className="relative h-7 bg-[#F1F5F9] rounded-lg overflow-hidden">
+                          <div className="relative h-7 bg-sand rounded-lg overflow-hidden">
                             <div
                               className="absolute top-0 left-0 h-full rounded-lg"
                               style={{
@@ -1424,7 +1424,7 @@ export default function TarifsPage() {
                               }}
                             />
                           </div>
-                          <span className="text-[12px] font-semibold text-[#0F172A] tabular-nums">
+                          <span className="text-[12px] font-semibold text-ink tabular-nums">
                             {cell.value}
                           </span>
                         </div>
@@ -1435,25 +1435,25 @@ export default function TarifsPage() {
               </div>
 
               {/* Feature matrix */}
-              <div className="border-t border-gray-100 pt-8">
-                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-gray-500 mb-5">
+              <div className="border-t border-line pt-8">
+                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted mb-5">
                   {tx("Fonctions avancées", "Advanced features")}
                 </p>
                 <div className="space-y-3">
                   {featureMatrix.map((row, idx) => (
                     <div
                       key={idx}
-                      className="grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-3 lg:gap-6 items-center py-2.5 border-b border-gray-50 last:border-0"
+                      className="grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-3 lg:gap-6 items-center py-2.5 border-b border-line last:border-0"
                     >
-                      <span className="text-[13px] font-medium text-[#0F172A]">{row.label}</span>
+                      <span className="text-[13px] font-medium text-ink">{row.label}</span>
                       {[row.essentiel, row.confort, row.premium].map((ok, k) => {
-                        const accent = k === 0 ? "#0EA5E9" : k === 1 ? "#10B981" : "#F59E0B";
+                        const accent = k === 0 ? "#0B3B2E" : k === 1 ? "#047857" : "#B45309";
                         return (
                           <div key={k} className="flex justify-center">
                             {ok ? (
                               <CheckCircle2 className="h-5 w-5" style={{ color: accent }} aria-hidden="true" />
                             ) : (
-                              <span className="text-gray-300 text-xl" aria-hidden="true">-</span>
+                              <span className="text-ondark-muted text-xl" aria-hidden="true">-</span>
                             )}
                           </div>
                         );
@@ -1464,25 +1464,25 @@ export default function TarifsPage() {
               </div>
 
               {/* CTA row */}
-              <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-3 lg:gap-6 pt-8 mt-8 border-t-2 border-gray-100">
+              <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-3 lg:gap-6 pt-8 mt-8 border-t-2 border-line">
                 <div />
                 <Link
                   href="/reserver?offre=waki-box-essentiel"
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-[11px] lg:text-xs font-semibold text-white bg-[#0EA5E9] hover:bg-[#0284C7] transition-colors"
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-[11px] lg:text-xs font-semibold text-white bg-forest hover:bg-leaf transition-colors"
                 >
                   {tx("Réserver", "Book")}
                   <ArrowRight className="h-3 w-3" aria-hidden="true" />
                 </Link>
                 <Link
                   href="/reserver?offre=waki-box-confort"
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-[11px] lg:text-xs font-semibold text-white bg-[#10B981] hover:bg-[#0E9F6E] transition-colors"
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-[11px] lg:text-xs font-semibold text-white bg-leaf hover:bg-leaf-700 transition-colors"
                 >
                   {tx("Réserver", "Book")}
                   <ArrowRight className="h-3 w-3" aria-hidden="true" />
                 </Link>
                 <Link
                   href="/reserver?offre=waki-box-premium"
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-[11px] lg:text-xs font-semibold text-white bg-[#F59E0B] hover:bg-[#D97706] transition-colors"
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-[11px] lg:text-xs font-semibold text-white bg-ochre hover:bg-ochre transition-colors"
                 >
                   {tx("Réserver", "Book")}
                   <ArrowRight className="h-3 w-3" aria-hidden="true" />
@@ -1502,16 +1502,16 @@ export default function TarifsPage() {
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf mb-4">
                 {tx("Modules complémentaires", "Add-on modules")}
               </p>
               <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-6"
+                className="text-ink font-bold tracking-tight mb-6"
                 style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
               >
                 {tx("Composez votre offre Waki Box sur mesure.", "Build your Waki Box offer to fit.")}
               </h2>
-              <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+              <p className="text-ink-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
                 {tx(
                   "Sept modules à la carte, chacun se greffe sur n'importe quel plan. Facturation unitaire, sans engagement supplémentaire.",
                   "Seven à la carte modules, each plugs into any plan. Unit billing, no additional commitment."
@@ -1529,34 +1529,34 @@ export default function TarifsPage() {
                   key={addon.slug}
                   className={isLarge ? "md:col-span-2 lg:col-span-2" : ""}
                 >
-                  <div className="group h-full bg-[#F8FAFC] rounded-2xl border border-gray-100 p-6 lg:p-7 hover:border-[#10B981]/40 hover:shadow-lg transition-all duration-300">
+                  <div className="group h-full bg-cream rounded-2xl border border-line p-6 lg:p-7 hover:border-leaf/40 hover:shadow-lg transition-all duration-300">
                     <div className="flex flex-col h-full">
                       <div className="flex items-start gap-4 mb-4">
-                        <div className="w-11 h-11 rounded-xl bg-[#10B981]/10 flex items-center justify-center flex-shrink-0">
-                          <AddonIcon className="h-5 w-5 text-[#047857]" aria-hidden="true" />
+                        <div className="w-11 h-11 rounded-xl bg-leaf-100 flex items-center justify-center flex-shrink-0">
+                          <AddonIcon className="h-5 w-5 text-leaf" aria-hidden="true" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1">
-                            <span className="text-[10px] font-bold text-gray-400 tabular-nums tracking-wider">
+                            <span className="text-[10px] font-bold text-muted tabular-nums tracking-wider">
                               {String(i + 1).padStart(2, "0")}
                             </span>
-                            <span className="inline-flex px-1.5 py-0.5 rounded bg-[#10B981]/10 text-[10px] font-semibold text-[#047857] tracking-wide">
+                            <span className="inline-flex px-1.5 py-0.5 rounded bg-leaf-100 text-[10px] font-semibold text-leaf tracking-wide">
                               {addon.recurrence}
                             </span>
                           </div>
-                          <h3 className="font-bold text-[#0F172A] text-base leading-tight">{addon.name}</h3>
+                          <h3 className="font-bold text-ink text-base leading-tight">{addon.name}</h3>
                         </div>
                       </div>
-                      <p className="text-[13.5px] text-gray-600 leading-relaxed mb-5 flex-1">
+                      <p className="text-[13.5px] text-ink-700 leading-relaxed mb-5 flex-1">
                         {addon.desc}
                       </p>
-                      <div className="flex items-center justify-between gap-3 pt-4 border-t border-gray-100">
-                        <span className="text-base font-black text-[#047857] tabular-nums whitespace-nowrap">
+                      <div className="flex items-center justify-between gap-3 pt-4 border-t border-line">
+                        <span className="text-base font-black text-leaf tabular-nums whitespace-nowrap">
                           {addon.price}
                         </span>
                         <Link
                           href={`/reserver?offre=${addon.slug}`}
-                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#047857]/10 text-[#047857] text-xs font-semibold hover:bg-[#047857]/20 transition-colors whitespace-nowrap group-hover:bg-[#10B981] group-hover:text-white"
+                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-leaf-100 text-leaf text-xs font-semibold hover:bg-leaf/20 transition-colors whitespace-nowrap group-hover:bg-leaf group-hover:text-white"
                         >
                           {tx("Réserver", "Book")}
                           <ArrowRight className="h-3 w-3" aria-hidden="true" />
@@ -1574,21 +1574,21 @@ export default function TarifsPage() {
       {/* ════════════════════════════════════════════════════════════════
           S6b (COMPARATEUR INTERACTIF)
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#F8FAFC] py-20 lg:py-28">
+      <section className="relative w-full overflow-hidden bg-cream py-20 lg:py-28">
         <GhostNumber n="06" isDark={false} align="left" />
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf mb-4">
                 {tx("Composez votre offre", "Build your offer")}
               </p>
               <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-6"
+                className="text-ink font-bold tracking-tight mb-6"
                 style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
               >
                 {tx("Calculez votre budget en temps réel.", "Calculate your budget in real time.")}
               </h2>
-              <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+              <p className="text-ink-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
                 {tx(
                   "Choisissez un plan, cochez les modules que vous souhaitez ajouter. Le total mensuel se met à jour instantanément, avec ou sans remise annuelle.",
                   "Choose a plan, tick the modules you want to add. The monthly total updates instantly, with or without the annual discount."
@@ -1610,16 +1610,16 @@ export default function TarifsPage() {
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf mb-4">
                 {tx("Bundles clés en main", "Turnkey bundles")}
               </p>
               <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-6"
+                className="text-ink font-bold tracking-tight mb-6"
                 style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
               >
                 {tx("Deux bundles pour aller plus vite.", "Two bundles to move faster.")}
               </h2>
-              <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+              <p className="text-ink-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
                 {tx(
                   "Des packs tout-en-un pensés pour des organisations qui veulent lancer ou consolider leur démarche DEEE et CSRD en un seul contrat, avec une économie immédiate.",
                   "All-in-one packs designed for organisations that want to launch or consolidate their WEEE and CSRD approach in a single contract, with an immediate saving."
@@ -1631,24 +1631,24 @@ export default function TarifsPage() {
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl">
             {/* Bundle Confort RSE Essentiel */}
             <FadeIn>
-              <article className="relative h-full rounded-2xl border border-[#10B981]/25 bg-gradient-to-br from-[#F0FDF9] to-white p-7 lg:p-8 shadow-sm">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#10B981]/10 border border-[#10B981]/20 mb-5">
-                  <Gift className="h-4 w-4 text-[#047857]" aria-hidden="true" />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#047857]">
+              <article className="relative h-full rounded-2xl border border-leaf/25 bg-gradient-to-br from-leaf-50 to-white p-7 lg:p-8 shadow-sm">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-leaf-100 border border-leaf/20 mb-5">
+                  <Gift className="h-4 w-4 text-leaf" aria-hidden="true" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-leaf">
                     {tx("Bundle Confort RSE Essentiel", "Essential RSE Comfort Bundle")}
                   </span>
                 </div>
-                <p className="text-[13px] font-semibold text-[#047857] mb-1">
+                <p className="text-[13px] font-semibold text-leaf mb-1">
                   {tx("Avec plan Confort (79 € HT/mois)", "With Comfort plan (€79 HT/month)")}
                 </p>
-                <p className="text-4xl font-black text-[#0F172A] mb-2 tabular-nums">
+                <p className="text-4xl font-black text-ink mb-2 tabular-nums">
                   990 <span className="text-xl font-semibold opacity-70">€ HT one-shot</span>
                 </p>
-                <p className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#047857] bg-[#10B981]/10 px-2.5 py-1 rounded-full mb-6">
+                <p className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-leaf bg-leaf-100 px-2.5 py-1 rounded-full mb-6">
                   <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
                   {tx("Économie 150 € vs séparé", "Saving €150 vs separate")}
                 </p>
-                <p className="text-[13px] text-gray-600 leading-relaxed mb-6 italic">
+                <p className="text-[13px] text-ink-700 leading-relaxed mb-6 italic">
                   {tx(
                     "Lancez votre démarche DEEE en 30 jours, clés en main.",
                     "Launch your WEEE approach in 30 days, turnkey."
@@ -1667,15 +1667,15 @@ export default function TarifsPage() {
                       "WEEE Flash diagnostic: free",
                     ]
                   ).map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-[13.5px] text-gray-700 leading-snug">
-                      <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" aria-hidden="true" />
+                    <li key={i} className="flex items-start gap-3 text-[13.5px] text-ink-700 leading-snug">
+                      <CheckCircle2 className="h-4 w-4 text-leaf flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
                 <Link
                   href="/reserver?offre=waki-box-confort&bundle=confort-rse-essentiel"
-                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#10B981]/25 text-sm"
+                  className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover: text-sm"
                 >
                   {tx("Choisir ce bundle", "Choose this bundle")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -1685,24 +1685,24 @@ export default function TarifsPage() {
 
             {/* Bundle Premium Conformité */}
             <FadeIn>
-              <article className="relative h-full rounded-2xl border-2 border-[#F59E0B]/40 bg-gradient-to-br from-[#FFFBEB] to-white p-7 lg:p-8 shadow-lg shadow-[#F59E0B]/10">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F59E0B]/15 border border-[#F59E0B]/30 mb-5">
-                  <Package className="h-4 w-4 text-[#D97706]" aria-hidden="true" />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#D97706]">
+              <article className="relative h-full rounded-2xl border-2 border-ochre/40 bg-gradient-to-br from-ochre-100 to-white p-7 lg:p-8 shadow-lg ">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-ochre/15 border border-ochre/30 mb-5">
+                  <Package className="h-4 w-4 text-ochre" aria-hidden="true" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-ochre">
                     {tx("Bundle Premium Conformité", "Premium Compliance Bundle")}
                   </span>
                 </div>
-                <p className="text-[13px] font-semibold text-[#D97706] mb-1">
+                <p className="text-[13px] font-semibold text-ochre mb-1">
                   {tx("Avec plan Premium (dès 149 € HT/mois)", "With Premium plan (from €149 HT/month)")}
                 </p>
-                <p className="text-4xl font-black text-[#0F172A] mb-2 tabular-nums">
+                <p className="text-4xl font-black text-ink mb-2 tabular-nums">
                   2 990 <span className="text-xl font-semibold opacity-70">€ HT one-shot</span>
                 </p>
-                <p className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#D97706] bg-[#F59E0B]/10 px-2.5 py-1 rounded-full mb-6">
+                <p className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-ochre bg-ochre/10 px-2.5 py-1 rounded-full mb-6">
                   <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
                   {tx("Économie 740 € (-20 %) vs séparé", "Saving €740 (-20%) vs separate")}
                 </p>
-                <p className="text-[13px] text-gray-600 leading-relaxed mb-6 italic">
+                <p className="text-[13px] text-ink-700 leading-relaxed mb-6 italic">
                   {tx(
                     "Conformité CSRD et DEEE auditée, documentée, formée, en un seul contrat.",
                     "CSRD and WEEE compliance audited, documented, trained, in a single contract."
@@ -1723,15 +1723,15 @@ export default function TarifsPage() {
                       "RSE signage kit: €350 HT (included)",
                     ]
                   ).map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-[13.5px] text-gray-700 leading-snug">
-                      <CheckCircle2 className="h-4 w-4 text-[#F59E0B] flex-shrink-0 mt-0.5" aria-hidden="true" />
+                    <li key={i} className="flex items-start gap-3 text-[13.5px] text-ink-700 leading-snug">
+                      <CheckCircle2 className="h-4 w-4 text-ochre flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
                 <Link
                   href="/reserver?offre=waki-box-premium&bundle=premium-conformite"
-                  className="inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#F59E0B]/25 text-sm"
+                  className="inline-flex items-center gap-2 bg-ochre hover:bg-ochre text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover: text-sm"
                 >
                   {tx("Choisir ce bundle", "Choose this bundle")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -1745,7 +1745,7 @@ export default function TarifsPage() {
       {/* ════════════════════════════════════════════════════════════════
           S6d (TROIS PORTES D'ENTRÉE)
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#0F1115] py-20 lg:py-28">
+      <section className="relative w-full overflow-hidden bg-forest-900 py-20 lg:py-28">
         <GhostNumber n="08" isDark={true} align="left" />
         <div
           className="absolute inset-0 pointer-events-none"
@@ -1757,7 +1757,7 @@ export default function TarifsPage() {
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#6EE7B7] mb-4">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf-300 mb-4">
                 {tx("Première étape", "First step")}
               </p>
               <h2
@@ -1766,7 +1766,7 @@ export default function TarifsPage() {
               >
                 {tx("Trois portes d'entrée.", "Three entry points.")}
               </h2>
-              <p className="text-gray-300 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+              <p className="text-ondark-muted text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
                 {tx(
                   "Choisissez la première étape qui colle à votre calendrier. Chaque parcours commence par une réservation. Nous validons le périmètre ensemble avant le moindre engagement contractuel.",
                   "Choose the first step that fits your calendar. Each journey starts with a booking. We validate the scope together before any contractual commitment."
@@ -1778,32 +1778,32 @@ export default function TarifsPage() {
           <div className="grid md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl">
             {/* 1. Diagnostic DEEE Flash */}
             <FadeIn>
-              <article className="h-full bg-white/[0.04] hover:bg-white/[0.07] border border-white/10 hover:border-[#10B981]/40 rounded-2xl p-6 lg:p-7 transition-all duration-300 flex flex-col">
-                <div className="w-12 h-12 rounded-xl bg-[#10B981]/15 flex items-center justify-center mb-5">
-                  <Microscope className="h-6 w-6 text-[#10B981]" aria-hidden="true" />
+              <article className="h-full bg-white/[0.04] hover:bg-white/[0.07] border border-ondark-line hover:border-leaf/40 rounded-2xl p-6 lg:p-7 transition-all duration-300 flex flex-col">
+                <div className="w-12 h-12 rounded-xl bg-leaf-100 flex items-center justify-center mb-5">
+                  <Microscope className="h-6 w-6 text-leaf" aria-hidden="true" />
                 </div>
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-flex px-2.5 py-1 rounded-full bg-[#10B981]/15 text-[#6EE7B7] text-[10px] font-bold uppercase tracking-wider">
+                  <span className="inline-flex px-2.5 py-1 rounded-full bg-leaf-100 text-leaf-300 text-[10px] font-bold uppercase tracking-wider">
                     {tx("Gratuit", "Free")}
                   </span>
-                  <span className="text-gray-500 text-[11px]">{tx("2 minutes", "2 minutes")}</span>
+                  <span className="text-muted text-[11px]">{tx("2 minutes", "2 minutes")}</span>
                 </div>
                 <h3 className="text-lg font-bold text-white mb-3 leading-snug">
                   {tx("Diagnostic DEEE Flash", "WEEE Flash Diagnostic")}
                 </h3>
-                <p className="text-gray-400 text-[13.5px] leading-relaxed mb-5 flex-1">
+                <p className="text-muted text-[13.5px] leading-relaxed mb-5 flex-1">
                   {tx(
                     "Évaluez la maturité DEEE de votre organisation en 5 questions. Vous repartez avec un score, une recommandation de formule, et un point d'entrée pour aller plus loin.",
                     "Assess your organisation's WEEE maturity in 5 questions. You leave with a score, a formula recommendation, and a starting point to go further."
                   )}
                 </p>
                 <div className="pt-4 border-t border-white/8">
-                  <p className="text-[11px] text-gray-500 mb-4 italic">
+                  <p className="text-[11px] text-muted mb-4 italic">
                     {tx("Sans inscription. Résultat instantané.", "No sign-up. Instant result.")}
                   </p>
                   <Link
                     href="/reserver?offre=diagnostic-flash"
-                    className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#34D399] font-semibold text-sm transition-colors group"
+                    className="inline-flex items-center gap-2 text-leaf hover:text-leaf-300 font-semibold text-sm transition-colors group"
                   >
                     {tx("Lancer le diagnostic", "Start the diagnostic")}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
@@ -1814,32 +1814,32 @@ export default function TarifsPage() {
 
             {/* 2. Démo conseil (highlighted) */}
             <FadeIn>
-              <article className="h-full bg-[#10B981]/10 hover:bg-[#10B981]/15 border-2 border-[#10B981]/50 rounded-2xl p-6 lg:p-7 transition-all duration-300 flex flex-col ring-1 ring-[#10B981]/20">
-                <div className="w-12 h-12 rounded-xl bg-[#10B981]/25 flex items-center justify-center mb-5">
-                  <Clock className="h-6 w-6 text-[#10B981]" aria-hidden="true" />
+              <article className="h-full bg-leaf-100 hover:bg-leaf/15 border-2 border-leaf/50 rounded-2xl p-6 lg:p-7 transition-all duration-300 flex flex-col ring-1 ring-leaf/20">
+                <div className="w-12 h-12 rounded-xl bg-leaf/25 flex items-center justify-center mb-5">
+                  <Clock className="h-6 w-6 text-leaf" aria-hidden="true" />
                 </div>
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-flex px-2.5 py-1 rounded-full bg-[#10B981] text-white text-[10px] font-bold uppercase tracking-wider">
+                  <span className="inline-flex px-2.5 py-1 rounded-full bg-leaf text-white text-[10px] font-bold uppercase tracking-wider">
                     {tx("Recommandé", "Recommended")}
                   </span>
-                  <span className="text-gray-400 text-[11px]">{tx("30 minutes", "30 minutes")}</span>
+                  <span className="text-muted text-[11px]">{tx("30 minutes", "30 minutes")}</span>
                 </div>
                 <h3 className="text-lg font-bold text-white mb-3 leading-snug">
                   {tx("Démo conseil", "Advisory demo")}
                 </h3>
-                <p className="text-gray-300 text-[13.5px] leading-relaxed mb-5 flex-1">
+                <p className="text-ondark-muted text-[13.5px] leading-relaxed mb-5 flex-1">
                   {tx(
                     "Un appel avec un expert GreenTechCycle pour cadrer votre besoin, identifier les leviers de valeur, et vous proposer un plan d'action concret.",
                     "A call with a GreenTechCycle expert to frame your need, identify value levers, and provide a concrete action plan."
                   )}
                 </p>
-                <div className="pt-4 border-t border-[#10B981]/20">
-                  <p className="text-[11px] text-gray-400 mb-4 italic">
+                <div className="pt-4 border-t border-leaf/20">
+                  <p className="text-[11px] text-muted mb-4 italic">
                     {tx("Aucun engagement. Restitution écrite envoyée après l'appel.", "No commitment. Written summary sent after the call.")}
                   </p>
                   <Link
                     href="/reserver?offre=demo-conseil"
-                    className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-5 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#10B981]/25 text-sm w-full justify-center"
+                    className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-5 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover: text-sm w-full justify-center"
                   >
                     {tx("Réserver la démo", "Book the demo")}
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -1850,32 +1850,32 @@ export default function TarifsPage() {
 
             {/* 3. Pilote Waki Box */}
             <FadeIn>
-              <article className="h-full bg-white/[0.04] hover:bg-white/[0.07] border border-white/10 hover:border-[#0EA5E9]/40 rounded-2xl p-6 lg:p-7 transition-all duration-300 flex flex-col">
-                <div className="w-12 h-12 rounded-xl bg-[#0EA5E9]/15 flex items-center justify-center mb-5">
-                  <Rocket className="h-6 w-6 text-[#0EA5E9]" aria-hidden="true" />
+              <article className="h-full bg-white/[0.04] hover:bg-white/[0.07] border border-ondark-line hover:border-line/40 rounded-2xl p-6 lg:p-7 transition-all duration-300 flex flex-col">
+                <div className="w-12 h-12 rounded-xl bg-forest/15 flex items-center justify-center mb-5">
+                  <Rocket className="h-6 w-6 text-forest" aria-hidden="true" />
                 </div>
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-flex px-2.5 py-1 rounded-full bg-[#0EA5E9]/15 text-[#67E8F9] text-[10px] font-bold uppercase tracking-wider">
+                  <span className="inline-flex px-2.5 py-1 rounded-full bg-forest/15 text-leaf-300 text-[10px] font-bold uppercase tracking-wider">
                     {tx("1er mois offert", "1st month free")}
                   </span>
-                  <span className="text-gray-500 text-[11px]">{tx("puis 39 € HT/mois", "then €39 HT/mo")}</span>
+                  <span className="text-muted text-[11px]">{tx("puis 39 € HT/mois", "then €39 HT/mo")}</span>
                 </div>
                 <h3 className="text-lg font-bold text-white mb-3 leading-snug">
                   {tx("Pilote Waki Box", "Waki Box Pilot")}
                 </h3>
-                <p className="text-gray-400 text-[13.5px] leading-relaxed mb-5 flex-1">
+                <p className="text-muted text-[13.5px] leading-relaxed mb-5 flex-1">
                   {tx(
                     "Installez votre première box dans un site pilote, testez la collecte connectée, mesurez votre impact sur 3 mois. Désengagement à tout moment.",
                     "Install your first kiosk at a pilot site, test connected collection, measure your impact over 3 months. Cancel anytime."
                   )}
                 </p>
                 <div className="pt-4 border-t border-white/8">
-                  <p className="text-[11px] text-gray-500 mb-4 italic">
+                  <p className="text-[11px] text-muted mb-4 italic">
                     {tx("Sans frais d'installation. Box installée sous 10 jours.", "No installation fee. Box installed within 10 days.")}
                   </p>
                   <Link
                     href="/reserver?offre=pilote-waki-box"
-                    className="inline-flex items-center gap-2 text-[#0EA5E9] hover:text-[#38BDF8] font-semibold text-sm transition-colors group"
+                    className="inline-flex items-center gap-2 text-forest hover:text-leaf-300 font-semibold text-sm transition-colors group"
                   >
                     {tx("Démarrer le pilote", "Start the pilot")}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
@@ -1892,7 +1892,7 @@ export default function TarifsPage() {
          ════════════════════════════════════════════════════════════════ */}
       <section
         id="pilote"
-        className="relative w-full overflow-hidden bg-[#F8FAFC] py-20 lg:py-28"
+        className="relative w-full overflow-hidden bg-cream py-20 lg:py-28"
         aria-labelledby="pilote-title"
       >
         <GhostNumber n="04" isDark={false} align="right" />
@@ -1901,15 +1901,15 @@ export default function TarifsPage() {
             <FadeIn>
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#047857]">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-leaf">
                     {tx("Porte d'entrée 4", "Entry point 4")}
                   </span>
-                  <span className="h-px flex-1 bg-[#10B981]/30" aria-hidden="true" />
+                  <span className="h-px flex-1 bg-leaf/30" aria-hidden="true" />
                 </div>
 
                 <h2
                   id="pilote-title"
-                  className="text-[#0F172A] font-bold tracking-tight mb-6"
+                  className="text-ink font-bold tracking-tight mb-6"
                   style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
                 >
                   {tx(
@@ -1918,19 +1918,19 @@ export default function TarifsPage() {
                   )}
                 </h2>
 
-                <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-5">
+                <p className="text-ink-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-5">
                   {tx(
                     "Avant de s'engager sur douze mois, certaines organisations préfèrent mesurer concrètement la valeur GTC sur leur propre parc. Le Pilote GTC répond à ce besoin : trois jours, une équipe senior, un livrable structuré.",
                     "Before committing to twelve months, some organisations prefer to measure GTC's value concretely against their own fleet. The GTC Pilot meets that need: three days, a senior team, a structured deliverable."
                   )}
                 </p>
-                <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-5">
+                <p className="text-ink-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-5">
                   {tx(
                     "Le diagnostic couvre la découverte de parc (asset discovery et notation d'obsolescence), la rédaction d'un plan d'action ITAD priorisé, le lancement de la Plateforme (paramétrage de la premiere branche), et une restitution écrite. Mission conduite par notre équipe ITAM, carbone et cyber.",
                     "The diagnostic covers fleet discovery (asset discovery and obsolescence scoring), drafting a prioritised ITAD action plan, Platform kickoff (first branch configuration), and a written debrief. Delivered by our ITAM, carbon and cyber team."
                   )}
                 </p>
-                <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-8">
+                <p className="text-ink-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-8">
                   {tx(
                     "Le Pilote se déroule sur site ou en hybride selon la taille du parc. A l'issue des trois jours, vous disposez d'une feuille de route signée, prête à présenter en comité de direction.",
                     "The Pilot takes place on site or in hybrid mode depending on fleet size. After three days, you have a signed roadmap, ready to present to your executive committee."
@@ -1939,7 +1939,7 @@ export default function TarifsPage() {
 
                 {/* Livrables */}
                 <div className="mb-8">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-500 mb-4">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted mb-4">
                     {tx("Inclus dans la mission", "Included in the engagement")}
                   </p>
                   <ul className="space-y-3">
@@ -1957,8 +1957,8 @@ export default function TarifsPage() {
                         "Written debrief delivered within 5 business days",
                       ]
                     ).map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-[15px] text-gray-700 leading-snug">
-                        <CheckCircle2 className="h-5 w-5 text-[#10B981] flex-shrink-0 mt-0.5" aria-hidden="true" />
+                      <li key={i} className="flex items-start gap-3 text-[15px] text-ink-700 leading-snug">
+                        <CheckCircle2 className="h-5 w-5 text-leaf flex-shrink-0 mt-0.5" aria-hidden="true" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -1966,23 +1966,23 @@ export default function TarifsPage() {
                 </div>
 
                 {/* Prix + CTA */}
-                <div className="flex flex-wrap items-end gap-6 mb-8 pb-8 border-b border-gray-200">
+                <div className="flex flex-wrap items-end gap-6 mb-8 pb-8 border-b border-line">
                   <div className="flex flex-col">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-muted mb-1">
                       {tx("Mission forfaitaire", "Fixed-fee engagement")}
                     </span>
-                    <span className="text-4xl lg:text-5xl font-black tracking-tight leading-none tabular-nums text-[#10B981]">
+                    <span className="text-4xl lg:text-5xl font-black tracking-tight leading-none tabular-nums text-leaf">
                       2 900 <span className="text-lg font-semibold opacity-80">€ HT</span>
                     </span>
-                    <span className="text-sm text-gray-500 mt-1">
+                    <span className="text-sm text-muted mt-1">
                       {tx("pour 3 jours", "for 3 days")}
                     </span>
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-muted mb-1">
                       {tx("Paiement", "Payment")}
                     </span>
-                    <span className="text-xl font-bold text-[#0F172A]">
+                    <span className="text-xl font-bold text-ink">
                       {tx("100 % a la signature", "100% on signing")}
                     </span>
                   </div>
@@ -1990,7 +1990,7 @@ export default function TarifsPage() {
 
                 <Link
                   href="/reserver?offre=pilote-audit-3j"
-                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
+                  className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover: hover:-translate-y-0.5 text-sm"
                 >
                   {tx("Réserver le Pilote 3 jours", "Book the 3-day Pilot")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -2001,10 +2001,10 @@ export default function TarifsPage() {
             <FadeIn>
               <div className="space-y-5 lg:pt-16">
                 {/* Encart remboursement vert */}
-                <div className="rounded-2xl bg-[#10B981] p-6 lg:p-7 text-white">
+                <div className="rounded-2xl bg-leaf p-6 lg:p-7 text-white">
                   <div className="flex items-start gap-3 mb-4">
                     <CheckCircle2 className="h-6 w-6 text-white flex-shrink-0 mt-0.5" aria-hidden="true" />
-                    <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/80">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-ondark">
                       {tx("Garantie de valeur", "Value guarantee")}
                     </p>
                   </div>
@@ -2014,7 +2014,7 @@ export default function TarifsPage() {
                       "Pilot fully refunded on Year 1 Platform subscription if signed within 90 days of debrief."
                     )}
                   </p>
-                  <p className="text-white/80 text-sm leading-relaxed">
+                  <p className="text-ondark text-sm leading-relaxed">
                     {tx(
                       "2 900 € HT déduits automatiquement de la premiere facture annuelle Plateforme. Aucune démarche supplémentaire.",
                       "€2,900 ex-VAT automatically deducted from the first annual Platform invoice. No extra steps needed."
@@ -2023,11 +2023,11 @@ export default function TarifsPage() {
                 </div>
 
                 {/* Sous-titre mission senior */}
-                <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-6 lg:p-7">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-500 mb-3">
+                <div className="rounded-2xl bg-white border border-line shadow-sm p-6 lg:p-7">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted mb-3">
                     {tx("Composition de la mission", "Engagement composition")}
                   </p>
-                  <p className="text-[14.5px] text-gray-600 leading-[1.78]">
+                  <p className="text-[14.5px] text-ink-700 leading-[1.78]">
                     {tx(
                       "Jour 1 : Audit inventaire et notation d'obsolescence. Jour 2 : Plan ITAD priorisé + kick-off Plateforme. Jour 3 : Restitution orale et remise du livrable écrit. Equipe : un senior ITAM, un expert carbone, un consultant cyber.",
                       "Day 1: Inventory audit and obsolescence scoring. Day 2: Prioritised ITAD plan + Platform kickoff. Day 3: Oral debrief and written deliverable handover. Team: one senior ITAM, one carbon expert, one cyber consultant."
@@ -2043,29 +2043,29 @@ export default function TarifsPage() {
       {/* ════════════════════════════════════════════════════════════════
           SÉPARATION VISUELLE, transition vers sur-devis
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full bg-gradient-to-b from-white via-[#F1F5F9] to-[#0F1115] py-16 lg:py-20">
+      <section className="relative w-full bg-gradient-to-b from-white via-sand to-forest-900 py-16 lg:py-20">
         <div className="container mx-auto px-4 text-center">
           <FadeIn>
-            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-white shadow-lg shadow-gray-200/50 border border-gray-100">
-              <div className="w-2 h-2 rounded-full bg-[#10B981]" />
-              <span className="text-sm font-semibold text-[#0F172A]">
+            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-white shadow-lg border border-line">
+              <div className="w-2 h-2 rounded-full bg-leaf" />
+              <span className="text-sm font-semibold text-ink">
                 {tx(
                   "Au-delà de Waki Box : Plateforme et Service ITAD, étude personnalisée",
                   "Beyond Waki Box: Platform and ITAD Service, bespoke study"
                 )}
               </span>
-              <div className="w-2 h-2 rounded-full bg-[#F59E0B]" />
+              <div className="w-2 h-2 rounded-full bg-ochre" />
             </div>
           </FadeIn>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S7 (PLATEFORME & ITAD SUR DEVIS) fond #0F1115, cartes éditoriales
+          S7 (PLATEFORME & ITAD SUR DEVIS) fond #0F1F1A, cartes éditoriales
          ════════════════════════════════════════════════════════════════ */}
       <section
         id="sur-devis"
-        className="relative w-full overflow-hidden bg-[#0F1115] py-20 lg:py-28"
+        className="relative w-full overflow-hidden bg-forest-900 py-20 lg:py-28"
       >
         <GhostNumber n="07" isDark={true} align="left" />
         <div
@@ -2079,7 +2079,7 @@ export default function TarifsPage() {
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mb-16">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#6EE7B7] mb-4">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf-300 mb-4">
                 {tx("Étude personnalisée, ancres établies", "Bespoke study, anchors established")}
               </p>
               <h2
@@ -2091,7 +2091,7 @@ export default function TarifsPage() {
                   "Platform and ITAD Service, bespoke study."
                 )}
               </h2>
-              <p className="text-gray-300 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+              <p className="text-ondark-muted text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
                 {tx(
                   "Ancres de départ : Plateforme à partir de 2 500 € HT/mois (base 500 postes), ITAD à partir de 15 € HT/poste. Trente minutes de cadrage pour caler le devis sur votre parc et vos contraintes, livré sous 48 heures.",
                   "Starting anchors: Platform from €2,500 HT/month (base 500 devices), ITAD from €15 HT/device. Thirty minutes to scope the quote to your fleet and constraints, delivered within 48 hours."
@@ -2105,7 +2105,7 @@ export default function TarifsPage() {
               const CardIcon = card.icon;
               return (
                 <FadeIn key={card.slug}>
-                  <article className="group relative h-full bg-white/[0.04] hover:bg-white/[0.07] border border-white/10 hover:border-white/20 rounded-2xl overflow-hidden transition-all duration-300">
+                  <article className="group relative h-full bg-white/[0.04] hover:bg-white/[0.07] border border-ondark-line hover:border-white/20 rounded-2xl overflow-hidden transition-all duration-300">
                     {/* Photo */}
                     <div className="relative aspect-[16/8] overflow-hidden">
                       <Image
@@ -2116,7 +2116,7 @@ export default function TarifsPage() {
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 1024px) 100vw, 50vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0F1115]/85 via-[#0F1115]/40 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-forest-900/85 via-forest-900/40 to-transparent" />
                       <div
                         className="absolute top-5 left-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md"
                         style={{ backgroundColor: `${card.accent}E6` }}
@@ -2145,13 +2145,13 @@ export default function TarifsPage() {
                       >
                         {card.anchorNote}
                       </div>
-                      <p className="text-gray-300 text-[14.5px] leading-[1.78] mb-6">
+                      <p className="text-ondark-muted text-[14.5px] leading-[1.78] mb-6">
                         {card.body}
                       </p>
 
-                      <ul className="space-y-2.5 mb-8 pb-8 border-b border-white/10">
+                      <ul className="space-y-2.5 mb-8 pb-8 border-b border-ondark-line">
                         {card.bullets.map((b, j) => (
-                          <li key={j} className="flex items-start gap-3 text-[13.5px] text-gray-400 leading-snug">
+                          <li key={j} className="flex items-start gap-3 text-[13.5px] text-muted leading-snug">
                             <CheckCircle2 className="h-4 w-4 flex-shrink-0 mt-0.5" style={{ color: card.accent }} aria-hidden="true" />
                             <span>{b}</span>
                           </li>
@@ -2184,7 +2184,7 @@ export default function TarifsPage() {
           {/* ITAD service quick nav */}
           <FadeIn>
             <div className="mt-14 max-w-6xl">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted mb-5">
                 {tx("Cinq missions ITAD couvertes", "Five ITAD engagements covered")}
               </p>
               <div className="flex flex-wrap gap-2">
@@ -2194,9 +2194,9 @@ export default function TarifsPage() {
                     <Link
                       key={svc.slug}
                       href={`/services/${svc.slug}`}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 hover:border-[#10B981]/40 text-[12px] font-semibold text-gray-300 hover:text-white transition-all"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-ondark-line hover:border-leaf/40 text-[12px] font-semibold text-ondark-muted hover:text-white transition-all"
                     >
-                      <SvcIcon className="h-3.5 w-3.5 text-[#6EE7B7]" aria-hidden="true" />
+                      <SvcIcon className="h-3.5 w-3.5 text-leaf-300" aria-hidden="true" />
                       {svc.name}
                     </Link>
                   );
@@ -2216,13 +2216,13 @@ export default function TarifsPage() {
           <FadeIn>
             <div className="max-w-3xl mx-auto">
               <div className="flex items-center gap-3 mb-3">
-                <HelpCircle className="w-5 h-5 text-[#047857]" aria-hidden="true" />
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857]">
+                <HelpCircle className="w-5 h-5 text-leaf" aria-hidden="true" />
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf">
                   {tx("Questions fréquentes", "Frequently asked questions")}
                 </p>
               </div>
               <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-12"
+                className="text-ink font-bold tracking-tight mb-12"
                 style={{ fontSize: "clamp(1.7rem, 3.2vw, 2.4rem)", lineHeight: 1.1 }}
               >
                 {tx(
@@ -2242,9 +2242,9 @@ export default function TarifsPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          S9 (CTA DOUBLE FINAL + CROSS-LINKS) fond #10B981
+          S9 (CTA DOUBLE FINAL + CROSS-LINKS) fond #047857
          ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#10B981]">
+      <section className="relative w-full overflow-hidden bg-leaf">
         <div
           className="absolute inset-0 pointer-events-none opacity-30"
           style={{
@@ -2262,7 +2262,7 @@ export default function TarifsPage() {
               >
                 {tx("Prêt à passer à l'action ?", "Ready to take the next step?")}
               </h2>
-              <p className="text-white/90 text-[1.05rem] lg:text-[1.15rem] leading-[1.65] max-w-2xl mx-auto mb-10">
+              <p className="text-ondark text-[1.05rem] lg:text-[1.15rem] leading-[1.65] max-w-2xl mx-auto mb-10">
                 {tx(
                   "Réservez Waki Box dès aujourd'hui, ou demandez un devis Plateforme / ITAD sous 48 heures.",
                   "Book Waki Box today, or request a Platform / ITAD quote within 48 hours."
@@ -2271,7 +2271,7 @@ export default function TarifsPage() {
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   href="/reserver?offre=waki-box-confort"
-                  className="inline-flex items-center justify-center gap-2 bg-[#0F1115] hover:bg-[#022C22] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-forest-900 hover:bg-forest text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
                 >
                   {tx("Réserver Waki Box", "Book Waki Box")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -2286,7 +2286,7 @@ export default function TarifsPage() {
               </div>
 
               {/* Cross-links */}
-              <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 mt-10 text-white/85 text-[13px]">
+              <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 mt-10 text-ondark text-[13px]">
                 <Link
                   href="/cas-usages"
                   className="inline-flex items-center gap-1.5 hover:text-white underline-offset-4 hover:underline transition-colors"
@@ -2294,7 +2294,7 @@ export default function TarifsPage() {
                   {tx("Voir 8 cas clients chiffrés", "See 8 quantified client cases")}
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </Link>
-                <span className="text-white/40" aria-hidden="true">·</span>
+                <span className="text-ondark-muted" aria-hidden="true">·</span>
                 <Link
                   href="/secteurs"
                   className="inline-flex items-center gap-1.5 hover:text-white underline-offset-4 hover:underline transition-colors"
@@ -2302,7 +2302,7 @@ export default function TarifsPage() {
                   {tx("Explorer 16 fiches sectorielles", "Explore 16 sector profiles")}
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </Link>
-                <span className="text-white/40" aria-hidden="true">·</span>
+                <span className="text-ondark-muted" aria-hidden="true">·</span>
                 <Link
                   href="/plateforme"
                   className="inline-flex items-center gap-1.5 hover:text-white underline-offset-4 hover:underline transition-colors"
@@ -2313,7 +2313,7 @@ export default function TarifsPage() {
               </div>
 
               {/* Trust line */}
-              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 mt-10 text-white/80 text-xs">
+              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 mt-10 text-ondark text-xs">
                 <span className="inline-flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
                   {tx("Réponse sous 24 heures ouvrées", "Response within 24 business hours")}

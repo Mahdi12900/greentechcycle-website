@@ -55,7 +55,7 @@ export default function FAQPage() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
                 {t("hero.title")}
               </h1>
-              <p className="text-lg md:text-xl text-white/80">
+              <p className="text-lg md:text-xl text-ondark">
                 {t("hero.subtitle")}
               </p>
             </div>
@@ -78,7 +78,7 @@ export default function FAQPage() {
                     className={`inline-flex items-center gap-2 px-5 md:px-6 py-3 rounded-full font-medium text-sm md:text-base transition-all ${
                       activeTab === tab
                         ? "bg-primary text-white shadow-lg shadow-primary/25"
-                        : "bg-white text-dark/70 hover:bg-primary/5 hover:text-primary border border-gray-200"
+                        : "bg-white text-ink-700 hover:bg-primary/5 hover:text-primary border border-line"
                     }`}
                   >
                     <TabIcon className="h-4 w-4" />
@@ -94,10 +94,10 @@ export default function FAQPage() {
             <div className="space-y-3">
               {questions.map((item, index) => (
                 <StaggerItem key={`${activeTab}-${index}`}>
-                  <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                  <div className="bg-white rounded-xl shadow-sm border border-line overflow-hidden">
                     <button
                       onClick={() => toggleQuestion(index)}
-                      className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-gray-50 transition-colors"
+                      className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-cream transition-colors"
                     >
                       <span className="font-medium text-dark pr-4 text-sm md:text-base">
                         {item.q}
@@ -113,7 +113,7 @@ export default function FAQPage() {
                         openIndex === index ? "max-h-96" : "max-h-0"
                       }`}
                     >
-                      <div className="px-5 md:px-6 pb-5 md:pb-6 text-dark/70 text-sm md:text-base leading-relaxed border-t border-gray-100 pt-4">
+                      <div className="px-5 md:px-6 pb-5 md:pb-6 text-ink-700 text-sm md:text-base leading-relaxed border-t border-line pt-4">
                         {item.a}
                       </div>
                     </div>

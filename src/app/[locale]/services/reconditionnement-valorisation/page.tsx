@@ -52,9 +52,9 @@ export default function ReconditionnementPage() {
       tx("Mesure du CO₂ évité par réemploi", "Avoided CO₂ measurement through reuse"),
     ],
     proof: [
-      { value: "+40", unit: "%", label: tx("valeur récupérée moyenne", "average recovered value"), color: "#10B981" },
-      { value: "72", unit: "%", label: tx("taux de réemploi mesuré", "measured reuse rate"), color: "#0EA5E9" },
-      { value: "12", unit: tx("mois", "mo"), label: tx("garantie sur le matériel", "equipment warranty"), color: "#F59E0B" },
+      { value: "+40", unit: "%", label: tx("valeur récupérée moyenne", "average recovered value"), color: "#047857" },
+      { value: "72", unit: "%", label: tx("taux de réemploi mesuré", "measured reuse rate"), color: "#0B3B2E" },
+      { value: "12", unit: tx("mois", "mo"), label: tx("garantie sur le matériel", "equipment warranty"), color: "#B45309" },
     ],
     methodology: {
       title: tx("De la palette qui arrive au chèque qui repart", "From incoming pallet to outgoing payment"),

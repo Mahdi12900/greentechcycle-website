@@ -246,7 +246,7 @@ function ReserverInner() {
   return (
     <main className="overflow-hidden bg-white">
       {/* Hero · sombre court */}
-      <section className="relative bg-[#0F172A] overflow-hidden border-b border-white/5">
+      <section className="relative bg-forest-900 overflow-hidden border-b border-ondark-line">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -259,15 +259,15 @@ function ReserverInner() {
             <div className="max-w-3xl">
               <Link
                 href="/"
-                className="inline-flex items-center gap-1.5 text-[12px] font-medium text-gray-400 hover:text-white transition-colors mb-7"
+                className="inline-flex items-center gap-1.5 text-[12px] font-medium text-muted hover:text-white transition-colors mb-7"
               >
                 <ChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
                 GreenTechCycle
               </Link>
 
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-300 uppercase mb-6">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-ondark-muted uppercase mb-6">
                 <span
-                  className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
+                  className="w-1.5 h-1.5 rounded-full bg-leaf"
                   style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
                 />
                 {eyebrow}
@@ -279,14 +279,14 @@ function ReserverInner() {
               >
                 {headline}
               </h1>
-              <p className="text-gray-300 text-base lg:text-lg leading-[1.7] max-w-2xl">
+              <p className="text-ondark-muted text-base lg:text-lg leading-[1.7] max-w-2xl">
                 {subtitle}
               </p>
 
               {offerSlug && (
-                <div className="mt-7 max-w-xl rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 p-4 lg:p-5">
-                  <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#6EE7B7] font-medium mb-3">
-                    <span className="text-[#6EE7B7] font-bold uppercase tracking-wider text-[10px]">
+                <div className="mt-7 max-w-xl rounded-2xl bg-leaf-100 border border-leaf/30 p-4 lg:p-5">
+                  <div className="flex flex-wrap items-center gap-2 text-[12px] text-leaf-300 font-medium mb-3">
+                    <span className="text-leaf-300 font-bold uppercase tracking-wider text-[10px]">
                       {t("summary.offerLabel")}
                     </span>
                     <span className="text-white text-[13px] font-semibold">{offerLabelDisplay}</span>
@@ -294,14 +294,14 @@ function ReserverInner() {
                   {pricing && (
                     <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-[12px]">
                       <div className="flex flex-col">
-                        <dt className="text-gray-400 uppercase tracking-wider text-[10px] font-semibold">
+                        <dt className="text-muted uppercase tracking-wider text-[10px] font-semibold">
                           {labels.price}
                         </dt>
                         <dd className="text-white font-bold tabular-nums">{pricing.price[lang]}</dd>
                       </div>
                       {pricing.setup && (
                         <div className="flex flex-col">
-                          <dt className="text-gray-400 uppercase tracking-wider text-[10px] font-semibold">
+                          <dt className="text-muted uppercase tracking-wider text-[10px] font-semibold">
                             {labels.setup}
                           </dt>
                           <dd className="text-white font-bold tabular-nums">{pricing.setup[lang]}</dd>
@@ -309,7 +309,7 @@ function ReserverInner() {
                       )}
                       {pricing.engagement && (
                         <div className="flex flex-col">
-                          <dt className="text-gray-400 uppercase tracking-wider text-[10px] font-semibold">
+                          <dt className="text-muted uppercase tracking-wider text-[10px] font-semibold">
                             {labels.engagement}
                           </dt>
                           <dd className="text-white font-bold">{pricing.engagement[lang]}</dd>
@@ -325,7 +325,7 @@ function ReserverInner() {
       </section>
 
       {/* Form */}
-      <section className="bg-[#F8FAFC] py-16 lg:py-24">
+      <section className="bg-cream py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <ReservationForm offerSlug={offerSlug} />
 
@@ -340,10 +340,10 @@ function ReserverInner() {
               return (
                 <div
                   key={i}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-gray-100"
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-line"
                 >
-                  <Icon className="h-4 w-4 text-[#10B981] flex-shrink-0" aria-hidden="true" />
-                  <span className="text-[12px] font-medium text-gray-600">{item.label}</span>
+                  <Icon className="h-4 w-4 text-leaf flex-shrink-0" aria-hidden="true" />
+                  <span className="text-[12px] font-medium text-ink-700">{item.label}</span>
                 </div>
               );
             })}
@@ -356,7 +356,7 @@ function ReserverInner() {
 
 export default function ReserverPage() {
   return (
-    <Suspense fallback={<div className="min-h-[60vh] bg-[#F8FAFC]" />}>
+    <Suspense fallback={<div className="min-h-[60vh] bg-cream" />}>
       <ReserverInner />
     </Suspense>
   );

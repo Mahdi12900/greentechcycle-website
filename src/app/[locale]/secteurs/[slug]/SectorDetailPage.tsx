@@ -90,7 +90,7 @@ export default function SectorDetailPage({
       {/* ════════════════════════════════════════════
           HERO
       ════════════════════════════════════════════ */}
-      <section className="relative bg-[#0F1115] py-24 lg:py-32 overflow-hidden">
+      <section className="relative bg-forest-900 py-24 lg:py-32 overflow-hidden">
         {sectorDef.image && (
           <Image
             src={sectorDef.image}
@@ -103,21 +103,21 @@ export default function SectorDetailPage({
         )}
         {/* Ghost number */}
         <div className="absolute top-8 right-8 lg:top-12 lg:right-16 select-none pointer-events-none">
-          <span className="text-[8rem] lg:text-[12rem] font-black text-white/[0.04] leading-none">
+          <span className="text-[8rem] lg:text-[12rem] font-black text-ondark-muted leading-none">
             {String(sectorDef.number).padStart(2, "0")}
           </span>
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-4xl">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-sm text-white/70 mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-sm text-ondark-muted mb-6">
                 <span className="w-2 h-2 rounded-full bg-accent" />
                 {isFr ? "Secteur" : "Sector"} {String(sectorDef.number).padStart(2, "0")}/16
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 {content.hero.title}
               </h1>
-              <p className="text-xl md:text-2xl text-white/70 leading-relaxed max-w-3xl">
+              <p className="text-xl md:text-2xl text-ondark-muted leading-relaxed max-w-3xl">
                 {content.hero.subtitle}
               </p>
             </div>
@@ -128,7 +128,7 @@ export default function SectorDetailPage({
       {/* ════════════════════════════════════════════
           STICKY NAV
       ════════════════════════════════════════════ */}
-      <nav className="sticky top-16 lg:top-20 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+      <nav className="sticky top-16 lg:top-20 z-40 bg-white/95 backdrop-blur-sm border-b border-line shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide py-3 -mx-4 px-4">
             {anchorList.map((a) => (
@@ -139,7 +139,7 @@ export default function SectorDetailPage({
                 className={`whitespace-nowrap px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   activeAnchor === a.id
                     ? "bg-primary text-white"
-                    : "text-gray-500 hover:text-primary hover:bg-gray-50"
+                    : "text-muted hover:text-primary hover:bg-cream"
                 }`}
               >
                 {a.label}
@@ -157,24 +157,24 @@ export default function SectorDetailPage({
           <div className="max-w-5xl mx-auto">
             <FadeIn>
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-leaf-100 flex items-center justify-center">
                   <Shield className="w-6 h-6 text-primary" />
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900">
+                <h2 className="text-3xl font-bold text-ink">
                   {isFr ? "Profil du secteur" : "Sector profile"}
                 </h2>
               </div>
             </FadeIn>
             <div className="grid lg:grid-cols-[1fr_400px] gap-12 items-start">
               <FadeIn>
-                <p className="text-lg text-gray-700 leading-relaxed mb-8">
+                <p className="text-lg text-ink-700 leading-relaxed mb-8">
                   {content.profile.description}
                 </p>
-                <div className="bg-[#F8FAFC] border border-gray-200 rounded-2xl p-6">
-                  <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">
+                <div className="bg-cream border border-line rounded-2xl p-6">
+                  <h3 className="text-sm font-bold text-muted uppercase tracking-wider mb-3">
                     {isFr ? "Cadre réglementaire" : "Regulatory framework"}
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-ink-700 leading-relaxed">
                     {content.profile.regulations}
                   </p>
                 </div>
@@ -203,7 +203,7 @@ export default function SectorDetailPage({
           TF1 REFERENCE (medias-audiovisuel only)
       ════════════════════════════════════════════ */}
       {content.tf1Reference && (
-        <section className="py-12 bg-gradient-to-r from-pink-600 via-pink-500 to-rose-500">
+        <section className="py-12 bg-gradient-to-r from-forest via-forest to-forest">
           <div className="container mx-auto px-4">
             <FadeIn>
               <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
@@ -220,7 +220,7 @@ export default function SectorDetailPage({
                   <p className="text-white text-lg leading-relaxed">
                     {content.tf1Reference}
                   </p>
-                  <p className="text-white/80 text-sm mt-3 font-medium">
+                  <p className="text-ondark text-sm mt-3 font-medium">
                     {isFr
                       ? "Contrat annuel récurrent, parc IT et broadcast"
                       : "Recurring annual contract, IT and broadcast fleet"}
@@ -235,19 +235,19 @@ export default function SectorDetailPage({
       {/* ════════════════════════════════════════════
           2. DOULEURS SPECIFIQUES
       ════════════════════════════════════════════ */}
-      <section id="douleurs" className="py-20 lg:py-28 bg-[#0F1115]">
+      <section id="douleurs" className="py-20 lg:py-28 bg-forest-900">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <FadeIn>
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-12 h-12 rounded-xl bg-red-500/20 flex items-center justify-center">
-                  <Target className="w-6 h-6 text-red-400" />
+                <div className="w-12 h-12 rounded-xl bg-ochre/20 flex items-center justify-center">
+                  <Target className="w-6 h-6 text-ochre-300" />
                 </div>
                 <h2 className="text-3xl font-bold text-white">
                   {isFr ? "Douleurs spécifiques" : "Specific pain points"}
                 </h2>
               </div>
-              <p className="text-white/50 mb-12 ml-[60px]">
+              <p className="text-ondark-muted mb-12 ml-[60px]">
                 {isFr
                   ? "Les défis que vous rencontrez au quotidien"
                   : "The challenges you face every day"}
@@ -258,11 +258,11 @@ export default function SectorDetailPage({
                 <StaggerItem key={i}>
                   <div className="flex gap-6 items-start">
                     <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/[0.05] flex items-center justify-center mt-1">
-                      <span className="text-sm font-bold text-white/30">
+                      <span className="text-sm font-bold text-ondark-muted">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>
-                    <p className="text-white/80 leading-relaxed text-lg">
+                    <p className="text-ondark leading-relaxed text-lg">
                       {point}
                     </p>
                   </div>
@@ -280,7 +280,7 @@ export default function SectorDetailPage({
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <FadeIn>
-              <h2 className="text-3xl font-bold text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-ink mb-12">
                 {isFr ? "Cas d'usage prioritaires" : "Priority use cases"}
               </h2>
             </FadeIn>
@@ -290,21 +290,21 @@ export default function SectorDetailPage({
                 return (
                   <FadeIn key={i}>
                     <div
-                      className={`rounded-2xl border border-gray-200 overflow-hidden ${
-                        isOdd ? "bg-[#F8FAFC]" : "bg-white"
+                      className={`rounded-2xl border border-line overflow-hidden ${
+                        isOdd ? "bg-cream" : "bg-white"
                       }`}
                     >
                       <div className="flex items-start gap-6 p-8">
-                        <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
-                          <span className="text-2xl font-black text-primary/60">
+                        <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-leaf-100 flex items-center justify-center">
+                          <span className="text-2xl font-black text-leaf">
                             {String(i + 1).padStart(2, "0")}
                           </span>
                         </div>
                         <div>
-                          <h3 className="text-xl font-bold text-gray-900 mb-3">
+                          <h3 className="text-xl font-bold text-ink mb-3">
                             {uc.title}
                           </h3>
-                          <p className="text-gray-700 leading-relaxed">
+                          <p className="text-ink-700 leading-relaxed">
                             {uc.description}
                           </p>
                         </div>
@@ -321,29 +321,29 @@ export default function SectorDetailPage({
       {/* ════════════════════════════════════════════
           4. ROI ATTENDU
       ════════════════════════════════════════════ */}
-      <section id="roi" className="py-20 lg:py-28 bg-[#F8FAFC]">
+      <section id="roi" className="py-20 lg:py-28 bg-cream">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <FadeIn>
               <div className="flex items-center gap-3 mb-12">
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-leaf-100 flex items-center justify-center">
                   <TrendingUp className="w-6 h-6 text-accent" />
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900">
+                <h2 className="text-3xl font-bold text-ink">
                   {isFr ? "ROI attendu" : "Expected ROI"}
                 </h2>
               </div>
             </FadeIn>
             <FadeIn>
-              <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+              <div className="bg-white rounded-2xl border border-line overflow-hidden shadow-sm">
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
-                      <tr className="bg-gray-50 border-b border-gray-200">
-                        <th className="text-left px-6 py-4 text-sm font-bold text-gray-500 uppercase tracking-wider">
+                      <tr className="bg-cream border-b border-line">
+                        <th className="text-left px-6 py-4 text-sm font-bold text-muted uppercase tracking-wider">
                           {isFr ? "Levier de valeur" : "Value lever"}
                         </th>
-                        <th className="text-left px-6 py-4 text-sm font-bold text-gray-500 uppercase tracking-wider">
+                        <th className="text-left px-6 py-4 text-sm font-bold text-muted uppercase tracking-wider">
                           {isFr ? "Économie / gain typique" : "Typical savings / gain"}
                         </th>
                       </tr>
@@ -352,11 +352,11 @@ export default function SectorDetailPage({
                       {content.roi.map((row, i) => (
                         <tr
                           key={i}
-                          className={`border-b border-gray-100 ${
-                            i % 2 === 0 ? "" : "bg-gray-50/50"
+                          className={`border-b border-line ${
+                            i % 2 === 0 ? "" : "bg-cream/50"
                           }`}
                         >
-                          <td className="px-6 py-4 text-gray-900 font-medium">
+                          <td className="px-6 py-4 text-ink font-medium">
                             {row.lever}
                           </td>
                           <td className="px-6 py-4 text-accent font-semibold">
@@ -381,10 +381,10 @@ export default function SectorDetailPage({
           <div className="max-w-5xl mx-auto">
             <FadeIn>
               <div className="flex items-center gap-3 mb-12">
-                <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center">
-                  <Users className="w-6 h-6 text-indigo-600" />
+                <div className="w-12 h-12 rounded-xl bg-forest/10 flex items-center justify-center">
+                  <Users className="w-6 h-6 text-forest" />
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900">
+                <h2 className="text-3xl font-bold text-ink">
                   {isFr ? "Personas décideurs" : "Decision-maker personas"}
                 </h2>
               </div>
@@ -392,16 +392,16 @@ export default function SectorDetailPage({
             <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {content.personas.map((p, i) => (
                 <StaggerItem key={i}>
-                  <div className="bg-[#F8FAFC] rounded-2xl p-6 border border-gray-100 h-full">
-                    <div className="w-10 h-10 rounded-full bg-indigo-500/10 flex items-center justify-center mb-4">
-                      <span className="text-sm font-bold text-indigo-600">
+                  <div className="bg-cream rounded-2xl p-6 border border-line h-full">
+                    <div className="w-10 h-10 rounded-full bg-forest/10 flex items-center justify-center mb-4">
+                      <span className="text-sm font-bold text-forest">
                         {p.role.charAt(0)}
                       </span>
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    <h3 className="text-lg font-bold text-ink mb-2">
                       {p.role}
                     </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-ink-700 leading-relaxed">
                       {p.description}
                     </p>
                   </div>
@@ -415,11 +415,11 @@ export default function SectorDetailPage({
       {/* ════════════════════════════════════════════
           6. ARGUMENTAIRE (QUOTE)
       ════════════════════════════════════════════ */}
-      <section id="argumentaire" className="py-20 lg:py-28 bg-[#0F1115]">
+      <section id="argumentaire" className="py-20 lg:py-28 bg-forest-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <FadeIn>
-              <Quote className="w-12 h-12 text-accent/40 mx-auto mb-8" />
+              <Quote className="w-12 h-12 text-leaf mx-auto mb-8" />
               <blockquote className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-snug">
                 {content.quote}
               </blockquote>
@@ -439,10 +439,10 @@ export default function SectorDetailPage({
           <div className="max-w-4xl mx-auto">
             <FadeIn>
               <div className="flex items-center gap-3 mb-12">
-                <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center">
-                  <MessageCircleQuestion className="w-6 h-6 text-amber-600" />
+                <div className="w-12 h-12 rounded-xl bg-ochre/10 flex items-center justify-center">
+                  <MessageCircleQuestion className="w-6 h-6 text-ochre" />
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900">
+                <h2 className="text-3xl font-bold text-ink">
                   {isFr
                     ? "Objections fréquentes et réponses"
                     : "Common objections and answers"}
@@ -457,11 +457,11 @@ export default function SectorDetailPage({
       {/* ════════════════════════════════════════════
           OTHER SECTORS
       ════════════════════════════════════════════ */}
-      <section className="py-16 bg-[#F8FAFC]">
+      <section className="py-16 bg-cream">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center mb-8">
-              <h3 className="text-xl font-bold text-gray-900">
+              <h3 className="text-xl font-bold text-ink">
                 {isFr ? "Découvrir les autres secteurs" : "Explore other sectors"}
               </h3>
             </div>
@@ -470,7 +470,7 @@ export default function SectorDetailPage({
                 <Link
                   key={s.slug}
                   href={`/secteurs/${s.slug}`}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 font-medium hover:border-accent hover:text-accent transition-colors shadow-sm"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-line rounded-xl text-sm text-ink-700 font-medium hover:border-accent hover:text-accent transition-colors shadow-sm"
                 >
                   {getSectorName(locale, s.slug)}
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -522,11 +522,11 @@ export default function SectorDetailPage({
       {/* ════════════════════════════════════════════
           BANDEAU TARIFAIRE
       ════════════════════════════════════════════ */}
-      <section className="py-14 lg:py-16 bg-[#0F172A]">
+      <section className="py-14 lg:py-16 bg-forest-900">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-5xl mx-auto">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#6EE7B7] mb-3 text-center">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-leaf-300 mb-3 text-center">
                 {isFr ? "Grille tarifaire GreenTechCycle" : "GreenTechCycle pricing"}
               </p>
               <h3
@@ -543,28 +543,28 @@ export default function SectorDetailPage({
                     label: isFr ? "Plateforme GTC SaaS" : "GTC SaaS Platform",
                     price: isFr ? "À partir de 2 500 € HT/mois" : "Starting at €2,500 HT/month",
                     note: isFr ? "Base 500 postes, étude personnalisée" : "Base 500 devices, bespoke study",
-                    accent: "#0EA5E9",
+                    accent: "#0B3B2E",
                   },
                   {
                     label: "Waki Box",
                     price: isFr ? "Dès 39 € HT/mois" : "From €39 HT/month",
                     note: isFr ? "3 plans publics, pilote 1er mois offert" : "3 public plans, pilot 1st month free",
-                    accent: "#10B981",
+                    accent: "#047857",
                     featured: true,
                   },
                   {
                     label: isFr ? "Service ITAD" : "ITAD Service",
                     price: isFr ? "À partir de 15 € HT/poste" : "Starting at €15 HT/device",
                     note: isFr ? "Effacement NIST 800-88, devis sous 48 h" : "NIST 800-88 erasure, quote in 48 h",
-                    accent: "#F59E0B",
+                    accent: "#B45309",
                   },
                 ].map((card, i) => (
                   <div
                     key={i}
                     className={`rounded-2xl p-5 border transition-all ${
                       card.featured
-                        ? "bg-[#10B981]/10 border-[#10B981]/40 ring-1 ring-[#10B981]/30"
-                        : "bg-white/[0.04] border-white/10"
+                        ? "bg-leaf-100 border-leaf/40 ring-1 ring-leaf/30"
+                        : "bg-white/[0.04] border-ondark-line"
                     }`}
                   >
                     <p className="text-[10px] font-bold uppercase tracking-[0.14em] mb-2" style={{ color: card.accent }}>
@@ -573,14 +573,14 @@ export default function SectorDetailPage({
                     <p className="text-base font-black text-white mb-1" style={{ color: card.accent }}>
                       {card.price}
                     </p>
-                    <p className="text-[12px] text-gray-400 leading-snug">{card.note}</p>
+                    <p className="text-[12px] text-muted leading-snug">{card.note}</p>
                   </div>
                 ))}
               </div>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Link
                   href="/tarifs"
-                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 text-sm"
+                  className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 text-sm"
                 >
                   {isFr ? "Voir tous les tarifs" : "See all pricing"}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -599,23 +599,23 @@ export default function SectorDetailPage({
       </section>
 
       {/* Waki Box pilote encart */}
-      <section className="py-10 lg:py-12 bg-[#F0FDF4] border-t border-[#10B981]/20">
+      <section className="py-10 lg:py-12 bg-leaf-50 border-t border-leaf/20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto bg-white rounded-2xl border border-[#10B981]/30 shadow-sm p-6 lg:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl border border-leaf/30 shadow-sm p-6 lg:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#10B981]/10 flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-[#10B981]" aria-hidden="true" />
+              <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-leaf-100 flex items-center justify-center">
+                <Sparkles className="w-5 h-5 text-leaf" aria-hidden="true" />
               </div>
               <div>
-                <p className="text-xs font-semibold tracking-[0.1em] text-[#10B981] uppercase mb-1">
+                <p className="text-xs font-semibold tracking-[0.1em] text-leaf uppercase mb-1">
                   {isFr ? "Pilote sans engagement" : "Risk-free pilot"}
                 </p>
-                <p className="font-bold text-[#0F172A] text-base leading-snug">
+                <p className="font-bold text-ink text-base leading-snug">
                   {isFr
                     ? "Testez Waki Box - 1er mois offert, puis 39 € HT/mois"
                     : "Try Waki Box - 1st month free, then EUR 39 ex-VAT/month"}
                 </p>
-                <p className="text-sm text-gray-600 mt-1 leading-snug">
+                <p className="text-sm text-ink-700 mt-1 leading-snug">
                   {isFr
                     ? "Collecte, inventaire automatisé et attestation inclus. Résiliable à tout moment."
                     : "Collection, automated inventory and certificate included. Cancel anytime."}
@@ -624,7 +624,7 @@ export default function SectorDetailPage({
             </div>
             <Link
               href="/reserver?offre=pilote-waki-box"
-              className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm flex-shrink-0 whitespace-nowrap"
+              className="inline-flex items-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm flex-shrink-0 whitespace-nowrap"
             >
               {isFr ? "Démarrer le pilote" : "Start the pilot"}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -634,12 +634,12 @@ export default function SectorDetailPage({
       </section>
 
       {/* Trust banner */}
-      <section className="py-8 bg-[#0F1115] border-t border-white/5">
+      <section className="py-8 bg-forest-900 border-t border-ondark-line">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-white/40">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-ondark-muted">
             {["R2v3", "ISO 14001", "NIST 800-88", "RGPD", "CSRD"].map((badge) => (
               <span key={badge} className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-accent/60" />
+                <Shield className="w-4 h-4 text-leaf" />
                 {badge}
               </span>
             ))}
@@ -666,24 +666,24 @@ function ObjectionList({
         const isOpen = openIndex === i;
         return (
           <FadeIn key={i}>
-            <div className="border border-gray-200 rounded-2xl overflow-hidden">
+            <div className="border border-line rounded-2xl overflow-hidden">
               <button
                 onClick={() => setOpenIndex(isOpen ? null : i)}
-                className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-cream transition-colors"
                 aria-expanded={isOpen}
               >
-                <span className="text-lg font-semibold text-gray-900">
+                <span className="text-lg font-semibold text-ink">
                   &laquo; {obj.question} &raquo;
                 </span>
                 {isOpen ? (
-                  <ChevronUp className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                  <ChevronUp className="w-5 h-5 text-muted flex-shrink-0" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                  <ChevronDown className="w-5 h-5 text-muted flex-shrink-0" />
                 )}
               </button>
               {isOpen && (
                 <div className="px-6 pb-6 pt-0">
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-ink-700 leading-relaxed">
                     {obj.answer}
                   </p>
                 </div>

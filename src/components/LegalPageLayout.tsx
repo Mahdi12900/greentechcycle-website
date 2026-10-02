@@ -28,7 +28,7 @@ export default function LegalPageLayout({
   return (
     <>
       {/* Hero */}
-      <section className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-br from-[#047857] via-[#0F172A] to-[#1E40AF] text-white">
+      <section className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-br from-leaf via-ink to-forest text-white">
         <DecorativeBackdrop variant="primary" grid />
         <div className="container-max mx-auto px-4 relative z-10">
           <Breadcrumbs
@@ -47,12 +47,12 @@ export default function LegalPageLayout({
                 {title}
               </h1>
               {subtitle && (
-                <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl">
+                <p className="text-lg md:text-xl text-ondark leading-relaxed max-w-2xl">
                   {subtitle}
                 </p>
               )}
               {updatedAt && (
-                <p className="text-sm text-gray-300/80">Dernière mise à jour : {updatedAt}</p>
+                <p className="text-sm text-ondark-muted">Dernière mise à jour : {updatedAt}</p>
               )}
             </div>
           </FadeIn>
@@ -61,7 +61,7 @@ export default function LegalPageLayout({
 
       {/* Content */}
       <section className="relative py-16 md:py-20 bg-white">
-        <div className="absolute top-10 right-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-10 right-10 w-72 h-72 bg-leaf-50 rounded-full blur-3xl pointer-events-none" />
         <div className="container-max max-w-4xl mx-auto px-4 relative z-10">{children}</div>
       </section>
     </>

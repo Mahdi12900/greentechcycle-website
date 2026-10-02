@@ -47,11 +47,11 @@ export default function CtaSection({
     tone === "light"
       ? "bg-gradient-to-br from-primary-50 via-white to-accent/5 border-y border-primary-100"
       : tone === "gradient"
-      ? "bg-gradient-to-br from-[#047857] via-[#0F172A] to-[#1E40AF]"
-      : "bg-[#0F172A]";
+      ? "bg-gradient-to-br from-leaf via-ink to-forest"
+      : "bg-forest-900";
 
-  const titleClass = isDark ? "text-white" : "text-gray-900";
-  const subtitleClass = isDark ? "text-gray-300" : "text-gray-600";
+  const titleClass = isDark ? "text-white" : "text-ink";
+  const subtitleClass = isDark ? "text-ondark-muted" : "text-ink-700";
   const secondaryClass = isDark
     ? "border-2 border-white/40 hover:border-white/80 text-white hover:bg-white/10 backdrop-blur-sm"
     : "border-2 border-primary/30 text-primary hover:bg-primary hover:text-white";
@@ -62,7 +62,7 @@ export default function CtaSection({
       {isDark && (
         <>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(16,185,129,0.10),_transparent_55%)]" />
-          <div className="absolute -top-20 -right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse-slow" />
+          <div className="absolute -top-20 -right-20 w-96 h-96 bg-leaf-100 rounded-full blur-3xl animate-pulse-slow" />
           <div className="absolute -bottom-20 -left-20 w-[28rem] h-[28rem] bg-secondary/20 rounded-full blur-3xl animate-pulse-slower" />
           {/* Grid pattern */}
           <svg
@@ -81,8 +81,8 @@ export default function CtaSection({
       )}
       {!isDark && (
         <>
-          <div className="absolute -top-10 -right-10 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
+          <div className="absolute -top-10 -right-10 w-80 h-80 bg-leaf-100 rounded-full blur-3xl" />
+          <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-leaf-100 rounded-full blur-3xl" />
         </>
       )}
 

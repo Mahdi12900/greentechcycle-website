@@ -67,9 +67,9 @@ type Status = "active" | "upcoming" | "update";
 
 function StatusBadge({ status, tx }: { status: Status; tx: ReturnType<typeof useTx> }) {
   const labels = {
-    active: { label: tx("En vigueur", "In force"), cls: "bg-accent/10 text-accent border-accent/30" },
-    upcoming: { label: tx("À venir 2026", "Upcoming 2026"), cls: "bg-amber-100 text-amber-700 border-amber-200" },
-    update: { label: tx("Mise à jour 2025", "Updated 2025"), cls: "bg-sky-100 text-sky-700 border-sky-200" },
+    active: { label: tx("En vigueur", "In force"), cls: "bg-leaf-100 text-accent border-accent/30" },
+    upcoming: { label: tx("À venir 2026", "Upcoming 2026"), cls: "bg-ochre-100 text-ochre-800 border-ochre-100" },
+    update: { label: tx("Mise à jour 2025", "Updated 2025"), cls: "bg-leaf-100 text-forest border-line" },
   };
   const s = labels[status];
   return (
@@ -115,26 +115,26 @@ function SectorSection({
 }) {
   const Icon = sector.icon;
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="rounded-3xl border border-line bg-white overflow-hidden hover:shadow-lg transition-shadow">
       <button
         onClick={toggle}
-        className="w-full flex items-center gap-4 p-6 md:p-8 text-left hover:bg-slate-50/50 transition"
+        className="w-full flex items-center gap-4 p-6 md:p-8 text-left hover:bg-cream/50 transition"
       >
         <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${sector.color} flex items-center justify-center shadow-lg flex-shrink-0`}>
           <Icon className="w-7 h-7 text-white" />
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl md:text-2xl font-bold text-slate-900">{sector.title}</h3>
-          <p className="text-sm text-slate-500 mt-1">{sector.description}</p>
+          <h3 className="text-xl md:text-2xl font-bold text-ink">{sector.title}</h3>
+          <p className="text-sm text-muted mt-1">{sector.description}</p>
         </div>
         <div className="flex items-center gap-3 flex-shrink-0">
           <span className={`hidden sm:inline-flex items-center gap-1 px-3 py-1 rounded-full ${sector.bgColor} ${sector.textColor} text-xs font-bold`}>
             {sector.items.length} {tx("réglementations", "regulations")}
           </span>
           {isOpen ? (
-            <ChevronDown className="w-5 h-5 text-slate-400" />
+            <ChevronDown className="w-5 h-5 text-muted" />
           ) : (
-            <ChevronRight className="w-5 h-5 text-slate-400" />
+            <ChevronRight className="w-5 h-5 text-muted" />
           )}
         </div>
       </button>
@@ -145,21 +145,21 @@ function SectorSection({
             {sector.items.map((reg) => (
               <article
                 key={reg.name}
-                className="group h-full bg-white rounded-2xl border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all overflow-hidden"
+                className="group h-full bg-white rounded-2xl border border-line hover:border-line hover:shadow-xl transition-all overflow-hidden"
               >
                 <div className={`h-1.5 bg-gradient-to-r ${sector.color}`} />
                 <div className="p-6">
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <h4 className="text-lg font-bold text-slate-900">{reg.name}</h4>
+                        <h4 className="text-lg font-bold text-ink">{reg.name}</h4>
                         <StatusBadge status={reg.status} tx={tx} />
                       </div>
-                      <p className="text-sm text-slate-500">{reg.fullName}</p>
+                      <p className="text-sm text-muted">{reg.fullName}</p>
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-3 text-xs text-slate-500 mb-4">
+                  <div className="flex flex-wrap gap-3 text-xs text-muted mb-4">
                     <span className="inline-flex items-center gap-1">
                       <Globe className="w-3.5 h-3.5" />
                       {reg.jurisdiction}
@@ -170,14 +170,14 @@ function SectorSection({
                     </span>
                   </div>
 
-                  <p className="text-sm text-slate-700 leading-relaxed mb-4">{reg.description}</p>
+                  <p className="text-sm text-ink-700 leading-relaxed mb-4">{reg.description}</p>
 
                   {/* Prerequisites */}
-                  <div className="rounded-xl bg-slate-50 border border-slate-100 p-3 mb-4">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                  <div className="rounded-xl bg-cream border border-line p-3 mb-4">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-muted mb-1">
                       {tx("Pré-requis techniques", "Technical prerequisites")}
                     </p>
-                    <p className="text-sm text-slate-700 leading-relaxed">{reg.prerequisites}</p>
+                    <p className="text-sm text-ink-700 leading-relaxed">{reg.prerequisites}</p>
                   </div>
 
                   {/* Key figure */}
@@ -186,14 +186,14 @@ function SectorSection({
                       {tx("Impact chiffré", "Quantified impact")}
                     </p>
                     <p className={`text-lg font-bold ${sector.textColor}`}>{reg.keyFigure}</p>
-                    <p className="text-xs text-slate-500 mt-0.5">{reg.subFigure}</p>
+                    <p className="text-xs text-muted mt-0.5">{reg.subFigure}</p>
                   </div>
 
                   {/* GTC help */}
-                  <div className="flex items-start gap-2 bg-accent/5 rounded-xl p-3 border border-accent/10">
+                  <div className="flex items-start gap-2 bg-leaf-50 rounded-xl p-3 border border-accent/10">
                     <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      <span className="font-semibold text-slate-900">{tx("Comment GTC aide", "How GTC helps")} :</span>{" "}
+                    <p className="text-xs text-ink-700 leading-relaxed">
+                      <span className="font-semibold text-ink">{tx("Comment GTC aide", "How GTC helps")} :</span>{" "}
                       {reg.gtcHelp}
                     </p>
                   </div>
@@ -215,10 +215,10 @@ export default function RegulationPage() {
     {
       id: "finance",
       icon: Landmark,
-      color: "from-blue-600 to-indigo-700",
-      bgColor: "bg-blue-50",
-      borderColor: "border-blue-200",
-      textColor: "text-blue-700",
+      color: "from-forest to-forest",
+      bgColor: "bg-leaf-50",
+      borderColor: "border-line",
+      textColor: "text-forest",
       title: tx("Finance & Banque", "Finance & Banking"),
       description: tx(
         "PCI-DSS, DORA, Bâle III/IV, MiFID II, les obligations les plus strictes en matière de données de paiement et résilience opérationnelle.",
@@ -314,10 +314,10 @@ export default function RegulationPage() {
     {
       id: "sante",
       icon: Heart,
-      color: "from-rose-500 to-red-600",
-      bgColor: "bg-rose-50",
-      borderColor: "border-rose-200",
-      textColor: "text-rose-700",
+      color: "from-forest to-ochre",
+      bgColor: "bg-leaf-50",
+      borderColor: "border-line",
+      textColor: "text-forest",
       title: tx("Santé", "Healthcare"),
       description: tx(
         "HIPAA, HDS, MDR, HAS 2024, protection des données de santé, obligations de chiffrement et destruction des PHI.",
@@ -413,10 +413,10 @@ export default function RegulationPage() {
     {
       id: "industrie",
       icon: Factory,
-      color: "from-orange-500 to-amber-600",
-      bgColor: "bg-amber-50",
-      borderColor: "border-amber-200",
-      textColor: "text-amber-700",
+      color: "from-ochre to-ochre",
+      bgColor: "bg-ochre-100",
+      borderColor: "border-ochre-100",
+      textColor: "text-ochre-800",
       title: tx("Industrie & OT", "Industry & OT"),
       description: tx(
         "NIS2, IEC 62443, Directive Machines, cybersécurité industrielle, systèmes OT/SCADA et convergence IT/OT.",
@@ -491,10 +491,10 @@ export default function RegulationPage() {
     {
       id: "public",
       icon: Building2,
-      color: "from-indigo-600 to-purple-700",
-      bgColor: "bg-indigo-50",
-      borderColor: "border-indigo-200",
-      textColor: "text-indigo-700",
+      color: "from-forest to-forest",
+      bgColor: "bg-leaf-50",
+      borderColor: "border-line",
+      textColor: "text-forest",
       title: tx("Secteur Public & Défense", "Public Sector & Defense"),
       description: tx(
         "ANSSI SecNumCloud, RGS, eIDAS 2.0, IGI 1300, souveraineté numérique et classification défense.",
@@ -569,10 +569,10 @@ export default function RegulationPage() {
     {
       id: "energie",
       icon: Zap,
-      color: "from-yellow-500 to-orange-500",
-      bgColor: "bg-yellow-50",
-      borderColor: "border-yellow-200",
-      textColor: "text-yellow-700",
+      color: "from-ochre to-ochre",
+      bgColor: "bg-ochre-100",
+      borderColor: "border-ochre-100",
+      textColor: "text-ochre-800",
       title: tx("Énergie & Télécoms", "Energy & Telecoms"),
       description: tx(
         "Code de l'énergie, ARCEP, NIS2 sectoriel, obligations des opérateurs d'énergie et télécoms.",
@@ -626,10 +626,10 @@ export default function RegulationPage() {
     {
       id: "retail",
       icon: ShoppingBag,
-      color: "from-pink-500 to-rose-600",
-      bgColor: "bg-pink-50",
-      borderColor: "border-pink-200",
-      textColor: "text-pink-700",
+      color: "from-forest to-forest",
+      bgColor: "bg-leaf-50",
+      borderColor: "border-line",
+      textColor: "text-forest",
       title: tx("Retail & E-commerce", "Retail & E-commerce"),
       description: tx(
         "PCI-DSS, Loi Hamon, DMA, protection des données de paiement et des consommateurs numériques.",
@@ -691,9 +691,9 @@ export default function RegulationPage() {
       inForce: "2018",
       status: "active" as Status,
       icon: Shield,
-      color: "text-sky-700",
-      bgColor: "bg-sky-50",
-      borderColor: "border-sky-200",
+      color: "text-forest",
+      bgColor: "bg-leaf-50",
+      borderColor: "border-line",
       description: tx(
         "Art. 17 : droit à l'effacement. Art. 33 : notification de violation sous 72h. Art. 83 : amendes jusqu'à 4% du CA mondial ou 20M€. Le RGPD impose une obligation de résultat sur la destruction des données personnelles en fin de vie des équipements.",
         "Art. 17: right to erasure. Art. 33: breach notification within 72h. Art. 83: fines up to 4% of global revenue or €20M. GDPR imposes an obligation of result on personal data destruction at equipment end-of-life."
@@ -712,9 +712,9 @@ export default function RegulationPage() {
       inForce: tx("Octobre 2024", "October 2024"),
       status: "active" as Status,
       icon: Lock,
-      color: "text-indigo-700",
-      bgColor: "bg-indigo-50",
-      borderColor: "border-indigo-200",
+      color: "text-forest",
+      bgColor: "bg-leaf-50",
+      borderColor: "border-line",
       description: tx(
         "La directive la plus structurante de la décennie. 160 000 entreprises européennes concernées dans 18 secteurs. Notification d'incident sous 24h, gestion des risques cyber supply chain, registre d'actifs obligatoire. La gestion de la fin de vie IT est explicitement dans le périmètre.",
         "The most structuring directive of the decade. 160,000 European companies in 18 sectors. 24h incident notification, cyber supply chain risk management, mandatory asset register. IT end-of-life management is explicitly in scope."
@@ -733,9 +733,9 @@ export default function RegulationPage() {
       inForce: tx("2024 → 2026 (déploiement progressif)", "2024 → 2026 (phased deployment)"),
       status: "active" as Status,
       icon: Leaf,
-      color: "text-emerald-700",
-      bgColor: "bg-emerald-50",
-      borderColor: "border-emerald-200",
+      color: "text-leaf",
+      bgColor: "bg-leaf-50",
+      borderColor: "border-leaf-200",
       description: tx(
         "Comptes-rendus extra-financiers obligatoires avec double matérialité. ESRS E1 (climat), E5 (économie circulaire), S1 (main d'œuvre). L'ITAD contribue directement aux indicateurs E5 (taux de réemploi, tonnages recyclés) et E1 (CO₂ évité). Tiers-attestation obligatoire.",
         "Mandatory non-financial reporting with double materiality. ESRS E1 (climate), E5 (circular economy), S1 (workforce). ITAD directly contributes to E5 indicators (reuse rate, recycled tonnage) and E1 (avoided CO₂). Third-party attestation required."
@@ -754,9 +754,9 @@ export default function RegulationPage() {
       inForce: tx("Août 2024 · phases 2025-2027", "August 2024 · phases 2025-2027"),
       status: "upcoming" as Status,
       icon: Brain,
-      color: "text-purple-700",
-      bgColor: "bg-purple-50",
-      borderColor: "border-purple-200",
+      color: "text-forest",
+      bgColor: "bg-leaf-50",
+      borderColor: "border-line",
       description: tx(
         "Premier cadre juridique mondial sur l'IA. Classification par niveaux de risque. Registre des systèmes IA à haut risque. Implications ITAD : les serveurs contenant des modèles IA (GPU H100, TPU v5), datasets d'entraînement et poids de modèles nécessitent une traçabilité et une destruction spécifiques.",
         "First global legal framework on AI. Risk-level classification. High-risk AI system register. ITAD implications: servers containing AI models (GPU H100, TPU v5), training datasets and model weights require specific traceability and destruction."
@@ -775,9 +775,9 @@ export default function RegulationPage() {
       inForce: tx("Rév. 2022", "Rev. 2022"),
       status: "update" as Status,
       icon: ShieldCheck,
-      color: "text-blue-700",
-      bgColor: "bg-blue-50",
-      borderColor: "border-blue-200",
+      color: "text-forest",
+      bgColor: "bg-leaf-50",
+      borderColor: "border-line",
       description: tx(
         "Le standard SMSI de référence mondiale. 70 000+ certifications. Contrôle A.8.10 (effacement d'information), A.7.14 (sortie sécurisée des équipements). Audit de surveillance annuel. Prérequis pour de nombreuses certifications sectorielles (HDS, SecNumCloud).",
         "The global ISMS reference standard. 70,000+ certifications. Control A.8.10 (information deletion), A.7.14 (secure equipment disposal). Annual surveillance audit. Prerequisite for many sectoral certifications (HDS, SecNumCloud)."
@@ -796,9 +796,9 @@ export default function RegulationPage() {
       inForce: tx("Rév. 2015", "Rev. 2015"),
       status: "active" as Status,
       icon: Recycle,
-      color: "text-emerald-700",
-      bgColor: "bg-emerald-50",
-      borderColor: "border-emerald-200",
+      color: "text-leaf",
+      bgColor: "bg-leaf-50",
+      borderColor: "border-leaf-200",
       description: tx(
         "350 000+ certifications mondiales. Management environnemental et amélioration continue. Intégration du bilan carbone ITAD dans la démarche ISO 14001 : taux de valorisation, tonnages DEEE, CO₂ évité par le reconditionnement.",
         "350,000+ worldwide certifications. Environmental management and continuous improvement. ITAD carbon assessment integration into ISO 14001: recovery rate, WEEE tonnage, CO₂ avoided through refurbishment."
@@ -869,7 +869,7 @@ export default function RegulationPage() {
     {
       id: "geopolitique",
       icon: Globe,
-      color: "from-red-500 to-rose-600",
+      color: "from-ochre to-forest",
       title: tx("Instabilité géopolitique", "Geopolitical instability"),
       items: [
         {
@@ -898,7 +898,7 @@ export default function RegulationPage() {
     {
       id: "energie",
       icon: Zap,
-      color: "from-amber-500 to-yellow-600",
+      color: "from-ochre to-ochre",
       title: tx("Défi énergétique", "Energy challenge"),
       items: [
         {
@@ -920,7 +920,7 @@ export default function RegulationPage() {
     {
       id: "ia-emergent",
       icon: Brain,
-      color: "from-purple-500 to-violet-600",
+      color: "from-forest to-forest",
       title: tx("IA & Technologies émergentes", "AI & Emerging technologies"),
       items: [
         {
@@ -949,7 +949,7 @@ export default function RegulationPage() {
     {
       id: "posture-it",
       icon: Cloud,
-      color: "from-cyan-500 to-teal-600",
+      color: "from-forest to-leaf",
       title: tx("Nouvelle posture IT", "New IT posture"),
       items: [
         {
@@ -1028,11 +1028,11 @@ export default function RegulationPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* ═══════════════ HERO ═══════════════ */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-primary-900 to-slate-950 py-24 lg:py-36">
+      <section className="relative overflow-hidden bg-gradient-to-br from-forest-900 via-primary-900 to-forest-900 py-24 lg:py-36">
         {/* Animated background layers */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 -right-40 w-[600px] h-[600px] bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: "8s" }} />
-          <div className="absolute bottom-1/4 -left-40 w-[500px] h-[500px] bg-emerald-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDuration: "10s", animationDelay: "2s" }} />
+          <div className="absolute bottom-1/4 -left-40 w-[500px] h-[500px] bg-leaf-100 rounded-full blur-3xl animate-pulse" style={{ animationDuration: "10s", animationDelay: "2s" }} />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(16,185,129,0.08),transparent_70%)]" />
         </div>
 
@@ -1074,17 +1074,17 @@ export default function RegulationPage() {
               <div className="flex justify-center mb-8">
                 <div className="relative">
                   <div className="absolute inset-0 bg-accent/30 blur-2xl rounded-full" />
-                  <div className="relative w-24 h-24 rounded-3xl bg-gradient-to-br from-accent/20 to-emerald-500/10 border border-accent/30 backdrop-blur-xl flex items-center justify-center shadow-[0_0_60px_rgba(16,185,129,0.4)]">
+                  <div className="relative w-24 h-24 rounded-3xl bg-gradient-to-br from-accent/20 to-leaf/10 border border-accent/30 backdrop-blur-xl flex items-center justify-center shadow-[0_0_60px_rgba(16,185,129,0.4)]">
                     <Scale className="w-11 h-11 text-accent" strokeWidth={1.75} />
                   </div>
-                  <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-accent flex items-center justify-center shadow-lg shadow-accent/40 ring-4 ring-slate-950">
+                  <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-accent flex items-center justify-center shadow-lg shadow-accent/40 ring-4 ring-forest-900">
                     <ShieldCheck className="w-4 h-4 text-white" />
                   </div>
                 </div>
               </div>
 
               <div className="flex justify-center mb-6">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-white/90 text-xs font-medium tracking-wider uppercase">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur border border-ondark-line text-ondark text-xs font-medium tracking-wider uppercase">
                   <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                   {tx("Expertise IT · Métier · Réglementaire", "Expertise IT · Business · Regulatory")}
                 </span>
@@ -1093,12 +1093,12 @@ export default function RegulationPage() {
               <h1 className="text-center text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-8 leading-[1.05] tracking-tight">
                 {tx("La conformité n'est pas", "Compliance is not")}
                 <br />
-                <span className="bg-gradient-to-r from-accent via-emerald-300 to-accent bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-accent via-leaf-100 to-accent bg-clip-text text-transparent">
                   {tx("une option.", "an option.")}
                 </span>
               </h1>
 
-              <p className="text-center text-lg md:text-xl text-slate-300/90 mb-14 max-w-3xl mx-auto leading-relaxed font-light">
+              <p className="text-center text-lg md:text-xl text-ondark-muted mb-14 max-w-3xl mx-auto leading-relaxed font-light">
                 {tx(
                   "GreenTechCycle maîtrise l'intersection entre IT, métier et réglementation. Une plateforme unique pour naviguer la complexité ITAD et transformer la conformité en ",
                   "GreenTechCycle masters the intersection of IT, business and regulation. One platform to navigate ITAD complexity and turn compliance into "
@@ -1119,14 +1119,14 @@ export default function RegulationPage() {
                   const KIcon = kpi.icon;
                   return (
                     <StaggerItem key={i}>
-                      <div className="group relative rounded-2xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-xl border border-white/10 px-5 py-6 hover:border-accent/40 hover:from-white/[0.1] transition-all duration-500 h-full">
+                      <div className="group relative rounded-2xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-xl border border-ondark-line px-5 py-6 hover:border-accent/40 hover:from-white/[0.1] transition-all duration-500 h-full">
                         <div className="absolute top-4 right-4 opacity-30 group-hover:opacity-60 transition">
                           <KIcon className="w-5 h-5 text-accent" />
                         </div>
                         <div className={`text-4xl md:text-5xl font-black mb-3 ${kpi.accent ? "text-accent" : "text-white"}`}>
                           <CountUp end={kpi.num} decimals={kpi.decimals} suffix={kpi.suffix} />
                         </div>
-                        <p className="text-[11px] uppercase tracking-wider text-slate-400 font-medium leading-snug">
+                        <p className="text-[11px] uppercase tracking-wider text-muted font-medium leading-snug">
                           {kpi.label}
                         </p>
                       </div>
@@ -1155,9 +1155,9 @@ export default function RegulationPage() {
 
               {/* Scroll indicator */}
               <div className="hidden lg:flex justify-center mt-16">
-                <div className="flex flex-col items-center gap-2 text-slate-500 text-xs tracking-widest uppercase">
+                <div className="flex flex-col items-center gap-2 text-muted text-xs tracking-widest uppercase">
                   <span>{tx("Défiler", "Scroll")}</span>
-                  <div className="w-px h-12 bg-gradient-to-b from-slate-500 to-transparent animate-pulse" />
+                  <div className="w-px h-12 bg-gradient-to-b from-muted to-transparent animate-pulse" />
                 </div>
               </div>
             </div>
@@ -1166,11 +1166,11 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ TRUST STRIP ═══════════════ */}
-      <section className="relative bg-slate-950 border-y border-white/5 py-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-primary-900/40 to-slate-950" />
+      <section className="relative bg-forest-900 border-y border-ondark-line py-6 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-forest-900 via-primary-900/40 to-forest-900" />
         <div className="container mx-auto px-4 relative">
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs">
-            <span className="text-slate-500 uppercase tracking-widest font-semibold">
+            <span className="text-muted uppercase tracking-widest font-semibold">
               {tx("Réglementations couvertes", "Regulations covered")}
             </span>
             {[
@@ -1184,7 +1184,7 @@ export default function RegulationPage() {
               { label: "AI Act", icon: Brain },
               { label: "DEEE", icon: Recycle },
             ].map(({ label, icon: BIcon }) => (
-              <span key={label} className="inline-flex items-center gap-1.5 text-slate-300 font-semibold tracking-wide">
+              <span key={label} className="inline-flex items-center gap-1.5 text-ondark-muted font-semibold tracking-wide">
                 <BIcon className="w-3.5 h-3.5 text-accent" />
                 {label}
               </span>
@@ -1194,17 +1194,17 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ SECTOR NAV ═══════════════ */}
-      <section className="sticky top-0 z-20 bg-white/90 backdrop-blur-xl border-b border-slate-200/80 py-3 shadow-sm">
+      <section className="sticky top-0 z-20 bg-white/90 backdrop-blur-xl border-b border-line/80 py-3 shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-3">
-            <span className="hidden md:inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">
+            <span className="hidden md:inline-flex items-center gap-1.5 text-[11px] font-bold text-muted uppercase tracking-widest whitespace-nowrap">
               <Target className="w-3 h-3" />
               {tx("Naviguer", "Navigate")}
             </span>
             <div className="flex gap-2 overflow-x-auto scrollbar-hide flex-1">
               <a
                 href="#transversal"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-900 bg-slate-900 text-white text-sm font-semibold whitespace-nowrap hover:bg-slate-800 hover:shadow-md transition"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-forest-900 bg-forest-900 text-white text-sm font-semibold whitespace-nowrap hover:bg-forest-950 hover:shadow-md transition"
               >
                 <Globe className="w-4 h-4" />
                 {tx("Transversales", "Cross-sector")}
@@ -1229,24 +1229,24 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ TRANSVERSAL REGULATIONS ═══════════════ */}
-      <section id="transversal" className="relative py-24 lg:py-32 bg-gradient-to-b from-white via-slate-50 to-white overflow-hidden">
+      <section id="transversal" className="relative py-24 lg:py-32 bg-gradient-to-b from-white via-cream to-white overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-gradient-to-b from-accent/[0.04] to-transparent blur-3xl pointer-events-none" />
 
         <div className="container mx-auto px-4 relative">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-5">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-leaf-100 border border-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-5">
                 <Globe className="w-3.5 h-3.5" />
                 {tx("Socle commun", "Common foundation")}
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-4xl md:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]">
                 {tx("Réglementations ", "Cross-sector ")}
                 <span className="relative">
                   <span className="relative z-10">{tx("transversales", "regulations")}</span>
                   <span className="absolute bottom-1 left-0 right-0 h-3 bg-accent/20 -z-0" />
                 </span>
               </h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="text-lg text-ink-700 leading-relaxed">
                 {tx(
                   "Ces réglementations s'appliquent à toutes les entreprises, quel que soit le secteur. Elles forment le socle de conformité minimum que chaque DSI doit maîtriser.",
                   "These regulations apply to all companies regardless of sector. They form the minimum compliance foundation every CIO must master."
@@ -1260,7 +1260,7 @@ export default function RegulationPage() {
               const Icon = reg.icon;
               return (
                 <StaggerItem key={reg.name}>
-                  <article className="group relative h-full bg-white rounded-3xl border border-slate-200/80 hover:border-accent/30 hover:shadow-2xl hover:shadow-slate-900/5 hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+                  <article className="group relative h-full bg-white rounded-3xl border border-line/80 hover:border-accent/30 hover:shadow-2xl hover: hover:-translate-y-1 transition-all duration-500 overflow-hidden">
                     {/* Decorative corner glow */}
                     <div className={`absolute -top-16 -right-16 w-40 h-40 ${reg.bgColor} rounded-full blur-3xl opacity-0 group-hover:opacity-70 transition-opacity duration-700`} />
 
@@ -1272,10 +1272,10 @@ export default function RegulationPage() {
                         <StatusBadge status={reg.status} tx={tx} />
                       </div>
 
-                      <h3 className="text-2xl font-bold text-slate-900 mb-1 tracking-tight">{reg.name}</h3>
-                      <p className="text-xs text-slate-500 mb-4 font-medium">{reg.fullName}</p>
+                      <h3 className="text-2xl font-bold text-ink mb-1 tracking-tight">{reg.name}</h3>
+                      <p className="text-xs text-muted mb-4 font-medium">{reg.fullName}</p>
 
-                      <div className="flex flex-wrap gap-3 text-[11px] text-slate-500 mb-5 pb-5 border-b border-slate-100">
+                      <div className="flex flex-wrap gap-3 text-[11px] text-muted mb-5 pb-5 border-b border-line">
                         <span className="inline-flex items-center gap-1">
                           <Globe className="w-3 h-3" /> {reg.jurisdiction}
                         </span>
@@ -1284,7 +1284,7 @@ export default function RegulationPage() {
                         </span>
                       </div>
 
-                      <p className="text-sm text-slate-600 leading-relaxed mb-5 line-clamp-5">{reg.description}</p>
+                      <p className="text-sm text-ink-700 leading-relaxed mb-5 line-clamp-5">{reg.description}</p>
 
                       <div className={`rounded-2xl ${reg.bgColor} border ${reg.borderColor} p-4 mb-4`}>
                         <p className={`text-xs font-bold uppercase tracking-wider ${reg.color} mb-1 flex items-center gap-1.5`}>
@@ -1292,15 +1292,15 @@ export default function RegulationPage() {
                           {tx("Impact chiffré", "Quantified impact")}
                         </p>
                         <p className={`text-base font-bold ${reg.color}`}>{reg.keyFigure}</p>
-                        <p className="text-[11px] text-slate-500 mt-1">{reg.subFigure}</p>
+                        <p className="text-[11px] text-muted mt-1">{reg.subFigure}</p>
                       </div>
 
-                      <div className="flex items-start gap-2.5 bg-gradient-to-br from-accent/5 to-emerald-50 rounded-2xl p-4 border border-accent/10">
+                      <div className="flex items-start gap-2.5 bg-gradient-to-br from-accent/5 to-leaf-50 rounded-2xl p-4 border border-accent/10">
                         <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-accent flex items-center justify-center shadow-sm shadow-accent/30">
                           <CheckCircle2 className="w-4 h-4 text-white" />
                         </div>
-                        <p className="text-xs text-slate-700 leading-relaxed">
-                          <span className="font-bold text-slate-900">{tx("Comment GTC aide", "How GTC helps")} :</span> {reg.gtcHelp}
+                        <p className="text-xs text-ink-700 leading-relaxed">
+                          <span className="font-bold text-ink">{tx("Comment GTC aide", "How GTC helps")} :</span> {reg.gtcHelp}
                         </p>
                       </div>
                     </div>
@@ -1313,19 +1313,19 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ REGULATIONS BY SECTOR ═══════════════ */}
-      <section id="sectors" className="py-24 lg:py-32 bg-slate-50">
+      <section id="sectors" className="py-24 lg:py-32 bg-cream">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-5">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-leaf-100 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-5">
                 <Landmark className="w-3.5 h-3.5" />
                 {tx("Par secteur d'activité", "By industry sector")}
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-4xl md:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]">
                 {tx("Cadre réglementaire ", "Regulatory framework ")}
                 <span className="text-primary">{tx("par secteur", "by sector")}</span>
               </h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="text-lg text-ink-700 leading-relaxed">
                 {tx(
                   "Le DSI cherche ce qui s'applique à SON secteur. Cliquez sur votre domaine pour voir les réglementations qui vous concernent, avec pré-requis techniques et impact business.",
                   "The CIO looks for what applies to THEIR sector. Click your domain to see the regulations that concern you, with technical prerequisites and business impact."
@@ -1350,11 +1350,11 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ TIMELINE 2024→2028 ═══════════════ */}
-      <section className="relative py-24 lg:py-32 bg-slate-950 overflow-hidden">
+      <section className="relative py-24 lg:py-32 bg-forest-900 overflow-hidden">
         {/* Decorative backgrounds */}
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
-          <div className="absolute top-1/3 left-[10%] w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/3 left-[10%] w-96 h-96 bg-leaf-100 rounded-full blur-3xl" />
           <div className="absolute bottom-1/3 right-[10%] w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
         </div>
         <div
@@ -1368,18 +1368,18 @@ export default function RegulationPage() {
         <div className="container mx-auto px-4 relative z-10">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-accent text-xs font-bold uppercase tracking-widest mb-5">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-leaf-100 border border-accent/30 text-accent text-xs font-bold uppercase tracking-widest mb-5">
                 <Clock className="w-3.5 h-3.5" />
                 {tx("Agenda réglementaire 2024 (2028", "Regulatory agenda 2024) 2028")}
               </span>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-5 tracking-tight leading-[1.1]">
                 {tx("Chaque jalon,", "Every milestone,")}
                 <br />
-                <span className="bg-gradient-to-r from-accent via-emerald-300 to-accent bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-accent via-leaf-100 to-accent bg-clip-text text-transparent">
                   {tx("un impact business concret", "concrete business impact")}
                 </span>
               </h2>
-              <p className="text-lg text-slate-400 leading-relaxed">
+              <p className="text-lg text-muted leading-relaxed">
                 {tx(
                   "Pas juste des dates, ce qui change pour le DSI/RSSI, l'impact financier, et ce que GTC recommande de faire maintenant.",
                   "Not just dates, what changes for the CIO/CISO, the financial impact, and what GTC recommends doing now."
@@ -1400,7 +1400,7 @@ export default function RegulationPage() {
                     <div className={`relative flex items-start gap-4 md:gap-8 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}>
                       {/* Timeline node */}
                       <div className="relative z-10 flex-shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2">
-                        <div className="w-14 h-14 rounded-2xl bg-slate-900 border-2 border-accent flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.4)]">
+                        <div className="w-14 h-14 rounded-2xl bg-forest-900 border-2 border-accent flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.4)]">
                           <span className="text-[10px] font-bold text-accent uppercase tracking-widest text-center leading-tight px-1">
                             {t.date}
                           </span>
@@ -1412,21 +1412,21 @@ export default function RegulationPage() {
 
                       {/* Card */}
                       <div className={`flex-1 md:w-1/2 ${isLeft ? "md:pr-12" : "md:pl-12"}`}>
-                        <div className="group bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-accent/40 hover:shadow-[0_20px_60px_-15px_rgba(16,185,129,0.25)] transition-all duration-500">
+                        <div className="group bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl border border-ondark-line rounded-2xl p-6 hover:border-accent/40 hover:shadow-[0_20px_60px_-15px_rgba(16,185,129,0.25)] transition-all duration-500">
                           <div className="flex items-center gap-2 mb-3">
                             <span className="inline-flex md:hidden items-center text-[10px] font-bold uppercase tracking-widest text-accent">
                               {t.date}
                             </span>
-                            <span className="md:ml-0 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-emerald-400">
+                            <span className="md:ml-0 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-leaf-300">
                               <Sparkles className="w-3 h-3" />
                               {tx("Jalon clé", "Key milestone")}
                             </span>
                           </div>
                           <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">{t.title}</h3>
-                          <p className="text-sm text-slate-300 leading-relaxed mb-4">{t.impact}</p>
-                          <div className="flex items-start gap-2 bg-gradient-to-br from-accent/15 to-emerald-500/5 rounded-xl px-3 py-2.5 border border-accent/20">
+                          <p className="text-sm text-ondark-muted leading-relaxed mb-4">{t.impact}</p>
+                          <div className="flex items-start gap-2 bg-gradient-to-br from-accent/15 to-leaf/5 rounded-xl px-3 py-2.5 border border-accent/20">
                             <AlertTriangle className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                            <p className="text-xs text-accent/90 font-medium leading-relaxed">
+                            <p className="text-xs text-leaf font-medium leading-relaxed">
                               {t.business}
                             </p>
                           </div>
@@ -1446,17 +1446,17 @@ export default function RegulationPage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold uppercase tracking-widest mb-5">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-leaf-50 border border-line text-forest text-xs font-bold uppercase tracking-widest mb-5">
                 <Activity className="w-3.5 h-3.5" />
                 {tx("Contexte géopolitique & technologique", "Geopolitical & technological context")}
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-4xl md:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]">
                 {tx("Enjeux & crises qui ", "Issues & crises ")}
-                <span className="bg-gradient-to-r from-rose-600 to-orange-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-forest to-ochre bg-clip-text text-transparent">
                   {tx("redéfinissent l'ITAD", "redefining ITAD")}
                 </span>
               </h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="text-lg text-ink-700 leading-relaxed">
                 {tx(
                   "Au-delà de la réglementation, des forces géopolitiques, énergétiques et technologiques redessinent les priorités de la gestion des actifs IT.",
                   "Beyond regulation, geopolitical, energy and technological forces are reshaping IT asset management priorities."
@@ -1470,7 +1470,7 @@ export default function RegulationPage() {
               const SectionIcon = section.icon;
               return (
                 <FadeIn key={section.id} delay={i * 0.06}>
-                  <div className="group relative h-full rounded-3xl border border-slate-200 bg-gradient-to-br from-white to-slate-50/30 overflow-hidden hover:shadow-xl hover:border-slate-300 transition-all duration-500">
+                  <div className="group relative h-full rounded-3xl border border-line bg-gradient-to-br from-white to-cream/30 overflow-hidden hover:shadow-xl hover:border-line transition-all duration-500">
                     {/* Gradient top bar */}
                     <div className={`h-1.5 bg-gradient-to-r ${section.color}`} />
 
@@ -1479,13 +1479,13 @@ export default function RegulationPage() {
                         <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${section.color} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
                           <SectionIcon className="w-7 h-7 text-white" strokeWidth={1.75} />
                         </div>
-                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight">{section.title}</h3>
+                        <h3 className="text-xl md:text-2xl font-bold text-ink tracking-tight">{section.title}</h3>
                       </div>
                       <div className="space-y-4">
                         {section.items.map((item, j) => (
-                          <div key={j} className="relative pl-5 border-l-2 border-slate-200 hover:border-accent transition-colors">
-                            <h4 className="font-bold text-slate-900 mb-1.5 text-sm tracking-tight">{item.title}</h4>
-                            <p className="text-sm text-slate-600 leading-relaxed">{item.text}</p>
+                          <div key={j} className="relative pl-5 border-l-2 border-line hover:border-accent transition-colors">
+                            <h4 className="font-bold text-ink mb-1.5 text-sm tracking-tight">{item.title}</h4>
+                            <p className="text-sm text-ink-700 leading-relaxed">{item.text}</p>
                           </div>
                         ))}
                       </div>
@@ -1499,25 +1499,25 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ PROPOSITION DE VALEUR GTC ═══════════════ */}
-      <section className="relative py-24 lg:py-32 bg-gradient-to-br from-slate-50 via-white to-emerald-50/30 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+      <section className="relative py-24 lg:py-32 bg-gradient-to-br from-cream via-white to-leaf-50/30 overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-leaf-50 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-leaf-50 rounded-full blur-3xl" />
 
         <div className="container mx-auto px-4 relative">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-5">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-leaf-100 border border-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-5">
                 <Sparkles className="w-3.5 h-3.5" />
                 {tx("Notre réponse", "Our answer")}
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-4xl md:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]">
                 {tx("Comment ", "How ")}
                 <span className="relative inline-block">
                   <span className="relative z-10 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">GreenTechCycle</span>
                 </span>
                 {tx(" vous aide", " helps you")}
               </h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="text-lg text-ink-700 leading-relaxed">
                 {tx(
                   "GreenTechCycle a été conçu pour répondre à chacun de ces défis avec une plateforme unifiée, certifiée et auditable.",
                   "GreenTechCycle was designed to address each of these challenges with a unified, certified and auditable platform."
@@ -1531,14 +1531,14 @@ export default function RegulationPage() {
               const VPIcon = vp.icon;
               return (
                 <StaggerItem key={i}>
-                  <div className="group relative h-full bg-white rounded-3xl p-7 border border-slate-200 hover:shadow-2xl hover:shadow-slate-900/5 hover:border-accent/30 hover:-translate-y-1 transition-all duration-500 overflow-hidden">
-                    <div className="absolute -top-10 -right-10 w-32 h-32 bg-accent/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="group relative h-full bg-white rounded-3xl p-7 border border-line hover:shadow-2xl hover: hover:border-accent/30 hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+                    <div className="absolute -top-10 -right-10 w-32 h-32 bg-leaf-50 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                     <div className="relative">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-emerald-50 border border-accent/20 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-leaf-50 border border-accent/20 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
                         <VPIcon className="w-7 h-7 text-accent" strokeWidth={1.75} />
                       </div>
-                      <h3 className="text-lg font-bold text-slate-900 mb-2.5 tracking-tight">{vp.title}</h3>
-                      <p className="text-sm text-slate-600 leading-relaxed">{vp.text}</p>
+                      <h3 className="text-lg font-bold text-ink mb-2.5 tracking-tight">{vp.title}</h3>
+                      <p className="text-sm text-ink-700 leading-relaxed">{vp.text}</p>
                     </div>
                   </div>
                 </StaggerItem>
@@ -1551,42 +1551,42 @@ export default function RegulationPage() {
             <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-4">
               <Link
                 href="/services"
-                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 hover:border-primary hover:shadow-lg transition-all"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-line hover:border-primary hover:shadow-lg transition-all"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-leaf-100 flex items-center justify-center flex-shrink-0">
                   <Workflow className="w-6 h-6 text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-slate-900 mb-0.5">{tx("Nos services", "Our services")}</p>
-                  <p className="text-xs text-slate-500">{tx("ITAD, destruction, reconditionnement", "ITAD, destruction, refurbishment")}</p>
+                  <p className="text-sm font-bold text-ink mb-0.5">{tx("Nos services", "Our services")}</p>
+                  <p className="text-xs text-muted">{tx("ITAD, destruction, reconditionnement", "ITAD, destruction, refurbishment")}</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition" />
+                <ArrowRight className="w-5 h-5 text-muted group-hover:text-primary group-hover:translate-x-1 transition" />
               </Link>
               <Link
                 href="/securite"
-                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 hover:border-accent hover:shadow-lg transition-all"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-line hover:border-accent hover:shadow-lg transition-all"
               >
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-leaf-100 flex items-center justify-center flex-shrink-0">
                   <ShieldCheck className="w-6 h-6 text-accent" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-slate-900 mb-0.5">{tx("Nos certifications", "Our certifications")}</p>
-                  <p className="text-xs text-slate-500">{tx("ISO 27001, R2v3, NIST, DoD", "ISO 27001, R2v3, NIST, DoD")}</p>
+                  <p className="text-sm font-bold text-ink mb-0.5">{tx("Nos certifications", "Our certifications")}</p>
+                  <p className="text-xs text-muted">{tx("ISO 27001, R2v3, NIST, DoD", "ISO 27001, R2v3, NIST, DoD")}</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-accent group-hover:translate-x-1 transition" />
+                <ArrowRight className="w-5 h-5 text-muted group-hover:text-accent group-hover:translate-x-1 transition" />
               </Link>
               <Link
                 href="/methodologie"
-                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 hover:border-secondary hover:shadow-lg transition-all"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-line hover:border-secondary hover:shadow-lg transition-all"
               >
                 <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
                   <BookOpen className="w-6 h-6 text-secondary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-slate-900 mb-0.5">{tx("Notre méthodologie", "Our methodology")}</p>
-                  <p className="text-xs text-slate-500">{tx("Processus ITAD 7 étapes", "ITAD 7-step process")}</p>
+                  <p className="text-sm font-bold text-ink mb-0.5">{tx("Notre méthodologie", "Our methodology")}</p>
+                  <p className="text-xs text-muted">{tx("Processus ITAD 7 étapes", "ITAD 7-step process")}</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-secondary group-hover:translate-x-1 transition" />
+                <ArrowRight className="w-5 h-5 text-muted group-hover:text-secondary group-hover:translate-x-1 transition" />
               </Link>
             </div>
           </FadeIn>
@@ -1594,7 +1594,7 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ BLOG / RESSOURCES ═══════════════ */}
-      <section className="py-24 lg:py-32 bg-slate-50">
+      <section className="py-24 lg:py-32 bg-cream">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-14">
@@ -1602,11 +1602,11 @@ export default function RegulationPage() {
                 <BookOpen className="w-3.5 h-3.5" />
                 {tx("Ressources & analyses", "Resources & insights")}
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-4xl md:text-5xl font-bold text-ink mb-5 tracking-tight leading-[1.1]">
                 {tx("Approfondir la ", "Dive deeper into ")}
                 <span className="text-primary">{tx("conformité", "compliance")}</span>
               </h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="text-lg text-ink-700 leading-relaxed">
                 {tx(
                   "Analyses, guides pratiques et retours d'expérience pour comprendre et anticiper les exigences réglementaires ITAD.",
                   "Analyses, practical guides and insights to understand and anticipate ITAD regulatory requirements."
@@ -1622,9 +1622,9 @@ export default function RegulationPage() {
                 title: tx("NIS2 & conformité IT : obligations d'infrastructure", "NIS2 & IT compliance: infrastructure obligations"),
                 excerpt: tx("Décryptage des exigences NIS2 pour la gestion de votre parc IT : registre d'actifs, notification d'incidents, chain of custody.", "Breakdown of NIS2 requirements for IT fleet management: asset register, incident notification, chain of custody."),
                 icon: Lock,
-                color: "from-indigo-500 to-blue-600",
-                iconBg: "bg-indigo-50",
-                iconColor: "text-indigo-600",
+                color: "from-forest to-forest",
+                iconBg: "bg-leaf-50",
+                iconColor: "text-forest",
                 tag: "NIS2 · Cybersécurité",
               },
               {
@@ -1632,9 +1632,9 @@ export default function RegulationPage() {
                 title: tx("CSRD & ITAD : intégrer l'IT aux comptes-rendus ESG", "CSRD & ITAD: embedding IT into ESG reporting"),
                 excerpt: tx("Comment contribuer aux indicateurs ESRS E1 et E5 avec votre programme ITAD : CO₂ évité, taux de réemploi, bilan matière.", "How to contribute to ESRS E1 and E5 indicators with your ITAD program: avoided CO₂, reuse rate, material balance."),
                 icon: Leaf,
-                color: "from-emerald-500 to-teal-600",
-                iconBg: "bg-emerald-50",
-                iconColor: "text-emerald-600",
+                color: "from-leaf to-leaf",
+                iconBg: "bg-leaf-50",
+                iconColor: "text-leaf",
                 tag: "CSRD · ESG",
               },
               {
@@ -1642,9 +1642,9 @@ export default function RegulationPage() {
                 title: tx("Sécurité des données en fin de vie IT", "End-of-life IT data security"),
                 excerpt: tx("Protéger vos données sensibles lors du décommissionnement : méthodes d'effacement NIST, DoD, IEEE, certificats et preuves.", "Protect sensitive data during decommissioning: NIST, DoD, IEEE erasure methods, certificates and evidence."),
                 icon: Shield,
-                color: "from-rose-500 to-red-600",
-                iconBg: "bg-rose-50",
-                iconColor: "text-rose-600",
+                color: "from-forest to-ochre",
+                iconBg: "bg-leaf-50",
+                iconColor: "text-forest",
                 tag: "RGPD · Sécurité",
               },
               {
@@ -1652,9 +1652,9 @@ export default function RegulationPage() {
                 title: tx("Guide DEEE : obligations entreprises 2026", "WEEE guide: 2026 company obligations"),
                 excerpt: tx("Responsabilité Élargie du Producteur, éco-organismes, traçabilité des DEEE : ce que chaque entreprise doit mettre en place.", "Extended Producer Responsibility, eco-organisations, WEEE traceability: what every company must put in place."),
                 icon: Recycle,
-                color: "from-green-500 to-emerald-600",
-                iconBg: "bg-green-50",
-                iconColor: "text-green-600",
+                color: "from-leaf to-leaf",
+                iconBg: "bg-leaf-50",
+                iconColor: "text-leaf",
                 tag: "DEEE · AGEC",
               },
               {
@@ -1662,9 +1662,9 @@ export default function RegulationPage() {
                 title: tx("Économie circulaire IT en entreprise", "Circular IT economy in enterprise"),
                 excerpt: tx("Du reconditionnement à la valorisation des actifs : construire une stratégie circulaire rentable et conforme loi AGEC.", "From refurbishment to asset recovery: building a profitable circular strategy compliant with AGEC law."),
                 icon: Zap,
-                color: "from-amber-500 to-orange-600",
-                iconBg: "bg-amber-50",
-                iconColor: "text-amber-600",
+                color: "from-ochre to-ochre",
+                iconBg: "bg-ochre-100",
+                iconColor: "text-ochre",
                 tag: "AGEC · Circularité",
               },
             ].map((article, i) => {
@@ -1673,24 +1673,24 @@ export default function RegulationPage() {
                 <StaggerItem key={i}>
                   <Link
                     href={`/blog/${article.slug}`}
-                    className="group relative h-full flex flex-col bg-white rounded-3xl border border-slate-200 overflow-hidden hover:shadow-2xl hover:shadow-slate-900/5 hover:-translate-y-1 hover:border-slate-300 transition-all duration-500"
+                    className="group relative h-full flex flex-col bg-white rounded-3xl border border-line overflow-hidden hover:shadow-2xl hover: hover:-translate-y-1 hover:border-line transition-all duration-500"
                   >
                     {/* Visual header */}
                     <div className={`relative h-40 bg-gradient-to-br ${article.color} flex items-center justify-center overflow-hidden`}>
                       <div className="absolute inset-0 opacity-20" style={{
                         backgroundImage: "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4), transparent 50%), radial-gradient(circle at 80% 50%, rgba(255,255,255,0.2), transparent 50%)",
                       }} />
-                      <AIcon className="w-20 h-20 text-white/90 relative z-10 group-hover:scale-110 transition-transform duration-500" strokeWidth={1.25} />
+                      <AIcon className="w-20 h-20 text-ondark relative z-10 group-hover:scale-110 transition-transform duration-500" strokeWidth={1.25} />
                       <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/20 backdrop-blur text-[10px] font-bold text-white tracking-wider uppercase border border-white/30">
                         {article.tag}
                       </span>
                     </div>
 
                     <div className="flex-1 p-6 flex flex-col">
-                      <h3 className="text-lg font-bold text-slate-900 mb-3 tracking-tight leading-snug group-hover:text-primary transition">
+                      <h3 className="text-lg font-bold text-ink mb-3 tracking-tight leading-snug group-hover:text-primary transition">
                         {article.title}
                       </h3>
-                      <p className="text-sm text-slate-600 leading-relaxed mb-5 flex-1">
+                      <p className="text-sm text-ink-700 leading-relaxed mb-5 flex-1">
                         {article.excerpt}
                       </p>
                       <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent group-hover:gap-2.5 transition-all">
@@ -1708,7 +1708,7 @@ export default function RegulationPage() {
             <div className="text-center">
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border-2 border-slate-200 hover:border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 font-semibold transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border-2 border-line hover:border-forest-900 hover:bg-forest-900 hover:text-white text-ink font-semibold transition-all"
               >
                 <BookOpen className="w-4 h-4" />
                 {tx("Voir tous les articles", "See all articles")}
@@ -1720,18 +1720,18 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ SOURCES & RÉFÉRENCES ═══════════════ */}
-      <section className="py-16 bg-white border-y border-slate-200">
+      <section className="py-16 bg-white border-y border-line">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-10">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-[11px] font-bold uppercase tracking-widest mb-4">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sand text-ink-700 text-[11px] font-bold uppercase tracking-widest mb-4">
                 <FileCheck className="w-3 h-3" />
                 {tx("Données sourcées", "Sourced data")}
               </span>
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 tracking-tight">
+              <h2 className="text-2xl md:text-3xl font-bold text-ink mb-3 tracking-tight">
                 {tx("Sources & Références", "Sources & References")}
               </h2>
-              <p className="text-slate-600">
+              <p className="text-ink-700">
                 {tx(
                   "Toutes les données citées proviennent de sources institutionnelles et d'analystes reconnus.",
                   "All cited data comes from institutional sources and recognized analysts."
@@ -1741,12 +1741,12 @@ export default function RegulationPage() {
           </FadeIn>
           <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {sources.map((s, i) => (
-              <div key={i} className="group bg-slate-50 hover:bg-white rounded-xl p-4 border border-slate-200 hover:border-accent/30 hover:shadow-md transition-all">
+              <div key={i} className="group bg-cream hover:bg-white rounded-xl p-4 border border-line hover:border-accent/30 hover:shadow-md transition-all">
                 <div className="flex items-center gap-2 mb-1.5">
                   <div className="w-1 h-5 bg-accent rounded-full" />
-                  <p className="font-bold text-slate-900 text-sm">{s.name}</p>
+                  <p className="font-bold text-ink text-sm">{s.name}</p>
                 </div>
-                <p className="text-xs text-slate-500 leading-relaxed">{s.desc}</p>
+                <p className="text-xs text-muted leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -1754,11 +1754,11 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ CTA FINAL ═══════════════ */}
-      <section className="relative py-24 lg:py-32 bg-gradient-to-br from-primary-900 via-primary to-slate-950 overflow-hidden">
+      <section className="relative py-24 lg:py-32 bg-gradient-to-br from-primary-900 via-primary to-forest-900 overflow-hidden">
         {/* Ambient lights */}
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-accent/20 rounded-full blur-3xl" />
-          <div className="absolute -top-20 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+          <div className="absolute -top-20 right-0 w-96 h-96 bg-leaf-100 rounded-full blur-3xl" />
           <div className="absolute -bottom-20 left-0 w-96 h-96 bg-primary-400/10 rounded-full blur-3xl" />
         </div>
 
@@ -1778,7 +1778,7 @@ export default function RegulationPage() {
               <div className="flex justify-center mb-8">
                 <div className="relative">
                   <div className="absolute inset-0 bg-accent/40 blur-3xl rounded-full animate-pulse" style={{ animationDuration: "4s" }} />
-                  <div className="relative w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/30 to-emerald-500/10 border border-accent/40 backdrop-blur-xl flex items-center justify-center shadow-[0_0_80px_rgba(16,185,129,0.5)]">
+                  <div className="relative w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/30 to-leaf/10 border border-accent/40 backdrop-blur-xl flex items-center justify-center shadow-[0_0_80px_rgba(16,185,129,0.5)]">
                     <Scale className="w-10 h-10 text-accent" strokeWidth={1.75} />
                   </div>
                 </div>
@@ -1787,12 +1787,12 @@ export default function RegulationPage() {
               <h2 className="text-center text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.05]">
                 {tx("Transformez la conformité", "Turn compliance")}
                 <br />
-                <span className="bg-gradient-to-r from-accent via-emerald-300 to-accent bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-accent via-leaf-100 to-accent bg-clip-text text-transparent">
                   {tx("en avantage concurrentiel", "into competitive edge")}
                 </span>
               </h2>
 
-              <p className="text-center text-lg md:text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
+              <p className="text-center text-lg md:text-xl text-ondark-muted mb-12 max-w-2xl mx-auto leading-relaxed font-light">
                 {tx(
                   "Nos experts cartographient les réglementations qui vous concernent, identifient les écarts et construisent votre plan d'action priorisé.",
                   "Our experts map the regulations that apply to you, identify gaps and build your prioritized action plan."
@@ -1822,47 +1822,47 @@ export default function RegulationPage() {
               <div className="grid sm:grid-cols-3 gap-3 max-w-4xl mx-auto">
                 <Link
                   href="/securite"
-                  className="group flex items-center gap-3 px-5 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-xl transition-all"
+                  className="group flex items-center gap-3 px-5 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-ondark-line hover:border-white/20 backdrop-blur-xl transition-all"
                 >
                   <div className="w-10 h-10 rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center flex-shrink-0">
                     <ShieldCheck className="w-5 h-5 text-accent" />
                   </div>
                   <div className="flex-1 min-w-0 text-left">
                     <p className="text-sm font-bold text-white">{tx("Nos certifications", "Our certifications")}</p>
-                    <p className="text-xs text-slate-400">{tx("ISO 27001, R2v3, NIST", "ISO 27001, R2v3, NIST")}</p>
+                    <p className="text-xs text-muted">{tx("ISO 27001, R2v3, NIST", "ISO 27001, R2v3, NIST")}</p>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white group-hover:translate-x-0.5 transition" />
+                  <ArrowRight className="w-4 h-4 text-muted group-hover:text-white group-hover:translate-x-0.5 transition" />
                 </Link>
                 <Link
                   href="/methodologie"
-                  className="group flex items-center gap-3 px-5 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-xl transition-all"
+                  className="group flex items-center gap-3 px-5 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-ondark-line hover:border-white/20 backdrop-blur-xl transition-all"
                 >
                   <div className="w-10 h-10 rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center flex-shrink-0">
                     <BookOpen className="w-5 h-5 text-accent" />
                   </div>
                   <div className="flex-1 min-w-0 text-left">
                     <p className="text-sm font-bold text-white">{tx("Méthodologie", "Methodology")}</p>
-                    <p className="text-xs text-slate-400">{tx("Processus ITAD en 7 étapes", "7-step ITAD process")}</p>
+                    <p className="text-xs text-muted">{tx("Processus ITAD en 7 étapes", "7-step ITAD process")}</p>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white group-hover:translate-x-0.5 transition" />
+                  <ArrowRight className="w-4 h-4 text-muted group-hover:text-white group-hover:translate-x-0.5 transition" />
                 </Link>
                 <Link
                   href="/blog"
-                  className="group flex items-center gap-3 px-5 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-xl transition-all"
+                  className="group flex items-center gap-3 px-5 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-ondark-line hover:border-white/20 backdrop-blur-xl transition-all"
                 >
                   <div className="w-10 h-10 rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center flex-shrink-0">
                     <FileCheck className="w-5 h-5 text-accent" />
                   </div>
                   <div className="flex-1 min-w-0 text-left">
                     <p className="text-sm font-bold text-white">{tx("Ressources", "Resources")}</p>
-                    <p className="text-xs text-slate-400">{tx("Guides & analyses", "Guides & analyses")}</p>
+                    <p className="text-xs text-muted">{tx("Guides & analyses", "Guides & analyses")}</p>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white group-hover:translate-x-0.5 transition" />
+                  <ArrowRight className="w-4 h-4 text-muted group-hover:text-white group-hover:translate-x-0.5 transition" />
                 </Link>
               </div>
 
               {/* Trust footer */}
-              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-14 text-xs text-slate-400">
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-14 text-xs text-muted">
                 <span className="inline-flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-accent" />
                   {tx("Audit gratuit", "Free audit")}

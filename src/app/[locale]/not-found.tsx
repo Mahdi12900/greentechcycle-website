@@ -17,16 +17,16 @@ export default function NotFound() {
       <div className="container-max max-w-2xl text-center">
         {/* Logo */}
         <div className="mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 p-3">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-leaf-100 p-3">
             <Image src="/icon-only.svg" alt="GreenTechCycle" width={56} height={56} className="w-full h-full" />
           </div>
         </div>
 
         {/* Title & Subtitle */}
-        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+        <h1 className="text-4xl sm:text-5xl font-bold text-ink mb-4">
           {t("title")}
         </h1>
-        <p className="text-lg text-gray-600 mb-8">
+        <p className="text-lg text-ink-700 mb-8">
           {t("subtitle")}
         </p>
 
@@ -40,14 +40,14 @@ export default function NotFound() {
         </Link>
 
         {/* Helpful Links */}
-        <div className="border-t border-gray-200 pt-8">
-          <p className="text-sm text-gray-500 mb-4">-</p>
+        <div className="border-t border-line pt-8">
+          <p className="text-sm text-muted mb-4">-</p>
           <div className="flex flex-wrap justify-center gap-4">
             {helpfulLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 text-gray-700 hover:border-primary hover:text-primary transition-colors"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-line text-ink-700 hover:border-primary hover:text-primary transition-colors"
               >
                 <link.icon className="w-4 h-4" />
                 {link.label}
