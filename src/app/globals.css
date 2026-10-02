@@ -2,35 +2,138 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* ─────────────────────────────────────────────────────────────────────────────
+   Système de design « Épuré » — voir DESIGN.md.
+   Les polices sont auto-hébergées via next/font/local (src/app/fonts.ts) :
+   aucun @import de CDN ici.
+───────────────────────────────────────────────────────────────────────────── */
 
 @layer base {
+  :root {
+    /* Miroir CSS des tokens Tailwind (DESIGN.md §2) — pour les styles inline / SVG */
+    --color-forest: #0b3b2e;
+    --color-forest-700: #0e4a3a;
+    --color-night: #0f1f1a;
+    --color-night-card: #122621;
+    --color-leaf: #047857;
+    --color-leaf-700: #065f46;
+    --color-leaf-300: #7be0b3;
+    --color-mint: #e3f3eb;
+    --color-ink: #1c1917;
+    --color-ink-700: #44403c;
+    --color-muted: #6b6560;
+    --color-line: #e7e2da;
+    --color-sand: #efebe3;
+    --color-cream: #f7f5f0;
+    --color-paper: #ffffff;
+    --color-ondark: #f5f2ec;
+    --color-ondark-muted: #a3b3aa;
+    --color-ochre: #b45309;
+    --color-ochre-100: #fbefd9;
+    --color-ochre-300: #f2b35b;
+    --color-ochre-800: #9a4a0b;
+
+    --header-h: 4rem;
+    --radius-sm: 0.5rem;   /* boutons, inputs, tags */
+    --radius-md: 0.75rem;  /* cartes, panneaux */
+    --radius-lg: 1rem;     /* images, panneau de chat */
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --header-h: 4.5rem;
+    }
+  }
+
   html {
     scroll-behavior: smooth;
+    /* Les ancres (#douleurs…) atterrissent sous l'unique barre collée */
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {
-    @apply antialiased text-gray-900 bg-white;
+    @apply antialiased text-ink bg-paper font-sans;
     font-feature-settings: "ss01", "cv11";
+    font-optical-sizing: auto;
+  }
+
+  /* H1/H2 = police display (Fraunces), graisse 500 — DESIGN.md §3.2.
+     Les graisses utilitaires (font-bold…) encore présentes sur les anciennes
+     pages sont à retirer lors de la refonte de chaque page. */
+  h1,
+  h2 {
+    font-family: var(--font-display), Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    font-optical-sizing: auto;
+    text-wrap: balance;
   }
 
   ::selection {
-    @apply bg-accent/30 text-dark;
+    background: #c7e6d6;
+    color: #0b3b2e;
+  }
+
+  :focus-visible {
+    outline: 2px solid #047857;
+    outline-offset: 2px;
   }
 }
 
 @layer components {
   .section-padding {
-    @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
+    @apply px-5 sm:px-6 lg:px-8 py-16 lg:py-24;
   }
 
   .container-max {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-site mx-auto;
+  }
+
+  /* Les tokens de taille display/stat portent aussi la police display */
+  .text-display-xl,
+  .text-display-lg,
+  .text-display-md,
+  .text-display-sm,
+  .text-stat {
+    font-family: var(--font-display), Georgia, "Times New Roman", serif;
+    font-optical-sizing: auto;
+  }
+
+  .text-stat {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .text-eyebrow {
+    text-transform: uppercase;
+  }
+
+  /* Indice de défilement horizontal (onglets, tableaux) — DESIGN.md §6.9 */
+  .scroll-hint {
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent);
+  }
+  .scroll-hint.is-end {
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 }
 
 @layer utilities {
-  /* Slow pulses used behind hero gradient blobs */
+  .scrollbar-hide {
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── Legacy (à supprimer à l'étape 11 du plan) ───────────────────────────
+     Conservé tant que des pages non refondues y font référence. */
   @keyframes pulse-slow {
     0%, 100% { opacity: 0.6; transform: scale(1); }
     50% { opacity: 0.9; transform: scale(1.08); }
@@ -45,8 +148,6 @@
   .animate-pulse-slower {
     animation: pulse-slower 11s ease-in-out infinite;
   }
-
-  /* Marquee / subtle shimmer if ever needed */
   @keyframes shimmer {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
@@ -55,13 +156,7 @@
     background-size: 200% 100%;
     animation: shimmer 6s linear infinite;
   }
-
-  /* Horizontal marquee used for press logos / outlets */
   @keyframes marquee {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @keyframes scroll {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
@@ -72,14 +167,12 @@
   .animate-marquee:hover {
     animation-play-state: paused;
   }
-
-  /* Typing dots animation for chat widget */
   @keyframes typing-bounce {
     0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
     30% { transform: translateY(-4px); opacity: 1; }
   }
   .typing-dot {
-    @apply h-2 w-2 rounded-full bg-slate-400;
+    @apply h-2 w-2 rounded-full bg-muted;
     animation: typing-bounce 1.4s ease-in-out infinite;
   }
   .animation-delay-200 {
@@ -88,8 +181,6 @@
   .animation-delay-400 {
     animation-delay: 0.4s;
   }
-
-  /* Custom scrollbar for chat */
   .custom-scrollbar::-webkit-scrollbar {
     width: 4px;
   }
@@ -97,7 +188,17 @@
     background: transparent;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: #e7e2da;
     border-radius: 999px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-pulse-slow,
+    .animate-pulse-slower,
+    .animate-shimmer,
+    .animate-marquee,
+    .typing-dot {
+      animation: none;
+    }
   }
 }
