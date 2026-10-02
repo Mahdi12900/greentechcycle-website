@@ -61,7 +61,7 @@ export default function Accordion({
               role="region"
               aria-labelledby={btnId}
               hidden={!isOpen}
-              className={`max-w-[65ch] pb-6 text-body ${dark ? "text-ondark-muted" : "text-ink-700"}`}
+              className={`pb-6 text-body ${typeof item.answer === "string" ? "max-w-[65ch]" : ""} ${dark ? "text-ondark-muted" : "text-ink-700"}`}
             >
               {item.answer}
             </div>
