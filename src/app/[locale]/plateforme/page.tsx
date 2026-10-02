@@ -68,7 +68,7 @@ export default function PlateformePage() {
 
               <dl className="mt-8 grid max-w-[560px] grid-cols-3 border-y border-line py-6">
                 {heroProofs.map((p, i) => (
-                  <div key={i} className={`flex flex-col-reverse ${i > 0 ? "border-l border-line pl-4" : "pr-4"}`}>
+                  <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-line pl-4" : "pr-4"}`}>
                     <dt className="mt-1 text-caption text-muted">{p.label}</dt>
                     <dd className="font-display text-display-sm tabular-nums text-forest">
                       {p.value}
