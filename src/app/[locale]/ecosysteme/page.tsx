@@ -157,7 +157,7 @@ export default function EcosystemPage({
               </h1>
               <p className="text-xl text-ondark-muted mb-8 max-w-2xl mx-auto">
                 Connecteurs natifs, API REST documentée et authentification
-                enterprise-grade. GreenTechCycle s'intègre sans friction à votre
+                enterprise-grade. GreenTechCycle s&apos;intègre sans friction à votre
                 environnement existant.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -173,7 +173,7 @@ export default function EcosystemPage({
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-all duration-300 border border-white/20"
                 >
                   <Code2 className="w-5 h-5" />
-                  Explorer l'API
+                  Explorer l&apos;API
                 </a>
               </div>
             </div>
@@ -329,7 +329,7 @@ export default function EcosystemPage({
                 Prêt à connecter votre SI ?
               </h2>
               <p className="text-xl text-ondark-muted mb-8">
-                Notre équipe technique vous accompagne dans l'intégration.
+                Notre équipe technique vous accompagne dans l&apos;intégration.
                 Planifiez une session de découverte de 30 minutes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

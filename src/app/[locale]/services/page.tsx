@@ -316,7 +316,7 @@ export default function ServicesPage() {
               style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
             >
               {tx(
-                <>L'ITAD n'est pas <span className="text-leaf">un produit</span>.<br/>C'est une chaîne de preuves.</>,
+                <>L&apos;ITAD n&apos;est pas <span className="text-leaf">un produit</span>.<br/>C&apos;est une chaîne de preuves.</>,
                 <>ITAD is not <span className="text-leaf">a product</span>.<br/>It is a chain of evidence.</>
               )}
             </h1>

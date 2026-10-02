@@ -1,125 +1,79 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
-import { ArrowRight, Calendar, Download, MessageCircle, Phone } from "lucide-react";
+import { useLocale } from "next-intl";
+import type { ReactNode } from "react";
 import { FadeIn } from "@/components/motion";
-import { ReactNode } from "react";
+import { ButtonLink } from "@/components/ui/Button";
 
-type CTAVariant = "demo" | "contact" | "download" | "call" | "audit";
-
+/**
+ * CTA de fin de page (DESIGN.md §6.12) — une seule variante visuelle :
+ * section forest, centrée, H2 display-md, chapô, primaire + secondaire sur
+ * sombre, ligne de réassurance. Une page = un seul CTA de fin.
+ *
+ * `tone`, `variant` et `icon` sont conservés dans la signature pour la
+ * compatibilité des appels existants mais n'ont plus d'effet visuel.
+ */
 interface CtaSectionProps {
-  title: string;
-  subtitle?: string;
+  title: ReactNode;
+  subtitle?: ReactNode;
   primaryLabel?: string;
   primaryHref?: string;
   secondaryLabel?: string;
   secondaryHref?: string;
-  variant?: CTAVariant;
-  /** Dark: navy/primary bg (default). Light: white background with primary accents. */
-  tone?: "dark" | "light" | "gradient";
-  icon?: ReactNode;
+  /** Ligne de réassurance ; `false` pour la masquer. */
+  reassurance?: ReactNode | false;
+  /** Contenu additionnel sous les boutons (ex. lien grille tarifaire). */
+  footnote?: ReactNode;
+  id?: string;
   className?: string;
+  /** @deprecated sans effet */
+  variant?: string;
+  /** @deprecated sans effet */
+  tone?: string;
+  /** @deprecated sans effet */
+  icon?: ReactNode;
 }
-
-const variantIcon: Record<CTAVariant, ReactNode> = {
-  demo: <Calendar className="h-5 w-5" />,
-  contact: <MessageCircle className="h-5 w-5" />,
-  download: <Download className="h-5 w-5" />,
-  call: <Phone className="h-5 w-5" />,
-  audit: <ArrowRight className="h-5 w-5" />,
-};
 
 export default function CtaSection({
   title,
   subtitle,
-  primaryLabel = "Réserver ma démo (30 min)",
+  primaryLabel,
   primaryHref = "/demo",
-  secondaryLabel = "Demander l'audit gratuit",
+  secondaryLabel,
   secondaryHref = "/contact",
-  variant = "demo",
-  tone = "dark",
-  icon,
+  reassurance,
+  footnote,
+  id,
   className = "",
 }: CtaSectionProps) {
-  const isDark = tone === "dark" || tone === "gradient";
-
-  const bgClass =
-    tone === "light"
-      ? "bg-gradient-to-br from-primary-50 via-white to-accent/5 border-y border-primary-100"
-      : tone === "gradient"
-      ? "bg-gradient-to-br from-leaf via-ink to-forest"
-      : "bg-forest-900";
-
-  const titleClass = isDark ? "text-white" : "text-ink";
-  const subtitleClass = isDark ? "text-ondark-muted" : "text-ink-700";
-  const secondaryClass = isDark
-    ? "border-2 border-white/40 hover:border-white/80 text-white hover:bg-white/10 backdrop-blur-sm"
-    : "border-2 border-primary/30 text-primary hover:bg-primary hover:text-white";
+  const isEn = useLocale() === "en";
+  const primary = primaryLabel ?? (isEn ? "Book my demo (30 min)" : "Réserver ma démo (30 min)");
+  const secondary = secondaryLabel ?? (isEn ? "Request the free audit" : "Demander l'audit gratuit");
+  const reassure =
+    reassurance === undefined
+      ? isEn
+        ? "Reply within 48 h · No commitment"
+        : "Réponse sous 48 h · Sans engagement"
+      : reassurance;
 
   return (
-    <section className={`relative py-20 md:py-24 overflow-hidden ${bgClass} ${className}`}>
-      {/* Decorative blobs */}
-      {isDark && (
-        <>
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(16,185,129,0.10),_transparent_55%)]" />
-          <div className="absolute -top-20 -right-20 w-96 h-96 bg-leaf-100 rounded-full blur-3xl animate-pulse-slow" />
-          <div className="absolute -bottom-20 -left-20 w-[28rem] h-[28rem] bg-secondary/20 rounded-full blur-3xl animate-pulse-slower" />
-          {/* Grid pattern */}
-          <svg
-            aria-hidden
-            className="absolute inset-0 w-full h-full opacity-[0.04]"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <pattern id="cta-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="1" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#cta-grid)" />
-          </svg>
-        </>
-      )}
-      {!isDark && (
-        <>
-          <div className="absolute -top-10 -right-10 w-80 h-80 bg-leaf-100 rounded-full blur-3xl" />
-          <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-leaf-100 rounded-full blur-3xl" />
-        </>
-      )}
-
-      <div className="container-max mx-auto px-4 relative z-10">
+    <section id={id} className={`bg-forest py-16 text-ondark lg:py-24 ${className}`}>
+      <div className="mx-auto max-w-site px-5 text-center sm:px-6 lg:px-8">
         <FadeIn>
-          <div className="max-w-3xl mx-auto text-center">
-            <div
-              className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-6 shadow-lg ${
-                isDark ? "bg-accent text-white shadow-accent/30" : "bg-primary text-white shadow-primary/20"
-              }`}
-            >
-              {icon ?? variantIcon[variant]}
-            </div>
-            <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-5 tracking-tight ${titleClass}`}>
-              {title}
-            </h2>
-            {subtitle && (
-              <p className={`text-base md:text-lg leading-relaxed mb-10 ${subtitleClass}`}>{subtitle}</p>
+          <h2 className="mx-auto max-w-[24ch] text-display-md text-ondark">{title}</h2>
+          {subtitle && <p className="mx-auto mt-4 max-w-[65ch] text-body-lg text-ondark-muted">{subtitle}</p>}
+          <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+            <ButtonLink href={primaryHref} tone="dark" size="lg">
+              {primary}
+            </ButtonLink>
+            {secondaryHref && secondary && (
+              <ButtonLink href={secondaryHref} tone="dark" variant="secondary" size="lg">
+                {secondary}
+              </ButtonLink>
             )}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
-                href={primaryHref}
-                className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-600 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-accent/40 hover:-translate-y-0.5"
-              >
-                {primaryLabel}
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-              {secondaryLabel && secondaryHref && (
-                <Link
-                  href={secondaryHref}
-                  className={`inline-flex items-center justify-center gap-2 font-semibold px-8 py-4 rounded-xl transition-all duration-300 ${secondaryClass}`}
-                >
-                  {secondaryLabel}
-                </Link>
-              )}
-            </div>
           </div>
+          {reassure && <p className="mt-6 text-caption text-ondark-muted">{reassure}</p>}
+          {footnote && <div className="mt-3 text-caption text-ondark-muted">{footnote}</div>}
         </FadeIn>
       </div>
     </section>

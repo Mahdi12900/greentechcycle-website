@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 interface BreadcrumbItem {
   label: string;
@@ -13,9 +13,8 @@ interface BreadcrumbsProps {
 
 export default function Breadcrumbs({ items, dark = false }: BreadcrumbsProps) {
   const textColor = dark ? "text-ondark-muted" : "text-ink-700";
-  const activeColor = dark ? "text-white" : "text-ink";
-  const hoverColor = dark ? "hover:text-white" : "hover:text-leaf";
-  const separatorColor = dark ? "text-muted" : "text-muted";
+  const activeColor = dark ? "text-ondark" : "text-ink";
+  const hoverColor = dark ? "hover:text-ondark" : "hover:text-leaf";
 
   const schemaData = {
     "@context": "https://schema.org",
@@ -34,24 +33,18 @@ export default function Breadcrumbs({ items, dark = false }: BreadcrumbsProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
-      <ol className="flex flex-wrap items-center gap-1 text-sm">
+      <ol className="flex flex-wrap items-center gap-1 text-caption">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           return (
-            <li key={item.href} className="flex items-center gap-1">
-              {index === 0 && <Home className={`h-3.5 w-3.5 ${textColor}`} />}
-              {index > 0 && (
-                <ChevronRight className={`h-3.5 w-3.5 ${separatorColor}`} aria-hidden="true" />
-              )}
+            <li key={`${item.href}-${index}`} className="flex items-center gap-1">
+              {index > 0 && <ChevronRight className={`h-3.5 w-3.5 ${textColor}`} aria-hidden="true" />}
               {isLast ? (
-                <span className={`font-medium ${activeColor} line-clamp-1 max-w-[200px]`} aria-current="page">
+                <span className={`line-clamp-1 max-w-[240px] font-medium ${activeColor}`} aria-current="page">
                   {item.label}
                 </span>
               ) : (
-                <Link
-                  href={item.href}
-                  className={`${textColor} ${hoverColor} transition-colors`}
-                >
+                <Link href={item.href} className={`${textColor} ${hoverColor} transition-colors`}>
                   {item.label}
                 </Link>
               )}

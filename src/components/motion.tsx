@@ -1,7 +1,12 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useInView, useMotionValue, useTransform, animate, useReducedMotion } from "framer-motion";
 import { ReactNode, useEffect, useRef, useState } from "react";
+
+/* Mouvement calmé — DESIGN.md §8 : y 12 px, 0.45 s, une seule fois, -40 px.
+   prefers-reduced-motion : aucune animation (contenu affiché tel quel). */
+const EASE = [0.22, 1, 0.36, 1] as const;
+const OFFSET = 12;
 
 export function FadeIn({
   children,
@@ -14,20 +19,22 @@ export function FadeIn({
   direction?: "up" | "down" | "left" | "right" | "none";
   className?: string;
 }) {
+  // Même balisage serveur/client (pas de mismatch d'hydratation) ; en mouvement
+  // réduit, la transition est instantanée.
+  const reduce = useReducedMotion();
   const directions = {
-    up: { y: 30, x: 0 },
-    down: { y: -30, x: 0 },
-    left: { x: 30, y: 0 },
-    right: { x: -30, y: 0 },
+    up: { y: OFFSET, x: 0 },
+    down: { y: -OFFSET, x: 0 },
+    left: { x: OFFSET, y: 0 },
+    right: { x: -OFFSET, y: 0 },
     none: { x: 0, y: 0 },
   };
-
   return (
     <motion.div
       initial={{ opacity: 0, ...directions[direction] }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={reduce ? { duration: 0 } : { duration: 0.45, delay, ease: EASE }}
       className={className}
     >
       {children}
@@ -38,21 +45,19 @@ export function FadeIn({
 export function StaggerContainer({
   children,
   className = "",
-  staggerDelay = 0.08,
+  staggerDelay = 0.06,
 }: {
   children: ReactNode;
   className?: string;
   staggerDelay?: number;
 }) {
+  const reduce = useReducedMotion();
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      variants={{
-        hidden: {},
-        visible: { transition: { staggerChildren: staggerDelay } },
-      }}
+      viewport={{ once: true, margin: "-40px" }}
+      variants={{ hidden: {}, visible: { transition: { staggerChildren: reduce ? 0 : staggerDelay } } }}
       className={className}
     >
       {children}
@@ -60,18 +65,13 @@ export function StaggerContainer({
   );
 }
 
-export function StaggerItem({
-  children,
-  className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
+export function StaggerItem({ children, className = "" }: { children: ReactNode; className?: string }) {
+  const reduce = useReducedMotion();
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 24 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+        hidden: { opacity: 0, y: OFFSET },
+        visible: { opacity: 1, y: 0, transition: reduce ? { duration: 0 } : { duration: 0.45, ease: EASE } },
       }}
       className={className}
     >
@@ -81,12 +81,12 @@ export function StaggerItem({
 }
 
 /**
- * CountUp, animates a number from 0 to `end` once the element is in view.
- * Triggered by IntersectionObserver via framer-motion's useInView.
+ * CountUp — anime un nombre de 0 à `end` à l'entrée dans le viewport (1.6 s).
+ * Sans mouvement réduit : valeur finale affichée directement.
  */
 export function CountUp({
   end,
-  duration = 2,
+  duration = 1.6,
   suffix = "",
   prefix = "",
   decimals = 0,
@@ -97,13 +97,13 @@ export function CountUp({
   prefix?: string;
   decimals?: number;
 }) {
+  const reduce = useReducedMotion();
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-40px" });
   const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) =>
-    decimals > 0 ? latest.toFixed(decimals) : Math.round(latest).toString()
-  );
-  const [display, setDisplay] = useState<string>(decimals > 0 ? (0).toFixed(decimals) : "0");
+  const format = (v: number) => (decimals > 0 ? v.toFixed(decimals) : Math.round(v).toString());
+  const rounded = useTransform(count, format);
+  const [display, setDisplay] = useState<string>(format(0));
 
   useEffect(() => {
     const unsub = rounded.on("change", (v) => setDisplay(v));
@@ -112,15 +112,17 @@ export function CountUp({
 
   useEffect(() => {
     if (!inView) return;
-    const controls = animate(count, end, {
-      duration,
-      ease: [0.22, 1, 0.36, 1],
-    });
+    if (reduce) {
+      setDisplay(format(end));
+      return;
+    }
+    const controls = animate(count, end, { duration, ease: EASE });
     return () => controls.stop();
-  }, [inView, end, duration, count]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inView, end, duration, count, reduce]);
 
   return (
-    <span ref={ref}>
+    <span ref={ref} className="tabular-nums">
       {prefix}
       {display}
       {suffix}
@@ -128,27 +130,11 @@ export function CountUp({
   );
 }
 
-/**
- * Simple scroll-triggered scale/opacity reveal, good for large KPI numbers.
- */
-export function ScaleIn({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: ReactNode;
-  delay?: number;
-  className?: string;
-}) {
+/** Ancien « ScaleIn » : désormais un simple fondu (pas de scale — §8). */
+export function ScaleIn({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
+    <FadeIn delay={delay} direction="none" className={className}>
       {children}
-    </motion.div>
+    </FadeIn>
   );
 }

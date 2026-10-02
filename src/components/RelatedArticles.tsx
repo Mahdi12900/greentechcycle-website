@@ -3,7 +3,8 @@
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { blogArticles, type BlogArticle } from "@/lib/blog-data";
-import { ArrowRight, BookOpen, Calendar, Clock, Tag } from "lucide-react";
+import { ArrowRight, Calendar, Clock } from "lucide-react";
+import { useLocale } from "next-intl";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
 
 interface RelatedArticlesProps {
@@ -34,6 +35,7 @@ export default function RelatedArticles({
   eyebrow = "Ressources",
   className = "",
 }: RelatedArticlesProps) {
+  const isEn = useLocale() === "en";
   let articles: BlogArticle[] = blogArticles;
 
   if (categories && categories.length > 0) {
@@ -54,89 +56,69 @@ export default function RelatedArticles({
 
   articles = articles.slice(0, limit);
 
-  const bgClass =
-    tone === "white"
-      ? "bg-white"
-      : tone === "primary"
-      ? "bg-gradient-to-br from-primary-50 via-white to-accent/5"
-      : "bg-cream";
+  const bgClass = tone === "light" ? "bg-cream" : "bg-paper";
 
   return (
-    <section className={`relative py-20 md:py-24 overflow-hidden ${bgClass} ${className}`}>
-      {/* Subtle decorative shape */}
-      <div className="absolute top-10 right-10 w-72 h-72 bg-leaf-50 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-72 h-72 bg-leaf-50 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="container-max mx-auto px-4 relative z-10">
+    <section className={`py-16 lg:py-24 ${bgClass} ${className}`}>
+      <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
         <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
-            <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
-                <BookOpen className="h-3.5 w-3.5" />
-                {eyebrow}
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-ink mb-3 tracking-tight">
-                {title}
-              </h2>
-              <p className="text-ink-700 text-base md:text-lg leading-relaxed">{subtitle}</p>
+          <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between lg:mb-12">
+            <div>
+              <p className="mb-3 text-eyebrow uppercase text-muted">{eyebrow}</p>
+              <h2 className="max-w-[24ch] text-display-md text-ink">{title}</h2>
+              <p className="mt-4 max-w-[65ch] text-body-lg text-ink-700">{subtitle}</p>
             </div>
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors group shrink-0"
+              className="group inline-flex flex-shrink-0 items-center gap-1 text-body-sm font-medium text-leaf hover:text-leaf-700"
             >
-              Voir tous les articles
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              {isEn ? "See all articles" : "Voir tous les articles"}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
           </div>
         </FadeIn>
 
-        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <StaggerContainer className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {articles.map((article) => (
-            <StaggerItem key={article.slug}>
+            <StaggerItem key={article.slug} className="h-full">
               <Link
                 href={`/blog/${article.slug}`}
-                className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-line shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-paper transition-[border-color,box-shadow] duration-150 hover:border-ink/20 hover:shadow-card"
               >
-                <div className="relative aspect-[16/9] overflow-hidden">
+                <div className="relative aspect-[16/10] overflow-hidden border-b border-line">
                   <Image
                     src={article.image}
                     alt={article.imageAlt}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                  <div className="absolute top-4 left-4">
-                    <span className="inline-flex items-center gap-1.5 bg-accent text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
-                      <Tag className="h-3 w-3" />
-                      {article.category}
-                    </span>
-                  </div>
                 </div>
-                <div className="flex flex-col flex-1 p-6">
-                  <div className="flex items-center gap-4 text-xs text-muted mb-3">
-                    <span className="inline-flex items-center gap-1.5">
-                      <Calendar className="h-3.5 w-3.5" />
-                      {new Date(article.publishedAt).toLocaleDateString("fr-FR", {
+                <div className="flex flex-1 flex-col p-6">
+                  <span className="mb-3 inline-flex h-7 w-fit items-center rounded-full bg-leaf-100 px-3 text-caption font-semibold text-forest">
+                    {article.category}
+                  </span>
+                  <div className="mb-3 flex items-center gap-4 text-caption text-muted">
+                    <span className="inline-flex items-center gap-1">
+                      <Calendar className="h-3.5 w-3.5" aria-hidden="true" />
+                      {new Date(article.publishedAt).toLocaleDateString(isEn ? "en-GB" : "fr-FR", {
                         day: "numeric",
                         month: "short",
                         year: "numeric",
                       })}
                     </span>
-                    <span className="inline-flex items-center gap-1.5">
-                      <Clock className="h-3.5 w-3.5" />
+                    <span className="inline-flex items-center gap-1">
+                      <Clock className="h-3.5 w-3.5" aria-hidden="true" />
                       {article.readingTime}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-ink mb-2 leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                  <h3 className="mb-2 line-clamp-2 text-heading-md text-ink transition-colors group-hover:text-leaf">
                     {article.title}
                   </h3>
-                  <p className="text-sm text-ink-700 leading-relaxed line-clamp-3 mb-4">
-                    {article.description}
-                  </p>
-                  <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-accent transition-colors">
-                    Lire l&apos;article
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <p className="mb-4 line-clamp-3 text-body-sm text-ink-700">{article.description}</p>
+                  <span className="mt-auto inline-flex items-center gap-1 text-body-sm font-medium text-leaf">
+                    {isEn ? "Read the article" : "Lire l'article"}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                   </span>
                 </div>
               </Link>
