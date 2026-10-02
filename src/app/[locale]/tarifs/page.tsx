@@ -1005,13 +1005,13 @@ export default function TarifsPage() {
                     <p className="mt-3 text-body-sm text-ink-700">{plan.tagline}</p>
 
                     <dl className="mt-6 grid grid-cols-3 gap-3 border-y border-line py-4">
-                      <div className="col-span-3 flex flex-col-reverse">
+                      <div className="col-span-3 flex flex-col-reverse justify-end">
                         <dt className="text-caption text-muted">{tx("Abonnement mensuel", "Monthly subscription")}</dt>
                         <dd className="font-display text-display-md tabular-nums text-forest">
                           {plan.price} <span className="font-sans text-body-sm text-muted">€ HT/{tx("mois", "month")}</span>
                         </dd>
                       </div>
-                      <div className="col-span-2 flex flex-col-reverse">
+                      <div className="col-span-2 flex flex-col-reverse justify-end">
                         <dt className="text-caption text-muted">{tx("Mise en service", "Installation")}</dt>
                         <dd className="text-body-sm font-semibold tabular-nums text-ink">{plan.setup} € HT</dd>
                       </div>
