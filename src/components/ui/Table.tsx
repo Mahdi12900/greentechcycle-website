@@ -53,7 +53,7 @@ export default function Table({
         className={`overflow-x-auto ${overflow ? `scroll-hint ${atEnd ? "is-end" : ""}` : ""}`}
         tabIndex={overflow ? 0 : undefined}
         role={overflow ? "region" : undefined}
-        aria-label={overflow && typeof caption === "string" ? caption : undefined}
+        aria-label={overflow && typeof caption === "string" ? `${caption} (tableau défilant)` : undefined}
       >
         <table className="w-full border-collapse text-body-sm">
           {caption && <caption className="sr-only">{caption}</caption>}
