@@ -4,9 +4,8 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import TrustBar from "@/components/TrustBar";
 import CookieBanner from "@/components/CookieBanner";
-import StickyCTA from "@/components/StickyCTA";
+import MobileActionBar from "@/components/MobileActionBar";
 import ExitPopup from "@/components/ExitPopup";
 import SchemaOrg from "@/components/SchemaOrg";
 import SalesAssistantWidget from "@/components/SalesAssistantWidget";
@@ -165,11 +164,10 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <SiteUiProvider>
           <Header />
-          <TrustBar />
-          <main className="pt-[calc(4rem+1.75rem)] lg:pt-[calc(5rem+1.75rem)]">{children}</main>
+          <main id="contenu" className="pt-16 pb-20 lg:pt-[72px] lg:pb-0">{children}</main>
           <Footer />
           <CookieBanner />
-          <StickyCTA />
+          <MobileActionBar />
           <ExitPopup />
           <SalesAssistantWidget />
           </SiteUiProvider>

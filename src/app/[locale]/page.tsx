@@ -108,7 +108,6 @@ export default function HomePage() {
     href: string;
     icon: string;
   }>;
-  const anchorNavItems = t.raw("anchorNav.items") as string[];
 
   // ROI calculator state
   const [fleetSize, setFleetSize] = useState("");
@@ -313,27 +312,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ==========================================================
-          2-ter. ANCHOR NAV — sticky section navigation (ME-6)
-         ========================================================== */}
-      <nav className="sticky top-16 lg:top-20 z-30 bg-white/95 backdrop-blur-sm border-b border-line hidden md:block">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-center gap-1 py-2 overflow-x-auto">
-            {anchorNavItems.map((label, i) => {
-              const anchors = ["#solution", "#differentiators", "#cases", "#compliance", "#pricing"];
-              return (
-                <a
-                  key={i}
-                  href={anchors[i]}
-                  className="px-4 py-2 text-sm font-medium text-muted hover:text-leaf hover:bg-leaf/5 rounded-lg transition-colors whitespace-nowrap"
-                >
-                  {label}
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      </nav>
 
       {/* ==========================================================
           3. TRUST BAND, donneurs d'ordre anonymisés (sectoriels)

@@ -333,7 +333,7 @@ export default function SalesAssistantWidget() {
 
       {/* ============== Bouton compact (desktop ; mobile → MobileActionBar) ============== */}
       {!open && (
-        <ChatLauncher className="fixed bottom-20 right-4 z-[60] flex lg:bottom-6 lg:right-6" />
+        <ChatLauncher className="fixed bottom-6 right-6 z-[60] hidden lg:flex" />
       )}
     </>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
@@ -22,6 +22,7 @@ import type { SectorSlug } from "@/data/sectors";
 import { SECTORS, getSectorDef } from "@/data/sectors";
 import { getSectorContent, getSectorName } from "@/data/sectors-i18n";
 import ClientReference from "@/components/ClientReference";
+import SectionNav from "@/components/SectionNav";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Sticky nav anchor IDs and labels
@@ -60,28 +61,6 @@ export default function SectorDetailPage({
   const content = getSectorContent(locale, slug);
   const anchorList = anchors[locale as "fr" | "en"] ?? anchors.fr;
   const isFr = locale === "fr";
-
-  const [activeAnchor, setActiveAnchor] = useState(anchorList[0].id);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-
-  /* Scroll spy */
-  useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveAnchor(entry.target.id);
-          }
-        }
-      },
-      { rootMargin: "-30% 0px -60% 0px" }
-    );
-    for (const a of anchorList) {
-      const el = document.getElementById(a.id);
-      if (el) observerRef.current.observe(el);
-    }
-    return () => observerRef.current?.disconnect();
-  }, [anchorList]);
 
   /* Other sectors for navigation */
   const otherSectors = SECTORS.filter((s) => s.slug !== sectorDef.slug).slice(0, 5);
@@ -129,26 +108,7 @@ export default function SectorDetailPage({
       {/* ════════════════════════════════════════════
           STICKY NAV
       ════════════════════════════════════════════ */}
-      <nav className="sticky top-16 lg:top-20 z-40 bg-white/95 backdrop-blur-sm border-b border-line shadow-sm">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide py-3 -mx-4 px-4">
-            {anchorList.map((a) => (
-              <a
-                key={a.id}
-                href={`#${a.id}`}
-                aria-current={activeAnchor === a.id ? "true" : undefined}
-                className={`whitespace-nowrap px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  activeAnchor === a.id
-                    ? "bg-primary text-white"
-                    : "text-muted hover:text-primary hover:bg-cream"
-                }`}
-              >
-                {a.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </nav>
+      <SectionNav anchors={anchorList} label={isFr ? "Sections de la fiche secteur" : "Sector page sections"} />
 
       {/* ════════════════════════════════════════════
           1. PROFIL DU SECTEUR
