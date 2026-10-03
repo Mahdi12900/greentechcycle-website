@@ -16,12 +16,11 @@ export default function ProcessITADPage() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 lg:py-24">
-        <div className="absolute inset-0 bg-leaf" />
+      <section className="bg-forest py-16 text-ondark lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-display-lg text-white mb-6">
+            <div className="max-w-3xl ">
+              <h1 className="text-display-lg text-ondark mb-6">
                 {t("hero.title")}
               </h1>
               <p className="text-xl text-ondark-muted leading-relaxed">

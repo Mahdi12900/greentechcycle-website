@@ -341,23 +341,21 @@ export default function MethodologyPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* ═══════════════ HERO ═══════════════ */}
-      <section className="relative overflow-hidden bg-forest-900 py-16 lg:py-24">
-        <div className="absolute inset-0 opacity-[0.08]">
-        </div>
+      <section className="bg-forest py-16 text-ondark lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-5xl">
             <FadeIn>
-              <div className="flex justify-center mb-6">
+              <div className="flex  mb-6">
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-leaf-300 text-sm font-medium">
                   <Activity className="w-4 h-4" />
                   {tx("Ingénierie de processus ITAD", "ITAD process engineering")}
                 </span>
               </div>
-              <h1 className="text-display-lg text-center text-white mb-6">
+              <h1 className="text-display-lg  text-ondark mb-6">
                 {tx("Une ingénierie de processus", "Process engineering")}{" "}
                 <span className="text-leaf-300">{tx("certifiable à chaque étape", "certifiable at every step")}</span>
               </h1>
-              <p className="text-center text-lg md:text-xl text-ondark-muted mb-12 max-w-3xl mx-auto leading-relaxed">
+              <p className=" text-lg md:text-xl text-ondark-muted mb-12 max-w-3xl leading-relaxed">
                 {tx(
                   "Chaque action est validée, authentifiée, auditable et reproductible. 8 modules d'ingénierie avec inputs, outputs, points de contrôle et preuves, pas une simple liste d'étapes.",
                   "Every action is validated, authenticated, auditable and reproducible. 8 engineering modules with inputs, outputs, checkpoints and evidence, not just a list of steps."
@@ -365,9 +363,9 @@ export default function MethodologyPage() {
               </p>
 
               {/* Hero KPIs */}
-              <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto">
+              <div className="grid grid-cols-3 gap-4 max-w-3xl">
                 {heroKpis.map((k, i) => (
-                  <div key={i} className="rounded-2xl bg-white/5 border border-ondark-line px-5 py-6 text-center">
+                  <div key={i} className="rounded-2xl bg-white/5 border border-ondark-line px-5 py-6 ">
                     <div className="text-3xl md:text-4xl font-semibold text-leaf-300">
                       {k.displayValue ? (
                         <span>{k.displayValue}</span>
@@ -380,17 +378,17 @@ export default function MethodologyPage() {
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 justify-center mt-12">
+              <div className="flex flex-col sm:flex-row gap-3  mt-12">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-leaf hover:bg-leaf/90 text-white font-semibold rounded-xl transition"
+                  className="inline-flex items-center  gap-2 px-6 py-3 bg-leaf hover:bg-leaf/90 text-ondark font-semibold rounded-xl transition"
                 >
                   {tx("Demander une évaluation", "Request an assessment")}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <a
                   href="#modules"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/20 transition"
+                  className="inline-flex items-center  gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-ondark font-semibold rounded-xl border border-white/20 transition"
                 >
                   {tx("Explorer les 8 modules", "Explore the 8 modules")}
                 </a>

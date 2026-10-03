@@ -51,15 +51,13 @@ export default function SecurityPage({
   return (
     <div className="min-h-screen bg-cream">
       {/* Hero */}
-      <section className="relative px-6 overflow-hidden bg-forest py-16 lg:py-24">
-        <div className="absolute inset-0 opacity-10">
-        </div>
-        <div className="max-w-6xl mx-auto text-center relative z-10">
+      <section className="bg-forest py-16 text-ondark lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <FadeIn>
-            <h1 className="text-display-lg text-white mb-6">
+            <h1 className="text-display-lg text-ondark mb-6">
               {t("hero.title")}
             </h1>
-            <p className="text-lg md:text-xl text-ondark-muted max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-ondark-muted max-w-3xl">
               {t("hero.subtitle")}
             </p>
           </FadeIn>
@@ -80,11 +78,11 @@ export default function SecurityPage({
               const Icon = style.icon;
               return (
                 <StaggerItem key={index}>
-                  <div className={`${style.bg} ${style.border} border rounded-2xl p-6 h-full flex flex-col items-center text-center hover:shadow-card transition-shadow`}>
-                    <div className={`w-14 h-14 rounded-xl ${style.color} flex items-center justify-center mb-4`}>
-                      <Icon className="w-7 h-7 text-white" />
-                    </div>
-                    <div className="text-3xl font-semibold text-ink mb-2">Niveau {item.level}</div>
+                  <div className="flex h-full flex-col rounded-xl border border-line bg-paper p-6">
+                    <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-leaf-100 text-forest">
+                      <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />
+                    </span>
+                    <div className="mb-2 font-display text-display-sm text-ink">Niveau {item.level}</div>
                     <h3 className="text-sm font-semibold text-ink mb-1">{item.name}</h3>
                     <p className="text-xs text-ink-700 mb-2">{item.desc}</p>
                     <span className="text-xs text-leaf font-medium">{item.norm}</span>

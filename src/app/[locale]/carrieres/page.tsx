@@ -19,15 +19,14 @@ export default function CareersPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-forest py-16 lg:py-24">
+      <section className="bg-forest py-16 text-ondark lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
-            <div className="max-w-3xl mx-auto text-center">
+            <div className="max-w-3xl ">
               <span className="block mb-6 text-eyebrow uppercase text-ondark-muted">
-                <Rocket className="h-4 w-4 text-leaf-300" />
                 Nous recrutons
               </span>
-              <h1 className="text-display-lg text-white mb-6">
+              <h1 className="text-display-lg text-ondark mb-6">
                 {t("hero.title")}
               </h1>
               <p className="text-lg md:text-xl text-ondark leading-relaxed">

@@ -130,45 +130,34 @@ export default function EcosystemPage({
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 lg:py-24">
-        <Image
-          src="/photos/server-technician.jpg"
-          alt="Technicien GreenTechCycle intégrant la plateforme au data center client"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-ink/92" />
-        <div className="absolute inset-0 opacity-10">
-        </div>
+      <section className="bg-forest py-16 text-ondark lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
-            <div className="max-w-4xl mx-auto text-center">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-leaf-100 border border-leaf/20 text-leaf text-sm font-medium mb-6">
+            <div className="max-w-4xl ">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-ondark-line text-leaf-300 text-sm font-medium mb-6">
                 <Plug className="w-4 h-4" />
                 Intégrations & API
               </span>
-              <h1 className="text-display-lg text-white mb-6">
+              <h1 className="text-display-lg text-ondark mb-6">
                 Un écosystème ouvert,{" "}
-                <span className="text-leaf">connecté à votre SI</span>
+                <span className="text-leaf-300">connecté à votre SI</span>
               </h1>
-              <p className="text-xl text-ondark-muted mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-ondark-muted mb-8 max-w-2xl">
                 Connecteurs natifs, API REST documentée et authentification
                 enterprise-grade. GreenTechCycle s&apos;intègre sans friction à votre
                 environnement existant.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 ">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-leaf hover:bg-leaf/90 text-white font-semibold rounded-xl transition-colors duration-150"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-leaf hover:bg-leaf/90 text-ondark font-semibold rounded-xl transition-colors duration-150"
                 >
                   Demander une démo
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <a
                   href="#api"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-colors duration-150 border border-white/20"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-ondark font-semibold rounded-xl transition-colors duration-150 border border-white/20"
                 >
                   <Code2 className="w-5 h-5" />
                   Explorer l&apos;API

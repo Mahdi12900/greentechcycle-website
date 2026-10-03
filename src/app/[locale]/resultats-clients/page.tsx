@@ -66,30 +66,30 @@ export default function ResultatsClientsPage() {
   return (
     <div className="overflow-hidden bg-white">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-ink py-16 lg:py-24">
+      <section className="bg-forest py-16 text-ondark lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <FadeIn>
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-4xl ">
               <p className="text-ondark-muted uppercase mb-4 text-eyebrow">
                 {t("hero.eyebrow")}
               </p>
-              <h1 className="text-display-lg text-white mb-6">
+              <h1 className="text-display-lg text-ondark mb-6">
                 {t("hero.title")}
               </h1>
-              <p className="text-lg md:text-xl text-ondark-muted mb-10 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-ondark-muted mb-10 max-w-3xl leading-relaxed">
                 {t("hero.subtitle")}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 ">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-8 py-4 rounded-xl transition-colors duration-150 hover:shadow-card hover: text-base"
+                  className="inline-flex items-center  gap-2 bg-leaf hover:bg-leaf-700 text-ondark font-semibold px-8 py-4 rounded-xl transition-colors duration-150 hover:shadow-card hover: text-base"
                 >
                   {t("hero.cta1")}
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
                 <Link
                   href="/cas-usages"
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold px-8 py-4 rounded-xl transition-colors duration-150 text-base"
+                  className="inline-flex items-center  gap-2 bg-white/10 hover:bg-white/20 text-ondark border border-white/20 font-semibold px-8 py-4 rounded-xl transition-colors duration-150 text-base"
                 >
                   {t("hero.cta2")}
                 </Link>
