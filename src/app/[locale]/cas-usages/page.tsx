@@ -1,9 +1,12 @@
 "use client";
 
+import CertificateCard from "@/components/visuals/CertificateCard";
+import DashboardMock from "@/components/visuals/DashboardMock";
+import GeometryField from "@/components/visuals/GeometryField";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 import { CountUp } from "@/components/motion";
 import {
   ArrowDown,
@@ -112,7 +115,7 @@ function CaseCard({ c, index, editorialBody, isFr }: { c: CaseItem; index: numbe
         <span key={a} id={a} className="absolute top-0" aria-hidden="true" />
       ))}
       <div className="relative aspect-[16/10] border-b border-track">
-        <Image src={c.photo} alt={c.photoAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+        <MediaSlot fill id={`cas-${c.slug}`} alt={c.photoAlt} fallback={<GeometryField icon={CaseIcon} />} />
       </div>
       <div className="flex flex-1 flex-col p-6 lg:p-8">
         <div className="flex items-center gap-3">
@@ -271,17 +274,10 @@ export default function CasUsagesPage() {
             <div className="reveal lg:col-span-5">
               <figure>
                 <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
-                  <Image
-                    src="/photos/case-banque.jpg"
-                    alt={tx(
+                  <MediaSlot fill id="cas-usages-hero" alt={tx(
                       "Infrastructure IT d'une banque CAC40 lors d'une mission de décommissionnement GreenTechCycle",
                       "IT infrastructure of a CAC40 bank during a GreenTechCycle decommissioning mission"
-                    )}
-                    fill
-                    priority
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                  />
+                    )} fallback={<CertificateCard />} />
                 </div>
                 <figcaption className="mt-6 border-l-2 border-emerald pl-4">
                   <p className="text-body-sm text-fg">
@@ -399,7 +395,7 @@ export default function CasUsagesPage() {
             </div>
             <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
-                <Image src={tf1.photo} alt={tf1.photoAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
+                <MediaSlot fill id="cas-tf1-media" alt={tf1.photoAlt} fallback={<DashboardMock state="reporting" />} />
               </div>
             </div>
           </div>

@@ -1,8 +1,9 @@
 "use client";
 
+import DashboardMock from "@/components/visuals/DashboardMock";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 import { CountUp } from "@/components/motion";
 import {
   ArrowDown,
@@ -94,7 +95,7 @@ export default function WakiBoxPage() {
             </div>
             <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
-                <Image src="/photos/ewaste-recycling.jpg" alt={t("hero.photoAlt")} fill priority className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
+                <MediaSlot fill id="waki-box-hero" alt={t("hero.photoAlt")} fallback={<DashboardMock state="inventory" />} />
               </div>
             </div>
           </div>
@@ -145,7 +146,7 @@ export default function WakiBoxPage() {
           </div>
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track lg:sticky lg:top-24">
-              <Image src="/photos/impact-dashboard.jpg" alt={t("promise.photoAlt")} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
+              <MediaSlot fill id="waki-box-promesse" alt={t("promise.photoAlt")} fallback={<DashboardMock state="reporting" />} />
             </div>
           </div>
         </div>

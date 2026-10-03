@@ -206,11 +206,28 @@
     .reveal-stagger > :nth-child(6n + 4) { --reveal-i: 3; }
     .reveal-stagger > :nth-child(6n + 5) { --reveal-i: 4; }
     .reveal-stagger > :nth-child(6n + 6) { --reveal-i: 5; }
+    /* Trait SVG dessiné au défilement (pathLength=1) — LifecycleDiagram, §8.2 */
+    .draw-on-scroll {
+      stroke-dasharray: 1;
+      animation: draw-stroke linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 55%;
+    }
+    /* Barres de graphique qui montent à l'entrée — DashboardMock */
+    .viz-grow .viz-bar {
+      transform-box: fill-box;
+      transform-origin: bottom;
+      animation: viz-grow linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
     @media (prefers-reduced-motion: reduce) {
       .reveal,
       .reveal-scale,
       .parallax-slow,
-      .parallax-fast {
+      .parallax-fast,
+      .draw-on-scroll,
+      .viz-grow .viz-bar {
         animation: none;
       }
     }
@@ -226,6 +243,14 @@
   @keyframes parallax-slow {
     from { transform: translateY(40px); }
     to { transform: translateY(-40px); }
+  }
+  @keyframes draw-stroke {
+    from { stroke-dashoffset: 1; }
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes viz-grow {
+    from { transform: scaleY(0.15); }
+    to { transform: none; }
   }
   @keyframes parallax-fast {
     from { transform: translateY(80px); }

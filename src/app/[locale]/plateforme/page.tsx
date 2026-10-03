@@ -1,7 +1,8 @@
 "use client";
 
+import DashboardMock, { type DashboardState } from "@/components/visuals/DashboardMock";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useTranslations, useLocale } from "next-intl";
-import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { CountUp } from "@/components/motion";
 import { ArrowDown, CalendarCheck, Check } from "lucide-react";
@@ -21,6 +22,15 @@ import Accordion from "@/components/ui/Accordion";
  * Ancres : #parcours, #modules (parcours), #governance (chapitre Décision),
  * #mobile (chapitre Ingestion — scan terrain), + ids historiques des chapitres.
  */
+/* État du tableau de bord codé affiché pour chaque chapitre du parcours */
+const CHAPTER_STATE: Record<string, DashboardState> = {
+  ingestion: "inventory",
+  audit: "inventory",
+  decision: "erasure",
+  tracabilite: "erasure",
+  restitution: "reporting",
+};
+
 const EXTRA_ANCHORS: Record<string, string> = {
   ingestion: "mobile",
   decision: "governance",
@@ -98,18 +108,11 @@ export default function PlateformePage() {
             <div className="reveal lg:col-span-5">
               <figure>
                 <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
-                  <Image
-                    src="/photos/hp-dsi-strategy.jpg"
-                    alt={
+                  <MediaSlot fill id="plateforme-hero" alt={
                       isEn
                         ? "GreenTechCycle dashboard reviewed by an IT department arbitrating asset end-of-life"
                         : "Tableau de bord GreenTechCycle consulté par une direction informatique en plein arbitrage de fin de vie d'actifs"
-                    }
-                    fill
-                    priority
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                  />
+                    } fallback={<DashboardMock state="inventory" />} />
                 </div>
                 <figcaption className="mt-6 border-l-2 border-emerald pl-4">
                   <p className="text-body-sm text-fg">&laquo;&nbsp;{t("hero.floatQuote")}&nbsp;&raquo;</p>
@@ -198,14 +201,7 @@ export default function PlateformePage() {
                     </div>
                     <div className={`lg:col-span-6 ${photoRight ? "" : "lg:order-1"}`}>
                       <div className="relative aspect-[3/2] overflow-hidden rounded-2xl border border-track">
-                        <Image
-                          src={chap.photo}
-                          alt={chap.photoAlt}
-                          fill
-                          loading="lazy"
-                          className="object-cover"
-                          sizes="(max-width: 1024px) 100vw, 50vw"
-                        />
+                        <MediaSlot fill id={`plateforme-${chap.slug}`} alt={chap.photoAlt} fallback={<DashboardMock state={CHAPTER_STATE[chap.slug] ?? "inventory"} />} />
                       </div>
                     </div>
                   </div>

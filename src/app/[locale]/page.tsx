@@ -1,8 +1,10 @@
 "use client";
 
+import DashboardMock from "@/components/visuals/DashboardMock";
+import GeometryField from "@/components/visuals/GeometryField";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 import { useState } from "react";
 import {
   ArrowRight,
@@ -23,6 +25,7 @@ import {
   Landmark,
   Check,
   Minus,
+  UserRound,
 } from "lucide-react";
 import { CountUp } from "@/components/motion";
 import TrustBand from "@/components/TrustBand";
@@ -129,7 +132,8 @@ export default function HomePage() {
     factory: Factory,
     landmark: Landmark,
   };
-  const casePhotos = ["/photos/case-banque.jpg", "/photos/case-hopital.jpg", "/photos/case-industrie.jpg"];
+  // Pictogrammes des 3 cas (banque, hôpital, industrie) — visuels codés à la place des photos
+  const caseIcons = [Landmark, HeartPulse, Factory];
 
   const plans = t.raw("pricingTeaser.plans") as Array<{
     name: string;
@@ -190,17 +194,10 @@ export default function HomePage() {
 
             <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
-                <Image
-                  src="/photos/hp-atelier-itad.jpg"
-                  alt={tx(
+                <MediaSlot fill id="home-hero" alt={tx(
                     "Atelier de reconditionnement GreenTechCycle, chaîne d'effacement et de tri certifiée",
                     "GreenTechCycle refurbishment workshop, certified erasure and sorting line"
-                  )}
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                />
+                  )} fallback={<DashboardMock state="inventory" />} />
               </div>
               <div className="mt-6 grid grid-cols-2 border-t border-track pt-6">
                 <div className="pr-4">
@@ -414,14 +411,7 @@ export default function HomePage() {
             <div key={c.slug} className="reveal h-full">
               <CardLink href={`/cas-usages#${c.slug}`} pad="none" cta={t("cases.cardCta")}>
                 <div className="relative aspect-[16/10] overflow-hidden rounded-t-xl border-b border-track">
-                  <Image
-                    src={casePhotos[i]}
-                    alt={tx(`Photo sectorielle illustrant le cas ${c.sector}`, `Sector photo illustrating the ${c.sector} case`)}
-                    fill
-                    loading="lazy"
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
+                  <MediaSlot fill id={`home-case-${c.slug}`} alt={tx(`Photo sectorielle illustrant le cas ${c.sector}`, `Sector photo illustrating the ${c.sector} case`)} fallback={<GeometryField icon={caseIcons[i]} />} />
                 </div>
                 <div className="flex flex-1 flex-col px-6 pt-6">
                   <div className="flex flex-wrap gap-2">
@@ -520,17 +510,10 @@ export default function HomePage() {
         <div className="reveal">
           <figure className="grid gap-10 lg:grid-cols-[auto_1fr] lg:items-start">
             <div className="relative h-40 w-40 overflow-hidden rounded-2xl border border-track lg:h-48 lg:w-48">
-              <Image
-                src="/photos/hp-dsi-strategy.jpg"
-                alt={tx(
+              <MediaSlot fill id="home-testimonial" alt={tx(
                   "Décideur RSSI grand compte arbitrant un dossier ITAD (visage anonymisé)",
                   "Key-account CISO reviewing an ITAD file (face anonymised)"
-                )}
-                fill
-                loading="lazy"
-                className="object-cover"
-                sizes="192px"
-              />
+                )} fallback={<GeometryField icon={UserRound} />} />
             </div>
             <div className="max-w-[65ch]">
               <p className="text-eyebrow uppercase text-fg-muted">{t("bigQuote.eyebrow")}</p>

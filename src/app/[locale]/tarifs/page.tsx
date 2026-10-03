@@ -16,9 +16,13 @@
  *  13  CTA unique
  */
 
+import CertificateCard from "@/components/visuals/CertificateCard";
+import DashboardMock from "@/components/visuals/DashboardMock";
+import GeometryField from "@/components/visuals/GeometryField";
+import LifecycleDiagram from "@/components/visuals/LifecycleDiagram";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 import { useState } from "react";
 
 import {
@@ -860,14 +864,7 @@ export default function TarifsPage() {
             </div>
             <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
-                <Image
-                  src="/photos/service-wakibox.jpg"
-                  alt={tx("Borne Waki Box de collecte connectée installée en entreprise", "Waki Box connected collection kiosk installed at a workplace")}
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                />
+                <MediaSlot fill id="tarifs-hero" alt={tx("Borne Waki Box de collecte connectée installée en entreprise", "Waki Box connected collection kiosk installed at a workplace")} fallback={<DashboardMock state="reporting" compact />} />
               </div>
             </div>
           </div>
@@ -894,7 +891,7 @@ export default function TarifsPage() {
               <div key={b.name} className="reveal h-full">
                 <div className={`flex h-full flex-col overflow-hidden rounded-xl border bg-bg ${isFeatured ? "border-emerald" : "border-track"}`}>
                   <div className="relative aspect-[16/10] border-b border-track">
-                    <Image src={b.photo} alt={b.photoAlt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
+                    <MediaSlot fill id={`tarifs-brique-${b.name}`} alt={b.photoAlt} fallback={<GeometryField icon={b.icon} />} />
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <div className="flex items-center justify-between gap-3">
@@ -1119,14 +1116,7 @@ export default function TarifsPage() {
           <div className="reveal lg:col-span-5">
             <figure>
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-track">
-                <Image
-                  src="/photos/hp-audit-signature.jpg"
-                  alt={tx("Signature d'un programme pilote Waki Box", "Signing a Waki Box pilot programme")}
-                  fill
-                  loading="lazy"
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                />
+                <MediaSlot fill id="tarifs-pilote" alt={tx("Signature d'un programme pilote Waki Box", "Signing a Waki Box pilot programme")} fallback={<CertificateCard />} />
               </div>
               <figcaption className="mt-4 flex items-baseline justify-between gap-4 border-t border-track pt-4">
                 <span className="text-eyebrow uppercase text-emerald">{tx("Offre pilote", "Pilot offer")}</span>
@@ -1376,7 +1366,7 @@ export default function TarifsPage() {
               <div key={card.slug} className="reveal">
                 <article className="flex h-full flex-col overflow-hidden rounded-xl border border-track bg-bg">
                   <div className="relative aspect-[16/8] border-b border-track">
-                    <Image src={card.photo} alt={card.photoAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                    <MediaSlot fill id={`tarifs-devis-${card.slug}`} alt={card.photoAlt} fallback={card.slug === "plateforme" ? <DashboardMock state="erasure" compact /> : <LifecycleDiagram active={1} />} />
                   </div>
                   <div className="flex flex-1 flex-col p-6 lg:p-8">
                     <div className="flex flex-wrap items-center gap-2">

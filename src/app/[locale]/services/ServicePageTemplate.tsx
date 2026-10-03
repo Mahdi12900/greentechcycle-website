@@ -1,7 +1,10 @@
 "use client";
 
+import CertificateCard from "@/components/visuals/CertificateCard";
+import DashboardMock from "@/components/visuals/DashboardMock";
+import LifecycleDiagram from "@/components/visuals/LifecycleDiagram";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 
 import { ArrowDown, Check, ShieldCheck } from "lucide-react";
 import type { ComponentType } from "react";
@@ -64,6 +67,26 @@ export type ServicePageData = {
   /** Locale active, nécessaire pour les libellés courts ('Réserver', 'Voir', etc.) */
   isEn: boolean;
 };
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Visuels codés par service (DESIGN.md v2 §7.2) — aucune photo
+───────────────────────────────────────────────────────────────────────────── */
+/** Nœud du cycle de vie mis en lumière : 0 collecte · 1 effacement · 2 reconditionnement · 3 recyclage */
+const LIFECYCLE_NODE: Record<string, number> = {
+  "audit-inventaire": 0,
+  wakibox: 0,
+  "effacement-securise": 1,
+  "cybersecurite-itad": 1,
+  "reconditionnement-valorisation": 2,
+  "recyclage-deee": 3,
+};
+
+function serviceVisual(slug: string) {
+  if (slug === "effacement-securise" || slug === "cybersecurite-itad") return <CertificateCard />;
+  if (slug === "audit-inventaire") return <DashboardMock state="inventory" />;
+  if (slug === "wakibox") return <DashboardMock state="reporting" />;
+  return <LifecycleDiagram active={LIFECYCLE_NODE[slug]} />;
+}
 
 /* ─────────────────────────────────────────────────────────────────────────────
    ServicePageTemplate — DESIGN.md §10.7
@@ -138,7 +161,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
             </div>
             <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
-                <Image src={data.image} alt={data.imageAlt} fill priority className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
+                <MediaSlot fill id={`service-${data.slug}-hero`} alt={data.imageAlt} fallback={serviceVisual(data.slug)} />
               </div>
             </div>
           </div>
@@ -162,7 +185,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
           </div>
           <div className="reveal lg:col-span-5">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-track">
-              <Image src={data.imageSecondary} alt={data.imageSecondaryAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
+              <MediaSlot fill id={`service-${data.slug}-pourquoi`} alt={data.imageSecondaryAlt} fallback={<LifecycleDiagram active={LIFECYCLE_NODE[data.slug]} />} />
             </div>
           </div>
         </div>

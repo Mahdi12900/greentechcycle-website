@@ -1,12 +1,13 @@
 "use client";
 
+import DashboardMock from "@/components/visuals/DashboardMock";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { Button, ButtonLink } from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
-import Image from "next/image";
 import { Play, Monitor, Send, CheckCircle } from "lucide-react";
 
 export default function DemoPage() {
@@ -60,13 +61,7 @@ export default function DemoPage() {
           <SectionHeader title={t("video.title")} />
           <figure>
             <div className="relative aspect-video overflow-hidden rounded-2xl border border-track">
-              <Image
-                src="/images/hero-dashboard.jpg"
-                alt="Aperçu de la plateforme GreenTechCycle - Demandez une démo"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1200px) 100vw, 1200px"
-              />
+              <MediaSlot fill id="demo-video" alt="Aperçu de la plateforme GreenTechCycle - Demandez une démo" fallback={<DashboardMock state="inventory" />} />
               <div className="absolute inset-0 flex items-center justify-center bg-bg/30">
                 <span className="flex h-16 w-16 items-center justify-center rounded-full bg-bg text-emerald shadow-float" aria-hidden="true">
                   <Play className="ml-1 h-7 w-7" fill="currentColor" />

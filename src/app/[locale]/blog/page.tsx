@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import GeometryField from "@/components/visuals/GeometryField";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import Link from "next/link";
-import Image from "next/image";
 import { blogArticles } from "@/lib/blog-data";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -62,13 +63,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
         {/* Hero */}
         <section className="relative bg-bg-card overflow-hidden py-16 lg:py-24">
           <div className="absolute inset-0">
-            <Image
-              src="/photos/blog-economie-circulaire.jpg"
-              alt="Consultation IT et analyse de données"
-              fill
-              className="object-cover opacity-15"
-              priority
-            />
+            <MediaSlot fill id="blog-hero" alt="Consultation IT et analyse de données" fallback={<GeometryField />} />
           </div>
           <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
             <Breadcrumbs items={breadcrumbs} dark />
@@ -92,13 +87,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                 >
                   <Link href={`/${locale}/blog/${article.slug}`}>
                     <div className="relative aspect-[16/9]">
-                      <Image
-                        src={article.image}
-                        alt={article.imageAlt}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
+                      <MediaSlot fill id={`blog-card-${article.slug}`} alt={article.imageAlt} fallback={<GeometryField />} />
                       <div className="absolute top-4 left-4">
                         <span className="bg-emerald text-bg text-xs font-semibold px-3 py-1 rounded-full">
                           {article.category}

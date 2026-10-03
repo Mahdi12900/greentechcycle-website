@@ -1,8 +1,10 @@
 "use client";
 
+import GeometryField from "@/components/visuals/GeometryField";
+import LifecycleDiagram from "@/components/visuals/LifecycleDiagram";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 
 import {
   ArrowDown,
@@ -324,17 +326,10 @@ export default function ServicesPage() {
             <div className="reveal lg:col-span-5">
               <figure>
                 <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
-                  <Image
-                    src="/photos/hp-atelier-itad.jpg"
-                    alt={tx(
+                  <MediaSlot fill id="services-hero" alt={tx(
                       "Atelier ITAD GreenTechCycle : équipe en intervention sur du matériel informatique",
                       "GreenTechCycle ITAD workshop, team operating on IT equipment"
-                    )}
-                    fill
-                    priority
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                  />
+                    )} fallback={<LifecycleDiagram />} />
                 </div>
                 <figcaption className="mt-6 border-l-2 border-emerald pl-4">
                   <p className="text-body-sm text-fg">
@@ -375,7 +370,7 @@ export default function ServicesPage() {
                     className="flex h-full flex-col overflow-hidden rounded-xl border border-track bg-bg"
                   >
                     <div className="relative aspect-[16/10] border-b border-track">
-                      <Image src={s.image} alt={s.imageAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+                      <MediaSlot fill id={`services-${s.slug}`} alt={s.imageAlt} fallback={<GeometryField icon={s.icon} />} />
                     </div>
                     <div className="flex flex-1 flex-col p-6">
                       <div className="flex items-center justify-between gap-3">

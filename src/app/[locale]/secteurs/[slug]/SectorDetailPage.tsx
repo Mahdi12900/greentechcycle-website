@@ -1,9 +1,10 @@
 "use client";
 
+import GeometryField from "@/components/visuals/GeometryField";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { SectorSlug } from "@/data/sectors";
 import { SECTORS, getSectorDef } from "@/data/sectors";
@@ -82,14 +83,10 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
 
   return (
     <div>
-      {/* 1. HERO forest */}
-      <section className="relative overflow-hidden bg-bg-card py-16 text-fg lg:py-24" aria-labelledby="sector-title">
-        {sectorDef.image && (
-          <>
-            <Image src={sectorDef.image} alt="" fill priority className="object-cover opacity-20" sizes="100vw" />
-            <div className="absolute inset-0 bg-bg/60" aria-hidden="true" />
-          </>
-        )}
+      {/* 1. HERO — halo émeraude + grille de points (DESIGN.md v2 §2) */}
+      <section className="relative overflow-hidden bg-bg py-16 text-fg lg:py-24" aria-labelledby="sector-title">
+        <div className="fx-halo pointer-events-none absolute inset-0" aria-hidden="true" />
+        <div className="fx-dots fx-fade pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <Breadcrumbs
             dark
@@ -128,13 +125,7 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
           <div className="reveal">
             {sectorDef.image ? (
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-track">
-                <Image
-                  src={sectorDef.image}
-                  alt={content.hero.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 400px"
-                />
+                <MediaSlot fill id={`secteur-${slug}`} alt={content.hero.title} fallback={<GeometryField icon={sectorDef.icon} />} />
               </div>
             ) : (
               /* Panneau d'identité (pas de photo « à peu près » — §7) */

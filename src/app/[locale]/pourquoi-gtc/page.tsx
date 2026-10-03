@@ -1,9 +1,11 @@
 "use client";
 
+import GeometryField from "@/components/visuals/GeometryField";
+import LifecycleDiagram from "@/components/visuals/LifecycleDiagram";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { CountUp } from "@/components/motion";
-import { ArrowDown, Check, ShieldCheck, Leaf, Users, Eye, Award } from "lucide-react";
+import { ArrowDown, Check, ShieldCheck, Leaf, Users, Eye, Award, UserRound } from "lucide-react";
 import CtaSection from "@/components/CtaSection";
 import { ButtonLink } from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
@@ -70,14 +72,7 @@ export default function PourquoiGtcPage() {
             </div>
             <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
-                <Image
-                  src="/photos/team-workshop.jpg"
-                  alt="Équipe GreenTechCycle en atelier de tri et reconditionnement, lumière naturelle"
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                />
+                <MediaSlot fill id="pourquoi-hero" alt="Équipe GreenTechCycle en atelier de tri et reconditionnement, lumière naturelle" fallback={<LifecycleDiagram />} />
               </div>
             </div>
           </div>
@@ -103,7 +98,7 @@ export default function PourquoiGtcPage() {
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
-              <Image src="/photos/founder-portrait.jpg" alt="Portrait éditorial du fondateur de GreenTechCycle" fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
+              <MediaSlot fill id="pourquoi-fondateur" alt="Portrait éditorial du fondateur de GreenTechCycle" fallback={<GeometryField icon={UserRound} />} />
             </div>
           </div>
           <div className="reveal lg:col-span-7">
@@ -151,7 +146,7 @@ export default function PourquoiGtcPage() {
                     </div>
                     <div className={`lg:col-span-6 ${photoRight ? "" : "lg:order-1"}`}>
                       <div className="relative aspect-[3/2] overflow-hidden rounded-2xl border border-track">
-                        <Image src={c.photo} alt={c.photoAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                        <MediaSlot fill id={`pourquoi-${c.slug}`} alt={c.photoAlt} fallback={<GeometryField icon={convictionIcons[index] ?? Leaf} />} />
                       </div>
                     </div>
                   </div>

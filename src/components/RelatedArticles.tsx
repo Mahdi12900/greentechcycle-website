@@ -1,7 +1,8 @@
 "use client";
 
+import GeometryField from "@/components/visuals/GeometryField";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 import { blogArticles, type BlogArticle } from "@/lib/blog-data";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { useLocale } from "next-intl";
@@ -86,13 +87,7 @@ export default function RelatedArticles({
                 className="group flex h-full flex-col overflow-hidden rounded-xl border border-track bg-bg transition-[border-color,box-shadow] duration-150 hover:border-track-strong hover:border-track-strong"
               >
                 <div className="relative aspect-[16/10] overflow-hidden border-b border-track">
-                  <Image
-                    src={article.image}
-                    alt={article.imageAlt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
+                  <MediaSlot fill id={`related-${article.slug}`} alt={article.imageAlt} fallback={<GeometryField />} />
                 </div>
                 <div className="flex flex-1 flex-col p-6">
                   <span className="mb-3 inline-flex h-7 w-fit items-center rounded-full bg-emerald-dim px-3 text-caption font-semibold text-emerald">

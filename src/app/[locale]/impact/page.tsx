@@ -1,7 +1,8 @@
 "use client";
 
+import DashboardMock from "@/components/visuals/DashboardMock";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 
 import {
@@ -206,14 +207,7 @@ export default function ImpactPage() {
             </div>
             <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
-                <Image
-                  src="/photos/impact-sustainability.jpg"
-                  alt="Forêt et infrastructure énergétique, symbole de la décarbonation du numérique d'entreprise"
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                />
+                <MediaSlot fill id="impact-hero" alt="Forêt et infrastructure énergétique, symbole de la décarbonation du numérique d'entreprise" fallback={<DashboardMock state="reporting" />} />
               </div>
             </div>
           </div>

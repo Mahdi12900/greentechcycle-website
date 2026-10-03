@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import GeometryField from "@/components/visuals/GeometryField";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogArticles, getArticleBySlug, getAllSlugs } from "@/lib/blog-data";
@@ -152,14 +153,7 @@ export default async function BlogArticlePage({
             <div className="max-w-3xl mx-auto">
               {/* Featured Image */}
               <div className="relative aspect-[16/9] rounded-2xl overflow-hidden mb-10">
-                <Image
-                  src={article.image}
-                  alt={article.imageAlt}
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 768px"
-                />
+                <MediaSlot fill id={`blog-${slug}`} alt={article.imageAlt} fallback={<GeometryField />} />
               </div>
 
               {/* Content */}
