@@ -1,164 +1,135 @@
-# GreenTechCycle — Système de design « Épuré »
+# GreenTechCycle — Système de design « Dark Tech » (v2)
 
-Guide de référence pour toute modification visuelle du site (Next.js 14, Tailwind 3, next-intl fr/en).
-À lire **avant** de toucher un composant ou une page. Les règles ci-dessous sont un contrat, pas une ambiance :
-chaque décision est encodée en tokens (`tailwind.config.ts`, `src/app/globals.css`, `src/app/fonts.ts`).
+Guide de référence pour toute modification visuelle du site (Next.js 14, Tailwind 3, next-intl fr/en, framer-motion 11).
+À lire **avant** de toucher un composant ou une page. Les règles sont un contrat : chaque décision est encodée en tokens
+(`tailwind.config.ts`, `src/app/globals.css`, `src/app/fonts.ts`).
 
-Version : 1.0 — 2026-10-02 — branche `redesign-epure`.
-Sources : `reports/audit-greentechcycle.md` (audit live, captures, axe-core) + lecture du code.
+Version : **2.0 — 2026-10-03** — branche `redesign-epure`. Remplace la v1 « Épuré » (palette crème/vert forêt, serif Fraunces) à la demande du client :
+palette sombre imposée, rendu « tech, dans l'air du temps », site **dynamique et responsive comme Apple**, **aucune photo** pour l'instant
+(visuels dessinés en code), emplacements prêts pour les photos et vidéos à venir.
+Ce qui ne change pas par rapport à la v1 : l'architecture des pages (§10), les contenus, URLs, ancres, métadonnées SEO, i18n fr/en, et la règle « un seul élément collant ».
 
 ---
 
 ## 0. Direction en une phrase
 
-> **Un site B2B de conformité, calme et dense en preuves : beaucoup de blanc cassé chaud, un seul vert d'action, des titres en serif éditorial, des hairlines plutôt que des ombres, zéro dégradé décoratif.**
+> **Un produit tech sur fond quasi-noir : une seule couleur, l'émeraude, qui dessine le logo, les lignes et les données ; une typographie grotesque serrée ; des visuels construits en code (tableau de bord, cycle de vie animé, géométrie) à la place des photos ; et un mouvement au défilement fluide, progressif, qui ne cache jamais le contenu.**
 
-Références (vérifiées le 2026-10-02, HTTP 200, captures dans `reports/screenshots/references/` du projet) — ce qu'on leur emprunte, rien d'autre :
+Références vérifiées le 2026-10-03 (HTTP 200, captures dans `reports/screenshots/references/` du projet) — ce qu'on leur emprunte, rien d'autre :
 
 | Référence | Ce qu'on reprend | Ce qu'on ne reprend pas |
 |---|---|---|
-| **Watershed — /customers** (principale) https://watershed.com/customers | Pairing serif display + sans texte (Crimson Text + Messina Sans → Fraunces + Inter), filets verticaux fins, bandeau de logos en cellules à filets, ton « preuve avant adjectif » | Le bouton bleu, la vidéo plein cadre, les logos réels |
-| **Linear — /customers** (principale) https://linear.app/customers | Grille régulière 3 colonnes à filets, onglets de filtre en texte simple (actif = plus foncé), lien « → » discret, zéro ombre/dégradé | Le mode sombre, Inter en titres, visuels plein cadre dans chaque carte |
-| Watershed — accueil https://watershed.com/ | Hero typographique (eyebrow à pastille, H1 18–24 caractères, un CTA), nav sobre | Palette blanc + bleu + aplats colorés, bannière promo |
-| Vanta — /customers https://www.vanta.com/customers | Mur de confiance chiffré, pairing serif (Reckless) + sans (Söhne) | Le violet, logos flottants à ombre, boutons pilule |
-| Greenly — FR https://greenly.earth/fr-fr | Bandeau clients en cellules à filets sans boîtes, bouton vert sobre, vocabulaire CSRD français | Inter en titres, teinte verte diffuse, hero en biais |
-| Linear — accueil https://linear.app/ | Hero minimal, transitions discrètes, 6 entrées de nav max | Fond noir |
-
-Ce que le site n'est plus : un template SaaS Tailwind (Inter par défaut, dégradés vert→bleu, blobs flous, cartes à ombres, rose/magenta, 3 barres sticky empilées).
+| **Apple — MacBook Pro** (principale) https://www.apple.com/macbook-pro/ | Fond noir, produit en « héros » éclairé au centre, titre très grand et serré, sections à défilement scénarisé (visuel épinglé pendant que le texte avance), bandeau de nav fin et sombre | Le dégradé bleu dans le titre, la police SF Pro (propriétaire), le bouton bleu, la densité marketing produit |
+| **Linear — accueil** (principale) https://linear.app/ | Fond `#08090A`-like identique au nôtre, **maquette d'interface produit en visuel de hero** (notre tableau de bord ITAD construit en code), hiérarchie titre → une ligne → produit, nav 6 entrées, cartes à bordure 1 px sans ombre | L'absence totale de couleur d'accent (nous avons l'émeraude), le logiciel comme sujet (nous vendons un service + une plateforme) |
+| Resend — accueil https://resend.com/ | Le **halo lumineux** diffus sur fond noir (notre halo émeraude à 9 %), le bouton primaire clair sur sombre, le chip d'annonce arrondi au-dessus du titre | Le titre en serif (nous restons en grotesque), les traînées lumineuses blanches animées en continu |
+| Raycast — accueil https://www.raycast.com/ | Nav flottante en pilule à bordure 1 px sur fond sombre, hero centré typographique, gris secondaire proche de `#8A8F98` | Le rouge de marque, le téléchargement comme CTA |
+| Supabase — accueil https://supabase.com/ | **Bouton vert à texte sombre** (même logique de contraste que notre émeraude), vert utilisé pour un mot-clé du titre, grille de cartes-fonctionnalités à bordure fine avec visuel technique dessiné dans chaque carte | Le fond blanc du jour, la typographie Manrope en titres |
+| Vercel — accueil https://vercel.com/ | La police **Geist** (OFL, auto-hébergée chez nous), le bandeau de logos monochromes, la retenue (une forme, un titre, deux boutons) | Le fond blanc, le noir et blanc intégral, le triangle |
 
 ---
 
-## 1. Principes (à appliquer à chaque écran)
+## 1. Principes
 
-1. **Un seul vert d'action.** `leaf` (`#047857`, le vert du logo) sert aux boutons primaires, liens, états actifs, focus. Rien d'autre n'est vert vif.
-2. **Le fond travaille, pas la décoration.** Le rythme vient de l'alternance `white` / `cream` / `forest` entre sections, jamais de blobs, grilles SVG ou dégradés.
-3. **Hairline > ombre.** Bordure 1 px `line`. Les ombres n'existent que pour les éléments flottants (menus, popover, panneau de chat).
-4. **Un seul élément collant à la fois** (en haut) et **un seul en bas sur mobile**. Jamais de contenu recouvert pendant la lecture.
-5. **Preuves avant adjectifs.** Les chiffres, certifications et références sont composés comme des données (tabulaires, alignés), pas comme des badges décoratifs.
-6. **Contraste AA partout** : texte ≥ 4.5:1, éléments d'interface ≥ 3:1. Les paires autorisées sont listées en §2.4 — on ne compose que celles-là.
-7. **Images locales uniquement** (`/public`). Zéro hotlink externe (`images.unsplash.com`, `i.pravatar.cc`).
+1. **Une couleur, l'émeraude `#10B981`.** Elle dessine la boucle du logo, le mot « Cycle », les lignes, graphiques, liens, états actifs et le bouton primaire. Rien d'autre n'est coloré, sauf **un point ambre** `#F59E0B` quand il faut signaler un risque.
+2. **Deux surfaces seulement** : fond `#08090B` et carte `#0F1115`. Le rythme vient de l'alternance fond/carte et des bordures `#2C2F36`, pas de dégradés multicolores.
+3. **Texte sur sombre, toujours AA** : `#EDEDEF` (principal) et `#8A8F98` (secondaire) sur les deux surfaces ; texte **sombre** sur émeraude (jamais blanc sur émeraude : 2.2:1).
+4. **Lumière, pas décoration** : un halo émeraude (9 %), une grille de points (4,5 %), un vignettage — réservés au hero et aux sections de conversion, jamais sur toute la page.
+5. **Les visuels sont construits en code** (SVG/JSX) : tableau de bord, cycle collecte → effacement → reconditionnement → recyclage, géométrie sombre/émeraude. Aucune photo tant que le client n'a pas fourni les siennes ; chaque emplacement photo/vidéo est prévu et listé (§7.4).
+6. **Mouvement progressif** : le contenu est lisible sans JavaScript et par les robots ; l'animation s'ajoute par-dessus (CSS scroll-driven d'abord, framer-motion pour le scénarisé), `transform`/`opacity` uniquement, `prefers-reduced-motion` respecté, 60 fps sur mobile.
+7. **Un seul élément collant** en haut (header **ou** barre d'onglets) et un seul en bas sur mobile — inchangé depuis la v1.
+8. **Responsive de 360 px aux très grands écrans** : typographie fluide, grilles 1 → 2 → 3/4, sections scénarisées qui se dépilent sous `lg`.
 
 ---
 
 ## 2. Palette & rôles
 
-### 2.1 Tokens (source de vérité : `tailwind.config.ts` → `theme.extend.colors`, miroir en CSS vars dans `globals.css`)
+### 2.1 Tokens imposés (utilisés tels quels — `tailwind.config.ts` → `theme.extend.colors`, miroir CSS vars dans `globals.css`)
 
 ```ts
-// 2 verts (teintes dérivées autorisées) + neutres chauds + 1 accent
 colors: {
-  // Vert 1 — profond (surfaces sombres, titres alternatifs, texte sur mint)
-  forest: {
-    DEFAULT: "#0B3B2E",
-    700:     "#0E4A3A",   // hover de surfaces forest, bordures sur forest
-    900:     "#0F1F1A",   // "night" : surface sombre principale (sections Douleurs, citation, bandeaux)
-    950:     "#122621",   // cartes sur night
-  },
-  // Vert 2 — action (= vert du logo)
-  leaf: {
-    DEFAULT: "#047857",   // boutons primaires, liens, focus, actif
-    700:     "#065F46",   // hover du bouton primaire
-    100:     "#E3F3EB",   // "mint" : fond de tag, encart léger, icône-pastille
-    50:      "#F1F8F4",   // survol très léger, zebra de tableau
-    300:     "#7BE0B3",   // vert d'accent SUR fond sombre uniquement (texte, icône, souligné)
-  },
-  // Neutres chauds (base stone, légèrement jaunie)
-  ink:   { DEFAULT: "#1C1917", 700: "#44403C" }, // texte principal / texte secondaire
-  muted: "#6B6560",   // texte tertiaire, légendes, placeholders (5.7:1 sur blanc, 5.3:1 sur cream)
-  line:  "#E7E2DA",   // bordures 1 px, séparateurs, zebra
-  sand:  "#EFEBE3",   // fond de zone en retrait (code, aside), fond de pictogramme neutre
-  cream: "#F7F5F0",   // fond de section alternée
-  paper: "#FFFFFF",   // fond par défaut
-  // Sur fond sombre (forest / night)
-  ondark: { DEFAULT: "#F5F2EC", muted: "#A3B3AA", line: "rgba(255,255,255,0.10)" },
-  // Accent unique (alertes, échéances, eyebrow "coût caché", chiffre à risque)
-  ochre: { DEFAULT: "#B45309", 800: "#9A4A0B", 100: "#FBEFD9", 300: "#F2B35B" /* sur sombre */ },
+  bg:      { DEFAULT: "#08090B", card: "#0F1115" }, // fond principal quasi-noir ; cartes, panneaux, cercles des piliers
+  track:   { DEFAULT: "#2C2F36", strong: "#646973" }, // bordures, ligne de flux, pistes des jauges ; `strong` = bord d'input (dérivé, 3:1)
+  bar:     "#363A42",                                  // barres inactives des graphiques
+  fg:      { DEFAULT: "#EDEDEF", muted: "#8A8F98", strong: "#C2C6CC" }, // texte principal ; secondaire ; `strong` = corps long sur carte (dérivé)
+  emerald: { DEFAULT: "#10B981", hover: "#34D399", dim: "rgba(16,185,129,0.12)", line: "rgba(16,185,129,0.35)" },
+  amber:   { DEFAULT: "#F59E0B", dim: "rgba(245,158,11,0.12)" },
+  danger:  "#F87171",                                  // erreurs de formulaire uniquement (7.2:1 sur bg)
 }
 ```
+Valeurs **imposées par le client** : `bg`, `bg-card`, `track`, `bar`, `fg`, `fg-muted`, `emerald`, `amber`. Valeurs **dérivées** (à ne pas multiplier) : `emerald-hover` (survol du bouton primaire), `emerald-dim`/`amber-dim` (teintes à 12 % pour tags et encarts), `emerald-line` (traits de graphiques, 35 %), `track-strong` (bord d'input, seul cas où une bordure doit atteindre 3:1), `fg-strong` (paragraphes longs sur carte), `danger`.
 
-### 2.2 Rôles (qui a le droit de quoi)
+### 2.2 Rôles
 
 | Rôle | Token | Exemples |
 |---|---|---|
-| Fond de page | `paper` | body, cartes, header |
-| Section alternée | `cream` | une section sur deux, formulaires, FAQ |
-| Section sombre | `forest-900` (night) | Douleurs, citation, bandeau chiffres, footer |
-| Section « marque » | `forest` | CTA final, hero des pages secteur, référence client |
-| Texte principal | `ink` | titres, corps |
-| Texte secondaire | `ink-700` | paragraphes longs, descriptions de cartes |
-| Texte tertiaire | `muted` | légendes, notes, méta, placeholders |
-| Action | `leaf` → hover `leaf-700` | boutons primaires, liens, onglet actif (souligné), focus ring |
-| Tag / pastille icône | `leaf-100` fond + `forest` texte/icône | pictos secteurs, labels « Prioritaire », certification |
-| Accent alerte | `ochre` (texte) / `ochre-100` (fond) + `ochre-800` (texte sur fond) | eyebrow « Le coût caché », échéance CSRD, icône AlertTriangle |
-| Bordure | `line` (clair) / `ondark-line` (sombre) | partout |
-| Texte sur sombre | `ondark` / `ondark-muted` / `leaf-300` / `ochre-300` | sections night & forest |
+| Fond de page, header, barre mobile | `bg` | body, nav, footer |
+| Carte, panneau, cellule, maquette UI, cercle de pilier | `bg-card` | cartes secteurs, plans tarifaires, tableau de bord dessiné |
+| Section alternée | `bg-card` en pleine largeur **ou** `bg` + bordures `track` | une section sur deux ; jamais deux `bg-card` consécutives |
+| Texte principal, titres, « GreenTech » | `fg` | H1–H4, corps court, valeurs de KPI |
+| Texte secondaire : slogans, sous-titres, libellés de cartes, légendes | `fg-muted` | chapôs, descriptions, méta, eyebrow |
+| Corps long (> 3 lignes) sur `bg-card` | `fg-strong` | fiches secteur, FAQ, légal |
+| Action & données : bouton primaire (fond), liens, onglet actif, focus, lignes de graphiques, boucle du logo, mot « Cycle », URL | `emerald` | partout où il y a une interaction ou une donnée |
+| Survol du bouton primaire | `emerald-hover` + lueur | — |
+| Tag, encart léger, fond de pictogramme | `emerald-dim` fond + `emerald` texte/icône | labels « Prioritaire », certifications, pastilles |
+| Bordures, séparateurs, lignes de flux, pistes de jauges | `track` | cartes, tableaux, timeline |
+| Bord d'un champ de formulaire | `track-strong` → focus `emerald` | inputs, selects |
+| Barres inactives, états désactivés | `bar` | graphiques, toggles off |
+| Alerte (un seul point / une seule ligne par écran) | `amber` (texte/point) ; `amber-dim` fond | échéance CSRD, point sur le radar de risque, eyebrow « Le coût caché » |
+| Texte sur bouton émeraude | `bg` (#08090B) | boutons primaires, tags pleins |
 
 ### 2.3 Interdits
+- Blanc (`#FFFFFF`, `#EDEDEF`) sur émeraude ; toute autre couleur que l'émeraude et l'ambre (pas de bleu, violet, rose, cyan, orange) ; dégradés multicolores ; `text-white/30|50` (utiliser `fg-muted`) ; surfaces claires pleine page.
+- L'ambre sur plus d'un élément par écran. Les anciens tokens v1 (`paper, cream, sand, ink, muted, line, forest, leaf, ochre, ondark`) sont **à migrer** (plan §11) puis supprimés.
+- Le logo : `logo-mono-white.svg` sur fond sombre (loop émeraude si la variante existe : à produire par le client ; sinon monochrome blanc). Jamais `logo-horizontal.svg` (bleu/cyan) sur fond sombre.
 
-- `#10B981`, `#0EA5E9`, `#1E40AF`, `#0891B2`, `#F59E0B`, `#8B5CF6`, toutes les classes `pink-*`, `rose-*`, `sky-*`, `blue-*`, `indigo-*`, `violet-*`, `cyan-*`, `lime-*`, `fuchsia-*`, `amber-*`, `red-*` (sauf messages d'erreur de formulaire : `#B42318` texte sur blanc).
-- `bg-gradient-*` décoratif, `blur-3xl`, `animate-pulse*`, `animate-ping`, `backdrop-blur` hors header/panneau flottant.
-- Couleur par secteur (`accent: "pink"` etc. dans `sectors.ts`) : tous les secteurs partagent la même pastille `leaf-100 / forest`. L'identité d'un secteur vient de son pictogramme et de son numéro, pas d'une couleur.
-- Le logo (`/public/logo/*.svg`) garde ses couleurs internes (vert `#047857`, bleu, cyan) : c'est un actif, pas un token. Ne pas en dériver de bleu pour l'interface.
+### 2.4 Paires de contraste vérifiées (luminance relative, calcul du 2026-10-03)
 
-### 2.4 Paires de contraste vérifiées (WCAG, calcul relatif luminance)
-
-| Texte | Fond | Ratio | Usage |
+| Texte | Fond | Ratio | Verdict |
 |---|---|---|---|
-| `ink` #1C1917 | paper / cream | 17.5 / 16.1 | texte |
-| `ink-700` #44403C | paper / cream | 10.3 / 9.4 | texte secondaire |
-| `muted` #6B6560 | paper / cream | 5.7 / 5.3 | légendes (≥ 13 px) |
-| `forest` #0B3B2E | paper / cream / leaf-100 | 12.5 / 11.5 / 10.9 | titres, texte sur mint |
-| `leaf` #047857 | paper / cream / leaf-100 | 5.5 / 5.0 / 4.8 | liens, texte d'action |
-| blanc | `leaf` / `forest` / `forest-900` | 5.5 / 12.5 / 17.1 | boutons, sections sombres |
-| `ochre` #B45309 | paper / cream | 5.0 / 4.6 | eyebrow alerte |
-| `ochre-800` #9A4A0B | `ochre-100` | ≥ 5.5 | texte sur fond alerte |
-| `ondark` #F5F2EC | night / forest | 15.3 / 11.2 | texte sur sombre |
-| `ondark-muted` #A3B3AA | night / forest | 7.8 / 5.7 | méta sur sombre, numéros 01–06 |
-| `leaf-300` #7BE0B3 | night / forest | 10.7 / ≥ 6.7 | accent sur sombre |
-| `ochre-300` #F2B35B | night / forest | 9.2 / 6.8 | alerte sur sombre |
-
-Hors liste = interdit (ex. `text-white/30`, `text-white/50`, `#78716C` sur cream = 4.4, blanc sur `#10B981` = 2.5).
+| `fg` #EDEDEF | bg / bg-card | 17.0 / 16.2 | AA |
+| `fg-muted` #8A8F98 | bg / bg-card | 6.1 / 5.8 | AA (corps de texte autorisé) |
+| `fg-strong` #C2C6CC | bg / bg-card | 11.6 / 11.0 | AA |
+| `emerald` #10B981 (texte, lien, icône) | bg / bg-card | 7.9 / 7.5 | AA |
+| `bg` #08090B (texte de bouton) | emerald / emerald-hover | 7.9 / 10.4 | AA |
+| `emerald` | emerald-dim (sur bg) | 6.8 | AA |
+| `fg-muted` | emerald-dim | 4.6 | AA |
+| `amber` #F59E0B | bg / amber-dim | 9.3 / 7.9 | AA |
+| `danger` #F87171 | bg | 7.2 | AA |
+| `track-strong` #646973 (bord d'input) | bg-card | ≥ 3.0 | UI (1.4.11) |
+| `track` #2C2F36 | bg / bg-card | 1.5 / 1.4 | décoratif seulement (jamais seul pour délimiter un champ) |
+| **Interdit** : `fg` sur emerald | — | 2.2 | FAIL |
 
 ---
 
 ## 3. Typographie
 
-### 3.1 Pairing
+### 3.1 Choix : Geist + Geist Mono (Fraunces et Inter retirés)
 
-| Rôle | Police | Fichier (auto-hébergé, `next/font/local`) | Axes |
+| Rôle | Police | Fichier (`next/font/local`, sous-ensemble latin) | Axes | Licence |
+|---|---|---|---|---|
+| **Titres, corps, UI** | **Geist** (Vercel) | `src/fonts/geist-latin-wght-normal.woff2` (29 Ko) | `wght` 100–900 | OFL 1.1 (`src/fonts/LICENSE.Geist.txt`) |
+| **Eyebrows, labels de données, unités, chips techniques, code** | **Geist Mono** | `src/fonts/geist-mono-latin-wght-normal.woff2` (23 Ko) | `wght` 100–900 | OFL 1.1 |
+
+Pourquoi : le client veut « tech, dans l'air du temps » et une dynamique « comme Apple ». Apple compose tout en une seule grotesque (SF Pro, propriétaire) à graisse 600 et interlettrage serré ; Linear fait de même avec Inter. **Geist** est la grotesque géométrique la plus actuelle disponible en licence libre, dessinée pour les interfaces sombres (Vercel), avec des chiffres tabulaires et un mono assorti pour les données — ce qui colle au propos (traçabilité, certificats, chiffres). Le serif Fraunces donnait un ton éditorial « climat/ESG » incompatible avec la nouvelle palette ; il est retiré. Inter est retiré pour n'avoir qu'une famille (52 Ko au total). Variables CSS : `--font-sans` et `--font-display` pointent **toutes deux** sur Geist (les composants `font-display` existants basculent sans modification), `--font-mono` sur Geist Mono. Aucun CDN.
+
+### 3.2 Échelle (`fontSize` Tailwind, inchangée en noms ; valeurs et graisses revues « Apple »)
+
+| Token | Taille / interligne (360 px → ≥ lg) | Graisse, tracking | Usage |
 |---|---|---|---|
-| **Display** (H1, H2, chiffres-arguments, citations) | **Fraunces** (variable, OFL) | `src/fonts/fraunces-latin-opsz-normal.woff2` (67 Ko) | `wght` 100–900, `opsz` 9–144 |
-| **Texte & UI** (corps, H3+, boutons, tableaux, nav) | **Inter** (variable, OFL) | `src/fonts/inter-latin-opsz-normal.woff2` (73 Ko) | `wght` 100–900, `opsz` 14–32 |
+| `display-xl` | 44/48 → 76/80 | 600, −0.035em | H1 accueil, chiffre-argument (« 78 % ») |
+| `display-lg` | 36/40 → 56/60 | 600, −0.03em | H1 pages intérieures |
+| `display-md` | 30/36 → 40/44 | 600, −0.025em | H2 de section |
+| `display-sm` | 24/30 → 28/34 | 600, −0.02em | H2 compact, prix, citation |
+| `heading-lg` | 20/28 | 600, −0.015em | H3 |
+| `heading-md` | 17/24 | 600, −0.01em | H4, titre de carte |
+| `body-lg` | 18/28 | 400 | chapô (`fg-muted`), max 65 ch |
+| `body` | 16/24 | 400 | corps |
+| `body-sm` | 14/20 | 400/500 | cartes, nav, boutons md, tableaux |
+| `caption` | 13/16 | 400 | légendes, méta |
+| `eyebrow` | 12/16 | **Geist Mono** 500, +0.08em, uppercase | sur-titres, labels de colonnes, chips techniques |
+| `stat` | 44/44 → 72/72 | 600, −0.03em, `tabular-nums` | KPI, compteurs |
 
-Chargement : `src/app/fonts.ts` exporte `fontDisplay` (`--font-display`) et `fontSans` (`--font-sans`), appliqués sur `<html>` dans `src/app/[locale]/layout.tsx`. **Aucun `@import` Google Fonts, aucun CDN** (supprimé de `globals.css`). Sous-ensemble `latin` = couvre tout le français (accents, œ, €).
-
-Pourquoi : Fraunces donne le côté « travaillé » éditorial (cf. Watershed) sans tomber dans le luxe ; Inter reste la police la plus lisible pour des pages denses (tableaux ROI, FAQ, formulaires) — ce n'était pas Inter le problème, c'était l'absence de système.
-
-### 3.2 Échelle (tokens `fontSize` dans Tailwind — `text-display-xl` etc.)
-
-| Token | Taille / interligne (mobile → ≥ lg) | Police, graisse, tracking | Usage |
-|---|---|---|---|
-| `display-xl` | 44/48 → 64/68 | Fraunces 500, −0.02em (opsz auto) | H1 accueil, chiffre-argument du hero (« 78 % ») |
-| `display-lg` | 36/40 → 48/52 | Fraunces 500, −0.02em | H1 pages intérieures |
-| `display-md` | 30/36 → 36/40 | Fraunces 500, −0.01em | H2 de section |
-| `display-sm` | 24/30 → 28/34 | Fraunces 500, −0.01em | H2 compact, citation, titre de carte éditoriale, prix |
-| `heading-lg` | 20/28 | Inter 600, −0.01em | H3 |
-| `heading-md` | 17/24 | Inter 600, −0.01em | H4, titre de carte, ligne de tableau en gras |
-| `body-lg` | 18/28 | Inter 400 | chapô, paragraphe d'intro (max 65 ch) |
-| `body` | 16/24 | Inter 400 | corps par défaut |
-| `body-sm` | 14/20 | Inter 400/500 | cartes, tableaux, nav, boutons md |
-| `caption` | 13/16 | Inter 400 | légendes, notes, méta |
-| `eyebrow` | 12/16 | Inter 600, +0.12em, uppercase | sur-titre de section, label de colonne |
-| `stat` | 40/40 → 56/56 | Fraunces 500, −0.02em, `tabular-nums` | KPI (CountUp), ROI |
-
-Règles :
-- **H1/H2 = Fraunces, graisse 500 uniquement.** Jamais 700/800/900 en Fraunces (c'est lourd et « gras de template »). Les `font-bold`/`font-black` actuels sur titres sont à retirer.
-- **Inter 600 max** pour l'UI. `font-black` disparaît du site. L'emphase se fait par la taille et la couleur, pas par la graisse.
-- **Chiffres** : arguments (hero, KPI) en Fraunces `stat` ; données (tableaux, prix, compteurs de badge) en Inter 600 `tabular-nums`.
-- Longueur de ligne : `max-w-[65ch]` sur tout paragraphe ; les H1 `max-w-[18ch]`, H2 `max-w-[24ch]`.
-- Hiérarchie de section standard : `eyebrow` (`muted` ou `ochre` si alerte) → H2 `display-md` → chapô `body-lg ink-700` → contenu. Espacement : 12 px / 16 px / 40 px.
-- `font-feature-settings: "ss01", "cv11"` (Inter) et `font-optical-sizing: auto` (Fraunces suit sa taille via l'axe opsz) dans `globals.css`.
-- Pas de texte en italique décoratif ; italique réservé aux citations courtes et aux notes de source.
+Règles : H1/H2 en Geist 600 (plus jamais de serif) ; emphase par la taille et par **un mot en `emerald`** dans le titre (« GreenTech**Cycle** », « 78 % »), pas par la graisse 800/900 ; `text-wrap: balance` sur les titres ; chiffres toujours `tabular-nums` ; eyebrow en mono avec un préfixe optionnel `// ` ou `01` (une seule convention par page) ; longueur de ligne 65 ch ; pas d'italique.
 
 ---
 
@@ -185,153 +156,172 @@ Alternance des fonds : jamais deux sections `cream` consécutives, jamais deux `
 
 ---
 
-## 5. Formes : rayons, bordures, ombres
+## 5. Formes : rayons, bordures, ombres, lumière
 
-| Élément | Rayon | Bordure | Ombre |
+| Élément | Rayon | Bordure | Ombre / lumière |
 |---|---|---|---|
-| Bouton, input, select, tag | `rounded-lg` (8 px) | 1 px `line` (secondaire/inputs) | aucune |
-| Carte, panneau, cellule de grille | `rounded-xl` (12 px) | 1 px `line` | aucune ; `hover: border-ink/20` |
-| Image, visuel, panneau de chat | `rounded-2xl` (16 px) | 1 px `line` sur image claire | aucune |
-| Pastille icône, avatar, chip | `rounded-full` | — | — |
-| Menu déroulant, popover, bulle chat | `rounded-xl` | 1 px `line` | `shadow-pop` |
+| Bouton, input, chip | `rounded-lg` (8 px) ; bouton primaire du hero `rounded-full` (Apple/Resend) | `track` (secondaire) / `track-strong` (input) | primaire : `glow-emerald` au survol |
+| Carte, panneau | `rounded-xl` (12 px) | 1 px `track` | aucune ; survol `border-track-strong` |
+| Maquette UI, visuel, slot média, panneau chat | `rounded-2xl` (16 px) | 1 px `track` + liseré intérieur `emerald-line` optionnel | `shadow-float` (ombre noire portée, pas de couleur) |
+| Pastille icône, avatar, point d'état | `rounded-full` | — | point d'état émeraude : `glow-dot` |
+| Menu, popover, bulle | `rounded-xl` | 1 px `track` | `shadow-float` |
 
-Tokens d'ombre (`boxShadow`) : `card` = `0 1px 2px rgba(28,25,23,.06), 0 1px 3px rgba(28,25,23,.04)` (uniquement cartes cliquables au hover) ; `pop` = `0 8px 24px -8px rgba(28,25,23,.18), 0 2px 6px rgba(28,25,23,.06)`. Interdits : `shadow-lg/xl/2xl`, `shadow-[color]/30` (glow), `ring-1 ring-black/5` comme pseudo-ombre.
-Sur fond sombre : bordure `ondark-line`, cartes `forest-950`.
+Tokens (`boxShadow`) : `float` = `0 16px 48px -16px rgba(0,0,0,.6), 0 2px 8px rgba(0,0,0,.4)` ; `glow-emerald` = `0 0 0 1px rgba(16,185,129,.4), 0 0 24px rgba(16,185,129,.35)` ; `glow-dot` = `0 0 12px rgba(16,185,129,.6)`.
+Lumière : les éléments émeraude (lignes, points, boucle du logo) peuvent porter un flou de lueur **séparé** (pseudo-élément `::after` flouté à 8–16 px, opacité .35) qui les fait paraître légèrement plus clairs que `#10B981` à l'écran — c'est voulu. Budget : **3 éléments lumineux maximum par écran**, jamais sur du texte courant.
+Focus clavier : `outline: 2px solid #10B981; outline-offset: 2px`.
 
-Focus clavier : `outline: 2px solid leaf; outline-offset: 2px` (sur sombre : `leaf-300`). Jamais `focus:outline-none` sans remplacement.
+### 5.1 Effets de fond (utilitaires dans `globals.css`)
+- `.fx-halo` : `radial-gradient(60% 50% at 50% 0%, rgba(16,185,129,.09), transparent 70%)` — hero, section CTA finale. Positionné `absolute inset-0`, `pointer-events-none`.
+- `.fx-dots` : grille de points blancs `radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px)` pas 24 px — hero, sections « plateforme », slots média vides.
+- `.fx-vignette` : `radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0,0,0,.55) 100%)` — hero uniquement.
+- Les trois sont des calques statiques (aucune animation continue) ; `background-attachment: fixed` est interdit (performance mobile). Une section « lumineuse » = `bg` + `.fx-halo` (+ `.fx-dots`) ; une section standard = `bg` ou `bg-card` sans effet.
 
 ---
 
-## 6. Composants
+## 6. Composants (adaptés au thème sombre — les specs structurelles v1 restent valables : un sticky, barre mobile unique, chat compact)
 
-### 6.1 Header (`src/components/Header.tsx`)
-- Une seule barre, `h-16 lg:h-[72px]`, `bg-paper/95 backdrop-blur`, `border-b line`. `position: fixed` ; `<main>` reçoit `pt-16 lg:pt-[72px]` (plus de calcul `+1.75rem`).
-- Gauche : logo horizontal seul (**supprimer** la tagline « Plateforme ITAD unifiée » sous le logo). Centre : 5 menus + Tarifs. Droite : switch langue (texte « EN/FR », sans icône globe) + bouton primaire md.
-- Liens de nav : `body-sm` 500 `ink-700`, hover `ink` + fond `cream`. Actif : `ink` + souligné 2 px `leaf`.
-- Menus déroulants : `rounded-xl`, `line`, `shadow-pop`, items `py-2 px-3`. Pas de `role="menu"` sans gestion clavier complète (garder liens simples).
-- Mobile : panneau plein écran sous la barre, sections par groupe, bouton primaire pleine largeur en bas.
-- **Le bandeau certifications (`TrustBar`) n'est plus fixe** : il devient `CertificationStrip` (statique) placé en bas de hero (accueil, secteurs, plateforme, tarifs) ou en haut du footer ailleurs. Composant unique, texte `caption muted`, pictos `ShieldCheck` 14 px `forest`.
+### 6.1 Header
+`fixed top-0`, `h-16 lg:h-[72px]`, `bg-bg/80 backdrop-blur-md`, `border-b track` qui n'apparaît qu'après 8 px de défilement (classe `is-scrolled`). Logo `logo-mono-white.svg` h-7. Liens `body-sm fg-muted`, hover/actif `fg` + soulignement 2 px `emerald`. Bouton primaire md. Mobile : panneau `bg` plein écran. Comportement « un sticky » (sentinelle + `headerHidden`) inchangé.
 
-### 6.2 Règle « un seul sticky »
-- Par défaut, **seul le header** est fixe.
-- Pages avec navigation de sections (page secteur, réglementation) : la barre d'onglets est `sticky top-0` **et le header se retire** quand elle prend le relais. Implémentation : une sentinelle (`<div aria-hidden>`) juste au-dessus de la barre observée par `IntersectionObserver` ; quand elle sort par le haut, le header reçoit `data-hidden` → `-translate-y-full` (transition 200 ms) ; quand on remonte au-dessus, il revient. La barre d'onglets embarque alors à gauche la pastille logo (`/logo/icon-only.svg`, 24 px, lien accueil) pour conserver l'accès marque. À tout instant : header **ou** onglets, jamais les deux.
-- Accueil : la nav d'ancres sticky est **supprimée** (les ids `#solution #differentiators #cases #compliance #pricing` restent sur les sections).
-- `html { scroll-padding-top: 5rem }` pour que les ancres (`#douleurs`…) ne passent pas sous la barre.
-
-### 6.3 Boutons (`src/components/ui/Button.tsx`, à créer)
+### 6.2 Boutons (`ui/Button.tsx`)
 | Variante | Fond / texte | Hover | Bordure |
 |---|---|---|---|
-| `primary` | `leaf` / blanc | `leaf-700` | — |
-| `secondary` | `paper` / `ink` | `cream` | 1 px `line` → `ink/30` |
-| `ghost` | transparent / `leaf` | `leaf-50` | — |
-| `primary` sur sombre | `ondark` (#F5F2EC) / `forest` | blanc | — |
-| `secondary` sur sombre | transparent / `ondark` | `white/10` | 1 px `ondark-line` → `white/30` |
+| `primary` | `emerald` / **`bg`** (#08090B) 600 | `emerald-hover` + `glow-emerald` | — |
+| `secondary` | `bg-card` / `fg` | `border-track-strong`, `bg-card` éclaircie de 4 % (`white/[.04]` overlay) | 1 px `track` |
+| `ghost` | transparent / `emerald` | soulignement | — |
+| `hero` | = primary en `rounded-full h-12 px-6` | idem | — |
+Icône flèche 16 px à droite du primaire, translation 2 px. `min-height 44px`. Jamais de texte blanc sur émeraude.
 
-Tailles : `md` = `h-11 px-5 text-sm` ; `lg` = `h-12 px-6 text-base`. Graisse 600. Icône `ArrowRight` 16 px à droite uniquement sur le primaire, translation 2 px au hover. Pas de `-translate-y`, pas de glow. Coins `rounded-lg`. `min-height 44px` garanti (tap target).
+### 6.3 Cartes (`ui/Card.tsx`)
+`bg-card border track rounded-xl p-6` ; cliquable : `hover:border-track-strong`, titre → `emerald`, flèche +2 px. Variante `glass` (sur hero) : `bg-card/70 backdrop-blur` — max 2 par écran. Pastille icône : `h-10 w-10 rounded-full bg-emerald-dim text-emerald`, Lucide 20 px, `strokeWidth 1.75`.
 
-### 6.4 En-tête de section (`SectionHeader`)
-`eyebrow` (`muted`, ou `ochre` pour les sections « risque ») + H2 `display-md` + chapô optionnel `body-lg ink-700 max-w-[65ch]`. Alignement à gauche par défaut ; centré uniquement pour les CTA. Plus d'icône dans une pastille à côté du H2 (motif actuel « carré 48 px + icône + titre » supprimé).
+### 6.4 En-tête de section (`ui/SectionHeader.tsx`)
+`eyebrow` mono `fg-muted` (ou `amber` pour une section « risque ») → H2 `display-md fg` (un mot-clé `emerald` autorisé) → chapô `body-lg fg-muted`. Gauche par défaut ; centré pour hero/CTA.
 
-### 6.5 Cartes
-- Base : `bg-paper border line rounded-xl p-6`. Sur `cream` : fond `paper`. Sur sombre : `forest-950` + `ondark-line`.
-- Cliquable : `hover:border-ink/20 hover:shadow-card`, titre → `leaf` au hover, flèche 16 px qui se décale de 2 px. Pas de zoom d'image, pas de levée.
-- Pastille icône : `h-10 w-10 rounded-full bg-leaf-100 text-forest`, icône Lucide 20 px, `strokeWidth 1.75`.
-- Numéro de carte (« 01 ») : `eyebrow muted`, jamais en « ghost number » géant translucide (motif supprimé partout : hero secteur, grille, cartes).
+### 6.5 Grille des secteurs
+Inchangée structurellement (4 × 4, cartes à pictogramme, pas de photo). Carte : `bg-card`, numéro en eyebrow mono, pictogramme `emerald` sur `emerald-dim`, badge « Référence TF1 » `emerald-dim/emerald`. Survol : bordure `track-strong` + lueur `glow-dot` sur le pictogramme.
 
-### 6.6 Grille des secteurs (`/secteurs`, `SectorCard`)
-- **Grille régulière** : `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4` → 16 cartes de même taille, dans l'ordre des numéros 01→16.
-- **Carte sans photo** : pastille pictogramme secteur (Lucide, mapping existant dans `sectors.ts`), `eyebrow` « 01 », nom en `heading-md`, 1 ligne d'angle (`body-sm muted`, à ajouter dans `sectors-i18n.ts` : `tagline`), lien « Voir la fiche ». Hauteur uniforme (`h-full`).
-- Mise en avant (`featured`, finance + médias) : badge `leaf-100/forest` « Référence TF1 » / « Prioritaire » en haut à droite ; **pas** de carte plus grande, **pas** de badge rose.
-- Les photos de stock quittent la grille (elles n'apportent rien et deux étaient cassées).
+### 6.6 Bandeau de confiance (`TrustBand`)
+Pictogrammes sectoriels `emerald` dans pastilles `emerald-dim`, nom `body-sm fg`, métrique `caption fg-muted`, cellules séparées par `border-l track`. Sur `bg`. Note NDA en `caption fg-muted`.
 
-### 6.7 Bandeau de confiance (`TrustBand`, accueil)
-- Remplace les 6 rectangles gris : une ligne `grid-cols-2 sm:grid-cols-3 lg:grid-cols-6`, **sans boîtes** — chaque item = pictogramme sectoriel 24 px `forest` dans pastille `leaf-100` 40 px + nom en `body-sm ink` 600 + métrique en `caption muted` sur 2 lignes, séparés par `border-l line` (sauf le premier). Centré, `py-12`.
-- Mapping pictos : banque → `Landmark` ; TF1 → `Tv` ; CHU → `HeartPulse` ; ETI industrielle → `Factory` ; ministère → `Building2` ; retail → `Store`. TF1 (référence publique) : nom en `heading-md` (pas de logo tiers).
-- La note « Identité anonymisée… » reste en `caption muted` sous la ligne.
+### 6.7 Référence client (`ClientReference`)
+Section `bg-card` bordée `track`, pictogramme `Tv` émeraude, eyebrow mono « RÉFÉRENCE CLIENT · TF1 », citation `display-sm fg`, méta `caption fg-muted`. Pas de lueur.
 
-### 6.8 Référence client (`ClientReference`, page secteur médias)
-Remplace le bloc rose : section `bg-forest`, `py-12`, split `[auto_1fr]` : pastille `Tv` 48 px `leaf-300` sur `forest-700` + eyebrow `ondark-muted` « Référence client · TF1 » + texte `display-sm ondark` (citation éditoriale) + méta `caption ondark-muted` (« Contrat annuel récurrent, parc IT et broadcast »). Aucune étoile, aucun `Sparkles`.
+### 6.8 Onglets / `SectionNav`
+`sticky top-0 bg-bg/90 backdrop-blur border-b track`. Item `body-sm fg-muted`, actif `fg` + soulignement 2 px `emerald` + `glow-dot` discret. **Mobile : masque d'indice de défilement + `pr-12` + dernier onglet partiellement visible** (`.scroll-hint` existant, dont le masque disparaît en fin de liste) — corrige l'onglet coupé sans indice (QA). Le scroll-spy et le relais header ↔ onglets restent.
 
-### 6.9 Onglets / navigation de sections (`SectionNav`)
-- Liste `<nav aria-label>` d'ancres, `h-12`, `bg-paper/95`, `border-b line`.
-- Item : `body-sm` 500 `ink-700`, `px-3`, actif = `ink` + soulignement 2 px `leaf` (`aria-current="true"`). **Plus de fond vert plein** (contraste 2.5:1 corrigé).
-- Mobile : défilement horizontal `overflow-x-auto snap-x`, chaque item `snap-start`, **indice de défilement** = masque `mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent)` + padding droit `pr-12` pour laisser le dernier onglet partiellement visible ; au scroll à la fin, le masque disparaît (classe toggled par un petit `onScroll`). `scrollbar-hide` conservé.
-- Scroll-spy : garder l'`IntersectionObserver` existant (`rootMargin: -30% 0px -60% 0px`).
+### 6.9 Chat (`SalesAssistantWidget`)
+Bouton `h-12 w-12 rounded-full bg-emerald text-bg` + `glow-dot`. Panneau `bg-card border track rounded-2xl shadow-float`, en-tête `bg` avec point d'état émeraude. Mobile : dans la barre d'action, panneau en feuille plein écran. Bulle desktop une fois par session, deux boutons frères.
 
-### 6.10 Widget de chat (`SalesAssistantWidget`)
-- **Bouton compact** : `h-12 w-12 rounded-full bg-leaf text-white` avec icône `MessageCircle` 22 px (plus de photo dans le bouton), `shadow-pop`, position `fixed bottom-6 right-6` sur `lg+`. `aria-label`, `aria-expanded`, `aria-controls`.
-- **Mobile (< lg)** : le bouton vit **dans** la barre d'action basse (§6.11) ; aucune bulle flottante ; le panneau s'ouvre en **feuille plein écran** (`inset-0`, `h-[100dvh]`, `role="dialog" aria-modal`) avec bouton Fermer 44 px dans son en-tête — il ne recouvre jamais le contenu pendant la lecture puisqu'il est modal.
-- **Desktop** : panneau `w-[380px] max-h-[70vh] rounded-2xl shadow-pop bottom-24 right-6`. En-tête `forest` (plus de dégradé vert→bleu), avatar 40 px autorisé dans l'en-tête du panneau.
-- **Bulle « Besoin d'aide ? »** : desktop seulement, une fois par session (sessionStorage), après 20 s, auto-fermée après 12 s. **Deux boutons frères** (`<div>` conteneur → `<button>` ouvrir + `<button>` fermer), jamais un bouton dans un bouton (fix axe `nested-interactive`).
-- `env(safe-area-inset-bottom)` respecté. `prefers-reduced-motion` : pas d'animation d'apparition.
+### 6.10 Barre d'action mobile (`MobileActionBar`)
+`bg-bg/95 backdrop-blur border-t track`, bouton primaire `flex-1` + bouton chat. Même logique d'apparition (après le hero) et de retrait (cookies/popup ouverts).
 
-### 6.11 Barre d'action mobile (`MobileActionBar`, remplace `StickyCTA`)
-- `< lg` uniquement. `fixed bottom-0 inset-x-0 h-16 bg-paper border-t line px-4 flex gap-3 items-center`, padding bas `safe-area`.
-- Contenu : bouton primaire `flex-1` (libellé contextuel existant de `pickContext`) + bouton chat 44 px (§6.10). **C'est le seul élément fixe en bas.**
-- Apparaît seulement une fois le hero dépassé (sentinelle sur le hero) ; disparaît si le `CookieBanner` ou l'`ExitPopup` est ouvert.
-- `<main>` reçoit `pb-20 lg:pb-0` pour que le dernier contenu ne soit jamais sous la barre.
-- Plus de dégradé blanc transparent au-dessus, plus de glow vert.
+### 6.11 Bannière cookies (`CookieBanner`) — correction QA
+Ne couvre plus le bandeau de confiance : sur `sm+`, carte **compacte en bas à gauche** (`sm:left-4 sm:right-auto sm:max-w-[380px]`, `bg-card border track shadow-float`), hors de la colonne de lecture (le bandeau de confiance est centré sur 1200 px, la carte occupe < 400 px en bord d'écran) ; sur mobile, feuille pleine largeur qui **remplace** la barre d'action (déjà en place) et ne dépasse pas 60 vh. Apparition à 1,5 s, sans animation si mouvement réduit.
 
 ### 6.12 CTA de fin de page (`CtaSection`)
-- Une seule variante visuelle : section `bg-forest`, `py-16 lg:py-24`, centré, H2 `display-md ondark max-w-[24ch]`, chapô `body-lg ondark-muted`, 2 boutons (primaire sur sombre + secondaire sur sombre). Ligne de réassurance `caption ondark-muted` (« Réponse sous 48 h · Sans engagement »).
-- Supprimés : icône dans pastille, blobs, grille SVG, variantes `gradient`, `light`, fond `#10B981` plein.
-- Une page = **un seul** CTA de fin (les enchaînements CTA + bandeau tarifaire + encart pilote + bandeau confiance sont réduits à un bloc, voir §9).
+Section `bg` + `.fx-halo` + `.fx-dots`, centrée, H2 `display-md fg` avec un mot `emerald`, chapô `fg-muted`, boutons `hero` + `secondary`, réassurance `caption fg-muted`. Un seul par page.
 
-### 6.13 Tableaux (ROI, comparatifs, matrice)
-`border line rounded-xl overflow-hidden` ; en-tête `bg-cream eyebrow muted` ; lignes `border-t line` ; zebra `leaf-50` ; chiffres `tabular-nums` alignés à droite ; cellule-clé `ink 600`. Mobile : `overflow-x-auto` avec le même masque d'indice que §6.9, ou empilement en cartes si ≤ 3 colonnes.
+### 6.13 Tableaux, accordéon, tags, formulaires, stat, footer
+- Tableau : `border track rounded-xl`, en-tête `bg-card eyebrow mono fg-muted`, lignes `border-t track`, zebra `white/[.02]`, chiffres tabulaires `fg`, cellule-clé `emerald`.
+- Accordéon : `divide-y track`, bouton `heading-md fg`, chevron `fg-muted`, contenu `fg-strong`.
+- Tags : `h-7 px-3 rounded-full` ; neutre `bg-card border track fg-muted` ; marque `bg-emerald-dim text-emerald` ; alerte `bg-amber-dim text-amber` ; plein `bg-emerald text-bg`.
+- Formulaires : label `body-sm fg`, input `h-11 bg-bg border track-strong rounded-lg fg`, placeholder `fg-muted`, focus `border-emerald ring-2 ring-emerald/25`, erreur `border-danger` + message `danger`. Bouton `primary lg`.
+- Stat : valeur `stat fg` (ou `emerald` pour la valeur-clé), libellé `body-sm fg-muted`, unité en mono, séparateurs `border-l track`. Compteur animé (`CountUp`) conservé.
+- Footer : `bg border-t track`, colonnes `eyebrow mono fg-muted`, liens `body-sm fg-muted` hover `fg`, ligne de certifications, newsletter `input` + `primary`.
+- Notice CSRD (hero) : `bg-amber-dim text-amber caption` + `AlertTriangle` — c'est **le** point ambre de l'écran.
 
-### 6.14 Accordéon (FAQ, objections)
-Liste `divide-y line` sans cartes individuelles ; bouton `py-5 text-left heading-md ink` + `ChevronDown` 20 px `muted` (rotation 180°) ; `aria-expanded`, contenu `body ink-700 pb-6`. Un seul ouvert par défaut.
-
-### 6.15 Tags, badges, eyebrow chips
-`inline-flex h-7 px-3 rounded-full text-caption 600`. Neutre : `bg-sand ink-700`. Marque : `bg-leaf-100 forest`. Alerte : `bg-ochre-100 ochre-800`. Sur sombre : `bg-white/10 ondark`. Pas d'emoji, pas de `Sparkles`.
-
-### 6.16 Formulaires (contact, réservation, newsletter)
-Label `body-sm 500 ink` au-dessus, input `h-11 rounded-lg border line bg-paper px-3 body` ; focus `border-leaf ring-2 ring-leaf/20` ; erreur `border-[#B42318]` + message `caption` rouge. Aide `caption muted`. Checkbox 20 px. Bouton de soumission primaire `lg`, pleine largeur sur mobile.
-
-### 6.17 Stat / KPI
-Bloc : valeur `stat` (Fraunces, `CountUp` conservé) + libellé `body-sm ink-700` + source `caption muted`. Alignés sur une ligne `grid-cols-2 lg:grid-cols-4`, séparés par `border-l line`. Sur sombre : valeur `ondark`, accent de valeur `leaf-300`.
-
-### 6.18 Footer
-`bg-forest-900`, texte `ondark-muted`, titres de colonne `eyebrow ondark`, liens `body-sm` hover `ondark`. Newsletter : input sur `forest-950` + bouton primaire sur sombre. Ligne du bas : certifications (`CertificationStrip` variante sombre) + mentions. Pas de dégradé.
-
-### 6.19 Notice / bandeau d'urgence (CSRD)
-Le `Link` pleine largeur navy au-dessus du hero est supprimé des pages (accueil, plateforme, contact, pourquoi). L'information devient une **ligne de notice** dans le hero : `inline-flex gap-2 rounded-full bg-ochre-100 text-ochre-800 caption 600 px-3 h-7` + icône `AlertTriangle` 14 px, lien vers `/reglementation`.
+### 6.14 Nouveaux composants visuels (`src/components/visuals/`) — voir §7
+`DashboardMock`, `LifecycleDiagram`, `GeometryField`, `CertificateCard`, `MediaSlot`, `VideoBackground`, `ScrollStory`.
 
 ---
 
-## 7. Imagerie & pictogrammes
+## 7. Visuels : pas de photo, du code
 
-- **Local uniquement** : `/public/photos/*`, `/public/images/*`. Supprimer `images.remotePatterns` de `next.config.js` une fois les 15 hotlinks remplacés (liste en §10, étape 1).
-- Un secteur sans photo locale dédiée a `image: null` dans `sectors.ts` : le hero utilise alors la surface `forest` seule et la section Profil affiche un **panneau d'identité** (numéro, cadre réglementaire, 3 faits) à la place de l'image. **On n'affiche jamais une photo « à peu près »** pour boucher un trou.
-- Traitement : photos en couleur, pas de filtre ; sur hero sombre, image en `opacity-20` + voile `forest/60` (jamais opacité 15 % sur noir pur). Rayon `rounded-2xl`, bordure `line` sur fond clair.
-- Ratios : hero split `4/5` (portrait) ou `3/2` ; carte `16/10` ; profil secteur `4/3` ; avatar `1/1`. Toujours `next/image` avec `sizes`.
-- Pas de photo « lifestyle startup » en hero accueil : remplacer `/photos/hp-rssi-boardroom.jpg` par `/photos/hp-atelier-itad.jpg` ou `/photos/hp-audit-signature.jpg` (métier, atelier, signature d'audit) — à valider avec le client ; à défaut, hero sans photo avec un panneau de preuve (Audit ACPR 4 jours / 638 k€) composé en Stat (§6.17).
-- Pictogrammes : Lucide uniquement, `strokeWidth 1.75`, 20 px dans pastille 40 px, 24 px dans pastille 48 px, couleur `forest` sur `leaf-100` (ou `leaf-300` sur sombre). Un seul set, pas de mélange emoji/icônes.
-- Logo : `logo-horizontal.svg` sur clair, `logo-mono-white.svg` sur `forest`/`night`, `icon-only.svg` pour la barre d'onglets. Hauteur 32 px (mobile) / 36 px (desktop).
+### 7.1 Règle
+**Aucune photographie n'est affichée tant que le client n'a pas fourni les siennes.** Les 69 références actuelles à `/photos/*` et `/images/*` sont remplacées par des visuels construits en JSX/SVG/CSS (vectoriels, responsives, thémables, animables, < 20 Ko chacun). Les fichiers photos peuvent rester dans `/public` mais ne sont plus référencés (sauf `og-image`, `favicon`, logos). Pas d'image de stock, pas d'illustration 3D, pas d'IA générative.
+
+### 7.2 Jeu de visuels (tous `aria-hidden` avec un `<p class="sr-only">` descriptif, ou `role="img" aria-label`)
+| Composant | Contenu | Animation (progressive, §8) | Où |
+|---|---|---|---|
+| `DashboardMock` | Tableau de bord ITAD : 4 tuiles KPI (actifs tracés, certificats émis, valeur récupérée, CO₂e évité), graphique « IT assets » en barres (`bar` inactives, `emerald` actives), radar de risque avec **un** point `amber`, ligne de flux de certificats, fil d'activité | Barres qui montent et compteurs à l'entrée ; 3 états (Inventaire → Effacement → Reporting) commutés par `ScrollStory` | Hero accueil (parallax lent), `/plateforme` (section épinglée), `/tarifs` plan recommandé (version compacte) |
+| `LifecycleDiagram` | Boucle « Cycle » à 4 nœuds : Collecte → Effacement → Reconditionnement → Recyclage, trait émeraude, pictogrammes Lucide dans cercles `bg-card`, flux `track` en fond | Trait dessiné (`stroke-dashoffset`) lié au défilement ; nœud actif lumineux | `/services` (listing), `/processus-itad`, `/pourquoi-gtc`, hero des pages service (nœud concerné en surbrillance) |
+| `GeometryField` | Grille isométrique `track`, anneaux concentriques, 2–3 segments émeraude, grille de points | Dérive très lente par parallax (≤ 40 px) ; rien en mouvement réduit | Hero des pages secteur (avec le pictogramme du secteur au centre), `/contact`, `/secteurs`, 404 |
+| `CertificateCard` | Carte « Certificat d'effacement » : n° de série, méthode NIST 800-88, horodatage, empreinte (hash tronqué en mono), sceau émeraude | Apparition + sceau qui « s'imprime » (scale .9 → 1) | `/services/effacement-securise`, `/securite`, cas d'usage, section « preuves » accueil |
+| `KpiTile` (sous-partie de `DashboardMock`) | Une tuile KPI autonome | Compteur | Bandeaux chiffres, fiches secteur (ROI) |
+
+Grammaire commune : fond `bg-card`, bordures `track`, données `emerald`, inactif `bar`, texte `fg`/`fg-muted` en Geist, labels en Geist Mono, rayon 12/16 px, **un seul** point ambre. Les visuels se comportent comme des composants responsives (grille fluide, `viewBox` + `preserveAspectRatio`), pas comme des images.
+
+### 7.3 Emplacements photo/vidéo (`MediaSlot`)
+```tsx
+<MediaSlot id="home-hero" ratio="4/5" fallback={<DashboardMock state="inventory" />} />
+<MediaSlot id="plateforme-hero" ratio="16/10" src="/photos/…jpg" alt="…" />          // photo plus tard
+<MediaSlot id="home-hero-video" ratio="16/9" video={{ src: "/video/…mp4", poster: "/photos/…jpg" }} /> // vidéo plus tard
+```
+- Cadre : `rounded-2xl border track bg-card overflow-hidden shadow-float` + `.fx-dots` en fond ; `aspect-ratio` fixe par slot ; `next/image` `fill` + `sizes` quand `src` est fourni ; `<video muted playsinline loop autoplay preload="metadata" poster>` quand `video` est fourni, **désactivé** (poster seul) si `prefers-reduced-motion` ou `navigator.connection.saveData`.
+- Sans `src`/`video`, le slot affiche son `fallback` (visuel codé). **Jamais** un placeholder gris ou un texte « image à venir » visible.
+- Registre : `src/content/media-slots.ts` liste `{ id, page, ratio, sujet recommandé, état }` — c'est la liste que le client remplira avec ses photos/vidéos. Ratios : hero split `4/5` ou `16/10`, bandeau `21/9`, carte `16/10`, portrait `1/1`.
+- `VideoBackground` (phase vidéo, **non activée maintenant**) : calque `absolute inset-0 object-cover` sous le hero, voile `bg/60` + `.fx-vignette`, poster obligatoire, pas de son, pas de contrôle visible, chargé en `lazy` hors viewport, remplacé par le poster sous 768 px si `saveData`.
+
+### 7.4 Pictogrammes & logo
+Lucide uniquement, `strokeWidth 1.75`, `emerald` sur `emerald-dim` (20 px / pastille 40 px ; 24 px / 48 px). Logo monochrome blanc sur fond sombre ; la boucle du logo en émeraude est à produire par le client (SVG) — en attendant `logo-mono-white.svg`.
 
 ---
 
-## 8. Mouvement & interaction
+## 8. Mouvement « comme Apple » : système
 
-- Entrées de section : `FadeIn` conservé mais calmé : `y: 12`, `duration: 0.45`, `once: true`, `margin: -40px`. `StaggerContainer` : `staggerDelay 0.06`. `motion.tsx` lit `useReducedMotion()` et désactive tout si actif.
-- `CountUp` autorisé sur les KPI (durée 1.6 s).
-- Hover : changement de couleur/bordure 150 ms, flèche `translate-x-0.5`. Pas de `scale`, pas de `-translate-y`, pas de zoom d'image.
-- Supprimés : `animate-pulse-slow/slower`, `animate-shimmer`, `animate-marquee`, `animate-ping` (badge « en ligne »), blobs flous, `whileHover={{ scale }}` du bouton de chat.
-- Transitions de header (`-translate-y-full`) : 200 ms `ease-out`.
+### 8.1 Principes non négociables
+1. **Lisible sans JavaScript et pour les robots** : aucun contenu essentiel en `opacity: 0` dans le HTML servi. Les animations d'entrée sont **CSS scroll-driven** (`animation-timeline: view()`) encapsulées dans `@supports` : sans support (ou sans JS, ou robot) le contenu est simplement affiché. Interdit : `initial={{ opacity: 0 }}` de framer-motion sur du texte, des titres, des listes, des CTA. Le `FadeIn` v1 est remplacé par la classe `.reveal` (§8.3).
+2. **`transform` et `opacity` uniquement** (compositor). Jamais d'animation de `top/left/width/height/filter` sur du contenu ; `filter: blur` seulement sur les lueurs statiques.
+3. **`prefers-reduced-motion: reduce`** : tout est désactivé (reveal, parallax, scénarisation, compteurs → valeur finale, vidéos → poster). Règle globale dans `globals.css` + `useReducedMotion()` dans les composants framer.
+4. **60 fps mobile** : ≤ 3 lueurs et ≤ 2 `backdrop-blur` par écran, `will-change: transform` seulement sur le visuel épinglé pendant qu'il est épinglé, `content-visibility: auto` sur les sections sous la ligne de flottaison, test Chrome DevTools CPU × 4 sur `/fr`, `/fr/plateforme`, `/fr/secteurs/medias-audiovisuel`.
+5. **Pas de nouvelle dépendance** : CSS natif + `framer-motion` 11 déjà présent (`useScroll`, `useTransform`, `useSpring`, `useInView`). Pas de GSAP (licence/poids), pas de Lenis (défilement « lissé » perturbe l'accessibilité et les ancres).
+
+### 8.2 Répartition
+| Besoin | Technique | JS requis ? |
+|---|---|---|
+| Révélation à l'entrée (fondu + 16 px) | CSS `.reveal` (`animation-timeline: view(); animation-range: entry 0% entry 40%`) | non |
+| Décalage en cascade | `.reveal` + `--reveal-i` (délai = `animation-range` décalée de 6 % par item) | non |
+| Parallax lent/rapide d'un visuel | CSS `.parallax-slow` / `.parallax-fast` (`translateY(±40px)` sur `animation-range: cover`) | non |
+| Trait de `LifecycleDiagram` dessiné au défilement | CSS `stroke-dashoffset` sur `animation-timeline: view()` | non |
+| Section scénarisée (visuel épinglé, 3 étapes) | `ScrollStory` : conteneur `h-[300vh]`, colonne visuel `sticky top-[88px]`, `useScroll({ target })` + `useTransform` → état courant ; crossfade `opacity` entre états | oui (sans JS : les 3 étapes sont empilées et lisibles) |
+| Compteurs KPI | `CountUp` existant (`useInView`) | oui (sans JS : valeur finale rendue côté serveur) |
+| Transition de visuel produit (Inventaire → Effacement → Reporting) | framer `AnimatePresence` sur `DashboardMock state` | oui |
+| Header : bordure/flou après 8 px, relais onglets | `scroll` passif + classe | oui |
+| Lueurs | CSS statique (pseudo-élément) | non |
+
+### 8.3 Classes CSS (dans `globals.css`, encapsulées dans `@supports (animation-timeline: view())` et neutralisées par `prefers-reduced-motion`)
+```css
+.reveal        { animation: reveal-up linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+.reveal-scale  { animation: reveal-scale linear both; animation-timeline: view(); animation-range: entry 0% entry 50%; }
+.parallax-slow { animation: parallax-slow linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+.parallax-fast { animation: parallax-fast linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+.reveal[style*="--reveal-i"] { animation-range: calc(entry 0% + var(--reveal-i) * 6%) calc(entry 40% + var(--reveal-i) * 6%); }
+@keyframes reveal-up    { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes reveal-scale { from { opacity: 0; transform: scale(.96); }     to { opacity: 1; transform: none; } }
+@keyframes parallax-slow { from { transform: translateY(40px); }  to { transform: translateY(-40px); } }
+@keyframes parallax-fast { from { transform: translateY(80px); }  to { transform: translateY(-80px); } }
+```
+Comportement : un élément déjà entièrement visible au chargement (ou dans le viewport haut d'un robot) est au-delà de sa plage `entry` → affiché à l'état final ; sans support → aucune règle appliquée → affiché.
+
+### 8.4 Courbes et durées (transitions d'état, pas scroll-linked)
+`--ease-out: cubic-bezier(.22,1,.36,1)` ; hover 150 ms ; apparition/crossfade 400–600 ms ; header 200 ms ; compteur 1,6 s. Les animations liées au défilement n'ont pas de durée (progression = scroll). Aucune animation infinie (pas de pulse, ping, marquee, shimmer).
+
+### 8.5 Scénarisation (« scroll-telling ») — où
+- Accueil : **Solution** (`#solution`) → `ScrollStory` 3 étapes : « Inventorier » / « Effacer & certifier » / « Valoriser & reporter », visuel `DashboardMock` qui change d'état.
+- Plateforme : **Parcours 5 chapitres** (`#parcours`) → `ScrollStory` 5 étapes (ids `#modules`, `#governance`, `#mobile` posés sur les étapes correspondantes).
+- Services : `LifecycleDiagram` dessiné au défilement, chaque service allume son nœud.
+- Sous `lg` : `ScrollStory` se dépile (texte + visuel par étape, visuel non épinglé) ; sous 360 px rien ne déborde (`min-w-0`, `overflow-x-clip` sur `main`).
 
 ---
 
-## 9. Responsive
-
-- Mobile-first ; breakpoints Tailwind par défaut (`sm 640`, `md 768`, `lg 1024`, `xl 1280`).
-- Typo : les tokens display ont deux paliers (mobile / `lg`) via `clamp()` défini dans `fontSize` ; ne pas empiler `text-3xl md:text-4xl lg:text-5xl` à la main.
-- Splits texte/image : empilés sous `lg`, image après le texte.
-- Grilles : 1 → 2 → 3/4 colonnes ; jamais 4 colonnes sous `lg`.
-- Barres horizontales (onglets, tableaux) : masque d'indice de défilement (§6.9), jamais coupées net.
-- Cibles tactiles ≥ 44 px ; `MobileActionBar` 64 px + `safe-area`.
-- Un seul élément fixe en haut (header **ou** onglets) + un seul en bas (`MobileActionBar`) ; le `CookieBanner` prend la place de la barre d'action tant qu'il est ouvert.
-- Longueur des pages secteur (16 500 px mobile) : réduite par les condensations §10 ; pas de découpage en sous-pages (les ancres et URLs restent).
+## 9. Responsive (360 px → ≥ 1920 px)
+- Mobile-first ; breakpoints Tailwind ; conteneur `max-w-[1200px]`, au-delà de 1600 px les heros gardent 1200 px de contenu mais les effets de fond (`.fx-*`) occupent toute la largeur.
+- Typographie fluide via `clamp()` (tokens §3.2) ; H1 `max-w-[18ch]`, paragraphes `max-w-[65ch]`.
+- Grilles 1 → 2 (`sm`) → 3/4 (`lg`) ; `ScrollStory` épinglé uniquement `lg+` ; visuels `DashboardMock`/`LifecycleDiagram` en `viewBox` fluide (hauteur mini 240 px mobile).
+- Barres horizontales (onglets, tableaux) : masque d'indice + dernier item partiellement visible.
+- Cibles tactiles ≥ 44 px ; barre mobile 64 px + `safe-area` ; un sticky en haut, un en bas.
+- Test obligatoire à 360, 390, 768, 1024, 1440, 1920 px, Chrome + Safari iOS.
 
 ---
 
@@ -407,67 +397,41 @@ Ancres conservées : `#plans #pilote #sur-devis`.
 
 ---
 
-## 11. Plan d'implémentation (ordonné)
+## 11. Plan d'implémentation v2 (ordonné) — migration « Épuré » → « Dark Tech »
 
-Chaque étape doit laisser `npm run build` vert. Les étapes 1 à 7 corrigent l'audit et sont indépendantes de la refonte visuelle ; les faire en premier.
+Chaque étape laisse `npm run build` vert. Les étapes 1–3 rendent le site sombre et cohérent ; 4–6 apportent les visuels et le mouvement ; 7–8 finissent.
 
 ### Étape 0 — Fondation *(faite sur cette branche)*
-- `src/fonts/` : `fraunces-latin-opsz-normal.woff2`, `inter-latin-opsz-normal.woff2` + licences OFL.
-- `src/app/fonts.ts` : `next/font/local` → `fontDisplay` / `fontSans` (variables `--font-display`, `--font-sans`).
-- `src/app/[locale]/layout.tsx` : variables de police sur `<html>`.
-- `src/app/globals.css` : suppression de l'`@import` Google Fonts ; CSS vars des tokens ; base typographique (H1/H2 en display 500) ; `scroll-padding-top` ; focus visible.
-- `tailwind.config.ts` : tokens §2–5 (`colors`, `fontFamily`, `fontSize`, `boxShadow`, `maxWidth`). Les anciens alias (`primary`, `secondary`, `accent`, `gtc.*`, `dark`, `light`) sont **remappés** vers la nouvelle palette (ex. `primary` → `leaf`, `secondary` → `forest`) pour que les pages non encore refondues restent cohérentes ; ils sont à supprimer à l'étape 12.
+- `src/fonts/` : Geist + Geist Mono (latin, variables, OFL) ; Fraunces et Inter supprimés. `src/app/fonts.ts` : `fontSans`/`fontDisplay` = Geist, `fontMono` = Geist Mono.
+- `tailwind.config.ts` : tokens v2 (`bg`, `track`, `bar`, `fg`, `emerald`, `amber`, `danger`), `fontFamily.mono`, `boxShadow` (`float`, `glow-emerald`, `glow-dot`), échelle `fontSize` revue (graisses 600, tracking serré). Tokens v1 conservés **temporairement** pour que les pages non migrées compilent.
+- `globals.css` : CSS vars v2, H1/H2 Geist 600, utilitaires `.fx-halo/.fx-dots/.fx-vignette`, `.glow`, classes `.reveal*/.parallax-*` scroll-driven (désactivées sous `prefers-reduced-motion`). Le fond/texte sombres du `body` sont prêts sous `html.dark` et **s'activent à l'étape 2** (`class="dark"` sur `<html>`) pour que les pages v1 restent lisibles entre-temps.
 
-### Étape 1 — Images locales uniquement (audit 1.1, 1.2, 1.5)
-- `src/data/sectors.ts` : `medias-audiovisuel.image` → `/photos/case-media-tf1.jpg` ; `transport-logistique.image` et `agroalimentaire.image` → `null` (panneau d'identité, §7) **ou** nouvelle photo locale committée (`/photos/sector-transport.jpg`, `/photos/sector-agro.jpg`, licence libre, source notée dans `docs/`). Type `image: string | null`.
-- Hotlinks restants à remplacer : `services/audit-inventaire` → `/photos/service-audit.jpg` ; `effacement-securise` → `/photos/service-effacement.jpg` ; `reconditionnement-valorisation` → `/photos/service-reconditionnement.jpg` ; `wakibox` → `/photos/service-wakibox.jpg` ; `cybersecurite` (2) → `/images/cybersecurity.jpg`, `/photos/server-technician.jpg` ; `recyclage-deee` (2) → `/images/recycling.jpg`, `/photos/hands-electronics.jpg` ; `services/page.tsx` (2) → `/photos/tech-datacenter.jpg`, `/photos/hp-atelier-itad.jpg` ; `blog/page.tsx` → `/photos/blog-economie-circulaire.jpg`.
-- `next.config.js` : supprimer `images.remotePatterns` (Unsplash, pravatar). Vérifier `grep -rn "unsplash\|pravatar" src` = 0.
+### Étape 1 — Primitives UI en sombre
+`ui/Button` (texte `bg` sur émeraude, variante `hero`), `ui/Card`, `ui/Tag`, `ui/SectionHeader` (eyebrow mono), `ui/Stat`, `ui/Table`, `ui/Accordion`, `ui/Pictogram`, `ui/Section` (fonds `bg`/`bg-card`, option `glow`). Remplacer `FadeIn/StaggerContainer/StaggerItem` par `.reveal` (garder `CountUp`) ; `motion.tsx` ne garde que `CountUp` et les helpers de `ScrollStory`.
 
-### Étape 2 — Accents & typos (audit 1.4, 2.1, 2.2)
-- `src/app/[locale]/plateforme/layout.tsx` : accents dans `title`, `description`, `keywords`, `openGraph`, `twitter`, `platformeSchema.description` et `featureList` (« temps réel », « Traçabilité », « automatisés », « Intégration », « certifié »).
-- `src/app/[locale]/services/layout.tsx` : même correction (« Découvrez », « certifié », « sécurisée », « traçabilité ») — trouvée en lisant le code, hors audit.
-- `SectorDetailPage.tsx` ~l. 614 : « Collecte, inventaire automatisé et attestation inclus. Résiliable à tout moment. » ; ~l. 609 « 39 € HT/mois » ; ~l. 622 « Démarrer le pilote ».
-- `tarifs/page.tsx` l. 879 : `Tarifs Waki Box, <br />` ; l. 1280 : `Premier mois offert, <br />puis 39 € HT/mois.` (le texte DOM contient l'espace, le `<br />` reste).
+### Étape 2 — Chrome du site
+`Header`, `SectionNav` (vérifier le masque d'indice mobile — QA), `MobileActionBar`, `SalesAssistantWidget`, `CookieBanner` (carte compacte bas-gauche — QA), `ExitPopup`, `Footer`, `CertificationStrip`, `TrustBand`, `ClientReference`, `CtaSection`, `Breadcrumbs`, `LegalPageLayout`, `RelatedArticles`. `<html>` reçoit `class="dark"` + `color-scheme: dark` (formulaires natifs, barres de défilement).
 
-### Étape 3 — Chat : élément interactif imbriqué (audit 2.4)
-- `SalesAssistantWidget.tsx` : la bulle devient `<div class="relative"><button>Besoin d'aide…</button><button aria-label="Fermer">×</button></div>` (frères). Puis refonte compacte §6.10.
+### Étape 3 — Migration des tokens page par page
+Mapping mécanique puis relecture : `bg-paper→bg-bg`, `bg-cream|bg-sand→bg-bg-card`, `text-ink→text-fg`, `text-ink-700→text-fg-strong`, `text-muted→text-fg-muted`, `border-line→border-track`, `bg-forest|bg-forest-900→bg-bg-card` (+ `.fx-halo` si c'était un hero/CTA), `text-forest→text-fg` (titres) ou `text-emerald` (valeurs-clés), `text-ondark→text-fg`, `text-ondark-muted→text-fg-muted`, `bg-leaf→bg-emerald` **avec texte `text-bg`**, `text-leaf|text-leaf-300→text-emerald`, `bg-leaf-100→bg-emerald-dim`, `text-ochre→text-amber`, `bg-ochre-100→bg-amber-dim`, `text-ochre-800→text-amber`, `shadow-card|shadow-pop→shadow-float`. Ordre : accueil → secteurs → fiche secteur → plateforme → tarifs → contact → services → cas d'usage → reste (§10 inchangé). Puis supprimer les tokens v1 de `tailwind.config.ts`/`globals.css` ; `grep -rn "paper\|cream\|ink\|forest\|leaf\|ochre\|ondark" src` → 0.
 
-### Étape 4 — Contrastes (audit 2.3)
-- Onglets actifs : soulignement `leaf` + texte `ink` (plus de blanc sur vert).
-- Numéros 01–06 Douleurs : `ondark-muted`. Tous `text-white/30|40|50|60`, `text-gray-400` sur sombre → `ondark-muted`. `text-gray-500` sur `cream` → `muted`.
-- Boutons `bg-[#10B981]` → `bg-leaf`. Badges `text-[#6EE7B7]` → `leaf-300`.
-- Vérification : axe-core (`playwright` est déjà en devDependency) sur `/fr`, `/fr/secteurs/medias-audiovisuel`, `/fr/plateforme`, `/fr/contact` → 0 violation `color-contrast`.
+### Étape 4 — Visuels en code (`src/components/visuals/`)
+`DashboardMock` (3 états), `KpiTile`, `LifecycleDiagram`, `GeometryField`, `CertificateCard`, `MediaSlot`, `VideoBackground` (inactif), registre `src/content/media-slots.ts`. Remplacer **toutes** les `<Image src="/photos|/images…">` par un `MediaSlot` avec `fallback` (69 occurrences ; `/fr/plateforme` ligne 101 `hp-dsi-strategy.jpg` incluse — QA). `og-image`, favicon et logos restent. `grep -rn "/photos/\|/images/" src` → uniquement `media-slots.ts` (sujets recommandés) et métadonnées OG.
 
-### Étape 5 — Bloc « Référence client » (audit 2.5)
-- Nouveau `src/components/ClientReference.tsx` (§6.8) ; remplacer la section rose dans `SectorDetailPage.tsx` ; badge TF1 de `SectorCard` → tag `leaf-100 forest`.
+### Étape 5 — Mouvement
+Appliquer `.reveal` (titres, cartes, listes : par groupe, `--reveal-i` ≤ 6), `.reveal-scale` (visuels), `.parallax-slow` (visuel de hero). `ScrollStory` sur accueil `#solution` et plateforme `#parcours` (ids `#modules/#governance/#mobile` conservés sur les étapes). `LifecycleDiagram` dessiné au défilement sur services. Header `is-scrolled`. Vérifier : HTML servi sans `opacity:0` (`curl /fr | grep -c "opacity:0"` → 0), Lighthouse « content visible » avec JS désactivé, `prefers-reduced-motion` émulé → zéro animation, DevTools Performance CPU × 4 → pas de frame > 16 ms soutenue sur `/fr`.
 
-### Étape 6 — Un seul sticky, chat et CTA mobile (audit 1.3, 3.1, 3.4)
-- `src/app/[locale]/layout.tsx` : retirer `<TrustBar />` et `<StickyCTA />` ; `<main className="pt-16 lg:pt-[72px] pb-20 lg:pb-0">` ; ajouter `<MobileActionBar />`.
-- `TrustBar.tsx` → `CertificationStrip.tsx` (statique, 2 variantes clair/sombre).
-- `StickyCTA.tsx` → `MobileActionBar.tsx` (§6.11), conserve `pickContext`.
-- `Header.tsx` : `data-hidden` piloté par un hook `useHeaderYield(sentinelRef)` (§6.2) ; supprimer la tagline.
-- Nouveau `src/components/SectionNav.tsx` (§6.9) utilisé par `SectorDetailPage` (et `reglementation`) ; supprimer la nav d'ancres de l'accueil.
-- `globals.css` : `scroll-padding-top`.
+### Étape 6 — Logo & détails
+`logo-mono-white.svg` partout sur sombre ; demander au client la variante « boucle émeraude » ; `::selection` émeraude/bg ; `color-scheme: dark` ; scrollbars natives sombres.
 
-### Étape 7 — Bandeau de confiance (audit 2.6)
-- Nouveau `src/components/TrustBand.tsx` (§6.7) ; `messages/{fr,en}.json` → `trustBand.clients` devient un tableau d'objets `{ name, metric, icon }` (contenu identique, structuré).
+### Étape 7 — QA
+Captures 360/390/768/1024/1440/1920 sur les 6 pages prioritaires ; axe-core : 0 `color-contrast`, 0 `nested-interactive` ; onglets secteur mobile avec indice visible ; bannière cookies hors du bandeau de confiance ; aucune photo affichée ; ancres `#douleurs` etc. sous la barre collée ; `/en/*` identique ; `npm run build`, `BUILD_MODE=mobile npm run build`.
 
-### Étape 8 — Primitives UI
-`src/components/ui/` : `Button`, `SectionHeader`, `Card`, `Tag`, `Stat`, `Table`, `Accordion`, `Pictogram`. Refondre `CtaSection` (§6.12), `Footer` (§6.18), `CookieBanner`, `ExitPopup` (une fois par session, sobre), `Breadcrumbs`, `RelatedArticles`, `LegalPageLayout`, `motion.tsx` (§8). Supprimer `DecorativeBackdrop.tsx`.
+### Étape 8 — Phase vidéo (plus tard, sur demande)
+Activer `VideoBackground` sur le hero accueil et `MediaSlot video` sur plateforme/services avec les fichiers du client (MP4 H.264 + WebM, ≤ 4 Mo, poster JPEG, 1920 × 1080, 6–12 s en boucle, sans son).
 
-### Étape 9 — Pages prioritaires (dans cet ordre)
-Accueil → Secteurs listing → Page secteur → Plateforme → Tarifs → Contact (architecture §10.1–10.6). Pour chaque page : build + capture 390/1440 + axe.
-
-### Étape 10 — Pages secondaires
-Services (listing + template), Cas d'usage, Pourquoi GTC, Waki Box, Impact, Réglementation, Démo/Réserver, Blog, FAQ, pages info (processus, méthodologie, sécurité, parcours, écosystème, résultats, carrières), légal, 404 (§10.7).
-
-### Étape 11 — Nettoyage
-- Supprimer alias Tailwind legacy (`primary`, `secondary`, `accent`, `gtc`, `dark`, `light`), keyframes inutilisées (`pulse-*`, `shimmer`, `marquee`), champs `color`/`accent` de `sectors.ts`.
-- `grep -rnE "#[0-9A-Fa-f]{6}" src --include=*.tsx` → 0 (hors `SchemaOrg`/SVG) ; `grep -rn "bg-gradient" src` → 0 ; `grep -rn "unsplash" src` → 0.
-- `npm run build` + `npm run lint` verts ; `BUILD_MODE=mobile npm run build` (export Capacitor) vert.
-
-### Critères de recette
-1. Aucune image 404 (`/fr/secteurs`, `/fr/secteurs/medias-audiovisuel`) ; 2. mobile 390 px : aucun texte recouvert pendant le scroll, un seul élément fixe en haut et un seul en bas ; 3. `document.title` de `/fr/plateforme` accentué ; 4. zéro faute listée §Étape 2 dans le DOM ; 5. axe : 0 `color-contrast`, 0 `nested-interactive` ; 6. aucun `pink/rose/sky/blue` dans `src` ; 7. `#douleurs` et toutes les ancres existantes atterrissent sous la barre collée ; 8. `/en/*` identique en structure.
+### Critères de recette v2
+1. Palette : seules les 8 valeurs imposées + dérivés §2.1 dans `src` (grep hex → 0 hors tokens) ; 2. aucune `<img>`/`next/image` photographique rendue (hors OG/logos) ; 3. HTML servi lisible sans JS (texte visible, pas d'`opacity:0` initial) ; 4. `prefers-reduced-motion` → aucune animation ; 5. 60 fps CPU × 4 sur les 3 pages test ; 6. responsive 360 → 1920 sans débordement horizontal ; 7. axe 0 contraste ; 8. cookies/onglets/plateforme QA corrigés ; 9. URLs, ancres, métadonnées, i18n inchangés (diff `messages/*.json` = 0 hors restructuration déjà faite).
 
 ---
 
@@ -475,33 +439,24 @@ Services (listing + template), Cas d'usage, Pourquoi GTC, Waki Box, Impact, Rég
 
 | ✅ Faire | ❌ Ne pas faire |
 |---|---|
-| Un bouton primaire `leaf` par bloc, le reste en secondaire | Deux boutons pleins côte à côte, boutons blancs sur dégradé |
-| H2 Fraunces 500 + eyebrow + chapô, aligné à gauche | H2 `font-black` centré avec icône dans un carré coloré |
-| Sections alternées `paper / cream / night` | Dégradés vert→bleu, rose, blobs flous, grilles SVG |
-| Cartes `border line`, hover = bordure plus foncée | `shadow-xl`, `hover:-translate-y-1`, `scale-105` |
-| Pictos Lucide `forest` sur pastille `leaf-100` | Icônes multicolores par carte (`#0EA5E9`, `#F59E0B`, `#8B5CF6`) |
-| Numéros « 01 » en `eyebrow` | Numéros fantômes géants à 4 % d'opacité |
-| Grille 4×4 régulière pour les 16 secteurs | Mosaïque magazine à tailles variables |
-| Tableau pour le ROI et les comparatifs | Barres de progression décoratives |
-| Référence TF1 sur `forest`, picto `Tv` | Bloc rose + étoile + `Sparkles` |
-| Header seul fixe ; onglets prennent le relais | Header + bandeau certifs + onglets empilés |
-| Chat = bouton rond compact, panneau modal sur mobile | Bulle flottante + avatar + barre CTA se chevauchant |
-| Images dans `/public`, `image: null` si absente | Hotlink Unsplash, photo « à peu près » |
-| `ondark-muted` pour le texte secondaire sur sombre | `text-white/30`, `text-white/50` |
-| Espaces `8, 16, 24, 32, 48, 64, 96` | `py-14`, `gap-5`, `p-7`, `h-[48px]` |
-| « Résiliable à tout moment », « Premier mois offert, puis » | Accents manquants, virgule sans espace |
+| Émeraude pour l'action et la donnée, texte sombre dessus | Blanc sur émeraude ; émeraude en fond de section |
+| Deux surfaces `bg` / `bg-card`, bordures `track` | Dégradés multicolores, surfaces claires, ombres colorées |
+| Un point ambre par écran | Ambre en eyebrow + badge + icône sur la même vue |
+| Geist 600 serré pour les titres, un mot en émeraude | Serif, graisse 900, titre entièrement coloré |
+| Visuel codé (`DashboardMock`, `LifecycleDiagram`) dans un `MediaSlot` | Photo de stock, placeholder gris, « image à venir » |
+| `.reveal` CSS, contenu visible sans JS | `initial={{opacity:0}}` sur du texte ; animation infinie |
+| Halo + points + vignettage dans le hero seulement | Effets de fond sur toute la page, `background-attachment: fixed` |
+| 3 lueurs max par écran, sur des traits/points | Lueur sur du texte courant, `blur` animé |
+| Section scénarisée épinglée `lg+`, dépilée en dessous | Pin sur mobile, `h-[300vh]` sans fallback |
+| Bannière cookies compacte en bas à gauche | Bannière centrée large qui couvre le bandeau de confiance |
+| Onglets mobiles avec masque d'indice + item coupé volontairement | Onglets coupés net au bord |
 
 ---
 
-## 13. Guide pour les agents (prompt guide)
+## 13. Guide pour les agents
 
-**Avant toute modification visuelle :**
-1. Lire §1 (principes), §2.2 (rôles), §3.2 (échelle), §6 (le composant concerné) et §10 (la page concernée).
-2. Utiliser uniquement les tokens (`bg-leaf`, `text-ink-700`, `text-display-md`, `border-line`…). **Jamais** de code hexadécimal ni de classe de couleur Tailwind par défaut (`emerald-*`, `gray-*`, `slate-*`) dans un `.tsx`.
-3. Ne pas changer : URLs, ids d'ancres, `metadata`, clés `messages/*.json` (on peut restructurer une valeur si fr **et** en sont mis à jour ensemble), Schema.org.
-4. Pour une page : suivre l'ordre de sections de §10 ; une page = un CTA de fin ; alternance de fonds §4.3.
-5. Vérifier avant de livrer : `npm run build` ; capture 390 px et 1440 px ; aucun élément fixe en double ; contraste des nouvelles paires (§2.4) ; `grep -n "unsplash\|bg-gradient\|#10B981" <fichier>` vide.
-
-**Formulation type d'une tâche d'itération :** « Sur `/fr/tarifs`, section `#pilote`, remplacer le fond `bg-[#10B981]` par `bg-leaf-100`, titre en `text-display-md text-forest`, bouton primaire `Button variant="primary" size="lg"`, conserver l'id et les textes. »
-
-**Niveau de liberté :** l'agent ne choisit pas de nouvelles couleurs, polices, rayons ou ombres. S'il manque un token, il le propose ici (§2–5) avant de l'utiliser.
+**Avant toute modification :** lire §1, §2.2, §3.2, §6 (composant concerné), §7 (visuels/slots), §8 (mouvement), §10 (page concernée).
+**Règles d'écriture :** tokens v2 uniquement (`bg-bg-card`, `text-fg-muted`, `border-track`, `text-emerald`…) ; jamais de hex ni de `gray-*/slate-*/emerald-*` Tailwind par défaut ; une photo = `MediaSlot` avec `fallback` ; une animation = `.reveal`/`ScrollStory`, jamais d'`opacity:0` initial sur du contenu ; contenu, URLs, ancres, `metadata`, clés `messages/*.json` inchangés.
+**Avant de livrer :** `npm run build` ; capture 360 et 1440 ; `prefers-reduced-motion` émulé ; contraste des nouvelles paires (§2.4) ; `grep -n "photos/\|opacity:0\|#10B981\|text-white" <fichier>` propre.
+**Formulation type :** « Sur `/fr/plateforme`, section `#parcours`, remplacer l'`Image` par `<MediaSlot id="plateforme-parcours" ratio="16/10" fallback={<DashboardMock state="erasure" />} />`, envelopper les 5 chapitres dans `ScrollStory`, conserver les ids et les textes. »
+**Liberté :** aucune nouvelle couleur, police, rayon, ombre ou effet. Un token manquant se propose ici (§2–5) avant usage.

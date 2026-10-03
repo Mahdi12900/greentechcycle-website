@@ -9,7 +9,7 @@ import MobileActionBar from "@/components/MobileActionBar";
 import ExitPopup from "@/components/ExitPopup";
 import SchemaOrg from "@/components/SchemaOrg";
 import SalesAssistantWidget from "@/components/SalesAssistantWidget";
-import { fontDisplay, fontSans } from "@/app/fonts";
+import { fontDisplay, fontMono, fontSans } from "@/app/fonts";
 import { SiteUiProvider } from "@/components/SiteUiContext";
 
 const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
@@ -153,7 +153,7 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} className={`${fontSans.variable} ${fontDisplay.variable}`}>
+    <html lang={locale} className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`}>
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" href="/icon.svg" />
