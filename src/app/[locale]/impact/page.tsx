@@ -478,7 +478,7 @@ export default function ImpactPage() {
           </FadeIn>
 
           <FadeIn>
-            <div className="mt-10 overflow-x-auto bg-white rounded-2xl border border-line">
+            <div className="mt-10 overflow-x-auto bg-white rounded-2xl border border-line" tabIndex={0} role="region" aria-label={`${t("comparison.title")} (tableau)`}>
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-forest-900 text-white">
@@ -579,7 +579,7 @@ export default function ImpactPage() {
           </FadeIn>
 
           <FadeIn>
-            <div className="mt-10 overflow-x-auto bg-cream rounded-2xl border border-line">
+            <div className="mt-10 overflow-x-auto bg-cream rounded-2xl border border-line" tabIndex={0} role="region" aria-label={`${t("esrs.title")} (tableau)`}>
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-forest text-white">
