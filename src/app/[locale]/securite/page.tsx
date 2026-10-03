@@ -39,25 +39,25 @@ export default function SecurityPage({
   const architectureItems = t.raw("architecture.items") as string[];
 
   const levelStyles = [
-    { color: "from-ochre to-ochre", bg: "bg-ochre-100", border: "border-ochre-100", icon: Shield },
-    { color: "from-ochre to-ochre", bg: "bg-ochre-100", border: "border-ochre-100", icon: Shield },
-    { color: "from-ochre to-ochre", bg: "bg-ochre-100", border: "border-ochre-100", icon: ShieldCheck },
-    { color: "from-forest to-forest", bg: "bg-leaf-50", border: "border-line", icon: ShieldAlert },
-    { color: "from-forest to-ochre", bg: "bg-leaf-100", border: "border-line", icon: Lock },
+    { color: "from-ochre to-ochre", bg: "bg-amber-dim", border: "border-amber/40", icon: Shield },
+    { color: "from-ochre to-ochre", bg: "bg-amber-dim", border: "border-amber/40", icon: Shield },
+    { color: "from-ochre to-ochre", bg: "bg-amber-dim", border: "border-amber/40", icon: ShieldCheck },
+    { color: "from-forest to-forest", bg: "bg-white/[0.03]", border: "border-track", icon: ShieldAlert },
+    { color: "from-forest to-ochre", bg: "bg-emerald-dim", border: "border-track", icon: Lock },
   ];
 
   const custodyIcons = [ClipboardCheck, Truck, Warehouse, HardDrive, FileCheck, PackageCheck, Award];
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-bg-card">
       {/* Hero */}
-      <section className="bg-forest py-16 text-ondark lg:py-24">
+      <section className="bg-bg-card py-16 text-fg lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
-            <h1 className="text-display-lg text-ondark mb-6">
+            <h1 className="text-display-lg text-fg mb-6">
               {t("hero.title")}
             </h1>
-            <p className="text-lg md:text-xl text-ondark-muted max-w-3xl">
+            <p className="text-lg md:text-xl text-fg-muted max-w-3xl">
               {t("hero.subtitle")}
             </p>
           </div>
@@ -68,7 +68,7 @@ export default function SecurityPage({
       <section className="px-6 py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
           <div className="reveal">
-            <h2 className="text-display-md text-ink text-center mb-16">
+            <h2 className="text-display-md text-fg text-center mb-16">
               {t("levels.title")}
             </h2>
           </div>
@@ -78,14 +78,14 @@ export default function SecurityPage({
               const Icon = style.icon;
               return (
                 <div key={index} className="reveal">
-                  <div className="flex h-full flex-col rounded-xl border border-line bg-paper p-6">
-                    <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-leaf-100 text-forest">
+                  <div className="flex h-full flex-col rounded-xl border border-track bg-bg p-6">
+                    <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-dim text-emerald">
                       <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />
                     </span>
-                    <div className="mb-2 font-display text-display-sm text-ink">Niveau {item.level}</div>
-                    <h3 className="text-sm font-semibold text-ink mb-1">{item.name}</h3>
-                    <p className="text-xs text-ink-700 mb-2">{item.desc}</p>
-                    <span className="text-xs text-leaf font-medium">{item.norm}</span>
+                    <div className="mb-2 font-display text-display-sm text-fg">Niveau {item.level}</div>
+                    <h3 className="text-sm font-semibold text-fg mb-1">{item.name}</h3>
+                    <p className="text-xs text-fg-strong mb-2">{item.desc}</p>
+                    <span className="text-xs text-emerald font-medium">{item.norm}</span>
                   </div>
                 </div>
               );
@@ -95,13 +95,13 @@ export default function SecurityPage({
       </section>
 
       {/* Chain of Custody */}
-      <section className="px-6 bg-white py-16 lg:py-24">
+      <section className="px-6 bg-bg-card py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
           <div className="reveal">
-            <h2 className="text-display-md text-ink text-center mb-4">
+            <h2 className="text-display-md text-fg text-center mb-4">
               {t("chainOfCustody.title")}
             </h2>
-            <p className="text-center text-ink-700 mb-16 max-w-2xl mx-auto">
+            <p className="text-center text-fg-strong mb-16 max-w-2xl mx-auto">
               {t("chainOfCustody.subtitle")}
             </p>
           </div>
@@ -112,15 +112,15 @@ export default function SecurityPage({
                 return (
                   <div key={index} className="flex items-center gap-2 md:gap-4">
                     <div className="flex flex-col items-center gap-3 w-28 md:w-32">
-                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-leaf">
-                        <Icon className="w-7 h-7 text-white" />
+                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-emerald">
+                        <Icon className="w-7 h-7 text-fg" />
                       </div>
-                      <span className="text-xs md:text-sm font-medium text-ink text-center leading-tight">
+                      <span className="text-xs md:text-sm font-medium text-fg text-center leading-tight">
                         {step}
                       </span>
                     </div>
                     {index < custodySteps.length - 1 && (
-                      <ChevronRight className="w-5 h-5 text-leaf shrink-0 hidden md:block" />
+                      <ChevronRight className="w-5 h-5 text-emerald shrink-0 hidden md:block" />
                     )}
                   </div>
                 );
@@ -131,21 +131,21 @@ export default function SecurityPage({
       </section>
 
       {/* Certifications */}
-      <section className="px-6 bg-cream py-16 lg:py-24">
+      <section className="px-6 bg-bg-card py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
           <div className="reveal">
-            <h2 className="text-display-md text-ink text-center mb-16">
+            <h2 className="text-display-md text-fg text-center mb-16">
               {t("certifications.title")}
             </h2>
           </div>
           <div className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {certificationItems.map((cert, index) => (
               <div key={index} className="reveal">
-                <div className="bg-white rounded-2xl p-6 border border-line hover:shadow-card transition-colors h-full flex flex-col items-center text-center">
-                  <div className="w-16 h-16 rounded-full bg-leaf-100 flex items-center justify-center mb-4">
-                    <Award className="w-8 h-8 text-leaf" />
+                <div className="bg-bg-card rounded-2xl p-6 border border-track hover:border-track-strong transition-colors h-full flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-emerald-dim flex items-center justify-center mb-4">
+                    <Award className="w-8 h-8 text-emerald" />
                   </div>
-                  <p className="text-sm font-medium text-ink">{cert}</p>
+                  <p className="text-sm font-medium text-fg">{cert}</p>
                 </div>
               </div>
             ))}
@@ -154,19 +154,19 @@ export default function SecurityPage({
       </section>
 
       {/* Architecture */}
-      <section className="px-6 bg-forest-900 py-16 lg:py-24">
+      <section className="px-6 bg-bg-card py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
           <div className="reveal">
-            <h2 className="text-display-md text-white text-center mb-16">
+            <h2 className="text-display-md text-fg text-center mb-16">
               {t("architecture.title")}
             </h2>
           </div>
           <div className="reveal-stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {architectureItems.map((item, index) => (
               <div key={index} className="reveal">
-                <div className="bg-white/5 border border-ondark-line rounded-2xl p-6 hover:bg-white/10 transition-colors h-full">
-                  <Server className="w-10 h-10 text-leaf-300 mb-4" />
-                  <p className="text-sm text-ondark">{item}</p>
+                <div className="bg-white/5 border border-track rounded-2xl p-6 hover:bg-white/10 transition-colors h-full">
+                  <Server className="w-10 h-10 text-emerald mb-4" />
+                  <p className="text-sm text-fg">{item}</p>
                 </div>
               </div>
             ))}

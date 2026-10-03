@@ -114,17 +114,17 @@ export default async function BlogArticlePage({
       <SchemaOrg data={schemaData} />
       <div className="min-h-screen">
         {/* Hero */}
-        <section className="relative bg-forest py-16 lg:py-24">
+        <section className="relative bg-bg-card py-16 lg:py-24">
           <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
             <Breadcrumbs items={breadcrumbs} dark />
             <div className="max-w-3xl">
-              <span className="inline-block bg-leaf text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">
+              <span className="inline-block bg-emerald text-bg text-sm font-semibold px-4 py-1 rounded-full mb-4">
                 {article.category}
               </span>
-              <h1 className="text-display-lg text-white mb-6">
+              <h1 className="text-display-lg text-fg mb-6">
                 {article.title}
               </h1>
-              <div className="flex flex-wrap items-center gap-6 text-ondark-muted text-sm">
+              <div className="flex flex-wrap items-center gap-6 text-fg-muted text-sm">
                 <span className="flex items-center gap-2">
                   <User className="h-4 w-4" />
                   {article.author}
@@ -147,7 +147,7 @@ export default async function BlogArticlePage({
         </section>
 
         {/* Article Content */}
-        <section className="bg-white py-12 lg:py-16">
+        <section className="bg-bg-card py-12 lg:py-16">
           <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
               {/* Featured Image */}
@@ -169,16 +169,16 @@ export default async function BlogArticlePage({
               />
 
               {/* Share & Back */}
-              <div className="flex items-center justify-between mt-12 pt-8 border-t border-line">
+              <div className="flex items-center justify-between mt-12 pt-8 border-t border-track">
                 <Link
                   href={`/${locale}/blog`}
-                  className="inline-flex items-center gap-2 text-leaf font-semibold hover:text-leaf transition-colors"
+                  className="inline-flex items-center gap-2 text-emerald font-semibold hover:text-emerald transition-colors"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Retour au blog
                 </Link>
                 <button
-                  className="inline-flex items-center gap-2 text-muted hover:text-leaf transition-colors"
+                  className="inline-flex items-center gap-2 text-fg-muted hover:text-emerald transition-colors"
                   aria-label="Partager cet article"
                 >
                   <Share2 className="h-4 w-4" />
@@ -190,19 +190,19 @@ export default async function BlogArticlePage({
         </section>
 
         {/* Related Articles */}
-        <section className="bg-cream py-12 lg:py-16">
+        <section className="bg-bg-card py-12 lg:py-16">
           <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-            <h2 className="text-display-md text-ink mb-8">Articles connexes</h2>
+            <h2 className="text-display-md text-fg mb-8">Articles connexes</h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-3xl">
               {related.map((rel) => (
                 <Link
                   key={rel.slug}
                   href={`/${locale}/blog/${rel.slug}`}
-                  className="bg-white rounded-xl p-6 border border-line hover:shadow-card transition-shadow"
+                  className="bg-bg-card rounded-xl p-6 border border-track hover:border-track-strong transition-shadow"
                 >
-                  <span className="text-xs font-semibold text-leaf">{rel.category}</span>
-                  <h3 className="text-heading-md text-ink mt-2 line-clamp-2">{rel.title}</h3>
-                  <p className="text-sm text-ink-700 mt-2 line-clamp-2">{rel.description}</p>
+                  <span className="text-xs font-semibold text-emerald">{rel.category}</span>
+                  <h3 className="text-heading-md text-fg mt-2 line-clamp-2">{rel.title}</h3>
+                  <p className="text-sm text-fg-strong mt-2 line-clamp-2">{rel.description}</p>
                 </Link>
               ))}
             </div>

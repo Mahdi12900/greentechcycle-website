@@ -81,41 +81,41 @@ function ContactInner() {
 
   const isEn = locale === "en";
   const tx = (fr: string, en: string) => (isEn ? en : fr);
-  const label = "block text-body-sm font-medium text-ink";
+  const label = "block text-body-sm font-medium text-fg";
   const field =
-    "mt-2 h-11 w-full rounded-lg border border-line bg-paper px-3 text-body text-ink placeholder:text-muted focus:border-leaf focus:outline-none focus:ring-2 focus:ring-leaf/20";
+    "mt-2 h-11 w-full rounded-lg border border-track bg-bg px-3 text-body text-fg placeholder:text-fg-muted focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25";
 
   return (
     <div>
       {/* ═══════════════ HERO court (paper) ═══════════════ */}
-      <section className="bg-paper py-16 lg:py-24" aria-labelledby="contact-hero">
+      <section className="bg-bg py-16 lg:py-24" aria-labelledby="contact-hero">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <Tag variant="brand" icon={<CalendarCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
               {t("urgency.text")}
             </Tag>
-            <p className="mt-6 text-eyebrow uppercase text-muted">{t("hero.eyebrow")}</p>
-            <h1 id="contact-hero" className="mt-3 max-w-[24ch] text-display-lg text-ink">
+            <p className="mt-6 text-eyebrow uppercase text-fg-muted">{t("hero.eyebrow")}</p>
+            <h1 id="contact-hero" className="mt-3 max-w-[24ch] text-display-lg text-fg">
               {t("hero.title")}
             </h1>
-            <p className="mt-6 max-w-[65ch] text-body-lg text-ink-700">{t("hero.subtitle")}</p>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-caption text-ink-700">
+            <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("hero.subtitle")}</p>
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-caption text-fg-strong">
               <li className="inline-flex items-center gap-2">
-                <Clock className="h-4 w-4 text-forest" strokeWidth={1.75} aria-hidden="true" />
+                <Clock className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                 {t("hero.trust1")}
               </li>
               <li className="inline-flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-forest" strokeWidth={1.75} aria-hidden="true" />
+                <ShieldCheck className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                 {t("hero.trust2")}
               </li>
               <li className="inline-flex items-center gap-2">
-                <Leaf className="h-4 w-4 text-forest" strokeWidth={1.75} aria-hidden="true" />
+                <Leaf className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                 {t("hero.trust3")}
               </li>
             </ul>
             <a
               href="#formulaire"
-              className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-muted hover:text-ink"
+              className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-fg-muted hover:text-fg"
             >
               <ArrowDown className="h-4 w-4" aria-hidden="true" />
               {t("hero.scrollLabel")}
@@ -125,7 +125,7 @@ function ContactInner() {
       </section>
 
       {/* ═══════════════ FORMULAIRE #formulaire (cream) ═══════════════ */}
-      <section className="border-t border-line bg-cream py-16 lg:py-24" id="formulaire" aria-labelledby="form-title">
+      <section className="border-t border-track bg-bg-card py-16 lg:py-24" id="formulaire" aria-labelledby="form-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <SectionHeader id="form-title" eyebrow={t("form.eyebrow")} title={t("form.title")} intro={t("form.subtitle")} />
@@ -133,35 +133,35 @@ function ContactInner() {
 
           <div className="grid items-start gap-8 lg:grid-cols-[360px_1fr] lg:gap-12">
             {/* Panneau de l'offre — collant uniquement en lg+ (seule barre fixe : le header) */}
-            <div className="rounded-xl border border-line bg-paper p-6 lg:sticky lg:top-24" aria-live="polite">
-              <p className="text-eyebrow uppercase text-muted">{t("form.selectedOfferLabel")}</p>
-              <h3 className="mt-3 text-heading-lg text-ink">{selectedOffer.name}</h3>
-              <p className="mt-2 text-body-sm text-ink-700">{selectedOffer.pitch}</p>
-              <p className="mt-4 inline-flex items-center gap-2 text-caption font-semibold text-forest">
+            <div className="rounded-xl border border-track bg-bg p-6 lg:sticky lg:top-24" aria-live="polite">
+              <p className="text-eyebrow uppercase text-fg-muted">{t("form.selectedOfferLabel")}</p>
+              <h3 className="mt-3 text-heading-lg text-fg">{selectedOffer.name}</h3>
+              <p className="mt-2 text-body-sm text-fg-strong">{selectedOffer.pitch}</p>
+              <p className="mt-4 inline-flex items-center gap-2 text-caption font-semibold text-emerald">
                 <Clock className="h-4 w-4" aria-hidden="true" />
                 {selectedOffer.duration}
               </p>
-              <div className="mt-6 border-t border-line pt-4">
-                <p className="text-eyebrow uppercase text-muted">{t("form.nextStepLabel")}</p>
-                <p className="mt-2 text-body-sm text-ink-700">{selectedOffer.nextStep}</p>
+              <div className="mt-6 border-t border-track pt-4">
+                <p className="text-eyebrow uppercase text-fg-muted">{t("form.nextStepLabel")}</p>
+                <p className="mt-2 text-body-sm text-fg-strong">{selectedOffer.nextStep}</p>
               </div>
-              <figure className="mt-6 border-t border-line pt-4">
-                <blockquote className="text-body-sm text-ink">&laquo;&nbsp;{t("hero.floatQuote")}&nbsp;&raquo;</blockquote>
-                <figcaption className="mt-2 text-caption text-muted">
-                  <span className="font-semibold text-ink-700">{t("hero.floatName")}</span> · {t("hero.floatRole")}
+              <figure className="mt-6 border-t border-track pt-4">
+                <blockquote className="text-body-sm text-fg">&laquo;&nbsp;{t("hero.floatQuote")}&nbsp;&raquo;</blockquote>
+                <figcaption className="mt-2 text-caption text-fg-muted">
+                  <span className="font-semibold text-fg-strong">{t("hero.floatName")}</span> · {t("hero.floatRole")}
                 </figcaption>
               </figure>
             </div>
 
             {/* Formulaire §6.16 */}
-            <div className="rounded-xl border border-line bg-paper p-6 lg:p-8">
+            <div className="rounded-xl border border-track bg-bg p-6 lg:p-8">
               {submitted ? (
                 <div className="py-12 text-center" role="status">
-                  <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-leaf-100 text-forest">
+                  <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-dim text-emerald">
                     <CheckCircle2 className="h-6 w-6" aria-hidden="true" />
                   </span>
-                  <p className="mt-4 font-display text-display-sm text-ink">{t("form.successTitle")}</p>
-                  <p className="mx-auto mt-2 max-w-md text-body-sm text-ink-700">{t("form.successBody")}</p>
+                  <p className="mt-4 font-display text-display-sm text-fg">{t("form.successTitle")}</p>
+                  <p className="mx-auto mt-2 max-w-md text-body-sm text-fg-strong">{t("form.successBody")}</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -228,7 +228,7 @@ function ContactInner() {
                         <option value="20000+">{t("form.fields.fleetLarge")}</option>
                       </select>
                       {(form.fleet === "5000-20000" || form.fleet === "20000+") && (
-                        <p className="mt-2 flex items-center gap-2 rounded-lg bg-leaf-100 px-3 py-2 text-caption font-semibold text-forest">
+                        <p className="mt-2 flex items-center gap-2 rounded-lg bg-emerald-dim px-3 py-2 text-caption font-semibold text-emerald">
                           <Clock className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
                           {t("form.fields.leadScoringMessage")}
                         </p>
@@ -268,13 +268,13 @@ function ContactInner() {
                     />
                   </div>
 
-                  <label className="flex cursor-pointer items-start gap-3 text-body-sm text-ink-700">
+                  <label className="flex cursor-pointer items-start gap-3 text-body-sm text-fg-strong">
                     <input
                       type="checkbox"
                       required
                       checked={form.consent}
                       onChange={(e) => setForm({ ...form, consent: e.target.checked })}
-                      className="mt-0.5 h-5 w-5 flex-shrink-0 accent-leaf"
+                      className="mt-0.5 h-5 w-5 flex-shrink-0 accent-emerald"
                     />
                     <span>{t("form.consent")}</span>
                   </label>
@@ -301,23 +301,23 @@ function ContactInner() {
         <div className="reveal">
           <SectionHeader tone="dark" eyebrow={t("info.eyebrow")} title={t("info.title")} intro={t("info.body")} />
         </div>
-        <ul className="grid gap-px overflow-hidden rounded-xl border border-ondark-line bg-ondark-line md:grid-cols-3">
-          <li className="bg-forest p-6">
-            <MapPin className="h-5 w-5 text-leaf-300" strokeWidth={1.75} aria-hidden="true" />
-            <p className="mt-4 text-eyebrow uppercase text-ondark-muted">{tx("Adresse", "Address")}</p>
-            <p className="mt-2 whitespace-pre-line text-body text-ondark">{t("info.address")}</p>
+        <ul className="grid gap-px overflow-hidden rounded-xl border border-track bg-track md:grid-cols-3">
+          <li className="bg-bg-card p-6">
+            <MapPin className="h-5 w-5 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+            <p className="mt-4 text-eyebrow uppercase text-fg-muted">{tx("Adresse", "Address")}</p>
+            <p className="mt-2 whitespace-pre-line text-body text-fg">{t("info.address")}</p>
           </li>
-          <li className="bg-forest p-6">
-            <Phone className="h-5 w-5 text-leaf-300" strokeWidth={1.75} aria-hidden="true" />
-            <p className="mt-4 text-eyebrow uppercase text-ondark-muted">{tx("Téléphone", "Phone")}</p>
-            <a href="tel:+33186652210" className="mt-2 inline-flex min-h-[44px] items-center text-body text-ondark hover:text-leaf-300">
+          <li className="bg-bg-card p-6">
+            <Phone className="h-5 w-5 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+            <p className="mt-4 text-eyebrow uppercase text-fg-muted">{tx("Téléphone", "Phone")}</p>
+            <a href="tel:+33186652210" className="mt-2 inline-flex min-h-[44px] items-center text-body text-fg hover:text-emerald">
               {t("info.phone")}
             </a>
           </li>
-          <li className="bg-forest p-6">
-            <Mail className="h-5 w-5 text-leaf-300" strokeWidth={1.75} aria-hidden="true" />
-            <p className="mt-4 text-eyebrow uppercase text-ondark-muted">Email</p>
-            <a href="mailto:contact@greentechcycle.fr" className="mt-2 inline-flex min-h-[44px] items-center text-body text-ondark hover:text-leaf-300">
+          <li className="bg-bg-card p-6">
+            <Mail className="h-5 w-5 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+            <p className="mt-4 text-eyebrow uppercase text-fg-muted">Email</p>
+            <a href="mailto:contact@greentechcycle.fr" className="mt-2 inline-flex min-h-[44px] items-center text-body text-fg hover:text-emerald">
               {t("info.email")}
             </a>
           </li>
@@ -325,9 +325,9 @@ function ContactInner() {
 
         {/* Ancienne S4 « conversion verte » coupée (la page est déjà la conversion) :
             ses deux liens de découverte restent accessibles ici. */}
-        <div className="mt-12 border-t border-ondark-line pt-8">
-          <p className="text-eyebrow uppercase text-ondark-muted">{t("conversion.eyebrow")}</p>
-          <p className="mt-2 max-w-[65ch] text-body-sm text-ondark-muted">{t("conversion.subtitle")}</p>
+        <div className="mt-12 border-t border-track pt-8">
+          <p className="text-eyebrow uppercase text-fg-muted">{t("conversion.eyebrow")}</p>
+          <p className="mt-2 max-w-[65ch] text-body-sm text-fg-muted">{t("conversion.subtitle")}</p>
           <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
             <TextLink href="/cas-usages" tone="dark">
               {t("conversion.cta1")}
@@ -344,7 +344,7 @@ function ContactInner() {
 
 export default function ContactPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-paper" />}>
+    <Suspense fallback={<div className="min-h-screen bg-bg" />}>
       <ContactInner />
     </Suspense>
   );

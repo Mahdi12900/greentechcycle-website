@@ -67,33 +67,33 @@ export default function WakiBoxPage() {
   return (
     <div>
       {/* ═══ HERO paper — bandeau d'urgence → notice ═══ */}
-      <section className="bg-paper py-16 lg:py-24" aria-labelledby="waki-hero-title">
+      <section className="bg-bg py-16 lg:py-24" aria-labelledby="waki-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
               <Link
                 href="/reserver?offre=waki-box-pilote"
-                className="inline-flex min-h-[28px] max-w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-lg bg-leaf-100 px-3 py-1 text-caption font-semibold text-forest hover:text-ink sm:rounded-full"
+                className="inline-flex min-h-[28px] max-w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-lg bg-emerald-dim px-3 py-1 text-caption font-semibold text-emerald hover:text-fg sm:rounded-full"
               >
                 <Inbox className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
                 <span>{t("urgency")}</span>
                 <span className="whitespace-nowrap underline-offset-2 hover:underline">{t("urgencyCta")}</span>
               </Link>
-              <p className="mt-6 text-eyebrow uppercase text-muted">{t("hero.eyebrow")}</p>
-              <h1 id="waki-hero-title" className="mt-3 max-w-[20ch] text-display-lg text-ink">{t("hero.headline")}</h1>
-              <p className="mt-6 max-w-[65ch] text-body-lg text-ink-700">{t("hero.subtitle")}</p>
-              <p className="mt-4 max-w-[65ch] text-body text-ink-700">{t("hero.subtitleSecond")}</p>
+              <p className="mt-6 text-eyebrow uppercase text-fg-muted">{t("hero.eyebrow")}</p>
+              <h1 id="waki-hero-title" className="mt-3 max-w-[20ch] text-display-lg text-fg">{t("hero.headline")}</h1>
+              <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("hero.subtitle")}</p>
+              <p className="mt-4 max-w-[65ch] text-body text-fg-strong">{t("hero.subtitleSecond")}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href="/reserver" size="lg">{t("hero.cta1")}</ButtonLink>
                 <ButtonLink href="/reserver?offre=waki-box-pilote" variant="secondary" size="lg">{t("hero.cta2")}</ButtonLink>
               </div>
-              <a href="#waki-plans" className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-muted hover:text-ink">
+              <a href="#waki-plans" className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-fg-muted hover:text-fg">
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
                 {t("hero.scrollCta")}
               </a>
             </div>
             <div className="reveal lg:col-span-5">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
                 <Image src="/photos/ewaste-recycling.jpg" alt={t("hero.photoAlt")} fill priority className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
               </div>
             </div>
@@ -108,14 +108,14 @@ export default function WakiBoxPage() {
             <Stat key={i} tone="dark" value={<CountUp end={kpi.value} suffix={kpi.suffix} />} label={kpi.label} source={kpi.source} />
           ))}
         </StatRow>
-        <p className="mt-8 max-w-[65ch] text-caption italic text-ondark-muted">{t("kpis.footnote")}</p>
+        <p className="mt-8 max-w-[65ch] text-caption italic text-fg-muted">{t("kpis.footnote")}</p>
       </Section>
 
       {/* ═══ PROBLÈME (paper) ═══ */}
       <Section tone="paper">
         <div className="reveal">
           <SectionHeader alert eyebrow={t("problem.eyebrow")} title={t("problem.title")}>
-            <div className="mt-4 max-w-[65ch] space-y-4 text-body-lg text-ink-700">
+            <div className="mt-4 max-w-[65ch] space-y-4 text-body-lg text-fg-strong">
               <p>{t("problem.body")}</p>
               <p>{t("problem.bodySecond")}</p>
             </div>
@@ -133,18 +133,18 @@ export default function WakiBoxPage() {
             <div className="reveal-stagger grid gap-4 sm:grid-cols-2">
               {promiseItems.map((p, i) => (
                 <div key={i} className="reveal h-full">
-                  <div className="h-full rounded-xl border border-line bg-paper p-6">
+                  <div className="h-full rounded-xl border border-track bg-bg p-6">
                     <Pictogram icon={promiseIcons[i] ?? Leaf} />
-                    <p className="mt-4 text-eyebrow uppercase text-muted">{p.label}</p>
-                    <h3 className="mt-2 text-heading-md text-ink">{p.title}</h3>
-                    <p className="mt-2 text-body-sm text-ink-700">{p.body}</p>
+                    <p className="mt-4 text-eyebrow uppercase text-fg-muted">{p.label}</p>
+                    <h3 className="mt-2 text-heading-md text-fg">{p.title}</h3>
+                    <p className="mt-2 text-body-sm text-fg-strong">{p.body}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
           <div className="lg:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line lg:sticky lg:top-24">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track lg:sticky lg:top-24">
               <Image src="/photos/impact-dashboard.jpg" alt={t("promise.photoAlt")} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
             </div>
           </div>
@@ -152,7 +152,7 @@ export default function WakiBoxPage() {
       </Section>
 
       {/* ═══ 3 PLANS #waki-plans (paper) ═══ */}
-      <section id="waki-plans" className="bg-paper py-16 lg:py-24" aria-labelledby="plans-title">
+      <section id="waki-plans" className="bg-bg py-16 lg:py-24" aria-labelledby="plans-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <SectionHeader id="plans-title" eyebrow={t("plans.eyebrow")} title={t("plans.title")} intro={t("plans.subtitle")} />
@@ -162,32 +162,32 @@ export default function WakiBoxPage() {
               const isPopular = plan.slug === "waki-box-confort";
               return (
                 <div key={plan.slug} className="reveal h-full">
-                  <article className={`flex h-full flex-col rounded-xl border bg-paper p-6 lg:p-8 ${isPopular ? "border-leaf" : "border-line"}`}>
+                  <article className={`flex h-full flex-col rounded-xl border bg-bg p-6 lg:p-8 ${isPopular ? "border-emerald" : "border-track"}`}>
                     <div className="flex items-center justify-between gap-3">
-                      <p className="text-eyebrow uppercase text-muted">{String(i + 1).padStart(2, "0")}</p>
+                      <p className="text-eyebrow uppercase text-fg-muted">{String(i + 1).padStart(2, "0")}</p>
                       {isPopular && <Tag variant="brand">{t("plans.popular")}</Tag>}
                     </div>
-                    <h3 className="mt-3 font-display text-display-sm text-ink">{plan.name}</h3>
-                    <p className="mt-1 text-caption text-muted">{plan.audience}</p>
-                    <p className="mt-3 text-body-sm text-ink-700">{plan.tagline}</p>
-                    <dl className="mt-6 border-y border-line py-4">
+                    <h3 className="mt-3 font-display text-display-sm text-fg">{plan.name}</h3>
+                    <p className="mt-1 text-caption text-fg-muted">{plan.audience}</p>
+                    <p className="mt-3 text-body-sm text-fg-strong">{plan.tagline}</p>
+                    <dl className="mt-6 border-y border-track py-4">
                       <div className="flex flex-col-reverse justify-end">
-                        <dt className="text-caption text-muted">{t("plans.monthly")}</dt>
-                        <dd className="font-display text-display-md tabular-nums text-forest">{plan.price}</dd>
+                        <dt className="text-caption text-fg-muted">{t("plans.monthly")}</dt>
+                        <dd className="font-display text-display-md tabular-nums text-emerald">{plan.price}</dd>
                       </div>
                       <div className="mt-3 flex justify-between gap-4 text-body-sm">
-                        <dt className="text-muted">{t("plans.setup")}</dt>
-                        <dd className="font-semibold tabular-nums text-ink">{plan.setupValue}</dd>
+                        <dt className="text-fg-muted">{t("plans.setup")}</dt>
+                        <dd className="font-semibold tabular-nums text-fg">{plan.setupValue}</dd>
                       </div>
                       <div className="mt-1 flex justify-between gap-4 text-body-sm">
-                        <dt className="text-muted">{t("plans.engagement")}</dt>
-                        <dd className="font-semibold text-ink">{plan.engagementValue}</dd>
+                        <dt className="text-fg-muted">{t("plans.engagement")}</dt>
+                        <dd className="font-semibold text-fg">{plan.engagementValue}</dd>
                       </div>
                     </dl>
                     <ul className="mt-6 flex-1 space-y-2">
                       {plan.features.map((f, j) => (
-                        <li key={j} className="flex items-start gap-2 text-body-sm text-ink-700">
-                          <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+                        <li key={j} className="flex items-start gap-2 text-body-sm text-fg-strong">
+                          <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                           <span>{f}</span>
                         </li>
                       ))}
@@ -211,8 +211,8 @@ export default function WakiBoxPage() {
           <SectionHeader eyebrow={t("pilot.eyebrow")} title={t("pilot.title")} intro={t("pilot.body")} />
           <ul className="max-w-[65ch] space-y-2">
             {pilotBullets.map((b, i) => (
-              <li key={i} className="flex items-start gap-2 text-body-sm text-ink">
-                <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-forest" aria-hidden="true" />
+              <li key={i} className="flex items-start gap-2 text-body-sm text-fg">
+                <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                 <span>{b}</span>
               </li>
             ))}
@@ -220,7 +220,7 @@ export default function WakiBoxPage() {
           <div className="mt-8">
             <ButtonLink href="/reserver?offre=waki-box-pilote" size="lg">{t("pilot.cta")}</ButtonLink>
           </div>
-          <p className="mt-4 max-w-[65ch] text-caption text-ink-700">{t("pilot.footnote")}</p>
+          <p className="mt-4 max-w-[65ch] text-caption text-fg-strong">{t("pilot.footnote")}</p>
         </div>
       </Section>
 
@@ -235,15 +235,15 @@ export default function WakiBoxPage() {
           numeric={[2]}
           emphasis={[2]}
           rows={addonItems.map((a) => [
-            <span key="n" className="flex items-center gap-2"><Plus className="h-4 w-4 text-forest" aria-hidden="true" />{a.name}</span>,
+            <span key="n" className="flex items-center gap-2"><Plus className="h-4 w-4 text-emerald" aria-hidden="true" />{a.name}</span>,
             <span key="w" className="block min-w-[220px]">{a.why}</span>,
             <span key="p" className="whitespace-nowrap">{a.price}</span>,
-            <Link key="c" href={`/reserver?offre=${a.slug}`} className="inline-flex min-h-[44px] items-center whitespace-nowrap font-medium text-leaf hover:text-leaf-700" aria-label={`${t("addons.ctaReserve")} : ${a.name}`}>
+            <Link key="c" href={`/reserver?offre=${a.slug}`} className="inline-flex min-h-[44px] items-center whitespace-nowrap font-medium text-emerald hover:text-emerald-hover" aria-label={`${t("addons.ctaReserve")} : ${a.name}`}>
               {t("addons.ctaReserve")} →
             </Link>,
           ])}
         />
-        <p className="mt-4 max-w-[65ch] text-caption italic text-muted">{t("addons.footnote")}</p>
+        <p className="mt-4 max-w-[65ch] text-caption italic text-fg-muted">{t("addons.footnote")}</p>
       </Section>
 
       {/* ═══ FLUX ACCEPTÉS / EXCLUS (cream) ═══ */}
@@ -252,29 +252,29 @@ export default function WakiBoxPage() {
           <SectionHeader eyebrow={t("flows.eyebrow")} title={t("flows.title")} intro={t("flows.intro")} />
         </div>
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-xl border border-line bg-paper p-6">
-            <h3 className="flex items-center gap-2 text-heading-md text-ink">
-              <BatteryCharging className="h-5 w-5 text-forest" strokeWidth={1.75} aria-hidden="true" />
+          <div className="rounded-xl border border-track bg-bg p-6">
+            <h3 className="flex items-center gap-2 text-heading-md text-fg">
+              <BatteryCharging className="h-5 w-5 text-emerald" strokeWidth={1.75} aria-hidden="true" />
               {t("flows.acceptedTitle")}
             </h3>
             <ul className="mt-4 space-y-2">
               {acceptedFlows.map((f, i) => (
-                <li key={i} className="flex items-start gap-2 text-body-sm text-ink-700">
-                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+                <li key={i} className="flex items-start gap-2 text-body-sm text-fg-strong">
+                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                   <span>{f}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-xl border border-line bg-paper p-6">
-            <h3 className="flex items-center gap-2 text-heading-md text-ink">
-              <XCircle className="h-5 w-5 text-ochre" strokeWidth={1.75} aria-hidden="true" />
+          <div className="rounded-xl border border-track bg-bg p-6">
+            <h3 className="flex items-center gap-2 text-heading-md text-fg">
+              <XCircle className="h-5 w-5 text-amber" strokeWidth={1.75} aria-hidden="true" />
               {t("flows.excludedTitle")}
             </h3>
             <ul className="mt-4 space-y-2">
               {excludedFlows.map((f, i) => (
-                <li key={i} className="flex items-start gap-2 text-body-sm text-ink-700">
-                  <Minus className="mt-0.5 h-4 w-4 flex-shrink-0 text-muted" aria-hidden="true" />
+                <li key={i} className="flex items-start gap-2 text-body-sm text-fg-strong">
+                  <Minus className="mt-0.5 h-4 w-4 flex-shrink-0 text-fg-muted" aria-hidden="true" />
                   <span>{f}</span>
                 </li>
               ))}
@@ -300,10 +300,10 @@ export default function WakiBoxPage() {
       <Section tone="night">
         <div className="reveal">
           <figure className="max-w-[65ch]">
-            <p className="text-eyebrow uppercase text-ondark-muted">{t("finalQuote.eyebrow")}</p>
-            <blockquote className="mt-4 font-display text-display-sm text-ondark">&laquo;&nbsp;{t("finalQuote.text")}&nbsp;&raquo;</blockquote>
-            <figcaption className="mt-6 text-caption text-ondark-muted">
-              <span className="font-semibold text-ondark">{t("finalQuote.name")}</span> · {t("finalQuote.role")}
+            <p className="text-eyebrow uppercase text-fg-muted">{t("finalQuote.eyebrow")}</p>
+            <blockquote className="mt-4 font-display text-display-sm text-fg">&laquo;&nbsp;{t("finalQuote.text")}&nbsp;&raquo;</blockquote>
+            <figcaption className="mt-6 text-caption text-fg-muted">
+              <span className="font-semibold text-fg">{t("finalQuote.name")}</span> · {t("finalQuote.role")}
             </figcaption>
           </figure>
         </div>

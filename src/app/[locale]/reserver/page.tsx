@@ -244,67 +244,67 @@ function ReserverInner() {
   };
 
   return (
-    <div className="overflow-hidden bg-white">
+    <div className="overflow-hidden bg-bg-card">
       {/* Hero · sombre court */}
-      <section className="relative bg-forest-900 overflow-hidden border-b border-ondark-line">
+      <section className="relative bg-bg-card overflow-hidden border-b border-track">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-24">
           <div className="reveal">
             <div className="max-w-3xl">
               <Link
                 href="/"
-                className="inline-flex items-center gap-1.5 text-caption font-medium text-ondark-muted hover:text-white transition-colors mb-7"
+                className="inline-flex items-center gap-1.5 text-caption font-medium text-fg-muted hover:text-fg transition-colors mb-7"
               >
                 <ChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
                 GreenTechCycle
               </Link>
 
-              <span className="block mb-6 text-eyebrow uppercase text-ondark-muted">
+              <span className="block mb-6 text-eyebrow uppercase text-fg-muted">
                 <span
-                  className="w-1.5 h-1.5 rounded-full bg-leaf"
+                  className="w-1.5 h-1.5 rounded-full bg-emerald"
                   style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
                 />
                 {eyebrow}
               </span>
 
               <h1
-                className="text-display-lg text-white mb-5"
+                className="text-display-lg text-fg mb-5"
               >
                 {headline}
               </h1>
-              <p className="text-ondark-muted text-base lg:text-lg max-w-2xl">
+              <p className="text-fg-muted text-base lg:text-lg max-w-2xl">
                 {subtitle}
               </p>
 
               {offerSlug && (
-                <div className="mt-7 max-w-xl rounded-2xl bg-leaf-100 border border-leaf/30 p-4 lg:p-5">
-                  <div className="flex flex-wrap items-center gap-2 text-caption text-leaf-300 font-medium mb-3">
-                    <span className="text-ondark-muted uppercase text-eyebrow">
+                <div className="mt-7 max-w-xl rounded-2xl bg-emerald-dim border border-emerald/30 p-4 lg:p-5">
+                  <div className="flex flex-wrap items-center gap-2 text-caption text-emerald font-medium mb-3">
+                    <span className="text-fg-muted uppercase text-eyebrow">
                       {t("summary.offerLabel")}
                     </span>
-                    <span className="text-white text-body-sm font-semibold">{offerLabelDisplay}</span>
+                    <span className="text-fg text-body-sm font-semibold">{offerLabelDisplay}</span>
                   </div>
                   {pricing && (
                     <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-caption">
                       <div className="flex flex-col">
-                        <dt className="text-ondark-muted uppercase text-eyebrow">
+                        <dt className="text-fg-muted uppercase text-eyebrow">
                           {labels.price}
                         </dt>
-                        <dd className="text-white font-semibold tabular-nums">{pricing.price[lang]}</dd>
+                        <dd className="text-fg font-semibold tabular-nums">{pricing.price[lang]}</dd>
                       </div>
                       {pricing.setup && (
                         <div className="flex flex-col">
-                          <dt className="text-ondark-muted uppercase text-eyebrow">
+                          <dt className="text-fg-muted uppercase text-eyebrow">
                             {labels.setup}
                           </dt>
-                          <dd className="text-white font-semibold tabular-nums">{pricing.setup[lang]}</dd>
+                          <dd className="text-fg font-semibold tabular-nums">{pricing.setup[lang]}</dd>
                         </div>
                       )}
                       {pricing.engagement && (
                         <div className="flex flex-col">
-                          <dt className="text-ondark-muted uppercase text-eyebrow">
+                          <dt className="text-fg-muted uppercase text-eyebrow">
                             {labels.engagement}
                           </dt>
-                          <dd className="text-white font-semibold">{pricing.engagement[lang]}</dd>
+                          <dd className="text-fg font-semibold">{pricing.engagement[lang]}</dd>
                         </div>
                       )}
                     </dl>
@@ -317,7 +317,7 @@ function ReserverInner() {
       </section>
 
       {/* Form */}
-      <section className="bg-cream py-12 lg:py-16">
+      <section className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <ReservationForm offerSlug={offerSlug} />
 
@@ -332,10 +332,10 @@ function ReserverInner() {
               return (
                 <div
                   key={i}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-line"
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-bg-card border border-track"
                 >
-                  <Icon className="h-4 w-4 text-leaf flex-shrink-0" aria-hidden="true" />
-                  <span className="text-caption font-medium text-ink-700">{item.label}</span>
+                  <Icon className="h-4 w-4 text-emerald flex-shrink-0" aria-hidden="true" />
+                  <span className="text-caption font-medium text-fg-strong">{item.label}</span>
                 </div>
               );
             })}
@@ -348,7 +348,7 @@ function ReserverInner() {
 
 export default function ReserverPage() {
   return (
-    <Suspense fallback={<div className="min-h-[60vh] bg-cream" />}>
+    <Suspense fallback={<div className="min-h-[60vh] bg-bg-card" />}>
       <ReserverInner />
     </Suspense>
   );

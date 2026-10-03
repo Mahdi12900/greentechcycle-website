@@ -44,18 +44,18 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative bg-forest py-16 lg:py-24">
+      <section className="relative bg-bg-card py-16 lg:py-24">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-3xl mx-auto text-center">
-              <div className="w-16 h-16 bg-leaf/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <HelpCircle className="w-8 h-8 text-leaf-300" />
+              <div className="w-16 h-16 bg-emerald/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <HelpCircle className="w-8 h-8 text-emerald" />
               </div>
-              <h1 className="text-display-lg text-white mb-6">
+              <h1 className="text-display-lg text-fg mb-6">
                 {t("hero.title")}
               </h1>
-              <p className="text-lg md:text-xl text-ondark">
+              <p className="text-lg md:text-xl text-fg">
                 {t("hero.subtitle")}
               </p>
             </div>
@@ -64,7 +64,7 @@ export default function FAQPage() {
       </section>
 
       {/* Tabs + Accordion */}
-      <section className="bg-cream py-16 lg:py-24">
+      <section className="bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 max-w-4xl">
           {/* Tab Navigation */}
           <div className="reveal">
@@ -75,7 +75,7 @@ export default function FAQPage() {
                   <button
                     key={tab}
                     onClick={() => handleTabChange(tab)}
-                    className={`inline-flex items-center gap-2 px-5 md:px-6 py-3 rounded-full font-medium text-sm md:text-base transition-colors ${ activeTab === tab ? "bg-leaf text-white" : "bg-white text-ink-700 hover:bg-leaf/5 hover:text-leaf border border-line" }`}
+                    className={`inline-flex items-center gap-2 px-5 md:px-6 py-3 rounded-full font-medium text-sm md:text-base transition-colors ${ activeTab === tab ? "bg-emerald text-bg" : "bg-bg-card text-fg-strong hover:bg-emerald/5 hover:text-emerald border border-track" }`}
                   >
                     <TabIcon className="h-4 w-4" />
                     {tabLabels[tab]}
@@ -90,22 +90,22 @@ export default function FAQPage() {
             <div className="space-y-3">
               {questions.map((item, index) => (
                 <div key={`${activeTab}-${index}`} className="reveal">
-                  <div className="bg-white rounded-xl border border-line overflow-hidden">
+                  <div className="bg-bg-card rounded-xl border border-track overflow-hidden">
                     <button
                       onClick={() => toggleQuestion(index)}
-                      className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-cream transition-colors"
+                      className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-white/[0.04] transition-colors"
                     >
-                      <span className="font-medium text-ink pr-4 text-sm md:text-base">
+                      <span className="font-medium text-fg pr-4 text-sm md:text-base">
                         {item.q}
                       </span>
                       <ChevronDown
-                        className={`w-5 h-5 text-leaf shrink-0 transition-transform duration-150 ${ openIndex === index ? "rotate-180" : "" }`}
+                        className={`w-5 h-5 text-emerald shrink-0 transition-transform duration-150 ${ openIndex === index ? "rotate-180" : "" }`}
                       />
                     </button>
                     <div
                       className={`overflow-hidden transition-colors duration-150 ${ openIndex === index ? "max-h-96" : "max-h-0" }`}
                     >
-                      <div className="px-5 md:px-6 pb-5 md:pb-6 text-ink-700 text-sm md:text-base leading-relaxed border-t border-line pt-4">
+                      <div className="px-5 md:px-6 pb-5 md:pb-6 text-fg-strong text-sm md:text-base leading-relaxed border-t border-track pt-4">
                         {item.a}
                       </div>
                     </div>

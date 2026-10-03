@@ -10,26 +10,26 @@ export default function CareersPage() {
   const t = useTranslations("Careers");
 
   const values = [
-    { icon: Target, color: "bg-leaf-100 text-leaf" },
-    { icon: Eye, color: "bg-leaf-100 text-leaf" },
-    { icon: Award, color: "bg-forest/10 text-forest" },
-    { icon: Lightbulb, color: "bg-ochre-100 text-ochre" },
+    { icon: Target, color: "bg-emerald-dim text-emerald" },
+    { icon: Eye, color: "bg-emerald-dim text-emerald" },
+    { icon: Award, color: "bg-bg/10 text-emerald" },
+    { icon: Lightbulb, color: "bg-amber-dim text-amber" },
   ];
 
   return (
     <>
       {/* Hero */}
-      <section className="bg-forest py-16 text-ondark lg:py-24">
+      <section className="bg-bg-card py-16 text-fg lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-3xl ">
-              <span className="block mb-6 text-eyebrow uppercase text-ondark-muted">
+              <span className="block mb-6 text-eyebrow uppercase text-fg-muted">
                 Nous recrutons
               </span>
-              <h1 className="text-display-lg text-ondark mb-6">
+              <h1 className="text-display-lg text-fg mb-6">
                 {t("hero.title")}
               </h1>
-              <p className="text-lg md:text-xl text-ondark leading-relaxed">
+              <p className="text-lg md:text-xl text-fg leading-relaxed">
                 {t("hero.subtitle")}
               </p>
             </div>
@@ -38,14 +38,14 @@ export default function CareersPage() {
       </section>
 
       {/* Mission */}
-      <section className="bg-white py-16 lg:py-24">
+      <section className="bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-display-md text-ink mb-8">
+              <h2 className="text-display-md text-fg mb-8">
                 {t("mission.title")}
               </h2>
-              <p className="text-lg md:text-xl text-ink-700 leading-relaxed">
+              <p className="text-lg md:text-xl text-fg-strong leading-relaxed">
                 {t("mission.description")}
               </p>
             </div>
@@ -54,11 +54,11 @@ export default function CareersPage() {
       </section>
 
       {/* Values */}
-      <section className="bg-cream py-16 lg:py-24">
+      <section className="bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="text-center mb-14">
-              <h2 className="text-display-md text-ink">{t("values.title")}</h2>
+              <h2 className="text-display-md text-fg">{t("values.title")}</h2>
             </div>
           </div>
 
@@ -68,14 +68,14 @@ export default function CareersPage() {
                 const Icon = item.icon;
                 return (
                   <div key={index} className="reveal">
-                    <div className="bg-white rounded-2xl p-8 text-center hover:shadow-card transition-shadow h-full">
+                    <div className="bg-bg-card rounded-2xl p-8 text-center hover:border-track-strong transition-shadow h-full">
                       <div className={`w-16 h-16 ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-6`}>
                         <Icon className="w-8 h-8" />
                       </div>
-                      <h3 className="text-heading-md text-ink mb-3">
+                      <h3 className="text-heading-md text-fg mb-3">
                         {t(`values.items.${index}.title`)}
                       </h3>
-                      <p className="text-ink-700 text-sm leading-relaxed">
+                      <p className="text-fg-strong text-sm leading-relaxed">
                         {t(`values.items.${index}.desc`)}
                       </p>
                     </div>
@@ -88,24 +88,24 @@ export default function CareersPage() {
       </section>
 
       {/* Spontaneous Application */}
-      <section className="bg-white py-16 lg:py-24">
+      <section className="bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="max-w-3xl mx-auto text-center">
               <div className="reveal-scale">
-                <div className="w-20 h-20 bg-leaf-100 rounded-full flex items-center justify-center mx-auto mb-8">
-                  <Mail className="w-10 h-10 text-leaf" />
+                <div className="w-20 h-20 bg-emerald-dim rounded-full flex items-center justify-center mx-auto mb-8">
+                  <Mail className="w-10 h-10 text-emerald" />
                 </div>
               </div>
-              <h2 className="text-display-md text-ink mb-6">
+              <h2 className="text-display-md text-fg mb-6">
                 {t("spontaneous.title")}
               </h2>
-              <p className="text-ink-700 text-lg mb-8 leading-relaxed">
+              <p className="text-fg-strong text-lg mb-8 leading-relaxed">
                 {t("spontaneous.description")}
               </p>
               <a
                 href={`mailto:${t("spontaneous.email")}`}
-                className="inline-flex items-center gap-3 bg-leaf hover:bg-leaf/90 text-white font-semibold px-8 py-4 rounded-lg transition-colors"
+                className="inline-flex items-center gap-3 bg-emerald hover:bg-emerald/90 text-bg font-semibold px-8 py-4 rounded-lg transition-colors"
               >
                 <Mail className="w-5 h-5" />
                 {t("spontaneous.cta")}
@@ -124,29 +124,29 @@ export default function CareersPage() {
       />
 
       {/* Final CTA */}
-      <section className="relative overflow-hidden bg-forest py-16 lg:py-24">
+      <section className="relative overflow-hidden bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="reveal">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-leaf text-white mb-6">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald text-bg mb-6">
               <Heart className="h-7 w-7" />
             </div>
-            <h2 className="text-display-md text-white mb-4">
+            <h2 className="text-display-md text-fg mb-4">
               {t("hero.title")}
             </h2>
-            <p className="text-ondark-muted max-w-2xl mx-auto mb-8">
+            <p className="text-fg-muted max-w-2xl mx-auto mb-8">
               Rejoignez une équipe engagée pour transformer la gestion des actifs IT en levier de décarbonisation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href={`mailto:${t("spontaneous.email")}`}
-                className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-600 text-white font-semibold px-8 py-4 rounded-xl transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-emerald hover:bg-emerald-hover text-bg font-semibold px-8 py-4 rounded-xl transition-colors"
               >
                 <Mail className="h-5 w-5" />
                 {t("spontaneous.cta")}
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white/40 hover:border-white/80 text-white font-semibold px-8 py-4 rounded-xl transition-colors hover:bg-white/10"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white/40 hover:border-white/80 text-fg font-semibold px-8 py-4 rounded-xl transition-colors hover:bg-white/10"
               >
                 <Sparkles className="h-5 w-5" />
                 Contacter les RH

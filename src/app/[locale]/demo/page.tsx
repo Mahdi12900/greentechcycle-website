@@ -35,18 +35,18 @@ export default function DemoPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const label = "block text-body-sm font-medium text-ink";
+  const label = "block text-body-sm font-medium text-fg";
   const field =
-    "mt-2 h-11 w-full rounded-lg border border-line bg-paper px-3 text-body text-ink placeholder:text-muted focus:border-leaf focus:outline-none focus:ring-2 focus:ring-leaf/20";
+    "mt-2 h-11 w-full rounded-lg border border-track bg-bg px-3 text-body text-fg placeholder:text-fg-muted focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25";
 
   return (
     <div>
       {/* Hero court (paper) */}
-      <section className="bg-paper py-16 lg:py-24" aria-labelledby="demo-title">
+      <section className="bg-bg py-16 lg:py-24" aria-labelledby="demo-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
-            <h1 id="demo-title" className="max-w-[20ch] text-display-lg text-ink">{t("hero.title")}</h1>
-            <p className="mt-6 max-w-[65ch] text-body-lg text-ink-700">{t("hero.subtitle")}</p>
+            <h1 id="demo-title" className="max-w-[20ch] text-display-lg text-fg">{t("hero.title")}</h1>
+            <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("hero.subtitle")}</p>
             <div className="mt-8">
               <ButtonLink href="#demo-form" size="lg">{t("form.submit")}</ButtonLink>
             </div>
@@ -59,7 +59,7 @@ export default function DemoPage() {
         <div className="reveal">
           <SectionHeader title={t("video.title")} />
           <figure>
-            <div className="relative aspect-video overflow-hidden rounded-2xl border border-line">
+            <div className="relative aspect-video overflow-hidden rounded-2xl border border-track">
               <Image
                 src="/images/hero-dashboard.jpg"
                 alt="Aperçu de la plateforme GreenTechCycle - Demandez une démo"
@@ -67,13 +67,13 @@ export default function DemoPage() {
                 className="object-cover"
                 sizes="(max-width: 1200px) 100vw, 1200px"
               />
-              <div className="absolute inset-0 flex items-center justify-center bg-forest-900/30">
-                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-paper text-forest shadow-pop" aria-hidden="true">
+              <div className="absolute inset-0 flex items-center justify-center bg-bg/30">
+                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-bg text-emerald shadow-float" aria-hidden="true">
                   <Play className="ml-1 h-7 w-7" fill="currentColor" />
                 </span>
               </div>
             </div>
-            <figcaption className="mt-3 text-caption text-muted">{t("video.placeholder")}</figcaption>
+            <figcaption className="mt-3 text-caption text-fg-muted">{t("video.placeholder")}</figcaption>
           </figure>
         </div>
       </Section>
@@ -86,9 +86,9 @@ export default function DemoPage() {
         <div className="reveal-stagger grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {screenshotItems.map((item, index) => (
             <div key={index} className="reveal h-full">
-              <div className="flex h-full flex-col items-center justify-center rounded-xl border border-line bg-cream p-8 text-center">
-                <Monitor className="h-8 w-8 text-forest" strokeWidth={1.75} aria-hidden="true" />
-                <p className="mt-3 text-body-sm font-medium text-ink">{item}</p>
+              <div className="flex h-full flex-col items-center justify-center rounded-xl border border-track bg-bg-card p-8 text-center">
+                <Monitor className="h-8 w-8 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+                <p className="mt-3 text-body-sm font-medium text-fg">{item}</p>
               </div>
             </div>
           ))}
@@ -96,16 +96,16 @@ export default function DemoPage() {
       </Section>
 
       {/* Formulaire §6.16 */}
-      <section id="demo-form" className="border-t border-line bg-cream py-16 lg:py-24" aria-labelledby="demo-form-title">
+      <section id="demo-form" className="border-t border-track bg-bg-card py-16 lg:py-24" aria-labelledby="demo-form-title">
         <div className="mx-auto max-w-[calc(720px+4rem)] px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <SectionHeader id="demo-form-title" title={t("form.title")} intro={t("form.subtitle")} />
           </div>
-          <div className="rounded-xl border border-line bg-paper p-6 lg:p-8">
+          <div className="rounded-xl border border-track bg-bg p-6 lg:p-8">
             {submitted ? (
               <div className="flex items-start gap-3" role="status">
-                <CheckCircle className="h-6 w-6 flex-shrink-0 text-leaf" aria-hidden="true" />
-                <p className="text-body text-ink">{t("form.success")}</p>
+                <CheckCircle className="h-6 w-6 flex-shrink-0 text-emerald" aria-hidden="true" />
+                <p className="text-body text-fg">{t("form.success")}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">

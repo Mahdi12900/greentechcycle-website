@@ -110,9 +110,9 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
   const perMonth = tx("/mois", "/mo");
 
   return (
-    <div className="rounded-xl border border-line bg-paper p-6 lg:p-8">
+    <div className="rounded-xl border border-track bg-bg p-6 lg:p-8">
       {/* Facturation : contrôle segmenté */}
-      <div role="radiogroup" aria-label={tx("Facturation", "Billing")} className="inline-flex rounded-lg border border-line bg-cream p-1">
+      <div role="radiogroup" aria-label={tx("Facturation", "Billing")} className="inline-flex rounded-lg border border-track bg-bg-card p-1">
         {(["monthly", "annual"] as const).map((b) => (
           <button
             key={b}
@@ -121,11 +121,11 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
             aria-checked={billing === b}
             onClick={() => setBilling(b)}
             className={`inline-flex h-10 items-center gap-2 rounded-md px-4 text-body-sm font-semibold transition-colors ${
-              billing === b ? "bg-paper text-ink shadow-card" : "text-ink-700 hover:text-ink"
+              billing === b ? "bg-bg text-fg shadow-float" : "text-fg-strong hover:text-fg"
             }`}
           >
             {b === "monthly" ? tx("Mensuel", "Monthly") : tx("Annuel", "Annual")}
-            {b === "annual" && <span className="rounded bg-ochre-100 px-2 text-caption font-semibold text-ochre-800">-15%</span>}
+            {b === "annual" && <span className="rounded bg-amber-dim px-2 text-caption font-semibold text-amber">-15%</span>}
           </button>
         ))}
       </div>
@@ -142,26 +142,26 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
               aria-checked={isSelected}
               onClick={() => setSelectedPlan(key)}
               className={`rounded-xl border p-4 text-left transition-colors ${
-                isSelected ? "border-leaf bg-leaf-50" : "border-line bg-paper hover:border-ink/20"
+                isSelected ? "border-emerald bg-white/[0.03]" : "border-track bg-bg hover:border-track-strong"
               }`}
             >
               <span className="flex items-center justify-between gap-2">
-                <span className="text-eyebrow uppercase text-muted">Plan {p.name}</span>
+                <span className="text-eyebrow uppercase text-fg-muted">Plan {p.name}</span>
                 {key === "confort" && <Tag variant="brand">{tx("Le plus choisi", "Most chosen")}</Tag>}
               </span>
-              <span className="mt-2 block font-display text-display-sm tabular-nums text-forest">
+              <span className="mt-2 block font-display text-display-sm tabular-nums text-emerald">
                 {billing === "annual" ? Math.round(p.price * 0.85) : p.price}
-                <span className="ml-1 font-sans text-body-sm text-muted">€ HT{perMonth}</span>
+                <span className="ml-1 font-sans text-body-sm text-fg-muted">€ HT{perMonth}</span>
               </span>
               {billing === "annual" && (
-                <span className="mt-1 block text-caption text-muted">
+                <span className="mt-1 block text-caption text-fg-muted">
                   {tx(
                     `soit ${Math.round(p.price * 0.85 * 12).toLocaleString(numberLocale)} € HT/an`,
                     `i.e. €${Math.round(p.price * 0.85 * 12).toLocaleString(numberLocale)} ex-VAT/year`
                   )}
                 </span>
               )}
-              <span className="mt-1 block text-caption text-muted">
+              <span className="mt-1 block text-caption text-fg-muted">
                 {tx("Mise en service", "Setup")} : {p.setup} € HT
               </span>
             </button>
@@ -172,22 +172,22 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
       <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
         {/* Modules à cocher */}
         <fieldset>
-          <legend className="text-eyebrow uppercase text-muted">{tx("Modules à ajouter (optionnel)", "Add-on modules (optional)")}</legend>
-          <div className="mt-3 divide-y divide-line rounded-xl border border-line">
+          <legend className="text-eyebrow uppercase text-fg-muted">{tx("Modules à ajouter (optionnel)", "Add-on modules (optional)")}</legend>
+          <div className="mt-3 divide-y divide-track rounded-xl border border-track">
             {addonList.map((addon) => {
               const checked = checkedAddons.has(addon.slug);
               return (
-                <label key={addon.slug} className={`flex cursor-pointer items-start gap-3 px-4 py-3 transition-colors ${checked ? "bg-leaf-50" : "hover:bg-cream"}`}>
+                <label key={addon.slug} className={`flex cursor-pointer items-start gap-3 px-4 py-3 transition-colors ${checked ? "bg-white/[0.03]" : "hover:bg-white/[0.04]"}`}>
                   <input
                     type="checkbox"
                     checked={checked}
                     onChange={() => toggleAddon(addon.slug)}
-                    className="mt-0.5 h-5 w-5 flex-shrink-0 cursor-pointer accent-leaf"
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 cursor-pointer accent-emerald"
                   />
                   <span className="min-w-0 flex-1">
-                    <span className="block text-body-sm font-medium text-ink">{addon.name}</span>
-                    <span className="block text-caption text-muted">
-                      <span className="font-semibold tabular-nums text-ink-700">{addon.price.toLocaleString(numberLocale)} € HT</span>{" "}
+                    <span className="block text-body-sm font-medium text-fg">{addon.name}</span>
+                    <span className="block text-caption text-fg-muted">
+                      <span className="font-semibold tabular-nums text-fg-strong">{addon.price.toLocaleString(numberLocale)} € HT</span>{" "}
                       {addon.recurrence === "one-shot" ? <span className="italic">{tx("one-shot", "one-time")}</span> : addon.recurrence}
                     </span>
                   </span>
@@ -199,46 +199,46 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
 
         {/* Total dynamique */}
         <div className="space-y-4">
-          <div className="rounded-xl bg-forest-900 p-6 text-ondark" aria-live="polite">
-            <p className="text-eyebrow uppercase text-ondark-muted">{tx("Estimation mensuelle", "Monthly estimate")}</p>
-            <dl className="mt-4 space-y-2 border-b border-ondark-line pb-4 text-body-sm">
+          <div className="rounded-xl bg-bg-card p-6 text-fg" aria-live="polite">
+            <p className="text-eyebrow uppercase text-fg-muted">{tx("Estimation mensuelle", "Monthly estimate")}</p>
+            <dl className="mt-4 space-y-2 border-b border-track pb-4 text-body-sm">
               <div className="flex justify-between gap-4">
-                <dt className="text-ondark-muted">Waki Box {plan.name}</dt>
+                <dt className="text-fg-muted">Waki Box {plan.name}</dt>
                 <dd className="tabular-nums">{baseMonthly} € HT{perMonth}</dd>
               </div>
               {addonMonthlyContrib > 0 && (
                 <div className="flex justify-between gap-4">
-                  <dt className="text-ondark-muted">{tx("Modules récurrents", "Recurring modules")}</dt>
+                  <dt className="text-fg-muted">{tx("Modules récurrents", "Recurring modules")}</dt>
                   <dd className="tabular-nums">+{addonMonthlyContrib} € HT{perMonth}</dd>
                 </div>
               )}
             </dl>
             <div className="mt-4 flex items-end justify-between gap-4">
-              <p className="text-caption text-ondark-muted">{tx("Total récurrent", "Recurring total")}</p>
-              <p className="font-display text-display-sm tabular-nums text-leaf-300">
+              <p className="text-caption text-fg-muted">{tx("Total récurrent", "Recurring total")}</p>
+              <p className="font-display text-display-sm tabular-nums text-emerald">
                 {totalMonthly}
-                <span className="ml-1 font-sans text-body-sm text-ondark-muted">€ HT{perMonth}</span>
+                <span className="ml-1 font-sans text-body-sm text-fg-muted">€ HT{perMonth}</span>
               </p>
             </div>
             {billing === "annual" && (
-              <p className="mt-1 text-right text-caption text-ondark-muted">
+              <p className="mt-1 text-right text-caption text-fg-muted">
                 {tx("soit", "i.e.")} {totalAnnual.toLocaleString(numberLocale)} € HT{tx("/an", "/year")}
               </p>
             )}
-            <div className="mt-4 flex justify-between gap-4 border-t border-ondark-line pt-4 text-body-sm">
-              <span className="text-ondark-muted">{tx("Mise en service (one-shot)", "Setup (one-time)")}</span>
+            <div className="mt-4 flex justify-between gap-4 border-t border-track pt-4 text-body-sm">
+              <span className="text-fg-muted">{tx("Mise en service (one-shot)", "Setup (one-time)")}</span>
               <span className="tabular-nums">{plan.setup} € HT</span>
             </div>
           </div>
 
           {bundle && (
-            <div className="rounded-xl border border-line bg-leaf-50 p-4">
-              <p className="text-eyebrow uppercase text-muted">{tx("Bundle suggéré", "Suggested bundle")}</p>
-              <p className="mt-1 text-body-sm font-semibold text-ink">{bundle.name}</p>
-              <p className="mt-2 text-heading-md tabular-nums text-forest">
-                {bundle.price.toLocaleString(numberLocale)} € HT <span className="text-caption font-normal text-muted">one-shot</span>
+            <div className="rounded-xl border border-track bg-white/[0.03] p-4">
+              <p className="text-eyebrow uppercase text-fg-muted">{tx("Bundle suggéré", "Suggested bundle")}</p>
+              <p className="mt-1 text-body-sm font-semibold text-fg">{bundle.name}</p>
+              <p className="mt-2 text-heading-md tabular-nums text-emerald">
+                {bundle.price.toLocaleString(numberLocale)} € HT <span className="text-caption font-normal text-fg-muted">one-shot</span>
               </p>
-              <p className="mt-1 text-caption font-semibold text-leaf">
+              <p className="mt-1 text-caption font-semibold text-emerald">
                 {tx(`Économie : ${bundle.saving} €`, `Saving: €${bundle.saving}`)} (-{Math.round((bundle.saving / (bundle.price + bundle.saving)) * 100)}%)
               </p>
             </div>
@@ -807,7 +807,7 @@ export default function TarifsPage() {
   return (
     <div>
       {/* ═══════════ 1. HERO cream ═══════════ */}
-      <section className="border-b border-line bg-cream py-16 lg:py-24" aria-labelledby="tarifs-hero-title">
+      <section className="border-b border-track bg-bg-card py-16 lg:py-24" aria-labelledby="tarifs-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
@@ -817,7 +817,7 @@ export default function TarifsPage() {
                   {tx("Plateforme dès 2 500 €/mois · ITAD dès 15 €/poste", "Platform from €2,500/month · ITAD from €15/device")}
                 </Tag>
               </div>
-              <h1 id="tarifs-hero-title" className="mt-6 max-w-[20ch] text-display-lg text-ink">
+              <h1 id="tarifs-hero-title" className="mt-6 max-w-[20ch] text-display-lg text-fg">
                 {tx(
                   <>
                     Tarifs Waki Box,{" "}
@@ -831,21 +831,21 @@ export default function TarifsPage() {
                   </>
                 )}
               </h1>
-              <p className="mt-6 max-w-[65ch] text-body-lg text-ink-700">
+              <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
                   "Trois ancres tarifaires claires : Waki Box dès 39 € HT/mois, Plateforme GTC SaaS à partir de 2 500 € HT/mois, Service ITAD à partir de 15 € HT/poste. Trois plans Waki Box et un programme pilote ci-dessous.",
                   "Three clear pricing anchors: Waki Box from €39 HT/month, GTC SaaS Platform starting at €2,500 HT/month, ITAD Service starting at €15 HT/device. Three Waki Box plans and one pilot programme below."
                 )}
               </p>
-              <dl className="mt-8 grid max-w-[560px] grid-cols-3 border-y border-line py-6">
+              <dl className="mt-8 grid max-w-[560px] grid-cols-3 border-y border-track py-6">
                 {[
                   { v: "3", l: tx("plans Waki Box publics", "public Waki Box plans") },
                   { v: "1", l: tx("programme pilote, 1er mois offert", "pilot: 1st month free") },
                   { v: "48 h", l: tx("devis Plateforme & ITAD", "Platform & ITAD quote") },
                 ].map((item, i) => (
-                  <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-line pl-4" : "pr-4"}`}>
-                    <dt className="mt-1 text-caption text-muted">{item.l}</dt>
-                    <dd className="font-display text-display-sm tabular-nums text-forest">{item.v}</dd>
+                  <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-track pl-4" : "pr-4"}`}>
+                    <dt className="mt-1 text-caption text-fg-muted">{item.l}</dt>
+                    <dd className="font-display text-display-sm tabular-nums text-emerald">{item.v}</dd>
                   </div>
                 ))}
               </dl>
@@ -859,7 +859,7 @@ export default function TarifsPage() {
               </div>
             </div>
             <div className="reveal lg:col-span-5">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
                 <Image
                   src="/photos/service-wakibox.jpg"
                   alt={tx("Borne Waki Box de collecte connectée installée en entreprise", "Waki Box connected collection kiosk installed at a workplace")}
@@ -871,7 +871,7 @@ export default function TarifsPage() {
               </div>
             </div>
           </div>
-          <CertificationStrip className="mt-12 border-t border-line pt-6" />
+          <CertificationStrip className="mt-12 border-t border-track pt-6" />
         </div>
       </section>
 
@@ -892,22 +892,22 @@ export default function TarifsPage() {
             const isFeatured = "featured" in b && b.featured;
             return (
               <div key={b.name} className="reveal h-full">
-                <div className={`flex h-full flex-col overflow-hidden rounded-xl border bg-paper ${isFeatured ? "border-leaf" : "border-line"}`}>
-                  <div className="relative aspect-[16/10] border-b border-line">
+                <div className={`flex h-full flex-col overflow-hidden rounded-xl border bg-bg ${isFeatured ? "border-emerald" : "border-track"}`}>
+                  <div className="relative aspect-[16/10] border-b border-track">
                     <Image src={b.photo} alt={b.photoAlt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <div className="flex items-center justify-between gap-3">
-                      <p className="text-eyebrow uppercase text-muted">{b.tag}</p>
+                      <p className="text-eyebrow uppercase text-fg-muted">{b.tag}</p>
                       {isFeatured && <Tag variant="brand">{tx("Tarifs publics ci-dessous", "Public pricing below")}</Tag>}
                     </div>
-                    <h3 className="mt-3 text-heading-lg text-ink">{b.name}</h3>
-                    <p className="mt-2 flex-1 text-body-sm text-ink-700">{b.pitch}</p>
-                    <div className="mt-6 border-t border-line pt-4">
-                      <p className="text-body font-semibold tabular-nums text-forest">{b.price}</p>
-                      {"subline" in b && b.subline && <p className="mt-1 text-caption text-muted">{b.subline as string}</p>}
+                    <h3 className="mt-3 text-heading-lg text-fg">{b.name}</h3>
+                    <p className="mt-2 flex-1 text-body-sm text-fg-strong">{b.pitch}</p>
+                    <div className="mt-6 border-t border-track pt-4">
+                      <p className="text-body font-semibold tabular-nums text-emerald">{b.price}</p>
+                      {"subline" in b && b.subline && <p className="mt-1 text-caption text-fg-muted">{b.subline as string}</p>}
                       {b.ctaHref.startsWith("#") ? (
-                        <a href={b.ctaHref} className="group mt-4 inline-flex items-center gap-1 text-body-sm font-medium text-leaf hover:text-leaf-700">
+                        <a href={b.ctaHref} className="group mt-4 inline-flex items-center gap-1 text-body-sm font-medium text-emerald hover:text-emerald-hover">
                           {b.ctaLabel}
                           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                         </a>
@@ -925,10 +925,10 @@ export default function TarifsPage() {
         </div>
 
         {/* Trois portes d'entrée (fusion S6d) */}
-        <div className="mt-16 border-t border-line pt-12">
-          <p className="text-eyebrow uppercase text-muted">{tx("Première étape", "First step")}</p>
-          <h3 className="mt-2 text-display-sm text-ink">{tx("Trois portes d'entrée.", "Three entry points.")}</h3>
-          <p className="mt-3 max-w-[65ch] text-body text-ink-700">
+        <div className="mt-16 border-t border-track pt-12">
+          <p className="text-eyebrow uppercase text-fg-muted">{tx("Première étape", "First step")}</p>
+          <h3 className="mt-2 text-display-sm text-fg">{tx("Trois portes d'entrée.", "Three entry points.")}</h3>
+          <p className="mt-3 max-w-[65ch] text-body text-fg-strong">
             {tx(
               "Choisissez la première étape qui colle à votre calendrier. Chaque parcours commence par une réservation. Nous validons le périmètre ensemble avant le moindre engagement contractuel.",
               "Choose the first step that fits your calendar. Each journey starts with a booking. We validate the scope together before any contractual commitment."
@@ -936,15 +936,15 @@ export default function TarifsPage() {
           </p>
           <ul className="mt-8 grid gap-6 md:grid-cols-3">
             {entryPoints.map((e) => (
-              <li key={e.title} className={`flex flex-col rounded-xl border p-6 ${e.featured ? "border-leaf bg-leaf-50" : "border-line bg-paper"}`}>
+              <li key={e.title} className={`flex flex-col rounded-xl border p-6 ${e.featured ? "border-emerald bg-white/[0.03]" : "border-track bg-bg"}`}>
                 <div className="flex items-center gap-3">
                   <Pictogram icon={e.icon} />
                   <Tag variant={e.featured ? "brand" : "neutral"}>{e.tag}</Tag>
-                  <span className="text-caption text-muted">{e.meta}</span>
+                  <span className="text-caption text-fg-muted">{e.meta}</span>
                 </div>
-                <h4 className="mt-4 text-heading-md text-ink">{e.title}</h4>
-                <p className="mt-2 flex-1 text-body-sm text-ink-700">{e.desc}</p>
-                <p className="mt-4 border-t border-line pt-4 text-caption italic text-muted">{e.note}</p>
+                <h4 className="mt-4 text-heading-md text-fg">{e.title}</h4>
+                <p className="mt-2 flex-1 text-body-sm text-fg-strong">{e.desc}</p>
+                <p className="mt-4 border-t border-track pt-4 text-caption italic text-fg-muted">{e.note}</p>
                 <div className="mt-4">
                   {e.featured ? (
                     <ButtonLink href={e.href} fullWidth>
@@ -961,7 +961,7 @@ export default function TarifsPage() {
       </Section>
 
       {/* ═══════════ 3. 3 PLANS WAKI BOX #plans (+ comparatif intégré) ═══════════ */}
-      <section id="plans" className="bg-cream py-16 lg:py-24" aria-labelledby="plans-title">
+      <section id="plans" className="bg-bg-card py-16 lg:py-24" aria-labelledby="plans-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <SectionHeader
@@ -982,65 +982,65 @@ export default function TarifsPage() {
                 <div key={plan.slug} className="reveal h-full">
                   <article
                     aria-labelledby={`plan-title-${plan.slug}`}
-                    className={`flex h-full flex-col rounded-xl border bg-paper p-6 lg:p-8 ${popular ? "border-leaf" : "border-line"}`}
+                    className={`flex h-full flex-col rounded-xl border bg-bg p-6 lg:p-8 ${popular ? "border-emerald" : "border-track"}`}
                   >
                     <div className="flex items-center justify-between gap-3">
                       <Pictogram icon={plan.icon} />
                       {popular && <Tag variant="brand">{tx("Le plus choisi", "Most chosen")}</Tag>}
                     </div>
-                    <p className="mt-6 text-eyebrow uppercase text-muted">
+                    <p className="mt-6 text-eyebrow uppercase text-fg-muted">
                       {plan.num} · {plan.audience}
                     </p>
-                    <h3 id={`plan-title-${plan.slug}`} className="mt-2 font-display text-display-sm text-ink">
+                    <h3 id={`plan-title-${plan.slug}`} className="mt-2 font-display text-display-sm text-fg">
                       Waki Box {plan.name}
                     </h3>
-                    <p className="mt-3 text-body-sm text-ink-700">{plan.tagline}</p>
+                    <p className="mt-3 text-body-sm text-fg-strong">{plan.tagline}</p>
 
-                    <dl className="mt-6 grid grid-cols-3 gap-3 border-y border-line py-4">
+                    <dl className="mt-6 grid grid-cols-3 gap-3 border-y border-track py-4">
                       <div className="col-span-3 flex flex-col-reverse justify-end">
-                        <dt className="text-caption text-muted">{tx("Abonnement mensuel", "Monthly subscription")}</dt>
-                        <dd className="font-display text-display-md tabular-nums text-forest">
-                          {plan.price} <span className="font-sans text-body-sm text-muted">€ HT/{tx("mois", "month")}</span>
+                        <dt className="text-caption text-fg-muted">{tx("Abonnement mensuel", "Monthly subscription")}</dt>
+                        <dd className="font-display text-display-md tabular-nums text-emerald">
+                          {plan.price} <span className="font-sans text-body-sm text-fg-muted">€ HT/{tx("mois", "month")}</span>
                         </dd>
                       </div>
                       <div className="col-span-2 flex flex-col-reverse justify-end">
-                        <dt className="text-caption text-muted">{tx("Mise en service", "Installation")}</dt>
-                        <dd className="text-body-sm font-semibold tabular-nums text-ink">{plan.setup} € HT</dd>
+                        <dt className="text-caption text-fg-muted">{tx("Mise en service", "Installation")}</dt>
+                        <dd className="text-body-sm font-semibold tabular-nums text-fg">{plan.setup} € HT</dd>
                       </div>
                       <div className="flex flex-col-reverse justify-end">
-                        <dt className="text-caption text-muted">{tx("Engagement", "Commitment")}</dt>
-                        <dd className="text-body-sm font-semibold text-ink">{plan.engagement}</dd>
+                        <dt className="text-caption text-fg-muted">{tx("Engagement", "Commitment")}</dt>
+                        <dd className="text-body-sm font-semibold text-fg">{plan.engagement}</dd>
                       </div>
                     </dl>
 
                     <ul className="mt-6 space-y-2">
                       {plan.features.map((f, j) => (
-                        <li key={j} className="flex items-start gap-2 text-body-sm text-ink-700">
-                          <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+                        <li key={j} className="flex items-start gap-2 text-body-sm text-fg-strong">
+                          <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                           <span>{f}</span>
                         </li>
                       ))}
                     </ul>
 
                     {/* Comparatif (ex-barres) condensé dans la carte */}
-                    <dl className="mt-6 divide-y divide-line border-t border-line text-body-sm">
+                    <dl className="mt-6 divide-y divide-track border-t border-track text-body-sm">
                       {comparisonRows.map((row) => (
                         <div key={row.label} className="flex justify-between gap-4 py-2">
-                          <dt className="text-muted">{row.label}</dt>
-                          <dd className="text-right font-medium text-ink">{row[key].value}</dd>
+                          <dt className="text-fg-muted">{row.label}</dt>
+                          <dd className="text-right font-medium text-fg">{row[key].value}</dd>
                         </div>
                       ))}
                     </dl>
-                    <p className="mt-4 text-eyebrow uppercase text-muted">{tx("Fonctions avancées", "Advanced features")}</p>
+                    <p className="mt-4 text-eyebrow uppercase text-fg-muted">{tx("Fonctions avancées", "Advanced features")}</p>
                     <ul className="mt-2 flex-1 space-y-1 text-body-sm">
                       {featureMatrix.map((row) => {
                         const ok = row[key];
                         return (
-                          <li key={row.label} className={`flex items-start gap-2 ${ok ? "text-ink-700" : "text-muted"}`}>
+                          <li key={row.label} className={`flex items-start gap-2 ${ok ? "text-fg-strong" : "text-fg-muted"}`}>
                             {ok ? (
-                              <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+                              <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                             ) : (
-                              <Minus className="mt-0.5 h-4 w-4 flex-shrink-0 text-muted" aria-hidden="true" />
+                              <Minus className="mt-0.5 h-4 w-4 flex-shrink-0 text-fg-muted" aria-hidden="true" />
                             )}
                             <span>
                               {row.label}
@@ -1068,8 +1068,8 @@ export default function TarifsPage() {
       <Section tone="mint">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="reveal lg:col-span-7">
-            <p className="text-eyebrow uppercase text-forest">{tx("Programme pilote · 3 places", "Pilot programme · 3 spots")}</p>
-            <h2 className="mt-3 max-w-[24ch] text-display-md text-forest">
+            <p className="text-eyebrow uppercase text-emerald">{tx("Programme pilote · 3 places", "Pilot programme · 3 spots")}</p>
+            <h2 className="mt-3 max-w-[24ch] text-display-md text-emerald">
               {tx(
                 <>
                   Premier mois offert,{" "}
@@ -1083,7 +1083,7 @@ export default function TarifsPage() {
                 </>
               )}
             </h2>
-            <p className="mt-4 max-w-[65ch] text-body-lg text-ink-700">
+            <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
               {tx(
                 "Installez votre première box dans un site pilote, testez la collecte connectée, mesurez votre impact sur 3 mois. Désengagement à tout moment.",
                 "Install your first kiosk at a pilot site, test connected collection, measure your impact over 3 months. Cancel anytime."
@@ -1104,8 +1104,8 @@ export default function TarifsPage() {
                   "Cancel anytime, no penalty",
                 ]
               ).map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-body-sm text-ink">
-                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-forest" aria-hidden="true" />
+                <li key={i} className="flex items-start gap-2 text-body-sm text-fg">
+                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -1118,7 +1118,7 @@ export default function TarifsPage() {
           </div>
           <div className="reveal lg:col-span-5">
             <figure>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-track">
                 <Image
                   src="/photos/hp-audit-signature.jpg"
                   alt={tx("Signature d'un programme pilote Waki Box", "Signing a Waki Box pilot programme")}
@@ -1128,9 +1128,9 @@ export default function TarifsPage() {
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               </div>
-              <figcaption className="mt-4 flex items-baseline justify-between gap-4 border-t border-forest/20 pt-4">
-                <span className="text-eyebrow uppercase text-forest">{tx("Offre pilote", "Pilot offer")}</span>
-                <span className="text-body-sm font-semibold text-forest">
+              <figcaption className="mt-4 flex items-baseline justify-between gap-4 border-t border-track pt-4">
+                <span className="text-eyebrow uppercase text-emerald">{tx("Offre pilote", "Pilot offer")}</span>
+                <span className="text-body-sm font-semibold text-emerald">
                   {tx("1er mois offert", "1st month free")} · {tx("puis 39 € HT/mois", "then €39 HT/month")}
                 </span>
               </figcaption>
@@ -1165,7 +1165,7 @@ export default function TarifsPage() {
             emphasis={[3]}
             rows={addons.map((addon) => [
               <span key="n" className="flex items-center gap-3">
-                <addon.icon className="h-4 w-4 flex-shrink-0 text-forest" strokeWidth={1.75} aria-hidden="true" />
+                <addon.icon className="h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                 {addon.name}
               </span>,
               <span key="d" className="block min-w-[240px] max-w-[52ch]">
@@ -1180,7 +1180,7 @@ export default function TarifsPage() {
               <Link
                 key="c"
                 href={`/reserver?offre=${addon.slug}`}
-                className="group inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap font-medium text-leaf hover:text-leaf-700"
+                className="group inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap font-medium text-emerald hover:text-emerald-hover"
                 aria-label={`${tx("Réserver", "Book")} : ${addon.name}`}
               >
                 {tx("Réserver", "Book")}
@@ -1223,20 +1223,20 @@ export default function TarifsPage() {
         <div className="grid gap-6 lg:grid-cols-2">
           {bundles.map((b) => (
             <div key={b.name} className="reveal">
-              <article className="flex h-full flex-col rounded-xl border border-line bg-paper p-6 lg:p-8">
-                <p className="text-eyebrow uppercase text-muted">{b.name}</p>
-                <p className="mt-2 text-body-sm font-medium text-ink-700">{b.plan}</p>
-                <p className="mt-4 font-display text-display-md tabular-nums text-forest">
-                  {b.price} <span className="font-sans text-body-sm text-muted">€ HT one-shot</span>
+              <article className="flex h-full flex-col rounded-xl border border-track bg-bg p-6 lg:p-8">
+                <p className="text-eyebrow uppercase text-fg-muted">{b.name}</p>
+                <p className="mt-2 text-body-sm font-medium text-fg-strong">{b.plan}</p>
+                <p className="mt-4 font-display text-display-md tabular-nums text-emerald">
+                  {b.price} <span className="font-sans text-body-sm text-fg-muted">€ HT one-shot</span>
                 </p>
                 <div className="mt-2">
                   <Tag variant="brand">{b.saving}</Tag>
                 </div>
-                <p className="mt-6 text-body-sm italic text-ink-700">{b.pitch}</p>
+                <p className="mt-6 text-body-sm italic text-fg-strong">{b.pitch}</p>
                 <ul className="mt-4 flex-1 space-y-2">
                   {b.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-body-sm text-ink-700">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+                    <li key={i} className="flex items-start gap-2 text-body-sm text-fg-strong">
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -1253,16 +1253,16 @@ export default function TarifsPage() {
       </Section>
 
       {/* ═══════════ 9. PILOTE GTC 3 JOURS #pilote — carte unique ═══════════ */}
-      <section id="pilote" className="bg-cream py-16 lg:py-24" aria-labelledby="pilote-title">
+      <section id="pilote" className="bg-bg-card py-16 lg:py-24" aria-labelledby="pilote-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
-            <article className="grid gap-10 rounded-xl border border-line bg-paper p-6 lg:grid-cols-12 lg:gap-16 lg:p-10">
+            <article className="grid gap-10 rounded-xl border border-track bg-bg p-6 lg:grid-cols-12 lg:gap-16 lg:p-10">
               <div className="lg:col-span-7">
-                <p className="text-eyebrow uppercase text-muted">{tx("Porte d'entrée 4", "Entry point 4")}</p>
-                <h2 id="pilote-title" className="mt-3 max-w-[24ch] text-display-md text-ink">
+                <p className="text-eyebrow uppercase text-fg-muted">{tx("Porte d'entrée 4", "Entry point 4")}</p>
+                <h2 id="pilote-title" className="mt-3 max-w-[24ch] text-display-md text-fg">
                   {tx("Pilote GTC - Audit & démarrage 3 jours.", "GTC Pilot - Audit & 3-day kickoff.")}
                 </h2>
-                <div className="mt-4 max-w-[65ch] space-y-4 text-body text-ink-700">
+                <div className="mt-4 max-w-[65ch] space-y-4 text-body text-fg-strong">
                   <p>
                     {tx(
                       "Avant de s'engager sur douze mois, certaines organisations préfèrent mesurer concrètement la valeur GTC sur leur propre parc. Le Pilote GTC répond à ce besoin : trois jours, une équipe senior, un livrable structuré.",
@@ -1282,7 +1282,7 @@ export default function TarifsPage() {
                     )}
                   </p>
                 </div>
-                <p className="mt-8 text-eyebrow uppercase text-muted">{tx("Inclus dans la mission", "Included in the engagement")}</p>
+                <p className="mt-8 text-eyebrow uppercase text-fg-muted">{tx("Inclus dans la mission", "Included in the engagement")}</p>
                 <ul className="mt-3 space-y-2">
                   {tx(
                     [
@@ -1298,37 +1298,37 @@ export default function TarifsPage() {
                       "Written debrief delivered within 5 business days",
                     ]
                   ).map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-body-sm text-ink-700">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+                    <li key={i} className="flex items-start gap-2 text-body-sm text-fg-strong">
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
               <div className="space-y-6 lg:col-span-5">
-                <dl className="grid grid-cols-2 gap-4 border-y border-line py-6">
+                <dl className="grid grid-cols-2 gap-4 border-y border-track py-6">
                   <div className="flex flex-col-reverse justify-end">
-                    <dt className="text-caption text-muted">
+                    <dt className="text-caption text-fg-muted">
                       {tx("Mission forfaitaire", "Fixed-fee engagement")} · {tx("pour 3 jours", "for 3 days")}
                     </dt>
-                    <dd className="font-display text-display-md tabular-nums text-forest">
-                      {isEn ? "2,900" : "2 900"} <span className="font-sans text-body-sm text-muted">€ HT</span>
+                    <dd className="font-display text-display-md tabular-nums text-emerald">
+                      {isEn ? "2,900" : "2 900"} <span className="font-sans text-body-sm text-fg-muted">€ HT</span>
                     </dd>
                   </div>
-                  <div className="flex flex-col-reverse justify-end border-l border-line pl-4">
-                    <dt className="text-caption text-muted">{tx("Paiement", "Payment")}</dt>
-                    <dd className="text-heading-md text-ink">{tx("100 % à la signature", "100% on signing")}</dd>
+                  <div className="flex flex-col-reverse justify-end border-l border-track pl-4">
+                    <dt className="text-caption text-fg-muted">{tx("Paiement", "Payment")}</dt>
+                    <dd className="text-heading-md text-fg">{tx("100 % à la signature", "100% on signing")}</dd>
                   </div>
                 </dl>
-                <div className="rounded-xl bg-leaf-100 p-6">
-                  <p className="text-eyebrow uppercase text-forest">{tx("Garantie de valeur", "Value guarantee")}</p>
-                  <p className="mt-2 text-heading-md text-forest">
+                <div className="rounded-xl bg-emerald-dim p-6">
+                  <p className="text-eyebrow uppercase text-emerald">{tx("Garantie de valeur", "Value guarantee")}</p>
+                  <p className="mt-2 text-heading-md text-emerald">
                     {tx(
                       "Pilote remboursé sur la 1re année de Plateforme si signature dans les 90 jours après la restitution.",
                       "Pilot fully refunded on Year 1 Platform subscription if signed within 90 days of debrief."
                     )}
                   </p>
-                  <p className="mt-2 text-body-sm text-ink-700">
+                  <p className="mt-2 text-body-sm text-fg-strong">
                     {tx(
                       "2 900 € HT déduits automatiquement de la première facture annuelle Plateforme. Aucune démarche supplémentaire.",
                       "€2,900 ex-VAT automatically deducted from the first annual Platform invoice. No extra steps needed."
@@ -1336,8 +1336,8 @@ export default function TarifsPage() {
                   </p>
                 </div>
                 <div>
-                  <p className="text-eyebrow uppercase text-muted">{tx("Composition de la mission", "Engagement composition")}</p>
-                  <p className="mt-2 text-body-sm text-ink-700">
+                  <p className="text-eyebrow uppercase text-fg-muted">{tx("Composition de la mission", "Engagement composition")}</p>
+                  <p className="mt-2 text-body-sm text-fg-strong">
                     {tx(
                       "Jour 1 : Audit inventaire et notation d'obsolescence. Jour 2 : Plan ITAD priorisé + kick-off Plateforme. Jour 3 : Restitution orale et remise du livrable écrit. Équipe : un senior ITAM, un expert carbone, un consultant cyber.",
                       "Day 1: Inventory audit and obsolescence scoring. Day 2: Prioritised ITAD plan + Platform kickoff. Day 3: Oral debrief and written deliverable handover. Team: one senior ITAM, one carbon expert, one cyber consultant."
@@ -1354,7 +1354,7 @@ export default function TarifsPage() {
       </section>
 
       {/* ═══════════ 11. SUR DEVIS #sur-devis — night ═══════════ */}
-      <section id="sur-devis" className="bg-forest-900 py-16 text-ondark lg:py-24" aria-labelledby="sur-devis-title">
+      <section id="sur-devis" className="bg-bg-card py-16 text-fg lg:py-24" aria-labelledby="sur-devis-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <SectionHeader
@@ -1374,8 +1374,8 @@ export default function TarifsPage() {
           <div className="grid gap-6 lg:grid-cols-2">
             {devisCards.map((card) => (
               <div key={card.slug} className="reveal">
-                <article className="flex h-full flex-col overflow-hidden rounded-xl border border-ondark-line bg-forest-950">
-                  <div className="relative aspect-[16/8] border-b border-ondark-line">
+                <article className="flex h-full flex-col overflow-hidden rounded-xl border border-track bg-bg">
+                  <div className="relative aspect-[16/8] border-b border-track">
                     <Image src={card.photo} alt={card.photoAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
                   </div>
                   <div className="flex flex-1 flex-col p-6 lg:p-8">
@@ -1385,13 +1385,13 @@ export default function TarifsPage() {
                       </Tag>
                       <Tag variant="dark">{card.priceBadge}</Tag>
                     </div>
-                    <h3 className="mt-4 font-display text-display-sm text-ondark">{card.title}</h3>
-                    <p className="mt-2 text-body-sm font-semibold text-leaf-300">{card.anchorNote}</p>
-                    <p className="mt-4 text-body-sm text-ondark-muted">{card.body}</p>
-                    <ul className="mt-6 flex-1 space-y-2 border-t border-ondark-line pt-6">
+                    <h3 className="mt-4 font-display text-display-sm text-fg">{card.title}</h3>
+                    <p className="mt-2 text-body-sm font-semibold text-emerald">{card.anchorNote}</p>
+                    <p className="mt-4 text-body-sm text-fg-muted">{card.body}</p>
+                    <ul className="mt-6 flex-1 space-y-2 border-t border-track pt-6">
                       {card.bullets.map((b, j) => (
-                        <li key={j} className="flex items-start gap-2 text-body-sm text-ondark-muted">
-                          <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf-300" aria-hidden="true" />
+                        <li key={j} className="flex items-start gap-2 text-body-sm text-fg-muted">
+                          <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                           <span>{b}</span>
                         </li>
                       ))}
@@ -1410,15 +1410,15 @@ export default function TarifsPage() {
             ))}
           </div>
           <div className="mt-12">
-            <p className="text-eyebrow uppercase text-ondark-muted">{tx("Cinq missions ITAD couvertes", "Five ITAD engagements covered")}</p>
+            <p className="text-eyebrow uppercase text-fg-muted">{tx("Cinq missions ITAD couvertes", "Five ITAD engagements covered")}</p>
             <ul className="mt-4 flex flex-wrap gap-2">
               {itadServices.map((svc) => (
                 <li key={svc.slug}>
                   <Link
                     href={`/services/${svc.slug}`}
-                    className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-ondark-line px-4 text-body-sm font-medium text-ondark-muted transition-colors hover:border-white/30 hover:text-ondark"
+                    className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-track px-4 text-body-sm font-medium text-fg-muted transition-colors hover:border-white/30 hover:text-fg"
                   >
-                    <svc.icon className="h-4 w-4 text-leaf-300" strokeWidth={1.75} aria-hidden="true" />
+                    <svc.icon className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                     {svc.name}
                   </Link>
                 </li>
@@ -1459,13 +1459,13 @@ export default function TarifsPage() {
         ].join(" · ")}
         footnote={
           <p className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            <Link href="/cas-usages" className="font-medium text-leaf-300 hover:text-ondark">
+            <Link href="/cas-usages" className="font-medium text-emerald hover:text-fg">
               {tx("Voir 8 cas clients chiffrés", "See 8 quantified client cases")} →
             </Link>
-            <Link href="/secteurs" className="font-medium text-leaf-300 hover:text-ondark">
+            <Link href="/secteurs" className="font-medium text-emerald hover:text-fg">
               {tx("Explorer 16 fiches sectorielles", "Explore 16 sector profiles")} →
             </Link>
-            <Link href="/plateforme" className="font-medium text-leaf-300 hover:text-ondark">
+            <Link href="/plateforme" className="font-medium text-emerald hover:text-fg">
               {tx("Découvrir la plateforme", "Discover the platform")} →
             </Link>
           </p>

@@ -75,7 +75,7 @@
   }
 
   body {
-    @apply antialiased font-sans text-ink bg-paper;
+    @apply antialiased font-sans text-fg bg-bg;
     font-feature-settings: "ss01", "cv11", "tnum";
   }
 
@@ -232,33 +232,33 @@
     to { transform: translateY(-80px); }
   }
 
-  /* Contenu éditorial (articles de blog) — DESIGN.md §10.7 :
-     titres display-sm Fraunces, liens leaf, rythme 8 px. Pas de plugin
+  /* Contenu éditorial (articles de blog) — DESIGN.md v2 : titres Geist 600,
+     liens émeraude, corps fg-strong, rythme 8 px. Pas de plugin
      @tailwindcss/typography : styles locaux, limités aux balises produites. */
   .prose {
-    @apply text-body-lg text-ink-700;
+    @apply text-body-lg text-fg-strong;
     max-width: 65ch;
   }
   .prose > * + * {
     margin-top: 1rem;
   }
   .prose h2 {
-    @apply mt-12 text-display-sm text-ink;
+    @apply mt-12 text-display-sm text-fg;
   }
   .prose h3 {
-    @apply mt-8 font-sans text-heading-lg text-ink;
+    @apply mt-8 font-sans text-heading-lg text-fg;
   }
   .prose h4 {
-    @apply mt-6 font-sans text-heading-md text-ink;
+    @apply mt-6 font-sans text-heading-md text-fg;
   }
   .prose p {
-    @apply text-body-lg text-ink-700;
+    @apply text-body-lg text-fg-strong;
   }
   .prose strong {
-    @apply font-semibold text-ink;
+    @apply font-semibold text-fg;
   }
   .prose a {
-    @apply font-medium text-leaf underline underline-offset-4 hover:text-leaf-700;
+    @apply font-medium text-emerald underline underline-offset-4 hover:text-emerald-hover;
   }
   .prose ul,
   .prose ol {
@@ -271,20 +271,20 @@
     list-style: decimal;
   }
   .prose li::marker {
-    @apply text-leaf;
+    @apply text-emerald;
   }
   .prose blockquote {
-    @apply border-l-2 border-leaf pl-4 font-display text-display-sm text-ink;
+    @apply border-l-2 border-emerald pl-4 font-display text-display-sm text-fg;
   }
   .prose table {
     @apply w-full border-collapse text-body-sm;
   }
   .prose th,
   .prose td {
-    @apply border-t border-line px-3 py-2 text-left;
+    @apply border-t border-track px-3 py-2 text-left;
   }
   .prose th {
-    @apply bg-cream text-eyebrow uppercase text-muted;
+    @apply bg-bg-card text-eyebrow uppercase text-fg-muted;
   }
 
   /* Indice de défilement horizontal (onglets, tableaux) — DESIGN.md §6.9 */
@@ -312,7 +312,7 @@
     30% { transform: translateY(-4px); opacity: 1; }
   }
   .typing-dot {
-    @apply h-2 w-2 rounded-full bg-muted;
+    @apply h-2 w-2 rounded-full bg-fg-muted;
     animation: typing-bounce 1.4s ease-in-out infinite;
   }
   .animation-delay-200 {
@@ -328,7 +328,7 @@
     background: transparent;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #e7e2da;
+    background: var(--color-track);
     border-radius: 999px;
   }
 

@@ -125,19 +125,19 @@ export default function EcosystemPage({
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-forest py-16 text-ondark lg:py-24">
+      <section className="bg-bg-card py-16 text-fg lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-4xl ">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-ondark-line text-leaf-300 text-sm font-medium mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-track text-emerald text-sm font-medium mb-6">
                 <Plug className="w-4 h-4" />
                 Intégrations & API
               </span>
-              <h1 className="text-display-lg text-ondark mb-6">
+              <h1 className="text-display-lg text-fg mb-6">
                 Un écosystème ouvert,{" "}
-                <span className="text-leaf-300">connecté à votre SI</span>
+                <span className="text-emerald">connecté à votre SI</span>
               </h1>
-              <p className="text-xl text-ondark-muted mb-8 max-w-2xl">
+              <p className="text-xl text-fg-muted mb-8 max-w-2xl">
                 Connecteurs natifs, API REST documentée et authentification
                 enterprise-grade. GreenTechCycle s&apos;intègre sans friction à votre
                 environnement existant.
@@ -145,14 +145,14 @@ export default function EcosystemPage({
               <div className="flex flex-col sm:flex-row gap-4 ">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-leaf hover:bg-leaf/90 text-ondark font-semibold rounded-xl transition-colors duration-150"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-emerald hover:bg-emerald/90 text-bg font-semibold rounded-xl transition-colors duration-150"
                 >
                   Demander une démo
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <a
                   href="#api"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-ondark font-semibold rounded-xl transition-colors duration-150 border border-white/20"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-fg font-semibold rounded-xl transition-colors duration-150 border border-white/20"
                 >
                   <Code2 className="w-5 h-5" />
                   Explorer l&apos;API
@@ -164,14 +164,14 @@ export default function EcosystemPage({
       </section>
 
       {/* Native Integrations */}
-      <section className="bg-cream py-16 lg:py-24">
+      <section className="bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="text-center mb-16">
-              <h2 className="text-display-md text-ink mb-4">
+              <h2 className="text-display-md text-fg mb-4">
                 Intégrations natives
               </h2>
-              <p className="text-lg text-ink-700 max-w-2xl mx-auto">
+              <p className="text-lg text-fg-strong max-w-2xl mx-auto">
                 Connectez GreenTechCycle à vos outils en quelques clics.
                 Configuration guidée, synchronisation temps réel.
               </p>
@@ -181,21 +181,21 @@ export default function EcosystemPage({
           <div className="reveal-stagger grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {integrations.map((integration) => (
               <div key={integration.name} className="reveal">
-                <div className="group bg-white rounded-2xl p-8 hover:shadow-card transition-colors duration-150 border border-line hover:border-leaf/30 h-full">
-                  <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform duration-150 bg-leaf/10">
-                    <integration.icon className="w-7 h-7 text-leaf" />
+                <div className="group bg-bg-card rounded-2xl p-8 hover:border-track-strong transition-colors duration-150 border border-track hover:border-emerald/30 h-full">
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform duration-150 bg-emerald/10">
+                    <integration.icon className="w-7 h-7 text-emerald" />
                   </div>
-                  <h3 className="text-heading-lg text-ink mb-3">
+                  <h3 className="text-heading-lg text-fg mb-3">
                     {integration.name}
                   </h3>
-                  <p className="text-ink-700 mb-5 leading-relaxed">
+                  <p className="text-fg-strong mb-5 leading-relaxed">
                     {integration.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {integration.features.map((feature) => (
                       <span
                         key={feature}
-                        className="px-3 py-1 bg-leaf-50 text-leaf text-xs font-medium rounded-full border border-leaf/10"
+                        className="px-3 py-1 bg-white/[0.03] text-emerald text-xs font-medium rounded-full border border-emerald/10"
                       >
                         {feature}
                       </span>
@@ -209,19 +209,19 @@ export default function EcosystemPage({
       </section>
 
       {/* Open API Section */}
-      <section id="api" className="bg-white py-16 lg:py-24">
+      <section id="api" className="bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
             <div className="reveal">
               <div>
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-leaf text-sm font-medium mb-4">
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-dim text-emerald text-sm font-medium mb-4">
                   <Webhook className="w-4 h-4" />
                   API ouverte
                 </span>
-                <h2 className="text-display-md text-ink mb-6">
+                <h2 className="text-display-md text-fg mb-6">
                   Une API pensée pour les développeurs
                 </h2>
-                <p className="text-lg text-ink-700 mb-8">
+                <p className="text-lg text-fg-strong mb-8">
                   Automatisez vos processus ITAD avec notre API REST complète.
                   Documentation interactive, SDKs multi-langages et
                   environnement de test dédié.
@@ -230,10 +230,10 @@ export default function EcosystemPage({
                   {apiFeatures.map((feature) => (
                     <div key={feature} className="reveal">
                       <div className="flex items-start gap-3">
-                        <div className="w-5 h-5 rounded-full bg-leaf-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <div className="w-2 h-2 rounded-full bg-leaf" />
+                        <div className="w-5 h-5 rounded-full bg-emerald-dim flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <div className="w-2 h-2 rounded-full bg-emerald" />
                         </div>
-                        <span className="text-ink-700">{feature}</span>
+                        <span className="text-fg-strong">{feature}</span>
                       </div>
                     </div>
                   ))}
@@ -243,17 +243,17 @@ export default function EcosystemPage({
 
             <div className="reveal-scale">
               <div className="relative">
-                <div className="absolute -inset-4 rounded-2xl blur-xl bg-leaf/5" />
-                <div className="relative bg-forest-900 rounded-2xl p-6 overflow-hidden">
+                <div className="absolute -inset-4 rounded-2xl blur-xl bg-emerald/5" />
+                <div className="relative bg-bg-card rounded-2xl p-6 overflow-hidden">
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-ochre" />
-                    <div className="w-3 h-3 rounded-full bg-ochre" />
-                    <div className="w-3 h-3 rounded-full bg-leaf" />
-                    <span className="ml-3 text-muted text-sm font-mono">
+                    <div className="w-3 h-3 rounded-full bg-amber" />
+                    <div className="w-3 h-3 rounded-full bg-amber" />
+                    <div className="w-3 h-3 rounded-full bg-emerald" />
+                    <span className="ml-3 text-fg-muted text-sm font-mono">
                       api-example.ts
                     </span>
                   </div>
-                  <pre className="text-sm text-ondark-muted overflow-x-auto font-mono leading-relaxed">
+                  <pre className="text-sm text-fg-muted overflow-x-auto font-mono leading-relaxed">
                     <code>{codeSnippet}</code>
                   </pre>
                 </div>
@@ -264,14 +264,14 @@ export default function EcosystemPage({
       </section>
 
       {/* SSO / Auth Section */}
-      <section className="bg-cream py-16 lg:py-24">
+      <section className="bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="text-center mb-16">
-              <h2 className="text-display-md text-ink mb-4">
+              <h2 className="text-display-md text-fg mb-4">
                 Sécurité & Authentification
               </h2>
-              <p className="text-lg text-ink-700 max-w-2xl mx-auto">
+              <p className="text-lg text-fg-strong max-w-2xl mx-auto">
                 Authentification enterprise-grade avec SSO, MFA et
                 provisionnement automatique. Conforme aux exigences les plus
                 strictes.
@@ -282,14 +282,14 @@ export default function EcosystemPage({
           <div className="reveal-stagger grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {authFeatures.map((feature) => (
               <div key={feature.title} className="reveal">
-                <div className="bg-white rounded-2xl p-8 border border-line hover:shadow-card transition-shadow duration-150">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-forest/10">
-                    <feature.icon className="w-6 h-6 text-forest" />
+                <div className="bg-bg-card rounded-2xl p-8 border border-track hover:border-track-strong transition-shadow duration-150">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-bg/10">
+                    <feature.icon className="w-6 h-6 text-emerald" />
                   </div>
-                  <h3 className="text-heading-md text-ink mb-2">
+                  <h3 className="text-heading-md text-fg mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-ink-700 leading-relaxed">
+                  <p className="text-fg-strong leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -300,30 +300,30 @@ export default function EcosystemPage({
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden bg-forest py-16 lg:py-24">
+      <section className="relative overflow-hidden bg-bg-card py-16 lg:py-24">
         <div className="absolute inset-0 opacity-10">
         </div>
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-display-md text-white mb-6">
+              <h2 className="text-display-md text-fg mb-6">
                 Prêt à connecter votre SI ?
               </h2>
-              <p className="text-xl text-ondark-muted mb-8">
+              <p className="text-xl text-fg-muted mb-8">
                 Notre équipe technique vous accompagne dans l&apos;intégration.
                 Planifiez une session de découverte de 30 minutes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-leaf hover:bg-leaf/90 text-white font-semibold rounded-xl transition-colors duration-150"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-emerald hover:bg-emerald/90 text-bg font-semibold rounded-xl transition-colors duration-150"
                 >
                   Planifier un appel
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
                   href="/services"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-colors duration-150 border border-white/20"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-fg font-semibold rounded-xl transition-colors duration-150 border border-white/20"
                 >
                   Voir les solutions
                 </Link>

@@ -68,9 +68,9 @@ type Status = "active" | "upcoming" | "update";
 
 function StatusBadge({ status, tx }: { status: Status; tx: ReturnType<typeof useTx> }) {
   const labels = {
-    active: { label: tx("En vigueur", "In force"), cls: "bg-leaf-100 text-leaf border-leaf/30" },
-    upcoming: { label: tx("À venir 2026", "Upcoming 2026"), cls: "bg-ochre-100 text-ochre-800 border-ochre-100" },
-    update: { label: tx("Mise à jour 2025", "Updated 2025"), cls: "bg-leaf-100 text-forest border-line" },
+    active: { label: tx("En vigueur", "In force"), cls: "bg-emerald-dim text-emerald border-emerald/30" },
+    upcoming: { label: tx("À venir 2026", "Upcoming 2026"), cls: "bg-amber-dim text-amber border-amber/40" },
+    update: { label: tx("Mise à jour 2025", "Updated 2025"), cls: "bg-emerald-dim text-emerald border-track" },
   };
   const s = labels[status];
   return (
@@ -116,24 +116,24 @@ function SectorSection({
 }) {
   const Icon = sector.icon;
   return (
-    <div className="rounded-2xl border border-line bg-white overflow-hidden hover:shadow-card transition-shadow">
+    <div className="rounded-2xl border border-track bg-bg-card overflow-hidden hover:border-track-strong transition-shadow">
       <button
         onClick={toggle}
-        className="w-full flex items-center gap-4 p-6 md:p-8 text-left hover:bg-cream/50 transition"
+        className="w-full flex items-center gap-4 p-6 md:p-8 text-left hover:bg-white/[0.03] transition"
       >
         <Pictogram icon={Icon as LucideIcon} size="lg" />
         <div className="flex-1 min-w-0">
-          <h3 className="text-heading-lg text-ink">{sector.title}</h3>
-          <p className="text-sm text-muted mt-1">{sector.description}</p>
+          <h3 className="text-heading-lg text-fg">{sector.title}</h3>
+          <p className="text-sm text-fg-muted mt-1">{sector.description}</p>
         </div>
         <div className="flex items-center gap-3 flex-shrink-0">
-          <span className="hidden h-7 items-center rounded-full bg-sand px-3 text-caption font-semibold text-ink-700 sm:inline-flex">
+          <span className="hidden h-7 items-center rounded-full bg-bg-card px-3 text-caption font-semibold text-fg-strong sm:inline-flex">
             {sector.items.length} {tx("réglementations", "regulations")}
           </span>
           {isOpen ? (
-            <ChevronDown className="w-5 h-5 text-muted" />
+            <ChevronDown className="w-5 h-5 text-fg-muted" />
           ) : (
-            <ChevronRight className="w-5 h-5 text-muted" />
+            <ChevronRight className="w-5 h-5 text-fg-muted" />
           )}
         </div>
       </button>
@@ -144,20 +144,20 @@ function SectorSection({
             {sector.items.map((reg) => (
               <article
                 key={reg.name}
-                className="group h-full bg-white rounded-2xl border border-line hover:border-line hover:shadow-card transition-colors overflow-hidden"
+                className="group h-full bg-bg-card rounded-2xl border border-track hover:border-track hover:border-track-strong transition-colors overflow-hidden"
               >
                 <div className="p-6">
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <h4 className="text-lg font-semibold text-ink">{reg.name}</h4>
+                        <h4 className="text-lg font-semibold text-fg">{reg.name}</h4>
                         <StatusBadge status={reg.status} tx={tx} />
                       </div>
-                      <p className="text-sm text-muted">{reg.fullName}</p>
+                      <p className="text-sm text-fg-muted">{reg.fullName}</p>
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-3 text-xs text-muted mb-4">
+                  <div className="flex flex-wrap gap-3 text-xs text-fg-muted mb-4">
                     <span className="inline-flex items-center gap-1">
                       <Globe className="w-3.5 h-3.5" />
                       {reg.jurisdiction}
@@ -168,30 +168,30 @@ function SectorSection({
                     </span>
                   </div>
 
-                  <p className="text-sm text-ink-700 leading-relaxed mb-4">{reg.description}</p>
+                  <p className="text-sm text-fg-strong leading-relaxed mb-4">{reg.description}</p>
 
                   {/* Prerequisites */}
-                  <div className="rounded-xl bg-cream border border-line p-3 mb-4">
-                    <p className="uppercase text-muted mb-1 text-eyebrow">
+                  <div className="rounded-xl bg-bg-card border border-track p-3 mb-4">
+                    <p className="uppercase text-fg-muted mb-1 text-eyebrow">
                       {tx("Pré-requis techniques", "Technical prerequisites")}
                     </p>
-                    <p className="text-sm text-ink-700 leading-relaxed">{reg.prerequisites}</p>
+                    <p className="text-sm text-fg-strong leading-relaxed">{reg.prerequisites}</p>
                   </div>
 
                   {/* Key figure */}
-                  <div className="rounded-xl border border-line bg-paper p-4 mb-4">
-                    <p className="uppercase text-eyebrow text-muted mb-1">
+                  <div className="rounded-xl border border-track bg-bg p-4 mb-4">
+                    <p className="uppercase text-eyebrow text-fg-muted mb-1">
                       {tx("Impact chiffré", "Quantified impact")}
                     </p>
-                    <p className="text-heading-lg text-forest">{reg.keyFigure}</p>
-                    <p className="text-xs text-muted mt-0.5">{reg.subFigure}</p>
+                    <p className="text-heading-lg text-emerald">{reg.keyFigure}</p>
+                    <p className="text-xs text-fg-muted mt-0.5">{reg.subFigure}</p>
                   </div>
 
                   {/* GTC help */}
-                  <div className="flex items-start gap-2 bg-leaf-50 rounded-xl p-3 border border-leaf/10">
-                    <CheckCircle2 className="w-4 h-4 text-leaf flex-shrink-0 mt-0.5" />
-                    <p className="text-xs text-ink-700 leading-relaxed">
-                      <span className="font-semibold text-ink">{tx("Comment GTC aide", "How GTC helps")} :</span>{" "}
+                  <div className="flex items-start gap-2 bg-white/[0.03] rounded-xl p-3 border border-emerald/10">
+                    <CheckCircle2 className="w-4 h-4 text-emerald flex-shrink-0 mt-0.5" />
+                    <p className="text-xs text-fg-strong leading-relaxed">
+                      <span className="font-semibold text-fg">{tx("Comment GTC aide", "How GTC helps")} :</span>{" "}
                       {reg.gtcHelp}
                     </p>
                   </div>
@@ -214,9 +214,9 @@ export default function RegulationPage() {
       id: "finance",
       icon: Landmark,
       color: "from-forest to-forest",
-      bgColor: "bg-leaf-50",
-      borderColor: "border-line",
-      textColor: "text-forest",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
+      textColor: "text-emerald",
       title: tx("Finance & Banque", "Finance & Banking"),
       description: tx(
         "PCI-DSS, DORA, Bâle III/IV, MiFID II, les obligations les plus strictes en matière de données de paiement et résilience opérationnelle.",
@@ -313,9 +313,9 @@ export default function RegulationPage() {
       id: "sante",
       icon: Heart,
       color: "from-forest to-ochre",
-      bgColor: "bg-leaf-50",
-      borderColor: "border-line",
-      textColor: "text-forest",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
+      textColor: "text-emerald",
       title: tx("Santé", "Healthcare"),
       description: tx(
         "HIPAA, HDS, MDR, HAS 2024, protection des données de santé, obligations de chiffrement et destruction des PHI.",
@@ -412,9 +412,9 @@ export default function RegulationPage() {
       id: "industrie",
       icon: Factory,
       color: "from-ochre to-ochre",
-      bgColor: "bg-ochre-100",
-      borderColor: "border-ochre-100",
-      textColor: "text-ochre-800",
+      bgColor: "bg-amber-dim",
+      borderColor: "border-amber/40",
+      textColor: "text-amber",
       title: tx("Industrie & OT", "Industry & OT"),
       description: tx(
         "NIS2, IEC 62443, Directive Machines, cybersécurité industrielle, systèmes OT/SCADA et convergence IT/OT.",
@@ -490,9 +490,9 @@ export default function RegulationPage() {
       id: "public",
       icon: Building2,
       color: "from-forest to-forest",
-      bgColor: "bg-leaf-50",
-      borderColor: "border-line",
-      textColor: "text-forest",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
+      textColor: "text-emerald",
       title: tx("Secteur Public & Défense", "Public Sector & Defense"),
       description: tx(
         "ANSSI SecNumCloud, RGS, eIDAS 2.0, IGI 1300, souveraineté numérique et classification défense.",
@@ -568,9 +568,9 @@ export default function RegulationPage() {
       id: "energie",
       icon: Zap,
       color: "from-ochre to-ochre",
-      bgColor: "bg-ochre-100",
-      borderColor: "border-ochre-100",
-      textColor: "text-ochre-800",
+      bgColor: "bg-amber-dim",
+      borderColor: "border-amber/40",
+      textColor: "text-amber",
       title: tx("Énergie & Télécoms", "Energy & Telecoms"),
       description: tx(
         "Code de l'énergie, ARCEP, NIS2 sectoriel, obligations des opérateurs d'énergie et télécoms.",
@@ -625,9 +625,9 @@ export default function RegulationPage() {
       id: "retail",
       icon: ShoppingBag,
       color: "from-forest to-forest",
-      bgColor: "bg-leaf-50",
-      borderColor: "border-line",
-      textColor: "text-forest",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
+      textColor: "text-emerald",
       title: tx("Retail & E-commerce", "Retail & E-commerce"),
       description: tx(
         "PCI-DSS, Loi Hamon, DMA, protection des données de paiement et des consommateurs numériques.",
@@ -689,9 +689,9 @@ export default function RegulationPage() {
       inForce: "2018",
       status: "active" as Status,
       icon: Shield,
-      color: "text-forest",
-      bgColor: "bg-leaf-50",
-      borderColor: "border-line",
+      color: "text-emerald",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
       description: tx(
         "Art. 17 : droit à l'effacement. Art. 33 : notification de violation sous 72h. Art. 83 : amendes jusqu'à 4% du CA mondial ou 20M€. Le RGPD impose une obligation de résultat sur la destruction des données personnelles en fin de vie des équipements.",
         "Art. 17: right to erasure. Art. 33: breach notification within 72h. Art. 83: fines up to 4% of global revenue or €20M. GDPR imposes an obligation of result on personal data destruction at equipment end-of-life."
@@ -710,9 +710,9 @@ export default function RegulationPage() {
       inForce: tx("Octobre 2024", "October 2024"),
       status: "active" as Status,
       icon: Lock,
-      color: "text-forest",
-      bgColor: "bg-leaf-50",
-      borderColor: "border-line",
+      color: "text-emerald",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
       description: tx(
         "La directive la plus structurante de la décennie. 160 000 entreprises européennes concernées dans 18 secteurs. Notification d'incident sous 24h, gestion des risques cyber supply chain, registre d'actifs obligatoire. La gestion de la fin de vie IT est explicitement dans le périmètre.",
         "The most structuring directive of the decade. 160,000 European companies in 18 sectors. 24h incident notification, cyber supply chain risk management, mandatory asset register. IT end-of-life management is explicitly in scope."
@@ -731,9 +731,9 @@ export default function RegulationPage() {
       inForce: tx("2024 → 2026 (déploiement progressif)", "2024 → 2026 (phased deployment)"),
       status: "active" as Status,
       icon: Leaf,
-      color: "text-leaf",
-      bgColor: "bg-leaf-50",
-      borderColor: "border-leaf-200",
+      color: "text-emerald",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-emerald-line",
       description: tx(
         "Comptes-rendus extra-financiers obligatoires avec double matérialité. ESRS E1 (climat), E5 (économie circulaire), S1 (main d'œuvre). L'ITAD contribue directement aux indicateurs E5 (taux de réemploi, tonnages recyclés) et E1 (CO₂ évité). Tiers-attestation obligatoire.",
         "Mandatory non-financial reporting with double materiality. ESRS E1 (climate), E5 (circular economy), S1 (workforce). ITAD directly contributes to E5 indicators (reuse rate, recycled tonnage) and E1 (avoided CO₂). Third-party attestation required."
@@ -752,9 +752,9 @@ export default function RegulationPage() {
       inForce: tx("Août 2024 · phases 2025-2027", "August 2024 · phases 2025-2027"),
       status: "upcoming" as Status,
       icon: Brain,
-      color: "text-forest",
-      bgColor: "bg-leaf-50",
-      borderColor: "border-line",
+      color: "text-emerald",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
       description: tx(
         "Premier cadre juridique mondial sur l'IA. Classification par niveaux de risque. Registre des systèmes IA à haut risque. Implications ITAD : les serveurs contenant des modèles IA (GPU H100, TPU v5), datasets d'entraînement et poids de modèles nécessitent une traçabilité et une destruction spécifiques.",
         "First global legal framework on AI. Risk-level classification. High-risk AI system register. ITAD implications: servers containing AI models (GPU H100, TPU v5), training datasets and model weights require specific traceability and destruction."
@@ -773,9 +773,9 @@ export default function RegulationPage() {
       inForce: tx("Rév. 2022", "Rev. 2022"),
       status: "update" as Status,
       icon: ShieldCheck,
-      color: "text-forest",
-      bgColor: "bg-leaf-50",
-      borderColor: "border-line",
+      color: "text-emerald",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
       description: tx(
         "Le standard SMSI de référence mondiale. 70 000+ certifications. Contrôle A.8.10 (effacement d'information), A.7.14 (sortie sécurisée des équipements). Audit de surveillance annuel. Prérequis pour de nombreuses certifications sectorielles (HDS, SecNumCloud).",
         "The global ISMS reference standard. 70,000+ certifications. Control A.8.10 (information deletion), A.7.14 (secure equipment disposal). Annual surveillance audit. Prerequisite for many sectoral certifications (HDS, SecNumCloud)."
@@ -794,9 +794,9 @@ export default function RegulationPage() {
       inForce: tx("Rév. 2015", "Rev. 2015"),
       status: "active" as Status,
       icon: Recycle,
-      color: "text-leaf",
-      bgColor: "bg-leaf-50",
-      borderColor: "border-leaf-200",
+      color: "text-emerald",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-emerald-line",
       description: tx(
         "350 000+ certifications mondiales. Management environnemental et amélioration continue. Intégration du bilan carbone ITAD dans la démarche ISO 14001 : taux de valorisation, tonnages DEEE, CO₂ évité par le reconditionnement.",
         "350,000+ worldwide certifications. Environmental management and continuous improvement. ITAD carbon assessment integration into ISO 14001: recovery rate, WEEE tonnage, CO₂ avoided through refurbishment."
@@ -1026,14 +1026,14 @@ export default function RegulationPage() {
   return (
     <div>
       {/* ═══════════════ HERO (paper) ═══════════════ */}
-      <section className="bg-paper py-16 lg:py-24" aria-labelledby="reg-hero-title">
+      <section className="bg-bg py-16 lg:py-24" aria-labelledby="reg-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
-            <p className="text-eyebrow uppercase text-muted">{tx("Expertise IT · Métier · Réglementaire", "Expertise IT · Business · Regulatory")}</p>
-            <h1 id="reg-hero-title" className="mt-3 max-w-[20ch] text-display-lg text-ink">
+            <p className="text-eyebrow uppercase text-fg-muted">{tx("Expertise IT · Métier · Réglementaire", "Expertise IT · Business · Regulatory")}</p>
+            <h1 id="reg-hero-title" className="mt-3 max-w-[20ch] text-display-lg text-fg">
               {tx("La conformité n'est pas une option.", "Compliance is not an option.")}
             </h1>
-            <p className="mt-6 max-w-[65ch] text-body-lg text-ink-700">
+            <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">
               {tx(
                 "GreenTechCycle maîtrise l'intersection entre IT, métier et réglementation. Une plateforme unique pour naviguer la complexité ITAD et transformer la conformité en avantage concurrentiel.",
                 "GreenTechCycle masters the intersection of IT, business and regulation. One platform to navigate ITAD complexity and turn compliance into competitive advantage."
@@ -1044,7 +1044,7 @@ export default function RegulationPage() {
               <ButtonLink href="#sectors" variant="secondary" size="lg">{tx("Explorer par secteur", "Explore by sector")}</ButtonLink>
             </div>
           </div>
-          <div className="mt-12 border-t border-line pt-8">
+          <div className="mt-12 border-t border-track pt-8">
             <StatRow>
               {[
                 <Stat key="a" accent value={<CountUp end={30} suffix="+" />} label={tx("Réglementations maîtrisées", "Regulations mastered")} />,
@@ -1054,11 +1054,11 @@ export default function RegulationPage() {
               ]}
             </StatRow>
           </div>
-          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-line pt-6 text-caption text-ink-700">
-            <span className="text-eyebrow uppercase text-muted">{tx("Réglementations couvertes", "Regulations covered")}</span>
+          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-track pt-6 text-caption text-fg-strong">
+            <span className="text-eyebrow uppercase text-fg-muted">{tx("Réglementations couvertes", "Regulations covered")}</span>
             {["RGPD", "NIS2", "CSRD", "DORA", "ISO 27001", "HDS", "PCI-DSS", "AI Act", "DEEE"].map((label) => (
               <span key={label} className="inline-flex items-center gap-2">
-                <ShieldCheck className="h-3.5 w-3.5 text-forest" strokeWidth={1.75} aria-hidden="true" />
+                <ShieldCheck className="h-3.5 w-3.5 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                 {label}
               </span>
             ))}
@@ -1081,18 +1081,18 @@ export default function RegulationPage() {
       />
 
       {/* ═══════════════ TRANSVERSAL REGULATIONS ═══════════════ */}
-      <section id="transversal" className="relative overflow-hidden bg-paper py-16 lg:py-24">
+      <section id="transversal" className="relative overflow-hidden bg-bg py-16 lg:py-24">
 
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative">
           <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
-              <span className="mb-3 block text-eyebrow uppercase text-muted">{tx("Socle commun", "Common foundation")}
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Socle commun", "Common foundation")}
               </span>
-              <h2 className="text-display-md text-ink mb-5">
+              <h2 className="text-display-md text-fg mb-5">
                 {tx("Réglementations ", "Cross-sector ")}
                 {tx("transversales", "regulations")}
               </h2>
-              <p className="mt-4 max-w-[65ch] text-body-lg text-ink-700">
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
                   "Ces réglementations s'appliquent à toutes les entreprises, quel que soit le secteur. Elles forment le socle de conformité minimum que chaque DSI doit maîtriser.",
                   "These regulations apply to all companies regardless of sector. They form the minimum compliance foundation every CIO must master."
@@ -1106,7 +1106,7 @@ export default function RegulationPage() {
               const Icon = reg.icon;
               return (
                 <div key={reg.name} className="reveal">
-                  <article className="group relative h-full bg-white rounded-2xl border border-line/80 hover:border-leaf/30 hover:shadow-card hover: transition-colors duration-150 overflow-hidden">
+                  <article className="group relative h-full bg-bg-card rounded-2xl border border-track hover:border-emerald/30 hover:border-track-strong hover: transition-colors duration-150 overflow-hidden">
                     {/* Decorative corner glow */}
 
                     <div className="relative p-7">
@@ -1115,10 +1115,10 @@ export default function RegulationPage() {
                         <StatusBadge status={reg.status} tx={tx} />
                       </div>
 
-                      <h3 className="text-heading-lg text-ink mb-1">{reg.name}</h3>
-                      <p className="text-xs text-muted mb-4 font-medium">{reg.fullName}</p>
+                      <h3 className="text-heading-lg text-fg mb-1">{reg.name}</h3>
+                      <p className="text-xs text-fg-muted mb-4 font-medium">{reg.fullName}</p>
 
-                      <div className="flex flex-wrap gap-3 text-caption text-muted mb-5 pb-5 border-b border-line">
+                      <div className="flex flex-wrap gap-3 text-caption text-fg-muted mb-5 pb-5 border-b border-track">
                         <span className="inline-flex items-center gap-1">
                           <Globe className="w-3 h-3" /> {reg.jurisdiction}
                         </span>
@@ -1127,21 +1127,21 @@ export default function RegulationPage() {
                         </span>
                       </div>
 
-                      <p className="text-sm text-ink-700 leading-relaxed mb-5 line-clamp-5">{reg.description}</p>
+                      <p className="text-sm text-fg-strong leading-relaxed mb-5 line-clamp-5">{reg.description}</p>
 
-                      <div className="rounded-xl border border-line bg-cream p-4 mb-4">
-                        <p className="uppercase text-eyebrow text-muted mb-1 flex items-center gap-1.5">
+                      <div className="rounded-xl border border-track bg-bg-card p-4 mb-4">
+                        <p className="uppercase text-eyebrow text-fg-muted mb-1 flex items-center gap-1.5">
                           <TrendingUp className="w-3 h-3" />
                           {tx("Impact chiffré", "Quantified impact")}
                         </p>
-                        <p className="text-heading-lg text-forest">{reg.keyFigure}</p>
-                        <p className="text-caption text-muted mt-1">{reg.subFigure}</p>
+                        <p className="text-heading-lg text-emerald">{reg.keyFigure}</p>
+                        <p className="text-caption text-fg-muted mt-1">{reg.subFigure}</p>
                       </div>
 
-                      <div className="flex items-start gap-2.5 rounded-xl p-4 border border-line bg-leaf-50">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
-                        <p className="text-xs text-ink-700 leading-relaxed">
-                          <span className="font-semibold text-ink">{tx("Comment GTC aide", "How GTC helps")} :</span> {reg.gtcHelp}
+                      <div className="flex items-start gap-2.5 rounded-xl p-4 border border-track bg-white/[0.03]">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
+                        <p className="text-xs text-fg-strong leading-relaxed">
+                          <span className="font-semibold text-fg">{tx("Comment GTC aide", "How GTC helps")} :</span> {reg.gtcHelp}
                         </p>
                       </div>
                     </div>
@@ -1154,17 +1154,17 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ REGULATIONS BY SECTOR ═══════════════ */}
-      <section id="sectors" className="bg-cream py-16 lg:py-24">
+      <section id="sectors" className="bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
-              <span className="mb-3 block text-eyebrow uppercase text-muted">{tx("Par secteur d'activité", "By industry sector")}
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Par secteur d'activité", "By industry sector")}
               </span>
-              <h2 className="text-display-md text-ink mb-5">
+              <h2 className="text-display-md text-fg mb-5">
                 {tx("Cadre réglementaire ", "Regulatory framework ")}
                 {tx("par secteur", "by sector")}
               </h2>
-              <p className="mt-4 max-w-[65ch] text-body-lg text-ink-700">
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
                   "Le DSI cherche ce qui s'applique à SON secteur. Cliquez sur votre domaine pour voir les réglementations qui vous concernent, avec pré-requis techniques et impact business.",
                   "The CIO looks for what applies to THEIR sector. Click your domain to see the regulations that concern you, with technical prerequisites and business impact."
@@ -1189,19 +1189,19 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ TIMELINE 2024→2028 ═══════════════ */}
-      <section id="calendrier" className="relative bg-forest-900 overflow-hidden py-16 lg:py-24">
+      <section id="calendrier" className="relative bg-bg-card overflow-hidden py-16 lg:py-24">
         {/* Decorative backgrounds */}
 
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
-              <span className="mb-3 block text-eyebrow uppercase text-ondark-muted">{tx("Agenda réglementaire 2024 · 2028", "Regulatory agenda 2024 · 2028")}
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Agenda réglementaire 2024 · 2028", "Regulatory agenda 2024 · 2028")}
               </span>
-              <h2 className="text-display-md text-ondark mb-5">
+              <h2 className="text-display-md text-fg mb-5">
                 {tx("Chaque jalon,", "Every milestone,")}
  {tx("un impact business concret", "concrete business impact")}
               </h2>
-              <p className="mt-4 max-w-[65ch] text-body-lg text-ondark-muted">
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-muted">
                 {tx(
                   "Pas juste des dates, ce qui change pour le DSI/RSSI, l'impact financier, et ce que GTC recommande de faire maintenant.",
                   "Not just dates, what changes for the CIO/CISO, the financial impact, and what GTC recommends doing now."
@@ -1212,7 +1212,7 @@ export default function RegulationPage() {
 
           <div className="relative max-w-4xl mx-auto">
             {/* Vertical line */}
-            <div className="absolute left-[27px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-px bg-ondark-line" />
+            <div className="absolute left-[27px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-px bg-track" />
 
             <div className="space-y-8 md:space-y-12">
               {timeline.map((t, i) => {
@@ -1222,8 +1222,8 @@ export default function RegulationPage() {
                     <div className={`relative flex items-start gap-4 md:gap-8 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}>
                       {/* Timeline node */}
                       <div className="relative z-10 flex-shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2">
-                        <div className="w-14 h-14 rounded-2xl bg-forest-900 border border-ondark-line flex items-center justify-center">
-                          <span className="text-ondark-muted uppercase text-center leading-tight px-1 text-eyebrow">
+                        <div className="w-14 h-14 rounded-2xl bg-bg-card border border-track flex items-center justify-center">
+                          <span className="text-fg-muted uppercase text-center leading-tight px-1 text-eyebrow">
                             {t.date}
                           </span>
                         </div>
@@ -1234,21 +1234,21 @@ export default function RegulationPage() {
 
                       {/* Card */}
                       <div className={`flex-1 md:w-1/2 ${isLeft ? "md:pr-12" : "md:pl-12"}`}>
-                        <div className="group border border-ondark-line rounded-2xl p-6 hover:border-white/30 transition-colors duration-150 bg-paper/[0.08]">
+                        <div className="group border border-track rounded-2xl p-6 hover:border-white/30 transition-colors duration-150 bg-white/[0.03]">
                           <div className="flex items-center gap-2 mb-3">
-                            <span className="inline-flex md:hidden items-center uppercase text-ondark-muted text-eyebrow">
+                            <span className="inline-flex md:hidden items-center uppercase text-fg-muted text-eyebrow">
                               {t.date}
                             </span>
-                            <span className="md:ml-0 inline-flex items-center gap-1 uppercase text-ondark-muted text-eyebrow">
+                            <span className="md:ml-0 inline-flex items-center gap-1 uppercase text-fg-muted text-eyebrow">
                               
                               {tx("Jalon clé", "Key milestone")}
                             </span>
                           </div>
-                          <h3 className="text-heading-lg text-white mb-2">{t.title}</h3>
-                          <p className="text-sm text-ondark-muted leading-relaxed mb-4">{t.impact}</p>
-                          <div className="flex items-start gap-2 rounded-xl px-3 py-2.5 border border-ondark-line bg-white/5">
-                            <AlertTriangle className="w-4 h-4 text-ochre-300 flex-shrink-0 mt-0.5" />
-                            <p className="text-xs text-ochre-300 font-medium leading-relaxed">
+                          <h3 className="text-heading-lg text-fg mb-2">{t.title}</h3>
+                          <p className="text-sm text-fg-muted leading-relaxed mb-4">{t.impact}</p>
+                          <div className="flex items-start gap-2 rounded-xl px-3 py-2.5 border border-track bg-white/5">
+                            <AlertTriangle className="w-4 h-4 text-amber flex-shrink-0 mt-0.5" />
+                            <p className="text-xs text-amber font-medium leading-relaxed">
                               {t.business}
                             </p>
                           </div>
@@ -1264,17 +1264,17 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ ENJEUX & CRISES ACTUELLES ═══════════════ */}
-      <section id="enjeux" className="bg-paper py-16 lg:py-24">
+      <section id="enjeux" className="bg-bg py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
-              <span className="mb-3 block text-eyebrow uppercase text-muted">{tx("Contexte géopolitique & technologique", "Geopolitical & technological context")}
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Contexte géopolitique & technologique", "Geopolitical & technological context")}
               </span>
-              <h2 className="text-display-md text-ink mb-5">
+              <h2 className="text-display-md text-fg mb-5">
                 {tx("Enjeux & crises qui ", "Issues & crises ")}
                 {tx("redéfinissent l'ITAD", "redefining ITAD")}
               </h2>
-              <p className="mt-4 max-w-[65ch] text-body-lg text-ink-700">
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
                   "Au-delà de la réglementation, des forces géopolitiques, énergétiques et technologiques redessinent les priorités de la gestion des actifs IT.",
                   "Beyond regulation, geopolitical, energy and technological forces are reshaping IT asset management priorities."
@@ -1288,19 +1288,19 @@ export default function RegulationPage() {
               const SectionIcon = section.icon;
               return (
                 <div key={section.id} className="reveal">
-                  <div className="group relative h-full rounded-2xl border border-line overflow-hidden hover:shadow-card hover:border-line transition-colors duration-150 bg-paper">
+                  <div className="group relative h-full rounded-2xl border border-track overflow-hidden hover:border-track-strong hover:border-track transition-colors duration-150 bg-bg">
                     {/* Gradient top bar */}
 
                     <div className="p-7 md:p-8">
                       <div className="flex items-center gap-4 mb-6">
                         <Pictogram icon={SectionIcon as LucideIcon} size="lg" />
-                        <h3 className="text-heading-lg text-ink">{section.title}</h3>
+                        <h3 className="text-heading-lg text-fg">{section.title}</h3>
                       </div>
                       <div className="space-y-4">
                         {section.items.map((item, j) => (
-                          <div key={j} className="relative pl-5 border-l-2 border-line hover:border-leaf transition-colors">
-                            <h4 className="font-semibold text-ink mb-1.5 text-sm tracking-tight">{item.title}</h4>
-                            <p className="text-sm text-ink-700 leading-relaxed">{item.text}</p>
+                          <div key={j} className="relative pl-5 border-l-2 border-track hover:border-emerald transition-colors">
+                            <h4 className="font-semibold text-fg mb-1.5 text-sm tracking-tight">{item.title}</h4>
+                            <p className="text-sm text-fg-strong leading-relaxed">{item.text}</p>
                           </div>
                         ))}
                       </div>
@@ -1314,19 +1314,19 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ PROPOSITION DE VALEUR GTC ═══════════════ */}
-      <section id="reponse-gtc" className="relative overflow-hidden bg-cream py-16 lg:py-24">
+      <section id="reponse-gtc" className="relative overflow-hidden bg-bg-card py-16 lg:py-24">
 
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative">
           <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
-              <span className="mb-3 block text-eyebrow uppercase text-muted">{tx("Notre réponse", "Our answer")}
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Notre réponse", "Our answer")}
               </span>
-              <h2 className="text-display-md text-ink mb-5">
+              <h2 className="text-display-md text-fg mb-5">
                 {tx("Comment ", "How ")}
                 GreenTechCycle
                 {tx(" vous aide", " helps you")}
               </h2>
-              <p className="mt-4 max-w-[65ch] text-body-lg text-ink-700">
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
                   "GreenTechCycle a été conçu pour répondre à chacun de ces défis avec une plateforme unifiée, certifiée et auditable.",
                   "GreenTechCycle was designed to address each of these challenges with a unified, certified and auditable platform."
@@ -1340,11 +1340,11 @@ export default function RegulationPage() {
               const VPIcon = vp.icon;
               return (
                 <div key={i} className="reveal">
-                  <div className="group relative h-full bg-white rounded-2xl p-7 border border-line hover:shadow-card hover: hover:border-leaf/30 transition-colors duration-150 overflow-hidden">
+                  <div className="group relative h-full bg-bg-card rounded-2xl p-7 border border-track hover:border-track-strong hover: hover:border-emerald/30 transition-colors duration-150 overflow-hidden">
                     <div className="relative">
                       <Pictogram icon={VPIcon as LucideIcon} size="lg" className="mb-5" />
-                      <h3 className="text-heading-md text-ink mb-2.5">{vp.title}</h3>
-                      <p className="text-sm text-ink-700 leading-relaxed">{vp.text}</p>
+                      <h3 className="text-heading-md text-fg mb-2.5">{vp.title}</h3>
+                      <p className="text-sm text-fg-strong leading-relaxed">{vp.text}</p>
                     </div>
                   </div>
                 </div>
@@ -1357,42 +1357,42 @@ export default function RegulationPage() {
             <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-4">
               <Link
                 href="/services"
-                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-line hover:border-leaf hover:shadow-card transition-colors"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-bg-card border border-track hover:border-emerald hover:border-track-strong transition-colors"
               >
-                <div className="w-12 h-12 rounded-xl bg-leaf-100 flex items-center justify-center flex-shrink-0">
-                  <Workflow className="w-6 h-6 text-leaf" />
+                <div className="w-12 h-12 rounded-xl bg-emerald-dim flex items-center justify-center flex-shrink-0">
+                  <Workflow className="w-6 h-6 text-emerald" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-ink mb-0.5">{tx("Nos services", "Our services")}</p>
-                  <p className="text-xs text-muted">{tx("ITAD, destruction, reconditionnement", "ITAD, destruction, refurbishment")}</p>
+                  <p className="text-sm font-semibold text-fg mb-0.5">{tx("Nos services", "Our services")}</p>
+                  <p className="text-xs text-fg-muted">{tx("ITAD, destruction, reconditionnement", "ITAD, destruction, refurbishment")}</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted group-hover:text-leaf group-hover:translate-x-0.5 transition" />
+                <ArrowRight className="w-5 h-5 text-fg-muted group-hover:text-emerald group-hover:translate-x-0.5 transition" />
               </Link>
               <Link
                 href="/securite"
-                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-line hover:border-leaf hover:shadow-card transition-colors"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-bg-card border border-track hover:border-emerald hover:border-track-strong transition-colors"
               >
-                <div className="w-12 h-12 rounded-xl bg-leaf-100 flex items-center justify-center flex-shrink-0">
-                  <ShieldCheck className="w-6 h-6 text-leaf" />
+                <div className="w-12 h-12 rounded-xl bg-emerald-dim flex items-center justify-center flex-shrink-0">
+                  <ShieldCheck className="w-6 h-6 text-emerald" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-ink mb-0.5">{tx("Nos certifications", "Our certifications")}</p>
-                  <p className="text-xs text-muted">{tx("ISO 27001, R2v3, NIST, DoD", "ISO 27001, R2v3, NIST, DoD")}</p>
+                  <p className="text-sm font-semibold text-fg mb-0.5">{tx("Nos certifications", "Our certifications")}</p>
+                  <p className="text-xs text-fg-muted">{tx("ISO 27001, R2v3, NIST, DoD", "ISO 27001, R2v3, NIST, DoD")}</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted group-hover:text-leaf group-hover:translate-x-0.5 transition" />
+                <ArrowRight className="w-5 h-5 text-fg-muted group-hover:text-emerald group-hover:translate-x-0.5 transition" />
               </Link>
               <Link
                 href="/methodologie"
-                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-line hover:border-forest hover:shadow-card transition-colors"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-bg-card border border-track hover:border-track-strong hover:border-track-strong transition-colors"
               >
-                <div className="w-12 h-12 rounded-xl bg-forest/10 flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-6 h-6 text-forest" />
+                <div className="w-12 h-12 rounded-xl bg-bg/10 flex items-center justify-center flex-shrink-0">
+                  <BookOpen className="w-6 h-6 text-emerald" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-ink mb-0.5">{tx("Notre méthodologie", "Our methodology")}</p>
-                  <p className="text-xs text-muted">{tx("Processus ITAD 7 étapes", "ITAD 7-step process")}</p>
+                  <p className="text-sm font-semibold text-fg mb-0.5">{tx("Notre méthodologie", "Our methodology")}</p>
+                  <p className="text-xs text-fg-muted">{tx("Processus ITAD 7 étapes", "ITAD 7-step process")}</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-muted group-hover:text-forest group-hover:translate-x-0.5 transition" />
+                <ArrowRight className="w-5 h-5 text-fg-muted group-hover:text-emerald group-hover:translate-x-0.5 transition" />
               </Link>
             </div>
           </div>
@@ -1400,17 +1400,17 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ BLOG / RESSOURCES ═══════════════ */}
-      <section id="ressources" className="bg-paper py-16 lg:py-24">
+      <section id="ressources" className="bg-bg py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
-              <span className="mb-3 block text-eyebrow uppercase text-muted">{tx("Ressources & analyses", "Resources & insights")}
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Ressources & analyses", "Resources & insights")}
               </span>
-              <h2 className="text-display-md text-ink mb-5">
+              <h2 className="text-display-md text-fg mb-5">
                 {tx("Approfondir la ", "Dive deeper into ")}
                 {tx("conformité", "compliance")}
               </h2>
-              <p className="mt-4 max-w-[65ch] text-body-lg text-ink-700">
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
                   "Analyses, guides pratiques et retours d'expérience pour comprendre et anticiper les exigences réglementaires ITAD.",
                   "Analyses, practical guides and insights to understand and anticipate ITAD regulatory requirements."
@@ -1427,8 +1427,8 @@ export default function RegulationPage() {
                 excerpt: tx("Décryptage des exigences NIS2 pour la gestion de votre parc IT : registre d'actifs, notification d'incidents, chain of custody.", "Breakdown of NIS2 requirements for IT fleet management: asset register, incident notification, chain of custody."),
                 icon: Lock,
                 color: "from-forest to-forest",
-                iconBg: "bg-leaf-50",
-                iconColor: "text-forest",
+                iconBg: "bg-white/[0.03]",
+                iconColor: "text-emerald",
                 tag: "NIS2 · Cybersécurité",
               },
               {
@@ -1437,8 +1437,8 @@ export default function RegulationPage() {
                 excerpt: tx("Comment contribuer aux indicateurs ESRS E1 et E5 avec votre programme ITAD : CO₂ évité, taux de réemploi, bilan matière.", "How to contribute to ESRS E1 and E5 indicators with your ITAD program: avoided CO₂, reuse rate, material balance."),
                 icon: Leaf,
                 color: "from-leaf to-leaf",
-                iconBg: "bg-leaf-50",
-                iconColor: "text-leaf",
+                iconBg: "bg-white/[0.03]",
+                iconColor: "text-emerald",
                 tag: "CSRD · ESG",
               },
               {
@@ -1447,8 +1447,8 @@ export default function RegulationPage() {
                 excerpt: tx("Protéger vos données sensibles lors du décommissionnement : méthodes d'effacement NIST, DoD, IEEE, certificats et preuves.", "Protect sensitive data during decommissioning: NIST, DoD, IEEE erasure methods, certificates and evidence."),
                 icon: Shield,
                 color: "from-forest to-ochre",
-                iconBg: "bg-leaf-50",
-                iconColor: "text-forest",
+                iconBg: "bg-white/[0.03]",
+                iconColor: "text-emerald",
                 tag: "RGPD · Sécurité",
               },
               {
@@ -1457,8 +1457,8 @@ export default function RegulationPage() {
                 excerpt: tx("Responsabilité Élargie du Producteur, éco-organismes, traçabilité des DEEE : ce que chaque entreprise doit mettre en place.", "Extended Producer Responsibility, eco-organisations, WEEE traceability: what every company must put in place."),
                 icon: Recycle,
                 color: "from-leaf to-leaf",
-                iconBg: "bg-leaf-50",
-                iconColor: "text-leaf",
+                iconBg: "bg-white/[0.03]",
+                iconColor: "text-emerald",
                 tag: "DEEE · AGEC",
               },
               {
@@ -1467,8 +1467,8 @@ export default function RegulationPage() {
                 excerpt: tx("Du reconditionnement à la valorisation des actifs : construire une stratégie circulaire rentable et conforme loi AGEC.", "From refurbishment to asset recovery: building a profitable circular strategy compliant with AGEC law."),
                 icon: Zap,
                 color: "from-ochre to-ochre",
-                iconBg: "bg-ochre-100",
-                iconColor: "text-ochre",
+                iconBg: "bg-amber-dim",
+                iconColor: "text-amber",
                 tag: "AGEC · Circularité",
               },
             ].map((article, i) => {
@@ -1477,22 +1477,22 @@ export default function RegulationPage() {
                 <div key={i} className="reveal">
                   <Link
                     href={`/blog/${article.slug}`}
-                    className="group relative h-full flex flex-col bg-white rounded-2xl border border-line overflow-hidden hover:shadow-card hover: hover:border-line transition-colors duration-150"
+                    className="group relative h-full flex flex-col bg-bg-card rounded-2xl border border-track overflow-hidden hover:border-track-strong hover: hover:border-track transition-colors duration-150"
                   >
                     {/* Visual header */}
-                    <div className="flex items-center justify-between gap-3 border-b border-line bg-cream px-6 py-4">
+                    <div className="flex items-center justify-between gap-3 border-b border-track bg-bg-card px-6 py-4">
                       <Tag variant="neutral">{article.tag}</Tag>
-                      <AIcon className="h-6 w-6 text-forest" strokeWidth={1.75} aria-hidden="true" />
+                      <AIcon className="h-6 w-6 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                     </div>
 
                     <div className="flex-1 p-6 flex flex-col">
-                      <h3 className="text-heading-md text-ink mb-3 group-hover:text-leaf transition">
+                      <h3 className="text-heading-md text-fg mb-3 group-hover:text-emerald transition">
                         {article.title}
                       </h3>
-                      <p className="text-sm text-ink-700 leading-relaxed mb-5 flex-1">
+                      <p className="text-sm text-fg-strong leading-relaxed mb-5 flex-1">
                         {article.excerpt}
                       </p>
-                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-leaf group-hover:gap-2.5 transition-colors">
+                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald group-hover:gap-2.5 transition-colors">
                         {tx("Lire l'article", "Read article")}
                         <ArrowRight className="w-4 h-4" />
                       </span>
@@ -1507,7 +1507,7 @@ export default function RegulationPage() {
             <div className="text-center">
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border-2 border-line hover:border-forest-900 hover:bg-forest-900 hover:text-white text-ink font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-bg-card border-2 border-track hover:border-track hover:bg-white/[0.04] hover:text-fg text-fg font-semibold transition-colors"
               >
                 <BookOpen className="w-4 h-4" />
                 {tx("Voir tous les articles", "See all articles")}
@@ -1519,16 +1519,16 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ SOURCES & RÉFÉRENCES ═══════════════ */}
-      <section id="sources" className="bg-cream border-y border-line py-12 lg:py-16">
+      <section id="sources" className="bg-bg-card border-y border-track py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="mb-10 max-w-[720px]">
-              <span className="mb-3 block text-eyebrow uppercase text-muted">{tx("Données sourcées", "Sourced data")}
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Données sourcées", "Sourced data")}
               </span>
-              <h2 className="text-display-md text-ink mb-3">
+              <h2 className="text-display-md text-fg mb-3">
                 {tx("Sources & Références", "Sources & References")}
               </h2>
-              <p className="text-ink-700">
+              <p className="text-fg-strong">
                 {tx(
                   "Toutes les données citées proviennent de sources institutionnelles et d'analystes reconnus.",
                   "All cited data comes from institutional sources and recognized analysts."
@@ -1538,12 +1538,12 @@ export default function RegulationPage() {
           </div>
           <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {sources.map((s, i) => (
-              <div key={i} className="group bg-cream hover:bg-white rounded-xl p-4 border border-line hover:border-leaf/30 hover:shadow-card transition-colors">
+              <div key={i} className="group bg-bg-card hover:bg-white/[0.04] rounded-xl p-4 border border-track hover:border-emerald/30 hover:border-track-strong transition-colors">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <div className="h-5 w-1 rounded-full bg-leaf" aria-hidden="true" />
-                  <p className="font-semibold text-ink text-sm">{s.name}</p>
+                  <div className="h-5 w-1 rounded-full bg-emerald" aria-hidden="true" />
+                  <p className="font-semibold text-fg text-sm">{s.name}</p>
                 </div>
-                <p className="text-xs text-muted leading-relaxed">{s.desc}</p>
+                <p className="text-xs text-fg-muted leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -1572,9 +1572,9 @@ export default function RegulationPage() {
         reassurance={[tx("Audit gratuit", "Free audit"), tx("Réponse sous 24h", "Response within 24h"), tx("Expertise certifiée", "Certified expertise"), tx("RGPD · NIS2 · CSRD", "GDPR · NIS2 · CSRD")].join(" · ")}
         footnote={
           <p className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            <Link href="/securite" className="font-medium text-leaf-300 hover:text-ondark">{tx("Nos certifications", "Our certifications")} →</Link>
-            <Link href="/methodologie" className="font-medium text-leaf-300 hover:text-ondark">{tx("Méthodologie", "Methodology")} →</Link>
-            <Link href="/blog" className="font-medium text-leaf-300 hover:text-ondark">{tx("Ressources", "Resources")} →</Link>
+            <Link href="/securite" className="font-medium text-emerald hover:text-fg">{tx("Nos certifications", "Our certifications")} →</Link>
+            <Link href="/methodologie" className="font-medium text-emerald hover:text-fg">{tx("Méthodologie", "Methodology")} →</Link>
+            <Link href="/blog" className="font-medium text-emerald hover:text-fg">{tx("Ressources", "Resources")} →</Link>
           </p>
         }
       />

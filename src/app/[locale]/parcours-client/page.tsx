@@ -33,19 +33,19 @@ export default function ClientJourneyPage({
 
   const stepIcons = [Phone, FileSearch, Settings, Rocket, HeadphonesIcon];
   // Une seule couleur pour toutes les étapes (§2.3 : pas de couleur par item)
-  const stepColors = ["bg-forest", "bg-forest", "bg-forest", "bg-forest", "bg-forest"];
+  const stepColors = ["bg-bg-card", "bg-bg-card", "bg-bg-card", "bg-bg-card", "bg-bg-card"];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-forest py-16 text-ondark lg:py-24">
+      <section className="bg-bg-card py-16 text-fg lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-4xl ">
-              <h1 className="text-display-lg text-ondark mb-6">
+              <h1 className="text-display-lg text-fg mb-6">
                 {t("hero.title")}
               </h1>
-              <p className="text-xl md:text-2xl text-ondark leading-relaxed">
+              <p className="text-xl md:text-2xl text-fg leading-relaxed">
                 {t("hero.subtitle")}
               </p>
             </div>
@@ -54,14 +54,14 @@ export default function ClientJourneyPage({
       </section>
 
       {/* Timeline Section */}
-      <section className="bg-cream py-16 lg:py-24">
+      <section className="bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           {/* Desktop Timeline (Horizontal) */}
           <div className="hidden lg:block max-w-6xl mx-auto">
             <div className="reveal-stagger">
               <div className="relative">
                 {/* Connecting Line */}
-                <div className="absolute top-16 left-[10%] right-[10%] h-1 rounded-full bg-leaf" />
+                <div className="absolute top-16 left-[10%] right-[10%] h-1 rounded-full bg-emerald" />
 
                 <div className="grid grid-cols-5 gap-6 relative">
                   {steps.map((step, index) => {
@@ -74,21 +74,21 @@ export default function ClientJourneyPage({
                           <div
                             className={`relative z-10 w-32 h-32 ${color} rounded-full flex flex-col items-center justify-center mb-6`}
                           >
-                            <span className="text-ondark-muted text-sm font-medium">
+                            <span className="text-fg-muted text-sm font-medium">
                               {step.number}
                             </span>
-                            <Icon className="w-10 h-10 text-white mt-1" />
+                            <Icon className="w-10 h-10 text-fg mt-1" />
                           </div>
 
                           {/* Content */}
-                          <div className="bg-white rounded-2xl p-6 border border-line w-full">
-                            <h3 className="text-heading-md text-ink mb-2">
+                          <div className="bg-bg-card rounded-2xl p-6 border border-track w-full">
+                            <h3 className="text-heading-md text-fg mb-2">
                               {step.title}
                             </h3>
-                            <p className="text-sm text-ink-700 mb-4 leading-relaxed">
+                            <p className="text-sm text-fg-strong mb-4 leading-relaxed">
                               {step.description}
                             </p>
-                            <div className="inline-flex items-center gap-1.5 bg-leaf-100 text-leaf px-3 py-1.5 rounded-full text-xs font-semibold">
+                            <div className="inline-flex items-center gap-1.5 bg-emerald-dim text-emerald px-3 py-1.5 rounded-full text-xs font-semibold">
                               <Clock className="w-3.5 h-3.5" />
                               {step.duration}
                             </div>
@@ -107,7 +107,7 @@ export default function ClientJourneyPage({
             <div className="reveal-stagger">
               <div className="relative">
                 {/* Vertical Line */}
-                <div className="absolute top-0 bottom-0 left-8 w-1 rounded-full bg-leaf" />
+                <div className="absolute top-0 bottom-0 left-8 w-1 rounded-full bg-emerald" />
 
                 <div className="space-y-8">
                   {steps.map((step, index) => {
@@ -120,24 +120,24 @@ export default function ClientJourneyPage({
                           <div
                             className={`relative z-10 w-16 h-16 ${color} rounded-full flex items-center justify-center flex-shrink-0`}
                           >
-                            <Icon className="w-7 h-7 text-white" />
+                            <Icon className="w-7 h-7 text-fg" />
                           </div>
 
                           {/* Content Card */}
-                          <div className="flex-1 bg-white rounded-2xl p-5 border border-line">
+                          <div className="flex-1 bg-bg-card rounded-2xl p-5 border border-track">
                             <div className="flex items-center gap-2 mb-2">
-                              <span className="text-ink-700 uppercase text-eyebrow">
+                              <span className="text-fg-strong uppercase text-eyebrow">
                                 {step.number}
                               </span>
-                              <div className="inline-flex items-center gap-1 bg-leaf-100 text-leaf px-2 py-0.5 rounded-full text-xs font-semibold ml-auto">
+                              <div className="inline-flex items-center gap-1 bg-emerald-dim text-emerald px-2 py-0.5 rounded-full text-xs font-semibold ml-auto">
                                 <Clock className="w-3 h-3" />
                                 {step.duration}
                               </div>
                             </div>
-                            <h3 className="text-heading-md text-ink mb-1.5">
+                            <h3 className="text-heading-md text-fg mb-1.5">
                               {step.title}
                             </h3>
-                            <p className="text-sm text-ink-700 leading-relaxed">
+                            <p className="text-sm text-fg-strong leading-relaxed">
                               {step.description}
                             </p>
                           </div>

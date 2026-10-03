@@ -107,11 +107,11 @@ function CaseCard({ c, index, editorialBody, isFr }: { c: CaseItem; index: numbe
   const sectorLink = CASE_TO_SECTOR[c.slug];
   const CaseIcon = CASE_ICONS[index] ?? Building2;
   return (
-    <article id={`cas-${c.slug}`} aria-labelledby={`case-title-${c.slug}`} className="relative flex h-full flex-col overflow-hidden rounded-xl border border-line bg-paper">
+    <article id={`cas-${c.slug}`} aria-labelledby={`case-title-${c.slug}`} className="relative flex h-full flex-col overflow-hidden rounded-xl border border-track bg-bg">
       {(CASE_ALIASES[c.slug] ?? []).map((a) => (
         <span key={a} id={a} className="absolute top-0" aria-hidden="true" />
       ))}
-      <div className="relative aspect-[16/10] border-b border-line">
+      <div className="relative aspect-[16/10] border-b border-track">
         <Image src={c.photo} alt={c.photoAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
       </div>
       <div className="flex flex-1 flex-col p-6 lg:p-8">
@@ -119,24 +119,24 @@ function CaseCard({ c, index, editorialBody, isFr }: { c: CaseItem; index: numbe
           <Pictogram icon={CaseIcon} />
           <Tag variant="brand">{c.sector}</Tag>
         </div>
-        <p className="mt-6 text-eyebrow uppercase text-muted">{String(index + 1).padStart(2, "0")}</p>
-        <h2 id={`case-title-${c.slug}`} className="mt-2 font-display text-display-sm text-ink">{c.title}</h2>
-        <p className="mt-3 text-body-sm text-ink-700">{editorialBody}</p>
-        <dl className="mt-6 grid grid-cols-3 border-y border-line py-4">
+        <p className="mt-6 text-eyebrow uppercase text-fg-muted">{String(index + 1).padStart(2, "0")}</p>
+        <h2 id={`case-title-${c.slug}`} className="mt-2 font-display text-display-sm text-fg">{c.title}</h2>
+        <p className="mt-3 text-body-sm text-fg-strong">{editorialBody}</p>
+        <dl className="mt-6 grid grid-cols-3 border-y border-track py-4">
           {c.metrics.slice(0, 3).map((kpi, j) => (
-            <div key={j} className={`flex flex-col-reverse justify-end ${j > 0 ? "border-l border-line pl-3" : "pr-3"}`}>
-              <dt className="mt-1 text-caption text-ink-700">
-                <span className="block font-semibold text-ink">{kpi.label}</span>
-                <span className="text-muted">{kpi.detail}</span>
+            <div key={j} className={`flex flex-col-reverse justify-end ${j > 0 ? "border-l border-track pl-3" : "pr-3"}`}>
+              <dt className="mt-1 text-caption text-fg-strong">
+                <span className="block font-semibold text-fg">{kpi.label}</span>
+                <span className="text-fg-muted">{kpi.detail}</span>
               </dt>
-              <dd className="font-display text-display-sm tabular-nums text-forest">{kpi.value}</dd>
+              <dd className="font-display text-display-sm tabular-nums text-emerald">{kpi.value}</dd>
             </div>
           ))}
         </dl>
-        <figure className="mt-6 flex-1 border-l-2 border-leaf pl-4">
-          <blockquote className="text-body-sm italic text-ink">&laquo;&nbsp;{c.quote}&nbsp;&raquo;</blockquote>
-          <figcaption className="mt-2 text-caption text-muted">
-            <span className="font-semibold text-ink-700">{c.quoteName}</span> · {c.quoteRole} · {c.quoteSector}
+        <figure className="mt-6 flex-1 border-l-2 border-emerald pl-4">
+          <blockquote className="text-body-sm italic text-fg">&laquo;&nbsp;{c.quote}&nbsp;&raquo;</blockquote>
+          <figcaption className="mt-2 text-caption text-fg-muted">
+            <span className="font-semibold text-fg-strong">{c.quoteName}</span> · {c.quoteRole} · {c.quoteSector}
           </figcaption>
         </figure>
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
@@ -226,12 +226,12 @@ export default function CasUsagesPage() {
   ]);
 
   const field =
-    "mt-2 h-11 w-full rounded-lg border border-line bg-paper px-3 text-body text-ink placeholder:text-muted focus:border-leaf focus:outline-none focus:ring-2 focus:ring-leaf/20";
+    "mt-2 h-11 w-full rounded-lg border border-track bg-bg px-3 text-body text-fg placeholder:text-fg-muted focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25";
 
   return (
     <div>
       {/* ═══ HERO paper ═══ */}
-      <section className="bg-paper py-16 lg:py-24" aria-labelledby="hero-editorial-title">
+      <section className="bg-bg py-16 lg:py-24" aria-labelledby="hero-editorial-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
@@ -241,20 +241,20 @@ export default function CasUsagesPage() {
                   "38,000+ NIST 800-88 certificates issued · 6,200 tCO2e avoided · Audit response within 72h"
                 )}
               </Tag>
-              <p className="mt-6 text-eyebrow uppercase text-muted">{t("editorialHero.featuredLabel")}</p>
-              <h1 id="hero-editorial-title" className="mt-3 max-w-[22ch] text-display-lg text-ink">{t("editorialHero.headline")}</h1>
-              <p className="mt-6 max-w-[65ch] text-body-lg text-ink-700">{t("editorialHero.subtitle")}</p>
-              <dl className="mt-8 grid max-w-[600px] grid-cols-3 border-y border-line py-6">
+              <p className="mt-6 text-eyebrow uppercase text-fg-muted">{t("editorialHero.featuredLabel")}</p>
+              <h1 id="hero-editorial-title" className="mt-3 max-w-[22ch] text-display-lg text-fg">{t("editorialHero.headline")}</h1>
+              <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("editorialHero.subtitle")}</p>
+              <dl className="mt-8 grid max-w-[600px] grid-cols-3 border-y border-track py-6">
                 {[
                   { v: "1 850", unit: "tCO₂e", l: tx("évitées en 4 ans", "avoided in 4 years") },
                   { v: "638 k€", unit: "", l: tx("valeur récupérée", "value recovered") },
                   { v: tx("4 jours", "4 days"), unit: "", l: tx("audit ACPR réussi", "ACPR audit passed") },
                 ].map((item, i) => (
-                  <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-line pl-4" : "pr-4"}`}>
-                    <dt className="mt-1 text-caption text-muted">{item.l}</dt>
-                    <dd className="font-display text-display-sm tabular-nums text-forest">
+                  <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-track pl-4" : "pr-4"}`}>
+                    <dt className="mt-1 text-caption text-fg-muted">{item.l}</dt>
+                    <dd className="font-display text-display-sm tabular-nums text-emerald">
                       {item.v}
-                      {item.unit && <span className="ml-1 font-sans text-body-sm text-ink-700">{item.unit}</span>}
+                      {item.unit && <span className="ml-1 font-sans text-body-sm text-fg-strong">{item.unit}</span>}
                     </dd>
                   </div>
                 ))}
@@ -263,14 +263,14 @@ export default function CasUsagesPage() {
                 <ButtonLink href="/contact" size="lg">{t("editorialHero.cta1")}</ButtonLink>
                 <ButtonLink href="/demo" variant="secondary" size="lg">{t("editorialHero.cta2")}</ButtonLink>
               </div>
-              <a href="#cas-banque-cac40" className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-muted hover:text-ink">
+              <a href="#cas-banque-cac40" className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-fg-muted hover:text-fg">
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
                 {t("editorialHero.scrollCta")}
               </a>
             </div>
             <div className="reveal lg:col-span-5">
               <figure>
-                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
                   <Image
                     src="/photos/case-banque.jpg"
                     alt={tx(
@@ -283,12 +283,12 @@ export default function CasUsagesPage() {
                     sizes="(max-width: 1024px) 100vw, 40vw"
                   />
                 </div>
-                <figcaption className="mt-6 border-l-2 border-leaf pl-4">
-                  <p className="text-body-sm text-ink">
+                <figcaption className="mt-6 border-l-2 border-emerald pl-4">
+                  <p className="text-body-sm text-fg">
                     &laquo;&nbsp;{tx("GTC a transformé notre contrainte réglementaire en avantage compétitif concret.", "GTC turned our regulatory constraint into a concrete competitive advantage.")}&nbsp;&raquo;
                   </p>
-                  <p className="mt-2 text-caption text-muted">
-                    <span className="font-semibold text-ink-700">Marc B.</span> · {t("editorialHero.featuredMeta")}
+                  <p className="mt-2 text-caption text-fg-muted">
+                    <span className="font-semibold text-fg-strong">Marc B.</span> · {t("editorialHero.featuredMeta")}
                   </p>
                 </figcaption>
               </figure>
@@ -310,7 +310,7 @@ export default function CasUsagesPage() {
             />
           ))}
         </StatRow>
-        <p className="mt-8 max-w-[65ch] text-caption italic text-ondark-muted">{t("kpis.footnote")}</p>
+        <p className="mt-8 max-w-[65ch] text-caption italic text-fg-muted">{t("kpis.footnote")}</p>
       </Section>
 
       {/* ═══ INTRO + DIFFÉRENCIATEURS + PARTENAIRES (paper) ═══ */}
@@ -325,26 +325,26 @@ export default function CasUsagesPage() {
         <div className="reveal-stagger grid gap-6 md:grid-cols-3">
           {differentiators.map((d, i) => (
             <div key={i} className="reveal h-full">
-              <div className="h-full rounded-xl border border-line bg-paper p-6">
+              <div className="h-full rounded-xl border border-track bg-bg p-6">
                 <Pictogram icon={d.icon} />
-                <p className="mt-4 text-eyebrow uppercase text-muted">{d.tag}</p>
-                <h3 className="mt-2 text-heading-md text-ink">{d.title}</h3>
-                <p className="mt-2 text-body-sm text-ink-700">{d.body}</p>
+                <p className="mt-4 text-eyebrow uppercase text-fg-muted">{d.tag}</p>
+                <h3 className="mt-2 text-heading-md text-fg">{d.title}</h3>
+                <p className="mt-2 text-body-sm text-fg-strong">{d.body}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 grid gap-8 border-t border-line pt-10 lg:grid-cols-2">
+        <div className="mt-12 grid gap-8 border-t border-track pt-10 lg:grid-cols-2">
           <div>
-            <p className="text-eyebrow uppercase text-muted">{t("nav.label")}</p>
+            <p className="text-eyebrow uppercase text-fg-muted">{t("nav.label")}</p>
             <nav aria-label={tx("Navigation par cas sectoriel", "Navigation by sector case")} className="mt-4 flex flex-wrap gap-2">
-              <a href="#cas-tf1-media" className="inline-flex min-h-[44px] items-center rounded-lg border border-line px-4 text-body-sm font-medium text-ink-700 hover:border-ink/30 hover:text-ink">TF1</a>
+              <a href="#cas-tf1-media" className="inline-flex min-h-[44px] items-center rounded-lg border border-track px-4 text-body-sm font-medium text-fg-strong hover:border-track-strong hover:text-fg">TF1</a>
               {cases.map((c, i) => {
                 const NavIcon = CASE_ICONS[i] ?? Building2;
                 return (
-                  <a key={c.slug} href={`#cas-${c.slug}`} className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-line px-4 text-body-sm font-medium text-ink-700 hover:border-ink/30 hover:text-ink">
-                    <NavIcon className="h-4 w-4 text-forest" strokeWidth={1.75} aria-hidden="true" />
+                  <a key={c.slug} href={`#cas-${c.slug}`} className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-track px-4 text-body-sm font-medium text-fg-strong hover:border-track-strong hover:text-fg">
+                    <NavIcon className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                     {c.sector}
                   </a>
                 );
@@ -352,19 +352,19 @@ export default function CasUsagesPage() {
             </nav>
           </div>
           <div>
-            <p className="text-eyebrow uppercase text-muted">{t("partners.eyebrow")}</p>
+            <p className="text-eyebrow uppercase text-fg-muted">{t("partners.eyebrow")}</p>
             <ul className="mt-4 flex flex-wrap gap-2">
               {(t.raw("partners.items") as string[]).map((p, i) => (
                 <li key={i}><Tag variant="neutral">{p}</Tag></li>
               ))}
             </ul>
-            <p className="mt-4 text-caption italic text-muted">{t("partners.note")}</p>
+            <p className="mt-4 text-caption italic text-fg-muted">{t("partners.note")}</p>
           </div>
         </div>
       </Section>
 
       {/* ═══ CAS PHARE TF1 (forest, featured) ═══ */}
-      <section id="cas-tf1-media" className="bg-forest py-16 text-ondark lg:py-24" aria-labelledby="tf1-featured-title">
+      <section id="cas-tf1-media" className="bg-bg-card py-16 text-fg lg:py-24" aria-labelledby="tf1-featured-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
@@ -372,24 +372,24 @@ export default function CasUsagesPage() {
                 <Tag variant="dark" icon={<MonitorPlay className="h-3.5 w-3.5" aria-hidden="true" />}>{tf1.badge}</Tag>
                 <Tag variant="dark">{tf1.eyebrow}</Tag>
               </div>
-              <h2 id="tf1-featured-title" className="mt-6 max-w-[24ch] text-display-md text-ondark">{tf1.title}</h2>
-              <p className="mt-4 text-eyebrow uppercase text-ondark-muted">{tf1.subtitle}</p>
-              <p className="mt-4 max-w-[65ch] text-body-lg text-ondark-muted">{tf1.body}</p>
-              <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 border-y border-ondark-line py-6">
+              <h2 id="tf1-featured-title" className="mt-6 max-w-[24ch] text-display-md text-fg">{tf1.title}</h2>
+              <p className="mt-4 text-eyebrow uppercase text-fg-muted">{tf1.subtitle}</p>
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-muted">{tf1.body}</p>
+              <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 border-y border-track py-6">
                 {tf1.metrics.map((kpi, j) => (
                   <div key={j} className="flex flex-col-reverse justify-end">
-                    <dt className="mt-1 text-caption text-ondark-muted">
-                      <span className="block font-semibold text-ondark">{kpi.label}</span>
+                    <dt className="mt-1 text-caption text-fg-muted">
+                      <span className="block font-semibold text-fg">{kpi.label}</span>
                       {kpi.detail}
                     </dt>
-                    <dd className="font-display text-display-sm tabular-nums text-leaf-300">{kpi.value}</dd>
+                    <dd className="font-display text-display-sm tabular-nums text-emerald">{kpi.value}</dd>
                   </div>
                 ))}
               </dl>
-              <figure className="mt-8 border-l-2 border-leaf-300 pl-4">
-                <blockquote className="font-display text-display-sm text-ondark">&laquo;&nbsp;{tf1.quote}&nbsp;&raquo;</blockquote>
-                <figcaption className="mt-3 text-caption text-ondark-muted">
-                  <span className="font-semibold text-ondark">{tf1.quoteName}</span> · {tf1.quoteRole} · {tf1.quoteSector}
+              <figure className="mt-8 border-l-2 border-emerald pl-4">
+                <blockquote className="font-display text-display-sm text-fg">&laquo;&nbsp;{tf1.quote}&nbsp;&raquo;</blockquote>
+                <figcaption className="mt-3 text-caption text-fg-muted">
+                  <span className="font-semibold text-fg">{tf1.quoteName}</span> · {tf1.quoteRole} · {tf1.quoteSector}
                 </figcaption>
               </figure>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -398,7 +398,7 @@ export default function CasUsagesPage() {
               </div>
             </div>
             <div className="reveal lg:col-span-5">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-ondark-line">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
                 <Image src={tf1.photo} alt={tf1.photoAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
               </div>
             </div>
@@ -407,7 +407,7 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ═══ 8 CAS SECTORIELS — grille régulière 2 colonnes ═══ */}
-      <section className="bg-cream py-16 lg:py-24" aria-label={tx("Cas clients sectoriels", "Sector client cases")}>
+      <section className="bg-bg-card py-16 lg:py-24" aria-label={tx("Cas clients sectoriels", "Sector client cases")}>
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-2">
             {cases.map((c, i) => (
@@ -430,7 +430,7 @@ export default function CasUsagesPage() {
             emphasis={[1, 5]}
             rows={matrixRows.map((row, i) => [
               cases[i] ? (
-                <a key="l" href={`#cas-${cases[i].slug}`} className="text-ink hover:text-leaf">{row[0]}</a>
+                <a key="l" href={`#cas-${cases[i].slug}`} className="text-fg hover:text-emerald">{row[0]}</a>
               ) : (
                 row[0]
               ),
@@ -441,7 +441,7 @@ export default function CasUsagesPage() {
               row[5],
             ])}
           />
-          <p className="mt-4 max-w-[65ch] text-caption italic text-muted">
+          <p className="mt-4 max-w-[65ch] text-caption italic text-fg-muted">
             {tx(
               "Taux de récupération : actifs récupérés (revente + reconditionnement + recyclage) vs total traité.",
               "Recovery rate: assets recovered (resale + refurbishment + recycling) vs total processed."
@@ -455,31 +455,31 @@ export default function CasUsagesPage() {
       <Section tone="night" aria-labelledby="testimonials-title">
         <div className="reveal">
           <figure className="max-w-[65ch]">
-            <blockquote className="font-display text-display-sm text-ondark">&laquo;&nbsp;{t("editorialFinalQuote.text")}&nbsp;&raquo;</blockquote>
-            <figcaption className="mt-4 text-caption text-ondark-muted">
-              <span className="font-semibold text-ondark">{t("editorialFinalQuote.name")}</span> · {t("editorialFinalQuote.role")}
+            <blockquote className="font-display text-display-sm text-fg">&laquo;&nbsp;{t("editorialFinalQuote.text")}&nbsp;&raquo;</blockquote>
+            <figcaption className="mt-4 text-caption text-fg-muted">
+              <span className="font-semibold text-fg">{t("editorialFinalQuote.name")}</span> · {t("editorialFinalQuote.role")}
             </figcaption>
-            <p className="mt-3 text-caption italic text-ondark-muted">{t("editorialFinalQuote.consentNote")}</p>
+            <p className="mt-3 text-caption italic text-fg-muted">{t("editorialFinalQuote.consentNote")}</p>
             <div className="mt-4">
               <TextLink href="#cas-banque-cac40" tone="dark">{tx("Voir le cas Banque CAC40 complet", "See the full CAC40 bank case")}</TextLink>
             </div>
           </figure>
         </div>
-        <div className="mt-16 border-t border-ondark-line pt-10">
+        <div className="mt-16 border-t border-track pt-10">
           <SectionHeader tone="dark" id="testimonials-title" eyebrow={t("testimonials.eyebrow")} title={t("testimonials.title")} size="sm" />
           <div className="reveal-stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {testimonials.map((item, i) => (
               <div key={i} className="reveal h-full">
-                <figure className="flex h-full flex-col rounded-xl border border-ondark-line bg-forest-950 p-6">
-                  <blockquote className="flex-1 text-body-sm text-ondark">&laquo;&nbsp;{item.quote}&nbsp;&raquo;</blockquote>
-                  <figcaption className="mt-6 border-t border-ondark-line pt-4 text-caption text-ondark-muted">
-                    <span className="font-semibold text-ondark">{item.name}</span> · {item.role} · {item.sector}
+                <figure className="flex h-full flex-col rounded-xl border border-track bg-bg p-6">
+                  <blockquote className="flex-1 text-body-sm text-fg">&laquo;&nbsp;{item.quote}&nbsp;&raquo;</blockquote>
+                  <figcaption className="mt-6 border-t border-track pt-4 text-caption text-fg-muted">
+                    <span className="font-semibold text-fg">{item.name}</span> · {item.role} · {item.sector}
                   </figcaption>
                 </figure>
               </div>
             ))}
           </div>
-          <p className="mt-6 text-caption italic text-ondark-muted">{t("testimonials.consentNote")}</p>
+          <p className="mt-6 text-caption italic text-fg-muted">{t("testimonials.consentNote")}</p>
         </div>
       </Section>
 
@@ -514,7 +514,7 @@ export default function CasUsagesPage() {
             <li key={s.slug}>
               <Link
                 href={`/secteurs/${s.slug}`}
-                className="group flex min-h-[44px] items-center justify-between gap-2 rounded-lg border border-line bg-paper px-4 py-3 text-body-sm font-medium text-ink transition-colors hover:border-ink/20 hover:text-leaf"
+                className="group flex min-h-[44px] items-center justify-between gap-2 rounded-lg border border-track bg-bg px-4 py-3 text-body-sm font-medium text-fg transition-colors hover:border-track-strong hover:text-emerald"
               >
                 {isFr ? s.labelFr : s.labelEn}
                 {s.slug === "medias-audiovisuel" && <Tag variant="brand">TF1</Tag>}
@@ -545,7 +545,7 @@ export default function CasUsagesPage() {
         }
         footnote={
           <div className="mx-auto mt-8 max-w-[720px] text-left">
-            <ol className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-caption text-ondark-muted">
+            <ol className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-caption text-fg-muted">
               {[
                 tx("Audit flash 72h", "72h flash audit"),
                 tx("Effacement certifié NIST", "NIST certified erasure"),
@@ -553,20 +553,20 @@ export default function CasUsagesPage() {
                 tx("Rapport CSRD prêt", "CSRD report ready"),
               ].map((l, i) => (
                 <li key={i}>
-                  <span className="font-semibold text-leaf-300">{String(i + 1).padStart(2, "0")}</span> {l}
+                  <span className="font-semibold text-emerald">{String(i + 1).padStart(2, "0")}</span> {l}
                 </li>
               ))}
             </ol>
-            <div className="mt-8 rounded-xl bg-paper p-6 text-ink lg:p-8" aria-labelledby="conversion-title">
-              <p className="text-eyebrow uppercase text-muted">{t("conversion.eyebrow")}</p>
-              <h3 id="conversion-title" className="mt-2 font-display text-display-sm text-ink">{t("conversion.title")}</h3>
-              <p className="mt-2 text-body-sm text-ink-700">{t("conversion.subtitle")}</p>
+            <div className="mt-8 rounded-xl bg-bg p-6 text-fg lg:p-8" aria-labelledby="conversion-title">
+              <p className="text-eyebrow uppercase text-fg-muted">{t("conversion.eyebrow")}</p>
+              <h3 id="conversion-title" className="mt-2 font-display text-display-sm text-fg">{t("conversion.title")}</h3>
+              <p className="mt-2 text-body-sm text-fg-strong">{t("conversion.subtitle")}</p>
               {submitted ? (
                 <div className="mt-6 flex items-start gap-3" role="status">
-                  <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-leaf" aria-hidden="true" />
+                  <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-emerald" aria-hidden="true" />
                   <div>
-                    <p className="text-heading-md text-ink">{t("conversion.successTitle")}</p>
-                    <p className="mt-1 text-body-sm text-ink-700">{t("conversion.successBody")}</p>
+                    <p className="text-heading-md text-fg">{t("conversion.successTitle")}</p>
+                    <p className="mt-1 text-body-sm text-fg-strong">{t("conversion.successBody")}</p>
                   </div>
                 </div>
               ) : (
@@ -578,7 +578,7 @@ export default function CasUsagesPage() {
                       { id: "conv-challenge", label: t("conversion.fields.challenge"), placeholder: tx("CSRD, NIS2, valeur…", "CSRD, NIS2, value…"), key: "challenge" as const },
                     ].map((f) => (
                       <div key={f.id}>
-                        <label htmlFor={f.id} className="block text-body-sm font-medium text-ink">{f.label}</label>
+                        <label htmlFor={f.id} className="block text-body-sm font-medium text-fg">{f.label}</label>
                         <input
                           id={f.id}
                           type="text"
@@ -592,7 +592,7 @@ export default function CasUsagesPage() {
                     ))}
                   </div>
                   <div className="mt-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-                    <p className="max-w-[40ch] text-caption italic text-muted">{t("conversion.privacy")}</p>
+                    <p className="max-w-[40ch] text-caption italic text-fg-muted">{t("conversion.privacy")}</p>
                     <Button type="submit">
                       <Send className="h-4 w-4" aria-hidden="true" />
                       {t("conversion.cta")}

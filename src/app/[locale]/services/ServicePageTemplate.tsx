@@ -98,31 +98,31 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
   return (
     <div>
       {/* HERO split paper */}
-      <section className="bg-paper py-16 lg:py-24" aria-labelledby="service-hero-title">
+      <section className="bg-bg py-16 lg:py-24" aria-labelledby="service-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
               <div className="flex flex-wrap items-center gap-2">
                 <Tag variant="brand" icon={<Icon className="h-3.5 w-3.5" aria-hidden="true" />}>{data.badge}</Tag>
               </div>
-              <p className="mt-6 text-eyebrow uppercase text-muted">{data.eyebrow}</p>
-              <h1 id="service-hero-title" className="mt-3 max-w-[20ch] text-display-lg text-ink">{data.title}</h1>
-              <p className="mt-6 max-w-[65ch] text-body-lg text-ink-700">{data.subtitle}</p>
-              <dl className={`mt-8 grid max-w-[600px] border-y border-line py-6 ${data.proof.length >= 3 ? "grid-cols-3" : "grid-cols-2"}`}>
+              <p className="mt-6 text-eyebrow uppercase text-fg-muted">{data.eyebrow}</p>
+              <h1 id="service-hero-title" className="mt-3 max-w-[20ch] text-display-lg text-fg">{data.title}</h1>
+              <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{data.subtitle}</p>
+              <dl className={`mt-8 grid max-w-[600px] border-y border-track py-6 ${data.proof.length >= 3 ? "grid-cols-3" : "grid-cols-2"}`}>
                 {data.proof.map((kpi, i) => (
-                  <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-line pl-4" : "pr-4"}`}>
-                    <dt className="mt-1 text-caption text-muted">{kpi.label}</dt>
-                    <dd className="font-display text-display-sm tabular-nums text-forest">
+                  <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-track pl-4" : "pr-4"}`}>
+                    <dt className="mt-1 text-caption text-fg-muted">{kpi.label}</dt>
+                    <dd className="font-display text-display-sm tabular-nums text-emerald">
                       {kpi.value}
-                      {kpi.unit && <span className="ml-1 font-sans text-body-sm text-ink-700">{kpi.unit}</span>}
+                      {kpi.unit && <span className="ml-1 font-sans text-body-sm text-fg-strong">{kpi.unit}</span>}
                     </dd>
                   </div>
                 ))}
               </dl>
               {data.pricingAnchor && (
                 <p className="mt-6 text-body-sm">
-                  <span className="font-semibold tabular-nums text-forest">{data.pricingAnchor}</span>{" "}
-                  <Link href={data.pricingHref ?? "/tarifs"} className="text-leaf underline underline-offset-4 hover:text-leaf-700">
+                  <span className="font-semibold tabular-nums text-emerald">{data.pricingAnchor}</span>{" "}
+                  <Link href={data.pricingHref ?? "/tarifs"} className="text-emerald underline underline-offset-4 hover:text-emerald-hover">
                     {isEn ? "See pricing" : "Voir les tarifs"}
                   </Link>
                 </p>
@@ -131,13 +131,13 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
                 <ButtonLink href={reserverHref} size="lg">{L.bookCta}</ButtonLink>
                 <ButtonLink href={data.ctaSecondaryHref} variant="secondary" size="lg">{data.ctaSecondaryLabel}</ButtonLink>
               </div>
-              <a href="#methodologie" className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-muted hover:text-ink">
+              <a href="#methodologie" className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-fg-muted hover:text-fg">
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
                 {L.scrollCta}
               </a>
             </div>
             <div className="reveal lg:col-span-5">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
                 <Image src={data.image} alt={data.imageAlt} fill priority className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
               </div>
             </div>
@@ -150,18 +150,18 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
         <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="reveal lg:col-span-7">
             <SectionHeader eyebrow={L.pourquoi} title={data.title} intro={data.description} />
-            <p className="text-eyebrow uppercase text-muted">{L.benefits}</p>
+            <p className="text-eyebrow uppercase text-fg-muted">{L.benefits}</p>
             <ul className="mt-4 grid gap-x-6 gap-y-3 sm:grid-cols-2">
               {data.benefits.map((b, j) => (
-                <li key={j} className="flex items-start gap-2 text-body-sm text-ink-700">
-                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+                <li key={j} className="flex items-start gap-2 text-body-sm text-fg-strong">
+                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                   <span>{b}</span>
                 </li>
               ))}
             </ul>
           </div>
           <div className="reveal lg:col-span-5">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-track">
               <Image src={data.imageSecondary} alt={data.imageSecondaryAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
             </div>
           </div>
@@ -173,12 +173,12 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
         <div className="reveal">
           <SectionHeader tone="dark" eyebrow={L.methodology} title={data.methodology.title} intro={data.narrative} />
         </div>
-        <ol className="grid gap-px overflow-hidden rounded-xl border border-ondark-line bg-ondark-line md:grid-cols-2">
+        <ol className="grid gap-px overflow-hidden rounded-xl border border-track bg-track md:grid-cols-2">
           {data.methodology.steps.map((step, i) => (
-            <li key={i} className="bg-forest-900 p-6 lg:p-8">
-              <p className="text-eyebrow uppercase text-ondark-muted">{String(i + 1).padStart(2, "0")}</p>
-              <h3 className="mt-3 text-heading-lg text-ondark">{step.title}</h3>
-              <p className="mt-2 text-body-sm text-ondark-muted">{step.desc}</p>
+            <li key={i} className="bg-bg-card p-6 lg:p-8">
+              <p className="text-eyebrow uppercase text-fg-muted">{String(i + 1).padStart(2, "0")}</p>
+              <h3 className="mt-3 text-heading-lg text-fg">{step.title}</h3>
+              <p className="mt-2 text-body-sm text-fg-muted">{step.desc}</p>
             </li>
           ))}
         </ol>
@@ -194,30 +194,30 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
           />
         </div>
         <div className="grid gap-6 lg:grid-cols-3">
-          <div className="rounded-xl border border-line bg-paper p-6">
-            <h3 className="text-eyebrow uppercase text-muted">{L.deliverables}</h3>
+          <div className="rounded-xl border border-track bg-bg p-6">
+            <h3 className="text-eyebrow uppercase text-fg-muted">{L.deliverables}</h3>
             <ul className="mt-4 space-y-3">
               {data.deliverables.map((d, i) => (
-                <li key={i} className="flex items-start gap-2 text-body-sm text-ink-700">
-                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+                <li key={i} className="flex items-start gap-2 text-body-sm text-fg-strong">
+                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                   <span>{d}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-xl border border-line bg-cream p-6">
-            <h3 className="text-eyebrow uppercase text-muted">{L.sla}</h3>
-            <dl className="mt-4 divide-y divide-line">
+          <div className="rounded-xl border border-track bg-bg-card p-6">
+            <h3 className="text-eyebrow uppercase text-fg-muted">{L.sla}</h3>
+            <dl className="mt-4 divide-y divide-track">
               {data.sla.map((s, i) => (
                 <div key={i} className="flex flex-col-reverse justify-end py-3 first:pt-0">
-                  <dt className="mt-1 text-caption text-muted">{s.metric}</dt>
-                  <dd className="font-display text-display-sm tabular-nums text-forest">{s.value}</dd>
+                  <dt className="mt-1 text-caption text-fg-muted">{s.metric}</dt>
+                  <dd className="font-display text-display-sm tabular-nums text-emerald">{s.value}</dd>
                 </div>
               ))}
             </dl>
           </div>
-          <div className="rounded-xl border border-line bg-paper p-6">
-            <h3 className="text-eyebrow uppercase text-muted">{L.certifications}</h3>
+          <div className="rounded-xl border border-track bg-bg p-6">
+            <h3 className="text-eyebrow uppercase text-fg-muted">{L.certifications}</h3>
             <ul className="mt-4 flex flex-wrap gap-2">
               {data.certifications.map((c, i) => (
                 <li key={i}>
@@ -233,10 +233,10 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
       <Section tone="forest">
         <div className="reveal">
           <figure className="max-w-[65ch]">
-            <p className="text-eyebrow uppercase text-ondark-muted">{L.quoteEyebrow}</p>
-            <blockquote className="mt-4 font-display text-display-sm text-ondark">&laquo;&nbsp;{data.quote.text}&nbsp;&raquo;</blockquote>
-            <figcaption className="mt-6 text-caption text-ondark-muted">
-              <span className="font-semibold text-ondark">{data.quote.name}</span> · {data.quote.role}
+            <p className="text-eyebrow uppercase text-fg-muted">{L.quoteEyebrow}</p>
+            <blockquote className="mt-4 font-display text-display-sm text-fg">&laquo;&nbsp;{data.quote.text}&nbsp;&raquo;</blockquote>
+            <figcaption className="mt-6 text-caption text-fg-muted">
+              <span className="font-semibold text-fg">{data.quote.name}</span> · {data.quote.role}
             </figcaption>
           </figure>
         </div>

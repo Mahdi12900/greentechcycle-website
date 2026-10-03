@@ -265,7 +265,7 @@ export default function ServicesPage() {
   return (
     <div>
       {/* ═══════════ HERO split (paper) — l'ancien bandeau d'urgence devient une notice ═══════════ */}
-      <section className="bg-paper py-16 lg:py-24" aria-labelledby="services-hero-title">
+      <section className="bg-bg py-16 lg:py-24" aria-labelledby="services-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
@@ -275,8 +275,8 @@ export default function ServicesPage() {
                   "Six integrated services, one point of contact, an admissible evidence chain"
                 )}
               </Tag>
-              <p className="mt-6 text-eyebrow uppercase text-muted">{tx("Six services, une seule chaîne", "Six services, one chain")}</p>
-              <h1 id="services-hero-title" className="mt-3 max-w-[20ch] text-display-lg text-ink">
+              <p className="mt-6 text-eyebrow uppercase text-fg-muted">{tx("Six services, une seule chaîne", "Six services, one chain")}</p>
+              <h1 id="services-hero-title" className="mt-3 max-w-[20ch] text-display-lg text-fg">
                 {tx(
                   <>
                     L&apos;ITAD n&apos;est pas un produit. <br className="hidden sm:block" />
@@ -288,19 +288,19 @@ export default function ServicesPage() {
                   </>
                 )}
               </h1>
-              <p className="mt-6 max-w-[65ch] text-body-lg text-ink-700">
+              <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
                   "Audit, effacement, reconditionnement, recyclage, sécurité, collecte connectée. Six métiers, un seul interlocuteur, une seule donnée, versée jour après jour à votre rapport CSRD et à votre dossier RSSI.",
                   "Audit, erasure, refurbishment, recycling, security, connected collection. Six trades, one point of contact, one dataset, fed day after day into your CSRD report and your CISO file."
                 )}
               </p>
-              <dl className="mt-8 grid max-w-[560px] grid-cols-3 border-y border-line py-6">
+              <dl className="mt-8 grid max-w-[560px] grid-cols-3 border-y border-track py-6">
                 {heroFigures.map((item, i) => (
-                  <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-line pl-4" : "pr-4"}`}>
-                    <dt className="mt-1 text-caption text-muted">{item.l}</dt>
-                    <dd className="font-display text-display-sm tabular-nums text-forest">
+                  <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-track pl-4" : "pr-4"}`}>
+                    <dt className="mt-1 text-caption text-fg-muted">{item.l}</dt>
+                    <dd className="font-display text-display-sm tabular-nums text-emerald">
                       {item.v}
-                      {item.unit && <span className="ml-1 font-sans text-body-sm text-ink-700">{item.unit}</span>}
+                      {item.unit && <span className="ml-1 font-sans text-body-sm text-fg-strong">{item.unit}</span>}
                     </dd>
                   </div>
                 ))}
@@ -315,7 +315,7 @@ export default function ServicesPage() {
               </div>
               <a
                 href="#services-grille"
-                className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-muted hover:text-ink"
+                className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-fg-muted hover:text-fg"
               >
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
                 {tx("Découvrir les six métiers", "Discover the six trades")}
@@ -323,7 +323,7 @@ export default function ServicesPage() {
             </div>
             <div className="reveal lg:col-span-5">
               <figure>
-                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
                   <Image
                     src="/photos/hp-atelier-itad.jpg"
                     alt={tx(
@@ -336,26 +336,26 @@ export default function ServicesPage() {
                     sizes="(max-width: 1024px) 100vw, 40vw"
                   />
                 </div>
-                <figcaption className="mt-6 border-l-2 border-leaf pl-4">
-                  <p className="text-body-sm text-ink">
+                <figcaption className="mt-6 border-l-2 border-emerald pl-4">
+                  <p className="text-body-sm text-fg">
                     {tx(
                       "« Six prestataires devenus un seul. Notre comité d'audit a soufflé. »",
                       "« Six vendors became one. Our audit committee finally exhaled. »"
                     )}
                   </p>
-                  <p className="mt-2 text-caption text-muted">
-                    <span className="font-semibold text-ink-700">Sophie L.</span> · {tx("DSI, groupe industriel coté", "CIO, listed industrial group")}
+                  <p className="mt-2 text-caption text-fg-muted">
+                    <span className="font-semibold text-fg-strong">Sophie L.</span> · {tx("DSI, groupe industriel coté", "CIO, listed industrial group")}
                   </p>
                 </figcaption>
               </figure>
             </div>
           </div>
-          <CertificationStrip className="mt-12 border-t border-line pt-6" />
+          <CertificationStrip className="mt-12 border-t border-track pt-6" />
         </div>
       </section>
 
       {/* ═══════════ GRILLE 6 SERVICES (2 × 3 régulière) ═══════════ */}
-      <section id="services-grille" className="border-t border-line bg-cream py-16 lg:py-24" aria-labelledby="services-grille-title">
+      <section id="services-grille" className="border-t border-track bg-bg-card py-16 lg:py-24" aria-labelledby="services-grille-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <SectionHeader
@@ -372,39 +372,39 @@ export default function ServicesPage() {
                   <article
                     id={`service-${s.slug}`}
                     aria-labelledby={`service-title-${s.slug}`}
-                    className="flex h-full flex-col overflow-hidden rounded-xl border border-line bg-paper"
+                    className="flex h-full flex-col overflow-hidden rounded-xl border border-track bg-bg"
                   >
-                    <div className="relative aspect-[16/10] border-b border-line">
+                    <div className="relative aspect-[16/10] border-b border-track">
                       <Image src={s.image} alt={s.imageAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />
                     </div>
                     <div className="flex flex-1 flex-col p-6">
                       <div className="flex items-center justify-between gap-3">
-                        <span className="inline-flex items-center gap-2 text-eyebrow uppercase text-muted">
-                          <Icon className="h-4 w-4 text-forest" strokeWidth={1.75} aria-hidden="true" />
+                        <span className="inline-flex items-center gap-2 text-eyebrow uppercase text-fg-muted">
+                          <Icon className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                           {s.num} · {s.eyebrow}
                         </span>
                         <Tag variant="brand">{s.badge}</Tag>
                       </div>
-                      <h2 id={`service-title-${s.slug}`} className="mt-4 font-sans text-heading-lg text-ink">
+                      <h2 id={`service-title-${s.slug}`} className="mt-4 font-sans text-heading-lg text-fg">
                         {s.title}
                       </h2>
-                      <p className="mt-2 text-body-sm italic text-ink">{s.pitch}</p>
-                      <p className="mt-3 flex-1 text-body-sm text-ink-700">{s.body}</p>
-                      <dl className="mt-6 grid grid-cols-2 border-t border-line pt-4">
+                      <p className="mt-2 text-body-sm italic text-fg">{s.pitch}</p>
+                      <p className="mt-3 flex-1 text-body-sm text-fg-strong">{s.body}</p>
+                      <dl className="mt-6 grid grid-cols-2 border-t border-track pt-4">
                         {s.proof.map((p, j) => (
-                          <div key={j} className={`flex flex-col-reverse justify-end ${j > 0 ? "border-l border-line pl-4" : "pr-4"}`}>
-                            <dt className="text-caption text-muted">{p.label}</dt>
-                            <dd className="font-display text-display-sm tabular-nums text-forest">
+                          <div key={j} className={`flex flex-col-reverse justify-end ${j > 0 ? "border-l border-track pl-4" : "pr-4"}`}>
+                            <dt className="text-caption text-fg-muted">{p.label}</dt>
+                            <dd className="font-display text-display-sm tabular-nums text-emerald">
                               {p.value}
-                              {p.unit && <span className="ml-1 font-sans text-body-sm text-ink-700">{p.unit}</span>}
+                              {p.unit && <span className="ml-1 font-sans text-body-sm text-fg-strong">{p.unit}</span>}
                             </dd>
                           </div>
                         ))}
                       </dl>
                       {s.pricingNote && (
                         <p className="mt-4 text-body-sm">
-                          <span className="font-semibold tabular-nums text-forest">{s.pricingNote}</span>{" "}
-                          <Link href={s.pricingHref ?? "/tarifs"} className="text-leaf underline underline-offset-4 hover:text-leaf-700">
+                          <span className="font-semibold tabular-nums text-emerald">{s.pricingNote}</span>{" "}
+                          <Link href={s.pricingHref ?? "/tarifs"} className="text-emerald underline underline-offset-4 hover:text-emerald-hover">
                             {tx("Voir les tarifs", "View pricing")}
                           </Link>
                         </p>
@@ -413,7 +413,7 @@ export default function ServicesPage() {
                         <ButtonLink href={`/reserver?offre=${s.slug}`} variant="secondary">
                           {s.bookLabel}
                         </ButtonLink>
-                        <Link href={s.href} className="group inline-flex min-h-[44px] items-center gap-1 text-body-sm font-medium text-leaf hover:text-leaf-700">
+                        <Link href={s.href} className="group inline-flex min-h-[44px] items-center gap-1 text-body-sm font-medium text-emerald hover:text-emerald-hover">
                           {tx("Lire la fiche complète", "Read the full sheet")}
                           <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                         </Link>
@@ -431,15 +431,15 @@ export default function ServicesPage() {
       <Section tone="forest">
         <div className="reveal">
           <figure className="max-w-[65ch]">
-            <p className="text-eyebrow uppercase text-ondark-muted">{tx("Témoignage RSSI", "CISO testimonial")}</p>
-            <blockquote className="mt-4 font-display text-display-sm text-ondark">
+            <p className="text-eyebrow uppercase text-fg-muted">{tx("Témoignage RSSI", "CISO testimonial")}</p>
+            <blockquote className="mt-4 font-display text-display-sm text-fg">
               {tx(
                 "« GreenTechCycle a transformé notre ITAD en ligne de défense. Quand l'inspection ACPR est arrivée, j'ai posé un seul PDF sur la table. Quinze minutes plus tard, le sujet était clos. »",
                 "« GreenTechCycle turned our ITAD into a line of defence. When the regulatory inspection arrived, I put a single PDF on the table. Fifteen minutes later, the topic was closed. »"
               )}
             </blockquote>
-            <figcaption className="mt-6 text-caption text-ondark-muted">
-              <span className="font-semibold text-ondark">Marc B.</span> · {tx("RSSI, banque CAC 40", "CISO, CAC 40 bank")}
+            <figcaption className="mt-6 text-caption text-fg-muted">
+              <span className="font-semibold text-fg">Marc B.</span> · {tx("RSSI, banque CAC 40", "CISO, CAC 40 bank")}
             </figcaption>
           </figure>
         </div>
@@ -463,10 +463,10 @@ export default function ServicesPage() {
         <div className="reveal-stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {singleContact.map((b) => (
             <div key={b.title} className="reveal h-full">
-              <div className="h-full rounded-xl border border-line bg-paper p-6">
+              <div className="h-full rounded-xl border border-track bg-bg p-6">
                 <Pictogram icon={b.icon} />
-                <h3 className="mt-4 text-heading-md text-ink">{b.title}</h3>
-                <p className="mt-2 text-body-sm text-ink-700">{b.body}</p>
+                <h3 className="mt-4 text-heading-md text-fg">{b.title}</h3>
+                <p className="mt-2 text-body-sm text-fg-strong">{b.body}</p>
               </div>
             </div>
           ))}
@@ -496,7 +496,7 @@ export default function ServicesPage() {
         footnote={
           <div className="mx-auto max-w-[65ch]">
             <p>
-              <span className="font-semibold text-ondark">
+              <span className="font-semibold text-fg">
                 {tx("Pilote GTC - Audit & démarrage 3 jours", "GTC Pilot - Audit & 3-day kickoff")} · {tx("2 900 € HT / 3 jours", "€2,900 ex-VAT / 3 days")}
               </span>{" "}
               {tx(
@@ -505,10 +505,10 @@ export default function ServicesPage() {
               )}
             </p>
             <p className="mt-3 flex flex-wrap justify-center gap-x-6 gap-y-2">
-              <Link href="/tarifs#pilote" className="font-medium text-leaf-300 hover:text-ondark">
+              <Link href="/tarifs#pilote" className="font-medium text-emerald hover:text-fg">
                 {tx("Détails et garantie remboursement", "Details and refund guarantee")} →
               </Link>
-              <Link href="/cas-usages" className="font-medium text-leaf-300 hover:text-ondark">
+              <Link href="/cas-usages" className="font-medium text-emerald hover:text-fg">
                 {tx("Voir les cas clients", "See client cases")} →
               </Link>
             </p>

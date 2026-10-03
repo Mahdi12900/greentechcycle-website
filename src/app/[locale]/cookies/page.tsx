@@ -15,10 +15,10 @@ function CookiesContent({ locale }: { locale: string }) {
   const t = useTranslations("Legal.cookies");
 
   const categories = [
-    { key: "necessary", icon: ShieldCheck, color: "bg-leaf-50 text-leaf border-leaf-100" },
-    { key: "analytics", icon: BarChart3, color: "bg-leaf-50 text-forest border-line" },
-    { key: "functional", icon: Sparkles, color: "bg-ochre-100 text-ochre border-ochre-100" },
-    { key: "marketing", icon: Megaphone, color: "bg-leaf-50 text-forest border-line" },
+    { key: "necessary", icon: ShieldCheck, color: "bg-white/[0.03] text-emerald border-emerald-line" },
+    { key: "analytics", icon: BarChart3, color: "bg-white/[0.03] text-emerald border-track" },
+    { key: "functional", icon: Sparkles, color: "bg-amber-dim text-amber border-amber/40" },
+    { key: "marketing", icon: Megaphone, color: "bg-white/[0.03] text-emerald border-track" },
   ] as const;
 
   return (
@@ -28,16 +28,16 @@ function CookiesContent({ locale }: { locale: string }) {
         title={t("title")}
         subtitle="Transparence sur les cookies déposés par GreenTechCycle : finalités, durées et outils de gestion de vos préférences."
         breadcrumbLabel="Cookies"
-        icon={<Cookie className="h-7 w-7 text-leaf" />}
+        icon={<Cookie className="h-7 w-7 text-emerald" />}
       >
         <div className="space-y-10">
           {/* Intro */}
           <div className="reveal">
-            <div className="bg-white rounded-2xl p-6 md:p-8 border border-line">
-              <h2 className="text-display-md text-ink mb-3">
+            <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-track">
+              <h2 className="text-display-md text-fg mb-3">
                 {t("content.intro.title")}
               </h2>
-              <p className="text-ink-700 whitespace-pre-line leading-relaxed">
+              <p className="text-fg-strong whitespace-pre-line leading-relaxed">
                 {t("content.intro.text")}
               </p>
             </div>
@@ -46,7 +46,7 @@ function CookiesContent({ locale }: { locale: string }) {
           {/* Categories */}
           <div className="reveal">
             <div>
-              <h2 className="text-display-md text-ink mb-6">
+              <h2 className="text-display-md text-fg mb-6">
                 {t("content.categories.title")}
               </h2>
 
@@ -54,15 +54,15 @@ function CookiesContent({ locale }: { locale: string }) {
                 {categories.map(({ key, icon: Icon, color }) => (
                   <div
                     key={key}
-                    className="bg-white rounded-2xl p-6 border border-line hover:shadow-card transition-colors duration-150"
+                    className="bg-bg-card rounded-2xl p-6 border border-track hover:border-track-strong transition-colors duration-150"
                   >
                     <div className={`inline-flex items-center justify-center w-11 h-11 rounded-xl border mb-4 ${color}`}>
                       <Icon className="h-5 w-5" />
                     </div>
-                    <h3 className="text-heading-md text-ink mb-2">
+                    <h3 className="text-heading-md text-fg mb-2">
                       {t(`content.categories.${key}.title`)}
                     </h3>
-                    <p className="text-sm text-ink-700 whitespace-pre-line leading-relaxed">
+                    <p className="text-sm text-fg-strong whitespace-pre-line leading-relaxed">
                       {t(`content.categories.${key}.text`)}
                     </p>
                   </div>
@@ -73,11 +73,11 @@ function CookiesContent({ locale }: { locale: string }) {
 
           {/* Management */}
           <div className="reveal">
-            <div className="rounded-2xl p-6 md:p-8 border border-leaf/10 bg-leaf-50">
-              <h2 className="text-display-md text-ink mb-3">
+            <div className="rounded-2xl p-6 md:p-8 border border-emerald/10 bg-white/[0.03]">
+              <h2 className="text-display-md text-fg mb-3">
                 {t("content.management.title")}
               </h2>
-              <p className="text-ink-700 whitespace-pre-line leading-relaxed">
+              <p className="text-fg-strong whitespace-pre-line leading-relaxed">
                 {t("content.management.text")}
               </p>
             </div>
@@ -85,11 +85,11 @@ function CookiesContent({ locale }: { locale: string }) {
 
           {/* Duration */}
           <div className="reveal">
-            <div className="bg-white rounded-2xl p-6 md:p-8 border border-line">
-              <h2 className="text-display-md text-ink mb-3">
+            <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-track">
+              <h2 className="text-display-md text-fg mb-3">
                 {t("content.duration.title")}
               </h2>
-              <p className="text-ink-700 whitespace-pre-line leading-relaxed">
+              <p className="text-fg-strong whitespace-pre-line leading-relaxed">
                 {t("content.duration.text")}
               </p>
             </div>

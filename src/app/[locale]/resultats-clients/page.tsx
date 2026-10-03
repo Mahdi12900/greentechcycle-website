@@ -57,32 +57,32 @@ export default function ResultatsClientsPage() {
   const metricIcons = [Users, Server, Euro, Cloud];
 
   return (
-    <div className="overflow-hidden bg-white">
+    <div className="overflow-hidden bg-bg-card">
       {/* Hero */}
-      <section className="bg-forest py-16 text-ondark lg:py-24">
+      <section className="bg-bg-card py-16 text-fg lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-4xl ">
-              <p className="text-ondark-muted uppercase mb-4 text-eyebrow">
+              <p className="text-fg-muted uppercase mb-4 text-eyebrow">
                 {t("hero.eyebrow")}
               </p>
-              <h1 className="text-display-lg text-ondark mb-6">
+              <h1 className="text-display-lg text-fg mb-6">
                 {t("hero.title")}
               </h1>
-              <p className="text-lg md:text-xl text-ondark-muted mb-10 max-w-3xl leading-relaxed">
+              <p className="text-lg md:text-xl text-fg-muted mb-10 max-w-3xl leading-relaxed">
                 {t("hero.subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 ">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center  gap-2 bg-leaf hover:bg-leaf-700 text-ondark font-semibold px-8 py-4 rounded-xl transition-colors duration-150 hover:shadow-card hover: text-base"
+                  className="inline-flex items-center  gap-2 bg-emerald hover:bg-emerald-hover text-bg font-semibold px-8 py-4 rounded-xl transition-colors duration-150 hover:border-track-strong hover: text-base"
                 >
                   {t("hero.cta1")}
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
                 <Link
                   href="/cas-usages"
-                  className="inline-flex items-center  gap-2 bg-white/10 hover:bg-white/20 text-ondark border border-white/20 font-semibold px-8 py-4 rounded-xl transition-colors duration-150 text-base"
+                  className="inline-flex items-center  gap-2 bg-white/10 hover:bg-white/20 text-fg border border-white/20 font-semibold px-8 py-4 rounded-xl transition-colors duration-150 text-base"
                 >
                   {t("hero.cta2")}
                 </Link>
@@ -93,14 +93,14 @@ export default function ResultatsClientsPage() {
       </section>
 
       {/* Global metrics */}
-      <section className="bg-white py-16 lg:py-24">
+      <section className="bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="text-center max-w-3xl mx-auto mb-14">
-              <p className="text-muted uppercase mb-3 text-eyebrow">
+              <p className="text-fg-muted uppercase mb-3 text-eyebrow">
                 {t("metricsSection.eyebrow")}
               </p>
-              <h2 className="text-display-md text-ink">
+              <h2 className="text-display-md text-fg">
                 {t("metricsSection.title")}
               </h2>
             </div>
@@ -111,14 +111,14 @@ export default function ResultatsClientsPage() {
               return (
                 <div key={i} className="reveal">
                   <div className="reveal-scale">
-                    <div className="border border-line rounded-2xl p-7 h-full flex flex-col items-center text-center hover:shadow-card transition-colors duration-150 bg-cream">
-                      <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-leaf-100 text-forest">
+                    <div className="border border-track rounded-2xl p-7 h-full flex flex-col items-center text-center hover:border-track-strong transition-colors duration-150 bg-bg-card">
+                      <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-dim text-emerald">
                         <MIcon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />
                       </span>
-                      <p className="mb-2 text-stat text-forest">
+                      <p className="mb-2 text-stat text-emerald">
                         <CountUp end={parseInt(m.value)} suffix={m.suffix} />
                       </p>
-                      <p className="text-ink-700 text-sm font-medium leading-snug">
+                      <p className="text-fg-strong text-sm font-medium leading-snug">
                         {m.label}
                       </p>
                     </div>
@@ -131,17 +131,17 @@ export default function ResultatsClientsPage() {
       </section>
 
       {/* Case results grid */}
-      <section className="bg-cream py-16 lg:py-24">
+      <section className="bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="max-w-3xl mb-14">
-              <p className="text-muted uppercase mb-3 text-eyebrow">
+              <p className="text-fg-muted uppercase mb-3 text-eyebrow">
                 {t("casesSection.eyebrow")}
               </p>
-              <h2 className="text-display-md text-ink mb-5">
+              <h2 className="text-display-md text-fg mb-5">
                 {t("casesSection.title")}
               </h2>
-              <p className="text-ink-700 text-lg leading-relaxed">
+              <p className="text-fg-strong text-lg leading-relaxed">
                 {t("casesSection.subtitle")}
               </p>
             </div>
@@ -152,16 +152,16 @@ export default function ResultatsClientsPage() {
               const CIcon = iconMap[c.icon] || Building2;
               return (
                 <div key={c.slug} className="reveal">
-                  <div className="bg-white border border-line rounded-2xl p-7 h-full flex flex-col hover:shadow-card hover:border-leaf/30 transition-colors duration-150">
+                  <div className="bg-bg-card border border-track rounded-2xl p-7 h-full flex flex-col hover:border-track-strong hover:border-emerald/30 transition-colors duration-150">
                     <div className="flex items-center gap-3 mb-5">
-                      <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-leaf-100 text-forest">
+                      <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-emerald-dim text-emerald">
                         <CIcon className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
                       </span>
                       <div>
-                        <span className="uppercase text-eyebrow text-muted">
+                        <span className="uppercase text-eyebrow text-fg-muted">
                           {c.sector}
                         </span>
-                        <h3 className="text-heading-md text-ink">
+                        <h3 className="text-heading-md text-fg">
                           {c.title}
                         </h3>
                       </div>
@@ -169,25 +169,25 @@ export default function ResultatsClientsPage() {
 
                     <ul className="space-y-2 mb-5 flex-1">
                       {c.highlights.map((h, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm text-ink-700 leading-snug">
-                          <CheckCircle2 className="h-4 w-4 text-leaf flex-shrink-0 mt-0.5" aria-hidden="true" />
+                        <li key={j} className="flex items-start gap-2 text-sm text-fg-strong leading-snug">
+                          <CheckCircle2 className="h-4 w-4 text-emerald flex-shrink-0 mt-0.5" aria-hidden="true" />
                           <span>{h}</span>
                         </li>
                       ))}
                     </ul>
 
-                    <div className="bg-cream border border-line rounded-xl p-4 mb-5">
-                      <Quote className="h-5 w-5 text-leaf mb-2" aria-hidden="true" />
-                      <p className="text-xs text-ink-700 italic leading-relaxed mb-2">
+                    <div className="bg-bg-card border border-track rounded-xl p-4 mb-5">
+                      <Quote className="h-5 w-5 text-emerald mb-2" aria-hidden="true" />
+                      <p className="text-xs text-fg-strong italic leading-relaxed mb-2">
                         &ldquo;{c.quote}&rdquo;
                       </p>
-                      <p className="text-caption font-semibold text-ink">{c.quoteName}</p>
-                      <p className="text-caption text-muted">{c.quoteRole}</p>
+                      <p className="text-caption font-semibold text-fg">{c.quoteName}</p>
+                      <p className="text-caption text-fg-muted">{c.quoteRole}</p>
                     </div>
 
                     <Link
                       href={`/cas-usages#${c.slug}`}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-leaf hover:text-leaf-700 group"
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-emerald hover:text-emerald-hover group"
                     >
                       {t("casesSection.readMore")}
                       <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
@@ -201,29 +201,29 @@ export default function ResultatsClientsPage() {
       </section>
 
       {/* Trust & CTA */}
-      <section className="relative overflow-hidden bg-ink py-16 lg:py-24">
+      <section className="relative overflow-hidden bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-4xl mx-auto text-center">
-              <TrendingUp className="h-10 w-10 text-leaf-300 mx-auto mb-6" aria-hidden="true" />
-              <h2 className="text-display-md text-white mb-6">
+              <TrendingUp className="h-10 w-10 text-emerald mx-auto mb-6" aria-hidden="true" />
+              <h2 className="text-display-md text-fg mb-6">
                 {t("cta.title")}
               </h2>
-              <p className="text-ondark-muted text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+              <p className="text-fg-muted text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
                 {t("cta.subtitle")}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center justify-center gap-2 bg-leaf hover:bg-leaf-700 text-white font-semibold px-8 py-4 rounded-xl transition-colors duration-150 hover:shadow-card hover: text-base"
+                  className="inline-flex items-center justify-center gap-2 bg-emerald hover:bg-emerald-hover text-bg font-semibold px-8 py-4 rounded-xl transition-colors duration-150 hover:border-track-strong hover: text-base"
                 >
                   {t("cta.cta1")}
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold px-8 py-4 rounded-xl transition-colors duration-150 text-base"
+                  className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-fg border border-white/20 font-semibold px-8 py-4 rounded-xl transition-colors duration-150 text-base"
                 >
                   {t("cta.cta2")}
                 </Link>
@@ -231,8 +231,8 @@ export default function ResultatsClientsPage() {
 
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
                 {trustBadges.map((badge, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm text-ondark">
-                    <Shield className="h-4 w-4 text-leaf-300" aria-hidden="true" />
+                  <div key={i} className="flex items-center gap-2 text-sm text-fg">
+                    <Shield className="h-4 w-4 text-emerald" aria-hidden="true" />
                     <span className="font-medium">{badge}</span>
                   </div>
                 ))}

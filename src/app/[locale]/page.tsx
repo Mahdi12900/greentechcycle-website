@@ -141,17 +141,17 @@ export default function HomePage() {
   }>;
 
   return (
-    <div className="bg-paper">
+    <div className="bg-bg">
       {/* ==========================================================
           1–2. HERO — notice CSRD intégrée, split 7/5, preuve chiffrée
          ========================================================== */}
-      <section className="bg-paper py-16 lg:py-32" aria-labelledby="hero-title">
+      <section className="bg-bg py-16 lg:py-32" aria-labelledby="hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
               <Link
                 href="/reglementation"
-                className="inline-flex min-h-[28px] max-w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-lg bg-ochre-100 sm:rounded-full px-3 py-1 text-caption font-semibold text-ochre-800 transition-colors hover:text-ink"
+                className="inline-flex min-h-[28px] max-w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-lg bg-amber-dim sm:rounded-full px-3 py-1 text-caption font-semibold text-amber transition-colors hover:text-fg"
               >
                 <AlertTriangle className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
                 <span>{t("urgency.text")}</span>
@@ -162,19 +162,19 @@ export default function HomePage() {
                 <Tag variant="neutral">{t("hero.eyebrow")}</Tag>
               </div>
 
-              <h1 id="hero-title" className="mt-6 max-w-[22ch] text-display-lg text-ink">
+              <h1 id="hero-title" className="mt-6 max-w-[22ch] text-display-lg text-fg">
                 {t("hero.title")}
               </h1>
 
-              <p className="mt-6 max-w-[65ch] text-body-lg text-ink-700">{t("hero.subtitle")}</p>
+              <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("hero.subtitle")}</p>
 
               {heroStat && (
-                <div className="mt-8 flex max-w-[65ch] items-start gap-6 border-l-2 border-leaf pl-6">
-                  <p className="whitespace-nowrap text-display-xl leading-none text-forest">{heroStat.replace(" ", "\u00a0")}</p>
-                  <p className="text-body-sm text-ink-700">{heroStatText}</p>
+                <div className="mt-8 flex max-w-[65ch] items-start gap-6 border-l-2 border-emerald pl-6">
+                  <p className="whitespace-nowrap text-display-xl leading-none text-emerald">{heroStat.replace(" ", "\u00a0")}</p>
+                  <p className="text-body-sm text-fg-strong">{heroStatText}</p>
                 </div>
               )}
-              {!heroStat && <p className="mt-6 max-w-[65ch] text-body-sm text-ink-700">{proof}</p>}
+              {!heroStat && <p className="mt-6 max-w-[65ch] text-body-sm text-fg-strong">{proof}</p>}
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href="/demo" size="lg">
@@ -185,11 +185,11 @@ export default function HomePage() {
                 </ButtonLink>
               </div>
 
-              <p className="mt-6 max-w-[65ch] text-caption italic text-muted">{t("hero.source")}</p>
+              <p className="mt-6 max-w-[65ch] text-caption italic text-fg-muted">{t("hero.source")}</p>
             </div>
 
             <div className="reveal lg:col-span-5">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
                 <Image
                   src="/photos/hp-atelier-itad.jpg"
                   alt={tx(
@@ -202,32 +202,32 @@ export default function HomePage() {
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               </div>
-              <div className="mt-6 grid grid-cols-2 border-t border-line pt-6">
+              <div className="mt-6 grid grid-cols-2 border-t border-track pt-6">
                 <div className="pr-4">
-                  <p className="text-eyebrow uppercase text-muted">Audit ACPR</p>
-                  <p className="mt-2 font-display text-display-sm text-forest">{tx("4 jours", "4 days")}</p>
-                  <p className="mt-1 text-caption text-muted">{tx("vs 3 semaines en moyenne", "vs 3 weeks on average")}</p>
+                  <p className="text-eyebrow uppercase text-fg-muted">Audit ACPR</p>
+                  <p className="mt-2 font-display text-display-sm text-emerald">{tx("4 jours", "4 days")}</p>
+                  <p className="mt-1 text-caption text-fg-muted">{tx("vs 3 semaines en moyenne", "vs 3 weeks on average")}</p>
                 </div>
-                <div className="border-l border-line pl-4">
-                  <p className="text-eyebrow uppercase text-muted">{tx("Valeur récupérée", "Value recovered")}</p>
-                  <p className="mt-2 font-display text-display-sm text-forest">638 k€</p>
-                  <p className="mt-1 text-caption text-muted">{tx("moyenne / mission grand compte", "average / key-account mission")}</p>
+                <div className="border-l border-track pl-4">
+                  <p className="text-eyebrow uppercase text-fg-muted">{tx("Valeur récupérée", "Value recovered")}</p>
+                  <p className="mt-2 font-display text-display-sm text-emerald">638 k€</p>
+                  <p className="mt-1 text-caption text-fg-muted">{tx("moyenne / mission grand compte", "average / key-account mission")}</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-line pt-6 text-caption text-ink-700">
+          <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-track pt-6 text-caption text-fg-strong">
             <span className="inline-flex items-center gap-2">
-              <ShieldCheck className="h-3.5 w-3.5 text-forest" strokeWidth={1.75} aria-hidden="true" />
+              <ShieldCheck className="h-3.5 w-3.5 text-emerald" strokeWidth={1.75} aria-hidden="true" />
               {t("hero.trust1")}
             </span>
             <span className="inline-flex items-center gap-2">
-              <ShieldCheck className="h-3.5 w-3.5 text-forest" strokeWidth={1.75} aria-hidden="true" />
+              <ShieldCheck className="h-3.5 w-3.5 text-emerald" strokeWidth={1.75} aria-hidden="true" />
               {t("hero.trust2")}
             </span>
             <span className="inline-flex items-center gap-2">
-              <ShieldCheck className="h-3.5 w-3.5 text-forest" strokeWidth={1.75} aria-hidden="true" />
+              <ShieldCheck className="h-3.5 w-3.5 text-emerald" strokeWidth={1.75} aria-hidden="true" />
               {t("hero.trust3")}
             </span>
           </div>
@@ -238,11 +238,11 @@ export default function HomePage() {
       {/* ==========================================================
           3. ENJEUX — condensés en une ligne de 4 liens texte
          ========================================================== */}
-      <section className="border-t border-line bg-paper py-8" aria-labelledby="enjeux-title">
+      <section className="border-t border-track bg-bg py-8" aria-labelledby="enjeux-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-[200px_1fr] lg:items-start">
             <div>
-              <p className="text-eyebrow uppercase text-muted">{t("enjeuCards.eyebrow")}</p>
+              <p className="text-eyebrow uppercase text-fg-muted">{t("enjeuCards.eyebrow")}</p>
               <h2 id="enjeux-title" className="sr-only">
                 {t("enjeuCards.title")}
               </h2>
@@ -251,7 +251,7 @@ export default function HomePage() {
               {enjeuCards.map((card) => (
                 <li key={card.title}>
                   <TextLink href={card.href}>{card.title}</TextLink>
-                  <p className="mt-1 text-caption text-muted">{card.desc}</p>
+                  <p className="mt-1 text-caption text-fg-muted">{card.desc}</p>
                 </li>
               ))}
             </ul>
@@ -277,11 +277,11 @@ export default function HomePage() {
               <Card className="flex h-full flex-col">
                 <div className="mb-6 flex items-center gap-3">
                   <Pictogram icon={problemIcons[i] || AlertTriangle} alert />
-                  <span className="text-eyebrow uppercase text-ochre">{item.tag}</span>
+                  <span className="text-eyebrow uppercase text-amber">{item.tag}</span>
                 </div>
-                <h3 className="mb-3 text-heading-lg text-ink">{item.title}</h3>
-                <p className="mb-4 flex-1 text-body-sm text-ink-700">{item.body}</p>
-                <p className="border-t border-line pt-3 text-caption italic text-muted">{item.source}</p>
+                <h3 className="mb-3 text-heading-lg text-fg">{item.title}</h3>
+                <p className="mb-4 flex-1 text-body-sm text-fg-strong">{item.body}</p>
+                <p className="border-t border-track pt-3 text-caption italic text-fg-muted">{item.source}</p>
               </Card>
             </div>
           ))}
@@ -297,15 +297,15 @@ export default function HomePage() {
         </div>
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="text-eyebrow uppercase text-muted">{t("solution.diagramCenter")}</p>
-            <p className="mt-2 text-body-sm text-ink-700">{t("solution.diagramCenterSub")}</p>
+            <p className="text-eyebrow uppercase text-fg-muted">{t("solution.diagramCenter")}</p>
+            <p className="mt-2 text-body-sm text-fg-strong">{t("solution.diagramCenterSub")}</p>
             <div className="reveal-stagger mt-6 grid gap-4 sm:grid-cols-2">
               {solutionPillars.map((p, i) => (
                 <div key={i} className="reveal h-full">
                   <Card pad="sm" className="h-full">
                     <Pictogram icon={pillarIcons[i] || Server} />
-                    <p className="mt-4 text-heading-md text-ink">{p.label}</p>
-                    <p className="mt-1 text-body-sm text-ink-700">{p.desc}</p>
+                    <p className="mt-4 text-heading-md text-fg">{p.label}</p>
+                    <p className="mt-1 text-body-sm text-fg-strong">{p.desc}</p>
                   </Card>
                 </div>
               ))}
@@ -313,34 +313,34 @@ export default function HomePage() {
           </div>
 
           <div className="reveal min-w-0 lg:col-span-7">
-            <p className="text-eyebrow uppercase text-muted">{t("comparison.eyebrow")}</p>
-            <h3 className="mt-2 text-display-sm text-ink">{t("comparison.title")}</h3>
-            <p className="mt-2 max-w-[65ch] text-body-sm text-ink-700">{t("comparison.subtitle")}</p>
-            <div className="mt-6 overflow-hidden rounded-xl border border-line">
+            <p className="text-eyebrow uppercase text-fg-muted">{t("comparison.eyebrow")}</p>
+            <h3 className="mt-2 text-display-sm text-fg">{t("comparison.title")}</h3>
+            <p className="mt-2 max-w-[65ch] text-body-sm text-fg-strong">{t("comparison.subtitle")}</p>
+            <div className="mt-6 overflow-hidden rounded-xl border border-track">
               <table className="w-full border-collapse text-body-sm">
                 <caption className="sr-only">{t("comparison.title")}</caption>
                 <thead>
-                  <tr className="bg-cream">
-                    <th scope="col" className="w-1/2 px-4 py-3 text-left text-eyebrow uppercase text-muted">
+                  <tr className="bg-bg-card">
+                    <th scope="col" className="w-1/2 px-4 py-3 text-left text-eyebrow uppercase text-fg-muted">
                       {t("comparison.before.label")}
                     </th>
-                    <th scope="col" className="w-1/2 border-l border-line px-4 py-3 text-left text-eyebrow uppercase text-forest">
+                    <th scope="col" className="w-1/2 border-l border-track px-4 py-3 text-left text-eyebrow uppercase text-emerald">
                       {t("comparison.after.label")}
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {beforeItems.map((before, i) => (
-                    <tr key={i} className={`border-t border-line ${i % 2 === 1 ? "bg-leaf-50" : ""}`}>
-                      <td className="px-4 py-3 align-top text-ink-700">
+                    <tr key={i} className={`border-t border-track ${i % 2 === 1 ? "bg-white/[0.03]" : ""}`}>
+                      <td className="px-4 py-3 align-top text-fg-strong">
                         <span className="flex gap-2">
-                          <Minus className="mt-0.5 h-4 w-4 flex-shrink-0 text-muted" aria-hidden="true" />
+                          <Minus className="mt-0.5 h-4 w-4 flex-shrink-0 text-fg-muted" aria-hidden="true" />
                           {before}
                         </span>
                       </td>
-                      <td className="border-l border-line px-4 py-3 align-top font-medium text-ink">
+                      <td className="border-l border-track px-4 py-3 align-top font-medium text-fg">
                         <span className="flex gap-2">
-                          <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+                          <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                           {afterItems[i]}
                         </span>
                       </td>
@@ -363,16 +363,16 @@ export default function HomePage() {
         <div className="reveal">
           <SectionHeader tone="dark" eyebrow={t("valueChain.eyebrow")} title={t("valueChain.title")} intro={t("valueChain.subtitle")} />
         </div>
-        <div className="reveal-stagger grid gap-px overflow-hidden rounded-xl border border-ondark-line bg-ondark-line sm:grid-cols-2 lg:grid-cols-5">
+        <div className="reveal-stagger grid gap-px overflow-hidden rounded-xl border border-track bg-track sm:grid-cols-2 lg:grid-cols-5">
           {valueSteps.map((step, i) => (
             <div key={i} className="reveal h-full">
-              <div className="flex h-full flex-col bg-forest-900 p-6">
-                <p className="text-eyebrow uppercase text-ondark-muted">{step.n}</p>
-                <h3 className="mt-3 text-heading-md text-ondark">{step.title}</h3>
-                <p className="mt-3 flex-1 text-body-sm text-ondark-muted">{step.desc}</p>
-                <div className="mt-6 border-t border-ondark-line pt-4">
-                  <p className="text-eyebrow uppercase text-ondark-muted">SLA / KPI</p>
-                  <p className="mt-1 text-body-sm font-semibold text-leaf-300">{step.kpi}</p>
+              <div className="flex h-full flex-col bg-bg-card p-6">
+                <p className="text-eyebrow uppercase text-fg-muted">{step.n}</p>
+                <h3 className="mt-3 text-heading-md text-fg">{step.title}</h3>
+                <p className="mt-3 flex-1 text-body-sm text-fg-muted">{step.desc}</p>
+                <div className="mt-6 border-t border-track pt-4">
+                  <p className="text-eyebrow uppercase text-fg-muted">SLA / KPI</p>
+                  <p className="mt-1 text-body-sm font-semibold text-emerald">{step.kpi}</p>
                 </div>
               </div>
             </div>
@@ -397,13 +397,13 @@ export default function HomePage() {
             />
           ))}
         </StatRow>
-        <p className="mt-8 max-w-[65ch] text-caption italic text-muted">{t("proof.footnote")}</p>
+        <p className="mt-8 max-w-[65ch] text-caption italic text-fg-muted">{t("proof.footnote")}</p>
 
-        <div className="mt-16 flex flex-col gap-6 border-t border-line pt-12 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mt-16 flex flex-col gap-6 border-t border-track pt-12 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="mb-3 text-eyebrow uppercase text-muted">{t("cases.eyebrow")}</p>
-            <h3 className="max-w-[24ch] text-display-sm text-ink">{t("cases.title")}</h3>
-            <p className="mt-3 max-w-[65ch] text-body text-ink-700">{t("cases.subtitle")}</p>
+            <p className="mb-3 text-eyebrow uppercase text-fg-muted">{t("cases.eyebrow")}</p>
+            <h3 className="max-w-[24ch] text-display-sm text-fg">{t("cases.title")}</h3>
+            <p className="mt-3 max-w-[65ch] text-body text-fg-strong">{t("cases.subtitle")}</p>
           </div>
           <TextLink href="/cas-usages" className="flex-shrink-0">
             {t("cases.discoverAll")}
@@ -413,7 +413,7 @@ export default function HomePage() {
           {cases.map((c, i) => (
             <div key={c.slug} className="reveal h-full">
               <CardLink href={`/cas-usages#${c.slug}`} pad="none" cta={t("cases.cardCta")}>
-                <div className="relative aspect-[16/10] overflow-hidden rounded-t-xl border-b border-line">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-t-xl border-b border-track">
                   <Image
                     src={casePhotos[i]}
                     alt={tx(`Photo sectorielle illustrant le cas ${c.sector}`, `Sector photo illustrating the ${c.sector} case`)}
@@ -428,11 +428,11 @@ export default function HomePage() {
                     <Tag variant="brand">{c.sector}</Tag>
                     <Tag variant="alert">{c.regulation}</Tag>
                   </div>
-                  <h4 className="mt-4 text-heading-md text-ink transition-colors group-hover:text-leaf">{c.title}</h4>
+                  <h4 className="mt-4 text-heading-md text-fg transition-colors group-hover:text-emerald">{c.title}</h4>
                   <ul className="mt-4 space-y-2">
                     {c.results.map((r, j) => (
-                      <li key={j} className="flex items-start gap-2 text-body-sm text-ink-700">
-                        <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf" aria-hidden="true" />
+                      <li key={j} className="flex items-start gap-2 text-body-sm text-fg-strong">
+                        <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                         <span>{r}</span>
                       </li>
                     ))}
@@ -452,18 +452,18 @@ export default function HomePage() {
           <div className="reveal lg:col-span-5">
             <SectionHeader alert eyebrow={t("regTimeline.eyebrow")} title={t("regTimeline.title")} intro={t("regTimeline.subtitle")} />
           </div>
-          <ol className="relative border-l border-line lg:col-span-7">
+          <ol className="relative border-l border-track lg:col-span-7">
             {regEvents.map((evt, i) => (
               <li key={i} className="relative pb-10 pl-8 last:pb-0">
                 <span
-                  className={`absolute -left-[5px] top-1.5 h-[9px] w-[9px] rounded-full ${i < 2 ? "bg-ochre" : "bg-forest"}`}
+                  className={`absolute -left-[5px] top-1.5 h-[9px] w-[9px] rounded-full ${i < 2 ? "bg-amber" : "bg-bg-card"}`}
                   aria-hidden="true"
                 />
-                <p className={`text-eyebrow uppercase tabular-nums ${i < 2 ? "text-ochre" : "text-muted"}`}>{evt.date}</p>
-                <h3 className="mt-2 text-heading-lg text-ink">{evt.label}</h3>
-                <p className="mt-2 max-w-[65ch] text-body-sm text-ink-700">{evt.body}</p>
-                <p className="mt-3 text-caption text-muted">
-                  <span className="font-semibold text-ink-700">{tx("Sanction max", "Maximum penalty")}</span> · {evt.penalty}
+                <p className={`text-eyebrow uppercase tabular-nums ${i < 2 ? "text-amber" : "text-fg-muted"}`}>{evt.date}</p>
+                <h3 className="mt-2 text-heading-lg text-fg">{evt.label}</h3>
+                <p className="mt-2 max-w-[65ch] text-body-sm text-fg-strong">{evt.body}</p>
+                <p className="mt-3 text-caption text-fg-muted">
+                  <span className="font-semibold text-fg-strong">{tx("Sanction max", "Maximum penalty")}</span> · {evt.penalty}
                 </p>
               </li>
             ))}
@@ -484,27 +484,27 @@ export default function HomePage() {
               <div className="flex gap-4">
                 <Pictogram icon={diffIcons[i] || Award} />
                 <div>
-                  <p className="text-eyebrow uppercase text-leaf">{d.stat}</p>
-                  <h3 className="mt-2 text-heading-lg text-ink">{d.title}</h3>
-                  <p className="mt-2 max-w-[65ch] text-body-sm text-ink-700">{d.body}</p>
+                  <p className="text-eyebrow uppercase text-emerald">{d.stat}</p>
+                  <h3 className="mt-2 text-heading-lg text-fg">{d.title}</h3>
+                  <p className="mt-2 max-w-[65ch] text-body-sm text-fg-strong">{d.body}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-16 border-t border-line pt-10">
-          <p className="text-eyebrow uppercase text-muted">{t("sectorTrust.label")}</p>
-          <h3 className="mt-2 max-w-[32ch] text-display-sm text-ink">{t("sectorTrust.title")}</h3>
+        <div className="mt-16 border-t border-track pt-10">
+          <p className="text-eyebrow uppercase text-fg-muted">{t("sectorTrust.label")}</p>
+          <h3 className="mt-2 max-w-[32ch] text-display-sm text-fg">{t("sectorTrust.title")}</h3>
           <ul className="mt-8 grid grid-cols-2 gap-y-8 lg:grid-cols-4">
             {sectorTrustItems.map((sector, i) => {
               const SIcon = sectorIconMap[sector.icon] || Building2;
               return (
-                <li key={i} className={`flex gap-3 pr-4 ${i % 2 === 1 ? "border-l border-line pl-4" : ""} ${i === 2 ? "lg:border-l lg:border-line lg:pl-4" : ""}`}>
+                <li key={i} className={`flex gap-3 pr-4 ${i % 2 === 1 ? "border-l border-track pl-4" : ""} ${i === 2 ? "lg:border-l lg:border-track lg:pl-4" : ""}`}>
                   <Pictogram icon={SIcon} />
                   <div>
-                    <p className="text-body-sm font-semibold text-ink">{sector.label}</p>
-                    <p className="mt-1 text-caption text-muted">{sector.detail}</p>
+                    <p className="text-body-sm font-semibold text-fg">{sector.label}</p>
+                    <p className="mt-1 text-caption text-fg-muted">{sector.detail}</p>
                   </div>
                 </li>
               );
@@ -519,7 +519,7 @@ export default function HomePage() {
       <Section tone="forest">
         <div className="reveal">
           <figure className="grid gap-10 lg:grid-cols-[auto_1fr] lg:items-start">
-            <div className="relative h-40 w-40 overflow-hidden rounded-2xl border border-ondark-line lg:h-48 lg:w-48">
+            <div className="relative h-40 w-40 overflow-hidden rounded-2xl border border-track lg:h-48 lg:w-48">
               <Image
                 src="/photos/hp-dsi-strategy.jpg"
                 alt={tx(
@@ -533,40 +533,40 @@ export default function HomePage() {
               />
             </div>
             <div className="max-w-[65ch]">
-              <p className="text-eyebrow uppercase text-ondark-muted">{t("bigQuote.eyebrow")}</p>
-              <blockquote className="mt-4 font-display text-display-sm text-ondark">&laquo;&nbsp;{t("bigQuote.quote")}&nbsp;&raquo;</blockquote>
-              <figcaption className="mt-6 text-caption text-ondark-muted">
-                <span className="font-semibold text-ondark">{t("bigQuote.name")}</span> · {t("bigQuote.role")} · {t("bigQuote.company")}
+              <p className="text-eyebrow uppercase text-fg-muted">{t("bigQuote.eyebrow")}</p>
+              <blockquote className="mt-4 font-display text-display-sm text-fg">&laquo;&nbsp;{t("bigQuote.quote")}&nbsp;&raquo;</blockquote>
+              <figcaption className="mt-6 text-caption text-fg-muted">
+                <span className="font-semibold text-fg">{t("bigQuote.name")}</span> · {t("bigQuote.role")} · {t("bigQuote.company")}
               </figcaption>
-              <p className="mt-4 text-caption text-ondark-muted">
-                <span className="font-semibold text-ondark">{tx("Contexte :", "Context:")}</span> {t("bigQuote.context")}
+              <p className="mt-4 text-caption text-fg-muted">
+                <span className="font-semibold text-fg">{tx("Contexte :", "Context:")}</span> {t("bigQuote.context")}
               </p>
               <div className="mt-6">
                 <TextLink href="/cas-usages#banque-cac40-windows11-nis2" tone="dark">
                   {t("bigQuote.ctaLabel")}
                 </TextLink>
               </div>
-              <p className="mt-6 text-caption italic text-ondark-muted">{t("bigQuote.consentNote")}</p>
+              <p className="mt-6 text-caption italic text-fg-muted">{t("bigQuote.consentNote")}</p>
             </div>
           </figure>
         </div>
 
-        <div className="mt-16 border-t border-ondark-line pt-10">
-          <p className="text-eyebrow uppercase text-ondark-muted">{t("testimonials.eyebrow")}</p>
-          <h2 className="mt-2 max-w-[24ch] text-display-sm text-ondark">{t("testimonials.title")}</h2>
+        <div className="mt-16 border-t border-track pt-10">
+          <p className="text-eyebrow uppercase text-fg-muted">{t("testimonials.eyebrow")}</p>
+          <h2 className="mt-2 max-w-[24ch] text-display-sm text-fg">{t("testimonials.title")}</h2>
           <div className="reveal-stagger mt-8 grid gap-6 md:grid-cols-3">
             {testimonials.map((item, i) => (
               <div key={i} className="reveal h-full">
-                <figure className="flex h-full flex-col rounded-xl border border-ondark-line bg-forest-700 p-6">
-                  <blockquote className="flex-1 text-body-sm text-ondark">&laquo;&nbsp;{item.quote}&nbsp;&raquo;</blockquote>
-                  <figcaption className="mt-6 border-t border-ondark-line pt-4 text-caption text-ondark-muted">
-                    <span className="font-semibold text-ondark">{item.name}</span> · {item.role} · {item.company}
+                <figure className="flex h-full flex-col rounded-xl border border-track bg-emerald-dim p-6">
+                  <blockquote className="flex-1 text-body-sm text-fg">&laquo;&nbsp;{item.quote}&nbsp;&raquo;</blockquote>
+                  <figcaption className="mt-6 border-t border-track pt-4 text-caption text-fg-muted">
+                    <span className="font-semibold text-fg">{item.name}</span> · {item.role} · {item.company}
                   </figcaption>
                 </figure>
               </div>
             ))}
           </div>
-          <p className="mt-6 max-w-[65ch] text-caption italic text-ondark-muted">{t("testimonials.disclaimer")}</p>
+          <p className="mt-6 max-w-[65ch] text-caption italic text-fg-muted">{t("testimonials.disclaimer")}</p>
         </div>
       </Section>
 
@@ -580,19 +580,19 @@ export default function HomePage() {
         <div className="reveal-stagger grid gap-6 md:grid-cols-3">
           {plans.map((plan) => (
             <div key={plan.slug} className="reveal h-full">
-              <div className={`flex h-full flex-col rounded-xl border bg-paper p-6 ${plan.popular ? "border-leaf" : "border-line"}`}>
+              <div className={`flex h-full flex-col rounded-xl border bg-bg p-6 ${plan.popular ? "border-emerald" : "border-track"}`}>
                 <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-heading-lg text-ink">{plan.name}</h3>
+                  <h3 className="text-heading-lg text-fg">{plan.name}</h3>
                   {plan.popular && <Tag variant="brand">{t("pricingTeaser.popularLabel")}</Tag>}
                 </div>
                 <p className="mt-4 flex items-baseline gap-1">
-                  <span className="font-display text-display-md tabular-nums text-forest">{plan.price}</span>
-                  <span className="text-body-sm text-muted">€ HT/{tx("mois", "month")}</span>
+                  <span className="font-display text-display-md tabular-nums text-emerald">{plan.price}</span>
+                  <span className="text-body-sm text-fg-muted">€ HT/{tx("mois", "month")}</span>
                 </p>
-                <p className="mt-1 text-caption text-muted">
+                <p className="mt-1 text-caption text-fg-muted">
                   {t("pricingTeaser.setupLabel")} {plan.setup} € HT
                 </p>
-                <p className="mt-4 flex-1 text-body-sm text-ink-700">{plan.pitch}</p>
+                <p className="mt-4 flex-1 text-body-sm text-fg-strong">{plan.pitch}</p>
                 <div className="mt-6">
                   <ButtonLink href={`/reserver?offre=${plan.slug}`} variant={plan.popular ? "primary" : "secondary"} fullWidth>
                     {t("pricingTeaser.bookCta")}
@@ -603,36 +603,36 @@ export default function HomePage() {
           ))}
         </div>
 
-        <ul className="mt-10 divide-y divide-line border-y border-line">
+        <ul className="mt-10 divide-y divide-track border-y border-track">
           <li className="grid gap-4 py-6 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <p className="text-eyebrow uppercase text-muted">{t("pricingTeaser.piloteAudit.label")}</p>
-              <p className="mt-2 text-heading-md text-ink">{t("pricingTeaser.piloteAudit.headline")}</p>
-              <p className="mt-1 max-w-[65ch] text-body-sm text-ink-700">{t("pricingTeaser.piloteAudit.subline")}</p>
+              <p className="text-eyebrow uppercase text-fg-muted">{t("pricingTeaser.piloteAudit.label")}</p>
+              <p className="mt-2 text-heading-md text-fg">{t("pricingTeaser.piloteAudit.headline")}</p>
+              <p className="mt-1 max-w-[65ch] text-body-sm text-fg-strong">{t("pricingTeaser.piloteAudit.subline")}</p>
             </div>
             <div className="flex flex-col items-start gap-3 md:items-end">
-              <p className="text-body font-semibold tabular-nums text-forest">{t("pricingTeaser.piloteAudit.price")}</p>
+              <p className="text-body font-semibold tabular-nums text-emerald">{t("pricingTeaser.piloteAudit.price")}</p>
               <TextLink href="/reserver?offre=pilote-audit-3j">{t("pricingTeaser.piloteAudit.cta")}</TextLink>
             </div>
           </li>
           <li className="grid gap-4 py-6 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <p className="text-eyebrow uppercase text-muted">{t("pricingTeaser.pilot.label")}</p>
-              <p className="mt-2 text-heading-md text-ink">{t("pricingTeaser.pilot.headline")}</p>
+              <p className="text-eyebrow uppercase text-fg-muted">{t("pricingTeaser.pilot.label")}</p>
+              <p className="mt-2 text-heading-md text-fg">{t("pricingTeaser.pilot.headline")}</p>
             </div>
             <TextLink href="/reserver?offre=waki-box-pilote">{t("pricingTeaser.pilot.cta")}</TextLink>
           </li>
           <li className="grid gap-4 py-6 md:grid-cols-2">
             <div>
-              <p className="text-eyebrow uppercase text-muted">{t("pricingTeaser.platformBrick")}</p>
-              <p className="mt-2 text-heading-md tabular-nums text-forest">{t("pricingTeaser.platformAnchor")}</p>
-              <p className="mt-1 text-body-sm text-ink-700">{t("pricingTeaser.platformDesc")}</p>
+              <p className="text-eyebrow uppercase text-fg-muted">{t("pricingTeaser.platformBrick")}</p>
+              <p className="mt-2 text-heading-md tabular-nums text-emerald">{t("pricingTeaser.platformAnchor")}</p>
+              <p className="mt-1 text-body-sm text-fg-strong">{t("pricingTeaser.platformDesc")}</p>
               <TextLink href="/tarifs" className="mt-3">{t("pricingTeaser.platformCta")}</TextLink>
             </div>
-            <div className="md:border-l md:border-line md:pl-6">
-              <p className="text-eyebrow uppercase text-muted">{t("pricingTeaser.itadBrick")}</p>
-              <p className="mt-2 text-heading-md tabular-nums text-forest">{t("pricingTeaser.itadAnchor")}</p>
-              <p className="mt-1 text-body-sm text-ink-700">{t("pricingTeaser.itadDesc")}</p>
+            <div className="md:border-l md:border-track md:pl-6">
+              <p className="text-eyebrow uppercase text-fg-muted">{t("pricingTeaser.itadBrick")}</p>
+              <p className="mt-2 text-heading-md tabular-nums text-emerald">{t("pricingTeaser.itadAnchor")}</p>
+              <p className="mt-1 text-body-sm text-fg-strong">{t("pricingTeaser.itadDesc")}</p>
               <TextLink href="/tarifs" className="mt-3">{t("pricingTeaser.itadCta")}</TextLink>
             </div>
           </li>
@@ -650,7 +650,7 @@ export default function HomePage() {
           <div className="reveal">
             <SectionHeader eyebrow={t("roiCalculator.eyebrow")} title={t("roiCalculator.title")} />
             <Card pad="lg">
-              <label htmlFor="fleet-size" className="block text-body-sm font-medium text-ink">
+              <label htmlFor="fleet-size" className="block text-body-sm font-medium text-fg">
                 {t("roiCalculator.inputLabel")}
               </label>
               <input
@@ -661,24 +661,24 @@ export default function HomePage() {
                 value={fleetSize}
                 onChange={(e) => setFleetSize(e.target.value)}
                 placeholder={t("roiCalculator.inputPlaceholder")}
-                className="mt-2 h-12 w-full rounded-lg border border-line bg-paper px-3 text-body-lg tabular-nums text-ink placeholder:text-muted focus:border-leaf focus:outline-none focus:ring-2 focus:ring-leaf/20"
+                className="mt-2 h-12 w-full rounded-lg border border-track bg-bg px-3 text-body-lg tabular-nums text-fg placeholder:text-fg-muted focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25"
               />
 
               {fleet > 0 && (
                 <div className="mt-8" aria-live="polite">
-                  <p className="text-eyebrow uppercase text-muted">{t("roiCalculator.resultTitle")}</p>
-                  <dl className="mt-3 divide-y divide-line border-y border-line">
+                  <p className="text-eyebrow uppercase text-fg-muted">{t("roiCalculator.resultTitle")}</p>
+                  <dl className="mt-3 divide-y divide-track border-y border-track">
                     <div className="flex items-baseline justify-between gap-4 py-3">
-                      <dt className="text-body-sm text-ink-700">{t("roiCalculator.riskLabel")}</dt>
-                      <dd className="text-heading-md tabular-nums text-ochre">{(fleet * 820).toLocaleString(numberLocale)} €</dd>
+                      <dt className="text-body-sm text-fg-strong">{t("roiCalculator.riskLabel")}</dt>
+                      <dd className="text-heading-md tabular-nums text-amber">{(fleet * 820).toLocaleString(numberLocale)} €</dd>
                     </div>
                     <div className="flex items-baseline justify-between gap-4 py-3">
-                      <dt className="text-body-sm text-ink-700">{t("roiCalculator.valueLabel")}</dt>
-                      <dd className="text-heading-md tabular-nums text-leaf">{(fleet * 412).toLocaleString(numberLocale)} €</dd>
+                      <dt className="text-body-sm text-fg-strong">{t("roiCalculator.valueLabel")}</dt>
+                      <dd className="text-heading-md tabular-nums text-emerald">{(fleet * 412).toLocaleString(numberLocale)} €</dd>
                     </div>
                     <div className="flex items-baseline justify-between gap-4 py-3">
-                      <dt className="text-body-sm text-ink-700">{t("roiCalculator.carbonLabel")}</dt>
-                      <dd className="text-heading-md tabular-nums text-forest">
+                      <dt className="text-body-sm text-fg-strong">{t("roiCalculator.carbonLabel")}</dt>
+                      <dd className="text-heading-md tabular-nums text-emerald">
                         {((fleet * 150) / 1000).toLocaleString(numberLocale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })} tCO₂e
                       </dd>
                     </div>
@@ -690,7 +690,7 @@ export default function HomePage() {
                   </div>
                 </div>
               )}
-              <p className="mt-4 text-caption italic text-muted">{t("roiCalculator.disclaimer")}</p>
+              <p className="mt-4 text-caption italic text-fg-muted">{t("roiCalculator.disclaimer")}</p>
             </Card>
           </div>
         </div>
