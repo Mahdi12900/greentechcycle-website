@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { StaggerContainer, StaggerItem, FadeIn } from "@/components/motion";
+
 import {
   Lock,
   Info,
@@ -49,7 +49,7 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
         icon={<Lock className="h-7 w-7 text-leaf" />}
       >
         {/* Table of contents */}
-        <FadeIn>
+        <div className="reveal">
           <div className="mb-10 rounded-2xl p-6 md:p-7 border border-leaf/10 bg-leaf-50">
             <h2 className="text-display-md text-leaf uppercase mb-4">
               Sommaire
@@ -69,11 +69,11 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
               ))}
             </div>
           </div>
-        </FadeIn>
+        </div>
 
-        <StaggerContainer className="space-y-6">
+        <div className="reveal-stagger space-y-6">
           {sections.map(({ key, icon: Icon }, i) => (
-            <StaggerItem key={key}>
+            <div key={key} className="reveal">
               <div
                 id={`section-${key}`}
                 className="scroll-mt-24 bg-white rounded-2xl p-6 md:p-8 border border-line hover:shadow-card transition-colors duration-150"
@@ -97,9 +97,9 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
                   </div>
                 </div>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </LegalPageLayout>
 
       <CtaSection

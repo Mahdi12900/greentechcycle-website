@@ -1,19 +1,21 @@
 import type { ReactNode } from "react";
 
 /**
- * Section de page (DESIGN.md §4.3) : fond (paper / cream / night / forest / mint)
- * + rythme vertical normalisé + conteneur 1200 px.
- * Règle d'alternance : jamais deux `cream` ni deux `night` consécutifs.
+ * Section de page — DESIGN.md v2 §2.2 / §4.3 / §5.1.
+ * Deux surfaces seulement : `bg` et `bg-card`. Les anciens noms de ton (v1)
+ * sont conservés comme alias pour ne pas toucher aux appels :
+ *   paper → bg ; cream / night / mint → bg-card bordé ; forest → bg + halo
+ *   (section « lumineuse » : marque, citation, conversion).
  */
 export type SectionTone = "paper" | "cream" | "night" | "forest" | "mint";
 export type SectionSpacing = "standard" | "dense" | "hero" | "hero-home" | "none";
 
 const TONES: Record<SectionTone, string> = {
-  paper: "bg-paper text-ink",
-  cream: "bg-cream text-ink",
-  night: "bg-forest-900 text-ondark",
-  forest: "bg-forest text-ondark",
-  mint: "bg-leaf-100 text-ink",
+  paper: "bg-bg text-fg",
+  cream: "bg-bg-card text-fg border-y border-track",
+  night: "bg-bg-card text-fg border-y border-track",
+  forest: "relative overflow-hidden bg-bg text-fg",
+  mint: "bg-bg-card text-fg border-y border-track",
 };
 
 const SPACING: Record<SectionSpacing, string> = {
@@ -24,6 +26,7 @@ const SPACING: Record<SectionSpacing, string> = {
   none: "",
 };
 
+/** v2 : tout est sombre ; conservé pour compatibilité. */
 export function isDarkTone(tone: SectionTone) {
   return tone === "night" || tone === "forest";
 }
@@ -64,9 +67,10 @@ export default function Section({
       id={id}
       aria-labelledby={labelledBy}
       aria-label={label}
-      className={`${TONES[tone]} ${SPACING[spacing]} ${bordered ? "border-y border-line" : ""} ${className}`}
+      className={`${TONES[tone]} ${SPACING[spacing]} ${bordered ? "border-y border-track" : ""} ${className}`}
     >
-      <Container narrow={narrow} className={containerClassName}>
+      {tone === "forest" && <div className="fx-halo pointer-events-none absolute inset-0" aria-hidden="true" />}
+      <Container narrow={narrow} className={`relative ${containerClassName}`}>
         {children}
       </Container>
     </section>

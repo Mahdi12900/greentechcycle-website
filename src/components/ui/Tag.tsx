@@ -4,10 +4,10 @@ import type { ReactNode } from "react";
 export type TagVariant = "neutral" | "brand" | "alert" | "dark";
 
 const VARIANTS: Record<TagVariant, string> = {
-  neutral: "bg-sand text-ink-700",
-  brand: "bg-leaf-100 text-forest",
-  alert: "bg-ochre-100 text-ochre-800",
-  dark: "bg-white/10 text-ondark",
+  neutral: "border border-track bg-bg-card text-fg-muted",
+  brand: "bg-emerald-dim text-emerald",
+  alert: "bg-amber-dim text-amber",
+  dark: "border border-track bg-bg-card text-fg",
 };
 
 export default function Tag({

@@ -191,9 +191,16 @@
       animation-timeline: view();
       animation-range: cover 0% cover 100%;
     }
-    .reveal[style*="--reveal-i"] {
-      animation-range: calc(entry 0% + var(--reveal-i) * 6%) calc(entry 40% + var(--reveal-i) * 6%);
+    /* Cascade : `--reveal-i` (0–5) décale la plage d'entrée de 6 % par item.
+       `.reveal-stagger` l'attribue automatiquement aux enfants directs. */
+    .reveal {
+      animation-range: entry calc(var(--reveal-i, 0) * 6%) entry calc(40% + var(--reveal-i, 0) * 6%);
     }
+    .reveal-stagger > :nth-child(6n + 2) { --reveal-i: 1; }
+    .reveal-stagger > :nth-child(6n + 3) { --reveal-i: 2; }
+    .reveal-stagger > :nth-child(6n + 4) { --reveal-i: 3; }
+    .reveal-stagger > :nth-child(6n + 5) { --reveal-i: 4; }
+    .reveal-stagger > :nth-child(6n + 6) { --reveal-i: 5; }
     @media (prefers-reduced-motion: reduce) {
       .reveal,
       .reveal-scale,

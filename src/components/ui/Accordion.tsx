@@ -29,11 +29,11 @@ export default function Accordion({
 }) {
   const [open, setOpen] = useState<number | null>(defaultOpen);
   const uid = useId();
-  const dark = tone === "dark";
+  void tone;
   const H = `h${headingLevel}` as "h2" | "h3" | "h4";
 
   return (
-    <div className={`divide-y border-y ${dark ? "divide-ondark-line border-ondark-line" : "divide-line border-line"} ${className}`}>
+    <div className={`divide-y divide-track border-y border-track ${className}`}>
       {items.map((item, i) => {
         const isOpen = open === i;
         const btnId = `${uid}-b${i}`;
@@ -47,11 +47,11 @@ export default function Accordion({
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpen(isOpen ? null : i)}
-                className={`flex w-full items-start justify-between gap-6 py-5 text-left text-heading-md ${dark ? "text-ondark" : "text-ink"}`}
+                className={`flex w-full items-start justify-between gap-6 py-5 text-left text-heading-md text-fg`}
               >
                 <span>{item.question}</span>
                 <ChevronDown
-                  className={`mt-0.5 h-5 w-5 flex-shrink-0 transition-transform duration-150 ${dark ? "text-ondark-muted" : "text-muted"} ${isOpen ? "rotate-180" : ""}`}
+                  className={`mt-0.5 h-5 w-5 flex-shrink-0 transition-transform duration-150 text-fg-muted ${isOpen ? "rotate-180" : ""}`}
                   aria-hidden="true"
                 />
               </button>
@@ -61,7 +61,7 @@ export default function Accordion({
               role="region"
               aria-labelledby={btnId}
               hidden={!isOpen}
-              className={`pb-6 text-body ${typeof item.answer === "string" ? "max-w-[65ch]" : ""} ${dark ? "text-ondark-muted" : "text-ink-700"}`}
+              className={`pb-6 text-body ${typeof item.answer === "string" ? "max-w-[65ch]" : ""} text-fg-strong`}
             >
               {item.answer}
             </div>

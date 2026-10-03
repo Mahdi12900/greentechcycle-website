@@ -30,18 +30,18 @@ export default function SectionHeader({
   className?: string;
   children?: ReactNode;
 }) {
-  const dark = tone === "dark";
-  const eyebrowColor = alert ? (dark ? "text-ochre-300" : "text-ochre") : dark ? "text-ondark-muted" : "text-muted";
+  void tone; // v2 : un seul rendu (sombre)
+  const eyebrowColor = alert ? "text-amber" : "text-fg-muted";
   const titleSize = { xl: "text-display-xl max-w-[18ch]", lg: "text-display-lg max-w-[18ch]", md: "text-display-md max-w-[24ch]", sm: "text-display-sm max-w-[32ch]" }[size];
   const centered = align === "center";
   return (
     <div className={`mb-10 lg:mb-12 ${centered ? "mx-auto text-center" : ""} ${className}`}>
       {eyebrow && <p className={`mb-3 text-eyebrow uppercase ${eyebrowColor}`}>{eyebrow}</p>}
-      <Tag id={id} className={`${titleSize} ${centered ? "mx-auto" : ""} font-display ${dark ? "text-ondark" : "text-ink"}`}>
+      <Tag id={id} className={`${titleSize} ${centered ? "mx-auto" : ""} font-display text-fg`}>
         {title}
       </Tag>
       {intro && (
-        <div className={`mt-4 max-w-[65ch] text-body-lg ${centered ? "mx-auto" : ""} ${dark ? "text-ondark-muted" : "text-ink-700"}`}>
+        <div className={`mt-4 max-w-[65ch] text-body-lg ${centered ? "mx-auto" : ""} text-fg-muted`}>
           {intro}
         </div>
       )}

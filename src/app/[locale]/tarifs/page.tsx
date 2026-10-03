@@ -20,7 +20,7 @@ import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { useState } from "react";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+
 import {
   ArrowRight,
   Check,
@@ -810,7 +810,7 @@ export default function TarifsPage() {
       <section className="border-b border-line bg-cream py-16 lg:py-24" aria-labelledby="tarifs-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-            <FadeIn className="min-w-0 lg:col-span-7">
+            <div className="reveal min-w-0 lg:col-span-7">
               <div className="flex flex-wrap gap-2">
                 <Tag variant="brand">{tx("Tarifs Waki Box", "Waki Box pricing")}</Tag>
                 <Tag variant="neutral">
@@ -857,8 +857,8 @@ export default function TarifsPage() {
                   {tx("Plateforme et ITAD, étude personnalisée", "Platform and ITAD, bespoke study")}
                 </ButtonLink>
               </div>
-            </FadeIn>
-            <FadeIn delay={0.1} className="lg:col-span-5">
+            </div>
+            <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
                 <Image
                   src="/photos/service-wakibox.jpg"
@@ -869,7 +869,7 @@ export default function TarifsPage() {
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               </div>
-            </FadeIn>
+            </div>
           </div>
           <CertificationStrip className="mt-12 border-t border-line pt-6" />
         </div>
@@ -877,7 +877,7 @@ export default function TarifsPage() {
 
       {/* ═══════════ 2. 3 BRIQUES GTC + portes d'entrée ═══════════ */}
       <Section tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader
             eyebrow={tx("Comment lire nos tarifs", "How to read our pricing")}
             title={tx("Trois briques GTC. Trois ancres tarifaires.", "Three GTC bricks. Three pricing anchors.")}
@@ -886,12 +886,12 @@ export default function TarifsPage() {
               "Three complementary bricks, three pricing anchors. Waki Box shows its full plans (from €39 HT/month). The GTC SaaS Platform starts at €2,500 HT/month, the ITAD Service at €15 HT/device: starting anchors refined to your fleet and constraints."
             )}
           />
-        </FadeIn>
-        <StaggerContainer className="grid gap-6 md:grid-cols-3">
+        </div>
+        <div className="reveal-stagger grid gap-6 md:grid-cols-3">
           {briques.map((b) => {
             const isFeatured = "featured" in b && b.featured;
             return (
-              <StaggerItem key={b.name} className="h-full">
+              <div key={b.name} className="reveal h-full">
                 <div className={`flex h-full flex-col overflow-hidden rounded-xl border bg-paper ${isFeatured ? "border-leaf" : "border-line"}`}>
                   <div className="relative aspect-[16/10] border-b border-line">
                     <Image src={b.photo} alt={b.photoAlt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
@@ -919,10 +919,10 @@ export default function TarifsPage() {
                     </div>
                   </div>
                 </div>
-              </StaggerItem>
+              </div>
             );
           })}
-        </StaggerContainer>
+        </div>
 
         {/* Trois portes d'entrée (fusion S6d) */}
         <div className="mt-16 border-t border-line pt-12">
@@ -963,7 +963,7 @@ export default function TarifsPage() {
       {/* ═══════════ 3. 3 PLANS WAKI BOX #plans (+ comparatif intégré) ═══════════ */}
       <section id="plans" className="bg-cream py-16 lg:py-24" aria-labelledby="plans-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader
               id="plans-title"
               eyebrow={tx("Comparatif Waki Box", "Waki Box comparison")}
@@ -973,13 +973,13 @@ export default function TarifsPage() {
                 "Three public plans. The displayed price is the final price; numeric differences and advanced features are detailed in each card."
               )}
             />
-          </FadeIn>
-          <StaggerContainer className="grid gap-6 lg:grid-cols-3">
+          </div>
+          <div className="reveal-stagger grid gap-6 lg:grid-cols-3">
             {plans.map((plan, i) => {
               const key = planKeys[i];
               const popular = "popular" in plan && plan.popular;
               return (
-                <StaggerItem key={plan.slug} className="h-full">
+                <div key={plan.slug} className="reveal h-full">
                   <article
                     aria-labelledby={`plan-title-${plan.slug}`}
                     className={`flex h-full flex-col rounded-xl border bg-paper p-6 lg:p-8 ${popular ? "border-leaf" : "border-line"}`}
@@ -1057,17 +1057,17 @@ export default function TarifsPage() {
                       </ButtonLink>
                     </div>
                   </article>
-                </StaggerItem>
+                </div>
               );
             })}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
       {/* ═══════════ 4. PROGRAMME PILOTE WAKI BOX (leaf-100) ═══════════ */}
       <Section tone="mint">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          <FadeIn className="lg:col-span-7">
+          <div className="reveal lg:col-span-7">
             <p className="text-eyebrow uppercase text-forest">{tx("Programme pilote · 3 places", "Pilot programme · 3 spots")}</p>
             <h2 className="mt-3 max-w-[24ch] text-display-md text-forest">
               {tx(
@@ -1115,8 +1115,8 @@ export default function TarifsPage() {
                 {tx("Démarrer le pilote", "Start a pilot")}
               </ButtonLink>
             </div>
-          </FadeIn>
-          <FadeIn className="lg:col-span-5">
+          </div>
+          <div className="reveal lg:col-span-5">
             <figure>
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line">
                 <Image
@@ -1135,13 +1135,13 @@ export default function TarifsPage() {
                 </span>
               </figcaption>
             </figure>
-          </FadeIn>
+          </div>
         </div>
       </Section>
 
       {/* ═══════════ 6. MODULES COMPLÉMENTAIRES — tableau ═══════════ */}
       <Section tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader
             eyebrow={tx("Modules complémentaires", "Add-on modules")}
             title={tx("Composez votre offre Waki Box sur mesure.", "Build your Waki Box offer to fit.")}
@@ -1150,8 +1150,8 @@ export default function TarifsPage() {
               "Seven à la carte modules, each plugs into any plan. Unit billing, no additional commitment."
             )}
           />
-        </FadeIn>
-        <FadeIn>
+        </div>
+        <div className="reveal">
           <Table
             caption={tx("Modules complémentaires Waki Box", "Waki Box add-on modules")}
             head={[
@@ -1188,12 +1188,12 @@ export default function TarifsPage() {
               </Link>,
             ])}
           />
-        </FadeIn>
+        </div>
       </Section>
 
       {/* ═══════════ 7. COMPARATEUR INTERACTIF — carte unique ═══════════ */}
       <Section tone="cream">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader
             eyebrow={tx("Composez votre offre", "Build your offer")}
             title={tx("Calculez votre budget en temps réel.", "Calculate your budget in real time.")}
@@ -1202,15 +1202,15 @@ export default function TarifsPage() {
               "Choose a plan, tick the modules you want to add. The monthly total updates instantly, with or without the annual discount."
             )}
           />
-        </FadeIn>
-        <FadeIn>
+        </div>
+        <div className="reveal">
           <PlanComparator isEn={isEn} />
-        </FadeIn>
+        </div>
       </Section>
 
       {/* ═══════════ 8. BUNDLES RSE ═══════════ */}
       <Section tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader
             eyebrow={tx("Bundles clés en main", "Turnkey bundles")}
             title={tx("Deux bundles pour aller plus vite.", "Two bundles to move faster.")}
@@ -1219,10 +1219,10 @@ export default function TarifsPage() {
               "All-in-one packs designed for organisations that want to launch or consolidate their WEEE and CSRD approach in a single contract, with an immediate saving."
             )}
           />
-        </FadeIn>
+        </div>
         <div className="grid gap-6 lg:grid-cols-2">
           {bundles.map((b) => (
-            <FadeIn key={b.name}>
+            <div key={b.name} className="reveal">
               <article className="flex h-full flex-col rounded-xl border border-line bg-paper p-6 lg:p-8">
                 <p className="text-eyebrow uppercase text-muted">{b.name}</p>
                 <p className="mt-2 text-body-sm font-medium text-ink-700">{b.plan}</p>
@@ -1247,7 +1247,7 @@ export default function TarifsPage() {
                   </ButtonLink>
                 </div>
               </article>
-            </FadeIn>
+            </div>
           ))}
         </div>
       </Section>
@@ -1255,7 +1255,7 @@ export default function TarifsPage() {
       {/* ═══════════ 9. PILOTE GTC 3 JOURS #pilote — carte unique ═══════════ */}
       <section id="pilote" className="bg-cream py-16 lg:py-24" aria-labelledby="pilote-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <article className="grid gap-10 rounded-xl border border-line bg-paper p-6 lg:grid-cols-12 lg:gap-16 lg:p-10">
               <div className="lg:col-span-7">
                 <p className="text-eyebrow uppercase text-muted">{tx("Porte d'entrée 4", "Entry point 4")}</p>
@@ -1349,14 +1349,14 @@ export default function TarifsPage() {
                 </ButtonLink>
               </div>
             </article>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* ═══════════ 11. SUR DEVIS #sur-devis — night ═══════════ */}
       <section id="sur-devis" className="bg-forest-900 py-16 text-ondark lg:py-24" aria-labelledby="sur-devis-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader
               id="sur-devis-title"
               tone="dark"
@@ -1370,10 +1370,10 @@ export default function TarifsPage() {
                 "Starting anchors: Platform from €2,500 HT/month (base 500 devices), ITAD from €15 HT/device. Thirty minutes to scope the quote to your fleet and constraints, delivered within 48 hours."
               )}
             />
-          </FadeIn>
+          </div>
           <div className="grid gap-6 lg:grid-cols-2">
             {devisCards.map((card) => (
-              <FadeIn key={card.slug}>
+              <div key={card.slug} className="reveal">
                 <article className="flex h-full flex-col overflow-hidden rounded-xl border border-ondark-line bg-forest-950">
                   <div className="relative aspect-[16/8] border-b border-ondark-line">
                     <Image src={card.photo} alt={card.photoAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
@@ -1406,7 +1406,7 @@ export default function TarifsPage() {
                     </div>
                   </div>
                 </article>
-              </FadeIn>
+              </div>
             ))}
           </div>
           <div className="mt-12">
@@ -1431,12 +1431,12 @@ export default function TarifsPage() {
       {/* ═══════════ 12. FAQ ═══════════ */}
       <Section tone="paper">
         <div className="mx-auto max-w-[720px]">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader
               eyebrow={tx("Questions fréquentes", "Frequently asked questions")}
               title={tx("Tarifs publics, devis sur mesure, engagement clair.", "Public pricing, tailored quotes, clear commitments.")}
             />
-          </FadeIn>
+          </div>
           <Accordion defaultOpen={null} items={faqItems.map((f) => ({ question: f.q, answer: f.a }))} />
         </div>
       </Section>

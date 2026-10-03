@@ -3,7 +3,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import { FadeIn, StaggerContainer, StaggerItem, CountUp } from "@/components/motion";
+import { CountUp } from "@/components/motion";
 import { ArrowDown, CalendarCheck, Check } from "lucide-react";
 import CertificationStrip from "@/components/CertificationStrip";
 import CtaSection from "@/components/CtaSection";
@@ -55,7 +55,7 @@ export default function PlateformePage() {
       <section className="bg-paper py-16 lg:py-24" aria-labelledby="plateforme-hero">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-            <FadeIn className="min-w-0 lg:col-span-7">
+            <div className="reveal min-w-0 lg:col-span-7">
               {/* Ancien bandeau d'urgence → notice (§6.19) */}
               <Tag variant="brand" icon={<CalendarCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
                 {t("urgency.text")}
@@ -93,9 +93,9 @@ export default function PlateformePage() {
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
                 {t("hero.scrollLabel")}
               </a>
-            </FadeIn>
+            </div>
 
-            <FadeIn delay={0.1} className="lg:col-span-5">
+            <div className="reveal lg:col-span-5">
               <figure>
                 <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
                   <Image
@@ -118,7 +118,7 @@ export default function PlateformePage() {
                   </p>
                 </figcaption>
               </figure>
-            </FadeIn>
+            </div>
           </div>
           <CertificationStrip className="mt-12 border-t border-line pt-6" />
         </div>
@@ -129,7 +129,7 @@ export default function PlateformePage() {
         <span id="modules" className="block" aria-hidden="true" />
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           {/* Ancienne S2 « promesse » condensée en en-tête du parcours */}
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader id="parcours-title" eyebrow={t("promise.eyebrow")} title={t("promise.title")}>
               <div className="mt-4 max-w-[65ch] space-y-4 text-body-lg text-ink-700">
                 <p>{t("promise.body1")}</p>
@@ -165,7 +165,7 @@ export default function PlateformePage() {
                 </p>
               </div>
             </SectionHeader>
-          </FadeIn>
+          </div>
 
           <ol className="mt-4 divide-y divide-line border-y border-line">
             {chapters.map((chap, index) => {
@@ -218,7 +218,7 @@ export default function PlateformePage() {
 
       {/* ═══════════════ CITATION (forest) ═══════════════ */}
       <Section tone="forest">
-        <FadeIn>
+        <div className="reveal">
           <figure className="max-w-[65ch]">
             <blockquote className="font-display text-display-sm text-ondark">
               &laquo;&nbsp;{t("editorialQuote.quote")}&nbsp;&raquo;
@@ -227,7 +227,7 @@ export default function PlateformePage() {
               <span className="font-semibold text-ondark">{t("editorialQuote.name")}</span> · {t("editorialQuote.role")}
             </figcaption>
           </figure>
-        </FadeIn>
+        </div>
       </Section>
 
       {/* ═══════════════ CHIFFRES D'EXPLOITATION (night) ═══════════════ */}
@@ -247,12 +247,12 @@ export default function PlateformePage() {
 
       {/* ═══════════════ OFFRES D'ENTRÉE (cream) ═══════════════ */}
       <Section tone="cream">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader eyebrow={t("offers.eyebrow")} title={t("offers.title")} intro={t("offers.subtitle")} />
-        </FadeIn>
-        <StaggerContainer className="grid gap-6 md:grid-cols-3">
+        </div>
+        <div className="reveal-stagger grid gap-6 md:grid-cols-3">
           {offers.map((o) => (
-            <StaggerItem key={o.slug} className="h-full">
+            <div key={o.slug} className="reveal h-full">
               <div className="flex h-full flex-col rounded-xl border border-line bg-paper p-6">
                 <p className="text-eyebrow uppercase text-muted">{o.duration}</p>
                 <h3 className="mt-3 text-heading-lg text-ink">{o.name}</h3>
@@ -264,17 +264,17 @@ export default function PlateformePage() {
                   </ButtonLink>
                 </div>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </Section>
 
       {/* ═══════════════ FAQ ═══════════════ */}
       <Section tone="paper">
         <div className="mx-auto max-w-[720px]">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader eyebrow={t("faq.eyebrow")} title={t("faq.title")} />
-          </FadeIn>
+          </div>
           <Accordion items={faqItems.map((f) => ({ question: f.q, answer: f.a }))} />
         </div>
       </Section>

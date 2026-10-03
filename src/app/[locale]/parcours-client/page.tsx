@@ -3,12 +3,7 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import {
-  FadeIn,
-  StaggerContainer,
-  StaggerItem,
-  ScaleIn,
-} from "@/components/motion";
+
 import {
   Phone,
   FileSearch,
@@ -45,7 +40,7 @@ export default function ClientJourneyPage({
       {/* Hero Section */}
       <section className="bg-forest py-16 text-ondark lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-4xl ">
               <h1 className="text-display-lg text-ondark mb-6">
                 {t("hero.title")}
@@ -54,7 +49,7 @@ export default function ClientJourneyPage({
                 {t("hero.subtitle")}
               </p>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -63,7 +58,7 @@ export default function ClientJourneyPage({
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           {/* Desktop Timeline (Horizontal) */}
           <div className="hidden lg:block max-w-6xl mx-auto">
-            <StaggerContainer>
+            <div className="reveal-stagger">
               <div className="relative">
                 {/* Connecting Line */}
                 <div className="absolute top-16 left-[10%] right-[10%] h-1 rounded-full bg-leaf" />
@@ -73,7 +68,7 @@ export default function ClientJourneyPage({
                     const Icon = stepIcons[index] || Phone;
                     const color = stepColors[index] || stepColors[0];
                     return (
-                      <StaggerItem key={index}>
+                      <div key={index} className="reveal">
                         <div className="flex flex-col items-center text-center">
                           {/* Step Circle */}
                           <div
@@ -99,17 +94,17 @@ export default function ClientJourneyPage({
                             </div>
                           </div>
                         </div>
-                      </StaggerItem>
+                      </div>
                     );
                   })}
                 </div>
               </div>
-            </StaggerContainer>
+            </div>
           </div>
 
           {/* Mobile Timeline (Vertical) */}
           <div className="lg:hidden max-w-lg mx-auto">
-            <StaggerContainer>
+            <div className="reveal-stagger">
               <div className="relative">
                 {/* Vertical Line */}
                 <div className="absolute top-0 bottom-0 left-8 w-1 rounded-full bg-leaf" />
@@ -119,7 +114,7 @@ export default function ClientJourneyPage({
                     const Icon = stepIcons[index] || Phone;
                     const color = stepColors[index] || stepColors[0];
                     return (
-                      <StaggerItem key={index}>
+                      <div key={index} className="reveal">
                         <div className="flex gap-6 items-start">
                           {/* Step Circle */}
                           <div
@@ -147,12 +142,12 @@ export default function ClientJourneyPage({
                             </p>
                           </div>
                         </div>
-                      </StaggerItem>
+                      </div>
                     );
                   })}
                 </div>
               </div>
-            </StaggerContainer>
+            </div>
           </div>
         </div>
       </section>

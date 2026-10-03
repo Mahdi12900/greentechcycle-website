@@ -55,13 +55,7 @@ import {
   Atom,
 } from "lucide-react";
 import RelatedArticles from "@/components/RelatedArticles";
-import {
-  FadeIn,
-  StaggerContainer,
-  StaggerItem,
-  CountUp,
-  ScaleIn,
-} from "@/components/motion";
+import { CountUp } from "@/components/motion";
 
 // ---------- i18n helper ----------
 const useTx = () => {
@@ -1034,7 +1028,7 @@ export default function RegulationPage() {
       {/* ═══════════════ HERO (paper) ═══════════════ */}
       <section className="bg-paper py-16 lg:py-24" aria-labelledby="reg-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <p className="text-eyebrow uppercase text-muted">{tx("Expertise IT · Métier · Réglementaire", "Expertise IT · Business · Regulatory")}</p>
             <h1 id="reg-hero-title" className="mt-3 max-w-[20ch] text-display-lg text-ink">
               {tx("La conformité n'est pas une option.", "Compliance is not an option.")}
@@ -1049,7 +1043,7 @@ export default function RegulationPage() {
               <ButtonLink href="/contact" size="lg">{tx("Demander un audit de conformité", "Request compliance audit")}</ButtonLink>
               <ButtonLink href="#sectors" variant="secondary" size="lg">{tx("Explorer par secteur", "Explore by sector")}</ButtonLink>
             </div>
-          </FadeIn>
+          </div>
           <div className="mt-12 border-t border-line pt-8">
             <StatRow>
               {[
@@ -1090,7 +1084,7 @@ export default function RegulationPage() {
       <section id="transversal" className="relative overflow-hidden bg-paper py-16 lg:py-24">
 
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative">
-          <FadeIn>
+          <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
               <span className="mb-3 block text-eyebrow uppercase text-muted">{tx("Socle commun", "Common foundation")}
               </span>
@@ -1105,13 +1099,13 @@ export default function RegulationPage() {
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          <div className="reveal-stagger grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {transversal.map((reg) => {
               const Icon = reg.icon;
               return (
-                <StaggerItem key={reg.name}>
+                <div key={reg.name} className="reveal">
                   <article className="group relative h-full bg-white rounded-2xl border border-line/80 hover:border-leaf/30 hover:shadow-card hover: transition-colors duration-150 overflow-hidden">
                     {/* Decorative corner glow */}
 
@@ -1152,17 +1146,17 @@ export default function RegulationPage() {
                       </div>
                     </div>
                   </article>
-                </StaggerItem>
+                </div>
               );
             })}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
       {/* ═══════════════ REGULATIONS BY SECTOR ═══════════════ */}
       <section id="sectors" className="bg-cream py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
               <span className="mb-3 block text-eyebrow uppercase text-muted">{tx("Par secteur d'activité", "By industry sector")}
               </span>
@@ -1177,18 +1171,18 @@ export default function RegulationPage() {
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           <div className="max-w-6xl mx-auto space-y-4">
             {sectors.map((sector, i) => (
-              <FadeIn key={sector.id} delay={i * 0.04}>
+              <div key={sector.id} className="reveal">
                 <SectorSection
                   sector={sector}
                   isOpen={!!openSectors[sector.id]}
                   toggle={() => toggleSector(sector.id)}
                   tx={tx}
                 />
-              </FadeIn>
+              </div>
             ))}
           </div>
         </div>
@@ -1199,7 +1193,7 @@ export default function RegulationPage() {
         {/* Decorative backgrounds */}
 
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
               <span className="mb-3 block text-eyebrow uppercase text-ondark-muted">{tx("Agenda réglementaire 2024 · 2028", "Regulatory agenda 2024 · 2028")}
               </span>
@@ -1214,7 +1208,7 @@ export default function RegulationPage() {
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           <div className="relative max-w-4xl mx-auto">
             {/* Vertical line */}
@@ -1224,7 +1218,7 @@ export default function RegulationPage() {
               {timeline.map((t, i) => {
                 const isLeft = i % 2 === 0;
                 return (
-                  <FadeIn key={i} delay={i * 0.08} direction={isLeft ? "right" : "left"}>
+                  <div key={i} className="reveal">
                     <div className={`relative flex items-start gap-4 md:gap-8 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}>
                       {/* Timeline node */}
                       <div className="relative z-10 flex-shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2">
@@ -1261,7 +1255,7 @@ export default function RegulationPage() {
                         </div>
                       </div>
                     </div>
-                  </FadeIn>
+                  </div>
                 );
               })}
             </div>
@@ -1272,7 +1266,7 @@ export default function RegulationPage() {
       {/* ═══════════════ ENJEUX & CRISES ACTUELLES ═══════════════ */}
       <section id="enjeux" className="bg-paper py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
               <span className="mb-3 block text-eyebrow uppercase text-muted">{tx("Contexte géopolitique & technologique", "Geopolitical & technological context")}
               </span>
@@ -1287,13 +1281,13 @@ export default function RegulationPage() {
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
             {enjeuxSections.map((section, i) => {
               const SectionIcon = section.icon;
               return (
-                <FadeIn key={section.id} delay={i * 0.06}>
+                <div key={section.id} className="reveal">
                   <div className="group relative h-full rounded-2xl border border-line overflow-hidden hover:shadow-card hover:border-line transition-colors duration-150 bg-paper">
                     {/* Gradient top bar */}
 
@@ -1312,7 +1306,7 @@ export default function RegulationPage() {
                       </div>
                     </div>
                   </div>
-                </FadeIn>
+                </div>
               );
             })}
           </div>
@@ -1323,7 +1317,7 @@ export default function RegulationPage() {
       <section id="reponse-gtc" className="relative overflow-hidden bg-cream py-16 lg:py-24">
 
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative">
-          <FadeIn>
+          <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
               <span className="mb-3 block text-eyebrow uppercase text-muted">{tx("Notre réponse", "Our answer")}
               </span>
@@ -1339,13 +1333,13 @@ export default function RegulationPage() {
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto mb-14">
+          <div className="reveal-stagger grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto mb-14">
             {valueProps.map((vp, i) => {
               const VPIcon = vp.icon;
               return (
-                <StaggerItem key={i}>
+                <div key={i} className="reveal">
                   <div className="group relative h-full bg-white rounded-2xl p-7 border border-line hover:shadow-card hover: hover:border-leaf/30 transition-colors duration-150 overflow-hidden">
                     <div className="relative">
                       <Pictogram icon={VPIcon as LucideIcon} size="lg" className="mb-5" />
@@ -1353,13 +1347,13 @@ export default function RegulationPage() {
                       <p className="text-sm text-ink-700 leading-relaxed">{vp.text}</p>
                     </div>
                   </div>
-                </StaggerItem>
+                </div>
               );
             })}
-          </StaggerContainer>
+          </div>
 
           {/* Services & certifications links */}
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-4">
               <Link
                 href="/services"
@@ -1401,14 +1395,14 @@ export default function RegulationPage() {
                 <ArrowRight className="w-5 h-5 text-muted group-hover:text-forest group-hover:translate-x-0.5 transition" />
               </Link>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* ═══════════════ BLOG / RESSOURCES ═══════════════ */}
       <section id="ressources" className="bg-paper py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
               <span className="mb-3 block text-eyebrow uppercase text-muted">{tx("Ressources & analyses", "Resources & insights")}
               </span>
@@ -1423,9 +1417,9 @@ export default function RegulationPage() {
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-10">
+          <div className="reveal-stagger grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-10">
             {[
               {
                 slug: "nis2-compliance-it-infrastructure",
@@ -1480,7 +1474,7 @@ export default function RegulationPage() {
             ].map((article, i) => {
               const AIcon = article.icon;
               return (
-                <StaggerItem key={i}>
+                <div key={i} className="reveal">
                   <Link
                     href={`/blog/${article.slug}`}
                     className="group relative h-full flex flex-col bg-white rounded-2xl border border-line overflow-hidden hover:shadow-card hover: hover:border-line transition-colors duration-150"
@@ -1504,12 +1498,12 @@ export default function RegulationPage() {
                       </span>
                     </div>
                   </Link>
-                </StaggerItem>
+                </div>
               );
             })}
-          </StaggerContainer>
+          </div>
 
-          <FadeIn>
+          <div className="reveal">
             <div className="text-center">
               <Link
                 href="/blog"
@@ -1520,14 +1514,14 @@ export default function RegulationPage() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* ═══════════════ SOURCES & RÉFÉRENCES ═══════════════ */}
       <section id="sources" className="bg-cream border-y border-line py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <div className="mb-10 max-w-[720px]">
               <span className="mb-3 block text-eyebrow uppercase text-muted">{tx("Données sourcées", "Sourced data")}
               </span>
@@ -1541,7 +1535,7 @@ export default function RegulationPage() {
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
           <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {sources.map((s, i) => (
               <div key={i} className="group bg-cream hover:bg-white rounded-xl p-4 border border-line hover:border-leaf/30 hover:shadow-card transition-colors">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { StaggerContainer, StaggerItem } from "@/components/motion";
+
 import { Scale, Building2, Server, Copyright, AlertCircle } from "lucide-react";
 import LegalPageLayout from "@/components/LegalPageLayout";
 import CtaSection from "@/components/CtaSection";
@@ -30,9 +30,9 @@ function MentionsLegalesContent({ locale }: { locale: string }) {
         breadcrumbLabel="Mentions légales"
         icon={<Scale className="h-7 w-7 text-leaf" />}
       >
-        <StaggerContainer className="grid sm:grid-cols-2 gap-6">
+        <div className="reveal-stagger grid sm:grid-cols-2 gap-6">
           {sections.map(({ key, icon: Icon }) => (
-            <StaggerItem key={key}>
+            <div key={key} className="reveal">
               <div className="h-full bg-white rounded-2xl p-6 md:p-7 border border-line hover:shadow-card transition-colors duration-150">
                 <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-leaf-100 text-leaf border border-leaf/20 mb-4">
                   <Icon className="h-5 w-5" />
@@ -44,9 +44,9 @@ function MentionsLegalesContent({ locale }: { locale: string }) {
                   {t(`content.${key}.text`)}
                 </p>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </LegalPageLayout>
 
       <CtaSection

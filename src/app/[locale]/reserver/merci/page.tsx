@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { FadeIn } from "@/components/motion";
+
 import { CheckCircle2, ArrowRight, Mail } from "lucide-react";
 
 function MerciInner() {
@@ -19,7 +19,7 @@ function MerciInner() {
     <div className="bg-white">
       <section className="relative bg-forest-900 overflow-hidden">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10 py-24 lg:py-32">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-2xl mx-auto text-center text-white">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-leaf-100 border border-leaf/30 mb-7">
                 <CheckCircle2 className="h-8 w-8 text-leaf-300" aria-hidden="true" />
@@ -63,7 +63,7 @@ function MerciInner() {
                 </a>
               </div>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
     </div>

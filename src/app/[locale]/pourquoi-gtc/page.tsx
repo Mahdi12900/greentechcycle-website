@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { FadeIn, CountUp } from "@/components/motion";
+import { CountUp } from "@/components/motion";
 import { ArrowDown, Check, ShieldCheck, Leaf, Users, Eye, Award } from "lucide-react";
 import CtaSection from "@/components/CtaSection";
 import { ButtonLink } from "@/components/ui/Button";
@@ -50,7 +50,7 @@ export default function PourquoiGtcPage() {
       <section className="bg-paper py-16 lg:py-24" aria-labelledby="why-hero">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-            <FadeIn className="min-w-0 lg:col-span-7">
+            <div className="reveal min-w-0 lg:col-span-7">
               <Tag variant="brand" icon={<Leaf className="h-3.5 w-3.5" aria-hidden="true" />}>{t("urgency.text")}</Tag>
               <p className="mt-6 text-eyebrow uppercase text-muted">{t("hero.eyebrow")}</p>
               <h1 id="why-hero" className="mt-3 max-w-[20ch] text-display-lg text-ink">
@@ -67,8 +67,8 @@ export default function PourquoiGtcPage() {
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
                 {t("hero.scrollLabel")}
               </a>
-            </FadeIn>
-            <FadeIn delay={0.1} className="lg:col-span-5">
+            </div>
+            <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
                 <Image
                   src="/photos/team-workshop.jpg"
@@ -79,7 +79,7 @@ export default function PourquoiGtcPage() {
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               </div>
-            </FadeIn>
+            </div>
           </div>
         </div>
       </section>
@@ -87,7 +87,7 @@ export default function PourquoiGtcPage() {
       {/* ═══ MANIFESTE (cream) ═══ */}
       <div id="expertise" aria-hidden="true" className="sr-only" />
       <Section id="manifeste" tone="cream" bordered>
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader eyebrow={t("manifesto.eyebrow")} title={t("manifesto.title")}>
             <div className="mt-6 max-w-[65ch] space-y-4 text-body-lg text-ink-700">
               <p>{t("manifesto.body1")}</p>
@@ -95,7 +95,7 @@ export default function PourquoiGtcPage() {
               <p>{t("manifesto.body3")}</p>
             </div>
           </SectionHeader>
-        </FadeIn>
+        </div>
       </Section>
 
       {/* ═══ MOT DU FONDATEUR (forest) ═══ */}
@@ -106,7 +106,7 @@ export default function PourquoiGtcPage() {
               <Image src="/photos/founder-portrait.jpg" alt="Portrait éditorial du fondateur de GreenTechCycle" fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
             </div>
           </div>
-          <FadeIn className="lg:col-span-7">
+          <div className="reveal lg:col-span-7">
             <SectionHeader tone="dark" eyebrow={t("founder.eyebrow")} title={t("founder.title")} />
             <figure>
               <blockquote className="font-display text-display-sm text-ondark">&laquo;&nbsp;{t("founder.quote")}&nbsp;&raquo;</blockquote>
@@ -115,7 +115,7 @@ export default function PourquoiGtcPage() {
               </figcaption>
             </figure>
             <p className="mt-6 max-w-[65ch] text-body-sm text-ondark-muted">{t("founder.bio")}</p>
-          </FadeIn>
+          </div>
         </div>
       </Section>
 
@@ -164,9 +164,9 @@ export default function PourquoiGtcPage() {
 
       {/* ═══ ENGAGEMENTS CHIFFRÉS (night) ═══ */}
       <Section id="engagement" tone="night">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader tone="dark" eyebrow={t("commitments.eyebrow")} title={t("commitments.title")} />
-        </FadeIn>
+        </div>
         <StatRow tone="dark" cols={3}>
           {commitments.map((c, i) => {
             const numericValue = parseFloat(c.metric.replace(/[^0-9.]/g, ""));
@@ -195,14 +195,14 @@ export default function PourquoiGtcPage() {
 
       {/* ═══ CITATION (paper) ═══ */}
       <Section tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <figure className="max-w-[65ch] border-l-2 border-leaf pl-6">
             <blockquote className="font-display text-display-sm text-ink">&laquo;&nbsp;{t("editorialQuote.quote")}&nbsp;&raquo;</blockquote>
             <figcaption className="mt-6 text-caption text-muted">
               <span className="font-semibold text-ink-700">{t("editorialQuote.name")}</span> · {t("editorialQuote.role")}
             </figcaption>
           </figure>
-        </FadeIn>
+        </div>
       </Section>
 
       {/* ═══ CTA UNIQUE ═══ */}

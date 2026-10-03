@@ -3,7 +3,7 @@
 import { Cpu, ArrowRight, CheckCircle2 } from "lucide-react";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { FadeIn } from "@/components/motion";
+
 import ServicePageTemplate from "../ServicePageTemplate";
 import type { ServicePageData } from "../ServicePageTemplate";
 
@@ -178,7 +178,7 @@ export default function WakiBoxPage() {
       {/* ── Pricing summary section inserted before the conversion CTA ── */}
       <section className="relative w-full overflow-hidden bg-cream -mt-px py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-3xl mb-14">
               <p className="uppercase text-muted mb-4 text-eyebrow">
                 {tx("Tarifs WakiBox", "WakiBox pricing")}
@@ -195,11 +195,11 @@ export default function WakiBoxPage() {
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mb-10">
             {plans.map((plan, i) => (
-              <FadeIn key={plan.slug}>
+              <div key={plan.slug} className="reveal">
                 <div className={`relative h-full flex flex-col rounded-xl border bg-paper p-6 ${plan.popular ? "border-leaf" : "border-line"}`}>
                   {plan.popular && (
                     <div className="absolute -top-3 left-6 inline-flex h-7 items-center rounded-full bg-leaf-100 px-3 text-caption font-semibold text-forest">
@@ -225,12 +225,12 @@ export default function WakiBoxPage() {
                     <ArrowRight className="inline h-4 w-4 ml-1" />
                   </Link>
                 </div>
-              </FadeIn>
+              </div>
             ))}
           </div>
 
           {/* Pilote encart */}
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-5xl bg-leaf-100 border border-leaf/25 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
               <div className="flex-1">
                 <p className="uppercase text-muted mb-1 text-eyebrow">
@@ -251,9 +251,9 @@ export default function WakiBoxPage() {
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
-          </FadeIn>
+          </div>
 
-          <FadeIn>
+          <div className="reveal">
             <Link
               href="/tarifs"
               className="inline-flex items-center gap-2 text-leaf hover:text-leaf-700 font-semibold text-sm group"
@@ -261,7 +261,7 @@ export default function WakiBoxPage() {
               {tx("Voir tous les tarifs, add-ons et FAQ tarifaire", "View all pricing, add-ons and pricing FAQ")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
-          </FadeIn>
+          </div>
         </div>
       </section>
     </>

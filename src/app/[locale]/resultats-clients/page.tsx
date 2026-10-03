@@ -2,13 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import {
-  FadeIn,
-  StaggerContainer,
-  StaggerItem,
-  CountUp,
-  ScaleIn,
-} from "@/components/motion";
+import { CountUp } from "@/components/motion";
 import {
   ArrowRight,
   CheckCircle2,
@@ -67,7 +61,7 @@ export default function ResultatsClientsPage() {
       {/* Hero */}
       <section className="bg-forest py-16 text-ondark lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-4xl ">
               <p className="text-ondark-muted uppercase mb-4 text-eyebrow">
                 {t("hero.eyebrow")}
@@ -94,14 +88,14 @@ export default function ResultatsClientsPage() {
                 </Link>
               </div>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* Global metrics */}
       <section className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <div className="text-center max-w-3xl mx-auto mb-14">
               <p className="text-muted uppercase mb-3 text-eyebrow">
                 {t("metricsSection.eyebrow")}
@@ -110,13 +104,13 @@ export default function ResultatsClientsPage() {
                 {t("metricsSection.title")}
               </h2>
             </div>
-          </FadeIn>
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          </div>
+          <div className="reveal-stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {globalMetrics.map((m, i) => {
               const MIcon = metricIcons[i] || BarChart3;
               return (
-                <StaggerItem key={i}>
-                  <ScaleIn delay={i * 0.05}>
+                <div key={i} className="reveal">
+                  <div className="reveal-scale">
                     <div className="border border-line rounded-2xl p-7 h-full flex flex-col items-center text-center hover:shadow-card transition-colors duration-150 bg-cream">
                       <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-leaf-100 text-forest">
                         <MIcon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />
@@ -128,18 +122,18 @@ export default function ResultatsClientsPage() {
                         {m.label}
                       </p>
                     </div>
-                  </ScaleIn>
-                </StaggerItem>
+                  </div>
+                </div>
               );
             })}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
       {/* Case results grid */}
       <section className="bg-cream py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-3xl mb-14">
               <p className="text-muted uppercase mb-3 text-eyebrow">
                 {t("casesSection.eyebrow")}
@@ -151,13 +145,13 @@ export default function ResultatsClientsPage() {
                 {t("casesSection.subtitle")}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          <div className="reveal-stagger grid md:grid-cols-2 gap-6 lg:gap-8">
             {cases.map((c, i) => {
               const CIcon = iconMap[c.icon] || Building2;
               return (
-                <StaggerItem key={c.slug}>
+                <div key={c.slug} className="reveal">
                   <div className="bg-white border border-line rounded-2xl p-7 h-full flex flex-col hover:shadow-card hover:border-leaf/30 transition-colors duration-150">
                     <div className="flex items-center gap-3 mb-5">
                       <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-leaf-100 text-forest">
@@ -199,17 +193,17 @@ export default function ResultatsClientsPage() {
                       <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                     </Link>
                   </div>
-                </StaggerItem>
+                </div>
               );
             })}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
       {/* Trust & CTA */}
       <section className="relative overflow-hidden bg-ink py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-4xl mx-auto text-center">
               <TrendingUp className="h-10 w-10 text-leaf-300 mx-auto mb-6" aria-hidden="true" />
               <h2 className="text-display-md text-white mb-6">
@@ -244,7 +238,7 @@ export default function ResultatsClientsPage() {
                 ))}
               </div>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
     </div>

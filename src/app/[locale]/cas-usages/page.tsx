@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import { FadeIn, StaggerContainer, StaggerItem, CountUp } from "@/components/motion";
+import { CountUp } from "@/components/motion";
 import {
   ArrowDown,
   Building2,
@@ -234,7 +234,7 @@ export default function CasUsagesPage() {
       <section className="bg-paper py-16 lg:py-24" aria-labelledby="hero-editorial-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-            <FadeIn className="min-w-0 lg:col-span-7">
+            <div className="reveal min-w-0 lg:col-span-7">
               <Tag variant="brand" icon={<ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
                 {tx(
                   "38 000+ certificats NIST 800-88 émis · 6 200 tCO2e évitées · Réponse audit sous 72h",
@@ -267,8 +267,8 @@ export default function CasUsagesPage() {
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
                 {t("editorialHero.scrollCta")}
               </a>
-            </FadeIn>
-            <FadeIn delay={0.1} className="lg:col-span-5">
+            </div>
+            <div className="reveal lg:col-span-5">
               <figure>
                 <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
                   <Image
@@ -292,7 +292,7 @@ export default function CasUsagesPage() {
                   </p>
                 </figcaption>
               </figure>
-            </FadeIn>
+            </div>
           </div>
         </div>
       </section>
@@ -315,25 +315,25 @@ export default function CasUsagesPage() {
 
       {/* ═══ INTRO + DIFFÉRENCIATEURS + PARTENAIRES (paper) ═══ */}
       <Section tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader eyebrow={t("cases.eyebrow")} title={t("editorialIntro.headline")} intro={t("editorialIntro.text")}>
             <div className="mt-6">
               <TextLink href="/contact">{t("editorialIntro.cta")}</TextLink>
             </div>
           </SectionHeader>
-        </FadeIn>
-        <StaggerContainer className="grid gap-6 md:grid-cols-3">
+        </div>
+        <div className="reveal-stagger grid gap-6 md:grid-cols-3">
           {differentiators.map((d, i) => (
-            <StaggerItem key={i} className="h-full">
+            <div key={i} className="reveal h-full">
               <div className="h-full rounded-xl border border-line bg-paper p-6">
                 <Pictogram icon={d.icon} />
                 <p className="mt-4 text-eyebrow uppercase text-muted">{d.tag}</p>
                 <h3 className="mt-2 text-heading-md text-ink">{d.title}</h3>
                 <p className="mt-2 text-body-sm text-ink-700">{d.body}</p>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
 
         <div className="mt-12 grid gap-8 border-t border-line pt-10 lg:grid-cols-2">
           <div>
@@ -367,7 +367,7 @@ export default function CasUsagesPage() {
       <section id="cas-tf1-media" className="bg-forest py-16 text-ondark lg:py-24" aria-labelledby="tf1-featured-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
-            <FadeIn className="min-w-0 lg:col-span-7">
+            <div className="reveal min-w-0 lg:col-span-7">
               <div className="flex flex-wrap gap-2">
                 <Tag variant="dark" icon={<MonitorPlay className="h-3.5 w-3.5" aria-hidden="true" />}>{tf1.badge}</Tag>
                 <Tag variant="dark">{tf1.eyebrow}</Tag>
@@ -396,12 +396,12 @@ export default function CasUsagesPage() {
                 <ButtonLink href={tf1.ctaHref} tone="dark" size="lg">{tf1.cta}</ButtonLink>
                 <ButtonLink href={tf1.scrollTarget} tone="dark" variant="secondary" size="lg" arrow={false}>{tf1.ctaSecondary}</ButtonLink>
               </div>
-            </FadeIn>
-            <FadeIn delay={0.1} className="lg:col-span-5">
+            </div>
+            <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-ondark-line">
                 <Image src={tf1.photo} alt={tf1.photoAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
               </div>
-            </FadeIn>
+            </div>
           </div>
         </div>
       </section>
@@ -419,10 +419,10 @@ export default function CasUsagesPage() {
 
       {/* ═══ COMPARATIF — tableau §6.13 ═══ */}
       <Section tone="paper" aria-labelledby="comparative-title">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader id="comparative-title" eyebrow={t("matrix.eyebrow")} title={t("matrix.title")} intro={t("matrix.subtitle")} />
-        </FadeIn>
-        <FadeIn>
+        </div>
+        <div className="reveal">
           <Table
             caption={t("matrix.title")}
             head={matrixHeaders}
@@ -448,12 +448,12 @@ export default function CasUsagesPage() {
             )}{" "}
             {t("matrix.footnote")}
           </p>
-        </FadeIn>
+        </div>
       </Section>
 
       {/* ═══ TÉMOIGNAGES + CITATION FINALE (night) ═══ */}
       <Section tone="night" aria-labelledby="testimonials-title">
-        <FadeIn>
+        <div className="reveal">
           <figure className="max-w-[65ch]">
             <blockquote className="font-display text-display-sm text-ondark">&laquo;&nbsp;{t("editorialFinalQuote.text")}&nbsp;&raquo;</blockquote>
             <figcaption className="mt-4 text-caption text-ondark-muted">
@@ -464,21 +464,21 @@ export default function CasUsagesPage() {
               <TextLink href="#cas-banque-cac40" tone="dark">{tx("Voir le cas Banque CAC40 complet", "See the full CAC40 bank case")}</TextLink>
             </div>
           </figure>
-        </FadeIn>
+        </div>
         <div className="mt-16 border-t border-ondark-line pt-10">
           <SectionHeader tone="dark" id="testimonials-title" eyebrow={t("testimonials.eyebrow")} title={t("testimonials.title")} size="sm" />
-          <StaggerContainer className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="reveal-stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {testimonials.map((item, i) => (
-              <StaggerItem key={i} className="h-full">
+              <div key={i} className="reveal h-full">
                 <figure className="flex h-full flex-col rounded-xl border border-ondark-line bg-forest-950 p-6">
                   <blockquote className="flex-1 text-body-sm text-ondark">&laquo;&nbsp;{item.quote}&nbsp;&raquo;</blockquote>
                   <figcaption className="mt-6 border-t border-ondark-line pt-4 text-caption text-ondark-muted">
                     <span className="font-semibold text-ondark">{item.name}</span> · {item.role} · {item.sector}
                   </figcaption>
                 </figure>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
           <p className="mt-6 text-caption italic text-ondark-muted">{t("testimonials.consentNote")}</p>
         </div>
       </Section>
@@ -486,9 +486,9 @@ export default function CasUsagesPage() {
       {/* ═══ FAQ (paper) ═══ */}
       <Section tone="paper" aria-labelledby="faq-cas-title">
         <div className="mx-auto max-w-[720px]">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader id="faq-cas-title" eyebrow={t("faq.eyebrow")} title={t("faq.title")} />
-          </FadeIn>
+          </div>
           <Accordion items={faqItems.map((f) => ({ question: f.q, answer: f.a }))} />
           <div className="mt-8">
             <TextLink href="/faq">{t("faq.allQuestionsLink")}</TextLink>
@@ -498,7 +498,7 @@ export default function CasUsagesPage() {
 
       {/* ═══ PASSERELLE 16 SECTEURS (cream) — fusion S12d + S14b ═══ */}
       <Section tone="cream" aria-labelledby="cross-secteurs-title">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader
             id="cross-secteurs-title"
             eyebrow={tx("Au-delà des 8 cas chiffrés · Catalogue sectoriel complet", "Beyond the 8 quantified cases · Full sector catalogue")}
@@ -508,7 +508,7 @@ export default function CasUsagesPage() {
               "Each sector has a complete profile: regulatory framework, specific pain points, priority use cases, expected ROI, decision-maker personas and objections. The /secteurs hub synthesises the 16 markets we cover in France and Europe, including the TF1 broadcast reference."
             )}
           />
-        </FadeIn>
+        </div>
         <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {sectorCatalogue.map((s) => (
             <li key={s.slug}>

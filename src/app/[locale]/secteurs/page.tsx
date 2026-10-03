@@ -2,7 +2,7 @@
 
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+
 import { ArrowRight, Box, Monitor, Wrench } from "lucide-react";
 import { SECTORS } from "@/data/sectors";
 import type { SectorDef } from "@/data/sectors";
@@ -79,7 +79,7 @@ export default function SecteursHubPage() {
       {/* 1. HERO clair */}
       <section className="border-b border-line bg-cream py-16 lg:py-24" aria-labelledby="secteurs-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <p className="mb-3 text-eyebrow uppercase text-muted">
               ITAD · {isFr ? "Sécurité" : "Security"} · {isFr ? "Plateforme unifiée" : "Unified platform"}
             </p>
@@ -87,7 +87,7 @@ export default function SecteursHubPage() {
               {labels.heroTitle}
             </h1>
             <p className="mt-4 max-w-[65ch] text-body-lg text-ink-700">{labels.heroSubtitle}</p>
-          </FadeIn>
+          </div>
 
           {/* 2. « Comment lire » condensé en une ligne de 3 items */}
           <div className="mt-10 border-t border-line pt-8">
@@ -114,7 +114,7 @@ export default function SecteursHubPage() {
 
       {/* 3. GRILLE RÉGULIÈRE 16 SECTEURS (01 → 16) */}
       <Section tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader
             title={labels.sectorGridTitle}
             intro={
@@ -123,14 +123,14 @@ export default function SecteursHubPage() {
                 : "Click a sector to access its full profile: overview, pain points, use cases, ROI, personas and objections."
             }
           />
-        </FadeIn>
-        <StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        </div>
+        <div className="reveal-stagger grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {ordered.map((sector) => (
-            <StaggerItem key={sector.slug} className="h-full">
+            <div key={sector.slug} className="reveal h-full">
               <SectorCard sector={sector} locale={locale} labels={labels} />
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
 
         {/* 4. Annexes démotées en accordéons fermés */}
         <div className="mt-16">

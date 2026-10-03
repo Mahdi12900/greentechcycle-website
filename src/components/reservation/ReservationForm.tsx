@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
-import { FadeIn } from "@/components/motion";
+
 import {
   ArrowRight,
   ArrowLeft,
@@ -167,7 +167,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
 
       {/* Step 1, coordonnées */}
       {step === 1 && (
-        <FadeIn>
+        <div className="reveal">
           <h3 className="text-heading-lg text-ink mb-6">
             {t("form.step1Title")}
           </h3>
@@ -203,12 +203,12 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
               className="sm:col-span-2"
             />
           </div>
-        </FadeIn>
+        </div>
       )}
 
       {/* Step 2, organisation */}
       {step === 2 && (
-        <FadeIn>
+        <div className="reveal">
           <h3 className="text-heading-lg text-ink mb-6">
             {t("form.step2Title")}
           </h3>
@@ -240,12 +240,12 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
               options={personas}
             />
           </div>
-        </FadeIn>
+        </div>
       )}
 
       {/* Step 3, besoin */}
       {step === 3 && (
-        <FadeIn>
+        <div className="reveal">
           <h3 className="text-heading-lg text-ink mb-6">
             {t("form.step3Title")}
           </h3>
@@ -279,12 +279,12 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
               optional
             />
           </div>
-        </FadeIn>
+        </div>
       )}
 
       {/* Step 4, créneaux + consent */}
       {step === 4 && (
-        <FadeIn>
+        <div className="reveal">
           <h3 className="text-heading-lg text-ink mb-2">
             {t("form.step4Title")}
           </h3>
@@ -324,7 +324,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
             </span>
           </label>
           {errors.consent && <p className="text-xs text-danger mt-2">{errors.consent}</p>}
-        </FadeIn>
+        </div>
       )}
 
       {/* Status banners */}

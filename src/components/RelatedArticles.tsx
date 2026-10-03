@@ -5,7 +5,7 @@ import Image from "next/image";
 import { blogArticles, type BlogArticle } from "@/lib/blog-data";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { useLocale } from "next-intl";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+
 
 interface RelatedArticlesProps {
   /** Filter by one or more categories (exact match on BlogArticle.category). */
@@ -61,7 +61,7 @@ export default function RelatedArticles({
   return (
     <section className={`py-16 lg:py-24 ${bgClass} ${className}`}>
       <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-        <FadeIn>
+        <div className="reveal">
           <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between lg:mb-12">
             <div>
               <p className="mb-3 text-eyebrow uppercase text-muted">{eyebrow}</p>
@@ -76,11 +76,11 @@ export default function RelatedArticles({
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
           </div>
-        </FadeIn>
+        </div>
 
-        <StaggerContainer className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="reveal-stagger grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {articles.map((article) => (
-            <StaggerItem key={article.slug} className="h-full">
+            <div key={article.slug} className="reveal h-full">
               <Link
                 href={`/blog/${article.slug}`}
                 className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-paper transition-[border-color,box-shadow] duration-150 hover:border-ink/20 hover:shadow-card"
@@ -122,9 +122,9 @@ export default function RelatedArticles({
                   </span>
                 </div>
               </Link>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </div>
     </section>
   );

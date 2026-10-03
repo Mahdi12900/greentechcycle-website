@@ -2,7 +2,7 @@
 
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { SectorSlug } from "@/data/sectors";
@@ -99,7 +99,7 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
               { label: name, href: `/${locale}/secteurs/${slug}` },
             ]}
           />
-          <FadeIn>
+          <div className="reveal">
             <Tag variant="dark">
               {isFr ? "Secteur" : "Sector"} {number}/16
             </Tag>
@@ -107,7 +107,7 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
               {content.hero.title}
             </h1>
             <p className="mt-4 max-w-[65ch] text-body-lg text-ondark-muted">{content.hero.subtitle}</p>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -117,15 +117,15 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
       {/* 3. PROFIL */}
       <Section id="profil" tone="paper">
         <div className="grid items-start gap-12 lg:grid-cols-[1fr_400px]">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader eyebrow={isFr ? "Profil" : "Profile"} title={isFr ? "Profil du secteur" : "Sector profile"} />
             <p className="max-w-[65ch] text-body-lg text-ink-700">{content.profile.description}</p>
             <div className="mt-8 rounded-xl border border-line bg-cream p-6">
               <h3 className="text-eyebrow uppercase text-muted">{isFr ? "Cadre réglementaire" : "Regulatory framework"}</h3>
               <p className="mt-3 text-body text-ink-700">{content.profile.regulations}</p>
             </div>
-          </FadeIn>
-          <FadeIn>
+          </div>
+          <div className="reveal">
             {sectorDef.image ? (
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line">
                 <Image
@@ -160,7 +160,7 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
                 </dl>
               </div>
             )}
-          </FadeIn>
+          </div>
         </div>
       </Section>
 
@@ -175,7 +175,7 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
 
       {/* 5. DOULEURS — night */}
       <Section id="douleurs" tone="night">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader
             tone="dark"
             alert
@@ -183,24 +183,24 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
             title={isFr ? "Douleurs spécifiques" : "Specific pain points"}
             intro={isFr ? "Les défis que vous rencontrez au quotidien" : "The challenges you face every day"}
           />
-        </FadeIn>
-        <StaggerContainer className="grid gap-x-12 gap-y-8 lg:grid-cols-2">
+        </div>
+        <div className="reveal-stagger grid gap-x-12 gap-y-8 lg:grid-cols-2">
           {content.painPoints.map((point, i) => (
-            <StaggerItem key={i}>
+            <div key={i} className="reveal">
               <div className="border-t border-ondark-line pt-6">
                 <p className="text-eyebrow uppercase text-ondark-muted">{String(i + 1).padStart(2, "0")}</p>
                 <p className="mt-3 max-w-[65ch] text-body text-ondark">{point}</p>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </Section>
 
       {/* 6. CAS D'USAGE — liste à filets */}
       <Section id="cas-usage" tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader eyebrow={isFr ? "Cas d'usage" : "Use cases"} title={isFr ? "Cas d'usage prioritaires" : "Priority use cases"} />
-        </FadeIn>
+        </div>
         <ol className="divide-y divide-line border-y border-line">
           {content.useCases.map((uc, i) => (
             <li key={i} className="grid gap-4 py-8 md:grid-cols-[80px_1fr]">
@@ -216,27 +216,27 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
 
       {/* 7. ROI — tableau sur cream */}
       <Section id="roi" tone="cream">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader eyebrow="ROI" title={isFr ? "ROI attendu" : "Expected ROI"} />
-        </FadeIn>
-        <FadeIn>
+        </div>
+        <div className="reveal">
           <Table
             caption={isFr ? "ROI attendu" : "Expected ROI"}
             head={[isFr ? "Levier de valeur" : "Value lever", isFr ? "Économie / gain typique" : "Typical savings / gain"]}
             rows={content.roi.map((row) => [row.lever, row.gain])}
             emphasis={[1]}
           />
-        </FadeIn>
+        </div>
       </Section>
 
       {/* 8. DÉCIDEURS */}
       <Section id="personas" tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader eyebrow={isFr ? "Décideurs" : "Decision makers"} title={isFr ? "Personas décideurs" : "Decision-maker personas"} />
-        </FadeIn>
-        <StaggerContainer className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        </div>
+        <div className="reveal-stagger grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {content.personas.map((p, i) => (
-            <StaggerItem key={i} className="h-full">
+            <div key={i} className="reveal h-full">
               <div className="h-full rounded-xl border border-line bg-paper p-6">
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-leaf-100 text-body-sm font-semibold text-forest" aria-hidden="true">
                   {p.role.charAt(0)}
@@ -244,31 +244,31 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
                 <h3 className="mt-4 text-heading-md text-ink">{p.role}</h3>
                 <p className="mt-2 text-body-sm text-ink-700">{p.description}</p>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </Section>
 
       {/* 9. ARGUMENTAIRE — citation sur forest */}
       <Section id="argumentaire" tone="forest">
-        <FadeIn>
+        <div className="reveal">
           <figure className="max-w-[65ch]">
             <p className="text-eyebrow uppercase text-ondark-muted">{isFr ? "Argumentaire" : "Value proposition"}</p>
             <blockquote className="mt-4 font-display text-display-sm text-ondark">&laquo;&nbsp;{content.quote}&nbsp;&raquo;</blockquote>
             <figcaption className="mt-6 text-caption text-ondark-muted">GreenTechCycle</figcaption>
           </figure>
-        </FadeIn>
+        </div>
       </Section>
 
       {/* 10. OBJECTIONS — accordéon */}
       <Section id="objections" tone="paper">
         <div className="max-w-[720px]">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader
               eyebrow={isFr ? "Objections" : "Objections"}
               title={isFr ? "Objections fréquentes et réponses" : "Common objections and answers"}
             />
-          </FadeIn>
+          </div>
           <Accordion
             items={content.objections.map((o) => ({
               question: <>&laquo;&nbsp;{o.question}&nbsp;&raquo;</>,

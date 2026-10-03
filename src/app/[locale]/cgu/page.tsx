@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+
 import { FileText, ShieldCheck } from "lucide-react";
 import LegalPageLayout from "@/components/LegalPageLayout";
 import CtaSection from "@/components/CtaSection";
@@ -34,9 +34,9 @@ function CguContent({ locale }: { locale: string }) {
         breadcrumbLabel="CGU"
         icon={<FileText className="h-7 w-7 text-leaf" />}
       >
-        <StaggerContainer className="space-y-6 md:space-y-8">
+        <div className="reveal-stagger space-y-6 md:space-y-8">
           {articles.map((article, idx) => (
-            <StaggerItem key={article}>
+            <div key={article} className="reveal">
               <div className="group relative bg-white rounded-2xl p-6 md:p-8 border border-line hover:shadow-card transition-colors duration-150">
                 <div className="absolute -left-[3px] top-6 w-1 h-12 rounded-full bg-leaf" />
                 <div className="flex items-start gap-4">
@@ -53,11 +53,11 @@ function CguContent({ locale }: { locale: string }) {
                   </div>
                 </div>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
 
-        <FadeIn delay={0.2}>
+        <div className="reveal">
           <div className="mt-12 border border-leaf/10 rounded-2xl p-6 md:p-8 flex items-start gap-5 bg-leaf-50">
             <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-leaf text-white flex items-center justify-center">
               <ShieldCheck className="h-6 w-6" />
@@ -72,7 +72,7 @@ function CguContent({ locale }: { locale: string }) {
               </p>
             </div>
           </div>
-        </FadeIn>
+        </div>
       </LegalPageLayout>
 
       <CtaSection

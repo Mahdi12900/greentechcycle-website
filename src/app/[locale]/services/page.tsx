@@ -3,7 +3,7 @@
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+
 import {
   ArrowDown,
   ArrowUpRight,
@@ -268,7 +268,7 @@ export default function ServicesPage() {
       <section className="bg-paper py-16 lg:py-24" aria-labelledby="services-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-            <FadeIn className="min-w-0 lg:col-span-7">
+            <div className="reveal min-w-0 lg:col-span-7">
               <Tag variant="brand">
                 {tx(
                   "Six services intégrés, un seul interlocuteur, une chaîne de preuves opposable",
@@ -320,8 +320,8 @@ export default function ServicesPage() {
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
                 {tx("Découvrir les six métiers", "Discover the six trades")}
               </a>
-            </FadeIn>
-            <FadeIn delay={0.1} className="lg:col-span-5">
+            </div>
+            <div className="reveal lg:col-span-5">
               <figure>
                 <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
                   <Image
@@ -348,7 +348,7 @@ export default function ServicesPage() {
                   </p>
                 </figcaption>
               </figure>
-            </FadeIn>
+            </div>
           </div>
           <CertificationStrip className="mt-12 border-t border-line pt-6" />
         </div>
@@ -357,18 +357,18 @@ export default function ServicesPage() {
       {/* ═══════════ GRILLE 6 SERVICES (2 × 3 régulière) ═══════════ */}
       <section id="services-grille" className="border-t border-line bg-cream py-16 lg:py-24" aria-labelledby="services-grille-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader
               id="services-grille-title"
               eyebrow={tx("Six métiers", "Six trades")}
               title={tx("Audit, effacement, valorisation, recyclage, sécurité, collecte.", "Audit, erasure, recovery, recycling, security, collection.")}
             />
-          </FadeIn>
-          <StaggerContainer className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          </div>
+          <div className="reveal-stagger grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => {
               const Icon = s.icon;
               return (
-                <StaggerItem key={s.slug} className="h-full">
+                <div key={s.slug} className="reveal h-full">
                   <article
                     id={`service-${s.slug}`}
                     aria-labelledby={`service-title-${s.slug}`}
@@ -420,16 +420,16 @@ export default function ServicesPage() {
                       </div>
                     </div>
                   </article>
-                </StaggerItem>
+                </div>
               );
             })}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
       {/* ═══════════ CITATION (forest) ═══════════ */}
       <Section tone="forest">
-        <FadeIn>
+        <div className="reveal">
           <figure className="max-w-[65ch]">
             <p className="text-eyebrow uppercase text-ondark-muted">{tx("Témoignage RSSI", "CISO testimonial")}</p>
             <blockquote className="mt-4 font-display text-display-sm text-ondark">
@@ -442,12 +442,12 @@ export default function ServicesPage() {
               <span className="font-semibold text-ondark">Marc B.</span> · {tx("RSSI, banque CAC 40", "CISO, CAC 40 bank")}
             </figcaption>
           </figure>
-        </FadeIn>
+        </div>
       </Section>
 
       {/* ═══════════ POURQUOI UN INTERLOCUTEUR UNIQUE ═══════════ */}
       <Section tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader
             eyebrow={tx("Pourquoi un seul interlocuteur change tout", "Why a single point of contact changes everything")}
             title={tx(
@@ -459,18 +459,18 @@ export default function ServicesPage() {
               "Most of our clients arrived with an inherited patchwork: a carrier here, a shredder there, a refurbished hardware reseller, an external firm for the carbon report. When the regulator asks for the full chain, nobody can put the slips back together. GreenTechCycle was built to produce a single proof, the same data feeds the CIO console, the CISO file and the CSRD report."
             )}
           />
-        </FadeIn>
-        <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        </div>
+        <div className="reveal-stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {singleContact.map((b) => (
-            <StaggerItem key={b.title} className="h-full">
+            <div key={b.title} className="reveal h-full">
               <div className="h-full rounded-xl border border-line bg-paper p-6">
                 <Pictogram icon={b.icon} />
                 <h3 className="mt-4 text-heading-md text-ink">{b.title}</h3>
                 <p className="mt-2 text-body-sm text-ink-700">{b.body}</p>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </Section>
 
       {/* ═══════════ CTA UNIQUE (S2b pilote + S6 conversion fusionnés) ═══════════ */}

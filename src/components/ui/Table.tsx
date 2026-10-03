@@ -43,7 +43,7 @@ export default function Table({
   const align = (i: number) => (numeric.includes(i) ? "text-right tabular-nums" : "text-left");
 
   return (
-    <div className={`overflow-hidden rounded-xl border border-line bg-paper ${className}`}>
+    <div className={`overflow-hidden rounded-xl border border-track bg-bg ${className}`}>
       <div
         ref={ref}
         onScroll={(e) => {
@@ -58,9 +58,9 @@ export default function Table({
         <table className="w-full border-collapse text-body-sm">
           {caption && <caption className="sr-only">{caption}</caption>}
           <thead>
-            <tr className="bg-cream">
+            <tr className="bg-bg-card">
               {head.map((h, i) => (
-                <th key={i} scope="col" className={`whitespace-nowrap px-4 py-3 text-eyebrow uppercase text-muted lg:px-6 ${align(i)}`}>
+                <th key={i} scope="col" className={`whitespace-nowrap px-4 py-3 text-eyebrow uppercase text-fg-muted lg:px-6 ${align(i)}`}>
                   {h}
                 </th>
               ))}
@@ -68,14 +68,14 @@ export default function Table({
           </thead>
           <tbody>
             {rows.map((row, r) => (
-              <tr key={r} className={`border-t border-line ${r % 2 === 1 ? "bg-leaf-50" : ""}`}>
+              <tr key={r} className={`border-t border-track ${r % 2 === 1 ? "bg-white/[0.02]" : ""}`}>
                 {row.map((cell, i) =>
                   i === 0 ? (
-                    <th key={i} scope="row" className={`px-4 py-4 font-medium text-ink lg:px-6 ${align(i)}`}>
+                    <th key={i} scope="row" className={`px-4 py-4 font-medium text-fg lg:px-6 ${align(i)}`}>
                       {cell}
                     </th>
                   ) : (
-                    <td key={i} className={`px-4 py-4 lg:px-6 ${align(i)} ${emphasis.includes(i) ? "font-semibold text-ink" : "text-ink-700"}`}>
+                    <td key={i} className={`px-4 py-4 lg:px-6 ${align(i)} ${emphasis.includes(i) ? "font-semibold text-emerald" : "text-fg-strong"}`}>
                       {cell}
                     </td>
                   )

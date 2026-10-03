@@ -20,13 +20,8 @@ export default function Pictogram({
 }) {
   const box = size === "lg" ? "h-12 w-12" : "h-10 w-10";
   const ico = size === "lg" ? "h-6 w-6" : "h-5 w-5";
-  const colors = alert
-    ? tone === "dark"
-      ? "bg-white/10 text-ochre-300"
-      : "bg-ochre-100 text-ochre-800"
-    : tone === "dark"
-      ? "bg-forest-700 text-leaf-300"
-      : "bg-leaf-100 text-forest";
+  void tone; // v2 : même rendu sur toutes les surfaces sombres
+  const colors = alert ? "bg-amber-dim text-amber" : "bg-emerald-dim text-emerald";
   return (
     <span className={`inline-flex flex-shrink-0 items-center justify-center rounded-full ${box} ${colors} ${className}`}>
       <Icon className={ico} strokeWidth={1.75} aria-hidden="true" />

@@ -52,12 +52,7 @@ import {
   Calendar,
 } from "lucide-react";
 import RelatedArticles from "@/components/RelatedArticles";
-import {
-  FadeIn,
-  StaggerContainer,
-  StaggerItem,
-  CountUp,
-} from "@/components/motion";
+import { CountUp } from "@/components/motion";
 
 const useTx = () => {
   const locale = useLocale();
@@ -344,7 +339,7 @@ export default function MethodologyPage() {
       <section className="bg-forest py-16 text-ondark lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-5xl">
-            <FadeIn>
+            <div className="reveal">
               <div className="flex  mb-6">
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-leaf-300 text-sm font-medium">
                   <Activity className="w-4 h-4" />
@@ -393,7 +388,7 @@ export default function MethodologyPage() {
                   {tx("Explorer les 8 modules", "Explore the 8 modules")}
                 </a>
               </div>
-            </FadeIn>
+            </div>
           </div>
         </div>
       </section>
@@ -401,7 +396,7 @@ export default function MethodologyPage() {
       {/* ═══════════════ 8 ENGINEERING MODULES ═══════════════ */}
       <section id="modules" className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <span className="block mb-4 text-eyebrow uppercase text-muted">
                 {tx("Processus ITAD · 8 modules d'ingénierie", "ITAD Process · 8 engineering modules")}
@@ -416,13 +411,13 @@ export default function MethodologyPage() {
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           <div className="max-w-6xl mx-auto space-y-6">
             {modules.map((m, i) => {
               const Icon = m.icon;
               return (
-                <FadeIn key={m.num} delay={i * 0.04}>
+                <div key={m.num} className="reveal">
                   <article className={`group relative rounded-2xl border ${m.border} bg-white overflow-hidden hover:shadow-card transition-colors`}>
                     <div className={`absolute top-0 left-0 h-full w-1.5 ${m.color}`} />
                     <div className="p-6 md:p-8 pl-8 md:pl-12">
@@ -488,7 +483,7 @@ export default function MethodologyPage() {
                       </ul>
                     </div>
                   </article>
-                </FadeIn>
+                </div>
               );
             })}
           </div>
@@ -498,7 +493,7 @@ export default function MethodologyPage() {
       {/* ═══════════════ ROADMAP 2026/2027 ═══════════════ */}
       <section className="bg-cream py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-3xl mx-auto text-center mb-14">
               <span className="block mb-4 text-eyebrow uppercase text-muted">
                 {tx("Feuille de route technologique", "Technology roadmap")}
@@ -513,13 +508,13 @@ export default function MethodologyPage() {
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           <div className="max-w-4xl mx-auto">
             {/* Vertical timeline */}
             <div className="relative border-l-2 border-line ml-4 md:ml-8">
               {roadmap.map((period, i) => (
-                <FadeIn key={i} delay={i * 0.06}>
+                <div key={i} className="reveal">
                   <div className="mb-10 last:mb-0 pl-8 md:pl-12 relative">
                     {/* Dot */}
                     <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-forest ring-4 ring-line" />
@@ -537,7 +532,7 @@ export default function MethodologyPage() {
                       ))}
                     </div>
                   </div>
-                </FadeIn>
+                </div>
               ))}
             </div>
           </div>
@@ -549,7 +544,7 @@ export default function MethodologyPage() {
         <div className="absolute inset-0 opacity-10">
         </div>
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-3xl mx-auto text-center mb-14">
               <span className="block mb-4 text-eyebrow uppercase text-ondark-muted">
                 {tx("Garanties & SLA contractuels", "Guarantees & contractual SLAs")}
@@ -564,7 +559,7 @@ export default function MethodologyPage() {
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           {/* SLA table */}
           <div className="max-w-4xl mx-auto">
@@ -597,7 +592,7 @@ export default function MethodologyPage() {
         <div className="absolute inset-0 opacity-10">
         </div>
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-4xl mx-auto text-center">
               <Activity className="w-10 h-10 text-leaf-300 mx-auto mb-6" />
               <h2 className="text-display-md text-white mb-6">
@@ -626,7 +621,7 @@ export default function MethodologyPage() {
                 </Link>
               </div>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 

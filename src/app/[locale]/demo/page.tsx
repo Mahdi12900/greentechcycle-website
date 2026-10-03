@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+
 import { Button, ButtonLink } from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -44,19 +44,19 @@ export default function DemoPage() {
       {/* Hero court (paper) */}
       <section className="bg-paper py-16 lg:py-24" aria-labelledby="demo-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <h1 id="demo-title" className="max-w-[20ch] text-display-lg text-ink">{t("hero.title")}</h1>
             <p className="mt-6 max-w-[65ch] text-body-lg text-ink-700">{t("hero.subtitle")}</p>
             <div className="mt-8">
               <ButtonLink href="#demo-form" size="lg">{t("form.submit")}</ButtonLink>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* Aperçu vidéo */}
       <Section tone="cream" bordered>
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader title={t("video.title")} />
           <figure>
             <div className="relative aspect-video overflow-hidden rounded-2xl border border-line">
@@ -75,32 +75,32 @@ export default function DemoPage() {
             </div>
             <figcaption className="mt-3 text-caption text-muted">{t("video.placeholder")}</figcaption>
           </figure>
-        </FadeIn>
+        </div>
       </Section>
 
       {/* Écrans de la plateforme */}
       <Section tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader title={t("screenshots.title")} />
-        </FadeIn>
-        <StaggerContainer className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        </div>
+        <div className="reveal-stagger grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {screenshotItems.map((item, index) => (
-            <StaggerItem key={index} className="h-full">
+            <div key={index} className="reveal h-full">
               <div className="flex h-full flex-col items-center justify-center rounded-xl border border-line bg-cream p-8 text-center">
                 <Monitor className="h-8 w-8 text-forest" strokeWidth={1.75} aria-hidden="true" />
                 <p className="mt-3 text-body-sm font-medium text-ink">{item}</p>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </Section>
 
       {/* Formulaire §6.16 */}
       <section id="demo-form" className="border-t border-line bg-cream py-16 lg:py-24" aria-labelledby="demo-form-title">
         <div className="mx-auto max-w-[calc(720px+4rem)] px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader id="demo-form-title" title={t("form.title")} intro={t("form.subtitle")} />
-          </FadeIn>
+          </div>
           <div className="rounded-xl border border-line bg-paper p-6 lg:p-8">
             {submitted ? (
               <div className="flex items-start gap-3" role="status">

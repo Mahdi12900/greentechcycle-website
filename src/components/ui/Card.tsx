@@ -11,7 +11,7 @@ type Pad = "none" | "sm" | "md" | "lg";
 const PAD: Record<Pad, string> = { none: "", sm: "p-4", md: "p-6", lg: "p-8" };
 
 export function cardClasses({ tone = "light", pad = "md", className = "" }: { tone?: "light" | "dark"; pad?: Pad; className?: string } = {}) {
-  return `rounded-xl border ${tone === "dark" ? "border-ondark-line bg-forest-950 text-ondark" : "border-line bg-paper text-ink"} ${PAD[pad]} ${className}`;
+  return `rounded-xl border border-track bg-bg-card text-fg ${PAD[pad]} ${className}`;
 }
 
 export default function Card({
@@ -50,12 +50,12 @@ export function CardLink({
     <Link
       href={href}
       className={`group flex h-full flex-col transition-[border-color,box-shadow] duration-150 ${
-        tone === "dark" ? "hover:border-white/30" : "hover:border-ink/20 hover:shadow-card"
+        "hover:border-track-strong"
       } ${cardClasses({ tone, pad, className })}`}
     >
       {children}
       {cta && (
-        <span className={`mt-auto inline-flex items-center gap-1 pt-4 text-body-sm font-medium ${pad === "none" ? "px-6 pb-6" : ""} ${tone === "dark" ? "text-leaf-300" : "text-leaf"}`}>
+        <span className={`mt-auto inline-flex items-center gap-1 pt-4 text-body-sm font-medium ${pad === "none" ? "px-6 pb-6" : ""} text-emerald`}>
           {cta}
           <ArrowRight className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true" />
         </span>

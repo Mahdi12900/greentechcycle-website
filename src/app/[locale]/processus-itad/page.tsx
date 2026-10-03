@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+
 import { ArrowRight, ClipboardList, Truck, ScanLine, HardDrive, RefreshCcw, Recycle, FileBarChart, Sparkles } from "lucide-react";
 import RelatedArticles from "@/components/RelatedArticles";
 
@@ -18,7 +18,7 @@ export default function ProcessITADPage() {
       {/* Hero Section */}
       <section className="bg-forest py-16 text-ondark lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-3xl ">
               <h1 className="text-display-lg text-ondark mb-6">
                 {t("hero.title")}
@@ -27,7 +27,7 @@ export default function ProcessITADPage() {
                 {t("hero.subtitle")}
               </p>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -40,11 +40,11 @@ export default function ProcessITADPage() {
             {/* Mobile vertical line */}
             <div className="absolute left-6 top-0 bottom-0 w-0.5 md:hidden bg-leaf" />
 
-            <StaggerContainer className="space-y-12 md:space-y-16">
+            <div className="reveal-stagger space-y-12 md:space-y-16">
               {stepsData.map((step, i) => {
                 const Icon = stepIcons[i] || ClipboardList;
                 return (
-                  <StaggerItem key={i}>
+                  <div key={i} className="reveal">
                     <div className={`relative flex items-start gap-6 md:gap-0 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
                       {/* Mobile: Number circle on left */}
                       <div className="flex-shrink-0 md:hidden relative z-10">
@@ -107,10 +107,10 @@ export default function ProcessITADPage() {
                         </div>
                       </div>
                     </div>
-                  </StaggerItem>
+                  </div>
                 );
               })}
-            </StaggerContainer>
+            </div>
           </div>
         </div>
       </section>
@@ -126,7 +126,7 @@ export default function ProcessITADPage() {
       {/* CTA Section */}
       <section className="relative overflow-hidden bg-ink py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="text-center max-w-3xl mx-auto">
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-leaf text-white mb-6">
                 <Sparkles className="h-7 w-7" />
@@ -153,7 +153,7 @@ export default function ProcessITADPage() {
                 </Link>
               </div>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
     </div>

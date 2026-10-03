@@ -18,20 +18,22 @@ interface StyleProps {
   tone?: ButtonTone;
   size?: ButtonSize;
   fullWidth?: boolean;
+  /** Bouton « hero » arrondi (Apple/Resend) */
+  pill?: boolean;
   className?: string;
 }
 
+/* v2 « Dark Tech » (DESIGN.md v2 §6.2) : le site est entièrement sombre, `tone`
+   n'est conservé que pour compatibilité (light et dark donnent le même rendu).
+   Jamais de texte clair sur émeraude : texte `bg` (#08090B), 7.9:1. */
+const BASE_VARIANTS: Record<ButtonVariant, string> = {
+  primary: "bg-emerald text-bg hover:bg-emerald-hover hover:shadow-glow-emerald",
+  secondary: "border border-track bg-bg-card text-fg hover:border-track-strong hover:bg-white/[0.04]",
+  ghost: "bg-transparent text-emerald hover:underline underline-offset-4",
+};
 const VARIANTS: Record<ButtonTone, Record<ButtonVariant, string>> = {
-  light: {
-    primary: "bg-leaf text-white hover:bg-leaf-700",
-    secondary: "border border-line bg-paper text-ink hover:border-ink/30 hover:bg-cream",
-    ghost: "bg-transparent text-leaf hover:bg-leaf-50",
-  },
-  dark: {
-    primary: "bg-ondark text-forest hover:bg-white",
-    secondary: "border border-ondark-line bg-transparent text-ondark hover:border-white/30 hover:bg-white/10",
-    ghost: "bg-transparent text-leaf-300 hover:bg-white/10",
-  },
+  light: BASE_VARIANTS,
+  dark: BASE_VARIANTS,
 };
 
 const SIZES: Record<ButtonSize, string> = {
@@ -39,17 +41,20 @@ const SIZES: Record<ButtonSize, string> = {
   lg: "h-12 px-6 text-body",
 };
 
+/** Variante `hero` (§6.2) : primaire en pilule — passer `pill` à ButtonLink/Button. */
+
 export function buttonClasses({
   variant = "primary",
   tone = "light",
   size = "md",
   fullWidth = false,
+  pill = false,
   className = "",
 }: StyleProps = {}) {
   return [
-    "group inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg font-semibold transition-colors duration-150",
+    "group inline-flex min-h-[44px] items-center justify-center gap-2 font-semibold transition-[background-color,border-color,box-shadow,color] duration-150",
+    pill ? "rounded-full" : "rounded-lg",
     "disabled:cursor-not-allowed disabled:opacity-60",
-    tone === "dark" ? "focus-visible:outline-leaf-300" : "",
     VARIANTS[tone][variant],
     SIZES[size],
     fullWidth ? "w-full" : "",
@@ -96,13 +101,13 @@ export function ButtonLink({
 export const Button = forwardRef<
   HTMLButtonElement,
   StyleProps & ButtonHTMLAttributes<HTMLButtonElement> & { arrow?: boolean }
->(function Button({ variant, tone, size, fullWidth, className, arrow, children, type = "button", ...rest }, ref) {
+>(function Button({ variant, tone, size, fullWidth, pill, className, arrow, children, type = "button", ...rest }, ref) {
   const showArrow = arrow ?? false;
   return (
     <button
       ref={ref}
       type={type}
-      className={buttonClasses({ variant, tone, size, fullWidth, className })}
+      className={buttonClasses({ variant, tone, size, fullWidth, pill, className })}
       {...rest}
     >
       {children}
@@ -127,7 +132,7 @@ export function TextLink({
     <Link
       href={href}
       className={`group inline-flex items-center gap-1 text-body-sm font-medium transition-colors ${
-        tone === "dark" ? "text-leaf-300 hover:text-ondark" : "text-leaf hover:text-leaf-700"
+        tone === "dark" ? "text-emerald hover:text-emerald-hover" : "text-emerald hover:text-emerald-hover"
       } ${className}`}
     >
       {children}

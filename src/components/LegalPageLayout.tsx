@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import { FadeIn } from "@/components/motion";
+
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 interface LegalPageLayoutProps {
@@ -35,7 +35,7 @@ export default function LegalPageLayout({
               { label: breadcrumbLabel, href: `/${locale}` },
             ]}
           />
-          <FadeIn>
+          <div className="reveal">
             {icon && <span className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-leaf-100 text-forest">{icon}</span>}
             <h1 className="max-w-[18ch] text-display-lg text-ink">{title}</h1>
             {subtitle && <p className="mt-4 max-w-[65ch] text-body-lg text-ink-700">{subtitle}</p>}
@@ -45,7 +45,7 @@ export default function LegalPageLayout({
                 {updatedAt}
               </p>
             )}
-          </FadeIn>
+          </div>
         </div>
       </section>
 

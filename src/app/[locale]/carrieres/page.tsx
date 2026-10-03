@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/motion";
+
 import { Target, Eye, Award, Lightbulb, Mail, ArrowRight, Sparkles, Heart, Rocket } from "lucide-react";
 import RelatedArticles from "@/components/RelatedArticles";
 
@@ -21,7 +21,7 @@ export default function CareersPage() {
       {/* Hero */}
       <section className="bg-forest py-16 text-ondark lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-3xl ">
               <span className="block mb-6 text-eyebrow uppercase text-ondark-muted">
                 Nous recrutons
@@ -33,14 +33,14 @@ export default function CareersPage() {
                 {t("hero.subtitle")}
               </p>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* Mission */}
       <section className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-display-md text-ink mb-8">
                 {t("mission.title")}
@@ -49,25 +49,25 @@ export default function CareersPage() {
                 {t("mission.description")}
               </p>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* Values */}
       <section className="bg-cream py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <div className="text-center mb-14">
               <h2 className="text-display-md text-ink">{t("values.title")}</h2>
             </div>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer>
+          <div className="reveal-stagger">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {values.map((item, index) => {
                 const Icon = item.icon;
                 return (
-                  <StaggerItem key={index}>
+                  <div key={index} className="reveal">
                     <div className="bg-white rounded-2xl p-8 text-center hover:shadow-card transition-shadow h-full">
                       <div className={`w-16 h-16 ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-6`}>
                         <Icon className="w-8 h-8" />
@@ -79,24 +79,24 @@ export default function CareersPage() {
                         {t(`values.items.${index}.desc`)}
                       </p>
                     </div>
-                  </StaggerItem>
+                  </div>
                 );
               })}
             </div>
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
       {/* Spontaneous Application */}
       <section className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-3xl mx-auto text-center">
-              <ScaleIn>
+              <div className="reveal-scale">
                 <div className="w-20 h-20 bg-leaf-100 rounded-full flex items-center justify-center mx-auto mb-8">
                   <Mail className="w-10 h-10 text-leaf" />
                 </div>
-              </ScaleIn>
+              </div>
               <h2 className="text-display-md text-ink mb-6">
                 {t("spontaneous.title")}
               </h2>
@@ -112,7 +112,7 @@ export default function CareersPage() {
                 <ArrowRight className="w-5 h-5" />
               </a>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -126,7 +126,7 @@ export default function CareersPage() {
       {/* Final CTA */}
       <section className="relative overflow-hidden bg-forest py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 text-center relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-leaf text-white mb-6">
               <Heart className="h-7 w-7" />
             </div>
@@ -152,7 +152,7 @@ export default function CareersPage() {
                 Contacter les RH
               </Link>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
     </>

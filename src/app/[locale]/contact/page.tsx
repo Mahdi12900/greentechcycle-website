@@ -3,7 +3,7 @@
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { FadeIn } from "@/components/motion";
+
 import { Button, TextLink } from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -90,7 +90,7 @@ function ContactInner() {
       {/* ═══════════════ HERO court (paper) ═══════════════ */}
       <section className="bg-paper py-16 lg:py-24" aria-labelledby="contact-hero">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <Tag variant="brand" icon={<CalendarCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
               {t("urgency.text")}
             </Tag>
@@ -120,16 +120,16 @@ function ContactInner() {
               <ArrowDown className="h-4 w-4" aria-hidden="true" />
               {t("hero.scrollLabel")}
             </a>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* ═══════════════ FORMULAIRE #formulaire (cream) ═══════════════ */}
       <section className="border-t border-line bg-cream py-16 lg:py-24" id="formulaire" aria-labelledby="form-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader id="form-title" eyebrow={t("form.eyebrow")} title={t("form.title")} intro={t("form.subtitle")} />
-          </FadeIn>
+          </div>
 
           <div className="grid items-start gap-8 lg:grid-cols-[360px_1fr] lg:gap-12">
             {/* Panneau de l'offre — collant uniquement en lg+ (seule barre fixe : le header) */}
@@ -298,9 +298,9 @@ function ContactInner() {
           forest plutôt que night : la section précède le footer (night) et §4.3
           interdit deux sections night consécutives. */}
       <Section tone="forest">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader tone="dark" eyebrow={t("info.eyebrow")} title={t("info.title")} intro={t("info.body")} />
-        </FadeIn>
+        </div>
         <ul className="grid gap-px overflow-hidden rounded-xl border border-ondark-line bg-ondark-line md:grid-cols-3">
           <li className="bg-forest p-6">
             <MapPin className="h-5 w-5 text-leaf-300" strokeWidth={1.75} aria-hidden="true" />

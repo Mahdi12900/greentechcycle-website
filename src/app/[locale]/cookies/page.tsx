@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { FadeIn } from "@/components/motion";
+
 import { Cookie, ShieldCheck, BarChart3, Sparkles, Megaphone } from "lucide-react";
 import LegalPageLayout from "@/components/LegalPageLayout";
 import CtaSection from "@/components/CtaSection";
@@ -32,7 +32,7 @@ function CookiesContent({ locale }: { locale: string }) {
       >
         <div className="space-y-10">
           {/* Intro */}
-          <FadeIn delay={0.05}>
+          <div className="reveal">
             <div className="bg-white rounded-2xl p-6 md:p-8 border border-line">
               <h2 className="text-display-md text-ink mb-3">
                 {t("content.intro.title")}
@@ -41,10 +41,10 @@ function CookiesContent({ locale }: { locale: string }) {
                 {t("content.intro.text")}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           {/* Categories */}
-          <FadeIn delay={0.1}>
+          <div className="reveal">
             <div>
               <h2 className="text-display-md text-ink mb-6">
                 {t("content.categories.title")}
@@ -69,10 +69,10 @@ function CookiesContent({ locale }: { locale: string }) {
                 ))}
               </div>
             </div>
-          </FadeIn>
+          </div>
 
           {/* Management */}
-          <FadeIn delay={0.2}>
+          <div className="reveal">
             <div className="rounded-2xl p-6 md:p-8 border border-leaf/10 bg-leaf-50">
               <h2 className="text-display-md text-ink mb-3">
                 {t("content.management.title")}
@@ -81,10 +81,10 @@ function CookiesContent({ locale }: { locale: string }) {
                 {t("content.management.text")}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           {/* Duration */}
-          <FadeIn delay={0.3}>
+          <div className="reveal">
             <div className="bg-white rounded-2xl p-6 md:p-8 border border-line">
               <h2 className="text-display-md text-ink mb-3">
                 {t("content.duration.title")}
@@ -93,7 +93,7 @@ function CookiesContent({ locale }: { locale: string }) {
                 {t("content.duration.text")}
               </p>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </LegalPageLayout>
 

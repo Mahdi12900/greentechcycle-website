@@ -17,12 +17,7 @@ import {
   RefreshCw,
   Database,
 } from "lucide-react";
-import {
-  FadeIn,
-  StaggerContainer,
-  StaggerItem,
-  ScaleIn,
-} from "@/components/motion";
+
 import RelatedArticles from "@/components/RelatedArticles";
 
 
@@ -132,7 +127,7 @@ export default function EcosystemPage({
       {/* Hero Section */}
       <section className="bg-forest py-16 text-ondark lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-4xl ">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-ondark-line text-leaf-300 text-sm font-medium mb-6">
                 <Plug className="w-4 h-4" />
@@ -164,14 +159,14 @@ export default function EcosystemPage({
                 </a>
               </div>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* Native Integrations */}
       <section className="bg-cream py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <div className="text-center mb-16">
               <h2 className="text-display-md text-ink mb-4">
                 Intégrations natives
@@ -181,11 +176,11 @@ export default function EcosystemPage({
                 Configuration guidée, synchronisation temps réel.
               </p>
             </div>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="reveal-stagger grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {integrations.map((integration) => (
-              <StaggerItem key={integration.name}>
+              <div key={integration.name} className="reveal">
                 <div className="group bg-white rounded-2xl p-8 hover:shadow-card transition-colors duration-150 border border-line hover:border-leaf/30 h-full">
                   <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform duration-150 bg-leaf/10">
                     <integration.icon className="w-7 h-7 text-leaf" />
@@ -207,9 +202,9 @@ export default function EcosystemPage({
                     ))}
                   </div>
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
@@ -217,7 +212,7 @@ export default function EcosystemPage({
       <section id="api" className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-            <FadeIn>
+            <div className="reveal">
               <div>
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-leaf-100 text-leaf text-sm font-medium mb-4">
                   <Webhook className="w-4 h-4" />
@@ -231,22 +226,22 @@ export default function EcosystemPage({
                   Documentation interactive, SDKs multi-langages et
                   environnement de test dédié.
                 </p>
-                <StaggerContainer className="space-y-3">
+                <div className="reveal-stagger space-y-3">
                   {apiFeatures.map((feature) => (
-                    <StaggerItem key={feature}>
+                    <div key={feature} className="reveal">
                       <div className="flex items-start gap-3">
                         <div className="w-5 h-5 rounded-full bg-leaf-100 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <div className="w-2 h-2 rounded-full bg-leaf" />
                         </div>
                         <span className="text-ink-700">{feature}</span>
                       </div>
-                    </StaggerItem>
+                    </div>
                   ))}
-                </StaggerContainer>
+                </div>
               </div>
-            </FadeIn>
+            </div>
 
-            <ScaleIn>
+            <div className="reveal-scale">
               <div className="relative">
                 <div className="absolute -inset-4 rounded-2xl blur-xl bg-leaf/5" />
                 <div className="relative bg-forest-900 rounded-2xl p-6 overflow-hidden">
@@ -263,7 +258,7 @@ export default function EcosystemPage({
                   </pre>
                 </div>
               </div>
-            </ScaleIn>
+            </div>
           </div>
         </div>
       </section>
@@ -271,7 +266,7 @@ export default function EcosystemPage({
       {/* SSO / Auth Section */}
       <section className="bg-cream py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <div className="text-center mb-16">
               <h2 className="text-display-md text-ink mb-4">
                 Sécurité & Authentification
@@ -282,11 +277,11 @@ export default function EcosystemPage({
                 strictes.
               </p>
             </div>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="reveal-stagger grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {authFeatures.map((feature) => (
-              <StaggerItem key={feature.title}>
+              <div key={feature.title} className="reveal">
                 <div className="bg-white rounded-2xl p-8 border border-line hover:shadow-card transition-shadow duration-150">
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-forest/10">
                     <feature.icon className="w-6 h-6 text-forest" />
@@ -298,9 +293,9 @@ export default function EcosystemPage({
                     {feature.description}
                   </p>
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
@@ -309,7 +304,7 @@ export default function EcosystemPage({
         <div className="absolute inset-0 opacity-10">
         </div>
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-display-md text-white mb-6">
                 Prêt à connecter votre SI ?
@@ -334,7 +329,7 @@ export default function EcosystemPage({
                 </Link>
               </div>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 

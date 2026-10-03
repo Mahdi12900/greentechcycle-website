@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+
 import { ChevronDown, HelpCircle, Sparkles, Users, TrendingUp, Shield } from "lucide-react";
 import { useState } from "react";
 import RelatedArticles from "@/components/RelatedArticles";
@@ -47,7 +47,7 @@ export default function FAQPage() {
       <section className="relative bg-forest py-16 lg:py-24">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-3xl mx-auto text-center">
               <div className="w-16 h-16 bg-leaf/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <HelpCircle className="w-8 h-8 text-leaf-300" />
@@ -59,7 +59,7 @@ export default function FAQPage() {
                 {t("hero.subtitle")}
               </p>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -67,7 +67,7 @@ export default function FAQPage() {
       <section className="bg-cream py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 max-w-4xl">
           {/* Tab Navigation */}
-          <FadeIn>
+          <div className="reveal">
             <div className="flex flex-wrap justify-center gap-2 mb-12">
               {TABS.map((tab) => {
                 const TabIcon = tabIcons[tab];
@@ -83,13 +83,13 @@ export default function FAQPage() {
                 );
               })}
             </div>
-          </FadeIn>
+          </div>
 
           {/* Accordion */}
-          <StaggerContainer>
+          <div className="reveal-stagger">
             <div className="space-y-3">
               {questions.map((item, index) => (
-                <StaggerItem key={`${activeTab}-${index}`}>
+                <div key={`${activeTab}-${index}`} className="reveal">
                   <div className="bg-white rounded-xl border border-line overflow-hidden">
                     <button
                       onClick={() => toggleQuestion(index)}
@@ -110,10 +110,10 @@ export default function FAQPage() {
                       </div>
                     </div>
                   </div>
-                </StaggerItem>
+                </div>
               ))}
             </div>
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 

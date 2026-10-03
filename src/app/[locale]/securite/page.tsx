@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/motion";
+
 import {
   Shield,
   ShieldCheck,
@@ -53,31 +53,31 @@ export default function SecurityPage({
       {/* Hero */}
       <section className="bg-forest py-16 text-ondark lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <h1 className="text-display-lg text-ondark mb-6">
               {t("hero.title")}
             </h1>
             <p className="text-lg md:text-xl text-ondark-muted max-w-3xl">
               {t("hero.subtitle")}
             </p>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* Erasure Levels */}
       <section className="px-6 py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
-          <FadeIn>
+          <div className="reveal">
             <h2 className="text-display-md text-ink text-center mb-16">
               {t("levels.title")}
             </h2>
-          </FadeIn>
-          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          </div>
+          <div className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {levelItems.map((item, index) => {
               const style = levelStyles[index] || levelStyles[0];
               const Icon = style.icon;
               return (
-                <StaggerItem key={index}>
+                <div key={index} className="reveal">
                   <div className="flex h-full flex-col rounded-xl border border-line bg-paper p-6">
                     <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-leaf-100 text-forest">
                       <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />
@@ -87,25 +87,25 @@ export default function SecurityPage({
                     <p className="text-xs text-ink-700 mb-2">{item.desc}</p>
                     <span className="text-xs text-leaf font-medium">{item.norm}</span>
                   </div>
-                </StaggerItem>
+                </div>
               );
             })}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
       {/* Chain of Custody */}
       <section className="px-6 bg-white py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
+          <div className="reveal">
             <h2 className="text-display-md text-ink text-center mb-4">
               {t("chainOfCustody.title")}
             </h2>
             <p className="text-center text-ink-700 mb-16 max-w-2xl mx-auto">
               {t("chainOfCustody.subtitle")}
             </p>
-          </FadeIn>
-          <FadeIn>
+          </div>
+          <div className="reveal">
             <div className="flex flex-wrap justify-center items-center gap-4 md:gap-2">
               {custodySteps.map((step, index) => {
                 const Icon = custodyIcons[index] || ClipboardCheck;
@@ -126,51 +126,51 @@ export default function SecurityPage({
                 );
               })}
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* Certifications */}
       <section className="px-6 bg-cream py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
-          <FadeIn>
+          <div className="reveal">
             <h2 className="text-display-md text-ink text-center mb-16">
               {t("certifications.title")}
             </h2>
-          </FadeIn>
-          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          </div>
+          <div className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {certificationItems.map((cert, index) => (
-              <StaggerItem key={index}>
+              <div key={index} className="reveal">
                 <div className="bg-white rounded-2xl p-6 border border-line hover:shadow-card transition-colors h-full flex flex-col items-center text-center">
                   <div className="w-16 h-16 rounded-full bg-leaf-100 flex items-center justify-center mb-4">
                     <Award className="w-8 h-8 text-leaf" />
                   </div>
                   <p className="text-sm font-medium text-ink">{cert}</p>
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
       {/* Architecture */}
       <section className="px-6 bg-forest-900 py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
-          <FadeIn>
+          <div className="reveal">
             <h2 className="text-display-md text-white text-center mb-16">
               {t("architecture.title")}
             </h2>
-          </FadeIn>
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          </div>
+          <div className="reveal-stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {architectureItems.map((item, index) => (
-              <StaggerItem key={index}>
+              <div key={index} className="reveal">
                 <div className="bg-white/5 border border-ondark-line rounded-2xl p-6 hover:bg-white/10 transition-colors h-full">
                   <Server className="w-10 h-10 text-leaf-300 mb-4" />
                   <p className="text-sm text-ondark">{item}</p>
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 

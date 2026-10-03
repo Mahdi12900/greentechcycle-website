@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { FadeIn } from "@/components/motion";
+
 import ReservationForm from "@/components/reservation/ReservationForm";
 import { ChevronLeft, ShieldCheck, Clock, Mail } from "lucide-react";
 
@@ -248,7 +248,7 @@ function ReserverInner() {
       {/* Hero · sombre court */}
       <section className="relative bg-forest-900 overflow-hidden border-b border-ondark-line">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-24">
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-3xl">
               <Link
                 href="/"
@@ -312,7 +312,7 @@ function ReserverInner() {
                 </div>
               )}
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 

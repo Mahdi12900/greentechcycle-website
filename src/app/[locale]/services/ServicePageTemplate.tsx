@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import { FadeIn } from "@/components/motion";
+
 import { ArrowDown, Check, ShieldCheck } from "lucide-react";
 import type { ComponentType } from "react";
 import CtaSection from "@/components/CtaSection";
@@ -101,7 +101,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
       <section className="bg-paper py-16 lg:py-24" aria-labelledby="service-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-            <FadeIn className="min-w-0 lg:col-span-7">
+            <div className="reveal min-w-0 lg:col-span-7">
               <div className="flex flex-wrap items-center gap-2">
                 <Tag variant="brand" icon={<Icon className="h-3.5 w-3.5" aria-hidden="true" />}>{data.badge}</Tag>
               </div>
@@ -135,12 +135,12 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
                 {L.scrollCta}
               </a>
-            </FadeIn>
-            <FadeIn delay={0.1} className="lg:col-span-5">
+            </div>
+            <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
                 <Image src={data.image} alt={data.imageAlt} fill priority className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
               </div>
-            </FadeIn>
+            </div>
           </div>
         </div>
       </section>
@@ -148,7 +148,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
       {/* POURQUOI (cream) */}
       <Section tone="cream" bordered>
         <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
-          <FadeIn className="lg:col-span-7">
+          <div className="reveal lg:col-span-7">
             <SectionHeader eyebrow={L.pourquoi} title={data.title} intro={data.description} />
             <p className="text-eyebrow uppercase text-muted">{L.benefits}</p>
             <ul className="mt-4 grid gap-x-6 gap-y-3 sm:grid-cols-2">
@@ -159,20 +159,20 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
                 </li>
               ))}
             </ul>
-          </FadeIn>
-          <FadeIn className="lg:col-span-5">
+          </div>
+          <div className="reveal lg:col-span-5">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line">
               <Image src={data.imageSecondary} alt={data.imageSecondaryAlt} fill loading="lazy" className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
             </div>
-          </FadeIn>
+          </div>
         </div>
       </Section>
 
       {/* MÉTHODOLOGIE (night) */}
       <Section id="methodologie" tone="night">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader tone="dark" eyebrow={L.methodology} title={data.methodology.title} intro={data.narrative} />
-        </FadeIn>
+        </div>
         <ol className="grid gap-px overflow-hidden rounded-xl border border-ondark-line bg-ondark-line md:grid-cols-2">
           {data.methodology.steps.map((step, i) => (
             <li key={i} className="bg-forest-900 p-6 lg:p-8">
@@ -186,13 +186,13 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
 
       {/* LIVRABLES / SLA / CERTIFICATIONS (paper) */}
       <Section tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader
             eyebrow={L.deliverables}
             title={isEn ? "What lands in your hands." : "Ce qui arrive entre vos mains."}
             intro={data.deliveryNarrative}
           />
-        </FadeIn>
+        </div>
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="rounded-xl border border-line bg-paper p-6">
             <h3 className="text-eyebrow uppercase text-muted">{L.deliverables}</h3>
@@ -231,7 +231,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
 
       {/* CITATION (forest) */}
       <Section tone="forest">
-        <FadeIn>
+        <div className="reveal">
           <figure className="max-w-[65ch]">
             <p className="text-eyebrow uppercase text-ondark-muted">{L.quoteEyebrow}</p>
             <blockquote className="mt-4 font-display text-display-sm text-ondark">&laquo;&nbsp;{data.quote.text}&nbsp;&raquo;</blockquote>
@@ -239,16 +239,16 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
               <span className="font-semibold text-ondark">{data.quote.name}</span> · {data.quote.role}
             </figcaption>
           </figure>
-        </FadeIn>
+        </div>
       </Section>
 
       {/* FAQ (paper) */}
       {data.faq.length > 0 && (
         <Section tone="paper">
           <div className="mx-auto max-w-[720px]">
-            <FadeIn>
+            <div className="reveal">
               <SectionHeader eyebrow={L.faqTitle} title={isEn ? "Straight answers, no fine print." : "Des réponses directes, sans astérisque."} />
-            </FadeIn>
+            </div>
             <Accordion items={data.faq.map((f) => ({ question: f.q, answer: f.a }))} />
           </div>
         </Section>

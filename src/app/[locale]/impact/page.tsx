@@ -3,12 +3,7 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import {
-  FadeIn,
-  StaggerContainer,
-  StaggerItem,
-  ScaleIn,
-} from "@/components/motion";
+
 import {
   ArrowRight,
   ArrowDownRight,
@@ -192,7 +187,7 @@ export default function ImpactPage() {
             ]}
           />
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-            <FadeIn className="min-w-0 lg:col-span-7">
+            <div className="reveal min-w-0 lg:col-span-7">
               <p className="text-eyebrow uppercase text-muted">{t("hero.eyebrow")}</p>
               <h1 id="impact-hero" className="mt-3 max-w-[20ch] text-display-lg text-ink">{t("hero.title")}</h1>
               <p className="mt-6 max-w-[65ch] text-body-lg text-ink-700">{t("hero.subtitle")}</p>
@@ -208,8 +203,8 @@ export default function ImpactPage() {
                   {t("hero.ctaSecondary")}
                 </ButtonLink>
               </div>
-            </FadeIn>
-            <FadeIn delay={0.1} className="lg:col-span-5">
+            </div>
+            <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
                 <Image
                   src="/photos/impact-sustainability.jpg"
@@ -220,7 +215,7 @@ export default function ImpactPage() {
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               </div>
-            </FadeIn>
+            </div>
           </div>
           <div className="mt-12 border-t border-line pt-8">
             <StatRow>
@@ -237,7 +232,7 @@ export default function ImpactPage() {
           ===================================================================== */}
       <section className="px-6 bg-white py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
+          <div className="reveal">
             <span className="block text-eyebrow uppercase text-muted">
               {t("weight.eyebrow")}
             </span>
@@ -247,11 +242,11 @@ export default function ImpactPage() {
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
               {t("weight.lead")}
             </p>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="reveal-stagger mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             {weightStats.map((stat, i) => (
-              <StaggerItem key={i}>
+              <div key={i} className="reveal">
                 <div className="h-full rounded-2xl p-7 border border-line hover:shadow-card transition-shadow bg-cream">
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-4xl md:text-5xl font-semibold text-leaf leading-none">
@@ -273,11 +268,11 @@ export default function ImpactPage() {
                     Source : {stat.source}
                   </p>
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
 
-          <FadeIn>
+          <div className="reveal">
             <div className="mt-10 bg-forest/5 border-l-4 border-forest rounded-r-xl p-6 md:p-8">
               <h3 className="text-heading-md text-ink flex items-center gap-2 mb-2">
                 <Sparkles className="w-4 h-4 text-forest" />
@@ -287,7 +282,7 @@ export default function ImpactPage() {
                 {t("weight.analogy.desc")}
               </p>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -296,7 +291,7 @@ export default function ImpactPage() {
           ===================================================================== */}
       <section className="px-6 bg-cream py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
+          <div className="reveal">
             <span className="block text-eyebrow uppercase text-muted">
               {t("methodology.eyebrow")}
             </span>
@@ -306,11 +301,11 @@ export default function ImpactPage() {
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
               {t("methodology.lead")}
             </p>
-          </FadeIn>
+          </div>
 
           {/* Scopes */}
           <div className="mt-14">
-            <FadeIn>
+            <div className="reveal">
               <h3 className="text-heading-lg text-ink flex items-center gap-2 mb-3">
                 <Layers className="w-5 h-5 text-leaf" />
                 {t("methodology.scopeTitle")}
@@ -318,10 +313,10 @@ export default function ImpactPage() {
               <p className="text-ink-700 leading-relaxed max-w-3xl">
                 {t("methodology.scopeIntro")}
               </p>
-            </FadeIn>
-            <StaggerContainer className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            </div>
+            <div className="reveal-stagger mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
               {scopes.map((scope, i) => (
-                <StaggerItem key={i}>
+                <div key={i} className="reveal">
                   <div className="h-full bg-white rounded-2xl p-6 border border-line">
                     <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-leaf text-white text-xs font-semibold mb-4">
                       {scope.code}
@@ -333,22 +328,22 @@ export default function ImpactPage() {
                       {scope.desc}
                     </p>
                   </div>
-                </StaggerItem>
+                </div>
               ))}
-            </StaggerContainer>
+            </div>
           </div>
 
           {/* Frameworks */}
           <div className="mt-16">
-            <FadeIn>
+            <div className="reveal">
               <h3 className="text-heading-lg text-ink flex items-center gap-2 mb-6">
                 <BookOpen className="w-5 h-5 text-forest" />
                 {t("methodology.frameworksTitle")}
               </h3>
-            </FadeIn>
-            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            </div>
+            <div className="reveal-stagger grid grid-cols-1 md:grid-cols-2 gap-4">
               {frameworks.map((fw, i) => (
-                <StaggerItem key={i}>
+                <div key={i} className="reveal">
                   <div className="h-full bg-white rounded-xl p-5 border border-line hover:border-leaf/30 transition-colors flex gap-4">
                     <div className="shrink-0 w-9 h-9 rounded-lg bg-leaf-100 flex items-center justify-center text-leaf">
                       <ClipboardCheck className="w-4 h-4" />
@@ -362,13 +357,13 @@ export default function ImpactPage() {
                       </p>
                     </div>
                   </div>
-                </StaggerItem>
+                </div>
               ))}
-            </StaggerContainer>
+            </div>
           </div>
 
           {/* Boundary */}
-          <FadeIn>
+          <div className="reveal">
             <div className="mt-14 bg-forest-900 text-white rounded-2xl p-7 md:p-10 relative overflow-hidden">
               <div className="relative z-10">
                 <h3 className="text-heading-lg flex items-center gap-2 mb-3">
@@ -380,19 +375,19 @@ export default function ImpactPage() {
                 </p>
               </div>
             </div>
-          </FadeIn>
+          </div>
 
           {/* Indicators */}
           <div className="mt-16">
-            <FadeIn>
+            <div className="reveal">
               <h3 className="text-heading-lg text-ink flex items-center gap-2 mb-6">
                 <Gauge className="w-5 h-5 text-leaf" />
                 {t("methodology.indicatorsTitle")}
               </h3>
-            </FadeIn>
-            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            </div>
+            <div className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
               {indicators.map((ind, i) => (
-                <StaggerItem key={i}>
+                <div key={i} className="reveal">
                   <div className="h-full bg-white rounded-xl p-5 border border-line text-center">
                     <div className="text-muted uppercase mb-1 text-eyebrow">
                       {ind.unit}
@@ -404,9 +399,9 @@ export default function ImpactPage() {
                       {ind.desc}
                     </p>
                   </div>
-                </StaggerItem>
+                </div>
               ))}
-            </StaggerContainer>
+            </div>
           </div>
         </div>
       </section>
@@ -419,7 +414,7 @@ export default function ImpactPage() {
         className="px-6 bg-white scroll-mt-24 py-16 lg:py-24"
       >
         <div className="max-w-6xl mx-auto">
-          <FadeIn>
+          <div className="reveal">
             <span className="block text-eyebrow uppercase text-muted">
               {t("calculator.eyebrow")}
             </span>
@@ -429,13 +424,13 @@ export default function ImpactPage() {
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
               {t("calculator.subtitle")}
             </p>
-          </FadeIn>
+          </div>
 
-          <ScaleIn>
+          <div className="reveal-scale">
             <div className="mt-10">
               <CarbonCalculator />
             </div>
-          </ScaleIn>
+          </div>
         </div>
       </section>
 
@@ -465,7 +460,7 @@ export default function ImpactPage() {
           ===================================================================== */}
       <section className="px-6 bg-cream py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
+          <div className="reveal">
             <span className="block text-eyebrow uppercase text-ochre">
               {t("comparison.eyebrow")}
             </span>
@@ -475,9 +470,9 @@ export default function ImpactPage() {
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
               {t("comparison.lead")}
             </p>
-          </FadeIn>
+          </div>
 
-          <FadeIn>
+          <div className="reveal">
             <div className="mt-10 overflow-x-auto bg-white rounded-2xl border border-line" tabIndex={0} role="region" aria-label={`${t("comparison.title")} (tableau)`}>
               <table className="w-full text-sm">
                 <thead>
@@ -524,10 +519,10 @@ export default function ImpactPage() {
                 </tbody>
               </table>
             </div>
-          </FadeIn>
+          </div>
 
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <FadeIn>
+            <div className="reveal">
               <div className="h-full bg-white rounded-2xl p-6 border border-line">
                 <h3 className="text-heading-md text-ink flex items-center gap-2 mb-3">
                   <FileText className="w-4 h-4 text-forest" />
@@ -537,8 +532,8 @@ export default function ImpactPage() {
                   {t("comparison.footnoteBody")}
                 </p>
               </div>
-            </FadeIn>
-            <FadeIn>
+            </div>
+            <div className="reveal">
               <div className="h-full bg-white rounded-2xl p-6 border border-line">
                 <h3 className="text-heading-md text-ink flex items-center gap-2 mb-3">
                   <Database className="w-4 h-4 text-leaf" />
@@ -556,7 +551,7 @@ export default function ImpactPage() {
                   ))}
                 </ul>
               </div>
-            </FadeIn>
+            </div>
           </div>
         </div>
       </section>
@@ -566,7 +561,7 @@ export default function ImpactPage() {
           ===================================================================== */}
       <section className="px-6 bg-white py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
+          <div className="reveal">
             <span className="block text-eyebrow uppercase text-muted">
               {t("esrs.eyebrow")}
             </span>
@@ -576,9 +571,9 @@ export default function ImpactPage() {
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
               {t("esrs.lead")}
             </p>
-          </FadeIn>
+          </div>
 
-          <FadeIn>
+          <div className="reveal">
             <div className="mt-10 overflow-x-auto bg-cream rounded-2xl border border-line" tabIndex={0} role="region" aria-label={`${t("esrs.title")} (tableau)`}>
               <table className="w-full text-sm">
                 <thead>
@@ -625,9 +620,9 @@ export default function ImpactPage() {
                 </tbody>
               </table>
             </div>
-          </FadeIn>
+          </div>
 
-          <FadeIn>
+          <div className="reveal">
             <div className="mt-8 rounded-2xl p-6 md:p-8 border border-forest/20 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-6 items-center bg-forest/5">
               <div>
                 <h3 className="text-heading-md text-ink flex items-center gap-2 mb-2">
@@ -646,7 +641,7 @@ export default function ImpactPage() {
                 {t("esrs.exportLink")}
               </Link>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -655,7 +650,7 @@ export default function ImpactPage() {
           ===================================================================== */}
       <section className="px-6 bg-cream py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
+          <div className="reveal">
             <span className="block text-eyebrow uppercase text-muted">
               {t("proof.eyebrow")}
             </span>
@@ -665,19 +660,19 @@ export default function ImpactPage() {
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
               {t("proof.lead")}
             </p>
-          </FadeIn>
+          </div>
 
           <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div>
-              <FadeIn>
+              <div className="reveal">
                 <h3 className="text-heading-lg text-ink flex items-center gap-2 mb-6">
                   <Shield className="w-5 h-5 text-leaf" />
                   {t("proof.methodsTitle")}
                 </h3>
-              </FadeIn>
-              <StaggerContainer className="space-y-3">
+              </div>
+              <div className="reveal-stagger space-y-3">
                 {methods.map((m, i) => (
-                  <StaggerItem key={i}>
+                  <div key={i} className="reveal">
                     <div className="bg-white rounded-xl p-5 border border-line flex gap-4 hover:border-leaf/30 transition-colors">
                       <div className="shrink-0 w-10 h-10 rounded-lg bg-leaf-100 flex items-center justify-center text-leaf">
                         <Trophy className="w-5 h-5" />
@@ -691,21 +686,21 @@ export default function ImpactPage() {
                         </p>
                       </div>
                     </div>
-                  </StaggerItem>
+                  </div>
                 ))}
-              </StaggerContainer>
+              </div>
             </div>
 
             <div>
-              <FadeIn>
+              <div className="reveal">
                 <h3 className="text-heading-lg text-ink flex items-center gap-2 mb-6">
                   <Globe className="w-5 h-5 text-forest" />
                   {t("proof.ecosystemTitle")}
                 </h3>
-              </FadeIn>
-              <StaggerContainer className="space-y-3">
+              </div>
+              <div className="reveal-stagger space-y-3">
                 {ecosystem.map((e, i) => (
-                  <StaggerItem key={i}>
+                  <div key={i} className="reveal">
                     <div className="bg-white rounded-xl p-5 border border-line flex gap-4 hover:border-forest/30 transition-colors">
                       <div className="shrink-0 w-10 h-10 rounded-lg bg-forest/10 flex items-center justify-center text-forest">
                         <CheckCircle2 className="w-5 h-5" />
@@ -719,9 +714,9 @@ export default function ImpactPage() {
                         </p>
                       </div>
                     </div>
-                  </StaggerItem>
+                  </div>
                 ))}
-              </StaggerContainer>
+              </div>
             </div>
           </div>
         </div>
@@ -732,7 +727,7 @@ export default function ImpactPage() {
           ===================================================================== */}
       <section className="px-6 bg-white py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
+          <div className="reveal">
             <span className="block text-eyebrow uppercase text-ochre">
               {t("cases.eyebrow")}
             </span>
@@ -742,11 +737,11 @@ export default function ImpactPage() {
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
               {t("cases.lead")}
             </p>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="reveal-stagger mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
             {caseItems.map((c, i) => (
-              <StaggerItem key={i}>
+              <div key={i} className="reveal">
                 <div className="h-full rounded-2xl p-7 border border-line hover:shadow-card transition-colors flex flex-col bg-cream">
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-9 h-9 rounded-lg bg-leaf text-white flex items-center justify-center">
@@ -776,9 +771,9 @@ export default function ImpactPage() {
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
@@ -787,7 +782,7 @@ export default function ImpactPage() {
           ===================================================================== */}
       <section className="px-6 bg-cream py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
+          <div className="reveal">
             <span className="block text-eyebrow uppercase text-muted">
               {t("resources.eyebrow")}
             </span>
@@ -797,11 +792,11 @@ export default function ImpactPage() {
             <p className="mt-5 text-lg text-ink-700 max-w-3xl leading-relaxed">
               {t("resources.lead")}
             </p>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="reveal-stagger mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {resources.map((r, i) => (
-              <StaggerItem key={i}>
+              <div key={i} className="reveal">
                 <div className="h-full bg-white rounded-2xl p-6 border border-line hover:border-leaf/30 hover:shadow-card transition-colors flex flex-col">
                   <div className="w-10 h-10 rounded-lg bg-leaf-100 text-leaf flex items-center justify-center mb-4">
                     {i === 0 && <FileText className="w-5 h-5" />}
@@ -824,9 +819,9 @@ export default function ImpactPage() {
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 

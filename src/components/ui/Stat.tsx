@@ -19,13 +19,13 @@ export function Stat({
   accent?: boolean;
   className?: string;
 }) {
-  const dark = tone === "dark";
-  const valueColor = dark ? (accent ? "text-leaf-300" : "text-ondark") : accent ? "text-leaf" : "text-forest";
+  void tone;
+  const valueColor = accent ? "text-emerald" : "text-fg";
   return (
     <div className={className}>
       <p className={`text-stat ${valueColor}`}>{value}</p>
-      <p className={`mt-3 text-body-sm ${dark ? "text-ondark" : "text-ink-700"}`}>{label}</p>
-      {source && <p className={`mt-1 text-caption ${dark ? "text-ondark-muted" : "text-muted"}`}>{source}</p>}
+      <p className={`mt-3 text-body-sm text-fg-muted`}>{label}</p>
+      {source && <p className={`mt-1 text-caption text-fg-muted`}>{source}</p>}
     </div>
   );
 }
@@ -42,7 +42,8 @@ export function StatRow({
   className?: string;
 }) {
   const grid = { 2: "grid-cols-2", 3: "grid-cols-2 lg:grid-cols-3", 4: "grid-cols-2 lg:grid-cols-4" }[cols];
-  const line = tone === "dark" ? "border-ondark-line" : "border-line";
+  void tone;
+  const line = "border-track";
   return (
     <div className={`grid gap-y-8 ${grid} ${className}`}>
       {children.map((child, i) => (

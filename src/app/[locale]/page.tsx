@@ -24,7 +24,7 @@ import {
   Check,
   Minus,
 } from "lucide-react";
-import { FadeIn, StaggerContainer, StaggerItem, CountUp } from "@/components/motion";
+import { CountUp } from "@/components/motion";
 import TrustBand from "@/components/TrustBand";
 import CertificationStrip from "@/components/CertificationStrip";
 import CtaSection from "@/components/CtaSection";
@@ -148,7 +148,7 @@ export default function HomePage() {
       <section className="bg-paper py-16 lg:py-32" aria-labelledby="hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-            <FadeIn className="min-w-0 lg:col-span-7">
+            <div className="reveal min-w-0 lg:col-span-7">
               <Link
                 href="/reglementation"
                 className="inline-flex min-h-[28px] max-w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-lg bg-ochre-100 sm:rounded-full px-3 py-1 text-caption font-semibold text-ochre-800 transition-colors hover:text-ink"
@@ -186,9 +186,9 @@ export default function HomePage() {
               </div>
 
               <p className="mt-6 max-w-[65ch] text-caption italic text-muted">{t("hero.source")}</p>
-            </FadeIn>
+            </div>
 
-            <FadeIn delay={0.1} className="lg:col-span-5">
+            <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
                 <Image
                   src="/photos/hp-atelier-itad.jpg"
@@ -214,7 +214,7 @@ export default function HomePage() {
                   <p className="mt-1 text-caption text-muted">{tx("moyenne / mission grand compte", "average / key-account mission")}</p>
                 </div>
               </div>
-            </FadeIn>
+            </div>
           </div>
 
           <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-line pt-6 text-caption text-ink-700">
@@ -268,12 +268,12 @@ export default function HomePage() {
           6. PROBLÈME — le coût caché, 3 risques chiffrés
          ========================================================== */}
       <Section tone="cream">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader alert eyebrow={t("problem.eyebrow")} title={t("problem.title")} intro={t("problem.subtitle")} />
-        </FadeIn>
-        <StaggerContainer className="grid gap-6 md:grid-cols-3">
+        </div>
+        <div className="reveal-stagger grid gap-6 md:grid-cols-3">
           {problemItems.map((item, i) => (
-            <StaggerItem key={i} className="h-full">
+            <div key={i} className="reveal h-full">
               <Card className="flex h-full flex-col">
                 <div className="mb-6 flex items-center gap-3">
                   <Pictogram icon={problemIcons[i] || AlertTriangle} alert />
@@ -283,36 +283,36 @@ export default function HomePage() {
                 <p className="mb-4 flex-1 text-body-sm text-ink-700">{item.body}</p>
                 <p className="border-t border-line pt-3 text-caption italic text-muted">{item.source}</p>
               </Card>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </Section>
 
       {/* ==========================================================
           7. SOLUTION #solution — 4 piliers + avant/après condensé
          ========================================================== */}
       <Section id="solution" tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader eyebrow={t("solution.eyebrow")} title={t("solution.title")} intro={t("solution.body")} />
-        </FadeIn>
+        </div>
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="text-eyebrow uppercase text-muted">{t("solution.diagramCenter")}</p>
             <p className="mt-2 text-body-sm text-ink-700">{t("solution.diagramCenterSub")}</p>
-            <StaggerContainer className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="reveal-stagger mt-6 grid gap-4 sm:grid-cols-2">
               {solutionPillars.map((p, i) => (
-                <StaggerItem key={i} className="h-full">
+                <div key={i} className="reveal h-full">
                   <Card pad="sm" className="h-full">
                     <Pictogram icon={pillarIcons[i] || Server} />
                     <p className="mt-4 text-heading-md text-ink">{p.label}</p>
                     <p className="mt-1 text-body-sm text-ink-700">{p.desc}</p>
                   </Card>
-                </StaggerItem>
+                </div>
               ))}
-            </StaggerContainer>
+            </div>
           </div>
 
-          <FadeIn className="min-w-0 lg:col-span-7">
+          <div className="reveal min-w-0 lg:col-span-7">
             <p className="text-eyebrow uppercase text-muted">{t("comparison.eyebrow")}</p>
             <h3 className="mt-2 text-display-sm text-ink">{t("comparison.title")}</h3>
             <p className="mt-2 max-w-[65ch] text-body-sm text-ink-700">{t("comparison.subtitle")}</p>
@@ -352,7 +352,7 @@ export default function HomePage() {
             <div className="mt-6">
               <TextLink href="/plateforme">{tx("Voir la plateforme en détail", "See the platform in detail")}</TextLink>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </Section>
 
@@ -360,12 +360,12 @@ export default function HomePage() {
           8. CHAÎNE DE VALEUR — 5 étapes numérotées (night)
          ========================================================== */}
       <Section tone="night">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader tone="dark" eyebrow={t("valueChain.eyebrow")} title={t("valueChain.title")} intro={t("valueChain.subtitle")} />
-        </FadeIn>
-        <StaggerContainer className="grid gap-px overflow-hidden rounded-xl border border-ondark-line bg-ondark-line sm:grid-cols-2 lg:grid-cols-5">
+        </div>
+        <div className="reveal-stagger grid gap-px overflow-hidden rounded-xl border border-ondark-line bg-ondark-line sm:grid-cols-2 lg:grid-cols-5">
           {valueSteps.map((step, i) => (
-            <StaggerItem key={i} className="h-full">
+            <div key={i} className="reveal h-full">
               <div className="flex h-full flex-col bg-forest-900 p-6">
                 <p className="text-eyebrow uppercase text-ondark-muted">{step.n}</p>
                 <h3 className="mt-3 text-heading-md text-ondark">{step.title}</h3>
@@ -375,18 +375,18 @@ export default function HomePage() {
                   <p className="mt-1 text-body-sm font-semibold text-leaf-300">{step.kpi}</p>
                 </div>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </Section>
 
       {/* ==========================================================
           9. PREUVES #cases — KPI mesurés + 3 cas clients (fusion)
          ========================================================== */}
       <Section id="cases" tone="cream">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader eyebrow={t("proof.eyebrow")} title={t("proof.title")} />
-        </FadeIn>
+        </div>
         <StatRow>
           {(["clients", "assets", "value", "carbon"] as const).map((k) => (
             <Stat
@@ -409,9 +409,9 @@ export default function HomePage() {
             {t("cases.discoverAll")}
           </TextLink>
         </div>
-        <StaggerContainer className="mt-10 grid gap-6 md:grid-cols-3">
+        <div className="reveal-stagger mt-10 grid gap-6 md:grid-cols-3">
           {cases.map((c, i) => (
-            <StaggerItem key={c.slug} className="h-full">
+            <div key={c.slug} className="reveal h-full">
               <CardLink href={`/cas-usages#${c.slug}`} pad="none" cta={t("cases.cardCta")}>
                 <div className="relative aspect-[16/10] overflow-hidden rounded-t-xl border-b border-line">
                   <Image
@@ -439,9 +439,9 @@ export default function HomePage() {
                   </ul>
                 </div>
               </CardLink>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </Section>
 
       {/* ==========================================================
@@ -449,9 +449,9 @@ export default function HomePage() {
          ========================================================== */}
       <Section id="compliance" tone="paper">
         <div className="grid gap-12 lg:grid-cols-12">
-          <FadeIn className="lg:col-span-5">
+          <div className="reveal lg:col-span-5">
             <SectionHeader alert eyebrow={t("regTimeline.eyebrow")} title={t("regTimeline.title")} intro={t("regTimeline.subtitle")} />
-          </FadeIn>
+          </div>
           <ol className="relative border-l border-line lg:col-span-7">
             {regEvents.map((evt, i) => (
               <li key={i} className="relative pb-10 pl-8 last:pb-0">
@@ -475,12 +475,12 @@ export default function HomePage() {
           11. POURQUOI GREENTECHCYCLE #differentiators
          ========================================================== */}
       <Section id="differentiators" tone="cream">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader eyebrow={t("differentiators.eyebrow")} title={t("differentiators.title")} intro={t("differentiators.subtitle")} />
-        </FadeIn>
-        <StaggerContainer className="grid gap-x-12 gap-y-10 md:grid-cols-2">
+        </div>
+        <div className="reveal-stagger grid gap-x-12 gap-y-10 md:grid-cols-2">
           {differentiators.map((d, i) => (
-            <StaggerItem key={i}>
+            <div key={i} className="reveal">
               <div className="flex gap-4">
                 <Pictogram icon={diffIcons[i] || Award} />
                 <div>
@@ -489,9 +489,9 @@ export default function HomePage() {
                   <p className="mt-2 max-w-[65ch] text-body-sm text-ink-700">{d.body}</p>
                 </div>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
 
         <div className="mt-16 border-t border-line pt-10">
           <p className="text-eyebrow uppercase text-muted">{t("sectorTrust.label")}</p>
@@ -517,7 +517,7 @@ export default function HomePage() {
           12. TÉMOIGNAGE — citation principale + verbatims (forest)
          ========================================================== */}
       <Section tone="forest">
-        <FadeIn>
+        <div className="reveal">
           <figure className="grid gap-10 lg:grid-cols-[auto_1fr] lg:items-start">
             <div className="relative h-40 w-40 overflow-hidden rounded-2xl border border-ondark-line lg:h-48 lg:w-48">
               <Image
@@ -549,23 +549,23 @@ export default function HomePage() {
               <p className="mt-6 text-caption italic text-ondark-muted">{t("bigQuote.consentNote")}</p>
             </div>
           </figure>
-        </FadeIn>
+        </div>
 
         <div className="mt-16 border-t border-ondark-line pt-10">
           <p className="text-eyebrow uppercase text-ondark-muted">{t("testimonials.eyebrow")}</p>
           <h2 className="mt-2 max-w-[24ch] text-display-sm text-ondark">{t("testimonials.title")}</h2>
-          <StaggerContainer className="mt-8 grid gap-6 md:grid-cols-3">
+          <div className="reveal-stagger mt-8 grid gap-6 md:grid-cols-3">
             {testimonials.map((item, i) => (
-              <StaggerItem key={i} className="h-full">
+              <div key={i} className="reveal h-full">
                 <figure className="flex h-full flex-col rounded-xl border border-ondark-line bg-forest-700 p-6">
                   <blockquote className="flex-1 text-body-sm text-ondark">&laquo;&nbsp;{item.quote}&nbsp;&raquo;</blockquote>
                   <figcaption className="mt-6 border-t border-ondark-line pt-4 text-caption text-ondark-muted">
                     <span className="font-semibold text-ondark">{item.name}</span> · {item.role} · {item.company}
                   </figcaption>
                 </figure>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
           <p className="mt-6 max-w-[65ch] text-caption italic text-ondark-muted">{t("testimonials.disclaimer")}</p>
         </div>
       </Section>
@@ -574,12 +574,12 @@ export default function HomePage() {
           13. TARIFS #pricing — 3 plans Waki Box + pilotes + ancres
          ========================================================== */}
       <Section id="pricing" tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader eyebrow={t("pricingTeaser.eyebrow")} title={t("pricingTeaser.title")} intro={t("pricingTeaser.subtitle")} />
-        </FadeIn>
-        <StaggerContainer className="grid gap-6 md:grid-cols-3">
+        </div>
+        <div className="reveal-stagger grid gap-6 md:grid-cols-3">
           {plans.map((plan) => (
-            <StaggerItem key={plan.slug} className="h-full">
+            <div key={plan.slug} className="reveal h-full">
               <div className={`flex h-full flex-col rounded-xl border bg-paper p-6 ${plan.popular ? "border-leaf" : "border-line"}`}>
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="text-heading-lg text-ink">{plan.name}</h3>
@@ -599,9 +599,9 @@ export default function HomePage() {
                   </ButtonLink>
                 </div>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
 
         <ul className="mt-10 divide-y divide-line border-y border-line">
           <li className="grid gap-4 py-6 md:grid-cols-[1fr_auto] md:items-center">
@@ -647,7 +647,7 @@ export default function HomePage() {
          ========================================================== */}
       <Section tone="cream">
         <div className="mx-auto max-w-[720px]">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader eyebrow={t("roiCalculator.eyebrow")} title={t("roiCalculator.title")} />
             <Card pad="lg">
               <label htmlFor="fleet-size" className="block text-body-sm font-medium text-ink">
@@ -692,7 +692,7 @@ export default function HomePage() {
               )}
               <p className="mt-4 text-caption italic text-muted">{t("roiCalculator.disclaimer")}</p>
             </Card>
-          </FadeIn>
+          </div>
         </div>
       </Section>
 
@@ -701,9 +701,9 @@ export default function HomePage() {
          ========================================================== */}
       <Section tone="paper">
         <div className="mx-auto max-w-[720px]">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader eyebrow={t("faq.eyebrow")} title={t("faq.title")} />
-          </FadeIn>
+          </div>
           <Accordion items={faqItems.map((f) => ({ question: f.q, answer: f.a }))} />
           <div className="mt-8">
             <TextLink href="/faq">{tx("Voir les 24 questions de la FAQ technique", "See the 24 questions of the technical FAQ")}</TextLink>

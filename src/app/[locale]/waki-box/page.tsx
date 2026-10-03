@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import { FadeIn, StaggerContainer, StaggerItem, CountUp } from "@/components/motion";
+import { CountUp } from "@/components/motion";
 import {
   ArrowDown,
   ShieldCheck,
@@ -70,7 +70,7 @@ export default function WakiBoxPage() {
       <section className="bg-paper py-16 lg:py-24" aria-labelledby="waki-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-            <FadeIn className="min-w-0 lg:col-span-7">
+            <div className="reveal min-w-0 lg:col-span-7">
               <Link
                 href="/reserver?offre=waki-box-pilote"
                 className="inline-flex min-h-[28px] max-w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-lg bg-leaf-100 px-3 py-1 text-caption font-semibold text-forest hover:text-ink sm:rounded-full"
@@ -91,12 +91,12 @@ export default function WakiBoxPage() {
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
                 {t("hero.scrollCta")}
               </a>
-            </FadeIn>
-            <FadeIn delay={0.1} className="lg:col-span-5">
+            </div>
+            <div className="reveal lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line">
                 <Image src="/photos/ewaste-recycling.jpg" alt={t("hero.photoAlt")} fill priority className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
               </div>
-            </FadeIn>
+            </div>
           </div>
         </div>
       </section>
@@ -113,35 +113,35 @@ export default function WakiBoxPage() {
 
       {/* ═══ PROBLÈME (paper) ═══ */}
       <Section tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader alert eyebrow={t("problem.eyebrow")} title={t("problem.title")}>
             <div className="mt-4 max-w-[65ch] space-y-4 text-body-lg text-ink-700">
               <p>{t("problem.body")}</p>
               <p>{t("problem.bodySecond")}</p>
             </div>
           </SectionHeader>
-        </FadeIn>
+        </div>
       </Section>
 
       {/* ═══ PROMESSE (cream) ═══ */}
       <Section tone="cream" bordered>
         <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
-            <FadeIn>
+            <div className="reveal">
               <SectionHeader eyebrow={t("promise.eyebrow")} title={t("promise.title")} intro={t("promise.subtitle")} />
-            </FadeIn>
-            <StaggerContainer className="grid gap-4 sm:grid-cols-2">
+            </div>
+            <div className="reveal-stagger grid gap-4 sm:grid-cols-2">
               {promiseItems.map((p, i) => (
-                <StaggerItem key={i} className="h-full">
+                <div key={i} className="reveal h-full">
                   <div className="h-full rounded-xl border border-line bg-paper p-6">
                     <Pictogram icon={promiseIcons[i] ?? Leaf} />
                     <p className="mt-4 text-eyebrow uppercase text-muted">{p.label}</p>
                     <h3 className="mt-2 text-heading-md text-ink">{p.title}</h3>
                     <p className="mt-2 text-body-sm text-ink-700">{p.body}</p>
                   </div>
-                </StaggerItem>
+                </div>
               ))}
-            </StaggerContainer>
+            </div>
           </div>
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line lg:sticky lg:top-24">
@@ -154,14 +154,14 @@ export default function WakiBoxPage() {
       {/* ═══ 3 PLANS #waki-plans (paper) ═══ */}
       <section id="waki-plans" className="bg-paper py-16 lg:py-24" aria-labelledby="plans-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader id="plans-title" eyebrow={t("plans.eyebrow")} title={t("plans.title")} intro={t("plans.subtitle")} />
-          </FadeIn>
-          <StaggerContainer className="grid gap-6 lg:grid-cols-3">
+          </div>
+          <div className="reveal-stagger grid gap-6 lg:grid-cols-3">
             {planItems.map((plan, i) => {
               const isPopular = plan.slug === "waki-box-confort";
               return (
-                <StaggerItem key={plan.slug} className="h-full">
+                <div key={plan.slug} className="reveal h-full">
                   <article className={`flex h-full flex-col rounded-xl border bg-paper p-6 lg:p-8 ${isPopular ? "border-leaf" : "border-line"}`}>
                     <div className="flex items-center justify-between gap-3">
                       <p className="text-eyebrow uppercase text-muted">{String(i + 1).padStart(2, "0")}</p>
@@ -198,16 +198,16 @@ export default function WakiBoxPage() {
                       </ButtonLink>
                     </div>
                   </article>
-                </StaggerItem>
+                </div>
               );
             })}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
       {/* ═══ PILOTE (leaf-100) ═══ */}
       <Section tone="mint">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader eyebrow={t("pilot.eyebrow")} title={t("pilot.title")} intro={t("pilot.body")} />
           <ul className="max-w-[65ch] space-y-2">
             {pilotBullets.map((b, i) => (
@@ -221,14 +221,14 @@ export default function WakiBoxPage() {
             <ButtonLink href="/reserver?offre=waki-box-pilote" size="lg">{t("pilot.cta")}</ButtonLink>
           </div>
           <p className="mt-4 max-w-[65ch] text-caption text-ink-700">{t("pilot.footnote")}</p>
-        </FadeIn>
+        </div>
       </Section>
 
       {/* ═══ OPTIONS — tableau ═══ */}
       <Section tone="paper">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader eyebrow={t("addons.eyebrow")} title={t("addons.title")} intro={t("addons.subtitle")} />
-        </FadeIn>
+        </div>
         <Table
           caption={t("addons.title")}
           head={[t("addons.headerOption"), t("addons.headerWhy"), t("addons.headerPrice"), <span key="a" className="sr-only">Action</span>]}
@@ -248,9 +248,9 @@ export default function WakiBoxPage() {
 
       {/* ═══ FLUX ACCEPTÉS / EXCLUS (cream) ═══ */}
       <Section tone="cream">
-        <FadeIn>
+        <div className="reveal">
           <SectionHeader eyebrow={t("flows.eyebrow")} title={t("flows.title")} intro={t("flows.intro")} />
-        </FadeIn>
+        </div>
         <div className="grid gap-6 md:grid-cols-2">
           <div className="rounded-xl border border-line bg-paper p-6">
             <h3 className="flex items-center gap-2 text-heading-md text-ink">
@@ -289,16 +289,16 @@ export default function WakiBoxPage() {
       {/* ═══ FAQ (paper) ═══ */}
       <Section tone="paper">
         <div className="mx-auto max-w-[720px]">
-          <FadeIn>
+          <div className="reveal">
             <SectionHeader eyebrow={t("faq.eyebrow")} title={t("faq.title")} />
-          </FadeIn>
+          </div>
           <Accordion items={faqItems.map((f) => ({ question: f.q, answer: f.a }))} />
         </div>
       </Section>
 
       {/* ═══ CITATION (night) ═══ */}
       <Section tone="night">
-        <FadeIn>
+        <div className="reveal">
           <figure className="max-w-[65ch]">
             <p className="text-eyebrow uppercase text-ondark-muted">{t("finalQuote.eyebrow")}</p>
             <blockquote className="mt-4 font-display text-display-sm text-ondark">&laquo;&nbsp;{t("finalQuote.text")}&nbsp;&raquo;</blockquote>
@@ -306,7 +306,7 @@ export default function WakiBoxPage() {
               <span className="font-semibold text-ondark">{t("finalQuote.name")}</span> · {t("finalQuote.role")}
             </figcaption>
           </figure>
-        </FadeIn>
+        </div>
       </Section>
 
       {/* ═══ CTA UNIQUE ═══ */}

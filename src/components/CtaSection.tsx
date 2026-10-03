@@ -2,7 +2,7 @@
 
 import { useLocale } from "next-intl";
 import type { ReactNode } from "react";
-import { FadeIn } from "@/components/motion";
+
 import { ButtonLink } from "@/components/ui/Button";
 
 /**
@@ -61,7 +61,7 @@ export default function CtaSection({
   return (
     <section id={id} className={`bg-forest py-16 text-ondark lg:py-24 ${className}`}>
       <div className="mx-auto max-w-site px-5 text-center sm:px-6 lg:px-8">
-        <FadeIn>
+        <div className="reveal">
           {eyebrow && <p className="mb-3 text-eyebrow uppercase text-ondark-muted">{eyebrow}</p>}
           <h2 className="mx-auto max-w-[24ch] text-display-md text-ondark">{title}</h2>
           {subtitle && <p className="mx-auto mt-4 max-w-[65ch] text-body-lg text-ondark-muted">{subtitle}</p>}
@@ -77,7 +77,7 @@ export default function CtaSection({
           </div>
           {reassure && <p className="mt-6 text-caption text-ondark-muted">{reassure}</p>}
           {footnote && <div className="mt-3 text-caption text-ondark-muted">{footnote}</div>}
-        </FadeIn>
+        </div>
       </div>
     </section>
   );
