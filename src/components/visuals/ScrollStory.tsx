@@ -14,6 +14,8 @@ export interface StoryStep {
   id?: string;
   /** Ancres supplémentaires posées sur l'étape (ex. #governance) */
   extraIds?: string[];
+  /** id du titre (pour un aria-labelledby externe) */
+  titleId?: string;
   eyebrow?: ReactNode;
   title: ReactNode;
   body: ReactNode;
@@ -57,7 +59,7 @@ export default function ScrollStory({
                 aria-hidden="true"
               />
               {s.eyebrow && <p className="text-eyebrow uppercase text-fg-muted">{s.eyebrow}</p>}
-              <H className="mt-3 max-w-[24ch] text-display-md text-fg">{s.title}</H>
+              <H id={s.titleId} className="mt-3 max-w-[24ch] text-display-md text-fg">{s.title}</H>
               <div className="mt-4 max-w-[65ch] text-body text-fg-strong">{s.body}</div>
               <div className="mt-8 lg:hidden">{renderVisual(i)}</div>
             </div>

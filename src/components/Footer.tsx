@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
+import Logo from "@/components/Logo";
 import { Mail, Phone, MapPin, Linkedin, Twitter, ArrowUpRight, Send } from "lucide-react";
 import CertificationStrip from "@/components/CertificationStrip";
 
@@ -93,7 +93,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 border-b border-track pb-12 mb-12 lg:grid-cols-3">
           <div>
             <Link href="/" className="inline-flex items-center">
-              <Image src="/logo/logo-mono-white.svg" alt="GreenTechCycle" width={180} height={36} className="h-9 w-auto" />
+              <Logo size="lg" />
             </Link>
             <p className="mt-6 max-w-[65ch] text-body-sm text-fg-muted">{t("tagline")}</p>
           </div>

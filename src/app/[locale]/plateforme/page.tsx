@@ -1,6 +1,7 @@
 "use client";
 
 import DashboardMock, { type DashboardState } from "@/components/visuals/DashboardMock";
+import ScrollStory from "@/components/visuals/ScrollStory";
 import MediaSlot from "@/components/visuals/MediaSlot";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -170,45 +171,44 @@ export default function PlateformePage() {
             </SectionHeader>
           </div>
 
-          <ol className="mt-4 divide-y divide-track border-y border-track">
-            {chapters.map((chap, index) => {
-              const number = String(index + 1).padStart(2, "0");
-              const photoRight = index % 2 === 0;
-              const extra = EXTRA_ANCHORS[chap.slug];
-              return (
-                <li key={chap.slug} id={chap.slug} aria-labelledby={`chap-${chap.slug}`} className="py-12 lg:py-16">
-                  {extra && <span id={extra} className="block" aria-hidden="true" />}
-                  <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
-                    <div className={`lg:col-span-6 ${photoRight ? "" : "lg:order-2"}`}>
-                      <p className="text-eyebrow uppercase text-fg-muted">
-                        {number} · {chap.eyebrow}
-                      </p>
-                      <h2 id={`chap-${chap.slug}`} className="mt-3 max-w-[24ch] text-display-md text-fg">
-                        {chap.title}
-                      </h2>
-                      <p className="mt-4 max-w-[65ch] text-body text-fg-strong">{chap.body}</p>
-                      <div className="mt-6 border-t border-track pt-6">
-                        <Stat value={chap.proofValue} label={chap.proofLabel} source={chap.proofDetail} />
-                      </div>
-                      <ul className="mt-6 space-y-2">
-                        {chap.bullets.map((b, i) => (
-                          <li key={i} className="flex items-start gap-3 text-body-sm text-fg-strong">
-                            <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
-                            <span>{b}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className={`lg:col-span-6 ${photoRight ? "" : "lg:order-1"}`}>
-                      <div className="relative aspect-[3/2] overflow-hidden rounded-2xl border border-track">
-                        <MediaSlot fill id={`plateforme-${chap.slug}`} alt={chap.photoAlt} fallback={<DashboardMock state={CHAPTER_STATE[chap.slug] ?? "inventory"} />} />
-                      </div>
-                    </div>
+          {/* 5 chapitres scénarisés : visuel épinglé (lg+) qui change d'état */}
+          <ScrollStory
+            className="mt-4 border-t border-track"
+            headingLevel={2}
+            steps={chapters.map((chap, index) => ({
+              id: chap.slug,
+              extraIds: EXTRA_ANCHORS[chap.slug] ? [EXTRA_ANCHORS[chap.slug]] : undefined,
+              titleId: `chap-${chap.slug}`,
+              eyebrow: chap.eyebrow,
+              title: chap.title,
+              body: (
+                <>
+                  <p>{chap.body}</p>
+                  <div className="mt-6 border-t border-track pt-6">
+                    <Stat value={chap.proofValue} label={chap.proofLabel} source={chap.proofDetail} />
                   </div>
-                </li>
-              );
-            })}
-          </ol>
+                  <ul className="mt-6 space-y-2">
+                    {chap.bullets.map((b, i) => (
+                      <li key={i} className="flex items-start gap-3 text-body-sm text-fg-strong">
+                        <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ),
+            }))}
+            renderVisual={(i) => (
+              <div className="relative h-full min-h-[300px] overflow-hidden rounded-2xl border border-track shadow-float">
+                <MediaSlot
+                  fill
+                  id={`plateforme-${chapters[i].slug}`}
+                  alt={chapters[i].photoAlt}
+                  fallback={<DashboardMock state={CHAPTER_STATE[chapters[i].slug] ?? "inventory"} />}
+                />
+              </div>
+            )}
+          />
         </div>
       </section>
 

@@ -3,7 +3,7 @@ import { Tv, type LucideIcon } from "lucide-react";
 /**
  * Référence client (DESIGN.md §6.8) — remplace l'ancien bloc rose de la page
  * Médias & audiovisuel. Section `forest`, pastille pictogramme, citation
- * éditoriale en Fraunces, méta en légende. Ni étoile, ni Sparkles.
+ * éditoriale en Geist, méta en légende. Ni étoile, ni Sparkles.
  */
 export default function ClientReference({
   eyebrow,

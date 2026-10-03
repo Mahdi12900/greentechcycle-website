@@ -91,7 +91,6 @@ function SectorSection({
   sector: {
     id: string;
     icon: React.ElementType;
-    color: string;
     bgColor: string;
     borderColor: string;
     textColor: string;
@@ -213,7 +212,6 @@ export default function RegulationPage() {
     {
       id: "finance",
       icon: Landmark,
-      color: "from-forest to-forest",
       bgColor: "bg-white/[0.03]",
       borderColor: "border-track",
       textColor: "text-emerald",
@@ -312,7 +310,6 @@ export default function RegulationPage() {
     {
       id: "sante",
       icon: Heart,
-      color: "from-forest to-ochre",
       bgColor: "bg-white/[0.03]",
       borderColor: "border-track",
       textColor: "text-emerald",
@@ -411,7 +408,6 @@ export default function RegulationPage() {
     {
       id: "industrie",
       icon: Factory,
-      color: "from-ochre to-ochre",
       bgColor: "bg-amber-dim",
       borderColor: "border-amber/40",
       textColor: "text-amber",
@@ -489,7 +485,6 @@ export default function RegulationPage() {
     {
       id: "public",
       icon: Building2,
-      color: "from-forest to-forest",
       bgColor: "bg-white/[0.03]",
       borderColor: "border-track",
       textColor: "text-emerald",
@@ -567,7 +562,6 @@ export default function RegulationPage() {
     {
       id: "energie",
       icon: Zap,
-      color: "from-ochre to-ochre",
       bgColor: "bg-amber-dim",
       borderColor: "border-amber/40",
       textColor: "text-amber",
@@ -624,7 +618,6 @@ export default function RegulationPage() {
     {
       id: "retail",
       icon: ShoppingBag,
-      color: "from-forest to-forest",
       bgColor: "bg-white/[0.03]",
       borderColor: "border-track",
       textColor: "text-emerald",
@@ -867,7 +860,6 @@ export default function RegulationPage() {
     {
       id: "geopolitique",
       icon: Globe,
-      color: "from-ochre to-forest",
       title: tx("Instabilité géopolitique", "Geopolitical instability"),
       items: [
         {
@@ -896,7 +888,6 @@ export default function RegulationPage() {
     {
       id: "energie",
       icon: Zap,
-      color: "from-ochre to-ochre",
       title: tx("Défi énergétique", "Energy challenge"),
       items: [
         {
@@ -918,7 +909,6 @@ export default function RegulationPage() {
     {
       id: "ia-emergent",
       icon: Brain,
-      color: "from-forest to-forest",
       title: tx("IA & Technologies émergentes", "AI & Emerging technologies"),
       items: [
         {
@@ -947,7 +937,6 @@ export default function RegulationPage() {
     {
       id: "posture-it",
       icon: Cloud,
-      color: "from-forest to-leaf",
       title: tx("Nouvelle posture IT", "New IT posture"),
       items: [
         {
@@ -1426,7 +1415,6 @@ export default function RegulationPage() {
                 title: tx("NIS2 & conformité IT : obligations d'infrastructure", "NIS2 & IT compliance: infrastructure obligations"),
                 excerpt: tx("Décryptage des exigences NIS2 pour la gestion de votre parc IT : registre d'actifs, notification d'incidents, chain of custody.", "Breakdown of NIS2 requirements for IT fleet management: asset register, incident notification, chain of custody."),
                 icon: Lock,
-                color: "from-forest to-forest",
                 iconBg: "bg-white/[0.03]",
                 iconColor: "text-emerald",
                 tag: "NIS2 · Cybersécurité",
@@ -1436,7 +1424,6 @@ export default function RegulationPage() {
                 title: tx("CSRD & ITAD : intégrer l'IT aux comptes-rendus ESG", "CSRD & ITAD: embedding IT into ESG reporting"),
                 excerpt: tx("Comment contribuer aux indicateurs ESRS E1 et E5 avec votre programme ITAD : CO₂ évité, taux de réemploi, bilan matière.", "How to contribute to ESRS E1 and E5 indicators with your ITAD program: avoided CO₂, reuse rate, material balance."),
                 icon: Leaf,
-                color: "from-leaf to-leaf",
                 iconBg: "bg-white/[0.03]",
                 iconColor: "text-emerald",
                 tag: "CSRD · ESG",
@@ -1446,7 +1433,6 @@ export default function RegulationPage() {
                 title: tx("Sécurité des données en fin de vie IT", "End-of-life IT data security"),
                 excerpt: tx("Protéger vos données sensibles lors du décommissionnement : méthodes d'effacement NIST, DoD, IEEE, certificats et preuves.", "Protect sensitive data during decommissioning: NIST, DoD, IEEE erasure methods, certificates and evidence."),
                 icon: Shield,
-                color: "from-forest to-ochre",
                 iconBg: "bg-white/[0.03]",
                 iconColor: "text-emerald",
                 tag: "RGPD · Sécurité",
@@ -1456,7 +1442,6 @@ export default function RegulationPage() {
                 title: tx("Guide DEEE : obligations entreprises 2026", "WEEE guide: 2026 company obligations"),
                 excerpt: tx("Responsabilité Élargie du Producteur, éco-organismes, traçabilité des DEEE : ce que chaque entreprise doit mettre en place.", "Extended Producer Responsibility, eco-organisations, WEEE traceability: what every company must put in place."),
                 icon: Recycle,
-                color: "from-leaf to-leaf",
                 iconBg: "bg-white/[0.03]",
                 iconColor: "text-emerald",
                 tag: "DEEE · AGEC",
@@ -1466,7 +1451,6 @@ export default function RegulationPage() {
                 title: tx("Économie circulaire IT en entreprise", "Circular IT economy in enterprise"),
                 excerpt: tx("Du reconditionnement à la valorisation des actifs : construire une stratégie circulaire rentable et conforme loi AGEC.", "From refurbishment to asset recovery: building a profitable circular strategy compliant with AGEC law."),
                 icon: Zap,
-                color: "from-ochre to-ochre",
                 iconBg: "bg-amber-dim",
                 iconColor: "text-amber",
                 tag: "AGEC · Circularité",

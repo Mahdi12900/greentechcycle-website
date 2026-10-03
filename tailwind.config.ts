@@ -2,38 +2,9 @@ import type { Config } from "tailwindcss";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Tokens — source de vérité : DESIGN.md v2 « Dark Tech » (§2–5).
-   v2 : bg / bg-card / track / bar / fg / emerald / amber (palette imposée).
-   v1 (forest, leaf, ochre, ink, cream…) : conservés TEMPORAIREMENT pour les
-   pages non migrées — à supprimer à l'étape 3 du plan v2.
+   bg / bg-card / track / bar / fg / emerald / amber (palette imposée) — les
+   tokens v1 « Épuré » (forest, leaf, ochre, ink, cream…) ont été supprimés.
 ───────────────────────────────────────────────────────────────────────────── */
-const forest = {
-  DEFAULT: "#0B3B2E", // vert profond : surfaces marque, titres alternatifs
-  700: "#0E4A3A",     // hover / bordure sur forest
-  900: "#0F1F1A",     // "night" : surface sombre principale
-  950: "#122621",     // cartes sur night
-};
-
-const leaf = {
-  DEFAULT: "#047857", // vert d'action (= vert du logo) : boutons, liens, focus
-  50: "#F1F8F4",      // survol léger, zebra
-  100: "#E3F3EB",     // "mint" : fond de tag, pastille icône, encart léger
-  200: "#C7E6D6",     // sélection, bordure d'encart
-  300: "#7BE0B3",     // accent SUR fond sombre uniquement
-  400: "#2FA77A",     // réservé (graphiques)
-  500: "#047857",
-  600: "#06694D",
-  700: "#065F46",     // hover du bouton primaire
-  800: "#0B3B2E",
-  900: "#0F1F1A",
-};
-
-const ochre = {
-  DEFAULT: "#B45309", // texte d'alerte / eyebrow « risque » sur clair
-  100: "#FBEFD9",     // fond d'alerte
-  300: "#F2B35B",     // alerte sur sombre
-  800: "#9A4A0B",     // texte sur fond ochre-100
-};
-
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -56,23 +27,7 @@ const config: Config = {
         },
         amber: { DEFAULT: "#F59E0B", dim: "rgba(245,158,11,0.12)" },
 
-        /* ── Tokens v1 « Épuré » (legacy, migration en cours) ──────────── */
-        forest,
-        leaf,
-        ochre,
-        ink: { DEFAULT: "#1C1917", 700: "#44403C" },
-        muted: "#6B6560",
-        line: "#E7E2DA",
-        sand: "#EFEBE3",
-        cream: "#F7F5F0",
-        paper: "#FFFFFF",
-        ondark: {
-          DEFAULT: "#F5F2EC",
-          muted: "#A3B3AA",
-          line: "rgba(255,255,255,0.10)",
-        },
-        danger: "#F87171", // erreurs de formulaire (7.2:1 sur bg) — v1 utilisait #B42318
-
+        danger: "#F87171", // erreurs de formulaire (7.2:1 sur bg)
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
@@ -97,13 +52,9 @@ const config: Config = {
       },
       /* Ombres — DESIGN.md §5 : uniquement cartes cliquables (hover) et flottants */
       boxShadow: {
-        /* v2 */
         float: "0 16px 48px -16px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4)",
         "glow-emerald": "0 0 0 1px rgba(16,185,129,0.4), 0 0 24px rgba(16,185,129,0.35)",
         "glow-dot": "0 0 12px rgba(16,185,129,0.6)",
-        /* v1 legacy */
-        card: "0 1px 2px rgba(28,25,23,0.06), 0 1px 3px rgba(28,25,23,0.04)",
-        pop: "0 8px 24px -8px rgba(28,25,23,0.18), 0 2px 6px rgba(28,25,23,0.06)",
       },
       transitionTimingFunction: {
         out: "cubic-bezier(0.22, 1, 0.36, 1)",

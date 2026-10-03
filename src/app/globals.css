@@ -27,29 +27,6 @@
     --color-amber-dim: rgba(245, 158, 11, 0.12);
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
-    /* ── v1 (legacy, migration en cours) ───────────────────────────────── */
-    --color-forest: #0b3b2e;
-    --color-forest-700: #0e4a3a;
-    --color-night: #0f1f1a;
-    --color-night-card: #122621;
-    --color-leaf: #047857;
-    --color-leaf-700: #065f46;
-    --color-leaf-300: #7be0b3;
-    --color-mint: #e3f3eb;
-    --color-ink: #1c1917;
-    --color-ink-700: #44403c;
-    --color-muted: #6b6560;
-    --color-line: #e7e2da;
-    --color-sand: #efebe3;
-    --color-cream: #f7f5f0;
-    --color-paper: #ffffff;
-    --color-ondark: #f5f2ec;
-    --color-ondark-muted: #a3b3aa;
-    --color-ochre: #b45309;
-    --color-ochre-100: #fbefd9;
-    --color-ochre-300: #f2b35b;
-    --color-ochre-800: #9a4a0b;
-
     --header-h: 4rem;
     --radius-sm: 0.5rem;   /* boutons, inputs, tags */
     --radius-md: 0.75rem;  /* cartes, panneaux */
@@ -79,9 +56,7 @@
     font-feature-settings: "ss01", "cv11", "tnum";
   }
 
-  /* v2 : le thème sombre est activé par `class="dark"` sur <html> (plan v2,
-     étape 2) une fois le chrome du site migré ; d'ici là les pages v1 restent
-     lisibles. */
+  /* Thème sombre unique (DESIGN.md v2) : `class="dark"` posé sur <html>. */
   html.dark {
     color-scheme: dark;
   }

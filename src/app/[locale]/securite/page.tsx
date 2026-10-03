@@ -39,11 +39,11 @@ export default function SecurityPage({
   const architectureItems = t.raw("architecture.items") as string[];
 
   const levelStyles = [
-    { color: "from-ochre to-ochre", bg: "bg-amber-dim", border: "border-amber/40", icon: Shield },
-    { color: "from-ochre to-ochre", bg: "bg-amber-dim", border: "border-amber/40", icon: Shield },
-    { color: "from-ochre to-ochre", bg: "bg-amber-dim", border: "border-amber/40", icon: ShieldCheck },
-    { color: "from-forest to-forest", bg: "bg-white/[0.03]", border: "border-track", icon: ShieldAlert },
-    { color: "from-forest to-ochre", bg: "bg-emerald-dim", border: "border-track", icon: Lock },
+    { bg: "bg-amber-dim", border: "border-amber/40", icon: Shield },
+    { bg: "bg-amber-dim", border: "border-amber/40", icon: Shield },
+    { bg: "bg-amber-dim", border: "border-amber/40", icon: ShieldCheck },
+    { bg: "bg-white/[0.03]", border: "border-track", icon: ShieldAlert },
+    { bg: "bg-emerald-dim", border: "border-track", icon: Lock },
   ];
 
   const custodyIcons = [ClipboardCheck, Truck, Warehouse, HardDrive, FileCheck, PackageCheck, Award];

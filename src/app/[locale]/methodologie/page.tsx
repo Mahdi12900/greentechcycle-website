@@ -85,7 +85,7 @@ export default function MethodologyPage() {
       num: "01",
       duration: tx("J+0 → J+2", "D+0 → D+2"),
       icon: Search,
-      color: "from-forest to-forest",
+      color: "bg-emerald-dim",
       accent: "text-emerald",
       bg: "bg-white/[0.03]",
       border: "border-track",
@@ -110,7 +110,7 @@ export default function MethodologyPage() {
       num: "02",
       duration: tx("J+2 → J+4", "D+2 → D+4"),
       icon: Gauge,
-      color: "from-forest to-forest",
+      color: "bg-emerald-dim",
       accent: "text-emerald",
       bg: "bg-white/[0.03]",
       border: "border-track",
@@ -135,7 +135,7 @@ export default function MethodologyPage() {
       num: "03",
       duration: tx("J+4 → J+5", "D+4 → D+5"),
       icon: CheckSquare,
-      color: "from-leaf to-leaf",
+      color: "bg-emerald-dim",
       accent: "text-emerald",
       bg: "bg-white/[0.03]",
       border: "border-emerald-line",
@@ -160,7 +160,7 @@ export default function MethodologyPage() {
       num: "04",
       duration: tx("J+5 → J+7", "D+5 → D+7"),
       icon: Truck,
-      color: "from-ochre to-ochre",
+      color: "bg-emerald-dim",
       accent: "text-amber",
       bg: "bg-amber-dim",
       border: "border-amber/40",
@@ -185,7 +185,7 @@ export default function MethodologyPage() {
       num: "05",
       duration: tx("J+7 → J+14", "D+7 → D+14"),
       icon: Settings,
-      color: "from-forest to-ochre",
+      color: "bg-emerald-dim",
       accent: "text-emerald",
       bg: "bg-white/[0.03]",
       border: "border-track",
@@ -210,7 +210,7 @@ export default function MethodologyPage() {
       num: "06",
       duration: tx("J+14 → J+15", "D+14 → D+15"),
       icon: Eye,
-      color: "from-leaf to-leaf-700",
+      color: "bg-emerald-dim",
       accent: "text-emerald",
       bg: "bg-white/[0.03]",
       border: "border-emerald/20",
@@ -235,7 +235,7 @@ export default function MethodologyPage() {
       num: "07",
       duration: tx("J+15 → J+16", "D+15 → D+16"),
       icon: Award,
-      color: "from-forest to-forest",
+      color: "bg-emerald-dim",
       accent: "text-emerald",
       bg: "bg-white/[0.03]",
       border: "border-track",
@@ -260,7 +260,7 @@ export default function MethodologyPage() {
       num: "08",
       duration: tx("Permanent", "Permanent"),
       icon: Radar,
-      color: "from-forest to-leaf",
+      color: "bg-emerald-dim",
       accent: "text-emerald",
       bg: "bg-white/[0.03]",
       border: "border-track",
@@ -424,7 +424,7 @@ export default function MethodologyPage() {
                       {/* Header */}
                       <div className="flex items-start gap-4 md:gap-6 mb-6">
                         <div className={`w-16 h-16 rounded-2xl ${m.color} flex items-center justify-center flex-shrink-0`}>
-                          <Icon className="w-8 h-8 text-fg" />
+                          <Icon className="w-8 h-8 text-emerald" strokeWidth={1.75} />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-3 flex-wrap">

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 /**
- * En-tête de section (DESIGN.md §6.4) : eyebrow → H2 Fraunces → chapô.
+ * En-tête de section (DESIGN.md §6.4) : eyebrow → H2 Geist → chapô.
  * Aligné à gauche par défaut ; centré seulement pour les CTA.
  * `alert` passe l'eyebrow en ochre (sections « risque »).
  */

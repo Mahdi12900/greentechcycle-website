@@ -1,6 +1,7 @@
 "use client";
 
-import DashboardMock from "@/components/visuals/DashboardMock";
+import DashboardMock, { type DashboardState } from "@/components/visuals/DashboardMock";
+import ScrollStory from "@/components/visuals/ScrollStory";
 import GeometryField from "@/components/visuals/GeometryField";
 import MediaSlot from "@/components/visuals/MediaSlot";
 import { useLocale, useTranslations } from "next-intl";
@@ -48,6 +49,8 @@ import Accordion from "@/components/ui/Accordion";
  * → cream (ROI) → paper (FAQ) → forest (CTA) → night (footer).
  * Tous les ids d'ancre historiques sont conservés.
  */
+const SOLUTION_STATES: DashboardState[] = ["inventory", "erasure", "reporting"];
+
 export default function HomePage() {
   const t = useTranslations("Home");
 
@@ -193,7 +196,7 @@ export default function HomePage() {
             </div>
 
             <div className="reveal lg:col-span-5">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
+              <div className="parallax-slow relative aspect-[4/5] overflow-hidden rounded-2xl border border-track shadow-float">
                 <MediaSlot fill id="home-hero" alt={tx(
                     "Atelier de reconditionnement GreenTechCycle, chaîne d'effacement et de tri certifiée",
                     "GreenTechCycle refurbishment workshop, certified erasure and sorting line"
@@ -292,24 +295,42 @@ export default function HomePage() {
         <div className="reveal">
           <SectionHeader eyebrow={t("solution.eyebrow")} title={t("solution.title")} intro={t("solution.body")} />
         </div>
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <p className="text-eyebrow uppercase text-fg-muted">{t("solution.diagramCenter")}</p>
-            <p className="mt-2 text-body-sm text-fg-strong">{t("solution.diagramCenterSub")}</p>
-            <div className="reveal-stagger mt-6 grid gap-4 sm:grid-cols-2">
-              {solutionPillars.map((p, i) => (
-                <div key={i} className="reveal h-full">
-                  <Card pad="sm" className="h-full">
+        <p className="text-eyebrow uppercase text-fg-muted">
+          {t("solution.diagramCenter")} · <span className="text-fg-strong">{t("solution.diagramCenterSub")}</span>
+        </p>
+        {/* 3 étapes scénarisées — le tableau de bord change d'état au défilement (DESIGN.md v2 §8.5) */}
+        <ScrollStory
+          className="mt-2"
+          steps={[
+            { title: tx("Inventorier", "Inventory"), pillars: [0] },
+            { title: tx("Effacer & certifier", "Erase & certify"), pillars: [1] },
+            { title: tx("Valoriser & reporter", "Recover value & report"), pillars: [2, 3] },
+          ].map((step, n) => ({
+            eyebrow: `0${n + 1}`,
+            title: step.title,
+            body: (
+              <ul className="space-y-4">
+                {step.pillars.map((i) => (
+                  <li key={i} className="flex gap-4">
                     <Pictogram icon={pillarIcons[i] || Server} />
-                    <p className="mt-4 text-heading-md text-fg">{p.label}</p>
-                    <p className="mt-1 text-body-sm text-fg-strong">{p.desc}</p>
-                  </Card>
-                </div>
-              ))}
+                    <div>
+                      <p className="text-heading-md text-fg">{solutionPillars[i]?.label}</p>
+                      <p className="mt-1 text-body-sm text-fg-strong">{solutionPillars[i]?.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ),
+          }))}
+          renderVisual={(i) => (
+            <div className="h-full min-h-[300px] overflow-hidden rounded-2xl border border-track shadow-float">
+              <DashboardMock state={SOLUTION_STATES[i]} />
             </div>
-          </div>
+          )}
+        />
 
-          <div className="reveal min-w-0 lg:col-span-7">
+        <div className="mt-16 grid gap-12 lg:grid-cols-12">
+          <div className="reveal min-w-0 lg:col-span-10 lg:col-start-2">
             <p className="text-eyebrow uppercase text-fg-muted">{t("comparison.eyebrow")}</p>
             <h3 className="mt-2 text-display-sm text-fg">{t("comparison.title")}</h3>
             <p className="mt-2 max-w-[65ch] text-body-sm text-fg-strong">{t("comparison.subtitle")}</p>

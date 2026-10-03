@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 /**
- * Stat / KPI (DESIGN.md §6.17) : valeur en Fraunces `stat` (tabulaire),
+ * Stat / KPI (DESIGN.md §6.17) : valeur en Geist `stat` (tabulaire),
  * libellé body-sm, source en légende. Rangée 2 → 4 colonnes à filets.
  */
 export function Stat({

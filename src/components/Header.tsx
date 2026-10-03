@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
-import Image from "next/image";
+import Logo from "@/components/Logo";
 import { useSiteUi } from "@/components/SiteUiContext";
 
 /**
@@ -170,14 +170,7 @@ export default function Header() {
       <div className="container-max px-5 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-6 lg:h-[72px]">
           <Link href="/" className="flex flex-shrink-0 items-center" aria-label="GreenTechCycle — accueil">
-            <Image
-              src="/logo/logo-mono-white.svg"
-              alt="GreenTechCycle"
-              width={180}
-              height={36}
-              className="h-7 w-auto"
-              priority
-            />
+            <Logo />
           </Link>
 
           {/* Navigation desktop */}
