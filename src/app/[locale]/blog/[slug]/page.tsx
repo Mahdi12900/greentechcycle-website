@@ -164,7 +164,7 @@ export default async function BlogArticlePage({
 
               {/* Content */}
               <div
-                className="prose prose-lg prose-slate max-w-none prose-headings:text-ink prose-headings:font-semibold prose-a:text-leaf prose-a:no-underline hover:prose-a:underline prose-strong:text-ink prose-li:text-ink-700"
+                className="prose"
                 dangerouslySetInnerHTML={{ __html: content }}
               />
 

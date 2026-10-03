@@ -113,6 +113,61 @@
     text-transform: uppercase;
   }
 
+  /* Contenu éditorial (articles de blog) — DESIGN.md §10.7 :
+     titres display-sm Fraunces, liens leaf, rythme 8 px. Pas de plugin
+     @tailwindcss/typography : styles locaux, limités aux balises produites. */
+  .prose {
+    @apply text-body-lg text-ink-700;
+    max-width: 65ch;
+  }
+  .prose > * + * {
+    margin-top: 1rem;
+  }
+  .prose h2 {
+    @apply mt-12 text-display-sm text-ink;
+  }
+  .prose h3 {
+    @apply mt-8 font-sans text-heading-lg text-ink;
+  }
+  .prose h4 {
+    @apply mt-6 font-sans text-heading-md text-ink;
+  }
+  .prose p {
+    @apply text-body-lg text-ink-700;
+  }
+  .prose strong {
+    @apply font-semibold text-ink;
+  }
+  .prose a {
+    @apply font-medium text-leaf underline underline-offset-4 hover:text-leaf-700;
+  }
+  .prose ul,
+  .prose ol {
+    @apply space-y-2 pl-6;
+  }
+  .prose ul {
+    list-style: disc;
+  }
+  .prose ol {
+    list-style: decimal;
+  }
+  .prose li::marker {
+    @apply text-leaf;
+  }
+  .prose blockquote {
+    @apply border-l-2 border-leaf pl-4 font-display text-display-sm text-ink;
+  }
+  .prose table {
+    @apply w-full border-collapse text-body-sm;
+  }
+  .prose th,
+  .prose td {
+    @apply border-t border-line px-3 py-2 text-left;
+  }
+  .prose th {
+    @apply bg-cream text-eyebrow uppercase text-muted;
+  }
+
   /* Indice de défilement horizontal (onglets, tableaux) — DESIGN.md §6.9 */
   .scroll-hint {
     -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent);

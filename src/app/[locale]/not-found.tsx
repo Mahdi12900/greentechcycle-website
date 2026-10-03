@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Home, Briefcase, Mail, Monitor } from "lucide-react";
 import Image from "next/image";
+import { ButtonLink } from "@/components/ui/Button";
 
 export default function NotFound() {
   const t = useTranslations("NotFound");
@@ -13,48 +14,28 @@ export default function NotFound() {
   ];
 
   return (
-    <section className="section-padding min-h-[70vh] flex items-center justify-center">
-      <div className="container-max max-w-2xl text-center">
-        {/* Logo */}
-        <div className="mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-leaf-100 p-3">
-            <Image src="/icon-only.svg" alt="GreenTechCycle" width={56} height={56} className="w-full h-full" />
-          </div>
+    <section className="bg-paper py-16 lg:py-24">
+      <div className="mx-auto max-w-[calc(720px+4rem)] px-5 sm:px-6 lg:px-8">
+        <Image src="/logo/icon-only.svg" alt="" width={40} height={40} className="h-10 w-10" />
+        <p className="mt-8 text-eyebrow uppercase text-muted">404</p>
+        <h1 className="mt-3 max-w-[18ch] text-display-lg text-ink">{t("title")}</h1>
+        <p className="mt-4 max-w-[65ch] text-body-lg text-ink-700">{t("subtitle")}</p>
+        <div className="mt-8">
+          <ButtonLink href="/" size="lg">
+            <Home className="h-4 w-4" aria-hidden="true" />
+            {t("cta")}
+          </ButtonLink>
         </div>
-
-        {/* Title & Subtitle */}
-        <h1 className="text-display-lg text-ink mb-4">
-          {t("title")}
-        </h1>
-        <p className="text-lg text-ink-700 mb-8">
-          {t("subtitle")}
-        </p>
-
-        {/* CTA Button */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-leaf text-white font-medium rounded-lg hover:bg-leaf/90 transition-colors mb-12"
-        >
-          <Home className="w-5 h-5" />
-          {t("cta")}
-        </Link>
-
-        {/* Helpful Links */}
-        <div className="border-t border-line pt-8">
-          <p className="text-sm text-muted mb-4">-</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            {helpfulLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-line text-ink-700 hover:border-leaf hover:text-leaf transition-colors"
-              >
-                <link.icon className="w-4 h-4" />
+        <ul className="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-line pt-6">
+          {helpfulLinks.map((link) => (
+            <li key={link.href}>
+              <Link href={link.href} className="inline-flex min-h-[44px] items-center gap-2 text-body-sm font-medium text-leaf hover:text-leaf-700">
+                <link.icon className="h-4 w-4" aria-hidden="true" />
                 {link.label}
               </Link>
-            ))}
-          </div>
-        </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
