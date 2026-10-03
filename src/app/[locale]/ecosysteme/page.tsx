@@ -212,7 +212,7 @@ export default function EcosystemPage({
       <section id="api" className="bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-            <div className="reveal">
+            <div className="reveal min-w-0">
               <div>
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-dim text-emerald text-sm font-medium mb-4">
                   <Webhook className="w-4 h-4" />
@@ -241,7 +241,7 @@ export default function EcosystemPage({
               </div>
             </div>
 
-            <div className="reveal-scale">
+            <div className="reveal-scale min-w-0">
               <div className="relative">
                 <div className="absolute -inset-4 rounded-2xl blur-xl bg-emerald/5" />
                 <div className="relative bg-bg-card rounded-2xl p-6 overflow-hidden">

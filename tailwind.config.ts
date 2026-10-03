@@ -48,7 +48,7 @@ const config: Config = {
         "body-sm": ["0.875rem", { lineHeight: "1.25rem" }],
         caption: ["0.8125rem", { lineHeight: "1rem" }],
         eyebrow: ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.08em", fontWeight: "500" }],
-        stat: ["clamp(2.75rem, 1.8rem + 3vw, 4.5rem)", { lineHeight: "1", letterSpacing: "-0.03em", fontWeight: "600" }],
+        stat: ["clamp(2rem, 1.2rem + 3.4vw, 4.5rem)", { lineHeight: "1", letterSpacing: "-0.03em", fontWeight: "600" }],
       },
       /* Ombres — DESIGN.md §5 : uniquement cartes cliquables (hover) et flottants */
       boxShadow: {

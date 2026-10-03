@@ -5,23 +5,47 @@
  * illisible à 28 px. À remplacer par le SVG officiel « boucle émeraude »
  * quand le client le fournira.
  */
-export default function Logo({ className = "", size = "md" }: { className?: string; size?: "md" | "lg" }) {
-  const mark = size === "lg" ? "h-9 w-9" : "h-7 w-7";
+export default function Logo({
+  className = "",
+  size = "md",
+  markOnly = false,
+}: {
+  className?: string;
+  size?: "sm" | "md" | "lg";
+  /** Symbole seul (barre de section, 404) */
+  markOnly?: boolean;
+}) {
+  const mark =
+    size === "lg" ? "h-9 w-9" : size === "sm" ? "h-6 w-6" : "h-7 w-7";
   const word = size === "lg" ? "text-[22px]" : "text-[19px]";
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <svg viewBox="-64 -64 128 128" className={`${mark} flex-shrink-0 text-emerald`} aria-hidden="true">
+      <svg
+        viewBox="-64 -64 128 128"
+        className={`${mark} flex-shrink-0 text-emerald`}
+        aria-hidden="true"
+      >
         {[0, 60, -60].map((r) => (
           <g key={r} transform={`rotate(${r})`}>
-            <ellipse rx="54" ry="15" fill="none" stroke="currentColor" strokeWidth="6" />
+            <ellipse
+              rx="54"
+              ry="15"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="6"
+            />
             <circle cx="54" r="7" fill="currentColor" />
           </g>
         ))}
         <circle r="13" className="fill-fg" />
       </svg>
-      <span className={`${word} font-semibold leading-none tracking-[-0.03em] text-fg`}>
-        GreenTech<span className="text-emerald">Cycle</span>
-      </span>
+      {!markOnly && (
+        <span
+          className={`${word} font-semibold leading-none tracking-[-0.03em] text-fg`}
+        >
+          GreenTech<span className="text-emerald">Cycle</span>
+        </span>
+      )}
     </span>
   );
 }

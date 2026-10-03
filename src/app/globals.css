@@ -72,6 +72,8 @@
     font-weight: 600;
     letter-spacing: -0.03em;
     text-wrap: balance;
+    /* Mots longs : coupure seulement s'ils ne tiennent pas sur la ligne (360 px) */
+    overflow-wrap: break-word;
   }
 
   ::selection {

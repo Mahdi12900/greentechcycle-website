@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Home, Briefcase, Mail, Monitor } from "lucide-react";
-import Image from "next/image";
+import Logo from "@/components/Logo";
 import { ButtonLink } from "@/components/ui/Button";
 
 export default function NotFound() {
@@ -16,7 +16,7 @@ export default function NotFound() {
   return (
     <section className="bg-bg py-16 lg:py-24">
       <div className="mx-auto max-w-[calc(720px+4rem)] px-5 sm:px-6 lg:px-8">
-        <Image src="/logo/icon-only.svg" alt="" width={40} height={40} className="h-10 w-10" />
+        <Logo size="lg" markOnly />
         <p className="mt-8 text-eyebrow uppercase text-fg-muted">404</p>
         <h1 className="mt-3 max-w-[18ch] text-display-lg text-fg">{t("title")}</h1>
         <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">{t("subtitle")}</p>

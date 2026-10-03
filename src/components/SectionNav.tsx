@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import Logo from "@/components/Logo";
 import { Link } from "@/i18n/navigation";
 import { useSiteUi } from "@/components/SiteUiContext";
 
@@ -102,7 +102,7 @@ export default function SectionNav({
             tabIndex={stuck ? 0 : -1}
             className={`flex-shrink-0 overflow-hidden transition-all duration-200 ${stuck ? "mr-3 w-6 opacity-100" : "w-0 opacity-0"}`}
           >
-            <Image src="/logo/icon-only.svg" alt="" width={24} height={24} className="h-6 w-6" />
+            <Logo size="sm" markOnly />
           </Link>
           <div
             ref={scrollerRef}

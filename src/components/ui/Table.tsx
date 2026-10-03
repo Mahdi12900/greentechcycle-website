@@ -50,7 +50,7 @@ export default function Table({
           const el = e.currentTarget;
           setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4);
         }}
-        className={`overflow-x-auto ${overflow ? `scroll-hint ${atEnd ? "is-end" : ""}` : ""}`}
+        className={`relative overflow-x-auto ${overflow ? `scroll-hint ${atEnd ? "is-end" : ""}` : ""}`}
         tabIndex={overflow ? 0 : undefined}
         role={overflow ? "region" : undefined}
         aria-label={overflow && typeof caption === "string" ? `${caption} (tableau défilant)` : undefined}
