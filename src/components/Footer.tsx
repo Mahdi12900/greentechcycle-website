@@ -87,40 +87,40 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-forest-900 text-ondark-muted">
+    <footer className="border-t border-track bg-bg text-fg-muted">
       <div className="container-max px-5 sm:px-6 lg:px-8 py-16 lg:py-24">
         {/* Haut : marque + contact + newsletter */}
-        <div className="grid grid-cols-1 gap-12 border-b border-ondark-line pb-12 mb-12 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-12 border-b border-track pb-12 mb-12 lg:grid-cols-3">
           <div>
             <Link href="/" className="inline-flex items-center">
               <Image src="/logo/logo-mono-white.svg" alt="GreenTechCycle" width={180} height={36} className="h-9 w-auto" />
             </Link>
-            <p className="mt-6 max-w-[65ch] text-body-sm text-ondark-muted">{t("tagline")}</p>
+            <p className="mt-6 max-w-[65ch] text-body-sm text-fg-muted">{t("tagline")}</p>
           </div>
 
           <div>
-            <h2 className="text-eyebrow uppercase text-ondark font-sans tracking-[0.12em]">{t("contact.title")}</h2>
+            <h2 className="text-eyebrow uppercase text-fg font-sans tracking-[0.12em]">{t("contact.title")}</h2>
             <ul className="mt-6 space-y-3 text-body-sm">
               <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-leaf-300" strokeWidth={1.75} aria-hidden="true" />
+                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                 <span className="whitespace-pre-line">{t("contact.address")}</span>
               </li>
               <li>
-                <a href="tel:+33186652210" className="inline-flex items-center gap-3 hover:text-ondark">
-                  <Phone className="h-4 w-4 flex-shrink-0 text-leaf-300" strokeWidth={1.75} aria-hidden="true" />
+                <a href="tel:+33186652210" className="inline-flex items-center gap-3 hover:text-fg">
+                  <Phone className="h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                   {t("contact.phone")}
                 </a>
               </li>
               <li>
-                <a href="mailto:contact@greentechcycle.fr" className="inline-flex items-center gap-3 hover:text-ondark">
-                  <Mail className="h-4 w-4 flex-shrink-0 text-leaf-300" strokeWidth={1.75} aria-hidden="true" />
+                <a href="mailto:contact@greentechcycle.fr" className="inline-flex items-center gap-3 hover:text-fg">
+                  <Mail className="h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                   {t("contact.email")}
                 </a>
               </li>
             </ul>
             <Link
               href="/contact"
-              className="mt-6 inline-flex h-11 items-center gap-2 rounded-lg bg-ondark px-5 text-body-sm font-semibold text-forest transition-colors hover:bg-white"
+              className="mt-6 inline-flex h-11 items-center gap-2 rounded-lg bg-emerald px-5 text-body-sm font-semibold text-bg transition-colors hover:bg-white/[0.04]"
             >
               {t("cta")}
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -128,14 +128,14 @@ export default function Footer() {
           </div>
 
           <div>
-            <h2 className="text-eyebrow uppercase text-ondark font-sans tracking-[0.12em]">{t("newsletter.title")}</h2>
+            <h2 className="text-eyebrow uppercase text-fg font-sans tracking-[0.12em]">{t("newsletter.title")}</h2>
             <p className="mt-6 text-body-sm">
               {isEn
                 ? "Receive our latest ITAD news, guides and regulatory updates."
                 : "Recevez nos dernières actualités ITAD, guides et réglementations."}
             </p>
             {success ? (
-              <p className="mt-4 text-body-sm font-semibold text-leaf-300" role="status">
+              <p className="mt-4 text-body-sm font-semibold text-emerald" role="status">
                 {isEn ? "Subscribed, thanks!" : "Inscription validée, merci !"}
               </p>
             ) : (
@@ -175,12 +175,12 @@ export default function Footer() {
                   onChange={(e) => { setEmail(e.target.value); setError(false); }}
                   placeholder={t("newsletter.placeholder")}
                   aria-invalid={error || undefined}
-                  className="h-11 min-w-0 flex-1 rounded-lg border border-ondark-line bg-forest-950 px-3 text-body-sm text-ondark placeholder:text-ondark-muted focus:border-leaf-300 focus:outline-none focus:ring-2 focus:ring-leaf-300/30"
+                  className="h-11 min-w-0 flex-1 rounded-lg border border-track bg-bg px-3 text-body-sm text-fg placeholder:text-fg-muted focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25"
                 />
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="flex h-11 w-11 items-center justify-center rounded-lg bg-ondark text-forest transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
+                  className="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald text-bg transition-colors hover:bg-white/[0.04] disabled:cursor-not-allowed disabled:opacity-60"
                   aria-label={t("newsletter.cta")}
                 >
                   <Send className="h-4 w-4" aria-hidden="true" />
@@ -188,7 +188,7 @@ export default function Footer() {
               </form>
             )}
             {error && (
-              <p className="mt-2 text-caption text-ochre-300" role="alert">
+              <p className="mt-2 text-caption text-amber" role="alert">
                 {isEn
                   ? "Invalid address, please check your email."
                   : "Adresse invalide, vérifiez votre email."}
@@ -201,11 +201,11 @@ export default function Footer() {
         <nav aria-label={isEn ? "Footer" : "Pied de page"} className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
           {columns.map((col) => (
             <div key={col.title}>
-              <h2 className="mb-4 text-eyebrow uppercase text-ondark font-sans tracking-[0.12em]">{col.title}</h2>
+              <h2 className="mb-4 text-eyebrow uppercase text-fg font-sans tracking-[0.12em]">{col.title}</h2>
               <ul className="space-y-2">
                 {col.links.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="text-body-sm text-ondark-muted transition-colors hover:text-ondark">
+                    <Link href={link.href} className="text-body-sm text-fg-muted transition-colors hover:text-fg">
                       {link.name}
                     </Link>
                   </li>
@@ -216,19 +216,19 @@ export default function Footer() {
         </nav>
 
         {/* Ligne du bas : certifications + mentions */}
-        <div className="mt-12 space-y-6 border-t border-ondark-line pt-8">
+        <div className="mt-12 space-y-6 border-t border-track pt-8">
           <CertificationStrip variant="dark" />
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
             <p className="text-caption">{t("copyright")}</p>
             <div className="flex flex-wrap items-center gap-4">
-              <Link href="/mentions-legales" className="text-caption hover:text-ondark">{t("bottomLinks.legal")}</Link>
-              <Link href="/confidentialite" className="text-caption hover:text-ondark">{t("bottomLinks.privacy")}</Link>
-              <Link href="/cookies" className="text-caption hover:text-ondark">{t("bottomLinks.cookies")}</Link>
-              <span className="h-4 w-px bg-ondark-line" aria-hidden="true" />
-              <a href="https://linkedin.com/company/greentechcycle" target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center hover:text-ondark" aria-label="LinkedIn">
+              <Link href="/mentions-legales" className="text-caption hover:text-fg">{t("bottomLinks.legal")}</Link>
+              <Link href="/confidentialite" className="text-caption hover:text-fg">{t("bottomLinks.privacy")}</Link>
+              <Link href="/cookies" className="text-caption hover:text-fg">{t("bottomLinks.cookies")}</Link>
+              <span className="h-4 w-px bg-track" aria-hidden="true" />
+              <a href="https://linkedin.com/company/greentechcycle" target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center hover:text-fg" aria-label="LinkedIn">
                 <Linkedin className="h-4 w-4" aria-hidden="true" />
               </a>
-              <a href="https://twitter.com/greentechcycle" target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center hover:text-ondark" aria-label="Twitter">
+              <a href="https://twitter.com/greentechcycle" target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center hover:text-fg" aria-label="Twitter">
                 <Twitter className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>

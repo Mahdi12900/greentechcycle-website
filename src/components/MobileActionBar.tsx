@@ -76,7 +76,7 @@ export default function MobileActionBar() {
   return (
     <div
       aria-hidden={!visible}
-      className={`fixed inset-x-0 bottom-0 z-50 border-t border-line bg-paper px-4 transition-transform duration-200 ease-out lg:hidden ${
+      className={`fixed inset-x-0 bottom-0 z-50 border-t border-track bg-bg/95 px-4 backdrop-blur transition-transform duration-200 ease-out lg:hidden ${
         visible ? "translate-y-0" : "pointer-events-none translate-y-full"
       }`}
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
@@ -85,7 +85,7 @@ export default function MobileActionBar() {
         <Link
           href={ctx.href}
           tabIndex={visible ? undefined : -1}
-          className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-leaf px-4 text-body-sm font-semibold text-white transition-colors hover:bg-leaf-700"
+          className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-emerald px-4 text-body-sm font-semibold text-bg transition-colors hover:bg-emerald-hover"
         >
           {label}
           <ArrowRight className="h-4 w-4" aria-hidden="true" />

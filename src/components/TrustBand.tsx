@@ -22,9 +22,9 @@ export default function TrustBand() {
   const clients = t.raw("clients") as TrustClient[];
 
   return (
-    <section className="border-y border-line bg-paper py-12" aria-labelledby="trust-band-label">
+    <section className="border-y border-track bg-bg py-12" aria-labelledby="trust-band-label">
       <div className="container-max px-5 sm:px-6 lg:px-8">
-        <p id="trust-band-label" className="mb-8 text-center text-eyebrow uppercase text-muted">
+        <p id="trust-band-label" className="mb-8 text-center text-eyebrow uppercase text-fg-muted">
           {t("label")}
         </p>
         <ul className="grid grid-cols-2 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
@@ -35,23 +35,23 @@ export default function TrustBand() {
               <li
                 key={c.name}
                 className={`flex flex-col items-center px-4 text-center ${
-                  i % 2 === 1 ? "border-l border-line" : ""
-                } ${i % 3 !== 0 ? "sm:border-l sm:border-line" : "sm:border-l-0"} ${
-                  i !== 0 ? "lg:border-l lg:border-line" : "lg:border-l-0"
+                  i % 2 === 1 ? "border-l border-track" : ""
+                } ${i % 3 !== 0 ? "sm:border-l sm:border-track" : "sm:border-l-0"} ${
+                  i !== 0 ? "lg:border-l lg:border-track" : "lg:border-l-0"
                 }`}
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-leaf-100">
-                  <Icon className="h-5 w-5 text-forest" strokeWidth={1.75} aria-hidden="true" />
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-dim">
+                  <Icon className="h-5 w-5 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                 </span>
-                <span className={`mt-3 font-semibold text-ink ${isPublicRef ? "text-heading-md" : "text-body-sm"}`}>
+                <span className={`mt-3 font-semibold text-fg ${isPublicRef ? "text-heading-md" : "text-body-sm"}`}>
                   {c.name}
                 </span>
-                {c.metric && <span className="mt-1 text-caption text-muted">{c.metric}</span>}
+                {c.metric && <span className="mt-1 text-caption text-fg-muted">{c.metric}</span>}
               </li>
             );
           })}
         </ul>
-        <p className="mx-auto mt-8 max-w-[65ch] text-center text-caption text-muted">{t("note")}</p>
+        <p className="mx-auto mt-8 max-w-[65ch] text-center text-caption text-fg-muted">{t("note")}</p>
       </div>
     </section>
   );

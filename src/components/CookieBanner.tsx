@@ -44,32 +44,36 @@ export default function CookieBanner() {
   if (!visible) return null;
 
   return (
+    /* DESIGN.md v2 §6.11 (correction QA) : sur sm+, carte compacte en bas à
+       gauche, hors de la colonne de lecture (ne couvre plus le bandeau de
+       confiance) ; sur mobile, feuille pleine largeur ≤ 60 vh qui remplace la
+       barre d'action. */
     <div
-      className="fixed inset-x-0 bottom-0 z-[60] p-3 sm:p-4"
+      className="fixed inset-x-0 bottom-0 z-[60] p-3 sm:inset-x-auto sm:bottom-4 sm:left-4 sm:right-auto sm:w-[380px] sm:max-w-[calc(100vw-2rem)] sm:p-0"
       style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
       role="dialog"
       aria-labelledby="cookie-banner-title"
     >
-      <div className="mx-auto max-h-[80vh] max-w-2xl overflow-y-auto rounded-xl border border-line bg-paper p-4 shadow-pop sm:p-6">
+      <div className="max-h-[60vh] overflow-y-auto rounded-xl border border-track bg-bg-card p-4 shadow-float sm:p-5">
         <div className="mb-2 flex items-start justify-between gap-3">
-          <h2 id="cookie-banner-title" className="font-sans text-heading-md text-ink">{t("title")}</h2>
+          <h2 id="cookie-banner-title" className="font-sans text-heading-md text-fg">{t("title")}</h2>
           <button
             type="button"
             onClick={reject}
-            className="-mr-2 -mt-2 flex h-11 w-11 items-center justify-center rounded-lg text-muted hover:bg-cream hover:text-ink"
+            className="-mr-2 -mt-2 flex h-11 w-11 items-center justify-center rounded-lg text-fg-muted hover:bg-white/[0.04] hover:text-fg"
             aria-label={t("rejectAll")}
           >
             <X className="h-4 w-4" aria-hidden="true" />
           </button>
         </div>
-        <p className="mb-4 text-body-sm text-ink-700">{t("description")}</p>
+        <p className="mb-4 text-body-sm text-fg-strong">{t("description")}</p>
 
         {showDetails && (
-          <div className="mb-4 divide-y divide-line rounded-lg border border-line">
+          <div className="mb-4 divide-y divide-track rounded-lg border border-track">
             <label className="flex items-center gap-3 px-3 py-2 text-body-sm">
-              <input type="checkbox" checked disabled className="h-5 w-5 accent-leaf" />
-              <span className="font-medium text-ink">{t("categories.necessary.title")}</span>
-              <span className="ml-auto text-right text-caption text-muted">{t("categories.necessary.desc")}</span>
+              <input type="checkbox" checked disabled className="h-5 w-5 accent-emerald" />
+              <span className="font-medium text-fg">{t("categories.necessary.title")}</span>
+              <span className="ml-auto text-right text-caption text-fg-muted">{t("categories.necessary.desc")}</span>
             </label>
             {(["analytics", "functional", "marketing"] as const).map((cat) => (
               <label key={cat} className="flex items-center gap-3 px-3 py-2 text-body-sm">
@@ -77,32 +81,32 @@ export default function CookieBanner() {
                   type="checkbox"
                   checked={prefs[cat]}
                   onChange={(e) => setPrefs({ ...prefs, [cat]: e.target.checked })}
-                  className="h-5 w-5 accent-leaf"
+                  className="h-5 w-5 accent-emerald"
                 />
-                <span className="font-medium text-ink">{t(`categories.${cat}.title`)}</span>
-                <span className="ml-auto text-right text-caption text-muted">{t(`categories.${cat}.desc`)}</span>
+                <span className="font-medium text-fg">{t(`categories.${cat}.title`)}</span>
+                <span className="ml-auto text-right text-caption text-fg-muted">{t(`categories.${cat}.desc`)}</span>
               </label>
             ))}
           </div>
         )}
 
         <div className="flex flex-wrap items-center gap-2">
-          <button type="button" onClick={accept} className="h-11 rounded-lg bg-leaf px-5 text-body-sm font-semibold text-white transition-colors hover:bg-leaf-700">
+          <button type="button" onClick={accept} className="h-11 rounded-lg bg-emerald px-5 text-body-sm font-semibold text-bg transition-colors hover:bg-emerald-hover">
             {t("acceptAll")}
           </button>
-          <button type="button" onClick={reject} className="h-11 rounded-lg border border-line bg-paper px-5 text-body-sm font-semibold text-ink transition-colors hover:border-ink/30 hover:bg-cream">
+          <button type="button" onClick={reject} className="h-11 rounded-lg border border-track bg-bg px-5 text-body-sm font-semibold text-fg transition-colors hover:border-track-strong hover:bg-white/[0.04]">
             {t("rejectAll")}
           </button>
           {showDetails ? (
-            <button type="button" onClick={save} className="h-11 rounded-lg px-4 text-body-sm font-semibold text-leaf transition-colors hover:bg-leaf-50">
+            <button type="button" onClick={save} className="h-11 rounded-lg px-4 text-body-sm font-semibold text-emerald transition-colors hover:bg-white/[0.04]">
               {t("save")}
             </button>
           ) : (
-            <button type="button" onClick={() => setShowDetails(true)} className="h-11 rounded-lg px-4 text-body-sm font-semibold text-leaf transition-colors hover:bg-leaf-50">
+            <button type="button" onClick={() => setShowDetails(true)} className="h-11 rounded-lg px-4 text-body-sm font-semibold text-emerald transition-colors hover:bg-white/[0.04]">
               {t("customize")}
             </button>
           )}
-          <Link href="/cookies" className="ml-auto text-caption text-muted underline-offset-2 hover:text-ink hover:underline">
+          <Link href="/cookies" className="ml-auto text-caption text-fg-muted underline-offset-2 hover:text-fg hover:underline">
             {t("link")}
           </Link>
         </div>

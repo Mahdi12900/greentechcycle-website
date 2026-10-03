@@ -117,26 +117,26 @@ export default function ExitPopup() {
 
   return (
     <div
-      className="fixed inset-0 z-[70] flex items-center justify-center bg-forest-900/60 p-4"
+      className="fixed inset-0 z-[70] flex items-center justify-center bg-bg/60 p-4"
       role="dialog"
       aria-modal="true"
       aria-labelledby="exit-popup-title"
       onClick={(e) => e.target === e.currentTarget && dismiss()}
     >
-      <div className="relative w-full max-w-md rounded-xl border border-line bg-paper p-8 shadow-pop">
+      <div className="relative w-full max-w-md rounded-xl border border-track bg-bg p-8 shadow-float">
         <button
           type="button"
           onClick={dismiss}
-          className="absolute right-2 top-2 flex h-11 w-11 items-center justify-center rounded-lg text-muted hover:bg-cream hover:text-ink"
+          className="absolute right-2 top-2 flex h-11 w-11 items-center justify-center rounded-lg text-fg-muted hover:bg-white/[0.04] hover:text-fg"
           aria-label={locale === "en" ? "Close" : "Fermer"}
         >
           <X className="h-5 w-5" aria-hidden="true" />
         </button>
-        <p className="text-eyebrow uppercase text-muted">{locale === "en" ? "Free resource" : "Ressource offerte"}</p>
-        <h2 id="exit-popup-title" className="mt-3 pr-8 text-display-sm text-ink">{tx(ctx.titleKey, "title")}</h2>
-        <p className="mt-3 text-body-sm text-ink-700">{tx(ctx.subtitleKey, "subtitle")}</p>
+        <p className="text-eyebrow uppercase text-fg-muted">{locale === "en" ? "Free resource" : "Ressource offerte"}</p>
+        <h2 id="exit-popup-title" className="mt-3 pr-8 text-display-sm text-fg">{tx(ctx.titleKey, "title")}</h2>
+        <p className="mt-3 text-body-sm text-fg-strong">{tx(ctx.subtitleKey, "subtitle")}</p>
         {submitted ? (
-          <p className="mt-6 text-body font-semibold text-leaf" role="status">
+          <p className="mt-6 text-body font-semibold text-emerald" role="status">
             {locale === "en" ? "Thank you!" : "Merci !"}
           </p>
         ) : (
@@ -151,18 +151,18 @@ export default function ExitPopup() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t("placeholder")}
-              className="h-11 w-full rounded-lg border border-line bg-paper px-3 text-body text-ink placeholder:text-muted focus:border-leaf focus:outline-none focus:ring-2 focus:ring-leaf/20"
+              className="h-11 w-full rounded-lg border border-track bg-bg px-3 text-body text-fg placeholder:text-fg-muted focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25"
             />
             <button
               type="submit"
               disabled={submitting}
-              className="h-12 w-full rounded-lg bg-leaf px-6 text-body font-semibold text-white transition-colors hover:bg-leaf-700 disabled:cursor-not-allowed disabled:opacity-60"
+              className="h-12 w-full rounded-lg bg-emerald px-6 text-body font-semibold text-bg transition-colors hover:bg-emerald-hover disabled:cursor-not-allowed disabled:opacity-60"
             >
               {submitting ? "…" : tx(ctx.ctaKey, "cta")}
             </button>
           </form>
         )}
-        <button type="button" onClick={dismiss} className="mt-3 h-11 w-full text-center text-caption text-muted hover:text-ink">
+        <button type="button" onClick={dismiss} className="mt-3 h-11 w-full text-center text-caption text-fg-muted hover:text-fg">
           {t("dismiss")}
         </button>
       </div>

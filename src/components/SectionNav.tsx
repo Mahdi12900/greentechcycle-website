@@ -94,7 +94,7 @@ export default function SectionNav({
   return (
     <>
       <div ref={sentinelRef} aria-hidden="true" className="h-px" />
-      <nav aria-label={label} className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
+      <nav aria-label={label} className="sticky top-0 z-40 border-b border-track bg-bg/90 backdrop-blur">
         <div className="container-max flex items-center px-5 sm:px-6 lg:px-8">
           <Link
             href="/"
@@ -119,8 +119,8 @@ export default function SectionNav({
                   aria-current={isActive ? "true" : undefined}
                   className={`relative flex h-12 snap-start items-center whitespace-nowrap px-3 text-body-sm font-medium transition-colors ${
                     isActive
-                      ? "text-ink after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-leaf"
-                      : "text-ink-700 hover:text-ink"
+                      ? "text-fg after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-emerald"
+                      : "text-fg-strong hover:text-fg"
                   }`}
                 >
                   {a.label}

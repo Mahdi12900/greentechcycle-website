@@ -153,7 +153,7 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`}>
+    <html lang={locale} className={`dark ${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`}>
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" href="/icon.svg" />

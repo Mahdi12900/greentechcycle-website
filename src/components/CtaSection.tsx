@@ -6,9 +6,9 @@ import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/Button";
 
 /**
- * CTA de fin de page (DESIGN.md §6.12) — une seule variante visuelle :
- * section forest, centrée, H2 display-md, chapô, primaire + secondaire sur
- * sombre, ligne de réassurance. Une page = un seul CTA de fin.
+ * CTA de fin de page (DESIGN.md v2 §6.12) — section `bg` + halo + points,
+ * centrée, H2 display-md, chapô fg-muted, boutons hero (pilule) primaire +
+ * secondaire, ligne de réassurance. Une page = un seul CTA de fin.
  *
  * `tone`, `variant` et `icon` sont conservés dans la signature pour la
  * compatibilité des appels existants mais n'ont plus d'effet visuel.
@@ -59,24 +59,27 @@ export default function CtaSection({
       : reassurance;
 
   return (
-    <section id={id} className={`bg-forest py-16 text-ondark lg:py-24 ${className}`}>
-      <div className="mx-auto max-w-site px-5 text-center sm:px-6 lg:px-8">
+    <section id={id} className={`relative overflow-hidden border-t border-track bg-bg py-16 text-fg lg:py-24 ${className}`}>
+      {/* Section « lumineuse » (§5.1, §6.12) : halo émeraude + grille de points */}
+      <div className="fx-halo pointer-events-none absolute inset-0" aria-hidden="true" />
+      <div className="fx-dots pointer-events-none absolute inset-0 fx-fade" aria-hidden="true" />
+      <div className="relative mx-auto max-w-site px-5 text-center sm:px-6 lg:px-8">
         <div className="reveal">
-          {eyebrow && <p className="mb-3 text-eyebrow uppercase text-ondark-muted">{eyebrow}</p>}
-          <h2 className="mx-auto max-w-[24ch] text-display-md text-ondark">{title}</h2>
-          {subtitle && <p className="mx-auto mt-4 max-w-[65ch] text-body-lg text-ondark-muted">{subtitle}</p>}
+          {eyebrow && <p className="mb-3 text-eyebrow uppercase text-fg-muted">{eyebrow}</p>}
+          <h2 className="mx-auto max-w-[24ch] text-display-md text-fg">{title}</h2>
+          {subtitle && <p className="mx-auto mt-4 max-w-[65ch] text-body-lg text-fg-muted">{subtitle}</p>}
           <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
-            <ButtonLink href={primaryHref} tone="dark" size="lg">
+            <ButtonLink href={primaryHref} size="lg" pill>
               {primary}
             </ButtonLink>
             {secondaryHref && secondary && (
-              <ButtonLink href={secondaryHref} tone="dark" variant="secondary" size="lg">
+              <ButtonLink href={secondaryHref} variant="secondary" size="lg" pill>
                 {secondary}
               </ButtonLink>
             )}
           </div>
-          {reassure && <p className="mt-6 text-caption text-ondark-muted">{reassure}</p>}
-          {footnote && <div className="mt-3 text-caption text-ondark-muted">{footnote}</div>}
+          {reassure && <p className="mt-6 text-caption text-fg-muted">{reassure}</p>}
+          {footnote && <div className="mt-3 text-caption text-fg-muted">{footnote}</div>}
         </div>
       </div>
     </section>

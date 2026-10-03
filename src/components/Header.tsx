@@ -20,6 +20,7 @@ export default function Header() {
   const router = useRouter();
   const { headerHidden } = useSiteUi();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const navRef = useRef<HTMLElement>(null);
@@ -133,6 +134,14 @@ export default function Header() {
     };
   }, []);
 
+  /* Bordure basse après 8 px de défilement (§6.1) — écouteur passif */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   /* Panneau mobile plein écran : bloque le scroll de la page */
   useEffect(() => {
     if (!mobileOpen) return;
@@ -145,28 +154,28 @@ export default function Header() {
 
   const linkBase =
     "relative inline-flex h-10 items-center gap-1 rounded-lg px-3 text-body-sm font-medium transition-colors";
-  const linkIdle = "text-ink-700 hover:bg-cream hover:text-ink";
+  const linkIdle = "text-fg-strong hover:bg-white/[0.04] hover:text-fg";
   const linkActive =
-    "text-ink after:absolute after:inset-x-3 after:-bottom-[13px] lg:after:-bottom-[17px] after:h-0.5 after:bg-leaf";
+    "text-fg after:absolute after:inset-x-3 after:-bottom-[13px] lg:after:-bottom-[17px] after:h-0.5 after:bg-emerald";
 
   const hidden = headerHidden && !mobileOpen;
 
   return (
     <header
       data-hidden={hidden ? "true" : undefined}
-      className={`fixed inset-x-0 top-0 z-50 border-b border-line bg-paper/95 backdrop-blur transition-transform duration-200 ease-out ${
-        hidden ? "-translate-y-full" : "translate-y-0"
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 border-b bg-bg/80 backdrop-blur-md transition-[transform,border-color] duration-200 ease-out ${
+        scrolled || mobileOpen ? "is-scrolled border-track" : "border-transparent"
+      } ${hidden ? "-translate-y-full" : "translate-y-0"}`}
     >
       <div className="container-max px-5 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-6 lg:h-[72px]">
           <Link href="/" className="flex flex-shrink-0 items-center" aria-label="GreenTechCycle — accueil">
             <Image
-              src="/logo/logo-horizontal.svg"
+              src="/logo/logo-mono-white.svg"
               alt="GreenTechCycle"
               width={180}
               height={36}
-              className="h-8 w-auto lg:h-9"
+              className="h-7 w-auto"
               priority
             />
           </Link>
@@ -192,14 +201,14 @@ export default function Header() {
                   >
                     {item.label}
                     <ChevronDown
-                      className={`h-4 w-4 text-muted transition-transform ${open ? "rotate-180" : ""}`}
+                      className={`h-4 w-4 text-fg-muted transition-transform ${open ? "rotate-180" : ""}`}
                       aria-hidden="true"
                     />
                   </button>
                   {open && (
                     <div
                       id={`menu-${item.key}`}
-                      className={`absolute left-0 top-full z-50 mt-2 rounded-xl border border-line bg-paper p-2 shadow-pop ${
+                      className={`absolute left-0 top-full z-50 mt-2 rounded-xl border border-track bg-bg p-2 shadow-float ${
                         item.key === "sectors" ? "grid w-[480px] grid-cols-2 gap-x-2" : "w-64"
                       }`}
                     >
@@ -210,8 +219,8 @@ export default function Header() {
                             key={link.href}
                             href={link.href}
                             aria-current={current ? "page" : undefined}
-                            className={`block rounded-lg px-3 py-2 text-body-sm transition-colors hover:bg-cream hover:text-ink ${
-                              current ? "font-semibold text-ink" : "text-ink-700"
+                            className={`block rounded-lg px-3 py-2 text-body-sm transition-colors hover:bg-white/[0.04] hover:text-fg ${
+                              current ? "font-semibold text-fg" : "text-fg-strong"
                             }`}
                           >
                             {link.label}
@@ -237,7 +246,7 @@ export default function Header() {
             <button
               type="button"
               onClick={switchLocale}
-              className="inline-flex h-10 items-center rounded-lg px-3 text-body-sm font-medium text-ink-700 transition-colors hover:bg-cream hover:text-ink"
+              className="inline-flex h-10 items-center rounded-lg px-3 text-body-sm font-medium text-fg-strong transition-colors hover:bg-white/[0.04] hover:text-fg"
               aria-label={locale === "fr" ? "Switch to English" : "Passer en français"}
               lang={locale === "fr" ? "en" : "fr"}
             >
@@ -245,7 +254,7 @@ export default function Header() {
             </button>
             <Link
               href="/demo"
-              className="group inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-lg bg-leaf px-5 text-body-sm font-semibold text-white transition-colors hover:bg-leaf-700"
+              className="group inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-lg bg-emerald px-5 text-body-sm font-semibold text-bg transition-colors hover:bg-emerald-hover"
             >
               {t("cta")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
@@ -256,7 +265,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-lg text-ink lg:hidden"
+            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-lg text-fg lg:hidden"
             aria-label={
               mobileOpen
                 ? locale === "en" ? "Close menu" : "Fermer le menu"
@@ -274,26 +283,26 @@ export default function Header() {
       {mobileOpen && (
         <nav
           id="mobile-menu"
-          className="fixed inset-x-0 bottom-0 top-16 flex flex-col border-t border-line bg-paper lg:hidden"
+          className="fixed inset-x-0 bottom-0 top-16 flex flex-col border-t border-track bg-bg lg:hidden"
           aria-label={locale === "en" ? "Mobile menu" : "Menu mobile"}
         >
           <div className="flex-1 overflow-y-auto px-5 py-6">
             <Link
               href="/tarifs"
-              className="flex h-11 items-center text-heading-md text-ink"
+              className="flex h-11 items-center text-heading-md text-fg"
             >
               {t("nav.pricing")}
             </Link>
             {navItems.map((item) => (
-              <div key={item.key} className="mt-6 border-t border-line pt-6">
-                <p className="mb-2 text-eyebrow uppercase text-muted">{item.label}</p>
+              <div key={item.key} className="mt-6 border-t border-track pt-6">
+                <p className="mb-2 text-eyebrow uppercase text-fg-muted">{item.label}</p>
                 <ul className={item.key === "sectors" ? "grid grid-cols-2 gap-x-4" : ""}>
                   {megaMenus[item.key].map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
                         aria-current={pathname === link.href ? "page" : undefined}
-                        className="flex min-h-[44px] items-center text-body text-ink-700 hover:text-ink"
+                        className="flex min-h-[44px] items-center text-body text-fg-strong hover:text-fg"
                       >
                         {link.label}
                       </Link>
@@ -304,20 +313,20 @@ export default function Header() {
             ))}
           </div>
           <div
-            className="flex gap-3 border-t border-line bg-paper px-5 pt-4"
+            className="flex gap-3 border-t border-track bg-bg px-5 pt-4"
             style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }}
           >
             <button
               type="button"
               onClick={switchLocale}
-              className="h-12 rounded-lg border border-line px-4 text-body-sm font-semibold text-ink"
+              className="h-12 rounded-lg border border-track px-4 text-body-sm font-semibold text-fg"
               lang={locale === "fr" ? "en" : "fr"}
             >
               {locale === "fr" ? "English" : "Français"}
             </button>
             <Link
               href="/demo"
-              className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-lg bg-leaf px-6 text-body font-semibold text-white hover:bg-leaf-700"
+              className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-lg bg-emerald px-6 text-body font-semibold text-bg hover:bg-emerald-hover"
             >
               {t("cta")}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />

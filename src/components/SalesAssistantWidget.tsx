@@ -16,7 +16,6 @@ import {
 import { Link } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import { useSiteUi } from "@/components/SiteUiContext";
 
 /* ------------------------------------------------------------------ */
@@ -171,25 +170,21 @@ export default function SalesAssistantWidget() {
             role="dialog"
             aria-modal="true"
             aria-label={tx("Assistant commercial GreenTechCycle", "GreenTechCycle sales assistant")}
-            className="fixed z-[70] inset-0 h-[100dvh] flex flex-col bg-paper lg:inset-auto lg:bottom-24 lg:right-6 lg:h-auto lg:w-[380px] lg:max-h-[70vh] lg:rounded-2xl lg:border lg:border-line lg:shadow-pop overflow-hidden"
+            className="fixed z-[70] inset-0 h-[100dvh] flex flex-col bg-bg-card lg:inset-auto lg:bottom-24 lg:right-6 lg:h-auto lg:w-[380px] lg:max-h-[70vh] lg:rounded-2xl lg:border lg:border-track lg:shadow-float overflow-hidden"
           >
             {/* En-tête */}
             <div
-              className="flex items-center gap-3 bg-forest px-4 py-3 text-ondark"
+              className="flex items-center gap-3 border-b border-track bg-bg px-4 py-3 text-fg"
               style={{ paddingTop: "max(0.75rem, env(safe-area-inset-top))" }}
             >
-              <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-full border border-ondark-line">
-                <Image
-                  src="/images/sophie-martin.jpg"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="h-full w-full object-cover"
-                />
+              {/* Pas de photo (DESIGN.md v2 §7.1) : monogramme + point d'état émeraude */}
+              <div className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-track bg-bg-card font-mono text-caption text-fg" aria-hidden="true">
+                SM
+                <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-bg bg-emerald shadow-glow-dot" />
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-body-sm font-semibold leading-tight">Sophie Martin</p>
-                <p className="text-caption text-ondark-muted">
+                <p className="text-caption text-fg-muted">
                   {tx("Conseillère GreenTechCycle · En ligne", "GreenTechCycle advisor · Online")}
                 </p>
               </div>
@@ -197,7 +192,7 @@ export default function SalesAssistantWidget() {
                 ref={closeRef}
                 type="button"
                 onClick={() => setOpen(false)}
-                className="flex h-11 w-11 items-center justify-center rounded-lg text-ondark hover:bg-white/10 focus-visible:outline-leaf-300"
+                className="flex h-11 w-11 items-center justify-center rounded-lg text-fg hover:bg-white/10 focus-visible:outline-emerald"
                 aria-label={tx("Fermer l'assistant", "Close assistant")}
               >
                 <X className="h-5 w-5" aria-hidden="true" />
@@ -209,13 +204,13 @@ export default function SalesAssistantWidget() {
               {messages.map((msg, i) =>
                 msg.from === "sophie" ? (
                   <div key={i} className="flex">
-                    <div className="max-w-[85%] rounded-xl rounded-tl-sm border border-line bg-cream px-3 py-2 text-body-sm text-ink-700">
+                    <div className="max-w-[85%] rounded-xl rounded-tl-sm border border-track bg-bg px-3 py-2 text-body-sm text-fg-strong">
                       {msg.text}
                     </div>
                   </div>
                 ) : (
                   <div key={i} className="flex justify-end">
-                    <div className="max-w-[85%] rounded-xl rounded-tr-sm bg-leaf px-3 py-2 text-body-sm text-white">
+                    <div className="max-w-[85%] rounded-xl rounded-tr-sm bg-emerald px-3 py-2 text-body-sm text-bg">
                       {msg.text}
                     </div>
                   </div>
@@ -223,7 +218,7 @@ export default function SalesAssistantWidget() {
               )}
               {isTyping && (
                 <div className="flex" aria-label={tx("Sophie écrit…", "Sophie is typing…")}>
-                  <div className="flex items-center gap-1 rounded-xl rounded-tl-sm border border-line bg-cream px-4 py-3">
+                  <div className="flex items-center gap-1 rounded-xl rounded-tl-sm border border-track bg-bg px-4 py-3">
                     <span className="typing-dot" />
                     <span className="typing-dot animation-delay-200" />
                     <span className="typing-dot animation-delay-400" />
@@ -235,7 +230,7 @@ export default function SalesAssistantWidget() {
 
             {/* Actions rapides */}
             <div className="px-4 py-3">
-              <p className="mb-2 text-eyebrow uppercase text-muted">{tx("Actions rapides", "Quick actions")}</p>
+              <p className="mb-2 text-eyebrow uppercase text-fg-muted">{tx("Actions rapides", "Quick actions")}</p>
               <div className="grid grid-cols-2 gap-2">
                 {quickActions.map((a) => {
                   const Icon = a.icon;
@@ -244,9 +239,9 @@ export default function SalesAssistantWidget() {
                       key={a.label}
                       href={a.href}
                       onClick={() => setOpen(false)}
-                      className="group flex min-h-[44px] items-center gap-2 rounded-lg border border-line px-3 py-2 text-caption font-medium text-ink-700 transition-colors hover:border-ink/20 hover:text-leaf"
+                      className="group flex min-h-[44px] items-center gap-2 rounded-lg border border-track px-3 py-2 text-caption font-medium text-fg-strong transition-colors hover:border-track-strong hover:text-emerald"
                     >
-                      <Icon className="h-4 w-4 flex-shrink-0 text-forest" strokeWidth={1.75} aria-hidden="true" />
+                      <Icon className="h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                       <span className="leading-tight">{a.label}</span>
                     </Link>
                   );
@@ -256,7 +251,7 @@ export default function SalesAssistantWidget() {
 
             {/* Saisie */}
             <div className="px-4 pb-4 pt-1">
-              <div className="flex items-center gap-2 rounded-lg border border-line bg-paper px-3 py-1 focus-within:border-leaf focus-within:ring-2 focus-within:ring-leaf/20">
+              <div className="flex items-center gap-2 rounded-lg border border-track bg-bg px-3 py-1 focus-within:border-emerald focus-within:ring-2 focus-within:ring-emerald/25">
                 <label htmlFor="gtc-chat-input" className="sr-only">
                   {tx("Votre message", "Your message")}
                 </label>
@@ -267,14 +262,14 @@ export default function SalesAssistantWidget() {
                   onChange={(e) => setUserMessage(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
                   placeholder={tx("Écrivez votre message…", "Type your message…")}
-                  className="h-10 flex-1 bg-transparent text-body-sm text-ink placeholder:text-muted focus:outline-none"
+                  className="h-10 flex-1 bg-transparent text-body-sm text-fg placeholder:text-fg-muted focus:outline-none"
                 />
                 <button
                   type="button"
                   onClick={handleSend}
                   disabled={!userMessage.trim()}
                   aria-label={tx("Envoyer", "Send")}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-leaf text-white transition-colors hover:bg-leaf-700 disabled:cursor-not-allowed disabled:opacity-40"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald text-bg transition-colors hover:bg-emerald-hover disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <Send className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -283,14 +278,14 @@ export default function SalesAssistantWidget() {
 
             {/* Contacts */}
             <div
-              className="flex items-center justify-between border-t border-line bg-cream px-4 py-3 text-caption"
+              className="flex items-center justify-between border-t border-track bg-bg-card px-4 py-3 text-caption"
               style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
             >
-              <a href="tel:+33186652210" className="inline-flex min-h-[44px] items-center gap-2 font-medium text-ink-700 hover:text-leaf">
+              <a href="tel:+33186652210" className="inline-flex min-h-[44px] items-center gap-2 font-medium text-fg-strong hover:text-emerald">
                 <Phone className="h-4 w-4" aria-hidden="true" />
                 +33 1 86 65 22 10
               </a>
-              <a href="mailto:contact@greentechcycle.fr" className="inline-flex min-h-[44px] items-center gap-2 font-medium text-ink-700 hover:text-leaf">
+              <a href="mailto:contact@greentechcycle.fr" className="inline-flex min-h-[44px] items-center gap-2 font-medium text-fg-strong hover:text-emerald">
                 <Mail className="h-4 w-4" aria-hidden="true" />
                 Email
               </a>
@@ -314,14 +309,14 @@ export default function SalesAssistantWidget() {
               <button
                 type="button"
                 onClick={() => setOpen(true)}
-                className="max-w-[240px] rounded-xl rounded-br-sm border border-line bg-paper py-3 pl-4 pr-10 text-left text-body-sm font-medium text-ink shadow-pop transition-colors hover:border-ink/20"
+                className="max-w-[240px] rounded-xl rounded-br-sm border border-track bg-bg py-3 pl-4 pr-10 text-left text-body-sm font-medium text-fg shadow-float transition-colors hover:border-track-strong"
               >
                 {tx("Besoin d'aide ? Échangeons !", "Need help? Let's chat!")}
               </button>
               <button
                 type="button"
                 onClick={() => setShowBubble(false)}
-                className="absolute right-1 top-1 flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-cream hover:text-ink"
+                className="absolute right-1 top-1 flex h-8 w-8 items-center justify-center rounded-lg text-fg-muted hover:bg-white/[0.04] hover:text-fg"
                 aria-label={tx("Fermer l'invitation", "Dismiss")}
               >
                 <X className="h-4 w-4" aria-hidden="true" />
@@ -353,7 +348,7 @@ export function ChatLauncher({ className = "", size = "lg" }: { className?: stri
       aria-label={locale === "en" ? "Open the sales assistant" : "Ouvrir l'assistant commercial"}
       aria-expanded={chatOpen}
       aria-controls={CHAT_PANEL_ID}
-      className={`${dims} flex-shrink-0 items-center justify-center rounded-full bg-leaf text-white shadow-pop transition-colors hover:bg-leaf-700 ${className}`}
+      className={`${dims} flex-shrink-0 items-center justify-center rounded-full bg-emerald text-bg shadow-glow-dot transition-colors hover:bg-emerald-hover ${className}`}
     >
       <MessageCircle className="h-[22px] w-[22px]" strokeWidth={1.75} aria-hidden="true" />
     </button>

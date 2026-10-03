@@ -24,13 +24,13 @@ export default function CertificationStrip({
 
   return (
     <ul
-      className={`flex flex-wrap items-center gap-x-6 gap-y-2 text-caption ${dark ? "text-ondark-muted" : "text-muted"} ${className}`}
+      className={`flex flex-wrap items-center gap-x-6 gap-y-2 text-caption ${dark ? "text-fg-muted" : "text-fg-muted"} ${className}`}
       aria-label={t("text")}
     >
       {items.map((label) => (
         <li key={label} className="inline-flex items-center gap-2">
           <ShieldCheck
-            className={`h-3.5 w-3.5 flex-shrink-0 ${dark ? "text-leaf-300" : "text-forest"}`}
+            className={`h-3.5 w-3.5 flex-shrink-0 ${dark ? "text-emerald" : "text-emerald"}`}
             strokeWidth={1.75}
             aria-hidden="true"
           />
