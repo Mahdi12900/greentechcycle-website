@@ -277,7 +277,6 @@ export default function TarifsPage() {
       ),
       ctaLabel: tx("Voir la plateforme", "Explore the platform"),
       ctaHref: "/plateforme",
-      accent: "#0B3B2E",
       photo: "/photos/hp-datacenter-green.jpg",
       photoAlt: tx(
         "Salle serveurs sécurisée : Plateforme GTC SaaS",
@@ -295,7 +294,6 @@ export default function TarifsPage() {
       price: tx("Dès 39 € HT/mois", "From €39 ex-VAT/month"),
       ctaLabel: tx("Voir les plans Waki Box", "See Waki Box plans"),
       ctaHref: "#plans",
-      accent: "#047857",
       featured: true,
       photo: "/photos/ewaste-recycling.jpg",
       photoAlt: tx(
@@ -318,7 +316,6 @@ export default function TarifsPage() {
       ),
       ctaLabel: tx("Voir le service ITAD", "Explore the ITAD service"),
       ctaHref: "/services/recyclage-deee",
-      accent: "#B45309",
       photo: "/photos/hp-atelier-itad.jpg",
       photoAlt: tx(
         "Atelier de reconditionnement et effacement certifié",
@@ -364,7 +361,6 @@ export default function TarifsPage() {
           "Email support : D+2",
         ]
       ),
-      accent: "#0B3B2E",
     },
     {
       slug: "waki-box-confort",
@@ -404,7 +400,6 @@ export default function TarifsPage() {
           "Priority support : D+1",
         ]
       ),
-      accent: "#047857",
     },
     {
       slug: "waki-box-premium",
@@ -443,7 +438,6 @@ export default function TarifsPage() {
           "Dedicated support, 4h SLA",
         ]
       ),
-      accent: "#B45309",
     },
   ];
 
@@ -643,7 +637,6 @@ export default function TarifsPage() {
         "Strategic decision room : bespoke GTC Platform study"
       ),
       icon: Monitor,
-      accent: "#0B3B2E",
       ctaLabel: tx("Demander un devis Plateforme", "Request a Platform quote"),
       ctaHref: "/reserver?offre=demo-conseil&brique=plateforme",
       secondaryLabel: tx("Voir la plateforme", "Explore the platform"),
@@ -682,7 +675,6 @@ export default function TarifsPage() {
         "ITAD refurbishment and value recovery workshop"
       ),
       icon: Wrench,
-      accent: "#B45309",
       ctaLabel: tx("Demander un devis ITAD", "Request an ITAD quote"),
       ctaHref: "/reserver?offre=demo-conseil&brique=itad",
       secondaryLabel: tx("Voir le service ITAD", "Explore the ITAD service"),

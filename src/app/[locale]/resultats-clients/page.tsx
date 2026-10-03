@@ -61,7 +61,6 @@ export default function ResultatsClientsPage() {
   };
 
   const metricIcons = [Users, Server, Euro, Cloud];
-  const metricAccents = ["#047857", "#0B3B2E", "#B45309", "#0B3B2E"];
 
   return (
     <div className="overflow-hidden bg-white">
@@ -119,16 +118,10 @@ export default function ResultatsClientsPage() {
                 <StaggerItem key={i}>
                   <ScaleIn delay={i * 0.05}>
                     <div className="border border-line rounded-2xl p-7 h-full flex flex-col items-center text-center hover:shadow-card transition-colors duration-150 bg-cream">
-                      <div
-                        className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5"
-                        style={{ backgroundColor: `${metricAccents[i]}15` }}
-                      >
-                        <MIcon className="h-6 w-6" style={{ color: metricAccents[i] }} aria-hidden="true" />
-                      </div>
-                      <p
-                        className="text-4xl md:text-5xl font-semibold tracking-tight mb-2 leading-none"
-                        style={{ color: metricAccents[i] }}
-                      >
+                      <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-leaf-100 text-forest">
+                        <MIcon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />
+                      </span>
+                      <p className="mb-2 text-stat text-forest">
                         <CountUp end={parseInt(m.value)} suffix={m.suffix} />
                       </p>
                       <p className="text-ink-700 text-sm font-medium leading-snug">
@@ -163,20 +156,15 @@ export default function ResultatsClientsPage() {
           <StaggerContainer className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {cases.map((c, i) => {
               const CIcon = iconMap[c.icon] || Building2;
-              const accents = ["#0B3B2E", "#047857", "#B45309", "#0B3B2E", "#0B3B2E", "#047857"];
-              const accent = accents[i % accents.length];
               return (
                 <StaggerItem key={c.slug}>
                   <div className="bg-white border border-line rounded-2xl p-7 h-full flex flex-col hover:shadow-card hover:border-leaf/30 transition-colors duration-150">
                     <div className="flex items-center gap-3 mb-5">
-                      <div
-                        className="w-11 h-11 rounded-xl flex items-center justify-center"
-                        style={{ backgroundColor: `${accent}15` }}
-                      >
-                        <CIcon className="h-5 w-5" style={{ color: accent }} aria-hidden="true" />
-                      </div>
+                      <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-leaf-100 text-forest">
+                        <CIcon className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
+                      </span>
                       <div>
-                        <span className="uppercase text-eyebrow" style={{ color: accent }}>
+                        <span className="uppercase text-eyebrow text-muted">
                           {c.sector}
                         </span>
                         <h3 className="text-heading-md text-ink">

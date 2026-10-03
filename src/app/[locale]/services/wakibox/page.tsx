@@ -1,6 +1,6 @@
 "use client";
 
-import { Cpu, ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { Cpu, ArrowRight, CheckCircle2 } from "lucide-react";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { FadeIn } from "@/components/motion";
@@ -54,9 +54,9 @@ export default function WakiBoxPage() {
       tx("Animation interne pour encourager le réemploi", "Internal engagement to drive reuse"),
     ],
     proof: [
-      { value: "x3", label: tx("vs bacs passifs", "vs passive bins"), color: "#047857" },
-      { value: "99,5", unit: "%", label: tx("disponibilité borne mesurée", "measured kiosk uptime"), color: "#0B3B2E" },
-      { value: "48", unit: "h", label: tx("collecte après alerte", "collection after alert"), color: "#B45309" },
+      { value: "x3", label: tx("vs bacs passifs", "vs passive bins") },
+      { value: "99,5", unit: "%", label: tx("disponibilité borne mesurée", "measured kiosk uptime") },
+      { value: "48", unit: "h", label: tx("collecte après alerte", "collection after alert") },
     ],
     methodology: {
       title: tx("De l'étude d'implantation au pilotage central", "From site survey to central monitoring"),
@@ -145,7 +145,6 @@ export default function WakiBoxPage() {
         "1 box, plateforme basique, rapport trimestriel.",
         "1 box, basic platform, quarterly report."
       ),
-      accent: "#0B3B2E",
     },
     {
       name: "Confort",
@@ -157,7 +156,6 @@ export default function WakiBoxPage() {
         "Jusqu'à 3 box, rapport CSRD ESRS E5, alertes temps réel.",
         "Up to 3 boxes, CSRD ESRS E5 report, real-time alerts."
       ),
-      accent: "#047857",
       popular: true,
     },
     {
@@ -170,7 +168,6 @@ export default function WakiBoxPage() {
         "Multi-sites, responsable dédié, intégration API, SLA 48 h.",
         "Multi-site, dedicated manager, API integration, 48h SLA."
       ),
-      accent: "#B45309",
     },
   ];
 
@@ -203,19 +200,18 @@ export default function WakiBoxPage() {
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mb-10">
             {plans.map((plan, i) => (
               <FadeIn key={plan.slug}>
-                <div className={`relative bg-white border ${plan.popular ? "border-leaf" : "border-line"} rounded-2xl p-7 h-full flex flex-col`}>
+                <div className={`relative h-full flex flex-col rounded-xl border bg-paper p-6 ${plan.popular ? "border-leaf" : "border-line"}`}>
                   {plan.popular && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-leaf text-white uppercase px-3 py-1 rounded-full flex items-center gap-1 text-eyebrow">
-                      <Sparkles className="h-3 w-3" aria-hidden="true" />
+                    <div className="absolute -top-3 left-6 inline-flex h-7 items-center rounded-full bg-leaf-100 px-3 text-caption font-semibold text-forest">
                       {tx("Le plus populaire", "Most popular")}
                     </div>
                   )}
                   <h3 className="text-heading-md text-ink mb-2">{plan.name}</h3>
                   <div className="flex items-end gap-1 mb-1">
-                    <span className="text-3xl font-semibold tabular-nums" style={{ color: plan.accent }}>
+                    <span className="font-display text-display-md tabular-nums text-forest">
                       {plan.price}
                     </span>
-                    <span className="text-sm text-muted mb-1">€ HT/mois</span>
+                    <span className="text-sm text-muted mb-1">€ HT/{tx("mois", "month")}</span>
                   </div>
                   <p className="text-xs text-muted mb-4">
                     {tx("Mise en service", "Setup")} {plan.setup} € HT · {plan.engagement}
@@ -223,8 +219,7 @@ export default function WakiBoxPage() {
                   <p className="text-sm text-ink-700 leading-relaxed flex-1 mb-5">{plan.pitch}</p>
                   <Link
                     href={`/reserver?offre=${plan.slug}`}
-                    className="block w-full text-center rounded-xl px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-90"
-                    style={{ backgroundColor: plan.accent }}
+                    className={`inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg px-5 text-body-sm font-semibold transition-colors ${plan.popular ? "bg-leaf text-white hover:bg-leaf-700" : "border border-line bg-paper text-ink hover:border-ink/30 hover:bg-cream"}`}
                   >
                     {tx("Réserver", "Book now")}
                     <ArrowRight className="inline h-4 w-4 ml-1" />

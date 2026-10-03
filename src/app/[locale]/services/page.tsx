@@ -43,7 +43,6 @@ type ServiceCard = {
   imageAlt: string;
   bookLabel: string;
   proof: { value: string; unit?: string; label: string }[];
-  accent: string;
   pricingNote?: string;
   pricingHref?: string;
 };
@@ -82,7 +81,6 @@ export default function ServicesPage() {
         { value: "5", unit: tx("jours", "days"), label: tx("livrable garanti", "guaranteed delivery") },
         { value: "99,2", unit: "%", label: tx("précision moyenne", "average accuracy") },
       ],
-      accent: "#047857",
     },
     {
       slug: "effacement-securise",
@@ -110,7 +108,6 @@ export default function ServicesPage() {
         { value: "24", unit: "h", label: tx("certificat délivré", "certificate delivered") },
         { value: "99,97", unit: "%", label: tx("réussite mesurée", "measured success rate") },
       ],
-      accent: "#0B3B2E",
       pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
       pricingHref: "/tarifs",
     },
@@ -140,7 +137,6 @@ export default function ServicesPage() {
         { value: "+40", unit: "%", label: tx("valeur récupérée", "recovered value") },
         { value: "72", unit: "%", label: tx("taux de réemploi", "reuse rate") },
       ],
-      accent: "#B45309",
       pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
       pricingHref: "/tarifs",
     },
@@ -171,7 +167,6 @@ export default function ServicesPage() {
         { value: "98,1", unit: "%", label: tx("matière valorisée", "material recovery") },
         { value: "0", unit: "%", label: tx("mise en décharge", "landfill rate") },
       ],
-      accent: "#047857",
       pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
       pricingHref: "/tarifs",
     },
@@ -202,7 +197,6 @@ export default function ServicesPage() {
         { value: "100", unit: "%", label: tx("intervenants vérifiés", "verified operators") },
         { value: "10", unit: tx("ans", "yrs"), label: tx("archivage des preuves", "evidence archival") },
       ],
-      accent: "#0B3B2E",
     },
     {
       slug: "wakibox",
@@ -230,7 +224,6 @@ export default function ServicesPage() {
         { value: "x3", label: tx("vs bacs passifs", "vs passive bins") },
         { value: "99,5", unit: "%", label: tx("disponibilité borne", "kiosk uptime") },
       ],
-      accent: "#B45309",
       pricingNote: tx("À partir de 39 € HT/mois", "From €39 ex-VAT/month"),
       pricingHref: "/tarifs",
     },

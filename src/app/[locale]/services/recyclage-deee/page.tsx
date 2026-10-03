@@ -53,9 +53,9 @@ export default function RecyclageDEEEPage() {
       tx("Bordereau de suivi des déchets numérisé", "Digital waste tracking slip"),
     ],
     proof: [
-      { value: "98,1", unit: "%", label: tx("matière valorisée mesurée", "measured material recovery"), color: "#047857" },
-      { value: "0", unit: "%", label: tx("mise en décharge", "landfill rate"), color: "#0B3B2E" },
-      { value: "72", unit: "h", label: tx("bordereau délivré", "tracking slip delivery"), color: "#B45309" },
+      { value: "98,1", unit: "%", label: tx("matière valorisée mesurée", "measured material recovery") },
+      { value: "0", unit: "%", label: tx("mise en décharge", "landfill rate") },
+      { value: "72", unit: "h", label: tx("bordereau délivré", "tracking slip delivery") },
     ],
     methodology: {
       title: tx("De l'actif inopérant à la donnée CSRD", "From unfit asset to CSRD data point"),

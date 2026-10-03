@@ -290,14 +290,14 @@ export default function CarbonCalculator() {
               label={t("scenarioA")}
               value={results.scenarioANewT}
               max={Math.max(results.scenarioANewT, results.scenarioBRefurbT, 1)}
-              color="bg-gradient-to-r from-ochre to-ochre"
+              color="bg-ochre"
               suffix="tCO₂e/an"
             />
             <ScenarioBar
               label={t("scenarioB")}
               value={results.scenarioBRefurbT}
               max={Math.max(results.scenarioANewT, results.scenarioBRefurbT, 1)}
-              color="bg-gradient-to-r from-leaf to-leaf"
+              color="bg-leaf"
               suffix="tCO₂e/an"
             />
           </div>

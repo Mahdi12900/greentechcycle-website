@@ -58,34 +58,6 @@ const config: Config = {
         },
         danger: "#B42318", // messages d'erreur de formulaire uniquement
 
-        /* ── Alias legacy (à supprimer à l'étape 11 du plan) ───────────────
-           Remappés vers la nouvelle palette pour que les pages non encore
-           refondues restent sur la palette (plus de bleu/cyan). */
-        primary: leaf,
-        accent: leaf,
-        secondary: {
-          DEFAULT: forest.DEFAULT,
-          50: leaf[50],
-          100: leaf[100],
-          200: leaf[200],
-          300: "#A3B3AA",
-          400: "#5F8A78",
-          500: forest[700],
-          600: forest.DEFAULT,
-          700: forest[950],
-          800: forest[900],
-          900: "#0B1512",
-        },
-        gtc: {
-          forest: leaf.DEFAULT,
-          ink: forest[900],
-          steel: forest.DEFAULT,
-          cyan: ochre.DEFAULT,
-          mint: leaf[300],
-          deep: forest[900],
-        },
-        dark: forest[900],
-        light: "#F7F5F0",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "Inter", "system-ui", "-apple-system", "sans-serif"],
