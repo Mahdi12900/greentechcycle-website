@@ -4,13 +4,17 @@ import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Logo from "@/components/Logo";
-import { Mail, Phone, MapPin, Linkedin, Twitter, ArrowUpRight, Send } from "lucide-react";
+import { Mail, MessageCircle, MapPin, Linkedin, Twitter, ArrowUpRight, Send } from "lucide-react";
+import { CONTACT_EMAIL, PREFILL, mailtoHref, whatsappHref } from "@/lib/contact";
 import CertificationStrip from "@/components/CertificationStrip";
 
 export default function Footer() {
   const t = useTranslations("Footer");
   const locale = useLocale();
   const isEn = locale === "en";
+  const pre = isEn ? PREFILL.en : PREFILL.fr;
+  const mail = mailtoHref(pre.subject);
+  const wa = whatsappHref(pre.whatsapp);
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -105,18 +109,23 @@ export default function Footer() {
                 <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                 <span className="whitespace-pre-line">{t("contact.address")}</span>
               </li>
-              <li>
-                <a href="tel:+33186652210" className="inline-flex items-center gap-3 hover:text-fg">
-                  <Phone className="h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-                  {t("contact.phone")}
-                </a>
-              </li>
-              <li>
-                <a href="mailto:contact@greentechcycle.fr" className="inline-flex items-center gap-3 hover:text-fg">
-                  <Mail className="h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-                  {t("contact.email")}
-                </a>
-              </li>
+              {mail && (
+                <li>
+                  <a href={mail} className="inline-flex items-center gap-3 hover:text-fg">
+                    <Mail className="h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+                    {CONTACT_EMAIL}
+                  </a>
+                </li>
+              )}
+              {wa && (
+                <li>
+                  <a href={wa} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 hover:text-fg">
+                    <MessageCircle className="h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+                    WhatsApp
+                    <span className="sr-only">{isEn ? "(opens WhatsApp)" : "(ouvre WhatsApp)"}</span>
+                  </a>
+                </li>
+              )}
             </ul>
             <Link
               href="/contact"

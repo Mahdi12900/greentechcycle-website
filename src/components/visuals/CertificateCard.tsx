@@ -30,8 +30,8 @@ export default function CertificateCard({
       <div className="fx-dots fx-fade pointer-events-none absolute inset-0" aria-hidden="true" />
       <p className="sr-only">
         {isEn
-          ? "Example of an erasure certificate: serial number, NIST 800-88 method, timestamp, fingerprint and eIDAS seal."
-          : "Exemple de certificat d'effacement : numéro de série, méthode NIST 800-88, horodatage, empreinte et sceau eIDAS."}
+          ? "Example of an erasure certificate: serial number, NIST 800-88 method, timestamp and SHA-256 fingerprint."
+          : "Exemple de certificat d'effacement : numéro de série, méthode NIST 800-88, horodatage et empreinte SHA-256."}
       </p>
       <div aria-hidden="true" className="relative w-full max-w-[360px] rounded-2xl border border-track bg-bg p-5 shadow-float">
         <div className="flex items-start justify-between gap-4">
@@ -53,7 +53,7 @@ export default function CertificateCard({
         </dl>
         <p className="mt-3 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-emerald">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald" />
-          {isEn ? "Verified · eIDAS seal" : "Vérifié · sceau eIDAS"}
+          {isEn ? "Verified · SHA-256 fingerprint" : "Vérifié · empreinte SHA-256"}
         </p>
       </div>
     </div>

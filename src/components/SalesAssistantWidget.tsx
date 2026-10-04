@@ -1,5 +1,6 @@
 "use client";
 
+import ContactChannels from "@/components/ContactChannels";
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
@@ -8,8 +9,6 @@ import {
   FileText,
   LayoutGrid,
   Send,
-  Phone,
-  Mail,
   UserRound,
   MessageCircle,
 } from "lucide-react";
@@ -281,14 +280,7 @@ export default function SalesAssistantWidget() {
               className="flex items-center justify-between border-t border-track bg-bg-card px-4 py-3 text-caption"
               style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
             >
-              <a href="tel:+33186652210" className="inline-flex min-h-[44px] items-center gap-2 font-medium text-fg-strong hover:text-emerald">
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                +33 1 86 65 22 10
-              </a>
-              <a href="mailto:contact@greentechcycle.fr" className="inline-flex min-h-[44px] items-center gap-2 font-medium text-fg-strong hover:text-emerald">
-                <Mail className="h-4 w-4" aria-hidden="true" />
-                Email
-              </a>
+              <ContactChannels variant="pills" formHref="/contact#formulaire" />
             </div>
           </motion.div>
         )}

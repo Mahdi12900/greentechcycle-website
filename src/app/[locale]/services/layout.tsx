@@ -6,8 +6,8 @@ const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 export const metadata: Metadata = {
   title: "Services ITAD | Effacement, Collecte, Reconditionnement",
   description:
-    "Découvrez nos services ITAD complets : effacement certifié NIST 800-88, collecte sécurisée, reconditionnement, reporting CSRD et traçabilité blockchain pour vos actifs IT.",
-  keywords: ["services ITAD", "effacement certifié", "collecte IT", "reconditionnement", "reporting CSRD", "traçabilité blockchain"],
+    "Découvrez nos services ITAD complets : effacement certifié NIST 800-88, collecte sécurisée, reconditionnement, reporting CSRD et traçabilité horodatée (SHA-256) pour vos actifs IT.",
+  keywords: ["services ITAD", "effacement certifié", "collecte IT", "reconditionnement", "reporting CSRD", "traçabilité horodatée (SHA-256)"],
   openGraph: {
     title: "Services ITAD | GreenTechCycle",
     description: "Services ITAD complets : effacement certifié, collecte sécurisée, reconditionnement et reporting CSRD.",

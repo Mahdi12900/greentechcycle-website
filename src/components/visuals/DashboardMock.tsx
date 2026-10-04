@@ -56,7 +56,7 @@ export default function DashboardMock({
   };
   const feed: Record<DashboardState, string[]> = {
     inventory: ["SCAN  LT-0412  Lyon-2  OK", "SCAN  SRV-0093  DC-Nord  OK", "CMDB  sync ServiceNow  ✓"],
-    erasure: ["CERT  GTC-ER-04812  Purge  ✓", "CERT  GTC-ER-04813  Clear  ✓", "SEAL  eIDAS  9f2c…e41a"],
+    erasure: ["CERT  GTC-ER-04812  Purge  ✓", "CERT  GTC-ER-04813  Clear  ✓", "SHA256  9f2c…e41a"],
     reporting: ["ESRS  E5-5  export XBRL  ✓", "CO2e  scope 3.1  −150 kg/u", "PDF  rapport COMEX  prêt"],
   };
   const active = ACTIVE[state];

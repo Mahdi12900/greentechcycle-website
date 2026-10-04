@@ -85,8 +85,8 @@ export default function RecyclageDEEEPage() {
         {
           title: tx("Restitution CSRD automatisée", "Automated CSRD output"),
           desc: tx(
-            "Génération automatique des points de donnée ESRS E5 : ressources entrantes et sortantes, taux de circularité, intensité matière. Export XBRL et PDF signé eIDAS prêts pour vos commissaires aux comptes.",
-            "Automatic generation of ESRS E5 data points: incoming and outgoing resources, circularity rate, material intensity. eIDAS-signed XBRL and PDF exports ready for your auditors."
+            "Génération automatique des points de donnée ESRS E5 : ressources entrantes et sortantes, taux de circularité, intensité matière. Export XBRL et PDF horodaté avec empreinte SHA-256 prêts pour vos commissaires aux comptes.",
+            "Automatic generation of ESRS E5 data points: incoming and outgoing resources, circularity rate, material intensity. XBRL and PDF exports timestamped with a SHA-256 fingerprint ready for your auditors."
           ),
         },
       ],

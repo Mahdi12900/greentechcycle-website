@@ -65,7 +65,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
       {
         question: "Nos données sont trop sensibles pour une plateforme tierce",
-        answer: "Hébergement France (Supabase eu-west-1), conforme RGPD, certifié ISO 27001, isolation multi-tenant par Row Level Security, audit de pénétration annuel. Vos données restent souveraines.",
+        answer: "Hébergement France (Supabase eu-west-1), conforme RGPD, ISO 27001 en cours, isolation multi-tenant par Row Level Security, audit de pénétration annuel. Vos données restent souveraines.",
       },
       {
         question: "Le coût semble élevé par rapport à nos contrats actuels",
@@ -312,7 +312,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
       {
         title: "ITAD datacenters internes : sécurité et valorisation",
-        description: "Des milliers de serveurs renouvelés tous les 4 à 6 ans, contenant des données clients et d'infrastructure critique. GreenTechCycle orchestre l'effacement R2v3 + ISO 27001, maximise la valeur résiduelle des serveurs reconditionnables (100 à 500 € par unité) et produit les certificats exigés par l'ANSSI.",
+        description: "Des milliers de serveurs renouvelés tous les 4 à 6 ans, contenant des données clients et d'infrastructure critique. GreenTechCycle orchestre l'effacement R2v3 (ISO 27001 en cours), maximise la valeur résiduelle des serveurs reconditionnables (100 à 500 € par unité) et produit les certificats exigés par l'ANSSI.",
       },
       {
         title: "Reporting CSRD première ligne : la rigueur que les analystes exigent",

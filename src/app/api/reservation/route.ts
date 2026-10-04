@@ -216,12 +216,13 @@ export async function POST(req: Request) {
     );
   }
 
-  // Minimum required fields
+  // Minimum required fields (le formulaire /contact n'exige pas de téléphone)
+  const phoneOptional = sanitize(payload.source, 40) === "contact";
   if (
     !sanitize(payload.name) ||
     !sanitize(payload.email) ||
     !emailIsValid(sanitize(payload.email)) ||
-    !sanitize(payload.phone) ||
+    (!phoneOptional && !sanitize(payload.phone)) ||
     !sanitize(payload.company) ||
     !payload.consent
   ) {

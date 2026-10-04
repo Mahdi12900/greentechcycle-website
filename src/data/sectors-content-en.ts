@@ -43,7 +43,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     quote: "GTC is the only platform that reconciles DORA, NIS2 and CSRD obligations on your IT estate in real time. Your ACPR auditors see the same data as your CISO and CSR Director.",
     objections: [
       { question: "We already have ServiceNow and Iron Mountain", answer: "GreenTechCycle orchestrates, it doesn't replace. The platform integrates with your existing tools and coordinates your physical providers, adding the traceability, scoring and reporting layer each one lacks." },
-      { question: "Our data is too sensitive for a third-party platform", answer: "Hosted in France (Supabase eu-west-1), GDPR-compliant, ISO 27001 certified, multi-tenant isolation via Row Level Security, annual penetration testing." },
+      { question: "Our data is too sensitive for a third-party platform", answer: "Hosted in France (Supabase eu-west-1), GDPR-compliant, ISO 27001 in progress, multi-tenant isolation via Row Level Security, annual penetration testing." },
       { question: "The cost seems high compared to our current contracts", answer: "The real TCO includes FTEs mobilized, uncovered regulatory risk, and unrecovered residual value. Our banking clients see ROI in 8-12 months." },
     ],
     cta: { title: "Secure your financial ITAD", button: "Request a DORA audit" },
@@ -191,7 +191,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     ],
     useCases: [
       { title: "Smart meter decommissioning: anticipating the 2030 wave", description: "35 million Linky meters deployed 2015-2021 will reach end-of-life in massive waves. GreenTechCycle traces individual decommissioning, orchestrates consumption data erasure, and organizes recycling." },
-      { title: "Internal data center ITAD: security and value recovery", description: "Thousands of servers renewed every 4-6 years. GreenTechCycle orchestrates R2v3 + ISO 27001 erasure, maximizes residual value (€100-500 per server) and produces ANSSI-required certificates." },
+      { title: "Internal data center ITAD: security and value recovery", description: "Thousands of servers renewed every 4-6 years. GreenTechCycle orchestrates R2v3 erasure (ISO 27001 in progress), maximizes residual value (€100-500 per server) and produces ANSSI-required certificates." },
       { title: "Frontline CSRD reporting: the rigor analysts demand", description: "GreenTechCycle produces ESRS E5 indicators of superior granularity and reliability, directly usable in your CSRD declaration and investor roadshows." },
       { title: "Waki Box for distributed sites", description: "Electrical substations, relay stations, mobile teams: the Waki Box centralizes small WEEE flows and automatically feeds each site's environmental reporting." },
     ],

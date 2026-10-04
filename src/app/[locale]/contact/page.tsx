@@ -8,13 +8,13 @@ import { Button, TextLink } from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Tag from "@/components/ui/Tag";
+import ContactChannels from "@/components/ContactChannels";
+import { LEGAL } from "@/lib/contact";
 import {
   ArrowDown,
   Send,
   CheckCircle2,
   MapPin,
-  Phone,
-  Mail,
   ShieldCheck,
   Clock,
   Leaf,
@@ -56,6 +56,7 @@ function ContactInner() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [pending, setPending] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   // Synchronise quand le param URL change
   useEffect(() => {
@@ -69,14 +70,39 @@ function ContactInner() {
   const selectedOffer =
     offers.find((o) => o.slug === form.offre) ?? offers[0];
 
-  function handleSubmit(e: React.FormEvent) {
+  // Envoi réel : /api/reservation enregistre la demande et l'envoie par email
+  // (Resend, si RESEND_API_KEY est configurée côté serveur).
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.consent) return;
+    if (!form.consent || pending) return;
     setPending(true);
-    setTimeout(() => {
-      setPending(false);
+    setFailed(false);
+    try {
+      const res = await fetch("/api/reservation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          company: form.company,
+          size: form.fleet,
+          persona: form.role,
+          needs: `Échéance : ${form.timeline}`,
+          message: form.message,
+          consent: form.consent,
+          offerSlug: form.offre,
+          source: "contact",
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { success?: boolean };
+      if (!res.ok || !data.success) throw new Error("submit_failed");
       setSubmitted(true);
-    }, 700);
+    } catch {
+      setFailed(true);
+    } finally {
+      setPending(false);
+    }
   }
 
   const isEn = locale === "en";
@@ -120,6 +146,8 @@ function ContactInner() {
               <ArrowDown className="h-4 w-4" aria-hidden="true" />
               {t("hero.scrollLabel")}
             </a>
+            {/* Voies directes : WhatsApp / email (si configurés) / formulaire */}
+            <ContactChannels variant="pills" className="mt-6" />
           </div>
         </div>
       </section>
@@ -287,6 +315,14 @@ function ContactInner() {
                     )}
                     {t("form.submit")}
                   </Button>
+                  {failed && (
+                    <div role="alert" className="rounded-lg border border-danger/40 bg-danger/10 p-4 text-body-sm text-fg">
+                      <p className="font-semibold">
+                        {tx("L'envoi n'a pas abouti. Vos réponses sont conservées : réessayez, ou passez par un canal direct.", "Sending failed. Your answers are kept: try again, or use a direct channel.")}
+                      </p>
+                      <ContactChannels variant="pills" formHref={null} className="mt-3" />
+                    </div>
+                  )}
                 </form>
               )}
             </div>
@@ -301,27 +337,15 @@ function ContactInner() {
         <div className="reveal">
           <SectionHeader tone="dark" eyebrow={t("info.eyebrow")} title={t("info.title")} intro={t("info.body")} />
         </div>
-        <ul className="grid gap-px overflow-hidden rounded-xl border border-track bg-track md:grid-cols-3">
-          <li className="bg-bg-card p-6">
-            <MapPin className="h-5 w-5 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-            <p className="mt-4 text-eyebrow uppercase text-fg-muted">{tx("Adresse", "Address")}</p>
+        <ContactChannels />
+        <div className="reveal mt-3 flex items-start gap-4 rounded-xl border border-track bg-bg-card p-5">
+          <MapPin className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+          <div>
+            <p className="text-eyebrow uppercase text-fg-muted">{tx("Siège social", "Registered office")}</p>
             <p className="mt-2 whitespace-pre-line text-body text-fg">{t("info.address")}</p>
-          </li>
-          <li className="bg-bg-card p-6">
-            <Phone className="h-5 w-5 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-            <p className="mt-4 text-eyebrow uppercase text-fg-muted">{tx("Téléphone", "Phone")}</p>
-            <a href="tel:+33186652210" className="mt-2 inline-flex min-h-[44px] items-center text-body text-fg hover:text-emerald">
-              {t("info.phone")}
-            </a>
-          </li>
-          <li className="bg-bg-card p-6">
-            <Mail className="h-5 w-5 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-            <p className="mt-4 text-eyebrow uppercase text-fg-muted">Email</p>
-            <a href="mailto:contact@greentechcycle.fr" className="mt-2 inline-flex min-h-[44px] items-center text-body text-fg hover:text-emerald">
-              {t("info.email")}
-            </a>
-          </li>
-        </ul>
+            <p className="mt-2 font-mono text-caption text-fg-muted">SIREN {LEGAL.siren} · {LEGAL.rcs}</p>
+          </div>
+        </div>
 
         {/* Ancienne S4 « conversion verte » coupée (la page est déjà la conversion) :
             ses deux liens de découverte restent accessibles ici. */}

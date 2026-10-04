@@ -109,7 +109,6 @@ export default function PourquoiGtcPage() {
                 <span className="font-semibold text-fg">{t("founder.name")}</span> · {t("founder.role")}
               </figcaption>
             </figure>
-            <p className="mt-6 max-w-[65ch] text-body-sm text-fg-muted">{t("founder.bio")}</p>
           </div>
         </div>
       </Section>

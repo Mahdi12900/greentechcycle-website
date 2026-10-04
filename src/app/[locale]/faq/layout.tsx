@@ -35,7 +35,7 @@ const faqSchema = {
       name: "Comment GreenTechCycle garantit-il l'effacement sécurisé des données ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "GreenTechCycle utilise des méthodes d'effacement certifiées conformes à la norme NIST 800-88. Chaque opération génère un certificat d'effacement individuel horodaté et traçable via blockchain, garantissant la conformité RGPD.",
+        text: "GreenTechCycle utilise des méthodes d'effacement certifiées conformes à la norme NIST 800-88. Chaque opération génère un certificat d'effacement individuel horodaté et traçable par son empreinte SHA-256, garantissant la conformité RGPD.",
       },
     },
     {

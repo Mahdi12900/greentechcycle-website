@@ -84,14 +84,14 @@ export default function EffacementSecurisePage() {
         {
           title: tx("Vérification et certification", "Verification and certification"),
           desc: tx(
-            "Échantillonnage aléatoire, tentative de récupération forensique, génération du certificat individuel signé eIDAS. Chaque preuve est versée à votre dossier accessible à tout moment.",
-            "Random sampling, forensic recovery attempt, generation of an eIDAS-signed individual certificate. Every proof is filed in your dossier, accessible at any time."
+            "Échantillonnage aléatoire, tentative de récupération forensique, génération du certificat individuel horodaté (empreinte SHA-256). Chaque preuve est versée à votre dossier accessible à tout moment.",
+            "Random sampling, forensic recovery attempt, generation of a timestamped individual certificate (SHA-256 fingerprint). Every proof is filed in your dossier, accessible at any time."
           ),
         },
       ],
     },
     deliverables: [
-      tx("Certificat d'effacement signé eIDAS par actif", "eIDAS-signed erasure certificate per asset"),
+      tx("Certificat d'effacement horodaté (SHA-256) par actif", "Timestamped erasure certificate (SHA-256) per asset"),
       tx("Rapport consolidé par lot ou par mission", "Consolidated report per batch or mission"),
       tx("Vidéo horodatée des opérations", "Timestamped operation video"),
       tx("Registre cryptographique chaîné SHA-256", "SHA-256 chained cryptographic register"),
@@ -101,11 +101,11 @@ export default function EffacementSecurisePage() {
       { metric: tx("Taux de réussite de l'effacement", "Erasure success rate"), value: "99,97 %" },
       { metric: tx("Archivage des preuves", "Evidence archival"), value: tx("10 ans", "10 yrs") },
     ],
-    certifications: ["NIST 800-88 rev2", "DoD 5220.22-M", "IEEE 2883-2022", "R2v3", "ISO 27001"],
+    certifications: ["NIST 800-88 rev2", "DoD 5220.22-M", "IEEE 2883-2022", "R2v3", "ISO 27001 (en cours)"],
     quote: {
       text: tx(
-        "Quatre jours d'audit ACPR, zéro question restée sans preuve. Le registre signé eIDAS de GreenTechCycle a fait taire les inspecteurs en quinze minutes.",
-        "Four days of regulatory audit, zero question left without proof. GreenTechCycle's eIDAS-signed register silenced the inspectors in fifteen minutes."
+        "Quatre jours d'audit ACPR, zéro question restée sans preuve. Le registre horodaté de GreenTechCycle a fait taire les inspecteurs en quinze minutes.",
+        "Four days of regulatory audit, zero question left without proof. GreenTechCycle's timestamped register silenced the inspectors in fifteen minutes."
       ),
       name: "Marc B.",
       role: tx("RSSI, banque CAC 40", "CISO, CAC 40 bank"),

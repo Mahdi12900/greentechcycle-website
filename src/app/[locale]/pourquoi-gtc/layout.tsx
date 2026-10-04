@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Pourquoi GreenTechCycle | Avantages de notre solution ITAD",
   description:
-    "Pourquoi choisir GreenTechCycle ? Plateforme ITAD unifiée, conformité CSRD automatisée, effacement certifié, traçabilité blockchain et valorisation maximale de vos actifs IT.",
+    "Pourquoi choisir GreenTechCycle ? Plateforme ITAD unifiée, conformité CSRD automatisée, effacement certifié, traçabilité horodatée (SHA-256) et valorisation maximale de vos actifs IT.",
   keywords: ["pourquoi GreenTechCycle", "avantages ITAD", "plateforme unifiée", "conformité automatisée", "valorisation IT"],
   openGraph: {
     title: "Pourquoi GreenTechCycle | Solution ITAD",

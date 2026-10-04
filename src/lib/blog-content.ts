@@ -36,7 +36,7 @@ const articleContents: Record<string, string> = {
 <li><strong>Bilan carbone automatisé</strong> : calcul des émissions évitées par le reconditionnement vs. la fabrication neuve, avec méthodologie conforme aux standards GHG Protocol.</li>
 <li><strong>Traçabilité complète</strong> : chaque actif est suivi depuis la collecte jusqu'à sa destination finale (réemploi, recyclage, destruction), avec certificats horodatés.</li>
 <li><strong>Indicateurs de circularité</strong> : taux de réemploi, quantité de matières premières secondaires récupérées, durée de vie prolongée des équipements.</li>
-<li><strong>Reporting blockchain</strong> : les données sont immuables et auditables, répondant aux exigences d'assurance raisonnable de la CSRD.</li>
+<li><strong>Reporting horodaté</strong> : chaque donnée est scellée par une empreinte SHA-256 et auditable, répondant aux exigences d'assurance raisonnable de la CSRD.</li>
 </ul>
 
 <h2>Les étapes pour intégrer l'ITAD dans votre stratégie CSRD</h2>
@@ -147,7 +147,7 @@ const articleContents: Record<string, string> = {
 <p>Vérifiez les certifications (R2v3, e-Stewards, ISO 27001), les processus de sécurité physique, la formation du personnel et les assurances responsabilité.</p>
 
 <h3>5. Tracer la chaîne de possession</h3>
-<p>Depuis le retrait du service jusqu'à l'effacement ou la destruction, chaque équipement doit être suivi. La technologie blockchain offre une traçabilité immuable particulièrement adaptée.</p>
+<p>Depuis le retrait du service jusqu'à l'effacement ou la destruction, chaque équipement doit être suivi. Un horodatage et une empreinte cryptographique (SHA-256) à chaque étape offrent une traçabilité vérifiable.</p>
 
 <h3>6. Former vos équipes</h3>
 <p>Sensibilisez les collaborateurs aux risques : un disque dur « oublié » dans un tiroir ou un laptop personnel non restitué sont des vecteurs de fuite courants.</p>
@@ -158,7 +158,7 @@ const articleContents: Record<string, string> = {
 
 <ul>
 <li><strong>Effacement certifié NIST 800-88</strong> niveau Purge sur tous les supports, avec certificat individuel horodaté.</li>
-<li><strong>Traçabilité blockchain</strong> de chaque opération, créant une preuve immuable et auditable.</li>
+<li><strong>Traçabilité horodatée (SHA-256)</strong> de chaque opération, créant une preuve immuable et auditable.</li>
 <li><strong>Chaîne de possession sécurisée</strong> avec transport dédié, locaux sous vidéosurveillance et personnel habilité.</li>
 <li><strong>Reporting automatisé</strong> pour votre DPO, intégrant les preuves d'effacement dans votre registre des traitements.</li>
 </ul>
@@ -247,8 +247,8 @@ const articleContents: Record<string, string> = {
 
 <ul>
 <li><strong>Inventaire en temps réel</strong> de tous vos actifs en cours de décommissionnement</li>
-<li><strong>Traçabilité blockchain</strong> constituant une preuve auditable de chaque opération</li>
-<li><strong>Certifications ISO 27001 et R2v3</strong> de nos processus</li>
+<li><strong>Traçabilité horodatée (SHA-256)</strong> constituant une preuve auditable de chaque opération</li>
+<li><strong>Certification R2v3</strong> de nos processus, ISO 27001 en cours</li>
 <li><strong>Effacement NIST 800-88</strong> systématique avec certificat individuel</li>
 <li><strong>SLA garantis</strong> pour le traitement des actifs critiques</li>
 <li><strong>Reporting automatisé</strong> pour vos audits de conformité</li>

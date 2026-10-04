@@ -1366,7 +1366,7 @@ export default function RegulationPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-fg mb-0.5">{tx("Nos certifications", "Our certifications")}</p>
-                  <p className="text-xs text-fg-muted">{tx("ISO 27001, R2v3, NIST, DoD", "ISO 27001, R2v3, NIST, DoD")}</p>
+                  <p className="text-xs text-fg-muted">{tx("R2v3, NIST, DoD · ISO 27001 en cours", "R2v3, NIST, DoD · ISO 27001 in progress")}</p>
                 </div>
                 <ArrowRight className="w-5 h-5 text-fg-muted group-hover:text-emerald group-hover:translate-x-0.5 transition" />
               </Link>

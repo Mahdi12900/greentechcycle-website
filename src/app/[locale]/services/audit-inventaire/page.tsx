@@ -84,14 +84,14 @@ export default function AuditInventairePage() {
         {
           title: tx("Rapport exécutif et plan d'action", "Executive report and action plan"),
           desc: tx(
-            "Vous recevez un PDF signé eIDAS, un export tableur complet, un plan de décommissionnement par lots et une estimation de retour sur investissement. Tout est exploitable immédiatement, sans ressaisie.",
-            "You receive an eIDAS-signed PDF, a full spreadsheet export, a batched decommissioning plan and a return-on-investment estimate. Everything is immediately usable, with no re-entry."
+            "Vous recevez un PDF horodaté avec empreinte SHA-256, un export tableur complet, un plan de décommissionnement par lots et une estimation de retour sur investissement. Tout est exploitable immédiatement, sans ressaisie.",
+            "You receive a PDF timestamped with a SHA-256 fingerprint, a full spreadsheet export, a batched decommissioning plan and a return-on-investment estimate. Everything is immediately usable, with no re-entry."
           ),
         },
       ],
     },
     deliverables: [
-      tx("Rapport d'inventaire PDF signé eIDAS", "eIDAS-signed PDF inventory report"),
+      tx("Rapport d'inventaire PDF horodaté avec empreinte SHA-256", "PDF inventory report timestamped with a SHA-256 fingerprint"),
       tx("Export tableur du parc complet", "Full estate spreadsheet export"),
       tx("Notation par actif sur trois axes", "Per-asset three-axis rating"),
       tx("Estimation globale de la valeur résiduelle", "Global residual value estimate"),
@@ -102,7 +102,7 @@ export default function AuditInventairePage() {
       { metric: tx("Précision d'inventaire garantie", "Guaranteed inventory accuracy"), value: "99,2 %" },
       { metric: tx("Connecteurs déployés", "Connectors deployed"), value: tx("J+1", "Day 1") },
     ],
-    certifications: ["R2v3", "ISO 27001", "NIST 800-88", "ITIL v4"],
+    certifications: ["R2v3", "ISO 27001 (en cours)", "NIST 800-88", "ITIL v4"],
     quote: {
       text: tx(
         "L'audit GreenTechCycle nous a remis 14 % d'actifs hors comptabilité, soit 412 000 € de valeur que nous croyions perdue. Le rapport est passé en COMEX sans une seule retouche.",

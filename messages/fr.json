@@ -92,8 +92,7 @@
     "tagline": "Votre partenaire de confiance pour la gestion responsable et sécurisée de vos actifs informatiques en fin de vie. Certifié R2, e-Stewards et ISO 14001.",
     "contact": {
       "title": "Nous contacter",
-      "address": "42 rue de la République\n69002 Lyon, France",
-      "phone": "+33 1 86 65 22 10",
+      "address": "Siège social (WAKI CLOUD SOLUTION)\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
       "email": "contact@greentechcycle.fr"
     },
     "cta": "Demander l'audit gratuit",
@@ -171,7 +170,7 @@
       "placeholder": "Votre email professionnel",
       "cta": "S'inscrire"
     },
-    "copyright": "© 2026 GreenTechCycle. Tous droits réservés. : SIREN 912 345 678.",
+    "copyright": "© 2026 GreenTechCycle · WAKI CLOUD SOLUTION, SASU · SIREN 891 123 952. Tous droits réservés.",
     "bottomLinks": {
       "legal": "Mentions légales",
       "privacy": "Confidentialité",
@@ -228,7 +227,7 @@
       "cta1": "Réserver ma démo (30 min)",
       "cta2": "Demander l'audit gratuit",
       "source": "Source : ADEME : Évaluation environnementale du numérique 2024 (scope 3.1 fabrication, moyenne pondérée laptop/desktop/serveur).",
-      "trust1": "R2v3 · ISO 14001 · ISO 27001",
+      "trust1": "R2v3 · ISO 14001 · ISO 27001 (en cours)",
       "trust2": "NIST 800-88 rev2 · HMG IS5 Enhanced",
       "trust3": "Conforme RGPD · NIS2 · DORA · CSRD ESRS E5"
     },
@@ -309,7 +308,7 @@
           "n": "02",
           "title": "Effacement certifié",
           "desc": "NIST 800-88 rev2 Purge avec validation 4-eyes, broyage 6 mm conforme HMG IS5 Enhanced, certificat individuel hash SHA-256.",
-          "kpi": "Certificat eIDAS sous 24 h"
+          "kpi": "Certificat horodaté sous 24 h"
         },
         {
           "n": "03",
@@ -326,7 +325,7 @@
         {
           "n": "05",
           "title": "Preuve & traçabilité",
-          "desc": "Chaîne de garde scellée eIDAS + horodatage RGS** + GPS T2 temps réel + vidéosurveillance · archivage 10 ans.",
+          "desc": "Chaîne de garde horodatée + empreintes SHA-256 + GPS T2 temps réel + vidéosurveillance · archivage 10 ans.",
           "kpi": "Opposable ACPR / AMF / ANSSI"
         }
       ]
@@ -381,7 +380,7 @@
         "items": [
           "1 plateforme · 1 contrat-cadre · 1 SLA opposable",
           "Reporting ESRS E5 généré automatiquement, 4 jours d'audit moyen",
-          "Chaîne de garde scellée eIDAS · horodatage RGS** · vidéosurveillance",
+          "Chaîne de garde horodatée · empreintes SHA-256 · vidéosurveillance",
           "Cotation Asset Intelligence · valeur résiduelle moyenne 638 k€ / mission",
           "0 réserve sur 41 audits réglementaires 2025"
         ]
@@ -467,13 +466,13 @@
       "items": [
         {
           "title": "Chain of custody opposable.",
-          "body": "Huissier de justice mobilisable sur demande, scellés numérotés, horodatage eIDAS RGS**, géolocalisation GPS classe T2 temps réel, vidéosurveillance des zones d'effacement et de broyage. Refusé nulle part par un auditeur ACPR, AMF ou ANSSI sur 41 missions 2025.",
+          "body": "Huissier de justice mobilisable sur demande, scellés numérotés, horodatage et empreinte SHA-256, géolocalisation GPS classe T2 temps réel, vidéosurveillance des zones d'effacement et de broyage. Refusé nulle part par un auditeur ACPR, AMF ou ANSSI sur 41 missions 2025.",
           "stat": "0 réserve sur 41 audits"
         },
         {
-          "title": "Sept certifications, pas une.",
-          "body": "R2v3 (R2:2013 SERI), ISO 14001:2015, ISO 27001:2022, ISO 9001:2015, NIST SP 800-88 rev2, HMG IS5 Enhanced, e-Stewards. Chaque certificat est consultable en ligne avec son numéro d'enregistrement et sa date d'audit.",
-          "stat": "7 référentiels actifs"
+          "title": "Sept référentiels, pas un.",
+          "body": "R2v3 (R2:2013 SERI), ISO 14001:2015, ISO 27001:2022 (en cours), ISO 9001:2015, NIST SP 800-88 rev2, HMG IS5 Enhanced, e-Stewards. Le statut de chaque référentiel est publié sur la page Certifications & conformité.",
+          "stat": "6 référentiels actifs · ISO 27001 en cours"
         },
         {
           "title": "Mapping ESRS E5 prêt RFP.",
@@ -489,7 +488,7 @@
     },
     "bigQuote": {
       "eyebrow": "Verbatim client",
-      "quote": "Sur 1 200 postes décommissionnés en 2025, nous avons récupéré 184 k€ de valeur résiduelle et passé l'audit ESRS E5 en 4 jours au lieu de 3 semaines. La preuve de chaîne de garde signée eIDAS a clos toutes les questions de l'auditeur, y compris celle, redoutée, sur la sous-traitance de transport.",
+      "quote": "Sur 1 200 postes décommissionnés en 2025, nous avons récupéré 184 k€ de valeur résiduelle et passé l'audit ESRS E5 en 4 jours au lieu de 3 semaines. La preuve de chaîne de garde horodatée a clos toutes les questions de l'auditeur, y compris celle, redoutée, sur la sous-traitance de transport.",
       "name": "Marc B.",
       "role": "RSSI",
       "company": "Banque européenne tier-1 · CAC40",
@@ -587,7 +586,7 @@
       "title": "Ce que disent nos clients.",
       "items": [
         {
-          "quote": "Le pré-audit ACPR a été validé en 4 jours au lieu de 3 semaines. La chaîne de garde eIDAS a clos toutes les questions de l'auditeur.",
+          "quote": "Le pré-audit ACPR a été validé en 4 jours au lieu de 3 semaines. La chaîne de garde horodatée a clos toutes les questions de l'auditeur.",
           "name": "Marc B.",
           "role": "RSSI",
           "company": "Banque européenne tier-1 · CAC40"
@@ -613,7 +612,7 @@
       "cards": [
         { "title": "Conformité NIS2 / DORA", "desc": "Chaîne de garde opposable, audit ACPR en 4 jours.", "href": "/reglementation", "icon": "shield" },
         { "title": "Reporting CSRD", "desc": "11/16 data points ESRS E5 générés automatiquement.", "href": "/services/reconditionnement-valorisation", "icon": "barChart" },
-        { "title": "Sécurité des données", "desc": "Effacement NIST 800-88 rev2, certificat eIDAS sous 24h.", "href": "/services/effacement-securise", "icon": "lock" },
+        { "title": "Sécurité des données", "desc": "Effacement NIST 800-88 rev2, certificat horodaté sous 24h.", "href": "/services/effacement-securise", "icon": "lock" },
         { "title": "Valorisation du parc", "desc": "638 k€ de valeur résiduelle moyenne par mission.", "href": "/services/reconditionnement-valorisation", "icon": "euro" }
       ]
     },
@@ -641,7 +640,7 @@
       "trustBadges": [
         "Conforme RGPD",
         "SecNumCloud-ready",
-        "ISO 27001:2022",
+        "ISO 27001:2022 (en cours)",
         "R2v3 · NIST 800-88",
         "Réponse < 4 h ouvrées"
       ]
@@ -715,15 +714,15 @@
       },
       {
         "id": "blockchain",
-        "title": "Traçabilité blockchain",
+        "title": "Traçabilité horodatée (SHA-256)",
         "subtitle": "Chain of custody certifiée",
         "engagement": "Preuve immuable",
-        "description": "Chaque étape du cycle de vie de vos actifs est enregistrée sur blockchain, garantissant une traçabilité inaltérable et vérifiable par des tiers.",
+        "description": "Chaque étape du cycle de vie de vos actifs est horodatée et scellée par une empreinte SHA-256 dans un journal d'audit chaîné, vérifiable par QR code.",
         "features": [
           "Enregistrement immuable de chaque étape",
           "Chain of custody bout en bout",
           "Vérification par QR code pour les auditeurs",
-          "Horodatage certifié eIDAS",
+          "Horodatage de chaque étape",
           "Preuve de conformité RGPD",
           "Tableau de bord de suivi temps réel"
         ]
@@ -882,7 +881,7 @@
         "slug": "tracabilite",
         "eyebrow": "Étape 04 · Traçabilité",
         "title": "De la collecte au certificat, plus rien ne se perd.",
-        "body": "Le scellé numéroté est apposé chez vous, le transport est suivi, l'effacement est filmé, le certificat est signé eIDAS et horodaté. Si un auditeur vous demande la chaîne de custody d'un actif précis, vous la sortez en moins d'une minute. Pas en trois semaines, pas en passant par six interlocuteurs.",
+        "body": "Le scellé numéroté est apposé chez vous, le transport est suivi, l'effacement est filmé, le certificat est horodaté et porte une empreinte SHA-256. Si un auditeur vous demande la chaîne de custody d'un actif précis, vous la sortez en moins d'une minute. Pas en trois semaines, pas en passant par six interlocuteurs.",
         "photo": "/photos/hp-audit-signature.jpg",
         "photoAlt": "Signature électronique d'un certificat d'effacement après contrôle qualité",
         "proofLabel": "Délai certificat signé",
@@ -891,7 +890,7 @@
         "bullets": [
           "Effacement NIST 800-88 rev. 1 (Clear, Purge, Destroy) selon la sensibilité",
           "Vidéo-surveillance horodatée du plateau de traitement",
-          "Certificats signés eIDAS, scellement cryptographique conservé dix ans"
+          "Certificats horodatés, empreinte SHA-256 conservée dix ans"
         ]
       },
       {
@@ -985,7 +984,7 @@
         },
         {
           "q": "Quel niveau d'effacement appliquez-vous selon la sensibilité ?",
-          "a": "Trois niveaux NIST 800-88 rev. 1 (Clear, Purge, Destroy) appliqués selon la classification de vos données. Pour les supports SSD et NVMe, nous appliquons IEEE 2883. Chaque opération produit un certificat signé eIDAS conservé dix ans."
+          "a": "Trois niveaux NIST 800-88 rev. 1 (Clear, Purge, Destroy) appliqués selon la classification de vos données. Pour les supports SSD et NVMe, nous appliquons IEEE 2883. Chaque opération produit un certificat horodaté (empreinte SHA-256) conservé dix ans."
         },
         {
           "q": "Comment l'auditeur accède-t-il aux preuves le jour J ?",
@@ -1007,7 +1006,7 @@
       "cta1": "Réserver le cadrage",
       "cta2": "Voir nos cas clients",
       "trust1": "Souveraineté française · OVHcloud SecNumCloud",
-      "trust2": "Certificats signés eIDAS conservés 10 ans",
+      "trust2": "Certificats horodatés (SHA-256) conservés 10 ans",
       "trust3": "0 % décharge · engagement contractuel R2v3"
     }
   },
@@ -1036,9 +1035,8 @@
       "eyebrow": "Le mot du fondateur",
       "title": "Une décision prise dans un sous-sol bancaire en 2019.",
       "quote": "J'ai vu ce jour-là deux mille disques durs broyés sans le moindre certificat. La facture était payée, le risque était bien réel et personne dans la pièce ne pouvait produire la preuve que ces données ne réapparaîtraient pas. C'est de cette colère qu'est née GreenTechCycle.",
-      "name": "Mahdi A.",
-      "role": "Fondateur · ancien RSSI bancaire",
-      "bio": "Ingénieur diplômé, quinze ans d'expérience dont huit comme responsable de la sécurité des systèmes d'information dans la banque. Certifié CISSP et auditeur principal ISO 27001. Membre actif des associations Boavizta et Institut du Numérique Responsable. GreenTechCycle a été fondée à Lyon en 2021."
+      "name": "Mahdi B.",
+      "role": "Fondateur · ancien RSSI bancaire"
     },
     "convictions": [
       {
@@ -1061,16 +1059,16 @@
         "slug": "preuve",
         "eyebrow": "Conviction 02 · Preuve avant promesse",
         "title": "Chaque chiffre publié est sourcé, chaque opération est filmée.",
-        "body": "Nous publions notre bilan carbone scope 1+2+3 chaque année, audité par un cabinet tiers. Nous ne reprenons aucun chiffre marketing : ADEME, Boavizta, CIGREF, INR sont nos seules sources. Nos plateaux de traitement sont sous vidéo-surveillance horodatée, nos certificats sont signés eIDAS et conservés dix ans. Si vous n'arrivez pas à reconstituer une opération, nous ne l'avons pas bien faite.",
+        "body": "Nous publions notre bilan carbone scope 1+2+3 chaque année, audité par un cabinet tiers. Nous ne reprenons aucun chiffre marketing : ADEME, Boavizta, CIGREF, INR sont nos seules sources. Nos plateaux de traitement sont sous vidéo-surveillance horodatée, nos certificats sont horodatés, scellés par une empreinte SHA-256 et conservés dix ans. Si vous n'arrivez pas à reconstituer une opération, nous ne l'avons pas bien faite.",
         "proofValue": "10 ans",
         "proofLabel": "Conservation des preuves",
-        "proofDetail": "Vidéos, registres, certificats signés eIDAS",
+        "proofDetail": "Vidéos, registres, certificats horodatés (empreinte SHA-256)",
         "photo": "/photos/hp-audit-signature.jpg",
         "photoAlt": "Signature électronique horodatée d'un certificat d'effacement chez GreenTechCycle",
         "bullets": [
           "Bilan carbone scope 1+2+3 publié chaque année et audité",
           "Vidéo-surveillance horodatée de l'ensemble des plateaux de traitement",
-          "Certificats signés eIDAS, hash cryptographique, archivage décennal"
+          "Certificats horodatés, empreinte SHA-256, archivage décennal"
         ]
       },
       {
@@ -1135,7 +1133,7 @@
         {
           "metric": "24",
           "suffix": "h",
-          "label": "délai d'émission d'un certificat signé eIDAS",
+          "label": "délai d'émission d'un certificat horodaté",
           "source": "Engagement contractuel, après réception en plateau"
         },
         {
@@ -1160,7 +1158,7 @@
           "metric": "10",
           "suffix": " ans",
           "label": "archivage des preuves opérationnelles",
-          "source": "Vidéos, registres, certificats signés eIDAS"
+          "source": "Vidéos, registres, certificats horodatés (empreinte SHA-256)"
         }
       ]
     },
@@ -1373,7 +1371,7 @@
         "Tableau de bord principal",
         "Module d'effacement",
         "Reporting CSRD",
-        "Traçabilité blockchain",
+        "Traçabilité horodatée (SHA-256)",
         "Bilan carbone"
       ]
     },
@@ -1449,7 +1447,7 @@
         "Réception et vérification des scellés",
         "Traitement avec vidéo-surveillance",
         "Certificat d'effacement émis",
-        "Enregistrement blockchain"
+        "Journal d'audit chaîné (SHA-256)"
       ]
     },
     "certifications": {
@@ -1457,7 +1455,7 @@
       "items": [
         "R2v3 (Responsible Recycling)",
         "ISO 14001 (Management environnemental)",
-        "ISO 27001 (Sécurité de l'information)",
+        "ISO 27001 (Sécurité de l'information) : en cours",
         "e-Stewards",
         "Qualiopi (formation)"
       ]
@@ -2017,8 +2015,7 @@
       "eyebrow": "Voies directes",
       "title": "Si vous préférez écrire ou téléphoner avant de remplir un formulaire.",
       "body": "Notre équipe répond personnellement aux courriels et aux appels, pas de standard automatisé, pas d'attribution aléatoire. Nous prenons en charge les demandes urgentes et confidentielles avec la même réactivité que les demandes formelles.",
-      "address": "42 rue de la République\n69002 Lyon, France",
-      "phone": "+33 1 86 65 22 10",
+      "address": "WAKI CLOUD SOLUTION\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
       "email": "contact@greentechcycle.fr"
     },
     "conversion": {
@@ -2047,7 +2044,7 @@
       },
       {
         "q": "Comment garantissez-vous la chaîne de traçabilité ?",
-        "a": "Chaque actif est tracé de bout en bout : PV de prise en charge, scellés numérotés, transport GPS, vidéo-surveillance du traitement et enregistrement blockchain."
+        "a": "Chaque actif est tracé de bout en bout : PV de prise en charge, scellés numérotés, transport GPS, vidéo-surveillance du traitement et journal d'audit chaîné (SHA-256)."
       },
       {
         "q": "La plateforme est-elle compatible avec notre ITSM ?",
@@ -2129,7 +2126,7 @@
       },
       {
         "q": "Comment prouvez-vous la destruction des données ?",
-        "a": "Certificat d'effacement individuel par actif avec hash SHA-256, horodatage eIDAS et enregistrement blockchain pour preuve irréfutable."
+        "a": "Certificat d'effacement individuel par actif avec empreinte SHA-256, horodatage et QR code de vérification."
       },
       {
         "q": "Êtes-vous auditable ?",
@@ -2171,7 +2168,7 @@
         },
         {
           "title": "Innovation",
-          "desc": "Blockchain, IoT, IA : nous repoussons les limites de ce que l'ITAD peut être."
+          "desc": "IoT, IA, preuve cryptographique : nous repoussons les limites de ce que l'ITAD peut être."
         }
       ]
     },
@@ -2188,7 +2185,7 @@
       "content": {
         "editor": {
           "title": "Éditeur du site",
-          "text": "GreenTechCycle SAS au capital de 50 000 €\nSIREN : 912 345 678\nRCS Lyon B 912 345 678\nSiège social : 42 rue de la République, 69002 Lyon, France\nDirecteur de la publication : Jean-Marc Duval, Président\nTéléphone : +33 1 86 65 22 10\nEmail : contact@greentechcycle.fr"
+          "text": "Le site GreenTechCycle est édité par WAKI CLOUD SOLUTION, SASU (société par actions simplifiée unipersonnelle) au capital de 5 150,00 €\nSIREN : 891 123 952\nRCS : 891 123 952 R.C.S. Meaux\nSiège social : 3 rue des Tournelles, 77174 Villeneuve-Saint-Denis, France\nDirecteur de la publication : Mahdi B., Président"
         },
         "hosting": {
           "title": "Hébergement",
@@ -2250,7 +2247,7 @@
         },
         "controller": {
           "title": "Responsable du traitement",
-          "text": "GreenTechCycle SAS\n42 rue de la République, 69002 Lyon\nDPO : dpo@greentechcycle.fr"
+          "text": "WAKI CLOUD SOLUTION (GreenTechCycle)\n3 rue des Tournelles, 77174 Villeneuve-Saint-Denis\nDPO : dpo@greentechcycle.fr"
         },
         "data": {
           "title": "Données collectées",
@@ -2379,9 +2376,9 @@
         "context": "Banque européenne tier-1, parc de 2 400 postes trading floor à migrer vers Windows 11 sous échéance 14 octobre 2025 (fin support W10). Auditeurs ACPR programmés pour mars 2026, NIS2 entrée en vigueur 18 octobre 2024, DORA en vigueur 17 janvier 2025. Aucune chaîne de garde formalisée jusque-là, certificats d'effacement papier disséminés.",
         "problem": "Le RSSI doit prouver au régulateur que chaque actif décommissionné a été effacé selon NIST 800-88, transporté en chaîne de garde scellée, détruit ou reconditionné dans un prestataire référencé au registre TPP DORA. Sans cette preuve, sanction ACPR jusqu'à 1 % du chiffre d'affaires consolidé.",
         "stakeholders": "RSSI, DSI Workplace, DPO, Compliance DORA, Direction des risques opérationnels, Achats",
-        "solution": "Module Parc IT couplé au CMDB ServiceNow ; effacement NIST 800-88 Purge à 4-eyes ; chaîne de garde scellée eIDAS et horodatage RGS** ; matrice DORA art. 28 + NIS2 + ACPR Notice 2024-N-04 pré-configurée ; Pro Service Audit Forensic GTC pour pré-audit ACPR ; export PDF/XBRL signé pour le superviseur.",
-        "results": "2 400 postes traités en 11 semaines (vs 6 mois budget initial) · 187 k€ valeur résiduelle récupérée · 312 tCO₂e évitées (méthode Boavizta v1.4) · pré-audit ACPR validé en 4 jours au lieu de 3 semaines · 100 % des certificats signés eIDAS sous 24 h.",
-        "testimonialQuote": "La preuve eIDAS a clos toutes les questions ACPR. Pour la première fois, notre RSSI dort tranquille sur un audit DORA.",
+        "solution": "Module Parc IT couplé au CMDB ServiceNow ; effacement NIST 800-88 Purge à 4-eyes ; chaîne de garde horodatée avec empreintes SHA-256 ; matrice DORA art. 28 + NIS2 + ACPR Notice 2024-N-04 pré-configurée ; Pro Service Audit Forensic GTC pour pré-audit ACPR ; export PDF/XBRL signé pour le superviseur.",
+        "results": "2 400 postes traités en 11 semaines (vs 6 mois budget initial) · 187 k€ valeur résiduelle récupérée · 312 tCO₂e évitées (méthode Boavizta v1.4) · pré-audit ACPR validé en 4 jours au lieu de 3 semaines · 100 % des certificats horodatés sous 24 h.",
+        "testimonialQuote": "La preuve horodatée a clos toutes les questions ACPR. Pour la première fois, notre RSSI dort tranquille sur un audit DORA.",
         "testimonialRole": "Directeur Sécurité IT, Banque européenne tier-1 (CAC40)",
         "ctaSlug": "banque-cac40-windows11-nis2"
       },
@@ -2449,9 +2446,9 @@
         "context": "Opérateur énergétique français, OSE/NIS2, parc de 4 200 concentrateurs Linky de génération G1 obsolètes (EOSL constructeur). Chaque concentrateur contient des clés cryptographiques de communication courant porteur en ligne (CPL) et un identifiant matériel sensible. Audit cybersécurité national programmé sous 30 jours.",
         "problem": "Effacer ou détruire les modules cryptographiques, prouver la chaîne de garde de bout en bout sur 4 200 actifs répartis sur 38 sites techniques, livrer un rapport conforme au référentiel sécurité OT du gestionnaire de réseau, sans ralentir les équipes terrain.",
         "stakeholders": "RSSI OT, Direction des opérations réseau, Direction conformité réglementaire, Achats, Pôle audit national",
-        "solution": "Pro Service Cybersécurité ITAD : extraction sur site par technicien habilité confidentiel défense ; convoyage classe T2 ; effacement NIST 800-88 Purge sur les modules SAM ; broyage HMG IS5 Enhanced 6 mm ; chaîne de garde scellée eIDAS + horodatage RGS** ; export auditeur national + matrice IEC 62443 / NIS2.",
+        "solution": "Pro Service Cybersécurité ITAD : extraction sur site par technicien habilité confidentiel défense ; convoyage classe T2 ; effacement NIST 800-88 Purge sur les modules SAM ; broyage HMG IS5 Enhanced 6 mm ; chaîne de garde horodatée avec empreintes SHA-256 ; export auditeur national + matrice IEC 62443 / NIS2.",
         "results": "4 200 concentrateurs traités en 38 jours · 100 % chaîne de garde scellée · 0 incident cybersécurité · audit national validé en 9 jours · 78 tCO₂e évitées · 0 € valeur résiduelle (destruction réglementaire imposée).",
-        "testimonialQuote": "La chaîne de garde scellée eIDAS a évité une réserve sur l'audit national. Sans GTC nous aurions eu 6 semaines de remédiation.",
+        "testimonialQuote": "La chaîne de garde horodatée a évité une réserve sur l'audit national. Sans GTC nous aurions eu 6 semaines de remédiation.",
         "testimonialRole": "RSSI OT, Opérateur énergétique français",
         "ctaSlug": "energie-dora-chain-of-custody"
       },
@@ -2463,7 +2460,7 @@
         "context": "Opérateur télécom français, fermeture programmée d'un site colocation : 12 racks complets, 1 100 serveurs (Dell PowerEdge R740/R750, HPE ProLiant Gen10), 220 switches Cisco Nexus, 60 baies SAN. Tous les actifs ont entre 3 et 5 ans, valeur résiduelle marché reconditionné estimée à 600 k€+.",
         "problem": "Effacer les SSD/HDD selon NIST 800-88 Purge, démonter les racks sans dégrader les composants revendables, certifier la chaîne pour rassurer l'acheteur reconditionneur, optimiser le calendrier face à un coût d'occupation datacenter de 18 k€/mois.",
         "stakeholders": "DSI Infrastructure, Achats, DAF, Asset manager IT, RSSI, Logistique",
-        "solution": "Pro Service Asset Intelligence pour cotation marché reconditionné EMEA ; effacement NIST 800-88 Purge en zone scellée ; démontage rack à rack avec inventaire SKU ; chaîne de garde eIDAS ; mise en marché via réseau reconditionneurs partenaires ; comptes-rendus financiers par lot pour la DAF.",
+        "solution": "Pro Service Asset Intelligence pour cotation marché reconditionné EMEA ; effacement NIST 800-88 Purge en zone scellée ; démontage rack à rack avec inventaire SKU ; chaîne de garde horodatée ; mise en marché via réseau reconditionneurs partenaires ; comptes-rendus financiers par lot pour la DAF.",
         "results": "1 100 serveurs + 220 switches + 60 baies SAN traités en 24 jours · 638 k€ valeur résiduelle récupérée (vs 78 k€ scrap métal) · 1 247 tCO₂e évitées (réemploi vs neuf) · 36 k€ d'économie occupation datacenter.",
         "testimonialQuote": "GTC nous a remboursé l'opération et a généré 560 k€ de cash net. Notre DAF demande à généraliser la méthode à toutes nos fermetures de sites.",
         "testimonialRole": "Asset Manager IT, Opérateur télécom français",
@@ -2682,8 +2679,8 @@
             "description": "Chaque opération critique est validée par deux opérateurs indépendants, conformément aux standards bancaires."
           },
           {
-            "title": "Chaîne de garde blockchain",
-            "description": "Traçabilité de bout en bout avec scellé eIDAS et horodatage qualifié RGS**, opposable devant les régulateurs."
+            "title": "Chaîne de garde horodatée",
+            "description": "Traçabilité de bout en bout : chaque étape horodatée et scellée par une empreinte SHA-256, vérifiable par QR code."
           },
           {
             "title": "Export auditeurs dédié",
@@ -2696,7 +2693,7 @@
         "items": [
           {
             "question": "GTC est-il qualifié au titre de DORA art. 28-30 ?",
-            "answer": "Oui. GTC figure au registre TPP en tant que prestataire ITAD critique. Nous fournissons le dossier de qualification DORA complet, incluant les rapports d'audit annuels, les certifications R2v3 et ISO 27001, et la matrice de conformité article 28."
+            "answer": "Oui. GTC figure au registre TPP en tant que prestataire ITAD critique. Nous fournissons le dossier de qualification DORA complet, incluant les rapports d'audit annuels, la certification R2v3, l'état d'avancement ISO 27001 (en cours) et la matrice de conformité article 28."
           },
           {
             "question": "Quel est le délai de restitution des certificats d'effacement ?",
@@ -3382,7 +3379,7 @@
           {
             "role": "RSSI / CISO",
             "concern": "Destruction IGI 1300 et chaîne de garde",
-            "ctaAngle": "Destruction certifiée + scellé eIDAS RGS**"
+            "ctaAngle": "Destruction certifiée + certificat horodaté (SHA-256)"
           },
           {
             "role": "Responsable OT",
@@ -5919,7 +5916,7 @@
           "solution": [
             "Audit flash en 4 jours : inventaire complet + chaîne de custody produite sous 72h",
             "Effacement HMG IS5 Enhanced + NIST 800-88 r2 sur supports critiques OT/IT",
-            "Chain of custody numérique : hash SHA-256 par support, horodatage blockchain-ready",
+            "Chain of custody numérique : empreinte SHA-256 par support, horodatage",
             "Rapport ACPR-ready formaté selon exigences BCE/ACPR (template validé inspecteurs)",
             "Accompagnement RSSI pendant l'inspection, expert GTC présent J-1 à J+4"
           ],
@@ -6255,7 +6252,7 @@
       "trustBadges": [
         "Conforme RGPD",
         "SecNumCloud-ready",
-        "ISO 27001",
+        "ISO 27001 (en cours)",
         "Réponse sous 24h"
       ]
     },
@@ -6606,7 +6603,7 @@
     "finalQuote": {
       "eyebrow": "Vision",
       "text": "La conformité DEEE n'est pas un coût caché de fin de mois. Bien instrumentée, c'est la preuve la plus accessible que vous avez engagé votre entreprise dans la transition. Waki Box rend cette preuve mesurable, défendable, partageable.",
-      "name": "Mahdi Khelifi",
+      "name": "Mahdi B.",
       "role": "Fondateur, GreenTechCycle"
     },
     "finalCta": {
@@ -6846,7 +6843,7 @@
           "312 tCO₂e évitées",
           "Pré-audit ACPR validé en 4 jours"
         ],
-        "quote": "La preuve eIDAS a clos toutes les questions ACPR.",
+        "quote": "La preuve horodatée a clos toutes les questions ACPR.",
         "quoteName": "Marc B.",
         "quoteRole": "Directeur Sécurité IT · Banque européenne tier-1"
       },
@@ -6933,10 +6930,10 @@
       "cta2": "Parler à un expert"
     },
     "trustBadges": [
-      "Certifié ISO 27001",
+      "ISO 27001 en cours",
       "Effacement NIST 800-88",
       "Hébergement souverain",
-      "Preuve eIDAS",
+      "Preuve horodatée",
       "Bilan Boavizta v1.4"
     ]
   }

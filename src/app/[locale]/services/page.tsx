@@ -95,8 +95,8 @@ export default function ServicesPage() {
         "It isn't the machine that worries you, it's the files."
       ),
       body: tx(
-        "NIST 800-88, DoD 5220.22-M, IEEE 2883-2022 selon le support et la sensibilité. Chaque actif reçoit un certificat individuel signé eIDAS, archivé dix ans. Un audit interne est déclenché sur chaque lot, pas besoin de vérifier seul.",
-        "NIST 800-88, DoD 5220.22-M, IEEE 2883-2022 depending on the medium and sensitivity. Every asset gets an eIDAS-signed individual certificate, archived ten years. An internal audit is triggered on every batch, no need to check alone."
+        "NIST 800-88, DoD 5220.22-M, IEEE 2883-2022 selon le support et la sensibilité. Chaque actif reçoit un certificat individuel horodaté (empreinte SHA-256), archivé dix ans. Un audit interne est déclenché sur chaque lot, pas besoin de vérifier seul.",
+        "NIST 800-88, DoD 5220.22-M, IEEE 2883-2022 depending on the medium and sensitivity. Every asset gets a timestamped individual certificate (SHA-256 fingerprint), archived ten years. An internal audit is triggered on every batch, no need to check alone."
       ),
       badge: tx("Certificat sous 24 h", "Certificate within 24h"),
       icon: ShieldCheck,
@@ -183,8 +183,8 @@ export default function ServicesPage() {
         "If data leaks in transit, it's your name that hits the press."
       ),
       body: tx(
-        "Procès-verbal d'huissier, scellés numérotés, suivi GPS, vidéosurveillance archivée dix ans, registre signé eIDAS. Huit contrôles imbriqués, un dossier opposable devant un tribunal.",
-        "Bailiff report, numbered seals, GPS tracking, video surveillance archived ten years, eIDAS-signed register. Eight interlocked controls, a court-admissible dossier."
+        "Procès-verbal d'huissier, scellés numérotés, suivi GPS, vidéosurveillance archivée dix ans, registre horodaté chaîné (SHA-256). Huit contrôles imbriqués, un dossier opposable devant un tribunal.",
+        "Bailiff report, numbered seals, GPS tracking, video surveillance archived ten years, timestamped chained register (SHA-256). Eight interlocked controls, a court-admissible dossier."
       ),
       badge: tx("Niveau Défense", "Defence-grade"),
       icon: Shield,

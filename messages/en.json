@@ -92,8 +92,7 @@
     "tagline": "Your trusted partner for responsible and secure management of end-of-life IT assets. R2, e-Stewards and ISO 14001 certified.",
     "contact": {
       "title": "Contact us",
-      "address": "42 rue de la République\n69002 Lyon, France",
-      "phone": "+33 1 86 65 22 10",
+      "address": "Registered office (WAKI CLOUD SOLUTION)\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
       "email": "contact@greentechcycle.fr"
     },
     "cta": "Request free audit",
@@ -171,7 +170,7 @@
       "placeholder": "Your professional email",
       "cta": "Subscribe"
     },
-    "copyright": "© 2026 GreenTechCycle. All rights reserved. : SIREN 912 345 678.",
+    "copyright": "© 2026 GreenTechCycle · WAKI CLOUD SOLUTION, SASU · SIREN 891 123 952. All rights reserved.",
     "bottomLinks": {
       "legal": "Legal notice",
       "privacy": "Privacy",
@@ -228,7 +227,7 @@
       "cta1": "Book my demo (30 min)",
       "cta2": "Request free audit",
       "source": "Source: ADEME : Environmental Assessment of Digital Technology 2024 (scope 3.1 manufacturing, weighted laptop/desktop/server average).",
-      "trust1": "R2v3 · ISO 14001 · ISO 27001",
+      "trust1": "R2v3 · ISO 14001 · ISO 27001 (in progress)",
       "trust2": "NIST 800-88 rev2 · HMG IS5 Enhanced",
       "trust3": "GDPR · NIS2 · DORA · CSRD ESRS E5 compliant"
     },
@@ -309,7 +308,7 @@
           "n": "02",
           "title": "Certified erasure",
           "desc": "NIST 800-88 rev2 Purge with 4-eyes validation, HMG IS5 Enhanced 6 mm shredding, individual SHA-256 certificate.",
-          "kpi": "eIDAS certificate within 24h"
+          "kpi": "Timestamped certificate within 24h"
         },
         {
           "n": "03",
@@ -326,7 +325,7 @@
         {
           "n": "05",
           "title": "Proof & traceability",
-          "desc": "eIDAS-sealed chain of custody + RGS** timestamping + class-T2 GPS + video surveillance · 10-year archive.",
+          "desc": "timestamped chain of custody + SHA-256 fingerprints + class-T2 GPS + video surveillance · 10-year archive.",
           "kpi": "Withstands ACPR / AMF / ANSSI"
         }
       ]
@@ -381,7 +380,7 @@
         "items": [
           "1 platform · 1 master contract · 1 enforceable SLA",
           "ESRS E5 reporting generated automatically, 4-day audit on average",
-          "eIDAS-sealed chain of custody · RGS** timestamp · video surveillance",
+          "Timestamped chain of custody · SHA-256 fingerprints · video surveillance",
           "Asset Intelligence quotation · €638k average residual value / mission",
           "0 reservations across 41 regulatory audits in 2025"
         ]
@@ -467,13 +466,13 @@
       "items": [
         {
           "title": "Opposable chain of custody.",
-          "body": "Bailiff dispatchable on demand, numbered seals, eIDAS RGS** timestamping, real-time class-T2 GPS, video surveillance of erasure and shredding zones. Never refused by an ACPR, AMF or ANSSI auditor across 41 missions in 2025.",
+          "body": "Bailiff dispatchable on demand, numbered seals, timestamping and SHA-256 fingerprint, real-time class-T2 GPS, video surveillance of erasure and shredding zones. Never refused by an ACPR, AMF or ANSSI auditor across 41 missions in 2025.",
           "stat": "0 reservations across 41 audits"
         },
         {
-          "title": "Seven certifications, not one.",
-          "body": "R2v3 (R2:2013 SERI), ISO 14001:2015, ISO 27001:2022, ISO 9001:2015, NIST SP 800-88 rev2, HMG IS5 Enhanced, e-Stewards. Each certificate is published online with its registration number and audit date.",
-          "stat": "7 active standards"
+          "title": "Seven standards, not one.",
+          "body": "R2v3 (R2:2013 SERI), ISO 14001:2015, ISO 27001:2022 (in progress), ISO 9001:2015, NIST SP 800-88 rev2, HMG IS5 Enhanced, e-Stewards. The status of each standard is published on the Certifications & compliance page.",
+          "stat": "6 active standards · ISO 27001 in progress"
         },
         {
           "title": "ESRS E5 mapping ready for RFP.",
@@ -489,7 +488,7 @@
     },
     "bigQuote": {
       "eyebrow": "Client verbatim",
-      "quote": "Across 1,200 workstations decommissioned in 2025, we recovered €184k of residual value and cleared the ESRS E5 audit in 4 days instead of 3 weeks. The eIDAS-signed chain of custody closed every auditor question, including the dreaded one on transport sub-contracting.",
+      "quote": "Across 1,200 workstations decommissioned in 2025, we recovered €184k of residual value and cleared the ESRS E5 audit in 4 days instead of 3 weeks. The timestamped chain of custody closed every auditor question, including the dreaded one on transport sub-contracting.",
       "name": "Marc B.",
       "role": "CISO",
       "company": "Tier-1 European bank · CAC40",
@@ -587,7 +586,7 @@
       "title": "What our clients say.",
       "items": [
         {
-          "quote": "The ACPR pre-audit was cleared in 4 days instead of 3 weeks. The eIDAS chain of custody closed every auditor question.",
+          "quote": "The ACPR pre-audit was cleared in 4 days instead of 3 weeks. The timestamped chain of custody closed every auditor question.",
           "name": "Marc B.",
           "role": "CISO",
           "company": "Tier-1 European bank · CAC40"
@@ -613,7 +612,7 @@
       "cards": [
         { "title": "NIS2 / DORA Compliance", "desc": "Opposable chain of custody, ACPR audit in 4 days.", "href": "/reglementation", "icon": "shield" },
         { "title": "CSRD Reporting", "desc": "11/16 ESRS E5 data points generated automatically.", "href": "/services/reconditionnement-valorisation", "icon": "barChart" },
-        { "title": "Data Security", "desc": "NIST 800-88 rev2 erasure, eIDAS certificate within 24h.", "href": "/services/effacement-securise", "icon": "lock" },
+        { "title": "Data Security", "desc": "NIST 800-88 rev2 erasure, Timestamped certificate within 24h.", "href": "/services/effacement-securise", "icon": "lock" },
         { "title": "Fleet Value Recovery", "desc": "€638k average residual value per mission.", "href": "/services/reconditionnement-valorisation", "icon": "euro" }
       ]
     },
@@ -641,7 +640,7 @@
       "trustBadges": [
         "GDPR compliant",
         "SecNumCloud-ready",
-        "ISO 27001:2022",
+        "ISO 27001:2022 (in progress)",
         "R2v3 · NIST 800-88",
         "Reply < 4 business hours"
       ]
@@ -715,15 +714,15 @@
       },
       {
         "id": "blockchain",
-        "title": "Blockchain Traceability",
+        "title": "Timestamped Traceability (SHA-256)",
         "subtitle": "Certified chain of custody",
         "engagement": "Immutable proof",
-        "description": "Every step of your assets' lifecycle is recorded on blockchain, ensuring tamper-proof and third-party verifiable traceability.",
+        "description": "Every step of your assets' lifecycle is timestamped and sealed with a SHA-256 fingerprint in a chained audit log, verifiable by QR code.",
         "features": [
           "Immutable recording of each step",
           "End-to-end chain of custody",
           "QR code verification for auditors",
-          "eIDAS certified timestamping",
+          "Timestamping of every step",
           "GDPR compliance proof",
           "Real-time tracking dashboard"
         ]
@@ -882,7 +881,7 @@
         "slug": "tracabilite",
         "eyebrow": "Step 04 · Traceability",
         "title": "From pickup to certificate, nothing slips away.",
-        "body": "The numbered seal is applied at your premises, the transport is tracked, the erasure is filmed, the certificate is eIDAS-signed and timestamped. If an auditor asks for the chain of custody on a specific asset, you produce it in under a minute. Not three weeks, not via six different contacts.",
+        "body": "The numbered seal is applied at your premises, the transport is tracked, the erasure is filmed, the certificate is timestamped and carries a SHA-256 fingerprint. If an auditor asks for the chain of custody on a specific asset, you produce it in under a minute. Not three weeks, not via six different contacts.",
         "photo": "/photos/hp-audit-signature.jpg",
         "photoAlt": "Electronic signature of an erasure certificate after quality control",
         "proofLabel": "Signed certificate lead time",
@@ -891,7 +890,7 @@
         "bullets": [
           "NIST 800-88 rev. 1 erasure (Clear, Purge, Destroy) by sensitivity",
           "Time-stamped video surveillance of the processing floor",
-          "eIDAS-signed certificates with cryptographic seal kept ten years"
+          "Timestamped certificates, SHA-256 fingerprint kept ten years"
         ]
       },
       {
@@ -985,7 +984,7 @@
         },
         {
           "q": "Which erasure level applies to which sensitivity?",
-          "a": "Three NIST 800-88 rev. 1 levels (Clear, Purge, Destroy) based on your data classification. SSDs and NVMe drives also follow IEEE 2883. Each operation produces an eIDAS-signed certificate kept ten years."
+          "a": "Three NIST 800-88 rev. 1 levels (Clear, Purge, Destroy) based on your data classification. SSDs and NVMe drives also follow IEEE 2883. Each operation produces a timestamped certificate (SHA-256 fingerprint) kept ten years."
         },
         {
           "q": "How do auditors access the evidence on the day?",
@@ -1007,7 +1006,7 @@
       "cta1": "Book the scoping session",
       "cta2": "See our client cases",
       "trust1": "French sovereignty · OVHcloud SecNumCloud",
-      "trust2": "eIDAS-signed certificates kept 10 years",
+      "trust2": "Timestamped certificates (SHA-256) kept 10 years",
       "trust3": "0% landfill · contractual R2v3 commitment"
     }
   },
@@ -1036,9 +1035,8 @@
       "eyebrow": "A word from the founder",
       "title": "A decision made in a bank basement in 2019.",
       "quote": "I watched two thousand hard drives shredded that day with not a single certificate. The invoice was paid, the risk was real and nobody in the room could prove the data would never reappear. GreenTechCycle was born from that anger.",
-      "name": "Mahdi A.",
-      "role": "Founder · former bank CISO",
-      "bio": "Engineering graduate, fifteen years of experience including eight as a CISO in retail banking. CISSP and ISO 27001 Lead Auditor. Active member of Boavizta and the French Institut du Numérique Responsable. GreenTechCycle was founded in Lyon in 2021."
+      "name": "Mahdi B.",
+      "role": "Founder · former bank CISO"
     },
     "convictions": [
       {
@@ -1061,16 +1059,16 @@
         "slug": "preuve",
         "eyebrow": "Conviction 02 · Evidence before promise",
         "title": "Every figure we publish is sourced. Every operation is filmed.",
-        "body": "We publish our scope 1+2+3 carbon balance every year, audited by an independent firm. We do not recycle marketing claims: ADEME, Boavizta, CIGREF, INR are our only sources. Our processing floors are under time-stamped video surveillance, our certificates are eIDAS-signed and kept for ten years. If you cannot reconstruct an operation, we did it wrong.",
+        "body": "We publish our scope 1+2+3 carbon balance every year, audited by an independent firm. We do not recycle marketing claims: ADEME, Boavizta, CIGREF, INR are our only sources. Our processing floors are under time-stamped video surveillance, our certificates are timestamped, sealed with a SHA-256 fingerprint and kept for ten years. If you cannot reconstruct an operation, we did it wrong.",
         "proofValue": "10 years",
         "proofLabel": "Evidence retention",
-        "proofDetail": "Videos, registries, eIDAS-signed certificates",
+        "proofDetail": "Videos, registries, timestamped certificates (SHA-256)",
         "photo": "/photos/hp-audit-signature.jpg",
         "photoAlt": "Time-stamped electronic signature of an erasure certificate at GreenTechCycle",
         "bullets": [
           "Scope 1+2+3 carbon balance published yearly and externally audited",
           "Time-stamped video surveillance of every processing floor",
-          "eIDAS-signed certificates, cryptographic hash, decade-long archive"
+          "Timestamped certificates, SHA-256 fingerprint, decade-long archive"
         ]
       },
       {
@@ -1135,7 +1133,7 @@
         {
           "metric": "24",
           "suffix": "h",
-          "label": "lead time for an eIDAS-signed certificate",
+          "label": "lead time for a timestamped certificate",
           "source": "Contractual commitment, after reception at the floor"
         },
         {
@@ -1160,7 +1158,7 @@
           "metric": "10",
           "suffix": " yrs",
           "label": "operational evidence archive",
-          "source": "Videos, registries, eIDAS-signed certificates"
+          "source": "Videos, registries, timestamped certificates (SHA-256)"
         }
       ]
     },
@@ -1373,7 +1371,7 @@
         "Main dashboard",
         "Erasure module",
         "CSRD reporting",
-        "Blockchain traceability",
+        "Timestamped traceability (SHA-256)",
         "Carbon assessment"
       ]
     },
@@ -1449,7 +1447,7 @@
         "Receipt and seal verification",
         "Processing under video surveillance",
         "Erasure certificate issued",
-        "Blockchain recording"
+        "Chained audit log (SHA-256)"
       ]
     },
     "certifications": {
@@ -1457,7 +1455,7 @@
       "items": [
         "R2v3 (Responsible Recycling)",
         "ISO 14001 (Environmental Management)",
-        "ISO 27001 (Information Security)",
+        "ISO 27001 (Information Security): in progress",
         "e-Stewards",
         "Qualiopi (Training)"
       ]
@@ -2017,8 +2015,7 @@
       "eyebrow": "Direct channels",
       "title": "If you would rather write or call before filling a form.",
       "body": "Our team answers emails and calls personally, no automated switchboard, no random routing. Urgent and confidential requests are handled with the same responsiveness as formal ones.",
-      "address": "42 rue de la République\n69002 Lyon, France",
-      "phone": "+33 1 86 65 22 10",
+      "address": "WAKI CLOUD SOLUTION\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
       "email": "contact@greentechcycle.fr"
     },
     "conversion": {
@@ -2047,7 +2044,7 @@
       },
       {
         "q": "How do you guarantee chain of custody?",
-        "a": "Every asset is tracked end-to-end: handover report, numbered seals, GPS transport, video-monitored processing and blockchain recording."
+        "a": "Every asset is tracked end-to-end: handover report, numbered seals, GPS transport, video-monitored processing and a chained audit log (SHA-256)."
       },
       {
         "q": "Is the platform compatible with our ITSM?",
@@ -2129,7 +2126,7 @@
       },
       {
         "q": "How do you prove data destruction?",
-        "a": "Individual erasure certificate per asset with SHA-256 hash, eIDAS timestamping and blockchain recording for irrefutable proof."
+        "a": "Individual erasure certificate per asset with SHA-256 fingerprint, timestamp and verification QR code."
       },
       {
         "q": "Are you auditable?",
@@ -2171,7 +2168,7 @@
         },
         {
           "title": "Innovation",
-          "desc": "Blockchain, IoT, AI: we push the boundaries of what ITAD can be."
+          "desc": "IoT, AI, cryptographic proof: we push the boundaries of what ITAD can be."
         }
       ]
     },
@@ -2188,7 +2185,7 @@
       "content": {
         "editor": {
           "title": "Website Publisher",
-          "text": "GreenTechCycle SAS with capital of €50,000\nSIREN: 912 345 678\nRCS Lyon B 912 345 678\nRegistered office: 42 rue de la République, 69002 Lyon, France\nPublication director: Jean-Marc Duval, President\nPhone: +33 1 86 65 22 10\nEmail: contact@greentechcycle.fr"
+          "text": "The GreenTechCycle website is published by WAKI CLOUD SOLUTION, SASU (French single-shareholder simplified joint-stock company) with share capital of €5,150.00\nSIREN: 891 123 952\nRCS: 891 123 952 R.C.S. Meaux\nRegistered office: 3 rue des Tournelles, 77174 Villeneuve-Saint-Denis, France\nPublication director: Mahdi B., President"
         },
         "hosting": {
           "title": "Hosting",
@@ -2250,7 +2247,7 @@
         },
         "controller": {
           "title": "Data Controller",
-          "text": "GreenTechCycle SAS\n42 rue de la République, 69002 Lyon\nDPO: dpo@greentechcycle.fr"
+          "text": "WAKI CLOUD SOLUTION (GreenTechCycle)\n3 rue des Tournelles, 77174 Villeneuve-Saint-Denis\nDPO: dpo@greentechcycle.fr"
         },
         "data": {
           "title": "Data Collected",
@@ -2379,9 +2376,9 @@
         "context": "Tier-1 European bank, fleet of 2,400 trading-floor workstations to migrate to Windows 11 by 14 October 2025 (W10 end of support). Banking supervisor audit scheduled for March 2026, NIS2 in force since 18 October 2024, DORA in force since 17 January 2025. No formalised chain of custody until then, paper erasure certificates scattered.",
         "problem": "The CISO must prove to the regulator that every decommissioned asset has been erased to NIST 800-88, transported under sealed chain of custody, destroyed or refurbished by a vendor listed in the DORA TPP register. Without this proof, supervisor sanction up to 1% of consolidated revenue.",
         "stakeholders": "CISO, Workplace CIO, DPO, DORA Compliance, Operational risk director, Procurement",
-        "solution": "IT Fleet module connected to ServiceNow CMDB; NIST 800-88 Purge erasure with 4-eyes; eIDAS-sealed chain of custody and qualified RGS** timestamping; pre-configured DORA art. 28 + NIS2 + supervisor matrix; GTC Forensic Audit Pro Service for pre-audit; signed PDF/XBRL export to the supervisor.",
-        "results": "2,400 workstations processed in 11 weeks (vs initial 6-month plan) · €187k residual value recovered · 312 tCO₂e avoided (Boavizta v1.4) · supervisor pre-audit cleared in 4 days instead of 3 weeks · 100% of certificates eIDAS-signed within 24 h.",
-        "testimonialQuote": "The eIDAS proof closed every supervisor question. For the first time, our CISO sleeps easy on a DORA audit.",
+        "solution": "IT Fleet module connected to ServiceNow CMDB; NIST 800-88 Purge erasure with 4-eyes; timestamped chain of custody with SHA-256 fingerprints; pre-configured DORA art. 28 + NIS2 + supervisor matrix; GTC Forensic Audit Pro Service for pre-audit; signed PDF/XBRL export to the supervisor.",
+        "results": "2,400 workstations processed in 11 weeks (vs initial 6-month plan) · €187k residual value recovered · 312 tCO₂e avoided (Boavizta v1.4) · supervisor pre-audit cleared in 4 days instead of 3 weeks · 100% of certificates timestamped within 24 h.",
+        "testimonialQuote": "The timestamped proof closed every supervisor question. For the first time, our CISO sleeps easy on a DORA audit.",
         "testimonialRole": "IT Security Director, Tier-1 European bank (CAC40)",
         "ctaSlug": "banque-cac40-windows11-nis2"
       },
@@ -2449,9 +2446,9 @@
         "context": "French energy operator, NIS2 essential entity, fleet of 4,200 G1 smart-meter concentrators obsolete (vendor EOSL). Each concentrator holds power-line communication cryptographic keys and sensitive hardware identifiers. National cybersecurity audit scheduled within 30 days.",
         "problem": "Erase or destroy cryptographic modules, prove end-to-end chain of custody on 4,200 assets across 38 technical sites, deliver a report compliant with the grid operator's OT security baseline, without slowing field crews.",
         "stakeholders": "OT CISO, Network Operations Director, Regulatory Compliance Director, Procurement, National audit office",
-        "solution": "ITAD Cybersecurity Pro Service: on-site extraction by restricted-distribution-cleared technician; class T2 secure transport; NIST 800-88 Purge erasure of SAM modules; HMG IS5 Enhanced 6 mm shred; eIDAS-sealed chain of custody + qualified RGS** timestamping; national auditor export + IEC 62443 / NIS2 matrix.",
+        "solution": "ITAD Cybersecurity Pro Service: on-site extraction by restricted-distribution-cleared technician; class T2 secure transport; NIST 800-88 Purge erasure of SAM modules; HMG IS5 Enhanced 6 mm shred; timestamped chain of custody with SHA-256 fingerprints; national auditor export + IEC 62443 / NIS2 matrix.",
         "results": "4,200 concentrators processed in 38 days · 100% sealed chain of custody · 0 cybersecurity incident · national audit cleared in 9 days · 78 tCO₂e avoided · €0 residual value (mandatory destruction).",
-        "testimonialQuote": "The eIDAS-sealed chain of custody avoided a reservation in the national audit. Without GTC we would have had 6 weeks of remediation.",
+        "testimonialQuote": "The timestamped chain of custody avoided a reservation in the national audit. Without GTC we would have had 6 weeks of remediation.",
         "testimonialRole": "OT CISO, French energy operator",
         "ctaSlug": "energie-dora-chain-of-custody"
       },
@@ -2463,7 +2460,7 @@
         "context": "French telecom operator, planned closure of a colocation site: 12 full racks, 1,100 servers (Dell PowerEdge R740/R750, HPE ProLiant Gen10), 220 Cisco Nexus switches, 60 SAN bays. All assets are 3-5 years old, refurbished-market residual value estimated at €600k+.",
         "problem": "Erase SSDs/HDDs to NIST 800-88 Purge, dismantle racks without damaging resaleable components, certify the chain to reassure the refurbisher buyer, optimise the calendar against a €18k/month datacenter occupancy cost.",
         "stakeholders": "Infrastructure CIO, Procurement, CFO, IT asset manager, CISO, Logistics",
-        "solution": "Asset Intelligence Pro Service for EMEA refurbished-market valuation; NIST 800-88 Purge erasure in sealed zone; rack-by-rack dismantling with SKU inventory; eIDAS chain of custody; resale via partner refurbisher network; per-batch financial reporting for the CFO.",
+        "solution": "Asset Intelligence Pro Service for EMEA refurbished-market valuation; NIST 800-88 Purge erasure in sealed zone; rack-by-rack dismantling with SKU inventory; timestamped chain of custody; resale via partner refurbisher network; per-batch financial reporting for the CFO.",
         "results": "1,100 servers + 220 switches + 60 SAN bays processed in 24 days · €638k residual value recovered (vs €78k scrap metal) · 1,247 tCO₂e avoided (refurbished vs new) · €36k datacenter occupancy savings.",
         "testimonialQuote": "GTC funded the entire operation and produced €560k of net cash. Our CFO wants this method generalised across all our site closures.",
         "testimonialRole": "IT Asset Manager, French telecom operator",
@@ -2682,8 +2679,8 @@
             "description": "Every critical operation is validated by two independent operators, in line with banking standards."
           },
           {
-            "title": "Blockchain chain of custody",
-            "description": "End-to-end traceability with eIDAS seal and qualified RGS** timestamping, enforceable before regulators."
+            "title": "Timestamped chain of custody",
+            "description": "End-to-end traceability: every step timestamped and sealed with a SHA-256 fingerprint, verifiable by QR code."
           },
           {
             "title": "Dedicated auditor exports",
@@ -2696,7 +2693,7 @@
         "items": [
           {
             "question": "Is GTC qualified under DORA art. 28-30?",
-            "answer": "Yes. GTC is listed in the TPP register as a critical ITAD provider. We supply the full DORA qualification file, including annual audit reports, R2v3 and ISO 27001 certifications, and the article 28 compliance matrix."
+            "answer": "Yes. GTC is listed in the TPP register as a critical ITAD provider. We supply the full DORA qualification file, including annual audit reports, R2v3 certification, ISO 27001 progress status (in progress) and the article 28 compliance matrix."
           },
           {
             "question": "What is the erasure certificate turnaround?",
@@ -3382,7 +3379,7 @@
           {
             "role": "CISO",
             "concern": "Restricted-distribution destruction and chain of custody",
-            "ctaAngle": "Certified destruction + eIDAS RGS** seal"
+            "ctaAngle": "Certified destruction + timestamped certificate (SHA-256)"
           },
           {
             "role": "OT Manager",
@@ -5919,7 +5916,7 @@
           "solution": [
             "Flash audit in 4 days: full inventory + chain of custody produced within 72h",
             "HMG IS5 Enhanced + NIST 800-88 r2 erasure on critical OT/IT media",
-            "Digital chain of custody: SHA-256 hash per device, blockchain-ready timestamping",
+            "Digital chain of custody: SHA-256 fingerprint per device, timestamping",
             "ACPR-ready report formatted per ECB/ACPR requirements (validated template)",
             "CISO support throughout inspection : GTC expert on-site D-1 to D+4"
           ],
@@ -6255,7 +6252,7 @@
       "trustBadges": [
         "GDPR compliant",
         "SecNumCloud-ready",
-        "ISO 27001",
+        "ISO 27001 (in progress)",
         "Response within 24h"
       ]
     },
@@ -6606,7 +6603,7 @@
     "finalQuote": {
       "eyebrow": "Vision",
       "text": "WEEE compliance is not a hidden month-end cost. Properly instrumented, it is the most accessible proof that you have committed your company to the transition. Waki Box makes that proof measurable, defensible, shareable.",
-      "name": "Mahdi Khelifi",
+      "name": "Mahdi B.",
       "role": "Founder, GreenTechCycle"
     },
     "finalCta": {
@@ -6846,7 +6843,7 @@
           "312 tCO₂e avoided",
           "ACPR pre-audit validated in 4 days"
         ],
-        "quote": "The eIDAS proof closed every ACPR question.",
+        "quote": "The timestamped proof closed every ACPR question.",
         "quoteName": "Marc B.",
         "quoteRole": "IT Security Director · Tier-1 European bank"
       },
@@ -6933,10 +6930,10 @@
       "cta2": "Talk to an expert"
     },
     "trustBadges": [
-      "ISO 27001 certified",
+      "ISO 27001 in progress",
       "NIST 800-88 erasure",
       "Sovereign hosting",
-      "eIDAS proof",
+      "Timestamped proof",
       "Boavizta v1.4 reporting"
     ]
   }

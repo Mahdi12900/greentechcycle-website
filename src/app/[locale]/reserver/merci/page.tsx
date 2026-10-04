@@ -1,5 +1,6 @@
 "use client";
 
+import { CONTACT_EMAIL } from "@/lib/contact";
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -54,13 +55,15 @@ function MerciInner() {
                   {t("success.cta")}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
-                <a
-                  href="mailto:mahdi@greentechcycle.fr"
-                  className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-fg border border-white/20 font-semibold px-7 py-3.5 rounded-xl transition text-sm"
-                >
-                  <Mail className="h-4 w-4" aria-hidden="true" />
-                  mahdi@greentechcycle.fr
-                </a>
+                {CONTACT_EMAIL && (
+                  <a
+                    href={`mailto:${CONTACT_EMAIL}`}
+                    className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-fg border border-white/20 font-semibold px-7 py-3.5 rounded-xl transition text-sm"
+                  >
+                    <Mail className="h-4 w-4" aria-hidden="true" />
+                    {CONTACT_EMAIL}
+                  </a>
+                )}
               </div>
             </div>
           </div>

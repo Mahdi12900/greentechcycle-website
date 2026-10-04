@@ -148,10 +148,10 @@ export default function MethodologyPage() {
       outputs: tx("Plan d'action validé par le client avec voie assignée à chaque asset", "Client-validated action plan with assigned channel per asset"),
       checkpoints: tx("4-eyes principle, comité de décision, signature client/DPO/RSSI", "4-eyes principle, decision committee, client/DPO/CISO sign-off"),
       proofs: tx("PV de décision co-signé, traçabilité des approbations, log horodaté", "Co-signed decision minutes, approval traceability, timestamped log"),
-      sla: tx("100% des décisions validées 4-eyes · Signature eIDAS qualifiée", "100% decisions 4-eyes validated · Qualified eIDAS signature"),
+      sla: tx("100% des décisions validées 4-eyes · Journal de décision horodaté (SHA-256)", "100% decisions 4-eyes validated · Timestamped decision log (SHA-256)"),
       details: [
         tx("Parcours d'approbation configurable par rôle", "Role-configurable approval workflow"),
-        tx("Signature électronique eIDAS qualifiée", "Qualified eIDAS electronic signature"),
+        tx("Journal de décision horodaté et chaîné (SHA-256)", "Timestamped, chained decision log (SHA-256)"),
         tx("Archivage probatoire 10 ans", "10-year probative archiving"),
         tx("Escalade automatique si asset critique (C3/C4)", "Automatic escalation for critical assets (C3/C4)"),
       ],
