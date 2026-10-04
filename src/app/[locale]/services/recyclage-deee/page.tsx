@@ -130,7 +130,7 @@ export default function RecyclageDEEEPage() {
     ctaPrimaryLabel: tx("Réserver une collecte", "Book a collection"),
     ctaSecondaryLabel: tx("Voir l'impact carbone", "See carbon impact"),
     ctaSecondaryHref: "/impact",
-    pricingAnchor: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+    pricingAnchor: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
     pricingHref: "/tarifs",
     isEn,
   };

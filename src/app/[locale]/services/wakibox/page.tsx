@@ -14,11 +14,11 @@ export default function WakiBoxPage() {
 
   const data: ServicePageData = {
     slug: "wakibox",
-    eyebrow: tx("06 · Collecte connectée", "06 · Connected collection"),
+    eyebrow: tx("06 · Suivi DEEE connecté", "06 · Connected WEEE tracking"),
     title: "WakiBox",
     subtitle: tx(
-      "Une borne installée dans le hall, et la collecte se fait toute seule. Détection automatique par RFID, pesée intégrée, alerte de remplissage en temps réel et un brin de ludification : pour multiplier par trois le geste utile.",
-      "A kiosk in your lobby, and collection happens on its own. Automatic RFID detection, integrated weighing, real-time fill alerts and a touch of gamification, to triple the useful gesture."
+      "L'enlèvement de vos DEEE peut être gratuit auprès des éco-organismes agréés à partir de 500 kg. WakiBox apporte ce qui manque : le suivi en temps réel. Détection automatique par RFID, pesée intégrée, alertes de remplissage et reporting prêt pour la CSRD.",
+      "Pick-up of your WEEE can be free through approved producer responsibility organisations from 500 kg. WakiBox adds what is missing: real-time tracking. Automatic RFID detection, integrated weighing, fill alerts and CSRD-ready reporting."
     ),
     description: tx(
       "WakiBox est notre borne de collecte connectée, conçue pour les organisations multi-sites qui veulent rendre la collecte des équipements en fin de vie aussi simple que poser un colis. Chaque borne est reliée à la console GreenTechCycle. Elle détecte automatiquement les dépôts par RFID, pèse l'équipement, le classe, et alerte la logistique quand le seuil de remplissage est atteint. Une application embarquée transforme le geste en classement convivial entre services, badges, défis, retours visibles. Résultat : un taux de collecte multiplié par trois face aux bacs passifs, un pilotage centralisé, et des données de flux injectées directement dans votre rapport CSRD.",

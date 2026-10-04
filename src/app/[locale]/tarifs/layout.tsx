@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SchemaOrg from "@/components/SchemaOrg";
+import { ITAD_TIERS, PLATFORM_TIERS, type PriceTier } from "@/content/pricing";
 
 const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
@@ -16,8 +17,8 @@ export async function generateMetadata({
     : "Tarifs Waki Box, Plateforme et Service ITAD | GreenTechCycle";
 
   const description = isEn
-    ? "Public Waki Box pricing (from €39 ex-VAT/month), GTC Platform (from €2,500 ex-VAT/month) and ITAD Service (from €15 ex-VAT/device). Personalised studies available."
-    : "Tarifs publics Waki Box (à partir de 39 € HT/mois), Plateforme GTC (à partir de 2 500 € HT/mois) et Service ITAD (à partir de 15 € HT/poste). Études personnalisées disponibles.";
+    ? "Public, transparent pricing: Waki Box from €39 ex-VAT/month, GTC Platform from €1,400 ex-VAT/month (up to 200 assets), ITAD Service from €19 ex-VAT/device and €55 ex-VAT/unit for servers and racks."
+    : "Prix publics et transparents : Waki Box dès 39 € HT/mois, Plateforme GTC dès 1 400 € HT/mois (jusqu'à 200 actifs), Service ITAD dès 19 € HT/poste et 55 € HT/unité pour les serveurs et baies.";
 
   return {
     title: { absolute: titleStr },
@@ -59,7 +60,7 @@ const wakiBoxEssentielSchema = {
   "@type": "Product",
   name: "Waki Box Essentiel",
   description:
-    "Borne de collecte IT intelligente plan Essentiel : 1 borne, inventaire automatisé, attestation de collecte mensuelle.",
+    "Suivi DEEE connecté, plan Essentiel : 1 borne Waki Box installée, plateforme de suivi (1 utilisateur), rapport trimestriel de flux DEEE.",
   brand: { "@type": "Brand", name: "GreenTechCycle" },
   url: "https://greentechcycle.fr/fr/tarifs#waki-box",
   offers: {
@@ -83,7 +84,7 @@ const wakiBoxConfortSchema = {
   "@type": "Product",
   name: "Waki Box Confort",
   description:
-    "Plan Confort Waki Box : 1 à 2 bornes, reporting mensuel RSE, module CSRD inclus, support prioritaire.",
+    "Suivi DEEE connecté, plan Confort : jusqu'à 3 bornes, plateforme complète (5 utilisateurs), alertes de remplissage en temps réel, rapport mensuel et export CSRD ESRS E5.",
   brand: { "@type": "Brand", name: "GreenTechCycle" },
   url: "https://greentechcycle.fr/fr/tarifs#waki-box",
   offers: {
@@ -107,7 +108,7 @@ const wakiBoxPremiumSchema = {
   "@type": "Product",
   name: "Waki Box Premium",
   description:
-    "Plan Premium Waki Box : bornes illimitees, compte-rendu CSRD ESRS E5, API, gestionnaire dedie.",
+    "Suivi DEEE connecté, plan Premium : bornes illimitées multi-sites, intégration ERP/SIRH par API, responsable de compte dédié, délai de collecte de 48 h garanti.",
   brand: { "@type": "Brand", name: "GreenTechCycle" },
   url: "https://greentechcycle.fr/fr/tarifs#waki-box",
   offers: {
@@ -143,16 +144,57 @@ const piloteAuditSchema = {
   },
 };
 
+/* Plateforme et Service ITAD : une Offer par palier, générée depuis src/content/pricing.ts */
+const tierOffer = (t: PriceTier, url: string) => ({
+  "@type": "Offer",
+  name: t.name.fr,
+  description: `${t.scope.fr} — ${t.price.fr}`,
+  priceCurrency: "EUR",
+  price: String(t.amount),
+  priceSpecification: {
+    "@type": "UnitPriceSpecification",
+    price: String(t.amount),
+    priceCurrency: "EUR",
+    valueAddedTaxIncluded: false,
+    unitText: t.unitText,
+    ...(t.from ? { minPrice: String(t.amount) } : {}),
+  },
+  availability: "https://schema.org/InStock",
+  url,
+});
+
+const platformSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Plateforme GTC SaaS",
+  description:
+    "Console unifiée d'inventaire, d'audit, d'effacement et de reporting CSRD. Trois paliers selon le nombre d'actifs gérés.",
+  brand: { "@type": "Brand", name: "GreenTechCycle" },
+  url: "https://greentechcycle.fr/fr/tarifs#sur-devis",
+  offers: PLATFORM_TIERS.map((t) => tierOffer(t, "https://greentechcycle.fr/fr/reserver?offre=demo-conseil&brique=plateforme")),
+};
+
+const itadSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Service ITAD GreenTechCycle",
+  description:
+    "Audit de parc, effacement selon NIST 800-88, reconditionnement et recyclage DEEE réglementaire. Prix unitaire par poste ou par équipement complexe.",
+  provider: { "@type": "Organization", name: "GreenTechCycle" },
+  url: "https://greentechcycle.fr/fr/tarifs#sur-devis",
+  offers: ITAD_TIERS.map((t) => tierOffer(t, "https://greentechcycle.fr/fr/reserver?offre=demo-conseil&brique=itad")),
+};
+
 const faqPageSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "Waki Box affiche des tarifs complets, Plateforme et ITAD des ancres : quelle différence ?",
+      name: "Pourquoi certains prix sont-ils indiqués « à partir de » ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Waki Box est une offre packagée et standardisée : le tarif affiché est le tarif final, sans variable cachée. Pour la Plateforme GTC SaaS et le Service ITAD, nous affichons des ancres de départ (2 500 EUR HT/mois et 15 EUR HT/poste) qui permettent de calibrer les budgets. Le devis détaillé, remis sous 48 heures, affine ces ancres selon votre parc, vos modules et vos contraintes reglementaires.",
+        text: "Waki Box est une offre packagée : le tarif affiché est le tarif final. La Plateforme GTC SaaS et le Service ITAD ont aussi une grille publique : Plateforme Essentiel à 1 400 EUR HT/mois jusqu'à 200 actifs, Standard à partir de 2 500 EUR HT/mois de 201 à 2 000 actifs, Grand compte à partir de 4,20 EUR HT/actif/mois au-delà ; ITAD à partir de 19 EUR HT/poste et 55 EUR HT/unité pour les serveurs, baies et équipements complexes. « À partir de » signifie que le prix peut évoluer selon les modules, les connecteurs, le SLA ou la logistique : le devis détaillé, remis sous 48 heures, le précise ligne par ligne.",
       },
     },
     {
@@ -209,6 +251,8 @@ export default async function TarifsLayout({
       <SchemaOrg data={wakiBoxConfortSchema} />
       <SchemaOrg data={wakiBoxPremiumSchema} />
       <SchemaOrg data={piloteAuditSchema} />
+      <SchemaOrg data={platformSchema} />
+      <SchemaOrg data={itadSchema} />
       <SchemaOrg data={faqPageSchema} />
       {children}
     </>

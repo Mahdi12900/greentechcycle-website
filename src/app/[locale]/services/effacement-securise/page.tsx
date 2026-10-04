@@ -129,7 +129,7 @@ export default function EffacementSecurisePage() {
     ctaPrimaryLabel: tx("Réserver une mission", "Book a mission"),
     ctaSecondaryLabel: tx("Voir notre démarche de conformité", "See our compliance approach"),
     ctaSecondaryHref: "/securite",
-    pricingAnchor: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+    pricingAnchor: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
     pricingHref: "/tarifs",
     isEn,
   };

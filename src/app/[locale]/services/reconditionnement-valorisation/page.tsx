@@ -131,7 +131,7 @@ export default function ReconditionnementPage() {
     ctaPrimaryLabel: tx("Réserver une cession", "Book a transfer"),
     ctaSecondaryLabel: tx("Voir les cas d'usages", "See use cases"),
     ctaSecondaryHref: "/cas-usages",
-    pricingAnchor: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+    pricingAnchor: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
     pricingHref: "/tarifs",
     isEn,
   };

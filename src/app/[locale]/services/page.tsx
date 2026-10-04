@@ -112,7 +112,7 @@ export default function ServicesPage() {
         { value: "24", unit: "h", label: tx("certificat délivré", "certificate delivered") },
         { value: "99,97", unit: "%", label: tx("réussite mesurée", "measured success rate") },
       ],
-      pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+      pricingNote: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
       pricingHref: "/tarifs",
     },
     {
@@ -141,7 +141,7 @@ export default function ServicesPage() {
         { value: "+40", unit: "%", label: tx("valeur récupérée", "recovered value") },
         { value: String(KPIS.reuse.value), unit: "%", label: tx("taux de réemploi", "reuse rate") },
       ],
-      pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+      pricingNote: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
       pricingHref: "/tarifs",
     },
     {
@@ -171,7 +171,7 @@ export default function ServicesPage() {
         { value: "98,1", unit: "%", label: tx("matière valorisée", "material recovery") },
         { value: "0", unit: "%", label: tx("mise en décharge", "landfill rate") },
       ],
-      pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+      pricingNote: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
       pricingHref: "/tarifs",
     },
     {

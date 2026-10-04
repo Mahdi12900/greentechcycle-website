@@ -506,19 +506,19 @@
     },
     "pricingTeaser": {
       "eyebrow": "Tarifs des trois briques GTC",
-      "title": "Trois briques, trois ancres tarifaires.",
-      "subtitle": "Waki Box en trois plans complets, Plateforme GTC SaaS et Service ITAD avec leurs ancres de départ. Tout est affiché, tout est signable.",
+      "title": "Trois briques, trois grilles publiques.",
+      "subtitle": "Waki Box en trois plans complets, Plateforme GTC SaaS et Service ITAD avec leurs grilles. Prix publics, quand le marché répond « sur devis ».",
       "popularLabel": "Le plus populaire",
       "bookCta": "Réserver ma démo (30 min)",
       "setupLabel": "Mise en service",
       "allPricingLink": "Voir tous les tarifs et options",
       "platformBrick": "Plateforme GTC SaaS",
-      "platformAnchor": "À partir de 2 500 € HT/mois",
-      "platformDesc": "Base 500 postes, un module. Étude personnalisée selon votre parc et vos contraintes.",
+      "platformAnchor": "À partir de 1 400 € HT/mois",
+      "platformDesc": "Essentiel jusqu'à 200 actifs. Standard dès 2 500 € HT/mois de 201 à 2 000 actifs, Grand compte au-delà.",
       "platformCta": "Voir les tarifs",
       "itadBrick": "Service ITAD",
-      "itadAnchor": "À partir de 15 € HT/poste",
-      "itadDesc": "Effacement selon NIST 800-88, prix dégressif selon volume et logistique.",
+      "itadAnchor": "À partir de 19 € HT/poste",
+      "itadDesc": "Effacement selon NIST 800-88 compris. Serveurs, baies et équipements complexes : 55 € HT/unité.",
       "itadCta": "Voir les tarifs",
       "plans": [
         {
@@ -758,9 +758,9 @@
       {
         "id": "wakibox",
         "title": "WakiBox",
-        "subtitle": "Bornes IoT de collecte intelligente",
+        "subtitle": "Suivi DEEE connecté, en temps réel",
         "engagement": "Supervision temps réel",
-        "description": "Bornes de collecte connectées installées dans vos locaux. Détection automatique des dépôts, pesée intégrée et alertes de remplissage.",
+        "description": "Bornes connectées installées dans vos locaux pour suivre vos flux DEEE en temps réel : détection automatique des dépôts, pesée intégrée, alertes de remplissage et données prêtes pour le reporting CSRD.",
         "features": [
           "Borne de collecte connectée prête à l'emploi",
           "Détection automatique des dépôts par RFID",
@@ -6290,7 +6290,7 @@
       "eyebrow": "Waki Box · v1.0 · Avril 2026",
       "headline": "La box DEEE qui pense à votre place.",
       "subtitle": "Une box connectée installée dans vos bureaux, des capteurs qui détectent les batteries lithium, et une plateforme qui transforme chaque collecte en preuve de conformité REP DEEE et en données ESRS E5 mappées au gramme près.",
-      "subtitleSecond": "Plus de feuilles Excel approximatives, plus de prestataires passifs : un service vivant, mesuré, prêt à passer en compte-rendu CSRD sans retraitement.",
+      "subtitleSecond": "L'enlèvement peut être gratuit auprès des éco-organismes agréés à partir de 500 kg. Ce que Waki Box apporte, c'est le suivi en temps réel, les alertes et un reporting prêt à passer en compte-rendu CSRD sans retraitement.",
       "cta1": "Réserver une démo",
       "cta2": "Candidater au pilote",
       "scrollCta": "Découvrir les plans",
@@ -6327,9 +6327,9 @@
     },
     "problem": {
       "eyebrow": "Le constat",
-      "title": "Pourquoi les bornes de collecte traditionnelles ne suffisent plus.",
-      "body": "Corepile, Screlec, Batribox ou Élise rendent un service utile : ils retirent les déchets. Mais ils ne mesurent rien d'exploitable. Pas de pesée par flux, pas de remontée temps réel, pas de mapping CSRD, et un compte-rendu trimestriel agrégé qui n'aide ni le DAF, ni le RSE, ni le DSI à justifier quoi que ce soit. Vos collaborateurs jettent à l'aveugle, vos auditeurs vous demandent des preuves, et personne n'a la donnée fiable qui réconcilie les deux mondes.",
-      "bodySecond": "Waki Box renverse le rapport : c'est la box qui produit la preuve, pas vous. Capteurs de pesée, détection de batteries lithium, traçabilité par flux, plateforme connectée, exports ESRS E5 prêts à intégrer dans le compte-rendu de durabilité. La conformité devient passive, mesurée, sans charge mentale supplémentaire pour l'office manager."
+      "title": "Faire enlever ses DEEE ne suffit plus : il faut la mesure et la preuve.",
+      "body": "L'enlèvement n'est plus le problème : au-delà de 500 kg, les éco-organismes agréés peuvent collecter vos DEEE gratuitement. Ce qui manque, c'est la donnée : pas de pesée par flux, pas de remontée en temps réel, pas de mapping CSRD, et un compte-rendu trimestriel agrégé qui n'aide ni le DAF, ni le RSE, ni le DSI à justifier quoi que ce soit. Vos collaborateurs déposent à l'aveugle, vos auditeurs vous demandent des preuves, et personne n'a la donnée fiable qui réconcilie les deux mondes.",
+      "bodySecond": "Waki Box ne vend pas l'enlèvement, elle vend le suivi : pesée par flux, détection des batteries lithium, alertes de remplissage en temps réel, traçabilité par site et exports ESRS E5 prêts à intégrer dans le rapport de durabilité. La conformité devient mesurée, sans charge mentale supplémentaire pour l'office manager."
     },
     "promise": {
       "eyebrow": "5 promesses en 1 service",

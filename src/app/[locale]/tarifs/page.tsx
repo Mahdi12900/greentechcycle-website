@@ -57,6 +57,7 @@ import Pictogram from "@/components/ui/Pictogram";
 import Tag from "@/components/ui/Tag";
 import Table from "@/components/ui/Table";
 import Accordion from "@/components/ui/Accordion";
+import { ITAD_TIERS, PLATFORM_TIERS, PRICE_ANCHORS, type PriceTier } from "@/content/pricing";
 
 /* ── Comparateur interactif (carte unique, §10.5-7) ─────────────────────── */
 function PlanComparator({ isEn }: { isEn: boolean }) {
@@ -257,9 +258,27 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
   );
 }
 
+/** Grille de paliers publics (Plateforme / ITAD), lue dans src/content/pricing.ts */
+function TierGrid({ tiers, lang, caption }: { tiers: PriceTier[]; lang: "fr" | "en"; caption: string }) {
+  return (
+    <dl className="mt-4 divide-y divide-track overflow-hidden rounded-lg border border-track" aria-label={caption}>
+      {tiers.map((t) => (
+        <div key={t.id} className="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+          <dt className="min-w-0">
+            <span className="block text-body-sm font-semibold text-fg">{t.name[lang]}</span>
+            <span className="block text-caption text-fg-muted">{t.scope[lang]}</span>
+          </dt>
+          <dd className="text-body-sm font-semibold tabular-nums text-emerald sm:text-right">{t.price[lang]}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 export default function TarifsPage() {
   const locale = useLocale();
   const isEn = locale === "en";
+  const lang = isEn ? "en" : "fr";
   function tx<T>(fr: T, en: T): T {
     return isEn ? en : fr;
   }
@@ -274,10 +293,10 @@ export default function TarifsPage() {
         "Console unifiée d'inventaire, audit, effacement et reporting CSRD. Tarification adaptée au volume d'actifs et au niveau d'intégration.",
         "Unified console for inventory, audit, erasure and CSRD reporting. Pricing scales with asset volume and integration depth."
       ),
-      price: tx("À partir de 2 500 € HT/mois", "Starting at €2,500 HT/month"),
+      price: PRICE_ANCHORS.platform[lang],
       subline: tx(
-        "Base 500 postes, étude personnalisée selon votre parc, vos modules et vos volumes.",
-        "Base 500 devices, bespoke study based on your fleet, modules and volumes."
+        "Essentiel jusqu'à 200 actifs, Standard de 201 à 2 000, Grand compte au-delà : grille complète plus bas.",
+        "Essential up to 200 assets, Standard from 201 to 2,000, Enterprise beyond: full grid below."
       ),
       ctaLabel: tx("Voir la plateforme", "Explore the platform"),
       ctaHref: "/plateforme",
@@ -292,8 +311,8 @@ export default function TarifsPage() {
       tag: tx("Brique 2 (tarif complet)", "Brick 2 (full pricing)"),
       name: "Waki Box",
       pitch: tx(
-        "Bornes connectées de collecte DEEE en entreprise, plateforme de suivi, alertes temps réel. Trois plans publics, un programme pilote.",
-        "Connected WEEE collection kiosks for the workplace, monitoring platform, real-time alerts. Three public plans, one pilot programme."
+        "Le suivi en temps réel de vos flux DEEE : bornes connectées, pesée, alertes et reporting prêt pour la CSRD. Vous payez la mesure et la preuve, pas l'enlèvement. Trois plans publics, un programme pilote.",
+        "Real-time tracking of your WEEE flows: connected kiosks, weighing, alerts and CSRD-ready reporting. You pay for measurement and proof, not for pick-up. Three public plans, one pilot programme."
       ),
       price: tx("Dès 39 € HT/mois", "From €39 ex-VAT/month"),
       ctaLabel: tx("Voir les plans Waki Box", "See Waki Box plans"),
@@ -313,10 +332,10 @@ export default function TarifsPage() {
         "Audit de parc, effacement selon NIST 800-88, reconditionnement, recyclage DEEE réglementaire. Mission cadrée selon volume, sécurité et conformité.",
         "Fleet audit, NIST 800-88 erasure, refurbishment, regulatory WEEE recycling. Engagement scoped by volume, security and compliance."
       ),
-      price: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+      price: PRICE_ANCHORS.itad[lang],
       subline: tx(
-        "Effacement selon NIST 800-88, prix dégressif selon volume et logistique.",
-        "NIST 800-88 erasure, tiered pricing based on volume and logistics."
+        "Serveur, baie ou équipement complexe : à partir de 55 € HT/unité. Prix dégressif selon volume et logistique.",
+        "Server, rack or complex equipment: from €55 ex-VAT/unit. Tiered pricing based on volume and logistics."
       ),
       ctaLabel: tx("Voir le service ITAD", "Explore the ITAD service"),
       ctaHref: "/services/recyclage-deee",
@@ -380,8 +399,8 @@ export default function TarifsPage() {
       setup: "290",
       engagement: tx("12 mois", "12 months"),
       tagline: tx(
-        "Jusqu'à trois bornes, cinq utilisateurs, des alertes temps réel et un export CSRD prêt à signer, le plan que choisissent huit clients sur dix.",
-        "Up to three kiosks, five users, real-time alerts and a CSRD export ready to sign, the plan eight out of ten clients choose."
+        "Jusqu'à trois bornes, cinq utilisateurs, des alertes temps réel et un export CSRD prêt à signer.",
+        "Up to three kiosks, five users, real-time alerts and a CSRD export ready to sign."
       ),
       photo: "/photos/hp-dsi-strategy.jpg",
       photoAlt: tx(
@@ -611,15 +630,15 @@ export default function TarifsPage() {
     {
       slug: "plateforme",
       kicker: tx("Plateforme GTC SaaS", "GTC SaaS Platform"),
-      priceBadge: tx("Dès 2 500 € HT/mois", "From €2,500 HT/month"),
-      anchorNote: tx("À partir de 2 500 € HT/mois", "Starting at €2,500 HT/month"),
+      priceBadge: tx("Dès 1 400 € HT/mois", "From €1,400 ex-VAT/month"),
+      tiers: PLATFORM_TIERS,
       title: tx(
         "Une console unifiée, une intégration au cas par cas.",
         "A unified console, integrated case by case."
       ),
       body: tx(
-        "Notre ancre tarifaire part de 2 500 € HT/mois (base 500 postes, un module). Le prix s'affine selon le nombre d'actifs gérés, les utilisateurs concurrents, les connecteurs ERP/SIRH activés et le niveau de SLA exigé.",
-        "Our pricing anchor starts at €2,500 HT/month (base 500 devices, one module). The price adapts based on the number of managed assets, concurrent users, active ERP/HRIS connectors and required SLA."
+        "Trois paliers selon le nombre d'actifs gérés. Dans les paliers Standard et Grand compte, le prix s'affine selon les utilisateurs concurrents, les connecteurs ERP/SIRH activés et le niveau de SLA exigé.",
+        "Three tiers based on the number of managed assets. In the Standard and Enterprise tiers, the price adapts to concurrent users, active ERP/HRIS connectors and the required SLA."
       ),
       bullets: tx(
         [
@@ -649,15 +668,15 @@ export default function TarifsPage() {
     {
       slug: "itad",
       kicker: tx("Service ITAD", "ITAD Service"),
-      priceBadge: tx("Dès 15 € HT/poste", "From €15 HT/device"),
-      anchorNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+      priceBadge: tx("Dès 19 € HT/poste", "From €19 ex-VAT/device"),
+      tiers: ITAD_TIERS,
       title: tx(
         "Audit, effacement, valorisation, recyclage. Cadré sur mesure.",
         "Audit, erasure, value recovery, recycling. Scoped to fit."
       ),
       body: tx(
-        "Notre ancre tarifaire part de 15 € HT/poste (effacement selon NIST 800-88 r2). Chaque mission ITAD dépend du volume d'équipements, de leur typologie, du niveau de sécurité exigé et des contraintes réglementaires sectorielles. Un devis détaillé vous est remis sous 48 heures.",
-        "Our pricing anchor starts at €15 HT/device (NIST 800-88 r2 erasure). Every ITAD engagement depends on equipment volume, hardware mix, required security level and sector-specific regulatory constraints. A detailed quote is delivered within 48 hours."
+        "Deux prix unitaires publics, effacement selon NIST 800-88 r2 compris. Le total de la mission dépend du volume, du niveau de sécurité exigé et des contraintes réglementaires sectorielles : le devis détaillé vous est remis sous 48 heures.",
+        "Two public unit prices, NIST 800-88 r2 erasure included. The total for an engagement depends on volume, the required security level and sector-specific regulatory constraints: the detailed quote is delivered within 48 hours."
       ),
       bullets: tx(
         [
@@ -698,7 +717,7 @@ export default function TarifsPage() {
   /* ── FAQ ────────────────────────────────────────────────────────────────── */
   const faqItems = tx(
     [
-      { q: "Waki Box affiche des tarifs complets, Plateforme et ITAD des ancres : quelle différence ?", a: "Waki Box est une offre packagée et standardisée : le tarif affiché est le tarif final, sans variable cachée. Pour la Plateforme GTC SaaS et le Service ITAD, nous affichons des ancres de départ (2 500 € HT/mois et 15 € HT/poste respectivement) qui permettent de calibrer les budgets. Le devis détaillé, remis sous 48 heures, affine ces ancres selon votre parc, vos modules et vos contraintes réglementaires." },
+      { q: "Pourquoi certains prix sont-ils indiqués « à partir de » ?", a: "Waki Box est une offre packagée : le tarif affiché est le tarif final. La Plateforme GTC SaaS et le Service ITAD ont aussi une grille publique : Plateforme Essentiel à 1 400 € HT/mois jusqu'à 200 actifs, Standard à partir de 2 500 € HT/mois de 201 à 2 000 actifs, Grand compte à partir de 4,20 € HT/actif/mois au-delà ; ITAD à partir de 19 € HT/poste et 55 € HT/unité pour les serveurs, baies et équipements complexes. « À partir de » signifie que le prix peut évoluer selon les modules, les connecteurs, le SLA ou la logistique : le devis détaillé, remis sous 48 heures, le précise ligne par ligne." },
       { q: "Les prix Waki Box affichés sont-ils HT ou TTC ?", a: "Tous les prix sont exprimés hors taxes (HT). La TVA applicable en France métropolitaine est de 20 %. Les factures mentionnent le montant HT, la TVA et le total TTC." },
       { q: "Puis-je résilier avant la fin de mon engagement ?", a: "L'engagement initial (12 ou 24 mois selon le plan) est ferme. Au-delà, le contrat est reconduit tacitement par période de 12 mois, résiliable avec un préavis de 3 mois avant chaque échéance." },
       { q: "Les tarifs Waki Box sont-ils indexés ?", a: "Une indexation annuelle est prévue, plafonnée à 3 % et basée sur l'indice INSEE des prix à la consommation. Toute révision est notifiée 60 jours avant application." },
@@ -709,7 +728,7 @@ export default function TarifsPage() {
       { q: "Le Pilote GTC à 2 900 € HT est-il vraiment remboursé si je signe la Plateforme ?", a: "Oui. Si vous signez un abonnement Plateforme GTC SaaS dans les 90 jours suivant la restitution écrite du Pilote, les 2 900 € HT sont automatiquement déduits de votre première facture annuelle. Cette garantie est inscrite dans le contrat Pilote. Aucune démarche supplémentaire n'est nécessaire de votre côté." },
     ],
     [
-      { q: "Waki Box shows full pricing, Platform and ITAD show anchors: what is the difference?", a: "Waki Box is a standardised packaged offering: the displayed price is the final price, with no hidden variable. For the GTC SaaS Platform and the ITAD Service, we now show starting price anchors (€2,500 HT/month and €15 HT/device respectively) to help calibrate budgets. The detailed quote, delivered within 48 hours, refines those anchors based on your fleet, your modules and your regulatory constraints." },
+      { q: "Why are some prices shown as \"from\"?", a: "Waki Box is a packaged offering: the displayed price is the final price. The GTC SaaS Platform and the ITAD Service also have a public grid: Platform Essential at €1,400 ex-VAT/month up to 200 assets, Standard from €2,500 ex-VAT/month for 201 to 2,000 assets, Enterprise from €4.20 ex-VAT/asset/month beyond that; ITAD from €19 ex-VAT/device and €55 ex-VAT/unit for servers, racks and complex equipment. \"From\" means the price can change with modules, connectors, SLA or logistics: the detailed quote, delivered within 48 hours, specifies it line by line." },
       { q: "Are Waki Box prices shown ex-VAT or inc-VAT?", a: "All prices are shown excluding VAT (ex-VAT). The applicable VAT rate in mainland France is 20%. Invoices detail the ex-VAT amount, VAT and total inc-VAT." },
       { q: "Can I cancel before the end of my commitment?", a: "The initial commitment (12 or 24 months depending on plan) is firm. After that, the contract auto-renews for 12-month periods, cancellable with 3 months' notice before each renewal date." },
       { q: "Are Waki Box prices indexed?", a: "Annual indexation is capped at 3%, based on the INSEE consumer price index. Any revision is notified 60 days before application." },
@@ -816,36 +835,47 @@ export default function TarifsPage() {
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
               <div className="flex flex-wrap gap-2">
-                <Tag variant="brand">{tx("Tarifs Waki Box", "Waki Box pricing")}</Tag>
+                <Tag variant="brand">{tx("Prix publics, transparents", "Public, transparent prices")}</Tag>
                 <Tag variant="neutral">
-                  {tx("Plateforme dès 2 500 €/mois · ITAD dès 15 €/poste", "Platform from €2,500/month · ITAD from €15/device")}
+                  {PRICE_ANCHORS.platformShort[lang]} · {PRICE_ANCHORS.itadShort[lang]}
                 </Tag>
               </div>
               <h1 id="tarifs-hero-title" className="mt-6 max-w-[20ch] text-display-lg text-fg">
                 {tx(
                   <>
-                    Tarifs Waki Box,{" "}
+                    Nos prix sont publics.{" "}
                     <br className="hidden sm:block" />
-                    la seule brique GTC à prix public.
+                    Pour chaque brique.
                   </>,
                   <>
-                    Waki Box pricing,{" "}
+                    Our prices are public.{" "}
                     <br className="hidden sm:block" />
-                    the only GTC brick with public rates.
+                    For every brick.
                   </>
                 )}
               </h1>
               <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
-                  "Trois ancres tarifaires claires : Waki Box dès 39 € HT/mois, Plateforme GTC SaaS à partir de 2 500 € HT/mois, Service ITAD à partir de 15 € HT/poste. Trois plans Waki Box et un programme pilote ci-dessous.",
-                  "Three clear pricing anchors: Waki Box from €39 HT/month, GTC SaaS Platform starting at €2,500 HT/month, ITAD Service starting at €15 HT/device. Three Waki Box plans and one pilot programme below."
+                  "Waki Box dès 39 € HT/mois, Plateforme GTC SaaS dès 1 400 € HT/mois, Service ITAD dès 19 € HT/poste. Trois plans Waki Box, un programme pilote et les grilles Plateforme et ITAD ci-dessous.",
+                  "Waki Box from €39 ex-VAT/month, GTC SaaS Platform from €1,400 ex-VAT/month, ITAD Service from €19 ex-VAT/device. Three Waki Box plans, one pilot programme and the Platform and ITAD grids below."
                 )}
+              </p>
+              {/* Différenciateur : prix affichés, quand le marché répond « sur devis » */}
+              <p className="mt-4 flex max-w-[65ch] items-start gap-2 text-body-sm text-fg-strong">
+                <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
+                <span>
+                  <strong className="font-semibold text-fg">{tx("Prix publics, transparents.", "Public, transparent prices.")}</strong>{" "}
+                  {tx(
+                    "Là où le marché de l'ITAD répond le plus souvent « sur devis », nous affichons nos prix : vous calibrez votre budget avant le premier échange.",
+                    "Where the ITAD market usually answers \"price on request\", we show our prices: you can size your budget before the first call."
+                  )}
+                </span>
               </p>
               <dl className="mt-8 grid max-w-[560px] grid-cols-3 border-y border-track py-6">
                 {[
                   { v: "3", l: tx("plans Waki Box publics", "public Waki Box plans") },
                   { v: "1", l: tx("programme pilote, 1er mois offert", "pilot: 1st month free") },
-                  { v: "48 h", l: tx("devis Plateforme & ITAD", "Platform & ITAD quote") },
+                  { v: "48 h", l: tx("devis détaillé Plateforme & ITAD", "detailed Platform & ITAD quote") },
                 ].map((item, i) => (
                   <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-track pl-4" : "pr-4"}`}>
                     <dt className="mt-1 text-caption text-fg-muted">{item.l}</dt>
@@ -858,7 +888,7 @@ export default function TarifsPage() {
                   {tx("Voir les plans Waki Box", "See Waki Box plans")}
                 </ButtonLink>
                 <ButtonLink href="#sur-devis" variant="secondary" size="lg">
-                  {tx("Plateforme et ITAD, étude personnalisée", "Platform and ITAD, bespoke study")}
+                  {tx("Grilles Plateforme et ITAD", "Platform and ITAD grids")}
                 </ButtonLink>
               </div>
             </div>
@@ -877,10 +907,10 @@ export default function TarifsPage() {
         <div className="reveal">
           <SectionHeader
             eyebrow={tx("Comment lire nos tarifs", "How to read our pricing")}
-            title={tx("Trois briques GTC. Trois ancres tarifaires.", "Three GTC bricks. Three pricing anchors.")}
+            title={tx("Trois briques GTC. Trois grilles publiques.", "Three GTC bricks. Three public grids.")}
             intro={tx(
-              "Trois briques complémentaires, trois ancres tarifaires. Waki Box affiche ses plans complets (dès 39 € HT/mois). La Plateforme GTC SaaS part de 2 500 € HT/mois, le Service ITAD de 15 € HT/poste : des ancres de départ affinées sur mesure selon votre parc et vos contraintes.",
-              "Three complementary bricks, three pricing anchors. Waki Box shows its full plans (from €39 HT/month). The GTC SaaS Platform starts at €2,500 HT/month, the ITAD Service at €15 HT/device: starting anchors refined to your fleet and constraints."
+              "Waki Box affiche ses plans complets (dès 39 € HT/mois). La Plateforme GTC SaaS part de 1 400 € HT/mois (jusqu'à 200 actifs), le Service ITAD de 19 € HT/poste (55 € HT/unité pour les serveurs et baies). Le devis détaillé précise ensuite les options propres à votre parc.",
+              "Waki Box shows its full plans (from €39 ex-VAT/month). The GTC SaaS Platform starts at €1,400 ex-VAT/month (up to 200 assets), the ITAD Service at €19 ex-VAT/device (€55 ex-VAT/unit for servers and racks). The detailed quote then specifies the options for your fleet."
             )}
           />
         </div>
@@ -1350,14 +1380,11 @@ export default function TarifsPage() {
             <SectionHeader
               id="sur-devis-title"
               tone="dark"
-              eyebrow={tx(
-                "Au-delà de Waki Box · Étude personnalisée, ancres établies",
-                "Beyond Waki Box · Bespoke study, anchors established"
-              )}
-              title={tx("Plateforme et Service ITAD, étude personnalisée.", "Platform and ITAD Service, bespoke study.")}
+              eyebrow={tx("Plateforme et Service ITAD · Grilles publiques", "Platform and ITAD Service · Public grids")}
+              title={tx("Plateforme et Service ITAD\u00a0: les prix, palier par palier.", "Platform and ITAD Service: prices, tier by tier.")}
               intro={tx(
-                "Ancres de départ : Plateforme à partir de 2 500 € HT/mois (base 500 postes), ITAD à partir de 15 € HT/poste. Trente minutes de cadrage pour caler le devis sur votre parc et vos contraintes, livré sous 48 heures.",
-                "Starting anchors: Platform from €2,500 HT/month (base 500 devices), ITAD from €15 HT/device. Thirty minutes to scope the quote to your fleet and constraints, delivered within 48 hours."
+                "Les grilles ci-dessous sont nos prix publics hors taxes. Trente minutes de cadrage suffisent pour un devis détaillé sur votre parc et vos contraintes, livré sous 48 heures.",
+                "The grids below are our public prices, excluding VAT. Thirty minutes of scoping is enough for a detailed quote on your fleet and constraints, delivered within 48 hours."
               )}
             />
           </div>
@@ -1376,7 +1403,7 @@ export default function TarifsPage() {
                       <Tag variant="dark">{card.priceBadge}</Tag>
                     </div>
                     <h3 className="mt-4 font-display text-display-sm text-fg">{card.title}</h3>
-                    <p className="mt-2 text-body-sm font-semibold text-emerald">{card.anchorNote}</p>
+                    <TierGrid tiers={card.tiers} lang={lang} caption={tx(`Grille ${card.kicker}`, `${card.kicker} grid`)} />
                     <p className="mt-4 text-body-sm text-fg-muted">{card.body}</p>
                     <ul className="mt-6 flex-1 space-y-2 border-t border-track pt-6">
                       {card.bullets.map((b, j) => (

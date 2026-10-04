@@ -141,8 +141,8 @@ export default function PlateformePage() {
                 <p className="text-body text-fg">
                   {isEn ? (
                     <>
-                      The GTC SaaS platform is accessible <strong className="font-semibold text-emerald">starting at €2,500 HT/month</strong>{" "}
-                      (base 500 devices, one module). Pricing adapts to your fleet, modules and maturity level.{" "}
+                      The GTC SaaS platform is accessible <strong className="font-semibold text-emerald">from €1,400 ex-VAT/month</strong>{" "}
+                      (Essential tier, up to 200 assets), then from €2,500 ex-VAT/month for 201 to 2,000 assets. Pricing adapts to your modules and SLA.{" "}
                       <Link href="/tarifs" className="font-semibold text-emerald underline underline-offset-4 hover:text-emerald-hover">
                         View pricing
                       </Link>{" "}
@@ -154,8 +154,8 @@ export default function PlateformePage() {
                     </>
                   ) : (
                     <>
-                      La plateforme GTC SaaS est accessible <strong className="font-semibold text-emerald">à partir de 2 500 € HT/mois</strong>{" "}
-                      (base 500 postes, un module). La tarification s&apos;affine selon votre parc, vos modules et votre maturité.{" "}
+                      La plateforme GTC SaaS est accessible <strong className="font-semibold text-emerald">à partir de 1 400 € HT/mois</strong>{" "}
+                      (palier Essentiel, jusqu&apos;à 200 actifs), puis à partir de 2 500 € HT/mois de 201 à 2 000 actifs. La tarification s&apos;affine selon vos modules et votre SLA.{" "}
                       <Link href="/tarifs" className="font-semibold text-emerald underline underline-offset-4 hover:text-emerald-hover">
                         Voir les tarifs
                       </Link>{" "}

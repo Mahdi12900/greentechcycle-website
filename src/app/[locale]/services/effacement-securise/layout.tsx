@@ -11,12 +11,12 @@ export async function generateMetadata({
   const isEn = locale === "en";
 
   const title = isEn
-    ? "NIST 800-88 Data Erasure | From €15 ex-VAT/device | GreenTechCycle"
-    : "Effacement selon NIST 800-88 | À partir de 15 € HT/poste | GreenTechCycle";
+    ? "NIST 800-88 Data Erasure | From €19 ex-VAT/device | GreenTechCycle"
+    : "Effacement selon NIST 800-88 | À partir de 19 € HT/poste | GreenTechCycle";
 
   const description = isEn
-    ? "Data erasure per NIST 800-88 / DoD 5220.22-M / IEEE 2883-2022. Individual timestamped certificate (SHA-256 fingerprint) per asset, 10-year archive. From €15 ex-VAT/device."
-    : "Effacement de données selon NIST 800-88 / DoD 5220.22-M / IEEE 2883-2022. Certificat horodaté (empreinte SHA-256) par actif, archivage 10 ans. À partir de 15 € HT/poste.";
+    ? "Data erasure per NIST 800-88 / DoD 5220.22-M / IEEE 2883-2022. Individual timestamped certificate (SHA-256 fingerprint) per asset, 10-year archive. From €19 ex-VAT/device."
+    : "Effacement de données selon NIST 800-88 / DoD 5220.22-M / IEEE 2883-2022. Certificat horodaté (empreinte SHA-256) par actif, archivage 10 ans. À partir de 19 € HT/poste.";
 
   return {
     title,

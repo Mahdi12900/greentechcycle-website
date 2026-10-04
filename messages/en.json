@@ -506,19 +506,19 @@
     },
     "pricingTeaser": {
       "eyebrow": "GTC three bricks pricing",
-      "title": "Three bricks, three pricing anchors.",
-      "subtitle": "Waki Box in three full plans, GTC SaaS Platform and ITAD Service with their starting anchors. Everything displayed, everything signable.",
+      "title": "Three bricks, three public grids.",
+      "subtitle": "Waki Box in three full plans, GTC SaaS Platform and ITAD Service with their grids. Public prices, where the market answers \"price on request\".",
       "popularLabel": "Most popular",
       "bookCta": "Book my demo (30 min)",
       "setupLabel": "Setup",
       "allPricingLink": "View all pricing and options",
       "platformBrick": "GTC SaaS Platform",
-      "platformAnchor": "Starting at €2,500 HT/month",
-      "platformDesc": "Base 500 devices, one module. Bespoke study based on your fleet and constraints.",
+      "platformAnchor": "From €1,400 ex-VAT/month",
+      "platformDesc": "Essential up to 200 assets. Standard from €2,500 ex-VAT/month for 201 to 2,000 assets, Enterprise beyond.",
       "platformCta": "View pricing",
       "itadBrick": "ITAD Service",
-      "itadAnchor": "Starting at €15 HT/device",
-      "itadDesc": "NIST 800-88 erasure, tiered pricing based on volume and logistics.",
+      "itadAnchor": "From €19 ex-VAT/device",
+      "itadDesc": "NIST 800-88 erasure included. Servers, racks and complex equipment: €55 ex-VAT/unit.",
       "itadCta": "View pricing",
       "plans": [
         {
@@ -758,9 +758,9 @@
       {
         "id": "wakibox",
         "title": "WakiBox",
-        "subtitle": "Smart IoT collection kiosks",
+        "subtitle": "Connected, real-time WEEE tracking",
         "engagement": "Real-time monitoring",
-        "description": "Connected collection kiosks installed at your premises. Automatic deposit detection, integrated weighing and fill-level alerts.",
+        "description": "Connected kiosks installed on your premises to track your WEEE flows in real time: automatic deposit detection, integrated weighing, fill alerts and data ready for CSRD reporting.",
         "features": [
           "Plug-and-play connected collection kiosk",
           "Automatic RFID deposit detection",
@@ -6290,7 +6290,7 @@
       "eyebrow": "Waki Box · v1.0 · April 2026",
       "headline": "The WEEE bin that thinks for you.",
       "subtitle": "A connected unit installed in your offices, sensors that detect lithium batteries, and a platform that turns every collection into proof of WEEE EPR compliance and ESRS E5 data mapped to the gram.",
-      "subtitleSecond": "No more rough spreadsheets, no more passive providers: a living, measured service, ready to feed your CSRD report without rework.",
+      "subtitleSecond": "Pick-up can be free through approved producer responsibility organisations from 500 kg. What Waki Box adds is real-time tracking, alerts and reporting ready to feed your CSRD report without rework.",
       "cta1": "Book a demo",
       "cta2": "Apply to the pilot",
       "scrollCta": "Discover the plans",
@@ -6327,9 +6327,9 @@
     },
     "problem": {
       "eyebrow": "The reality check",
-      "title": "Why traditional collection bins are no longer enough.",
-      "body": "Corepile, Screlec, Batribox or Élise deliver a useful service: they remove waste. But they measure nothing actionable. No weighing per stream, no real-time feedback, no CSRD mapping, and a quarterly aggregate report that helps neither the CFO, the sustainability lead nor the IT director justify anything. Your employees throw items away blindly, your auditors ask for proof, and no one holds reliable data to reconcile the two worlds.",
-      "bodySecond": "Waki Box flips the relationship: the bin produces the proof, not you. Weighing sensors, lithium-battery detection, stream-level traceability, a connected platform, ESRS E5 exports ready to drop into the sustainability report. Compliance becomes passive and measured, without adding cognitive load on the office manager."
+      "title": "Having your WEEE picked up is no longer enough: you need measurement and proof.",
+      "body": "Pick-up is no longer the issue: above 500 kg, approved producer responsibility organisations can collect your WEEE free of charge. What is missing is data: no weighing per stream, no real-time feedback, no CSRD mapping, and a quarterly aggregate report that helps neither the CFO, the sustainability lead nor the IT director justify anything. Your employees drop items off blindly, your auditors ask for proof, and no one holds reliable data to reconcile the two worlds.",
+      "bodySecond": "Waki Box doesn't sell pick-up, it sells tracking: per-stream weighing, lithium-battery detection, real-time fill alerts, per-site traceability and ESRS E5 exports ready to drop into the sustainability report. Compliance becomes measured, without adding cognitive load on the office manager."
     },
     "promise": {
       "eyebrow": "Five promises in one service",

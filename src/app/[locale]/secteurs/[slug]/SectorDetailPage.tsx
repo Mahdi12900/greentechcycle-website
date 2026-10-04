@@ -75,8 +75,8 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
   const priceAnchors = [
     {
       label: isFr ? "Plateforme GTC SaaS" : "GTC SaaS Platform",
-      price: isFr ? "À partir de 2 500 € HT/mois" : "Starting at €2,500 HT/month",
-      note: isFr ? "Base 500 postes, étude personnalisée" : "Base 500 devices, bespoke study",
+      price: isFr ? "À partir de 1 400 € HT/mois" : "From €1,400 ex-VAT/month",
+      note: isFr ? "Jusqu'à 200 actifs ; Standard dès 2 500 € HT/mois de 201 à 2 000" : "Up to 200 assets; Standard from €2,500 ex-VAT/month for 201 to 2,000",
     },
     {
       label: "Waki Box",
@@ -85,8 +85,8 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
     },
     {
       label: isFr ? "Service ITAD" : "ITAD Service",
-      price: isFr ? "À partir de 15 € HT/poste" : "Starting at €15 HT/device",
-      note: isFr ? "Effacement NIST 800-88, devis sous 48 h" : "NIST 800-88 erasure, quote in 48 h",
+      price: isFr ? "À partir de 19 € HT/poste" : "From €19 ex-VAT/device",
+      note: isFr ? "55 € HT/unité pour serveurs et baies, effacement NIST 800-88" : "€55 ex-VAT/unit for servers and racks, NIST 800-88 erasure",
     },
   ];
 
