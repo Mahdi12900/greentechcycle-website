@@ -5,6 +5,13 @@ import CertificateCard from "@/components/visuals/CertificateCard";
 import DashboardMock from "@/components/visuals/DashboardMock";
 import GeometryField from "@/components/visuals/GeometryField";
 import MediaSlot from "@/components/visuals/MediaSlot";
+import VideoPlayer, { VideoFigure } from "@/components/visuals/VideoPlayer";
+
+/** Vidéos de cas présentées dans le bloc « En vidéo » : index dans UseCases.cases */
+const VIDEO_CASES = [
+  { video: "case-chu", useCase: 1 },
+  { video: "case-energie", useCase: 5 },
+];
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -107,6 +114,9 @@ const CASE_ALIASES: Record<string, string[]> = {
 /* ─────────────────────────────────────────────────────────────────────────────
    Carte de cas — grille régulière 2 colonnes
 ───────────────────────────────────────────────────────────────────────────── */
+/** Cas de la grille dotés d'une vidéo dont le récit correspond au texte du cas */
+const CASE_VIDEOS: Record<string, string> = { "banque-cac40": "case-banque" };
+
 function CaseCard({ c, index, editorialBody, isFr }: { c: CaseItem; index: number; editorialBody: string; isFr: boolean }) {
   const sectorLink = CASE_TO_SECTOR[c.slug];
   const CaseIcon = CASE_ICONS[index] ?? Building2;
@@ -115,9 +125,16 @@ function CaseCard({ c, index, editorialBody, isFr }: { c: CaseItem; index: numbe
       {(CASE_ALIASES[c.slug] ?? []).map((a) => (
         <span key={a} id={a} className="absolute top-0" aria-hidden="true" />
       ))}
-      <div className="relative aspect-[16/10] border-b border-track">
-        <MediaSlot fill id={`cas-${c.slug}`} alt={c.photoAlt} fallback={<GeometryField icon={CaseIcon} />} />
-      </div>
+      {CASE_VIDEOS[c.slug] ? (
+        // Vidéo du cas (anglais, lecture au clic, registre SLOT_VIDEOS)
+        <div className="relative aspect-video border-b border-track">
+          <VideoPlayer id={CASE_VIDEOS[c.slug]} />
+        </div>
+      ) : (
+        <div className="relative aspect-[16/10] border-b border-track">
+          <MediaSlot fill id={`cas-${c.slug}`} alt={c.photoAlt} fallback={<GeometryField icon={CaseIcon} />} />
+        </div>
+      )}
       <div className="flex flex-1 flex-col p-6 lg:p-8">
         <div className="flex items-center gap-3">
           <Pictogram icon={CaseIcon} />
@@ -167,6 +184,7 @@ function CaseCard({ c, index, editorialBody, isFr }: { c: CaseItem; index: numbe
 ───────────────────────────────────────────────────────────────────────────── */
 export default function CasUsagesPage() {
   const t = useTranslations("casUsages");
+  const tUseCases = useTranslations("UseCases");
   const locale = useLocale();
   const isFr = locale === "fr";
   const tx = (fr: string, en: string) => (isFr ? fr : en);
@@ -186,6 +204,8 @@ export default function CasUsagesPage() {
   const trustBadges = t.raw("finalCta.trustBadges") as string[];
   const testimonials = t.raw("testimonials.items") as Array<{ quote: string; name: string; role: string; sector: string }>;
   const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
+  // Titres des missions racontées dans les vidéos CHU et Énergie (contenu GTC existant, UseCases)
+  const useCaseTitles = (tUseCases.raw("cases") as Array<{ title: string }>).map((c) => c.title);
   const tf1 = t.raw("featuredTf1") as {
     eyebrow: string; badge: string; title: string; subtitle: string; body: string; photo: string; photoAlt: string;
     metrics: KPIItem[]; quote: string; quoteName: string; quoteRole: string; quoteSector: string;
@@ -258,8 +278,8 @@ export default function CasUsagesPage() {
               <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("editorialHero.subtitle")}</p>
               <dl className="mt-8 grid max-w-[600px] grid-cols-3 border-y border-track py-6">
                 {[
-                  { v: "1 850", unit: "tCO₂e", l: tx("évitées en 4 ans", "avoided in 4 years") },
-                  { v: tx("12 000", "12,000"), unit: "", l: tx("postes migrés", "devices migrated") },
+                  { v: "312", unit: "tCO₂e", l: tx("évitées (Boavizta v1.4)", "avoided (Boavizta v1.4)") },
+                  { v: tx("2 400", "2,400"), unit: "", l: tx("postes migrés en 11 semaines", "devices migrated in 11 weeks") },
                   { v: tx("4 jours", "4 days"), unit: "", l: tx("audit ACPR réussi", "ACPR audit passed") },
                 ].map((item, i) => (
                   <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-track pl-4" : "pr-4"}`}>
@@ -403,9 +423,14 @@ export default function CasUsagesPage() {
               </div>
             </div>
             <div className="reveal lg:col-span-5">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
-                <MediaSlot fill id="cas-tf1-media" alt={tf1.photoAlt} fallback={<DashboardMock state="reporting" />} />
+              {/* Vidéo du cas TF1 (anglais, lecture au clic) ; visuel codé si absente */}
+              <div className="relative aspect-video overflow-hidden rounded-2xl border border-track shadow-float">
+                <VideoPlayer
+                  id="case-tf1"
+                  fallback={<MediaSlot fill id="cas-tf1-media" alt={tf1.photoAlt} fallback={<DashboardMock state="reporting" />} />}
+                />
               </div>
+              <p className="mt-3 text-caption text-fg-muted">{tx("Vidéo · 33 s · voix off en anglais", "Video · 33 s · English voice-over")}</p>
             </div>
           </div>
         </div>
@@ -421,6 +446,25 @@ export default function CasUsagesPage() {
           </div>
         </div>
       </section>
+
+      {/* ═══ CAS EN VIDÉO — missions racontées dans les vidéos (titres repris de UseCases) ═══ */}
+      <Section id="cas-en-video" tone="paper" aria-labelledby="cas-en-video-title">
+        <div className="reveal">
+          <SectionHeader
+            id="cas-en-video-title"
+            eyebrow={tx("En vidéo", "On video")}
+            title={tx("Deux autres missions, en vidéo.", "Two more missions, on video.")}
+          />
+        </div>
+        <div className="reveal-stagger grid gap-8 lg:grid-cols-2">
+          {VIDEO_CASES.map((vc) => (
+            <div key={vc.video} className="reveal min-w-0">
+              <h3 className="mb-4 max-w-[40ch] text-heading-lg text-fg">{useCaseTitles[vc.useCase]}</h3>
+              <VideoFigure id={vc.video} />
+            </div>
+          ))}
+        </div>
+      </Section>
 
       {/* ═══ COMPARATIF — tableau §6.13 ═══ */}
       <Section tone="paper" aria-labelledby="comparative-title">

@@ -1,5 +1,6 @@
 "use client";
 
+import { VideoFigure } from "@/components/visuals/VideoPlayer";
 import GeometryField from "@/components/visuals/GeometryField";
 import MediaSlot from "@/components/visuals/MediaSlot";
 import { useLocale } from "next-intl";
@@ -51,6 +52,14 @@ const anchors = {
    → forest (#argumentaire) → paper (#objections) → cream (autres secteurs)
    → forest (CTA unique) → night (footer)
 ───────────────────────────────────────────────────────────────────────────── */
+/** Secteur → vidéo de cas client (registre SLOT_VIDEOS) */
+const SECTOR_VIDEOS: Record<string, string> = {
+  finance: "case-banque",
+  sante: "case-chu",
+  energie: "case-energie",
+  "medias-audiovisuel": "case-tf1",
+};
+
 export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
   const locale = useLocale();
   const sectorDef = getSectorDef(slug)!;
@@ -203,6 +212,13 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
             </li>
           ))}
         </ol>
+        {/* Vidéo d'un cas client du secteur (anglais, lecture au clic) */}
+        {SECTOR_VIDEOS[slug] && (
+          <div className="reveal mt-12 max-w-3xl">
+            <p className="mb-4 text-eyebrow uppercase text-fg-muted">{isFr ? "Cas client en vidéo" : "Customer case on video"}</p>
+            <VideoFigure id={SECTOR_VIDEOS[slug]} />
+          </div>
+        )}
       </Section>
 
       {/* 7. ROI — tableau sur cream */}

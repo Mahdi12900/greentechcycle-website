@@ -505,7 +505,7 @@
     },
     "bigQuote": {
       "eyebrow": "Client verbatim",
-      "quote": "Across 1,200 workstations decommissioned in 2025, we cleared the ESRS E5 audit in 4 days instead of 3 weeks. The timestamped chain of custody closed every auditor question, including the dreaded one on transport sub-contracting.",
+      "quote": "Across 2,400 workstations decommissioned in 2025, we cleared the ESRS E5 audit in 4 days instead of 3 weeks. The timestamped chain of custody closed every auditor question, including the dreaded one on transport sub-contracting.",
       "name": "Marc B.",
       "role": "CISO",
       "company": "Tier-1 European bank · CAC40",
@@ -1410,7 +1410,7 @@
     },
     "video": {
       "title": "Presentation Video",
-      "placeholder": "GreenTechCycle presentation · 25 s · French voice-over, FR / EN captions"
+      "placeholder": "GreenTechCycle presentation · 25 s · English voice-over"
     },
     "screenshots": {
       "title": "Platform Preview",
@@ -1893,8 +1893,8 @@
       "items": [
         {
           "sector": "CAC40 bank",
-          "scope": "12,000 devices, 4 years",
-          "metric": "1,850 tCO₂e avoided",
+          "scope": "2,400 devices, 11 weeks",
+          "metric": "312 tCO₂e avoided",
           "money": "",
           "context": "W11 migration plan + ESRS E5 FY2024. First CSRD report cleared without reservation by the statutory auditor.",
           "ctaLabel": "View Banking case",
@@ -5537,7 +5537,7 @@
         {
           "slug": "banque-cac40",
           "label": "Banking",
-          "kpi": "1,850 tCO2e avoided"
+          "kpi": "312 tCO2e avoided"
         },
         {
           "slug": "chu-sante",
@@ -5662,9 +5662,9 @@
           "photo": "/photos/case-banque.jpg",
           "photoAlt": "Tier-1 bank server room : IT migration and decommissioning",
           "title": "Windows 11 migration + NIS2/DORA compliance",
-          "subtitle": "European tier-1 bank · 12,000 devices · CAC40",
+          "subtitle": "European tier-1 bank · 2,400 devices · CAC40",
           "context": [
-            "12,000 Windows 10 EOS devices, mandatory migration to Windows 11 before Oct 2025",
+            "2,400 Windows 10 EOS trading-floor devices, mandatory migration to Windows 11 before Oct 2025",
             "NIS2 Annex A and DORA Art. 9 requirements on data carrier traceability",
             "ACPR/ECB: documented chain of custody required for every decommissioned asset",
             "Risk of uncontrolled duplicate hardware in production (banking shadow IT)",
@@ -5678,7 +5678,8 @@
             "CSRD report: scope 3.1 extract ready for 2025 financial year"
           ],
           "results": [
-            "1,850 tCO2e avoided over 4 years (3-year life extension vs new purchase)",
+            "2,400 devices processed in 11 weeks (vs 6-month original budget)",
+            "312 tCO2e avoided (Boavizta v1.4 method)",
             "ACPR audit passed in 4 days (market benchmark: 3 weeks)",
             "100% of erasure certificates delivered within 48h",
             "Zero documentary gap found during CISO internal review"
@@ -5686,8 +5687,8 @@
           "metrics": [
             {
               "label": "tCO2e avoided",
-              "value": "1,850",
-              "detail": "over 4 years (scope 3.1)"
+              "value": "312",
+              "detail": "Boavizta v1.4 method"
             },
             {
               "label": "ACPR audit",
@@ -5696,7 +5697,7 @@
             },
             {
               "label": "Devices processed",
-              "value": "12,000",
+              "value": "2,400",
               "detail": "NIST 800-88 certified"
             }
           ],
@@ -6101,9 +6102,9 @@
       "rows": [
         [
           "Banking CAC40",
-          "1,850",
+          "312",
           "NIS2 · DORA · CSRD",
-          "6 weeks",
+          "11 weeks",
           "97%"
         ],
         [
@@ -6254,7 +6255,7 @@
       ]
     },
     "editorialHero": {
-      "headline": "12,000 devices. 4 years. 1,850 tonnes of CO₂ avoided.",
+      "headline": "2,400 devices. 11 weeks. 312 tonnes of CO₂ avoided.",
       "subtitle": "How a CAC40 bank turned its Windows 11 migration constraint into a CSRD lever, and passed its ACPR audit in 4 days instead of three weeks.",
       "scrollCta": "See all 8 sector cases",
       "cta1": "Request an audit",
@@ -6268,7 +6269,7 @@
       "cta": "Find my profile"
     },
     "editorialBodies": {
-      "banque-cac40": "In 2023, a tier-1 European bank faced the inevitable: 12,000 Windows 10 devices had to migrate before end of support, under the dual constraints of NIS2 and DORA. Every device leaving production represented a documentary risk, a potential attack surface for the next ACPR inspection. GreenTechCycle integrated the ITAD chain into the core of the migration plan, turning regulatory pressure into measurable advantage: 1,850 tCO2e avoided.",
+      "banque-cac40": "In 2023, a tier-1 European bank faced the inevitable: 2,400 Windows 10 trading-floor devices had to migrate before end of support, under the dual constraints of NIS2 and DORA. Every device leaving production represented a documentary risk, a potential attack surface for the next ACPR inspection. GreenTechCycle integrated the ITAD chain into the core of the migration plan, turning regulatory pressure into measurable advantage: 312 tCO2e avoided.",
       "chu-sante": "A 9,000-bed university hospital had accumulated a fleet of 4,200 end-of-life devices over five years, carrying patient data subject to medical confidentiality and the strictest GDPR requirements. The IT department had neither budget for new equipment nor tolerance for a data breach. GreenTechCycle deployed a NIST 800-88 certified erasure protocol within 5 working days, giving each machine a second life through a local supply chain. The DPO signed the report without reservation.",
       "industriel-csrd": "A CAC60 industrial group needed to publish its first CSRD ESRS E5 report for fiscal year 2025, with Big 4 auditors demanding quantified evidence and irreproachable scope 3 traceability. Across 12 sites in 5 countries, OT equipment represented both a risk (industrial intellectual property) and an opportunity: unprovisioned residual value. GreenTechCycle delivered the CSRD report D-90 before year-end, validated without reservation on the first iteration.",
       "ministere-collectivite": "A large municipality with 2,500 FTEs navigated a triple constraint: public procurement code requiring environmental criteria ≥5%, GDPR obligations on administrative data, and political demands for exemplary responsible purchasing. GreenTechCycle designed the first ITAD master plan integrating an approved ESS social clause, 100% of equipment resold through French supply chains, zero data processed outside national territory.",
@@ -6317,7 +6318,7 @@
       "scrollTarget": "#cas-banque-cac40"
     },
     "editorialFinalQuote": {
-      "text": "Without GreenTechCycle, our NIS2 migration plan would have taken 18 months. They delivered it in 4 months, with 1,850 tonnes of CO₂ avoided as a bonus.",
+      "text": "Without GreenTechCycle, our NIS2 migration plan would have taken 18 months. They delivered it in 11 weeks, with 312 tonnes of CO₂ avoided as a bonus.",
       "name": "Marc B.",
       "role": "CISO, Tier-1 European bank",
       "consentNote": "Testimonial collected with written consent. Full identity available under NDA on request."

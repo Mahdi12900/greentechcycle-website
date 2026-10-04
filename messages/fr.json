@@ -505,7 +505,7 @@
     },
     "bigQuote": {
       "eyebrow": "Verbatim client",
-      "quote": "Sur 1 200 postes décommissionnés en 2025, nous avons passé l'audit ESRS E5 en 4 jours au lieu de 3 semaines. La preuve de chaîne de garde horodatée a clos toutes les questions de l'auditeur, y compris celle, redoutée, sur la sous-traitance de transport.",
+      "quote": "Sur 2 400 postes décommissionnés en 2025, nous avons passé l'audit ESRS E5 en 4 jours au lieu de 3 semaines. La preuve de chaîne de garde horodatée a clos toutes les questions de l'auditeur, y compris celle, redoutée, sur la sous-traitance de transport.",
       "name": "Marc B.",
       "role": "RSSI",
       "company": "Banque européenne tier-1 · CAC40",
@@ -1410,7 +1410,7 @@
     },
     "video": {
       "title": "Vidéo de présentation",
-      "placeholder": "Présentation GreenTechCycle · 25 s · voix off en français, sous-titres FR / EN"
+      "placeholder": "Présentation GreenTechCycle · 25 s · voix off en anglais"
     },
     "screenshots": {
       "title": "Aperçu de la plateforme",
@@ -1893,8 +1893,8 @@
       "items": [
         {
           "sector": "Banque CAC40",
-          "scope": "12 000 postes, 4 ans",
-          "metric": "1 850 tCO₂e évitées",
+          "scope": "2 400 postes, 11 semaines",
+          "metric": "312 tCO₂e évitées",
           "money": "",
           "context": "Plan de migration W11 + ESRS E5 FY2024. Premier rapport CSRD validé sans réserve par le commissaire aux comptes.",
           "ctaLabel": "Voir le cas Banque",
@@ -5537,7 +5537,7 @@
         {
           "slug": "banque-cac40",
           "label": "Banque",
-          "kpi": "1 850 tCO2e évitées"
+          "kpi": "312 tCO2e évitées"
         },
         {
           "slug": "chu-sante",
@@ -5662,9 +5662,9 @@
           "photo": "/photos/case-banque.jpg",
           "photoAlt": "Salle informatique d'une banque de premier rang, migration et décommissionnement",
           "title": "Migration Windows 11 + mise en conformité NIS2/DORA",
-          "subtitle": "Banque européenne tier-1 · 12 000 postes · CAC40",
+          "subtitle": "Banque européenne tier-1 · 2 400 postes · CAC40",
           "context": [
-            "12 000 postes Windows 10 EOS, obligation de migration Windows 11 avant oct. 2025",
+            "2 400 postes trading floor Windows 10 EOS, obligation de migration Windows 11 avant oct. 2025",
             "Exigences NIS2 Annexe A et DORA Art. 9 sur la traçabilité des supports de données",
             "ACPR/BCE : chaîne de garde documentée pour chaque matériel sorti de production",
             "Risque de double emploi matériel non contrôlé (shadow IT bancaire)",
@@ -5678,7 +5678,8 @@
             "Rapport CSRD : extraction scope 3.1 prête à l'emploi pour l'exercice 2025"
           ],
           "results": [
-            "1 850 tCO2e évitées sur 4 ans (prolongation de vie 3 ans vs remplacement neuf)",
+            "2 400 postes traités en 11 semaines (vs 6 mois budget initial)",
+            "312 tCO2e évitées (méthode Boavizta v1.4)",
             "Audit ACPR passé en 4 jours (vs 3 semaines en moyenne sur le marché)",
             "100% des certificats d'effacement transmis en moins de 48h",
             "Zéro écart documentaire lors du contrôle interne CISO"
@@ -5686,8 +5687,8 @@
           "metrics": [
             {
               "label": "tCO2e évitées",
-              "value": "1 850",
-              "detail": "sur 4 ans (scope 3.1)"
+              "value": "312",
+              "detail": "méthode Boavizta v1.4"
             },
             {
               "label": "Durée audit ACPR",
@@ -5696,7 +5697,7 @@
             },
             {
               "label": "Postes traités",
-              "value": "12 000",
+              "value": "2 400",
               "detail": "certifiés NIST 800-88"
             }
           ],
@@ -6101,9 +6102,9 @@
       "rows": [
         [
           "Banque CAC40",
-          "1 850",
+          "312",
           "NIS2 · DORA · CSRD",
-          "6 semaines",
+          "11 semaines",
           "97%"
         ],
         [
@@ -6254,7 +6255,7 @@
       ]
     },
     "editorialHero": {
-      "headline": "12 000 postes. 4 ans. 1 850 tonnes de CO₂ évitées.",
+      "headline": "2 400 postes. 11 semaines. 312 tonnes de CO₂ évitées.",
       "subtitle": "Comment une banque CAC40 a transformé sa contrainte de migration Windows 11 en levier CSRD, et passé son audit ACPR en 4 jours au lieu de trois semaines.",
       "scrollCta": "Voir les 8 cas sectoriels",
       "cta1": "Demander un audit",
@@ -6268,7 +6269,7 @@
       "cta": "Identifier mon profil"
     },
     "editorialBodies": {
-      "banque-cac40": "En 2023, une banque européenne tier-1 fait face à l'inévitable : 12 000 postes Windows 10 doivent migrer avant la fin du support, sous la double contrainte NIS2 et DORA. Chaque support sortant de production représente un risque documentaire, un angle d'attaque potentiel lors du prochain contrôle ACPR. GreenTechCycle a intégré la chaîne ITAD au cœur du plan de migration, transformant une pression réglementaire en avantage mesurable : 1 850 tCO2e évitées.",
+      "banque-cac40": "En 2023, une banque européenne tier-1 fait face à l'inévitable : 2 400 postes trading floor Windows 10 doivent migrer avant la fin du support, sous la double contrainte NIS2 et DORA. Chaque support sortant de production représente un risque documentaire, un angle d'attaque potentiel lors du prochain contrôle ACPR. GreenTechCycle a intégré la chaîne ITAD au cœur du plan de migration, transformant une pression réglementaire en avantage mesurable : 312 tCO2e évitées.",
       "chu-sante": "Un CHU de 9 000 lits accumule depuis cinq ans une flotte de 4 200 postes en fin de vie, portant des données patients soumises au secret médical et aux exigences RGPD les plus strictes. La DSI n'a ni budget pour du matériel neuf, ni tolérance pour un incident de fuite. GreenTechCycle a déployé en 5 jours ouvrés un protocole d'effacement certifié NIST 800-88, redonnant une seconde vie à chaque machine en circuit court. Le DPO a signé le rapport sans réserve.",
       "industriel-csrd": "Un industriel du CAC60 doit publier son premier rapport CSRD ESRS E5 pour l'exercice 2025, avec des auditeurs Big 4 exigeant des preuves chiffrées et une traçabilité scope 3 irréprochable. Sur 12 sites en 5 pays, les équipements OT constituent à la fois un risque (propriété intellectuelle industrielle) et une opportunité : valeur résiduelle non provisionnée. GreenTechCycle a livré le rapport CSRD à J-90 de clôture, validé sans réserve dès la première itération.",
       "ministere-collectivite": "Une grande mairie de 2 500 ETP navigue entre triple contrainte : code de la commande publique imposant des critères environnementaux ≥ 5%, obligation RGPD sur les données administratives, et exigence politique d'exemplarité en matière d'achat responsable. GreenTechCycle a conçu le premier schéma directeur ITAD intégrant une clause sociale ESS agréée, 100% des équipements revendus en filière française, zéro donnée traitée hors sol national.",
@@ -6317,7 +6318,7 @@
       "scrollTarget": "#cas-banque-cac40"
     },
     "editorialFinalQuote": {
-      "text": "Sans GreenTechCycle, notre plan de migration NIS2 aurait pris 18 mois. Ils l'ont livré en 4 mois, avec 1 850 tonnes de CO₂ évitées en bonus.",
+      "text": "Sans GreenTechCycle, notre plan de migration NIS2 aurait pris 18 mois. Ils l'ont livré en 11 semaines, avec 312 tonnes de CO₂ évitées en bonus.",
       "name": "Marc B.",
       "role": "RSSI, Banque européenne tier-1",
       "consentNote": "Témoignage recueilli avec accord écrit. Identité complète disponible sous NDA à la demande."
