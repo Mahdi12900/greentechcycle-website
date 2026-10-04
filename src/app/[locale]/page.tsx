@@ -30,7 +30,8 @@ import {
 } from "lucide-react";
 import { CountUp } from "@/components/motion";
 import VideoBackground from "@/components/visuals/VideoBackground";
-import VideoModal from "@/components/visuals/VideoModal";
+import FilmModal from "@/components/visuals/FilmModal";
+import FilmSection from "@/components/FilmSection";
 import { KpiStat, KpiBar } from "@/components/kpi/Kpi";
 import { KPIS } from "@/content/kpis";
 import TrustBand from "@/components/TrustBand";
@@ -158,8 +159,8 @@ export default function HomePage() {
           1–2. HERO — notice CSRD intégrée, split 7/5, preuve chiffrée
          ========================================================== */}
       <section className="relative overflow-hidden bg-bg py-16 lg:py-32" aria-labelledby="hero-title">
-        {/* Fond vidéo (boucle muette 9 s, registre SLOT_VIDEOS) : poster rendu côté serveur,
-            vidéo chargée après `load`, poster seul en mouvement réduit / Save-Data */}
+        {/* Fond vidéo : teaser muet 10 s du film v3 (registre SLOT_VIDEOS) ; poster rendu côté
+            serveur (LCP), vidéo chargée après `load`, poster seul en mouvement réduit / Save-Data */}
         <VideoBackground id="home-hero-background" />
         <div className="relative mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
@@ -201,8 +202,8 @@ export default function HomePage() {
                   {t("hero.cta2")}
                 </ButtonLink>
               </div>
-              {/* Présentation vidéo (25 s, voix off anglaise) en fenêtre modale */}
-              <VideoModal id="demo-video" className="mt-4" />
+              {/* Film de marque v3 (2:54, voix off anglaise) en modale plein écran, lecture avec le son */}
+              <FilmModal id="brand-film" placement="home-hero" className="mt-4" />
 
               <p className="mt-6 max-w-[65ch] text-caption italic text-fg-muted">{t("hero.source")}</p>
             </div>
@@ -279,6 +280,11 @@ export default function HomePage() {
           5. BANDEAU DE CONFIANCE — pictogrammes sectoriels
          ========================================================== */}
       <TrustBand />
+
+      {/* ==========================================================
+          5 bis. LE FILM — lecteur chapitré + 5 enseignements sourcés
+         ========================================================== */}
+      <FilmSection id="brand-film" />
 
       {/* ==========================================================
           6. PROBLÈME — le coût caché, 3 risques chiffrés

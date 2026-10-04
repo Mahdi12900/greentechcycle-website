@@ -1,8 +1,6 @@
 "use client";
 
-import DashboardMock from "@/components/visuals/DashboardMock";
-import MediaSlot from "@/components/visuals/MediaSlot";
-import VideoPlayer from "@/components/visuals/VideoPlayer";
+import FilmPlayer from "@/components/visuals/FilmPlayer";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
@@ -52,12 +50,7 @@ export default function DemoPage() {
           </div>
           <figure className="mx-auto mt-10 max-w-[1100px]" aria-labelledby="demo-video-title">
             <h2 id="demo-video-title" className="mb-4 text-display-sm text-fg">{t("video.title")}</h2>
-            <div className="relative aspect-video overflow-hidden rounded-2xl border border-track shadow-float">
-              <VideoPlayer
-                id="demo-video"
-                fallback={<MediaSlot fill id="demo-video" alt="Aperçu de la plateforme GreenTechCycle" fallback={<DashboardMock state="inventory" />} />}
-              />
-            </div>
+            <FilmPlayer id="brand-film" placement="demo" />
             <figcaption className="mt-3 text-caption text-fg-muted">{t("video.placeholder")}</figcaption>
           </figure>
           <div className="mt-10">

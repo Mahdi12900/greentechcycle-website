@@ -78,6 +78,7 @@ export default function Header() {
       { href: "/resultats-clients", label: t("megaMenu.company.items.results") },
       { href: "/parcours-client", label: t("megaMenu.company.items.journey") },
       { href: "/ecosysteme", label: t("megaMenu.company.items.ecosystem") },
+      { href: "/lab", label: t("megaMenu.company.items.lab") },
       { href: "/carrieres", label: t("megaMenu.company.items.careers") },
     ],
   };

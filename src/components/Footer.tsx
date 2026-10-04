@@ -63,6 +63,7 @@ export default function Footer() {
         { name: t("columns.company.links.whyGtc"), href: "/pourquoi-gtc" },
         { name: t("columns.company.links.journey"), href: "/parcours-client" },
         { name: t("columns.company.links.ecosystem"), href: "/ecosysteme" },
+        { name: t("columns.company.links.lab"), href: "/lab" },
         { name: t("columns.company.links.careers"), href: "/carrieres" },
         { name: t("columns.company.links.impact"), href: "/impact" },
         { name: t("columns.company.links.contact"), href: "/contact" },

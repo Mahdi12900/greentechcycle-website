@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/pourquoi-gtc", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/parcours-client", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/ecosysteme", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/lab", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/reglementation", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/methodologie", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/demo", priority: 0.9, changeFrequency: "weekly" as const },

@@ -80,6 +80,7 @@
           "results": "Client results",
           "journey": "Client journey",
           "ecosystem": "Ecosystem",
+          "lab": "GreenTechCycle Lab",
           "careers": "Careers"
         }
       }
@@ -140,6 +141,7 @@
           "whyGtc": "Why GTC?",
           "journey": "Client journey",
           "ecosystem": "Ecosystem",
+          "lab": "GreenTechCycle Lab",
           "careers": "Careers",
           "impact": "Impact",
           "contact": "Contact"
@@ -1376,8 +1378,8 @@
       "subtitle": "See the GreenTechCycle platform in action"
     },
     "video": {
-      "title": "Presentation Video",
-      "placeholder": "GreenTechCycle presentation · 25 s · English voice-over"
+      "title": "The GreenTechCycle film",
+      "placeholder": "GreenTechCycle — the film · 2:54 · English voice-over · five chapters"
     },
     "screenshots": {
       "title": "Platform Preview",

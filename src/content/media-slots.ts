@@ -24,7 +24,8 @@ export interface MediaSlotEntry {
 export const MEDIA_SLOTS: MediaSlotEntry[] = [
   // Accueil
   { id: "home-hero", page: "/", ratio: "4/3", subject: "Atelier ITAD GreenTechCycle, opérateur et lot de laptops", fallback: "DashboardMock inventory", previous: "/photos/hp-atelier-itad.jpg", state: "fallback" },
-  { id: "home-hero-background", page: "/", ratio: "16/9", subject: "Fond animé du hero — boucle muette 9 s (SLOT_VIDEOS, vidéo anglaise)", fallback: "poster gtc-hero-loop-en-poster.webp", state: "video" },
+  { id: "home-hero-background", page: "/", ratio: "16/9", subject: "Fond animé du hero — teaser muet 10 s du film de marque v3 (scène globe, SLOT_VIDEOS)", fallback: "poster gtc-brand-film-v3-teaser-en-poster.webp", state: "video" },
+  { id: "brand-film", page: "/ (modale hero + section « le film »), /demo", ratio: "16/9", subject: "Film de marque v3 · 2:54 · voix off anglaise, sans sous-titres, chapitré (SLOT_VIDEOS)", fallback: "poster gtc-brand-film-v3-en-poster.webp", state: "video" },
   { id: "home-case-{slug}", page: "/", ratio: "16/10", subject: "Site client réel par cas (banque, hôpital, industrie)", fallback: "GeometryField + pictogramme", previous: "/photos/case-{banque|hopital|industrie}.jpg", state: "fallback" },
   { id: "home-testimonial", page: "/", ratio: "1/1", subject: "Portrait du DSI cité (avec accord)", fallback: "GeometryField UserRound", previous: "/photos/hp-dsi-strategy.jpg", state: "fallback" },
 
@@ -59,7 +60,6 @@ export const MEDIA_SLOTS: MediaSlotEntry[] = [
   { id: "tarifs-brique-{name}", page: "/tarifs", ratio: "16/10", subject: "Visuel de chaque brique tarifaire", fallback: "GeometryField + pictogramme", previous: "b.photo", state: "fallback" },
   { id: "tarifs-pilote", page: "/tarifs", ratio: "4/3", subject: "Signature du pilote / audit", fallback: "CertificateCard", previous: "/photos/hp-audit-signature.jpg", state: "fallback" },
   { id: "tarifs-devis-{slug}", page: "/tarifs", ratio: "16/10", subject: "Visuel par type de devis", fallback: "DashboardMock erasure / LifecycleDiagram", previous: "card.photo", state: "fallback" },
-  { id: "demo-video", page: "/demo", ratio: "16/9", subject: "Présentation GreenTechCycle 24,7 s, voix off anglaise, sans sous-titres (SLOT_VIDEOS)", fallback: "DashboardMock inventory", previous: "/images/hero-dashboard.jpg", state: "video" },
 
   // Vidéos de cas clients (anglais, lecture au clic)
   { id: "case-banque", page: "/cas-usages#cas-banque-cac40, /secteurs/finance", ratio: "16/9", subject: "Cas Banque CAC40 · 35 s", fallback: "poster", state: "video" },
@@ -94,6 +94,8 @@ export interface SlotVideoSpec {
   /** Titre et description accessibles (fr/en) — la voix off est en anglais */
   title?: { fr: string; en: string };
   description?: { fr: string; en: string };
+  /** Chapitres cliquables (FilmPlayer) : début en secondes, libellé court fr/en */
+  chapters?: { start: number; label: { fr: string; en: string } }[];
 }
 
 // Codecs déclarés : un navigateur qui ne décode pas VP9/Opus (anciens Safari iOS) passe au MP4 H.264
@@ -103,24 +105,35 @@ const v = (name: string, audio = true) => [
 ];
 
 export const SLOT_VIDEOS: Partial<Record<string, SlotVideoSpec>> = {
-  // Fond animé du hero d'accueil : boucle muette 9 s (WebM 82 Ko / MP4 267 Ko)
+  // Fond animé du hero d'accueil : teaser muet 10 s du film v3 (scène globe, boucle en fondu),
+  // 1280×720 sans piste audio (WebM 235 Ko / MP4 590 Ko)
   "home-hero-background": {
     kind: "loop",
-    sources: v("gtc-hero-loop-en", false),
-    poster: "/videos/gtc-hero-loop-en-poster.webp",
-    duration: 9,
+    sources: v("gtc-brand-film-v3-teaser-en", false),
+    poster: "/videos/gtc-brand-film-v3-teaser-en-poster.webp",
+    duration: 10,
   },
-  // /demo : présentation 24,7 s, voix off anglaise (WebM 394 Ko / MP4 501 Ko)
-  "demo-video": {
+  // Film de marque v3 (validé le 2026-10-04) : 2:54, voix off anglaise, 1920×1080
+  // (WebM 6,5 Mo / MP4 faststart 6,9 Mo). Remplace la présentation 25 s et le film v2 de 1:10.
+  // Poster = image à 2:08 (scène Plateforme, centre vide sous le bouton lecture).
+  // Chapitres = temps de coupe réels du montage (reports/film-homepage-v3-production.md).
+  "brand-film": {
     kind: "player",
-    sources: v("gtc-presentation-en"),
-    poster: "/videos/gtc-presentation-en-poster.webp",
-    duration: 24.7,
-    title: { fr: "Présentation GreenTechCycle", en: "GreenTechCycle presentation" },
+    sources: v("gtc-brand-film-v3-en"),
+    poster: "/videos/gtc-brand-film-v3-en-poster.webp",
+    duration: 174.3,
+    title: { fr: "GreenTechCycle — le film", en: "GreenTechCycle — the film" },
     description: {
-      fr: "Vidéo de 25 secondes, voix off en anglais : l'ITAD comme chaîne de preuves, les chiffres clés (152 ETI clientes, 12 412 actifs traités, 45 tCO₂e évitées, 73 % de réemploi) et le cycle collecte, effacement attesté, reconditionnement, recyclage.",
-      en: "25-second video with English voice-over: ITAD as a chain of proof, key figures (152 mid-cap clients, 12,412 assets processed, 45 tCO₂e avoided, 73% reuse) and the collection, attested erasure, refurbishment, recycling cycle.",
+      fr: "Film de 2 minutes 54, voix off en anglais. Europe : 17,6 kg de déchets électroniques par habitant et par an, 42,8 % collectés. Monde : 62 millions de tonnes en 2022, 22,3 % correctement recyclées, 82 millions de tonnes attendues en 2030 (ITU, Global E-waste Monitor 2024). L'IA fait grimper la demande en serveurs, mémoire et stockage : environ 415 TWh consommés par les datacenters en 2024, environ 945 TWh en 2030 (AIE, Energy and AI, 2025). Coût moyen d'une fuite de données : 4,44 millions de dollars (IBM, 2025). GreenTechCycle réunit fin de vie IT, sécurité et carbone sur une seule plateforme : chaîne de garde scellée, horodatée, empreinte SHA-256. 152 ETI clientes, 12 412 actifs traités, 45 tCO₂e évitées, 73 % de réemploi. GreenTechCycle, la plateforme ITAD nouvelle génération.",
+      en: "2-minute 54-second film with English voice-over. Europe: 17.6 kg of e-waste per person per year, 42.8% collected. World: 62 million tonnes in 2022, 22.3% properly recycled, 82 million tonnes expected by 2030 (ITU, Global E-waste Monitor 2024). AI is driving demand for servers, memory and storage: about 415 TWh used by data centres in 2024, about 945 TWh by 2030 (IEA, Energy and AI, 2025). Average cost of a data breach: $4.44 million (IBM, 2025). GreenTechCycle brings IT end-of-life, security and carbon onto one platform: a sealed, timestamped, SHA-256 fingerprinted chain of custody. 152 mid-cap clients, 12,412 assets processed, 45 tCO₂e avoided, 73% reuse. GreenTechCycle, the next-generation ITAD platform.",
     },
+    chapters: [
+      { start: 0, label: { fr: "Europe", en: "Europe" } },
+      { start: 14, label: { fr: "Monde", en: "World" } },
+      { start: 64.8, label: { fr: "IA", en: "AI" } },
+      { start: 98.4, label: { fr: "Sécurité", en: "Security" } },
+      { start: 125.3, label: { fr: "Plateforme", en: "Platform" } },
+    ],
   },
   // Cas Banque CAC40 (UseCases.cases[0]) : 35 s
   "case-banque": {
@@ -173,4 +186,4 @@ export const SLOT_VIDEOS: Partial<Record<string, SlotVideoSpec>> = {
 };
 
 /** Emplacements dotés d'une vidéo */
-export const VIDEO_READY_SLOTS = ["home-hero-background", "demo-video", "case-banque", "case-chu", "case-tf1", "case-energie"] as const;
+export const VIDEO_READY_SLOTS = ["home-hero-background", "brand-film", "case-banque", "case-chu", "case-tf1", "case-energie"] as const;
