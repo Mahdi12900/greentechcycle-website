@@ -772,7 +772,7 @@
         ]
       },
       {
-        "id": "blockchain",
+        "id": "tracabilite-sha256",
         "title": "Timestamped Traceability (SHA-256)",
         "subtitle": "Certified chain of custody",
         "engagement": "Immutable proof",

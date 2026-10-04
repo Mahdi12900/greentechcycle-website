@@ -772,7 +772,7 @@
         ]
       },
       {
-        "id": "blockchain",
+        "id": "tracabilite-sha256",
         "title": "Traçabilité horodatée (SHA-256)",
         "subtitle": "Chain of custody certifiée",
         "engagement": "Preuve immuable",
