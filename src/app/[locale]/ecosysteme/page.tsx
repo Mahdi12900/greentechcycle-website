@@ -253,7 +253,7 @@ export default function EcosystemPage({
                       api-example.ts
                     </span>
                   </div>
-                  <pre className="text-sm text-fg-muted overflow-x-auto font-mono leading-relaxed">
+                  <pre tabIndex={0} aria-label="api-example.ts" className="text-sm text-fg-muted overflow-x-auto font-mono leading-relaxed focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald">
                     <code>{codeSnippet}</code>
                   </pre>
                 </div>
