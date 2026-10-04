@@ -11,8 +11,8 @@ export async function generateMetadata({
   const isEn = locale === "en";
 
   const title = isEn
-    ? "Compliance & approach | ISO 27001 in progress, NIST SP 800-88 erasure | GreenTechCycle"
-    : "Conformité & démarche | ISO 27001 en cours, effacement NIST SP 800-88 | GreenTechCycle";
+    ? "Compliance & approach | ISO 27001 in progress, NIST SP 800-88 erasure"
+    : "Conformité & démarche | ISO 27001 en cours, effacement NIST SP 800-88";
 
   const description = isEn
     ? "GreenTechCycle does not hold any certification to date; ISO 27001 certification is in progress. Applied methods (NIST SP 800-88, IEEE 2883, HMG IS5), SHA-256 proof per asset, regulatory context."
