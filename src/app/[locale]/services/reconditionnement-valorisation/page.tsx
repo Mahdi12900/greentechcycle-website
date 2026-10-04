@@ -1,5 +1,6 @@
 "use client";
 
+import { KPIS, formatKpi } from "@/content/kpis";
 import { RefreshCcw } from "lucide-react";
 import { useLocale } from "next-intl";
 import ServicePageTemplate from "../ServicePageTemplate";
@@ -23,8 +24,8 @@ export default function ReconditionnementPage() {
       "Every eligible asset goes through our refurbishment line. Hardware diagnostic, cosmetic restoration, replacement of failing components, firmware update, functional test battery, A/B/C quality grade. Equipment is then placed on three channels according to your policy: business resale, internal store for your employees, or charitable transfer to approved associations with tax deduction. The share of residual value returned is contractually fixed before the first mission, no surprise at year end."
     ),
     narrative: tx(
-      "La valorisation ne se résume pas à un prix de revente. Elle exige une chaîne industrielle : diagnostic, pièces de rechange en stock, formation des techniciens, contrôle qualité, garantie. Voici comment nous obtenons un taux de réemploi moyen de 72 %.",
-      "Value recovery isn't just a resale price. It requires an industrial chain: diagnostic, spare parts in stock, technician training, quality control, warranty. Here is how we sustain a 72% average reuse rate."
+      "La valorisation ne se résume pas à un prix de revente. Elle exige une chaîne industrielle : diagnostic, pièces de rechange en stock, formation des techniciens, contrôle qualité, garantie. Voici comment nous obtenons un taux de réemploi moyen de " + formatKpi("reuse", "fr") + ".",
+      "Value recovery isn't just a resale price. It requires an industrial chain: diagnostic, spare parts in stock, technician training, quality control, warranty. Here is how we sustain a " + formatKpi("reuse", "en") + " average reuse rate."
     ),
     deliveryNarrative: tx(
       "Le rapport trimestriel n'est pas un PowerPoint marketing : il détaille chaque actif, chaque grade, chaque prix de cession, chaque tonne de CO₂ évitée. Vos directions financière et RSE l'utilisent directement, sans retraitement.",
@@ -53,7 +54,7 @@ export default function ReconditionnementPage() {
     ],
     proof: [
       { value: "+40", unit: "%", label: tx("valeur récupérée moyenne", "average recovered value") },
-      { value: "72", unit: "%", label: tx("taux de réemploi mesuré", "measured reuse rate") },
+      { value: String(KPIS.reuse.value), unit: "%", label: tx("taux de réemploi mesuré", "measured reuse rate") },
       { value: "12", unit: tx("mois", "mo"), label: tx("garantie sur le matériel", "equipment warranty") },
     ],
     methodology: {
@@ -99,14 +100,14 @@ export default function ReconditionnementPage() {
     ],
     sla: [
       { metric: tx("Délai de reconditionnement", "Refurbishment turnaround"), value: tx("10 jours", "10 days") },
-      { metric: tx("Taux de réemploi moyen", "Average reuse rate"), value: "72 %" },
+      { metric: tx("Taux de réemploi moyen", "Average reuse rate"), value: tx(formatKpi("reuse", "fr"), formatKpi("reuse", "en")) },
       { metric: tx("Garantie équipements", "Equipment warranty"), value: tx("12 mois", "12 mo") },
     ],
     certifications: ["R2v3", "ISO 14001", "Boavizta member"],
     quote: {
       text: tx(
-        "638 000 € reversés sur 4 200 postes en deux ans. Notre direction financière a découvert que la fin de vie IT pouvait devenir une ligne de produits.",
-        "€638,000 returned on 4,200 laptops in two years. Our finance team discovered that IT end of life could become a revenue line."
+        "Notre direction financière a découvert que la fin de vie IT pouvait devenir une ligne de produits.",
+        "Our finance team discovered that IT end of life could become a revenue line."
       ),
       name: "Catherine M.",
       role: tx("DAF, distribution spécialisée", "CFO, specialty retail"),

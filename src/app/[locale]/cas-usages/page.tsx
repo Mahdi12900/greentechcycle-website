@@ -1,5 +1,6 @@
 "use client";
 
+import { KPIS, formatKpi } from "@/content/kpis";
 import CertificateCard from "@/components/visuals/CertificateCard";
 import DashboardMock from "@/components/visuals/DashboardMock";
 import GeometryField from "@/components/visuals/GeometryField";
@@ -136,12 +137,16 @@ function CaseCard({ c, index, editorialBody, isFr }: { c: CaseItem; index: numbe
             </div>
           ))}
         </dl>
-        <figure className="mt-6 flex-1 border-l-2 border-emerald pl-4">
-          <blockquote className="text-body-sm italic text-fg">&laquo;&nbsp;{c.quote}&nbsp;&raquo;</blockquote>
-          <figcaption className="mt-2 text-caption text-fg-muted">
-            <span className="font-semibold text-fg-strong">{c.quoteName}</span> · {c.quoteRole} · {c.quoteSector}
-          </figcaption>
-        </figure>
+        {c.quote ? (
+          <figure className="mt-6 flex-1 border-l-2 border-emerald pl-4">
+            <blockquote className="text-body-sm italic text-fg">&laquo;&nbsp;{c.quote}&nbsp;&raquo;</blockquote>
+            <figcaption className="mt-2 text-caption text-fg-muted">
+              <span className="font-semibold text-fg-strong">{c.quoteName}</span> · {c.quoteRole} · {c.quoteSector}
+            </figcaption>
+          </figure>
+        ) : (
+          <div className="flex-1" />
+        )}
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
           <ButtonLink href={`/contact?cas=${c.slug}`} variant="secondary">
             {isFr ? "Discuter d'un cas similaire" : "Discuss a similar case"}
@@ -167,7 +172,14 @@ export default function CasUsagesPage() {
   const tx = (fr: string, en: string) => (isFr ? fr : en);
 
   const cases = t.raw("cases.items") as CaseItem[];
-  const kpiItems = t.raw("kpis.items") as Array<{ value: number; suffix: string; label: string; source: string }>;
+  // Bloc « Impact » : registre unique src/content/kpis.ts (le cumul « 4 800 000 € » est retiré)
+  const lang = isFr ? "fr" : "en";
+  const kpiItems = (["assets", "carbon", "certificates", "refurbished"] as const).map((id) => ({
+    value: KPIS[id].value,
+    suffix: KPIS[id].unit[lang],
+    label: KPIS[id].label[lang],
+    source: `${KPIS[id].source[lang]} · ${KPIS[id].period[lang]}`,
+  }));
   const editorialBodies = t.raw("editorialBodies") as Record<string, string>;
   const matrixHeaders = t.raw("matrix.headers") as string[];
   const matrixRows = t.raw("matrix.rows") as MatrixRow[];
@@ -239,10 +251,7 @@ export default function CasUsagesPage() {
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
               <Tag variant="brand" icon={<ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
-                {tx(
-                  "38 000+ certificats NIST 800-88 émis · 6 200 tCO2e évitées · Réponse audit sous 72h",
-                  "38,000+ NIST 800-88 certificates issued · 6,200 tCO2e avoided · Audit response within 72h"
-                )}
+                {`${formatKpi("certificates", lang)} ${KPIS.certificates.label[lang]} · ${formatKpi("carbon", lang)} ${KPIS.carbon.label[lang]}`}
               </Tag>
               <p className="mt-6 text-eyebrow uppercase text-fg-muted">{t("editorialHero.featuredLabel")}</p>
               <h1 id="hero-editorial-title" className="mt-3 max-w-[22ch] text-display-lg text-fg">{t("editorialHero.headline")}</h1>
@@ -250,7 +259,7 @@ export default function CasUsagesPage() {
               <dl className="mt-8 grid max-w-[600px] grid-cols-3 border-y border-track py-6">
                 {[
                   { v: "1 850", unit: "tCO₂e", l: tx("évitées en 4 ans", "avoided in 4 years") },
-                  { v: "638 k€", unit: "", l: tx("valeur récupérée", "value recovered") },
+                  { v: tx("12 000", "12,000"), unit: "", l: tx("postes migrés", "devices migrated") },
                   { v: tx("4 jours", "4 days"), unit: "", l: tx("audit ACPR réussi", "ACPR audit passed") },
                 ].map((item, i) => (
                   <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-track pl-4" : "pr-4"}`}>
@@ -422,8 +431,8 @@ export default function CasUsagesPage() {
           <Table
             caption={t("matrix.title")}
             head={matrixHeaders}
-            numeric={[1, 2, 5]}
-            emphasis={[1, 5]}
+            numeric={[1, 4]}
+            emphasis={[4]}
             rows={matrixRows.map((row, i) => [
               cases[i] ? (
                 <a key="l" href={`#cas-${cases[i].slug}`} className="text-fg hover:text-emerald">{row[0]}</a>
@@ -434,7 +443,6 @@ export default function CasUsagesPage() {
               row[2],
               row[3],
               row[4],
-              row[5],
             ])}
           />
           <p className="mt-4 max-w-[65ch] text-caption italic text-fg-muted">

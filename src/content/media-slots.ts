@@ -23,7 +23,7 @@ export interface MediaSlotEntry {
 
 export const MEDIA_SLOTS: MediaSlotEntry[] = [
   // Accueil
-  { id: "home-hero", page: "/", ratio: "4/3", subject: "Atelier ITAD GreenTechCycle, opérateur et lot de laptops — candidat vidéo boucle 8 s", fallback: "DashboardMock inventory", previous: "/photos/hp-atelier-itad.jpg", state: "fallback" },
+  { id: "home-hero", page: "/", ratio: "4/3", subject: "Atelier ITAD GreenTechCycle, opérateur et lot de laptops — VIDÉO PRÊTE (SLOT_VIDEOS) : boucle muette 8–12 s", fallback: "DashboardMock inventory", previous: "/photos/hp-atelier-itad.jpg", state: "fallback" },
   { id: "home-case-{slug}", page: "/", ratio: "16/10", subject: "Site client réel par cas (banque, hôpital, industrie)", fallback: "GeometryField + pictogramme", previous: "/photos/case-{banque|hopital|industrie}.jpg", state: "fallback" },
   { id: "home-testimonial", page: "/", ratio: "1/1", subject: "Portrait du DSI cité (avec accord)", fallback: "GeometryField UserRound", previous: "/photos/hp-dsi-strategy.jpg", state: "fallback" },
 
@@ -58,7 +58,7 @@ export const MEDIA_SLOTS: MediaSlotEntry[] = [
   { id: "tarifs-brique-{name}", page: "/tarifs", ratio: "16/10", subject: "Visuel de chaque brique tarifaire", fallback: "GeometryField + pictogramme", previous: "b.photo", state: "fallback" },
   { id: "tarifs-pilote", page: "/tarifs", ratio: "4/3", subject: "Signature du pilote / audit", fallback: "CertificateCard", previous: "/photos/hp-audit-signature.jpg", state: "fallback" },
   { id: "tarifs-devis-{slug}", page: "/tarifs", ratio: "16/10", subject: "Visuel par type de devis", fallback: "DashboardMock erasure / LifecycleDiagram", previous: "card.photo", state: "fallback" },
-  { id: "demo-video", page: "/demo", ratio: "16/9", subject: "Vidéo de démonstration de la plateforme (phase vidéo)", fallback: "DashboardMock inventory", previous: "/images/hero-dashboard.jpg", state: "fallback" },
+  { id: "demo-video", page: "/demo", ratio: "16/9", subject: "Vidéo de démonstration de la plateforme — VIDÉO PRÊTE (SLOT_VIDEOS) : capture d'écran 20–30 s", fallback: "DashboardMock inventory", previous: "/images/hero-dashboard.jpg", state: "fallback" },
 
   // Blog
   { id: "blog-hero", page: "/blog", ratio: "16/9", subject: "Illustration éditoriale", fallback: "GeometryField", previous: "/photos/blog-economie-circulaire.jpg", state: "fallback" },
@@ -66,3 +66,18 @@ export const MEDIA_SLOTS: MediaSlotEntry[] = [
   { id: "blog-{slug}", page: "/blog/{slug}", ratio: "16/9", subject: "Visuel de l'article", fallback: "GeometryField", previous: "article.image", state: "fallback" },
   { id: "related-{slug}", page: "articles liés", ratio: "16/10", subject: "Visuel de l'article", fallback: "GeometryField", previous: "article.image", state: "fallback" },
 ];
+
+/**
+ * Vidéos par emplacement (phase vidéo). VIDE tant que GreenTechCycle n'a pas
+ * livré ses fichiers : aucun fichier n'est référencé. Pour activer une vidéo,
+ * déposer les fichiers dans /public/videos puis décommenter la ligne.
+ * Format : MP4 H.264 ≤ 4 Mo, muet, en boucle, + poster JPEG (1920×1080 pour un hero).
+ * Les emplacements « vidéo prêts » portent `data-video-ready` dans le HTML.
+ */
+export const SLOT_VIDEOS: Partial<Record<string, { src: string; poster: string }>> = {
+  // "home-hero": { src: "/videos/home-hero.mp4", poster: "/videos/home-hero.jpg" },
+  // "demo-video": { src: "/videos/demo-plateforme.mp4", poster: "/videos/demo-plateforme.jpg" },
+};
+
+/** Emplacements prévus pour une vidéo (phase 3) */
+export const VIDEO_READY_SLOTS = ["home-hero", "demo-video"] as const;

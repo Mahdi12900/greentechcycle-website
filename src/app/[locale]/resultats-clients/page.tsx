@@ -1,8 +1,9 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { CountUp } from "@/components/motion";
+import { KPIS } from "@/content/kpis";
 import {
   ArrowRight,
   CheckCircle2,
@@ -39,7 +40,13 @@ type CaseResult = {
 export default function ResultatsClientsPage() {
   const t = useTranslations("ResultatsClients");
 
-  const globalMetrics = t.raw("metrics") as Metric[];
+  // Chiffres globaux : registre unique src/content/kpis.ts (plus de montant en euros)
+  const lang = useLocale() === "en" ? "en" : "fr";
+  const globalMetrics: Metric[] = (["clients", "assets", "reuse", "carbon"] as const).map((id) => ({
+    value: String(KPIS[id].value),
+    suffix: KPIS[id].unit[lang],
+    label: `${KPIS[id].label[lang]} · ${KPIS[id].period[lang]}`,
+  }));
   const cases = t.raw("cases") as CaseResult[];
   const trustBadges = t.raw("trustBadges") as string[];
 

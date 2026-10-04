@@ -751,9 +751,7 @@ export default function ImpactPage() {
                   <p className="text-2xl md:text-3xl font-semibold text-fg leading-tight">
                     {c.metric}
                   </p>
-                  <p className="text-sm font-semibold text-emerald mt-1 mb-4">
-                    {c.money}
-                  </p>
+                  {c.money ? <p className="text-sm font-semibold text-emerald mt-1 mb-4">{c.money}</p> : <div className="mb-4" />}
                   <p className="text-sm text-fg-strong leading-relaxed flex-1">
                     {c.context}
                   </p>

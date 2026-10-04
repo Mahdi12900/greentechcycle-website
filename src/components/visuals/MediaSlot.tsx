@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import SlotVideo from "./SlotVideo";
+import { SLOT_VIDEOS, VIDEO_READY_SLOTS } from "@/content/media-slots";
 
 /**
  * MediaSlot — emplacement photo/vidéo (DESIGN.md v2 §7.3).
@@ -36,8 +37,11 @@ export default function MediaSlot({
   sizes?: string;
   className?: string;
 }) {
-  const content = video ? (
-    <SlotVideo src={video.src} poster={video.poster} />
+  // Vidéo explicite, sinon celle déclarée pour cet emplacement dans le registre
+  const vid = video ?? SLOT_VIDEOS[id];
+  const videoReady = (VIDEO_READY_SLOTS as readonly string[]).includes(id) || undefined;
+  const content = vid ? (
+    <SlotVideo src={vid.src} poster={vid.poster} />
   ) : src ? (
     <Image src={src} alt={alt} fill priority={priority} className="object-cover" sizes={sizes} />
   ) : (
@@ -46,7 +50,7 @@ export default function MediaSlot({
 
   if (fill) {
     return (
-      <div data-media-slot={id} className={`absolute inset-0 overflow-hidden ${className}`}>
+      <div data-media-slot={id} data-video-ready={videoReady} className={`absolute inset-0 overflow-hidden ${className}`}>
         {content}
       </div>
     );
@@ -54,6 +58,7 @@ export default function MediaSlot({
   return (
     <div
       data-media-slot={id}
+      data-video-ready={videoReady}
       className={`relative overflow-hidden rounded-2xl border border-track bg-bg-card shadow-float ${className}`}
       style={{ aspectRatio: ratio }}
     >

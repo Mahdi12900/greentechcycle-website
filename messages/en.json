@@ -222,7 +222,7 @@
     "hero": {
       "eyebrow": "ITAD platform · R2v3 · NIST 800-88 · SecNumCloud-ready",
       "title": "The platform that unifies your ITAD: certified erasure, guaranteed compliance, maximum value recovery.",
-      "subtitle": "One dashboard, 38 cleared experts, 4 sites in France, zero gaps.",
+      "subtitle": "One dashboard, %kpi.team% cleared experts, 4 sites in France, zero gaps.",
       "proofStat": "78% of an IT estate's carbon footprint is locked at manufacturing. For the remaining 22%, each refurbished device avoids 150 kgCO₂e.",
       "cta1": "Book my demo (30 min)",
       "cta2": "Request free audit",
@@ -235,12 +235,36 @@
       "label": "They trust us with their IT decommissioning",
       "note": "Customer identities anonymised at their request, verifiable under NDA.",
       "clients": [
-        { "name": "Tier-1 European bank", "metric": "CAC40", "icon": "Landmark" },
-        { "name": "TF1", "metric": "Broadcast", "icon": "Tv" },
-        { "name": "Regional teaching hospital", "metric": "9,000 beds", "icon": "HeartPulse" },
-        { "name": "Industrial mid-cap", "metric": "4,500 FTE", "icon": "Factory" },
-        { "name": "French government ministry", "metric": "", "icon": "Building2" },
-        { "name": "Retail chain", "metric": "220 stores", "icon": "Store" }
+        {
+          "name": "Tier-1 European bank",
+          "metric": "CAC40",
+          "icon": "Landmark"
+        },
+        {
+          "name": "TF1",
+          "metric": "Broadcast",
+          "icon": "Tv"
+        },
+        {
+          "name": "Regional teaching hospital",
+          "metric": "9,000 beds",
+          "icon": "HeartPulse"
+        },
+        {
+          "name": "Industrial mid-cap",
+          "metric": "4,500 FTE",
+          "icon": "Factory"
+        },
+        {
+          "name": "French government ministry",
+          "metric": "",
+          "icon": "Building2"
+        },
+        {
+          "name": "Retail chain",
+          "metric": "220 stores",
+          "icon": "Store"
+        }
       ]
     },
     "problem": {
@@ -256,8 +280,8 @@
         },
         {
           "tag": "Economic waste",
-          "title": "€412 of residual value left on the table per IT seat, pure leakage.",
-          "body": "On the EMEA refurb market, a 3-year-old business laptop is worth €280 to €540 depending on spec and grade (GTC Asset Intelligence estimator, n=1,487 graded assets 2024-2025). With no market valuation, most mid-caps sell off as scrap metal, at €12 a tonne.",
+          "title": "Residual value left on the table on every IT seat, pure leakage.",
+          "body": "On the EMEA refurb market, a 3-year-old business laptop keeps a resale value depending on spec and grade (GTC Asset Intelligence estimator, n=1,487 graded assets 2024-2025). With no market valuation, most mid-caps sell it off at scrap-metal prices.",
           "source": "Sources: GTC Asset Intelligence 2025, Recommerce Market Index Q4 2024"
         },
         {
@@ -275,7 +299,7 @@
       "pillars": [
         {
           "label": "ITAD operated",
-          "desc": "4 sites in France · 38 cleared technicians"
+          "desc": "4 sites in France · %kpi.team% cleared technicians"
         },
         {
           "label": "Cyber-erasure",
@@ -287,7 +311,7 @@
         },
         {
           "label": "Circular economy",
-          "desc": "Social-economy partners · R2v3 · 73% reuse rate"
+          "desc": "Social-economy partners · R2v3 · %kpi.reuse.full% reuse rate"
         }
       ],
       "diagramCenter": "GreenTechCycle",
@@ -314,7 +338,7 @@
           "n": "03",
           "title": "Refurb / recycling",
           "desc": "Refurbishment via French social-economy partners (Envie, Ateliers du Bocage) or R2v3 recycling depending on quality grade.",
-          "kpi": "Average reuse rate 73%"
+          "kpi": "Average reuse rate %kpi.reuse.full%"
         },
         {
           "n": "04",
@@ -381,7 +405,7 @@
           "1 platform · 1 master contract · 1 enforceable SLA",
           "ESRS E5 reporting generated automatically, 4-day audit on average",
           "Timestamped chain of custody · SHA-256 fingerprints · video surveillance",
-          "Asset Intelligence quotation · €638k average residual value / mission",
+          "Asset Intelligence quotation of residual value",
           "0 reservations across 41 regulatory audits in 2025"
         ]
       }
@@ -389,7 +413,7 @@
     "proof": {
       "eyebrow": "Proof & results",
       "title": "GreenTechCycle in measured numbers (2025).",
-      "footnote": "Scope: 41 client missions, n=12,412 assets processed. Carbon methodology: GHG Protocol : ADEME Base Empreinte® v23 + Boavizta API v1.4. All sources available on request at contact@greentechcycle.fr.",
+      "footnote": "Scope: 41 client missions, n=%kpi.assets% assets processed. Carbon methodology: GHG Protocol : ADEME Base Empreinte® v23 + Boavizta API v1.4. All sources available on request.",
       "items": {
         "clients": {
           "value": "152",
@@ -402,12 +426,6 @@
           "suffix": "",
           "label": "IT assets processed",
           "source": "41 invoiced missions in 2025"
-        },
-        "value": {
-          "value": "638",
-          "suffix": "k€",
-          "label": "average residual value / large-account mission",
-          "source": "Cohort 2025 (n=12 missions ≥ 800 assets)"
         },
         "carbon": {
           "value": "45",
@@ -431,7 +449,6 @@
           "title": "2,400 trading floor seats migrated to Windows 11 under the NIS2 deadline.",
           "results": [
             "11 weeks vs 6-month original budget",
-            "€187k residual value recovered",
             "ACPR pre-audit cleared in 4 days"
           ]
         },
@@ -442,7 +459,6 @@
           "title": "800 medical imaging drives erased without disrupting care.",
           "results": [
             "0 OR interruption",
-            "€142k residual value (admin seats)",
             "0 CNIL incident since 2024"
           ]
         },
@@ -452,7 +468,6 @@
           "regulation": "CSRD ESRS E5 · ISO 14001",
           "title": "First ESRS E5 disclosure produced in 4 months on 1,800 OT assets.",
           "results": [
-            "€248k residual value (vs €0 prior)",
             "421 tCO₂e avoided",
             "ESRS E5 audit signed without reservation"
           ]
@@ -481,14 +496,14 @@
         },
         {
           "title": "French social-economy team, not a logistics window.",
-          "body": "38 permanent staff, 41% women, 27% from social refurbishment programmes, median age 34. 4 sites in France (Lyon HQ + 3 workshops). ESUS social-economy status, AGEC inclusion-clause certification.",
-          "stat": "38 FTE · ESUS · 4 sites FR"
+          "body": "%kpi.team% permanent staff, 41% women, 27% from social refurbishment programmes, median age 34. 4 sites in France (Lyon HQ + 3 workshops). ESUS social-economy status, AGEC inclusion-clause certification.",
+          "stat": "%kpi.team% FTE · ESUS · 4 sites FR"
         }
       ]
     },
     "bigQuote": {
       "eyebrow": "Client verbatim",
-      "quote": "Across 1,200 workstations decommissioned in 2025, we recovered €184k of residual value and cleared the ESRS E5 audit in 4 days instead of 3 weeks. The timestamped chain of custody closed every auditor question, including the dreaded one on transport sub-contracting.",
+      "quote": "Across 1,200 workstations decommissioned in 2025, we cleared the ESRS E5 audit in 4 days instead of 3 weeks. The timestamped chain of custody closed every auditor question, including the dreaded one on transport sub-contracting.",
       "name": "Marc B.",
       "role": "CISO",
       "company": "Tier-1 European bank · CAC40",
@@ -575,10 +590,26 @@
       "label": "They trust us",
       "title": "Organisations from every sector trust us with their ITAD.",
       "sectors": [
-        { "icon": "building", "label": "Banking & Finance", "detail": "DORA · NIS2 · ACPR compliance" },
-        { "icon": "heartPulse", "label": "Healthcare", "detail": "HDS · Health GDPR · CNIL" },
-        { "icon": "factory", "label": "Industry & OT", "detail": "CSRD ESRS E5 · ISO 14001" },
-        { "icon": "landmark", "label": "Public sector", "detail": "IGI 1300 · SecNumCloud" }
+        {
+          "icon": "building",
+          "label": "Banking & Finance",
+          "detail": "DORA · NIS2 · ACPR compliance"
+        },
+        {
+          "icon": "heartPulse",
+          "label": "Healthcare",
+          "detail": "HDS · Health GDPR · CNIL"
+        },
+        {
+          "icon": "factory",
+          "label": "Industry & OT",
+          "detail": "CSRD ESRS E5 · ISO 14001"
+        },
+        {
+          "icon": "landmark",
+          "label": "Public sector",
+          "detail": "IGI 1300 · SecNumCloud"
+        }
       ]
     },
     "testimonials": {
@@ -592,13 +623,13 @@
           "company": "Tier-1 European bank · CAC40"
         },
         {
-          "quote": "Zero operating room interruptions during the erasure of 800 medical imaging drives. Residual value recovered: €142k.",
+          "quote": "Zero operating room interruptions during the erasure of 800 medical imaging drives.",
           "name": "Dr. Sophie L.",
           "role": "CIO",
           "company": "Regional teaching hospital · 9,000 beds"
         },
         {
-          "quote": "First ESRS E5 report produced in 4 months. Our statutory auditor signed without reservation. €248k residual value we weren't recovering before.",
+          "quote": "First ESRS E5 report produced in 4 months. Our statutory auditor signed without reservation.",
           "name": "Thomas R.",
           "role": "CSR Director",
           "company": "Industrial group · 4,500 FTE"
@@ -610,10 +641,30 @@
       "eyebrow": "What is your challenge?",
       "title": "Identify your priority, find your solution.",
       "cards": [
-        { "title": "NIS2 / DORA Compliance", "desc": "Opposable chain of custody, ACPR audit in 4 days.", "href": "/reglementation", "icon": "shield" },
-        { "title": "CSRD Reporting", "desc": "11/16 ESRS E5 data points generated automatically.", "href": "/services/reconditionnement-valorisation", "icon": "barChart" },
-        { "title": "Data Security", "desc": "NIST 800-88 rev2 erasure, Timestamped certificate within 24h.", "href": "/services/effacement-securise", "icon": "lock" },
-        { "title": "Fleet Value Recovery", "desc": "€638k average residual value per mission.", "href": "/services/reconditionnement-valorisation", "icon": "euro" }
+        {
+          "title": "NIS2 / DORA Compliance",
+          "desc": "Opposable chain of custody, ACPR audit in 4 days.",
+          "href": "/reglementation",
+          "icon": "shield"
+        },
+        {
+          "title": "CSRD Reporting",
+          "desc": "11/16 ESRS E5 data points generated automatically.",
+          "href": "/services/reconditionnement-valorisation",
+          "icon": "barChart"
+        },
+        {
+          "title": "Data Security",
+          "desc": "NIST 800-88 rev2 erasure, Timestamped certificate within 24h.",
+          "href": "/services/effacement-securise",
+          "icon": "lock"
+        },
+        {
+          "title": "Fleet Value Recovery",
+          "desc": "Resale on the refurbished market, charitable donation or certified recycling.",
+          "href": "/services/reconditionnement-valorisation",
+          "icon": "euro"
+        }
       ]
     },
     "roiCalculator": {
@@ -629,7 +680,13 @@
       "disclaimer": "Indicative estimate based on observed averages (2025 cohort). Precise result after audit."
     },
     "anchorNav": {
-      "items": ["Platform", "Differentiators", "Client cases", "Compliance", "Pricing"]
+      "items": [
+        "Platform",
+        "Differentiators",
+        "Client cases",
+        "Compliance",
+        "Pricing"
+      ]
     },
     "finalCTA": {
       "eyebrow": "Next step",
@@ -809,12 +866,6 @@
           "color": "#10B981"
         },
         {
-          "value": "638",
-          "unit": "k€",
-          "label": "average value recovered",
-          "color": "#0EA5E9"
-        },
-        {
           "value": "100",
           "unit": "%",
           "label": "assets traced one by one",
@@ -869,7 +920,7 @@
         "photo": "/photos/hp-dsi-strategy.jpg",
         "photoAlt": "IT leadership ruling on the end-of-life of an asset fleet on the platform",
         "proofLabel": "Average reuse rate",
-        "proofValue": "72%",
+        "proofValue": "%kpi.reuse.full%",
         "proofDetail": "Versus 32% observed in standard professional WEEE short-loop circuits",
         "bullets": [
           "Rule engine configurable by sensitivity, sector and site",
@@ -921,12 +972,6 @@
         "suffix": "+",
         "label": "assets orchestrated on the platform",
         "source": "Cumulative GTC missions, March 2026"
-      },
-      "value": {
-        "value": "12",
-        "suffix": " M€",
-        "label": "value recovered for our clients",
-        "source": "Cumulative valuation 2024-2025"
       },
       "carbon": {
         "value": "6200",
@@ -1137,7 +1182,7 @@
           "source": "Contractual commitment, after reception at the floor"
         },
         {
-          "metric": "72",
+          "metric": "%kpi.reuse%",
           "suffix": "%",
           "label": "reuse rate on collected assets",
           "source": "Versus 32% in the standard professional WEEE circuit"
@@ -1848,7 +1893,7 @@
           "sector": "CAC40 bank",
           "scope": "12,000 devices, 4 years",
           "metric": "1,850 tCO₂e avoided",
-          "money": "+ €2.1M residual value recovered",
+          "money": "",
           "context": "W11 migration plan + ESRS E5 FY2024. First CSRD report cleared without reservation by the statutory auditor.",
           "ctaLabel": "View Banking case",
           "ctaHref": "/cas-usages"
@@ -1857,7 +1902,7 @@
           "sector": "Regional teaching hospital",
           "scope": "9,000 beds, 4,200 refurbished assets",
           "metric": "710 tCO₂e avoided",
-          "money": "+ €320k budget savings",
+          "money": "",
           "context": "Administrative + biomedical fleet renewal. ANSSI compliance maintained (NIST 800-88 erasure on medical IoT probes).",
           "ctaLabel": "View Healthcare case",
           "ctaHref": "/cas-usages"
@@ -2082,7 +2127,7 @@
       },
       {
         "q": "What is the average reuse rate?",
-        "a": "On average, 72% of collected equipment is refurbished and reused. The remainder is recycled through certified channels."
+        "a": "On average, %kpi.reuse.full% of collected equipment is refurbished and reused. The remainder is recycled through certified channels."
       },
       {
         "q": "Do you offer charitable donations?",
@@ -5510,7 +5555,7 @@
         {
           "slug": "retail-wakibox",
           "label": "Retail",
-          "kpi": "€89k/yr savings"
+          "kpi": "12 t/yr of WEEE collected"
         },
         {
           "slug": "energie-dora",
@@ -5520,7 +5565,7 @@
         {
           "slug": "telco-datacenter",
           "label": "Telco",
-          "kpi": "€1.2M recovered"
+          "kpi": "2,800 servers processed"
         },
         {
           "slug": "universite-ess",
@@ -5530,7 +5575,7 @@
       ]
     },
     "kpis": {
-      "eyebrow": "GreenTechCycle cumulative impact 2022-2025",
+      "eyebrow": "GreenTechCycle impact: every figure with its period",
       "title": "Verifiable numbers, not estimates.",
       "footnote": "Aggregated data across all GreenTechCycle missions 2022-2025. Sources: intervention reports, NIST 800-88 certificates, carbon balances per ADEME / Boavizta methodology.",
       "items": [
@@ -5632,7 +5677,6 @@
           ],
           "results": [
             "1,850 tCO2e avoided over 4 years (3-year life extension vs new purchase)",
-            "€638k in residual value recovered (resale + carbon credits)",
             "ACPR audit passed in 4 days (market benchmark: 3 weeks)",
             "100% of erasure certificates delivered within 48h",
             "Zero documentary gap found during CISO internal review"
@@ -5642,11 +5686,6 @@
               "label": "tCO2e avoided",
               "value": "1,850",
               "detail": "over 4 years (scope 3.1)"
-            },
-            {
-              "label": "Value recovered",
-              "value": "€638k",
-              "detail": "resale + carbon credits"
             },
             {
               "label": "ACPR audit",
@@ -5691,7 +5730,6 @@
           "results": [
             "4,200 devices refurbished, zero direct landfill",
             "710 tCO2e avoided through life extension and refurbishment",
-            "€320k recovered (grade A resale + carbon credits)",
             "Intervention time: 5 business days (full inventory + removal)",
             "GDPR Art. 32 compliance documented, zero DPO incident"
           ],
@@ -5705,11 +5743,6 @@
               "label": "tCO2e avoided",
               "value": "710",
               "detail": "vs new replacement"
-            },
-            {
-              "label": "Value recovered",
-              "value": "€320k",
-              "detail": "resale + carbon"
             },
             {
               "label": "Intervention time",
@@ -5749,7 +5782,6 @@
           "results": [
             "First CSRD ESRS E5 report delivered at D-90 before financial year close",
             "2,100 tCO2e scope 3.12 documented and auditable",
-            "€480k residual value recovered (OT + IT combined)",
             "Zero ESG audit reservation from Big 4 review",
             "Process renewed annually, multi-year agreement signed"
           ],
@@ -5763,11 +5795,6 @@
               "label": "tCO2e scope 3.12",
               "value": "2,100",
               "detail": "documented & auditable"
-            },
-            {
-              "label": "Value recovered",
-              "value": "€480k",
-              "detail": "OT + IT combined"
             },
             {
               "label": "Sites covered",
@@ -5864,7 +5891,6 @@
           ],
           "results": [
             "12 t/year of IT WEEE collected and valorised (zero illegal landfill)",
-            "€89k/year in logistics savings (vs decentralised individual collection)",
             "64% reduction in transport rotations",
             "WEEE compliance documented for 100% of establishments",
             "Positive ROI from month 6 after full deployment"
@@ -5874,11 +5900,6 @@
               "label": "WEEE collected",
               "value": "12 t/yr",
               "detail": "zero illegal landfill"
-            },
-            {
-              "label": "Logistics savings",
-              "value": "€89k/yr",
-              "detail": "vs individual collection"
             },
             {
               "label": "Rotations reduced",
@@ -5891,7 +5912,7 @@
               "detail": "positive from month 6"
             }
           ],
-          "quote": "Before WakiBox, our 350 stores each managed their IT WEEE independently, impossible to audit. Now I have a real-time dashboard and €89k in annual savings.",
+          "quote": "Before WakiBox, our 350 stores each managed their IT WEEE independently, impossible to audit. Now I have a real-time dashboard.",
           "quoteName": "Laurent M.",
           "quoteRole": "CFO Retail",
           "quoteSector": "National retail chain",
@@ -5962,7 +5983,7 @@
           "badgeColor": "#0EA5E9",
           "photo": "/photos/case-telco.jpg",
           "photoAlt": "Telco operator datacenter decommissioning, rack servers",
-          "title": "EOL datacenter: 2,800 servers resold for €1.2M",
+          "title": "EOL datacenter: 2,800 servers resold",
           "subtitle": "Telco operator · 2,800 servers · 3 datacenters",
           "context": [
             "2,800 end-of-life servers across 3 datacenters to decommission simultaneously",
@@ -5979,18 +6000,13 @@
             "Carbon balance: precise tCO2e calculation vs new manufacturing (Boavizta)"
           ],
           "results": [
-            "2,800 servers resold for €1.2M (vs CIO initial estimate: €400k)",
+            "2,800 servers resold",
             "3x the estimated value, secondary market expertise decisive",
             "980 tCO2e avoided through life extension (vs new replacement)",
             "Full decommissioning in 58 days (within contractual deadline)",
             "100% of erasure certificates delivered before room handover"
           ],
           "metrics": [
-            {
-              "label": "Value recovered",
-              "value": "€1.2M",
-              "detail": "3x the CIO estimate"
-            },
             {
               "label": "Servers processed",
               "value": "2,800",
@@ -6007,7 +6023,7 @@
               "detail": "on schedule"
             }
           ],
-          "quote": "Our CIO had estimated €400k in residual value. GTC recovered €1.2M. The difference is their international secondary market expertise.",
+          "quote": "",
           "quoteName": "Nadia K.",
           "quoteRole": "CIO",
           "quoteSector": "Telco operator",
@@ -6038,7 +6054,6 @@
           ],
           "results": [
             "4,500 devices donated to ESS associations, zero landfill",
-            "€180k saved vs standard destruction + new equipment purchase",
             "520 tCO2e avoided (life extension + donation vs new manufacturing)",
             "Deadline met: full operation completed before university intake",
             "CSR report valorised in Board of Directors annual review"
@@ -6048,11 +6063,6 @@
               "label": "ESS donations",
               "value": "4,500",
               "detail": "12 partner associations"
-            },
-            {
-              "label": "Savings",
-              "value": "€180k",
-              "detail": "vs destruction + new"
             },
             {
               "label": "tCO2e avoided",
@@ -6077,11 +6087,10 @@
     "matrix": {
       "eyebrow": "Comparative overview",
       "title": "Compare cases by your criteria",
-      "subtitle": "8 rows · 6 indicators, identify the profile that matches your organisation.",
+      "subtitle": "8 rows · 5 indicators, identify the profile that matches your organisation.",
       "footnote": "Data from GTC intervention reports 2022-2025. Voluntary anonymisation at client request.",
       "headers": [
         "Sector",
-        "€ saved",
         "tCO2e avoided",
         "Compliance achieved",
         "Project duration",
@@ -6090,7 +6099,6 @@
       "rows": [
         [
           "Banking CAC40",
-          "€638k",
           "1,850",
           "NIS2 · DORA · CSRD",
           "6 weeks",
@@ -6098,7 +6106,6 @@
         ],
         [
           "Healthcare / Hospital",
-          "€320k",
           "710",
           "GDPR · HDS",
           "5 days",
@@ -6106,7 +6113,6 @@
         ],
         [
           "Industry CAC60",
-          "€480k",
           "2,100",
           "CSRD ESRS E5",
           "8 weeks",
@@ -6114,7 +6120,6 @@
         ],
         [
           "Public Sector",
-          "€240k saved",
           "850",
           "GDPR · Public procurement",
           "12 weeks",
@@ -6122,7 +6127,6 @@
         ],
         [
           "Retail",
-          "€89k/yr",
           "340",
           "WEEE · CSRD",
           "ROI M+6",
@@ -6130,7 +6134,6 @@
         ],
         [
           "Energy/Utility",
-          "sanction avoided",
           "620",
           "DORA · NIS2 · ACPR",
           "4 days",
@@ -6138,7 +6141,6 @@
         ],
         [
           "Telco",
-          "€1,200k",
           "980",
           "ANSSI · GDPR operator",
           "58 days",
@@ -6146,7 +6148,6 @@
         ],
         [
           "Education",
-          "€180k",
           "520",
           "GDPR · ESS",
           "10 days",
@@ -6185,12 +6186,6 @@
           "name": "Sylvie R.",
           "role": "Head of CSR",
           "sector": "CAC60 Industrial Group"
-        },
-        {
-          "quote": "As CFO, I want quantified ROI. €89k in logistics savings in year one, that's concrete.",
-          "name": "Laurent M.",
-          "role": "CFO",
-          "sector": "Retail, 350 stores"
         },
         {
           "quote": "GTC recovered 3x more than our CIO had estimated. The difference is their secondary market expertise.",
@@ -6271,13 +6266,13 @@
       "cta": "Find my profile"
     },
     "editorialBodies": {
-      "banque-cac40": "In 2023, a tier-1 European bank faced the inevitable: 12,000 Windows 10 devices had to migrate before end of support, under the dual constraints of NIS2 and DORA. Every device leaving production represented a documentary risk, a potential attack surface for the next ACPR inspection. GreenTechCycle integrated the ITAD chain into the core of the migration plan, turning regulatory pressure into measurable advantage: €638k recovered, 1,850 tCO2e avoided.",
+      "banque-cac40": "In 2023, a tier-1 European bank faced the inevitable: 12,000 Windows 10 devices had to migrate before end of support, under the dual constraints of NIS2 and DORA. Every device leaving production represented a documentary risk, a potential attack surface for the next ACPR inspection. GreenTechCycle integrated the ITAD chain into the core of the migration plan, turning regulatory pressure into measurable advantage: 1,850 tCO2e avoided.",
       "chu-sante": "A 9,000-bed university hospital had accumulated a fleet of 4,200 end-of-life devices over five years, carrying patient data subject to medical confidentiality and the strictest GDPR requirements. The IT department had neither budget for new equipment nor tolerance for a data breach. GreenTechCycle deployed a NIST 800-88 certified erasure protocol within 5 working days, giving each machine a second life through a local supply chain. The DPO signed the report without reservation.",
       "industriel-csrd": "A CAC60 industrial group needed to publish its first CSRD ESRS E5 report for fiscal year 2025, with Big 4 auditors demanding quantified evidence and irreproachable scope 3 traceability. Across 12 sites in 5 countries, OT equipment represented both a risk (industrial intellectual property) and an opportunity: unprovisioned residual value. GreenTechCycle delivered the CSRD report D-90 before year-end, validated without reservation on the first iteration.",
       "ministere-collectivite": "A large municipality with 2,500 FTEs navigated a triple constraint: public procurement code requiring environmental criteria ≥5%, GDPR obligations on administrative data, and political demands for exemplary responsible purchasing. GreenTechCycle designed the first ITAD master plan integrating an approved ESS social clause, 100% of equipment resold through French supply chains, zero data processed outside national territory.",
-      "retail-wakibox": "Managing IT waste from 350 stores scattered across the country is both a logistical challenge and a regulatory obligation. Before WakiBox, each point of sale managed end-of-life equipment informally, making any WEEE audit impossible. GreenTechCycle industrialised collection with its smart IoT units, turning chaos into a traceable process, with a positive ROI from the sixth month and €89k in annual logistics savings.",
+      "retail-wakibox": "Managing IT waste from 350 stores scattered across the country is both a logistical challenge and a regulatory obligation. Before WakiBox, each point of sale managed end-of-life equipment informally, making any WEEE audit impossible. GreenTechCycle industrialised collection with its smart IoT units, turning chaos into a traceable process, with a positive ROI from the sixth month.",
       "energie-dora": "When the ACPR announces a DORA inspection, the countdown begins. Three weeks: that's the typical timeframe to produce a full chain of custody for a hybrid IT/OT fleet at a CAC40 utility. GreenTechCycle did it in 4 days, not by magic, but by method: battle-tested flash audit procedure, ACPR-ready templates, and a GTC expert on-site from D-1 to D+4 alongside the CISO. Zero documentary discrepancy. Zero penalty.",
-      "telco-datacenter": "Three data centres to decommission in 60 days. 2,800 servers. Telecom operator customer data under ANSSI requirements. And an IT director who had provisioned €400k in residual value, three times less than what GreenTechCycle would actually recover. The difference is international secondary market expertise: a network of qualified European buyers, real-time market pricing, and on-time execution.",
+      "telco-datacenter": "Three data centres to decommission in 60 days. 2,800 servers. Telecom operator customer data under ANSSI requirements. The answer: international secondary-market expertise: a network of qualified European buyers, real-time market pricing, and on-time execution.",
       "universite-ess": "4,500 teaching devices to decommission before the start of the academic year, with student data to erase and a public budget that didn't allow for destruction. GreenTechCycle organised in 10 days the certified NIST 800-88 erasure, grading into 3 categories, and donation to 12 ESS partner associations, turning a budget constraint into a concrete circular economy initiative. 520 tCO2e avoided. 4,500 computers given to students who needed them."
     },
     "featuredTf1": {
@@ -6320,7 +6315,7 @@
       "scrollTarget": "#cas-banque-cac40"
     },
     "editorialFinalQuote": {
-      "text": "Without GreenTechCycle, our NIS2 migration plan would have taken 18 months and cost €600k. They delivered it in 4 months for €220k, with 1,850 tonnes of CO₂ avoided as a bonus.",
+      "text": "Without GreenTechCycle, our NIS2 migration plan would have taken 18 months. They delivered it in 4 months, with 1,850 tonnes of CO₂ avoided as a bonus.",
       "name": "Marc B.",
       "role": "CISO, Tier-1 European bank",
       "consentNote": "Testimonial collected with written consent. Full identity available under NDA on request."
@@ -6820,10 +6815,21 @@
       "title": "The cumulative impact of our missions"
     },
     "metrics": [
-      { "value": "180", "suffix": "+", "label": "Companies supported in 2024-2025" },
-      { "value": "42000", "suffix": "+", "label": "IT assets processed and traced" },
-      { "value": "2800", "suffix": " k€", "label": "Residual value recovered for our clients" },
-      { "value": "1850", "suffix": " tCO₂e", "label": "Emissions avoided (Boavizta v1.4 method)" }
+      {
+        "value": "180",
+        "suffix": "+",
+        "label": "Companies supported in 2024-2025"
+      },
+      {
+        "value": "42000",
+        "suffix": "+",
+        "label": "IT assets processed and traced"
+      },
+      {
+        "value": "1850",
+        "suffix": " tCO₂e",
+        "label": "Emissions avoided (Boavizta v1.4 method)"
+      }
     ],
     "casesSection": {
       "eyebrow": "Results by sector",
@@ -6839,7 +6845,6 @@
         "title": "W11 migration + NIS2 compliance",
         "highlights": [
           "2,400 workstations processed in 11 weeks",
-          "€187k residual value recovered",
           "312 tCO₂e avoided",
           "ACPR pre-audit validated in 4 days"
         ],
@@ -6869,7 +6874,6 @@
         "title": "CSRD ESRS E5 reporting across 6 sites",
         "highlights": [
           "6 industrial sites audited in 8 weeks",
-          "€421k consolidated residual value",
           "ESRS E5 report validated by auditors",
           "528 tCO₂e avoided"
         ],
@@ -6884,7 +6888,6 @@
         "title": "Decommissioning 12,000 school workstations",
         "highlights": [
           "12,000 workstations processed across 3 departments",
-          "€310k of refurbished equipment redistributed",
           "Full GDPR traceability per school",
           "412 tCO₂e avoided"
         ],
@@ -6899,7 +6902,6 @@
         "title": "Closure of 45 retail stores",
         "highlights": [
           "3,200 IT assets collected in 6 weeks",
-          "€156k residual value recovered",
           "Certified chain of custody per store",
           "189 tCO₂e avoided"
         ],
@@ -6925,7 +6927,7 @@
     ],
     "cta": {
       "title": "Your sector isn't listed?",
-      "subtitle": "We have supported over 180 companies across 16 sectors. Describe your context and we will show you the results closest to yours.",
+      "subtitle": "%kpi.clients% mid-cap clients in production, across 16 sectors. Describe your context and we will show you the results closest to yours.",
       "cta1": "Request a personalised demo",
       "cta2": "Talk to an expert"
     },

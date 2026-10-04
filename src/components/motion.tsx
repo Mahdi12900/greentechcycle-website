@@ -2,6 +2,7 @@
 
 import { animate, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useLocale } from "next-intl";
 
 /**
  * Mouvement v2 — DESIGN.md v2 §8.
@@ -12,8 +13,7 @@ import { useEffect, useRef, useState } from "react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-function formatNumber(v: number, decimals: number) {
-  const lang = typeof document !== "undefined" ? document.documentElement.lang || "fr" : "fr";
+function formatNumber(v: number, decimals: number, lang: string) {
   return v.toLocaleString(lang === "en" ? "en-GB" : "fr-FR", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
@@ -21,8 +21,8 @@ function formatNumber(v: number, decimals: number) {
 }
 
 /**
- * CountUp — la valeur finale est rendue côté serveur (lisible sans JS et par
- * les robots). Côté client, si le compteur est encore hors écran au montage,
+ * CountUp — la valeur finale est rendue côté serveur, formatée selon la langue
+ * (lisible sans JS et par les robots). Côté client, si le compteur est encore hors écran au montage,
  * il repart de 0 et s'anime (1,6 s) à son entrée dans le viewport.
  * Mouvement réduit : valeur finale, sans animation.
  */
@@ -40,22 +40,23 @@ export function CountUp({
   decimals?: number;
 }) {
   const reduce = useReducedMotion();
+  const lang = useLocale();
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
-  const [display, setDisplay] = useState<string>(() => end.toFixed(decimals));
+  const [display, setDisplay] = useState<string>(() => formatNumber(end, decimals, lang));
   const armed = useRef(false);
 
   // Au montage : formatage localisé ; si l'élément est sous la ligne de
   // flottaison, on « arme » le compteur (repart de 0) pour l'animer à l'entrée.
   useEffect(() => {
-    setDisplay(formatNumber(end, decimals));
+    setDisplay(formatNumber(end, decimals, lang));
     if (reduce) return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
     if (rect.top > window.innerHeight) {
       armed.current = true;
-      setDisplay(formatNumber(0, decimals));
+      setDisplay(formatNumber(0, decimals, lang));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -66,10 +67,10 @@ export function CountUp({
     const controls = animate(0, end, {
       duration,
       ease: EASE,
-      onUpdate: (v) => setDisplay(formatNumber(v, decimals)),
+      onUpdate: (v) => setDisplay(formatNumber(v, decimals, lang)),
     });
     return () => controls.stop();
-  }, [inView, end, duration, decimals, reduce]);
+  }, [inView, end, duration, decimals, reduce, lang]);
 
   return (
     <span ref={ref} className="tabular-nums">

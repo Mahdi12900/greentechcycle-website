@@ -1,5 +1,6 @@
 "use client";
 
+import { KPIS, formatKpi, formatKpiValue } from "@/content/kpis";
 import GeometryField from "@/components/visuals/GeometryField";
 import LifecycleDiagram from "@/components/visuals/LifecycleDiagram";
 import MediaSlot from "@/components/visuals/MediaSlot";
@@ -52,6 +53,7 @@ type ServiceCard = {
 export default function ServicesPage() {
   const locale = useLocale();
   const isEn = locale === "en";
+  const lang = isEn ? "en" : "fr";
   function tx<T>(fr: T, en: T): T {
     return isEn ? en : fr;
   }
@@ -137,7 +139,7 @@ export default function ServicesPage() {
       bookLabel: tx("Réserver une cession", "Book a transfer"),
       proof: [
         { value: "+40", unit: "%", label: tx("valeur récupérée", "recovered value") },
-        { value: "72", unit: "%", label: tx("taux de réemploi", "reuse rate") },
+        { value: String(KPIS.reuse.value), unit: "%", label: tx("taux de réemploi", "reuse rate") },
       ],
       pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
       pricingHref: "/tarifs",
@@ -232,8 +234,9 @@ export default function ServicesPage() {
   ];
 
   const heroFigures = [
-    { v: "38 000+", l: tx("certificats NIST 800-88 émis", "NIST 800-88 certificates issued") },
-    { v: "6 200", unit: "tCO₂e", l: tx("évitées en quatre ans", "avoided in four years") },
+    // Registre unique src/content/kpis.ts
+    { v: formatKpi("certificates", lang), l: KPIS.certificates.label[lang] },
+    { v: formatKpiValue("carbon", lang), unit: "tCO₂e", l: KPIS.carbon.label[lang] },
     { v: "72 h", l: tx("réponse audit garantie", "guaranteed audit response") },
   ];
 

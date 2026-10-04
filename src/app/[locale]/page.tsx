@@ -29,6 +29,8 @@ import {
   UserRound,
 } from "lucide-react";
 import { CountUp } from "@/components/motion";
+import { KpiStat, KpiBar } from "@/components/kpi/Kpi";
+import { KPIS } from "@/content/kpis";
 import TrustBand from "@/components/TrustBand";
 import CertificationStrip from "@/components/CertificationStrip";
 import CtaSection from "@/components/CtaSection";
@@ -38,7 +40,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import Card, { CardLink } from "@/components/ui/Card";
 import Tag from "@/components/ui/Tag";
 import Pictogram from "@/components/ui/Pictogram";
-import { Stat, StatRow } from "@/components/ui/Stat";
+import { StatRow } from "@/components/ui/Stat";
 import Accordion from "@/components/ui/Accordion";
 
 /**
@@ -113,6 +115,7 @@ export default function HomePage() {
 
   const locale = useLocale();
   const isEn = locale === "en";
+  const lang = isEn ? "en" : "fr";
   const tx = (fr: string, en: string) => (isEn ? en : fr);
   const numberLocale = isEn ? "en-GB" : "fr-FR";
 
@@ -177,7 +180,9 @@ export default function HomePage() {
 
               {heroStat && (
                 <div className="mt-8 flex max-w-[65ch] items-start gap-6 border-l-2 border-emerald pl-6">
-                  <p className="whitespace-nowrap text-display-xl leading-none text-emerald">{heroStat.replace(" ", "\u00a0")}</p>
+                  <p className="whitespace-nowrap text-display-xl leading-none text-emerald" data-kpi="manufacturing">
+                    <CountUp end={KPIS.manufacturing.value} suffix={KPIS.manufacturing.unit[lang].replace(" ", "\u00a0")} />
+                  </p>
                   <p className="text-body-sm text-fg-strong">{heroStatText}</p>
                 </div>
               )}
@@ -208,10 +213,14 @@ export default function HomePage() {
                   <p className="mt-2 font-display text-display-sm text-emerald">{tx("4 jours", "4 days")}</p>
                   <p className="mt-1 text-caption text-fg-muted">{tx("vs 3 semaines en moyenne", "vs 3 weeks on average")}</p>
                 </div>
-                <div className="border-l border-track pl-4">
-                  <p className="text-eyebrow uppercase text-fg-muted">{tx("Valeur récupérée", "Value recovered")}</p>
-                  <p className="mt-2 font-display text-display-sm text-emerald">638 k€</p>
-                  <p className="mt-1 text-caption text-fg-muted">{tx("moyenne / mission grand compte", "average / key-account mission")}</p>
+                {/* Ancienne tuile « Valeur récupérée 638 k€ » retirée (aucun montant publié, décision 2026-10-04) */}
+                <div className="border-l border-track pl-4" data-kpi="reuse">
+                  <p className="text-eyebrow uppercase text-fg-muted">{tx("Réemploi", "Reuse")}</p>
+                  <p className="mt-2 font-display text-display-sm text-emerald">
+                    <CountUp end={KPIS.reuse.value} suffix={KPIS.reuse.unit[lang]} />
+                  </p>
+                  <KpiBar value={KPIS.reuse.value} className="mt-3" />
+                  <p className="mt-2 text-caption text-fg-muted">{KPIS.reuse.label[lang]} · {KPIS.reuse.period[lang]}</p>
                 </div>
               </div>
             </div>
@@ -405,14 +414,10 @@ export default function HomePage() {
         <div className="reveal">
           <SectionHeader eyebrow={t("proof.eyebrow")} title={t("proof.title")} />
         </div>
+        {/* Chiffres lus dans le registre unique src/content/kpis.ts (plus de montant en euros) */}
         <StatRow>
-          {(["clients", "assets", "value", "carbon"] as const).map((k) => (
-            <Stat
-              key={k}
-              value={<CountUp end={parseInt(t(`proof.items.${k}.value`))} suffix={t(`proof.items.${k}.suffix`)} />}
-              label={t(`proof.items.${k}.label`)}
-              source={t(`proof.items.${k}.source`)}
-            />
+          {(["clients", "assets", "reuse", "carbon"] as const).map((k) => (
+            <KpiStat key={k} id={k} />
           ))}
         </StatRow>
         <p className="mt-8 max-w-[65ch] text-caption italic text-fg-muted">{t("proof.footnote")}</p>

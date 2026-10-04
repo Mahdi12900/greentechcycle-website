@@ -105,8 +105,8 @@ export default function AuditInventairePage() {
     certifications: ["R2v3", "ISO 27001 (en cours)", "NIST 800-88", "ITIL v4"],
     quote: {
       text: tx(
-        "L'audit GreenTechCycle nous a remis 14 % d'actifs hors comptabilité, soit 412 000 € de valeur que nous croyions perdue. Le rapport est passé en COMEX sans une seule retouche.",
-        "The GreenTechCycle audit recovered 14% of off-book assets, €412,000 of value we thought lost. The report went to the executive committee without a single edit."
+        "L'audit GreenTechCycle nous a remis 14 % d'actifs hors comptabilité. Le rapport est passé en COMEX sans une seule retouche.",
+        "The GreenTechCycle audit recovered 14% of off-book assets. The report went to the executive committee without a single edit."
       ),
       name: "Sophie L.",
       role: tx("DSI, groupe industriel coté", "CIO, listed industrial group"),

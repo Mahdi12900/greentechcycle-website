@@ -1,5 +1,6 @@
 "use client";
 
+import { formatKpi } from "@/content/kpis";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import {
@@ -320,7 +321,7 @@ export default function MethodologyPage() {
     { metric: tx("Délai diagnostic", "Diagnostic time"), value: "48h max", icon: Clock, color: "text-emerald" },
     { metric: tx("Délai traitement complet", "Full processing time"), value: tx("14 jours ouvrés", "14 business days"), icon: Calendar, color: "text-amber" },
     { metric: tx("Taux conformité audit", "Audit compliance rate"), value: "99,97%", icon: ShieldCheck, color: "text-emerald" },
-    { metric: tx("Taux valorisation", "Recovery rate"), value: "72%", icon: TrendingUp, color: "text-emerald" },
+    { metric: tx("Taux valorisation", "Recovery rate"), value: tx(formatKpi("reuse", "fr"), formatKpi("reuse", "en")), icon: TrendingUp, color: "text-emerald" },
     { metric: tx("Disponibilité plateforme", "Platform uptime"), value: "99,9%", icon: Signal, color: "text-emerald" },
     { metric: tx("Temps de réponse support", "Support response time"), value: tx("4h ouvrées", "4 business hours"), icon: Zap, color: "text-emerald" },
     { metric: tx("Incidents sécurité (historique)", "Security incidents (history)"), value: tx("Zéro", "Zero"), icon: Shield, color: "text-emerald" },

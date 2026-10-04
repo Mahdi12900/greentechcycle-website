@@ -5,7 +5,7 @@ import ScrollStory from "@/components/visuals/ScrollStory";
 import MediaSlot from "@/components/visuals/MediaSlot";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { CountUp } from "@/components/motion";
+import { KpiStat } from "@/components/kpi/Kpi";
 import { ArrowDown, CalendarCheck, Check } from "lucide-react";
 import CertificationStrip from "@/components/CertificationStrip";
 import CtaSection from "@/components/CtaSection";
@@ -228,15 +228,10 @@ export default function PlateformePage() {
 
       {/* ═══════════════ CHIFFRES D'EXPLOITATION (night) ═══════════════ */}
       <Section tone="night" spacing="dense">
+        {/* Chiffres d'exploitation : registre unique src/content/kpis.ts (aucun montant en euros) */}
         <StatRow tone="dark">
-          {(["assets", "value", "carbon", "audit"] as const).map((k) => (
-            <Stat
-              key={k}
-              tone="dark"
-              value={<CountUp end={parseInt(t(`liveProofs.${k}.value`))} suffix={t(`liveProofs.${k}.suffix`)} />}
-              label={t(`liveProofs.${k}.label`)}
-              source={t(`liveProofs.${k}.source`)}
-            />
+          {(["assets", "certificates", "reuse", "carbon"] as const).map((k) => (
+            <KpiStat key={k} id={k} />
           ))}
         </StatRow>
       </Section>

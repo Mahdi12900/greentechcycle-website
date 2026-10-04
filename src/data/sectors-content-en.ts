@@ -28,7 +28,6 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     ],
     roi: [
       { lever: "Partial ITAD insourcing", gain: "-30 to 40% on annual ITAD costs" },
-      { lever: "Eligible device refurbishment", gain: "+€80-150 per refurbished workstation" },
       { lever: "Reporting automation", gain: "-0.5 to 1 FTE on ESG/compliance reporting" },
       { lever: "DORA/GDPR penalty avoidance", gain: "Up to 2% of global revenue" },
       { lever: "Measured carbon impact", gain: "300 kgCO₂e avoided per refurbished workstation" },
@@ -66,11 +65,10 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     useCases: [
       { title: "Certified erasure of end-of-life medical devices", description: "MRI and CT scanners store patient images locally. GreenTechCycle orchestrates NIST 800-88 Purge erasure with a CNIL-compliant certificate during replacement cycles." },
       { title: "Unified multi-site platform for university hospitals", description: "A typical university hospital has 12 sites with 12 different ITAD processes. GreenTechCycle unifies inventories and applies a consistent security policy." },
-      { title: "Value recovery from administrative equipment", description: "Administrative workstations (finance, HR, reception) don't contain patient data and are eligible for refurbishment. On 10,000 workstations, €50-100 per device represents €500K-1M." },
+      { title: "Value recovery from administrative equipment", description: "Administrative workstations (finance, HR, reception) don't contain patient data and are eligible for refurbishment." },
       { title: "Waki Box in wards and reception areas", description: "Blood pressure monitors, oximeters, bed remotes, batteries, the Waki Box secures small WEEE, prevents lithium battery fire risks, and traces every deposit." },
     ],
     roi: [
-      { lever: "Administrative equipment recovery", gain: "€60-90 per eligible workstation" },
       { lever: "Certified destruction optimization", gain: "-25 to 35% on costs" },
       { lever: "GDPR Article 9 penalty avoidance", gain: "Up to 4% of revenue" },
       { lever: "Centralized WEEE logistics", gain: "-0.3 to 0.5 FTE/year" },
@@ -113,7 +111,6 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     ],
     roi: [
       { lever: "Multi-site contract consolidation", gain: "-30 to 40% on ITAD costs" },
-      { lever: "IT workstation refurbishment", gain: "+€50-100 per workstation" },
       { lever: "ESG commercial advantage", gain: "Direct revenue impact (faster RFP response)" },
       { lever: "REACH/RoHS penalty avoidance", gain: "Up to €7,500 per violation" },
       { lever: "CSR/QSE reporting automation", gain: "-0.5 FTE" },
@@ -151,11 +148,9 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       { title: "PCI DSS certified erasure of payment terminals and POS systems", description: "500 stores with 5,000-10,000 terminals renewed every 5-7 years. GreenTechCycle applies NIST 800-88 with individual PCI DSS certificates per device." },
       { title: "Waki Box in every store: brand tool and centralized management", description: "The Waki Box serves as collection point for scanner batteries, internal WEEE, and even customer deposits (take-back program for stores over 200m²)." },
       { title: "Consolidated group CSRD reporting: 800 stores, one report", description: "GreenTechCycle automatically centralizes flows from every store and generates a consolidated CSRD report with ESRS E5 granularity." },
-      { title: "POS renewal optimization", description: "Scoring identifies POS systems with 1-2 years of remaining life for reallocation to lower-traffic stores, saving €200-500 per reused unit." },
+      { title: "POS renewal optimization", description: "Scoring identifies POS systems with 1-2 years of remaining life for reallocation to lower-traffic stores." },
     ],
     roi: [
-      { lever: "Per-unit terminal erasure", gain: "-€15-20 per device" },
-      { lever: "Back-office refurbishment", gain: "+€80-120 per workstation" },
       { lever: "Multi-store logistics optimization", gain: "-35 to 45% on costs" },
       { lever: "ESG storytelling and acquisition", gain: "Measurable footfall impact" },
       { lever: "PCI DSS avoidance", gain: "Up to €100,000 per violation" },
@@ -191,14 +186,12 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     ],
     useCases: [
       { title: "Smart meter decommissioning: anticipating the 2030 wave", description: "35 million Linky meters deployed 2015-2021 will reach end-of-life in massive waves. GreenTechCycle traces individual decommissioning, orchestrates consumption data erasure, and organizes recycling." },
-      { title: "Internal data center ITAD: security and value recovery", description: "Thousands of servers renewed every 4-6 years. GreenTechCycle orchestrates R2v3 erasure (ISO 27001 in progress), maximizes residual value (€100-500 per server) and produces ANSSI-required certificates." },
+      { title: "Internal data center ITAD: security and value recovery", description: "Thousands of servers renewed every 4-6 years. GreenTechCycle orchestrates R2v3 erasure (ISO 27001 in progress), maximizes residual value and produces ANSSI-required certificates." },
       { title: "Frontline CSRD reporting: the rigor analysts demand", description: "GreenTechCycle produces ESRS E5 indicators of superior granularity and reliability, directly usable in your CSRD declaration and investor roadshows." },
       { title: "Waki Box for distributed sites", description: "Electrical substations, relay stations, mobile teams: the Waki Box centralizes small WEEE flows and automatically feeds each site's environmental reporting." },
     ],
     roi: [
       { lever: "Data center operator optimization", gain: "-50% on specialized costs" },
-      { lever: "Smart meter volume", gain: "-€3-5 per unit on processing" },
-      { lever: "Server refurbishment", gain: "+€100-500 per eligible server" },
       { lever: "NIS2 avoidance", gain: "Up to €10M or 2% of revenue" },
       { lever: "Improved ESG rating", gain: "Direct impact on market valuation" },
     ],
@@ -238,7 +231,6 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       { title: "Waki Box for warehouses and logistics platforms", description: "50,000m² warehouses generate significant battery, bulb and small WEEE volumes. The Waki Box centralizes these flows with automatic traceability." },
     ],
     roi: [
-      { lever: "PDA refurbishment", gain: "€100-200 per refurbished terminal" },
       { lever: "Centralized onboard erasure", gain: "Reputational risk reduction" },
       { lever: "Return logistics optimization", gain: "-25 to 35% on costs" },
       { lever: "Support automation", gain: "-0.5 FTE" },
@@ -280,7 +272,6 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     ],
     roi: [
       { lever: "Documented AGEC compliance", gain: "Exemplarity reputation" },
-      { lever: "Workstation refurbishment", gain: "€60-80 per workstation" },
       { lever: "BEGES automation", gain: "-0.3 to 0.5 FTE" },
       { lever: "Multi-site logistics optimization", gain: "-30 to 40%" },
     ],
@@ -310,17 +301,15 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       "Employer brand is a critical issue in the tech talent war, developers increasingly evaluate their employer's CSR consistency.",
       "Rapid scale-up growth expands the IT fleet without visibility following.",
       "Laptop data (source code, client access, IP) is among the most sensitive in the company.",
-      "Premium MacBook Pro workstations retain high residual value (€400-800 after 3 years) that is systematically lost.",
+      "Premium MacBook Pro workstations retain high residual value that is systematically lost.",
     ],
     useCases: [
-      { title: "Internal reuse: a senior MacBook Pro becomes a sales workstation", description: "A 3-year-old senior developer MacBook Pro has ample power for sales, HR or junior staff. Savings of €1,500-2,500 per workstation, on 100 units/year, represent €150-250K annual savings." },
+      { title: "Internal reuse: a senior MacBook Pro becomes a sales workstation", description: "A 3-year-old senior developer MacBook Pro has ample power for sales, HR or junior staff." },
       { title: "CSR employer brand: publishable indicators", description: "GreenTechCycle produces concrete, verifiable indicators: kg CO₂ avoided, reuse rate, devices refurbished. These feed your HR communications and strengthen talent attraction." },
       { title: "Departing employee laptop program", description: "Offer departing employees the option to purchase their refurbished laptop at an advantageous price. GreenTechCycle orchestrates erasure, refurbishment, transfer and billing." },
       { title: "Scale-up CSRD reporting: anticipating the 250-employee threshold", description: "Setting up GreenTechCycle now builds data history and processes for when the CSRD obligation applies." },
     ],
     roi: [
-      { lever: "Internal MacBook Pro reuse", gain: "€1,500-2,500 per reused workstation" },
-      { lever: "External resale", gain: "€400-800 per resold workstation" },
       { lever: "GDPR source code avoidance", gain: "Up to 4% of revenue" },
       { lever: "Employer brand", gain: "Improved talent conversion rate" },
     ],
@@ -354,15 +343,13 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     ],
     useCases: [
       { title: "Certified erasure of editing stations and video servers", description: "Editing stations contain terabytes of rushes, pre-edits, client archives and embargoed content. GreenTechCycle orchestrates NIST 800-88 Purge with thorough verification and produces legally defensible certificates. Media groups have 200-1,500 active stations and process 30-250 per year." },
-      { title: "Broadcast station refurbishment and internal reuse", description: "An Avid/Final Cut/Premiere station purchased for €6,000-15,000 for VFX or color grading retains ample power for news, sports or light post-production. Automatic scoring evaluates residual power vs. target use criticality. Savings of €1,500-3,000 per station on 50-100 units/year." },
+      { title: "Broadcast station refurbishment and internal reuse", description: "An Avid/Final Cut/Premiere station purchased for €6,000-15,000 for VFX or color grading retains ample power for news, sports or light post-production. Automatic scoring evaluates residual power vs. target use criticality." },
       { title: "Media-specific CSRD ESRS E5 reporting", description: "TF1, M6, Lagardère and Vivendi-Canal+ are scrutinized by ESG analysts. IT + broadcast Scope 3 is poorly understood but significant. GreenTechCycle provides ESRS E5 granularity by equipment type with auditable figures." },
       { title: "Professional broadcast battery management", description: "A news camera uses 4-8 Anton/Bauer or V-Mount batteries at 100-300Wh each. GreenTechCycle centralizes management with ADR-certified transport partners and full traceability." },
       { title: "Event and sports production control room program", description: "Roland-Garros, Tour de France, World Cup, Olympics, each major event generates IT deployment/teardown peaks. GreenTechCycle offers an event mode with pre- and post-event processing." },
     ],
     roi: [
-      { lever: "Internal station reuse", gain: "€1,500-3,000 per station" },
       { lever: "Secured broadcast erasure", gain: "IP litigation avoidance" },
-      { lever: "Eligible device resale", gain: "€500-2,000 per workstation" },
       { lever: "Multi-site broadcast logistics", gain: "-30 to 40% on costs" },
       { lever: "Reporting automation", gain: "-0.5 to 1 FTE" },
       { lever: "GDPR content leak avoidance", gain: "Up to 4% of revenue" },
@@ -406,8 +393,6 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       { title: "Instant response to client ESG questionnaires", description: "GreenTechCycle responds instantly with CO₂ avoided, reuse rate and full traceability, a commercial advantage during contract renewals." },
     ],
     roi: [
-      { lever: "Internal laptop reuse", gain: "€800-1,500 per reallocated workstation" },
-      { lever: "External resale", gain: "€300-600 per workstation" },
       { lever: "Professional secrecy breach avoidance", gain: "Priceless (reputation + clients)" },
       { lever: "ESG commercial advantage", gain: "Advantage in contract renewals" },
     ],
@@ -444,7 +429,6 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       { title: "Analyst-grade CSRD reporting", description: "GreenTechCycle provides the granularity and data reliability Big Pharma CSRD reports demand." },
     ],
     roi: [
-      { lever: "IT workstation refurbishment", gain: "€50-120 per workstation" },
       { lever: "Documented GxP compliance", gain: "Audit non-conformity avoidance" },
       { lever: "Patent and R&D protection", gain: "Priceless (hundreds of M€ in R&D)" },
       { lever: "Automated CSRD reporting", gain: "-0.3 to 0.5 FTE" },
@@ -483,7 +467,6 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     ],
     roi: [
       { lever: "Reduced tablet loss/theft", gain: "-10 to 15% on loss rate" },
-      { lever: "Tablet refurbishment", gain: "€80-150 per tablet" },
       { lever: "ESG tender advantage", gain: "Impact on win rate" },
     ],
     personas: [
@@ -518,7 +501,6 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       { title: "Waki Box in back-of-house and services", description: "The Waki Box collects batteries, remotes and small equipment. Beyond compliance, it becomes a guest communication element illustrating the property's environmental commitment." },
     ],
     roi: [
-      { lever: "Back-office refurbishment", gain: "€60-100 per workstation" },
       { lever: "Certified PCI DSS erasure", gain: "Penalty avoidance (up to €100,000)" },
       { lever: "CSR brand storytelling", gain: "Impact on guest satisfaction and loyalty" },
     ],
@@ -555,7 +537,6 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       { title: "University BEGES and CSR reporting", description: "Public universities face mandatory BEGES. IT Scope 3 is a significant component. GreenTechCycle provides precise, exploitable data." },
     ],
     roi: [
-      { lever: "Administrative workstation refurbishment", gain: "€40-80 per workstation" },
       { lever: "Student loan program", gain: "Extended use value + image" },
       { lever: "BEGES automation", gain: "-0.2 to 0.3 FTE" },
       { lever: "Environmental exemplarity", gain: "Impact on oversight bodies and recruitment" },
@@ -593,7 +574,6 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       { title: "Waki Box for workshops and logistics areas", description: "Scanner batteries, remotes, maintenance accessories, the Waki Box centralizes these flows with automatic traceability." },
     ],
     roi: [
-      { lever: "Mobile terminal refurbishment", gain: "€60-120 per terminal" },
       { lever: "Automated CSRD reporting", gain: "-0.3 FTE" },
       { lever: "Rural site logistics optimization", gain: "-20 to 30% on costs" },
     ],
@@ -631,7 +611,6 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     ],
     roi: [
       { lever: "Box refurbishment", gain: "50-70% savings vs. new purchase" },
-      { lever: "Data center server recovery", gain: "€100-400 per server" },
       { lever: "Documented REEN compliance", gain: "Regulatory sanction avoidance" },
       { lever: "Responsible digital image", gain: "Impact on public perception" },
     ],

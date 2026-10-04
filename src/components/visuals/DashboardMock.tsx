@@ -2,6 +2,7 @@
 
 import { useLocale } from "next-intl";
 import KpiTile from "./KpiTile";
+import { KPIS, formatKpiValue, type KpiId } from "@/content/kpis";
 
 /**
  * DashboardMock — tableau de bord ITAD dessiné en code (DESIGN.md v2 §7.2).
@@ -34,24 +35,28 @@ export default function DashboardMock({
     erasure: tx("Effacement", "Erasure"),
     reporting: tx("Reporting", "Reporting"),
   };
+  // Tuiles alimentées par le registre unique (src/content/kpis.ts) ou par des
+  // chiffres déjà publiés dans le contenu GTC ; aucun montant en euros.
+  const lang = isEn ? "en" : "fr";
+  const k = (id: KpiId) => ({ value: formatKpiValue(id, lang), unit: KPIS[id].unit[lang].trim() || undefined });
   const kpis: Record<DashboardState, { label: string; value: string; unit?: string; delta?: string }[]> = {
     inventory: [
-      { label: tx("Actifs tracés", "Assets tracked"), value: "12 412", delta: "+318" },
+      { label: tx("Actifs tracés", "Assets tracked"), ...k("assets") },
       { label: tx("Sites", "Sites"), value: "4" },
-      { label: tx("Valeur estimée", "Est. value"), value: "638", unit: "k€" },
-      { label: tx("Risque données", "Data risk"), value: "27", unit: "%" },
+      { label: tx("Réemploi", "Reuse"), ...k("reuse") },
+      { label: tx("Certificats", "Certificates"), ...k("certificates") },
     ],
     erasure: [
-      { label: tx("Certificats émis", "Certificates"), value: "9 806", delta: "+1 204" },
-      { label: "NIST 800-88", value: "99,97", unit: "%" },
+      { label: tx("Certificats émis", "Certificates"), ...k("certificates") },
+      { label: "NIST 800-88", value: tx("99,97", "99.97"), unit: "%" },
       { label: tx("Délai certificat", "Cert. delay"), value: "24", unit: "h" },
       { label: tx("Écarts", "Exceptions"), value: "0" },
     ],
     reporting: [
-      { label: tx("CO₂e évité", "CO₂e avoided"), value: "1 850", unit: "t" },
-      { label: tx("Valeur récupérée", "Value recovered"), value: "638", unit: "k€" },
+      { label: tx("CO₂e évité", "CO₂e avoided"), ...k("carbon") },
+      { label: tx("Réemploi", "Reuse"), ...k("reuse") },
       { label: "ESRS E5", value: "11/16" },
-      { label: tx("Réemploi", "Reuse"), value: "72", unit: "%" },
+      { label: tx("Actifs", "Assets"), ...k("assets") },
     ],
   };
   const feed: Record<DashboardState, string[]> = {
@@ -60,7 +65,7 @@ export default function DashboardMock({
     reporting: ["ESRS  E5-5  export XBRL  ✓", "CO2e  scope 3.1  −150 kg/u", "PDF  rapport COMEX  prêt"],
   };
   const active = ACTIVE[state];
-  const k = compact ? kpis[state].slice(0, 2) : kpis[state];
+  const tiles = compact ? kpis[state].slice(0, 2) : kpis[state];
 
   return (
     <div className={`relative flex h-full w-full flex-col gap-3 overflow-hidden bg-bg-card p-4 text-fg sm:p-5 ${className}`}>
@@ -95,7 +100,7 @@ export default function DashboardMock({
 
         {/* KPI */}
         <div className={`grid gap-2 ${compact ? "grid-cols-2" : "grid-cols-2 xl:grid-cols-4"}`}>
-          {k.map((x, i) => (
+          {tiles.map((x, i) => (
             <KpiTile key={x.label} label={x.label} value={x.value} unit={x.unit} delta={x.delta} accent={i === 0} />
           ))}
         </div>

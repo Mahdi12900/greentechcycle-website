@@ -158,8 +158,8 @@ export function getHubLabels(locale: string): HubLabels {
       ? "Matrice de priorisation sectorielle"
       : "Sector Prioritisation Matrix",
     annexe1Cols: fr
-      ? ["Secteur", "Taille de deal", "Vélocité", "Priorité"]
-      : ["Sector", "Deal size", "Velocity", "Priority"],
+      ? ["Secteur", "Vélocité", "Priorité"]
+      : ["Sector", "Velocity", "Priority"],
     annexe2Title: fr
       ? "Séquencement commercial recommandé"
       : "Recommended Commercial Sequencing",

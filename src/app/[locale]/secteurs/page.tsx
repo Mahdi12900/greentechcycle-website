@@ -16,6 +16,9 @@ import Pictogram from "@/components/ui/Pictogram";
 import Tag from "@/components/ui/Tag";
 import Table from "@/components/ui/Table";
 import Accordion from "@/components/ui/Accordion";
+import { Stat, StatRow } from "@/components/ui/Stat";
+import { CountUp } from "@/components/motion";
+import { KpiStat } from "@/components/kpi/Kpi";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Carte secteur — grille régulière, sans photo (DESIGN.md §6.6)
@@ -89,6 +92,22 @@ export default function SecteursHubPage() {
             <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">{labels.heroSubtitle}</p>
           </div>
 
+          {/* Chiffres animés : registre unique src/content/kpis.ts (aucun chiffre sectoriel inventé) */}
+          <StatRow className="mt-10 border-t border-track pt-8">
+            {[
+              <Stat
+                key="sectors"
+                accent
+                value={<CountUp end={SECTORS.length} />}
+                label={isFr ? "secteurs couverts" : "sectors covered"}
+                source={isFr ? "Fiches sectorielles GreenTechCycle" : "GreenTechCycle sector profiles"}
+              />,
+              <KpiStat key="clients" id="clients" />,
+              <KpiStat key="assets" id="assets" />,
+              <KpiStat key="certificates" id="certificates" />,
+            ]}
+          </StatRow>
+
           {/* 2. « Comment lire » condensé en une ligne de 3 items */}
           <div className="mt-10 border-t border-track pt-8">
             <h2 className="font-sans text-eyebrow uppercase tracking-[0.12em] text-fg-muted">{labels.howToReadTitle}</h2>
@@ -151,8 +170,8 @@ export default function SecteursHubPage() {
                   <div>
                     <p className="mb-6 text-body text-fg-strong">
                       {isFr
-                        ? "Évaluation comparative des 16 secteurs selon la taille de deal, la vélocité commerciale et la priorité stratégique."
-                        : "Comparative assessment of 16 sectors by deal size, commercial velocity and strategic priority."}
+                        ? "Évaluation comparative des 16 secteurs selon la vélocité commerciale et la priorité stratégique."
+                        : "Comparative assessment of 16 sectors by commercial velocity and strategic priority."}
                     </p>
                     <Table
                       caption={labels.annexe1Title}
@@ -161,7 +180,6 @@ export default function SecteursHubPage() {
                         <Link key="n" href={`/secteurs/${row.slug}`} className="text-fg hover:text-emerald">
                           {getSectorName(locale, row.slug)}
                         </Link>,
-                        row.dealSize,
                         row.velocity,
                         priorityTag(row.stars, row.priority),
                       ])}

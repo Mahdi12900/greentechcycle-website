@@ -5,6 +5,7 @@ import LifecycleDiagram from "@/components/visuals/LifecycleDiagram";
 import MediaSlot from "@/components/visuals/MediaSlot";
 import { useTranslations } from "next-intl";
 import { CountUp } from "@/components/motion";
+import { Gauge } from "@/components/kpi/Kpi";
 import { ArrowDown, Check, ShieldCheck, Leaf, Users, Eye, Award, UserRound } from "lucide-react";
 import CtaSection from "@/components/CtaSection";
 import { ButtonLink } from "@/components/ui/Button";
@@ -12,7 +13,7 @@ import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Pictogram from "@/components/ui/Pictogram";
 import Tag from "@/components/ui/Tag";
-import { Stat, StatRow } from "@/components/ui/Stat";
+import { Stat } from "@/components/ui/Stat";
 
 /**
  * /pourquoi-gtc — DESIGN.md §10.7 : hero paper, manifeste (cream), fondateur
@@ -45,6 +46,8 @@ export default function PourquoiGtcPage() {
   }[];
 
   const convictionIcons = [Leaf, ShieldCheck, Users, Eye, Award];
+  const figureMatch = t("hero.figure").match(/^(\d+)(\s.+)$/);
+  const heroFigure = figureMatch ? { n: parseInt(figureMatch[1], 10), rest: figureMatch[2] } : null;
 
   return (
     <div>
@@ -56,7 +59,17 @@ export default function PourquoiGtcPage() {
               <Tag variant="brand" icon={<Leaf className="h-3.5 w-3.5" aria-hidden="true" />}>{t("urgency.text")}</Tag>
               <p className="mt-6 text-eyebrow uppercase text-fg-muted">{t("hero.eyebrow")}</p>
               <h1 id="why-hero" className="mt-3 max-w-[20ch] text-display-lg text-fg">
-                <span className="block text-display-xl text-emerald">{t("hero.figure")}</span>
+                <span className="block text-display-xl text-emerald">
+                  {/* « 50 millions » : le nombre monte au défilement, le texte reste lisible sans JS */}
+                  {heroFigure ? (
+                    <>
+                      <CountUp end={heroFigure.n} />
+                      {heroFigure.rest}
+                    </>
+                  ) : (
+                    t("hero.figure")
+                  )}
+                </span>
                 <span className="mt-2 block">{t("hero.title")}</span>
               </h1>
               <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("hero.subtitle")}</p>
@@ -161,30 +174,48 @@ export default function PourquoiGtcPage() {
         <div className="reveal">
           <SectionHeader tone="dark" eyebrow={t("commitments.eyebrow")} title={t("commitments.title")} />
         </div>
-        <StatRow tone="dark" cols={3}>
+        {/* Engagements : les pourcentages deviennent des jauges qui se remplissent au
+            défilement (valeur finale dans le HTML) ; les autres restent des compteurs. */}
+        <div className="reveal-stagger grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {commitments.map((c, i) => {
-            const numericValue = parseFloat(c.metric.replace(/[^0-9.]/g, ""));
-            const showCount = !Number.isNaN(numericValue) && numericValue > 0;
+            // « 99,2 » → 99.2 (virgule décimale française)
+            const numericValue = parseFloat(c.metric.replace(/\s/g, "").replace(",", "."));
+            const decimals = /[,.]/.test(c.metric) ? 1 : 0;
+            const isNumber = !Number.isNaN(numericValue);
+            const isPercent = isNumber && c.suffix.trim() === "%";
             return (
-              <Stat
-                key={i}
-                tone="dark"
-                value={
-                  showCount ? (
-                    <>
-                      <CountUp end={numericValue} decimals={c.metric.includes(",") || c.metric.includes(".") ? 1 : 0} />
-                      <span className="ml-1 font-sans text-body text-fg-muted">{c.suffix}</span>
-                    </>
-                  ) : (
-                    c.metric
-                  )
-                }
-                label={c.label}
-                source={c.source}
-              />
+              <div key={i} className="reveal">
+                {isPercent ? (
+                  <Gauge
+                    value={numericValue}
+                    display={<CountUp end={numericValue} decimals={decimals} suffix={c.suffix} />}
+                    label={c.label}
+                    source={c.source}
+                  />
+                ) : (
+                  <Stat
+                    tone="dark"
+                    value={
+                      isNumber && numericValue > 0 ? (
+                        <>
+                          <CountUp end={numericValue} decimals={decimals} />
+                          <span className="ml-1 font-sans text-body text-fg-muted">{c.suffix}</span>
+                        </>
+                      ) : (
+                        <>
+                          {c.metric}
+                          <span className="ml-1 font-sans text-body text-fg-muted">{c.suffix}</span>
+                        </>
+                      )
+                    }
+                    label={c.label}
+                    source={c.source}
+                  />
+                )}
+              </div>
             );
           })}
-        </StatRow>
+        </div>
       </Section>
 
       {/* ═══ CITATION (paper) ═══ */}
