@@ -234,40 +234,7 @@
       "trust3": "GDPR · NIS2 · DORA · CSRD ESRS E5 compliant"
     },
     "trustBand": {
-      "label": "They trust us with their IT decommissioning",
-      "note": "Customer identities anonymised at their request, verifiable under NDA.",
-      "clients": [
-        {
-          "name": "Tier-1 European bank",
-          "metric": "CAC40",
-          "icon": "Landmark"
-        },
-        {
-          "name": "TF1",
-          "metric": "Broadcast",
-          "icon": "Tv"
-        },
-        {
-          "name": "Regional teaching hospital",
-          "metric": "9,000 beds",
-          "icon": "HeartPulse"
-        },
-        {
-          "name": "Industrial mid-cap",
-          "metric": "4,500 FTE",
-          "icon": "Factory"
-        },
-        {
-          "name": "French government ministry",
-          "metric": "",
-          "icon": "Building2"
-        },
-        {
-          "name": "Retail chain",
-          "metric": "220 stores",
-          "icon": "Store"
-        }
-      ]
+      "note": "Published case studies remain anonymised at our clients' request, verifiable under NDA."
     },
     "problem": {
       "eyebrow": "The hidden cost",

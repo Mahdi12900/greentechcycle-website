@@ -234,40 +234,7 @@
       "trust3": "Conforme RGPD · NIS2 · DORA · CSRD ESRS E5"
     },
     "trustBand": {
-      "label": "Ils nous confient leur décommissionnement IT",
-      "note": "Identité des donneurs d'ordre anonymisée à leur demande, vérifiable sous accord NDA.",
-      "clients": [
-        {
-          "name": "Banque européenne tier-1",
-          "metric": "CAC40",
-          "icon": "Landmark"
-        },
-        {
-          "name": "TF1",
-          "metric": "Audiovisuel",
-          "icon": "Tv"
-        },
-        {
-          "name": "CHU régional",
-          "metric": "9 000 lits",
-          "icon": "HeartPulse"
-        },
-        {
-          "name": "ETI industrielle",
-          "metric": "4 500 ETP",
-          "icon": "Factory"
-        },
-        {
-          "name": "Ministère français",
-          "metric": "",
-          "icon": "Building2"
-        },
-        {
-          "name": "Enseigne retail",
-          "metric": "220 magasins",
-          "icon": "Store"
-        }
-      ]
+      "note": "Les études de cas publiées restent anonymisées à la demande des donneurs d'ordre, vérifiables sous accord NDA."
     },
     "problem": {
       "eyebrow": "Le coût caché",

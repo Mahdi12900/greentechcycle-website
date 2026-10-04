@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { CountUp } from "@/components/motion";
 import { KPIS } from "@/content/kpis";
+import ClientWordmarks from "@/components/ClientWordmarks";
 import {
   ArrowRight,
   CheckCircle2,
@@ -96,6 +97,8 @@ export default function ResultatsClientsPage() {
               </div>
             </div>
           </div>
+          {/* Clients (registre src/content/clients.ts) — non rattachés aux résultats anonymisés */}
+          <ClientWordmarks variant="compact" className="mt-12 border-t border-track pt-8" />
         </div>
       </section>
 

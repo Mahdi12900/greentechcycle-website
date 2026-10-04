@@ -5,6 +5,7 @@ import CertificateCard from "@/components/visuals/CertificateCard";
 import DashboardMock from "@/components/visuals/DashboardMock";
 import GeometryField from "@/components/visuals/GeometryField";
 import MediaSlot from "@/components/visuals/MediaSlot";
+import ClientWordmarks from "@/components/ClientWordmarks";
 import VideoPlayer, { VideoFigure } from "@/components/visuals/VideoPlayer";
 
 /** Vidéos de cas présentées dans le bloc « En vidéo » : index dans UseCases.cases */
@@ -319,6 +320,8 @@ export default function CasUsagesPage() {
               </figure>
             </div>
           </div>
+          {/* Clients (registre src/content/clients.ts) — non rattachés aux cas anonymisés ci-dessous */}
+          <ClientWordmarks variant="compact" className="mt-12 border-t border-track pt-8" />
         </div>
       </section>
 
