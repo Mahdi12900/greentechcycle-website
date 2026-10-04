@@ -8,6 +8,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     { path: "", priority: 1.0, changeFrequency: "weekly" as const },
     { path: "/services", priority: 0.9, changeFrequency: "monthly" as const },
+    { path: "/services/collecte-logistique", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/certifications", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/processus-itad", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/plateforme", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/pourquoi-gtc", priority: 0.8, changeFrequency: "monthly" as const },

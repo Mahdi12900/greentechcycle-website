@@ -41,6 +41,8 @@ export default function Header() {
       { href: "/services/recyclage-deee", label: t("megaMenu.solutions.items.recycling") },
       { href: "/services/cybersecurite", label: t("megaMenu.solutions.items.cyber") },
       { href: "/services/wakibox", label: t("megaMenu.solutions.items.wakibox") },
+      { href: "/services/collecte-logistique", label: t("megaMenu.solutions.items.collection") },
+      { href: "/certifications", label: t("megaMenu.solutions.items.certifications") },
       { href: "/cas-usages", label: t("megaMenu.solutions.items.useCases") },
     ],
     sectors: [
