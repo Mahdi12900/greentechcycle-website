@@ -230,7 +230,7 @@ export default function PlateformePage() {
       <Section tone="night" spacing="dense">
         {/* Chiffres d'exploitation : registre unique src/content/kpis.ts (aucun montant en euros) */}
         <StatRow tone="dark">
-          {(["assets", "certificates", "reuse", "carbon"] as const).map((k) => (
+          {(["clients", "assets", "reuse", "carbon"] as const).map((k) => (
             <KpiStat key={k} id={k} />
           ))}
         </StatRow>

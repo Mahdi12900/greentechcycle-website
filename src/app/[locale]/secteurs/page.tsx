@@ -104,7 +104,7 @@ export default function SecteursHubPage() {
               />,
               <KpiStat key="clients" id="clients" />,
               <KpiStat key="assets" id="assets" />,
-              <KpiStat key="certificates" id="certificates" />,
+              <KpiStat key="reuse" id="reuse" />,
             ]}
           </StatRow>
 

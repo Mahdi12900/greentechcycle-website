@@ -196,7 +196,7 @@ export default function CasUsagesPage() {
   const cases = t.raw("cases.items") as CaseItem[];
   // Bloc « Impact » : registre unique src/content/kpis.ts (le cumul « 4 800 000 € » est retiré)
   const lang = isFr ? "fr" : "en";
-  const kpiItems = (["assets", "carbon", "certificates", "refurbished"] as const).map((id) => ({
+  const kpiItems = (["clients", "assets", "carbon", "reuse"] as const).map((id) => ({
     value: KPIS[id].value,
     suffix: KPIS[id].unit[lang],
     label: KPIS[id].label[lang],
@@ -275,7 +275,7 @@ export default function CasUsagesPage() {
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
               <Tag variant="brand" icon={<ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
-                {`${formatKpi("certificates", lang)} ${KPIS.certificates.label[lang]} · ${formatKpi("carbon", lang)} ${KPIS.carbon.label[lang]}`}
+                {`${formatKpi("assets", lang)} ${KPIS.assets.label[lang]} · ${formatKpi("carbon", lang)} ${KPIS.carbon.label[lang]}`}
               </Tag>
               <p className="mt-6 text-eyebrow uppercase text-fg-muted">{t("editorialHero.featuredLabel")}</p>
               <h1 id="hero-editorial-title" className="mt-3 max-w-[22ch] text-display-lg text-fg">{t("editorialHero.headline")}</h1>

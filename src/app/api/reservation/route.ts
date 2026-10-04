@@ -2,13 +2,15 @@ import { NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 import { randomUUID } from "crypto";
-import { CONTACT_TOPICS, EMAILS, isContactTopic, type ContactTopic } from "@/lib/contact";
+import { CONTACT_TOPICS, isContactTopic, type ContactTopic } from "@/lib/contact";
+import { mailTransport, sendMail } from "@/lib/mailer";
 
 /* ─────────────────────────────────────────────────────────────────────────
    /api/reservation, qualified lead intake.
    - Persistence: Supabase (table `reservations`) when env vars are set.
    - Fallback: append a JSON line to `reservations.jsonl` at repo root.
-   - Email: Resend transactional email when RESEND_API_KEY is set.
+   - Email : src/lib/mailer.ts — SMTP (nodemailer) si SMTP_HOST/SMTP_USER/SMTP_PASS sont
+     définis, sinon Resend si RESEND_API_KEY, sinon aucun envoi (journalisé).
      Routage par sujet (src/lib/contact.ts → CONTACT_TOPICS) : commercial → sales@,
      support → support@, lab → lab.rd@ ; expéditeur noreply@ (jamais affiché).
    - Always returns { success, reservation_id, mode } so the form can degrade
@@ -148,15 +150,16 @@ async function persistInFile(record: StoredReservation): Promise<boolean> {
 }
 
 async function sendEmails(record: StoredReservation): Promise<{ internal: boolean; confirmation: boolean }> {
-  const apiKey = process.env.RESEND_API_KEY;
   // Destinataire interne selon le sujet ; CONTACT_EMAIL (serveur) peut tout rediriger (tests).
   const internalRecipient = process.env.CONTACT_EMAIL || CONTACT_TOPICS[record.topic].recipient;
-  const fromAddress = process.env.RESEND_FROM || `GreenTechCycle <${EMAILS.noreply}>`;
   // Les champs saisis sont échappés avant d'être insérés dans le HTML des emails
   const e = (v: string) => v.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string);
   const topicLabel = CONTACT_TOPICS[record.topic].label.fr;
 
-  if (!apiKey) return { internal: false, confirmation: false };
+  if (mailTransport() === "none") {
+    console.warn("[reservation] Aucun transport e-mail configuré (SMTP_* ou RESEND_API_KEY) : demande enregistrée sans envoi");
+    return { internal: false, confirmation: false };
+  }
 
   const offerLabel = e(record.offerSlug ?? "demande générale");
   const internalSubject = `[${record.topic}] ${record.offerSlug ?? "demande"} · ${record.company || record.name}`;
@@ -188,31 +191,12 @@ async function sendEmails(record: StoredReservation): Promise<{ internal: boolea
     <p>L'équipe GreenTechCycle</p>
   `;
 
-  const send = async (to: string, subject: string, html: string): Promise<boolean> => {
-    try {
-      const res = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ from: fromAddress, to, subject, html }),
-      });
-      if (!res.ok) {
-        const text = await res.text().catch(() => "");
-        console.error("[reservation] Resend failed", res.status, text);
-        return false;
-      }
-      return true;
-    } catch (err) {
-      console.error("[reservation] Resend exception", err);
-      return false;
-    }
-  };
-
   const [internal, confirmation] = await Promise.all([
-    send(internalRecipient, internalSubject, internalHtml),
-    record.email ? send(record.email, "Votre demande GreenTechCycle", confirmationHtml) : Promise.resolve(false),
+    // Réponse directe au demandeur depuis la boîte interne (sales@, support@ ou lab.rd@)
+    sendMail({ to: internalRecipient, subject: internalSubject, html: internalHtml, replyTo: record.email || undefined }),
+    record.email
+      ? sendMail({ to: record.email, subject: "Votre demande GreenTechCycle", html: confirmationHtml, replyTo: internalRecipient })
+      : Promise.resolve(false),
   ]);
 
   return { internal, confirmation };

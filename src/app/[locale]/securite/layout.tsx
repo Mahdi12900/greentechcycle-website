@@ -1,21 +1,24 @@
 import type { Metadata } from "next";
+import { pageMetadata, type LocaleParams, type PageCopy } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Sécurité des données | Effacement selon NIST 800-88",
-  description:
-    "Sécurité maximale pour vos données en fin de vie : effacement selon NIST 800-88, traçabilité horodatée (SHA-256), chaîne de possession sécurisée et conformité RGPD garantie.",
-  keywords: ["sécurité données", "effacement NIST 800-88", "RGPD", "traçabilité", "chaîne de possession", "destruction données"],
-  openGraph: {
-    title: "Sécurité des données | GreenTechCycle",
-    description: "Effacement selon NIST 800-88, traçabilité horodatée (SHA-256) et conformité RGPD pour vos actifs IT.",
-    type: "website",
+const META_COPY: PageCopy = {
+  fr: {
+    title: "Sécurité des données | Effacement selon NIST 800-88",
+    description:
+      "Effacement selon NIST 800-88, traçabilité horodatée (empreinte SHA-256), chaîne de possession documentée et conformité RGPD pour vos données en fin de vie.",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Sécurité des données | GreenTechCycle",
-    description: "Effacement selon NIST 800-88, traçabilité horodatée (SHA-256) et conformité RGPD.",
+  en: {
+    title: "Data security | NIST 800-88 erasure",
+    description:
+      "NIST 800-88 erasure, timestamped traceability (SHA-256 fingerprint), a documented chain of custody and GDPR compliance for your end-of-life data.",
   },
 };
+
+/* Métadonnées par langue (audit final B3) : titre, description, canonical, hreflang, Open Graph */
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/securite", META_COPY);
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

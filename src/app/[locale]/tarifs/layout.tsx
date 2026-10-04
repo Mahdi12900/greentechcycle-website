@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import SchemaOrg from "@/components/SchemaOrg";
 import { ITAD_TIERS, PLATFORM_TIERS, type PriceTier } from "@/content/pricing";
+import { SITE_URL as SITE } from "@/lib/site";
 
-const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
 export async function generateMetadata({
   params,
@@ -62,7 +62,7 @@ const wakiBoxEssentielSchema = {
   description:
     "Suivi DEEE connecté, plan Essentiel : 1 borne Waki Box installée, plateforme de suivi (1 utilisateur), rapport trimestriel de flux DEEE.",
   brand: { "@type": "Brand", name: "GreenTechCycle" },
-  url: "https://greentechcycle.fr/fr/tarifs#waki-box",
+  url: `${SITE}/fr/tarifs#waki-box`,
   offers: {
     "@type": "Offer",
     priceCurrency: "EUR",
@@ -75,7 +75,7 @@ const wakiBoxEssentielSchema = {
       referenceQuantity: { "@type": "QuantitativeValue", value: "1", unitText: "mois" },
     },
     availability: "https://schema.org/InStock",
-    url: "https://greentechcycle.fr/fr/reserver?offre=pilote-waki-box",
+    url: `${SITE}/fr/reserver?offre=pilote-waki-box`,
   },
 };
 
@@ -86,7 +86,7 @@ const wakiBoxConfortSchema = {
   description:
     "Suivi DEEE connecté, plan Confort : jusqu'à 3 bornes, plateforme complète (5 utilisateurs), alertes de remplissage en temps réel, rapport mensuel et export CSRD ESRS E5.",
   brand: { "@type": "Brand", name: "GreenTechCycle" },
-  url: "https://greentechcycle.fr/fr/tarifs#waki-box",
+  url: `${SITE}/fr/tarifs#waki-box`,
   offers: {
     "@type": "Offer",
     priceCurrency: "EUR",
@@ -99,7 +99,7 @@ const wakiBoxConfortSchema = {
       referenceQuantity: { "@type": "QuantitativeValue", value: "1", unitText: "mois" },
     },
     availability: "https://schema.org/InStock",
-    url: "https://greentechcycle.fr/fr/reserver?offre=pilote-waki-box",
+    url: `${SITE}/fr/reserver?offre=pilote-waki-box`,
   },
 };
 
@@ -110,7 +110,7 @@ const wakiBoxPremiumSchema = {
   description:
     "Suivi DEEE connecté, plan Premium : bornes illimitées multi-sites, intégration ERP/SIRH par API, responsable de compte dédié, délai de collecte de 48 h garanti.",
   brand: { "@type": "Brand", name: "GreenTechCycle" },
-  url: "https://greentechcycle.fr/fr/tarifs#waki-box",
+  url: `${SITE}/fr/tarifs#waki-box`,
   offers: {
     "@type": "Offer",
     priceCurrency: "EUR",
@@ -123,7 +123,7 @@ const wakiBoxPremiumSchema = {
       referenceQuantity: { "@type": "QuantitativeValue", value: "1", unitText: "mois" },
     },
     availability: "https://schema.org/InStock",
-    url: "https://greentechcycle.fr/fr/reserver?offre=pilote-waki-box",
+    url: `${SITE}/fr/reserver?offre=pilote-waki-box`,
   },
 };
 
@@ -134,13 +134,13 @@ const piloteAuditSchema = {
   description:
     "Mission d'audit ITAD 3 jours sur site : diagnostic parc, cartographie risques, livraison rapport actionnable. Rembourse sur la 1re annee Plateforme si signature sous 90 jours.",
   brand: { "@type": "Brand", name: "GreenTechCycle" },
-  url: "https://greentechcycle.fr/fr/tarifs#pilote",
+  url: `${SITE}/fr/tarifs#pilote`,
   offers: {
     "@type": "Offer",
     priceCurrency: "EUR",
     price: "2900",
     availability: "https://schema.org/InStock",
-    url: "https://greentechcycle.fr/fr/reserver?offre=pilote-audit-3j",
+    url: `${SITE}/fr/reserver?offre=pilote-audit-3j`,
   },
 };
 
@@ -170,8 +170,8 @@ const platformSchema = {
   description:
     "Console unifiée d'inventaire, d'audit, d'effacement et de reporting CSRD. Trois paliers selon le nombre d'actifs gérés.",
   brand: { "@type": "Brand", name: "GreenTechCycle" },
-  url: "https://greentechcycle.fr/fr/tarifs#sur-devis",
-  offers: PLATFORM_TIERS.map((t) => tierOffer(t, "https://greentechcycle.fr/fr/reserver?offre=demo-conseil&brique=plateforme")),
+  url: `${SITE}/fr/tarifs#sur-devis`,
+  offers: PLATFORM_TIERS.map((t) => tierOffer(t, `${SITE}/fr/reserver?offre=demo-conseil&brique=plateforme`)),
 };
 
 const itadSchema = {
@@ -181,8 +181,8 @@ const itadSchema = {
   description:
     "Audit de parc, effacement selon NIST 800-88, reconditionnement et recyclage DEEE réglementaire. Prix unitaire par poste ou par équipement complexe.",
   provider: { "@type": "Organization", name: "GreenTechCycle" },
-  url: "https://greentechcycle.fr/fr/tarifs#sur-devis",
-  offers: ITAD_TIERS.map((t) => tierOffer(t, "https://greentechcycle.fr/fr/reserver?offre=demo-conseil&brique=itad")),
+  url: `${SITE}/fr/tarifs#sur-devis`,
+  offers: ITAD_TIERS.map((t) => tierOffer(t, `${SITE}/fr/reserver?offre=demo-conseil&brique=itad`)),
 };
 
 const faqPageSchema = {

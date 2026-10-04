@@ -118,8 +118,8 @@ export default function FAQPage() {
       </section>
 
       <RelatedArticles
-        title="Articles recommandés"
-        subtitle="Approfondissez vos questions avec nos guides sur la conformité, la sécurité et l'économie circulaire IT."
+        title={{ fr: "Articles recommandés", en: "Recommended articles" }}
+        subtitle={{ fr: "Approfondissez vos questions avec nos guides sur la conformité, la sécurité et l'économie circulaire IT.", en: "Dig deeper with our guides on compliance, security and the circular IT economy." }}
         limit={3}
         tone="light"
       />

@@ -1,7 +1,8 @@
 import { blogArticles } from "@/lib/blog-data";
+import { SITE_URL } from "@/lib/site";
 
 export async function GET() {
-  const base = "https://greentechcycle.fr";
+  const base = `${SITE_URL}`;
 
   const items = blogArticles
     .map(

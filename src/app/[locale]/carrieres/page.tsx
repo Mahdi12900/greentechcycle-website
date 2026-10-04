@@ -130,8 +130,8 @@ export default function CareersPage() {
       </section>
 
       <RelatedArticles
-        title="Explorez notre vision"
-        subtitle="Nos publications sur la décarbonisation IT, l'économie circulaire et la conformité reflètent la culture GreenTechCycle."
+        title={{ fr: "Explorez notre vision", en: "Explore our vision" }}
+        subtitle={{ fr: "Nos publications sur la décarbonisation IT, l'économie circulaire et la conformité reflètent la culture GreenTechCycle.", en: "Our publications on IT decarbonisation, the circular economy and compliance reflect the GreenTechCycle culture." }}
         limit={3}
         tone="light"
       />
@@ -147,7 +147,9 @@ export default function CareersPage() {
               {t("hero.title")}
             </h2>
             <p className="text-fg-muted max-w-2xl mx-auto mb-8">
-              Rejoignez une équipe engagée pour transformer la gestion des actifs IT en levier de décarbonisation.
+              {isEn
+                ? "Join a committed team turning IT asset management into a lever for decarbonisation."
+                : "Rejoignez une équipe engagée pour transformer la gestion des actifs IT en levier de décarbonisation."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

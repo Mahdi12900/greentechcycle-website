@@ -35,6 +35,7 @@ import { Stat, StatRow } from "@/components/ui/Stat";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SchemaOrg from "@/components/SchemaOrg";
 import CarbonCalculator from "@/components/CarbonCalculator";
+import { SITE_URL } from "@/lib/site";
 
 // ---------------------------------------------------------------------------
 // Type helpers (mirroring messages/*.json structure for the Impact namespace)
@@ -137,7 +138,7 @@ export default function ImpactPage() {
     "@type": "WebPage",
     name: t("hero.title"),
     description: t("hero.subtitle"),
-    url: "https://greentechcycle.fr/impact",
+    url: `${SITE_URL}/impact`,
     inLanguage: "fr-FR",
     about: [
       { "@type": "Thing", name: "Bilan carbone IT" },
@@ -148,7 +149,7 @@ export default function ImpactPage() {
     publisher: {
       "@type": "Organization",
       name: "GreenTechCycle",
-      url: "https://greentechcycle.fr",
+      url: `${SITE_URL}`,
     },
   };
 
@@ -160,13 +161,13 @@ export default function ImpactPage() {
         "@type": "ListItem",
         position: 1,
         name: t("breadcrumb.home"),
-        item: "https://greentechcycle.fr/",
+        item: `${SITE_URL}/`,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: t("breadcrumb.current"),
-        item: "https://greentechcycle.fr/impact",
+        item: `${SITE_URL}/impact`,
       },
     ],
   };

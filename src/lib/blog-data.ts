@@ -92,3 +92,48 @@ export function getArticleBySlug(slug: string): BlogArticle | undefined {
 export function getAllSlugs(): string[] {
   return blogArticles.map((a) => a.slug);
 }
+
+/**
+ * Résumés anglais des articles (audit final du 2026-10-04, B3) : utilisés sur les pages /en
+ * (encarts « articles liés », index du blog). Le corps des articles reste en français ; les
+ * cartes l'indiquent (« Article in French »).
+ */
+export const BLOG_EN: Record<string, Pick<BlogArticle, "title" | "description" | "category" | "imageAlt">> = {
+  "csrd-et-itad-reporting-esg-actifs-it": {
+    title: "CSRD and ITAD: bringing IT asset management into your ESG reporting",
+    description: "How the CSRD directive affects the management of your end-of-life IT assets, and how ITAD fits into your ESG reporting strategy.",
+    category: "Regulation",
+    imageAlt: "ESG reporting dashboard for IT asset management",
+  },
+  "securite-donnees-fin-de-vie-equipements-it": {
+    title: "End-of-life data security: protecting your information during IT decommissioning",
+    description: "A complete guide to securing data when retiring IT equipment: NIST 800-88 erasure methods and GDPR best practices.",
+    category: "Security",
+    imageAlt: "Secure data erasure process on IT equipment",
+  },
+  "nis2-compliance-it-infrastructure": {
+    title: "NIS2 and IT compliance: obligations for managing your IT infrastructure",
+    description: "The NIS2 directive strengthens cybersecurity requirements. What it means for managing the lifecycle of your IT assets and for ITAD compliance.",
+    category: "Compliance",
+    imageAlt: "NIS2 compliance diagram for IT infrastructure",
+  },
+  "economie-circulaire-it-entreprise": {
+    title: "The circular IT economy in business: from refurbishment to asset value recovery",
+    description: "How to set up a circular-economy strategy for your IT equipment: refurbishment, reuse and value recovery to reduce your carbon footprint.",
+    category: "Sustainability",
+    imageAlt: "Circular lifecycle of business IT equipment",
+  },
+  "guide-deee-reglementation-entreprise": {
+    title: "WEEE guide: regulation and obligations for businesses in 2026",
+    description: "Everything about WEEE regulation in France: business obligations, treatment channels, penalties and best practices for managing electronic waste.",
+    category: "Regulation",
+    imageAlt: "Infographic on WEEE regulation for businesses",
+  },
+};
+
+/** Article avec titre, description, catégorie et texte alternatif dans la langue de la page */
+export function localizeArticle(article: BlogArticle, locale: string): BlogArticle {
+  if (locale !== "en") return article;
+  const en = BLOG_EN[article.slug];
+  return en ? { ...article, ...en } : article;
+}

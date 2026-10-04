@@ -44,10 +44,10 @@ export default function DashboardMock({
       { label: tx("Actifs tracés", "Assets tracked"), ...k("assets") },
       { label: tx("Sites", "Sites"), value: "4" },
       { label: tx("Réemploi", "Reuse"), ...k("reuse") },
-      { label: tx("Certificats", "Certificates"), ...k("certificates") },
+      { label: tx("ETI clientes", "Mid-cap clients"), ...k("clients") },
     ],
     erasure: [
-      { label: tx("Certificats émis", "Certificates"), ...k("certificates") },
+      { label: tx("Actifs traités", "Assets processed"), ...k("assets") },
       { label: "NIST 800-88", value: tx("99,97", "99.97"), unit: "%" },
       { label: tx("Délai certificat", "Cert. delay"), value: "24", unit: "h" },
       { label: tx("Écarts", "Exceptions"), value: "0" },

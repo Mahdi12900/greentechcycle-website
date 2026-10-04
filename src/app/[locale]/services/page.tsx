@@ -235,7 +235,7 @@ export default function ServicesPage() {
 
   const heroFigures = [
     // Registre unique src/content/kpis.ts
-    { v: formatKpi("certificates", lang), l: KPIS.certificates.label[lang] },
+    { v: formatKpi("assets", lang), l: KPIS.assets.label[lang] },
     { v: formatKpiValue("carbon", lang), unit: "tCO₂e", l: KPIS.carbon.label[lang] },
     { v: "72 h", l: tx("réponse audit garantie", "guaranteed audit response") },
   ];

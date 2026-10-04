@@ -1,22 +1,25 @@
 import type { Metadata } from "next";
+import { pageMetadata, type LocaleParams, type PageCopy } from "@/lib/seo";
 import SchemaOrg from "@/components/SchemaOrg";
 
-export const metadata: Metadata = {
-  title: "FAQ | Questions fréquentes sur l'ITAD et le recyclage IT",
-  description:
-    "Réponses aux questions fréquentes sur l'ITAD, l'effacement de données, le reconditionnement, la conformité CSRD et la gestion des DEEE en entreprise.",
-  keywords: ["FAQ ITAD", "questions recyclage IT", "effacement données FAQ", "DEEE entreprise", "conformité CSRD FAQ"],
-  openGraph: {
-    title: "FAQ ITAD | GreenTechCycle",
-    description: "Réponses aux questions fréquentes sur l'ITAD, l'effacement de données et la conformité.",
-    type: "website",
+const META_COPY: PageCopy = {
+  fr: {
+    title: "FAQ | Questions fréquentes sur l'ITAD et le recyclage IT",
+    description:
+      "Réponses aux questions fréquentes sur l'ITAD, l'effacement de données, le reconditionnement, la conformité CSRD et la gestion des DEEE en entreprise.",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "FAQ ITAD | GreenTechCycle",
-    description: "Questions fréquentes sur l'ITAD et le recyclage IT.",
+  en: {
+    title: "FAQ | Frequently asked questions on ITAD and IT recycling",
+    description:
+      "Answers to frequently asked questions on ITAD, data erasure, refurbishment, CSRD compliance and WEEE management in business.",
   },
 };
+
+/* Métadonnées par langue (audit final B3) : titre, description, canonical, hreflang, Open Graph */
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/faq", META_COPY);
+}
 
 const faqSchema = {
   "@context": "https://schema.org",

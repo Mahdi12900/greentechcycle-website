@@ -1,30 +1,24 @@
 import type { Metadata } from "next";
+import { pageMetadata, type LocaleParams, type PageCopy } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Waki Box | La box DEEE connectée prête CSRD ESRS E5",
-  description:
-    "Waki Box : box de collecte DEEE intelligente avec capteurs, conformité REP DEEE garantie, mapping ESRS E5 et données mesurées au gramme. Trois plans, programme pilote et options à la carte.",
-  keywords: [
-    "Waki Box",
-    "box DEEE connectee",
-    "REP DEEE",
-    "CSRD ESRS E5",
-    "collecte piles batteries",
-    "RSE bureaux",
-  ],
-  openGraph: {
-    title: "Waki Box | La box DEEE qui pense à votre place",
+const META_COPY: PageCopy = {
+  fr: {
+    title: "Waki Box | Le suivi DEEE connecté, prêt CSRD ESRS E5",
     description:
-      "Conformité REP DEEE, sécurité batteries lithium, mapping ESRS E5 mesuré au gramme. Trois plans, programme pilote, options à la carte.",
-    type: "website",
+      "Waki Box : suivi DEEE connecté en temps réel. Bornes avec capteurs, alertes de remplissage, pesée par flux et exports ESRS E5. Trois plans dès 39 € HT/mois et un programme pilote.",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Waki Box | La box DEEE connectée",
+  en: {
+    title: "Waki Box | Connected WEEE tracking, CSRD ESRS E5 ready",
     description:
-      "Conformité REP DEEE, mapping ESRS E5, sécurité batteries lithium. Réservez une démo ou candidatez au pilote.",
+      "Waki Box: real-time connected WEEE tracking. Kiosks with sensors, fill alerts, per-stream weighing and ESRS E5 exports. Three plans from €39 ex-VAT/month and a pilot programme.",
   },
 };
+
+/* Métadonnées par langue (audit final B3) : titre, description, canonical, hreflang, Open Graph */
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/waki-box", META_COPY);
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

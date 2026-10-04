@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import {
@@ -25,77 +25,95 @@ const integrations = [
   {
     name: "ServiceNow",
     icon: Plug,
-    description:
-      "Synchronisation bidirectionnelle des tickets ITAD, création automatique d'incidents et suivi du cycle de vie des actifs.",
+    description: {
+      fr: "Synchronisation bidirectionnelle des tickets ITAD, création automatique d'incidents et suivi du cycle de vie des actifs.",
+      en: "Two-way sync of ITAD tickets, automatic incident creation and asset lifecycle tracking.",
+    },
     features: ["CMDB sync", "Ticket automation", "Asset lifecycle"],
   },
   {
     name: "GLPI",
     icon: Database,
-    description:
-      "Import/export automatique de votre inventaire, mise à jour des statuts en temps réel et gestion centralisée.",
+    description: {
+      fr: "Import/export automatique de votre inventaire, mise à jour des statuts en temps réel et gestion centralisée.",
+      en: "Automatic import/export of your inventory, real-time status updates and centralised management.",
+    },
     features: ["Inventory sync", "Status tracking", "Bulk operations"],
   },
   {
     name: "Microsoft Intune",
     icon: RefreshCw,
-    description:
-      "Détection automatique des appareils en fin de vie, désenrôlement sécurisé et comptes-rendus de conformité.",
+    description: {
+      fr: "Détection automatique des appareils en fin de vie, désenrôlement sécurisé et comptes-rendus de conformité.",
+      en: "Automatic detection of end-of-life devices, secure unenrolment and compliance reports.",
+    },
     features: ["Device detection", "Auto-unenroll", "Compliance reports"],
   },
   {
     name: "JAMF",
     icon: Zap,
-    description:
-      "Gestion du cycle de vie Apple : identification des appareils éligibles, effacement distant et traçabilité complète.",
+    description: {
+      fr: "Gestion du cycle de vie Apple : identification des appareils éligibles, effacement distant et traçabilité complète.",
+      en: "Apple lifecycle management: identification of eligible devices, remote wipe and full traceability.",
+    },
     features: ["Apple lifecycle", "Remote wipe", "Full traceability"],
   },
   {
     name: "SAP",
     icon: FileJson,
-    description:
-      "Intégration ERP native : valorisation comptable, amortissements, sorties d'actifs et rapports financiers automatisés.",
+    description: {
+      fr: "Intégration ERP native : valorisation comptable, amortissements, sorties d'actifs et rapports financiers automatisés.",
+      en: "Native ERP integration: book valuation, depreciation, asset disposals and automated financial reports.",
+    },
     features: ["Asset valuation", "Depreciation", "Financial reports"],
   },
 ];
 
 const apiFeatures = [
-  "RESTful API avec documentation OpenAPI 3.0",
-  "Webhooks en temps réel pour chaque événement",
-  "SDK disponibles en Python, Node.js et Java",
-  "Rate limiting intelligent avec file d'attente",
-  "Sandbox de test avec données fictives",
-  "Versioning sémantique et rétrocompatibilité",
+  { fr: "RESTful API avec documentation OpenAPI 3.0", en: "RESTful API with OpenAPI 3.0 documentation" },
+  { fr: "Webhooks en temps réel pour chaque événement", en: "Real-time webhooks for every event" },
+  { fr: "SDK disponibles en Python, Node.js et Java", en: "SDKs available in Python, Node.js and Java" },
+  { fr: "Rate limiting intelligent avec file d'attente", en: "Smart rate limiting with queueing" },
+  { fr: "Sandbox de test avec données fictives", en: "Test sandbox with mock data" },
+  { fr: "Versioning sémantique et rétrocompatibilité", en: "Semantic versioning and backward compatibility" },
 ];
 
 const authFeatures = [
   {
     icon: Lock,
-    title: "SSO / SAML 2.0",
-    description:
-      "Connexion unique via votre IdP : Azure AD, Okta, Google Workspace, OneLogin.",
+    title: { fr: "SSO / SAML 2.0", en: "SSO / SAML 2.0" },
+    description: {
+      fr: "Connexion unique via votre IdP : Azure AD, Okta, Google Workspace, OneLogin.",
+      en: "Single sign-on through your IdP: Azure AD, Okta, Google Workspace, OneLogin.",
+    },
   },
   {
     icon: KeyRound,
-    title: "OAuth 2.0 + PKCE",
-    description:
-      "Authentification sécurisée pour vos applications tierces avec tokens à durée de vie limitée.",
+    title: { fr: "OAuth 2.0 + PKCE", en: "OAuth 2.0 + PKCE" },
+    description: {
+      fr: "Authentification sécurisée pour vos applications tierces avec tokens à durée de vie limitée.",
+      en: "Secure authentication for your third-party apps with short-lived tokens.",
+    },
   },
   {
     icon: ShieldCheck,
-    title: "MFA obligatoire",
-    description:
-      "Authentification multi-facteurs par TOTP, SMS ou clé physique FIDO2 pour tous les accès sensibles.",
+    title: { fr: "MFA obligatoire", en: "Mandatory MFA" },
+    description: {
+      fr: "Authentification multi-facteurs par TOTP, SMS ou clé physique FIDO2 pour tous les accès sensibles.",
+      en: "Multi-factor authentication via TOTP, SMS or a FIDO2 hardware key for all sensitive access.",
+    },
   },
   {
     icon: Users,
-    title: "SCIM Provisioning",
-    description:
-      "Provisionnement automatique des utilisateurs depuis votre annuaire d'entreprise.",
+    title: { fr: "SCIM Provisioning", en: "SCIM provisioning" },
+    description: {
+      fr: "Provisionnement automatique des utilisateurs depuis votre annuaire d'entreprise.",
+      en: "Automatic user provisioning from your corporate directory.",
+    },
   },
 ];
 
-const codeSnippet = `// Exemple : créer une demande ITAD
+const codeSnippet = `// Example: create an ITAD request
 const response = await fetch(
   "https://api.greentechcycle.com/v2/requests",
   {
@@ -121,6 +139,9 @@ export default function EcosystemPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
+  const isEn = useLocale() === "en";
+  const lang = isEn ? "en" : "fr";
+  const tx = (fr: string, en: string) => (isEn ? en : fr);
 
   return (
     <div className="min-h-screen">
@@ -131,23 +152,24 @@ export default function EcosystemPage({
             <div className="max-w-4xl ">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-track text-emerald text-sm font-medium mb-6">
                 <Plug className="w-4 h-4" />
-                Intégrations & API
+                {tx("Intégrations & API", "Integrations & API")}
               </span>
               <h1 className="text-display-lg text-fg mb-6">
-                Un écosystème ouvert,{" "}
-                <span className="text-emerald">connecté à votre SI</span>
+                {tx("Un écosystème ouvert,", "An open ecosystem,")}{" "}
+                <span className="text-emerald">{tx("connecté à votre SI", "connected to your IT")}</span>
               </h1>
               <p className="text-xl text-fg-muted mb-8 max-w-2xl">
-                Connecteurs natifs, API REST documentée et authentification
-                enterprise-grade. GreenTechCycle s&apos;intègre sans friction à votre
-                environnement existant.
+                {tx(
+                  "Connecteurs natifs, API REST documentée et authentification enterprise-grade. GreenTechCycle s'intègre sans friction à votre environnement existant.",
+                  "Native connectors, a documented REST API and enterprise-grade authentication. GreenTechCycle fits smoothly into your existing environment."
+                )}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 ">
                 <Link
                   href="/contact"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-emerald hover:bg-emerald/90 text-bg font-semibold rounded-xl transition-colors duration-150"
                 >
-                  Demander une démo
+                  {tx("Demander une démo", "Request a demo")}
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <a
@@ -155,7 +177,7 @@ export default function EcosystemPage({
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-fg font-semibold rounded-xl transition-colors duration-150 border border-white/20"
                 >
                   <Code2 className="w-5 h-5" />
-                  Explorer l&apos;API
+                  {tx("Explorer l'API", "Explore the API")}
                 </a>
               </div>
             </div>
@@ -169,11 +191,13 @@ export default function EcosystemPage({
           <div className="reveal">
             <div className="text-center mb-16">
               <h2 className="text-display-md text-fg mb-4">
-                Intégrations natives
+                {tx("Intégrations natives", "Native integrations")}
               </h2>
               <p className="text-lg text-fg-strong max-w-2xl mx-auto">
-                Connectez GreenTechCycle à vos outils en quelques clics.
-                Configuration guidée, synchronisation temps réel.
+                {tx(
+                  "Connectez GreenTechCycle à vos outils en quelques clics. Configuration guidée, synchronisation temps réel.",
+                  "Connect GreenTechCycle to your tools in a few clicks. Guided setup, real-time sync."
+                )}
               </p>
             </div>
           </div>
@@ -189,7 +213,7 @@ export default function EcosystemPage({
                     {integration.name}
                   </h3>
                   <p className="text-fg-strong mb-5 leading-relaxed">
-                    {integration.description}
+                    {integration.description[lang]}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {integration.features.map((feature) => (
@@ -216,24 +240,25 @@ export default function EcosystemPage({
               <div>
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-dim text-emerald text-sm font-medium mb-4">
                   <Webhook className="w-4 h-4" />
-                  API ouverte
+                  {tx("API ouverte", "Open API")}
                 </span>
                 <h2 className="text-display-md text-fg mb-6">
-                  Une API pensée pour les développeurs
+                  {tx("Une API pensée pour les développeurs", "An API built for developers")}
                 </h2>
                 <p className="text-lg text-fg-strong mb-8">
-                  Automatisez vos processus ITAD avec notre API REST complète.
-                  Documentation interactive, SDKs multi-langages et
-                  environnement de test dédié.
+                  {tx(
+                    "Automatisez vos processus ITAD avec notre API REST complète. Documentation interactive, SDKs multi-langages et environnement de test dédié.",
+                    "Automate your ITAD processes with our full REST API. Interactive documentation, multi-language SDKs and a dedicated test environment."
+                  )}
                 </p>
                 <div className="reveal-stagger space-y-3">
                   {apiFeatures.map((feature) => (
-                    <div key={feature} className="reveal">
+                    <div key={feature.en} className="reveal">
                       <div className="flex items-start gap-3">
                         <div className="w-5 h-5 rounded-full bg-emerald-dim flex items-center justify-center flex-shrink-0 mt-0.5">
                           <div className="w-2 h-2 rounded-full bg-emerald" />
                         </div>
-                        <span className="text-fg-strong">{feature}</span>
+                        <span className="text-fg-strong">{feature[lang]}</span>
                       </div>
                     </div>
                   ))}
@@ -269,28 +294,29 @@ export default function EcosystemPage({
           <div className="reveal">
             <div className="text-center mb-16">
               <h2 className="text-display-md text-fg mb-4">
-                Sécurité & Authentification
+                {tx("Sécurité & authentification", "Security & authentication")}
               </h2>
               <p className="text-lg text-fg-strong max-w-2xl mx-auto">
-                Authentification enterprise-grade avec SSO, MFA et
-                provisionnement automatique. Conforme aux exigences les plus
-                strictes.
+                {tx(
+                  "Authentification enterprise-grade avec SSO, MFA et provisionnement automatique.",
+                  "Enterprise-grade authentication with SSO, MFA and automatic provisioning."
+                )}
               </p>
             </div>
           </div>
 
           <div className="reveal-stagger grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {authFeatures.map((feature) => (
-              <div key={feature.title} className="reveal">
+              <div key={feature.title.en} className="reveal">
                 <div className="bg-bg-card rounded-2xl p-8 border border-track hover:border-track-strong transition-shadow duration-150">
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-bg/10">
                     <feature.icon className="w-6 h-6 text-emerald" />
                   </div>
                   <h3 className="text-heading-md text-fg mb-2">
-                    {feature.title}
+                    {feature.title[lang]}
                   </h3>
                   <p className="text-fg-strong leading-relaxed">
-                    {feature.description}
+                    {feature.description[lang]}
                   </p>
                 </div>
               </div>
@@ -307,25 +333,27 @@ export default function EcosystemPage({
           <div className="reveal">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-display-md text-fg mb-6">
-                Prêt à connecter votre SI ?
+                {tx("Prêt à connecter votre SI ?", "Ready to connect your IT?")}
               </h2>
               <p className="text-xl text-fg-muted mb-8">
-                Notre équipe technique vous accompagne dans l&apos;intégration.
-                Planifiez une session de découverte de 30 minutes.
+                {tx(
+                  "Notre équipe technique vous accompagne dans l'intégration. Planifiez une session de découverte de 30 minutes.",
+                  "Our technical team supports you through the integration. Book a 30-minute discovery session."
+                )}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/contact"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-emerald hover:bg-emerald/90 text-bg font-semibold rounded-xl transition-colors duration-150"
                 >
-                  Planifier un appel
+                  {tx("Planifier un appel", "Schedule a call")}
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
                   href="/services"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-fg font-semibold rounded-xl transition-colors duration-150 border border-white/20"
                 >
-                  Voir les solutions
+                  {tx("Voir les solutions", "See the solutions")}
                 </Link>
               </div>
             </div>
@@ -335,8 +363,8 @@ export default function EcosystemPage({
 
       <RelatedArticles
         keywords={["nis2", "cybersécurité", "sécurité"]}
-        title="Écosystème & cybersécurité : aller plus loin"
-        subtitle="Les intégrations IT impliquent de nouveaux défis de sécurité. Découvrez nos analyses NIS2, RGPD et effacement attesté."
+        title={{ fr: "Écosystème & cybersécurité : aller plus loin", en: "Ecosystem & cybersecurity: go further" }}
+        subtitle={{ fr: "Les intégrations IT impliquent de nouveaux défis de sécurité. Découvrez nos analyses NIS2, RGPD et effacement attesté.", en: "IT integrations bring new security challenges. Read our analyses on NIS2, GDPR and attested erasure." }}
         limit={3}
         tone="light"
       />

@@ -3,10 +3,13 @@
 import GeometryField from "@/components/visuals/GeometryField";
 import MediaSlot from "@/components/visuals/MediaSlot";
 import { Link } from "@/i18n/navigation";
-import { blogArticles, type BlogArticle } from "@/lib/blog-data";
+import { blogArticles, localizeArticle, type BlogArticle } from "@/lib/blog-data";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { useLocale } from "next-intl";
 
+
+/** Texte simple (même valeur dans les deux langues) ou { fr, en } */
+type Localized = string | { fr: string; en: string };
 
 interface RelatedArticlesProps {
   /** Filter by one or more categories (exact match on BlogArticle.category). */
@@ -16,13 +19,13 @@ interface RelatedArticlesProps {
   /** Max items to show. */
   limit?: number;
   /** Override heading. */
-  title?: string;
+  title?: Localized;
   /** Override subtitle. */
-  subtitle?: string;
+  subtitle?: Localized;
   /** Background tone. */
   tone?: "white" | "light" | "primary";
   /** Eyebrow label. */
-  eyebrow?: string;
+  eyebrow?: Localized;
   className?: string;
 }
 
@@ -30,13 +33,18 @@ export default function RelatedArticles({
   categories,
   keywords,
   limit = 3,
-  title = "Articles liés à consulter",
-  subtitle = "Approfondissez le sujet avec nos analyses sur la décarbonisation, la gestion des actifs IT et la cybersécurité.",
+  title = { fr: "Articles liés à consulter", en: "Related articles" },
+  subtitle = {
+    fr: "Approfondissez le sujet avec nos analyses sur la décarbonisation, la gestion des actifs IT et la cybersécurité.",
+    en: "Go further with our analyses on decarbonisation, IT asset management and cybersecurity.",
+  },
   tone = "light",
-  eyebrow = "Ressources",
+  eyebrow = { fr: "Ressources", en: "Resources" },
   className = "",
 }: RelatedArticlesProps) {
-  const isEn = useLocale() === "en";
+  const locale = useLocale();
+  const isEn = locale === "en";
+  const loc = (v: Localized) => (typeof v === "string" ? v : v[isEn ? "en" : "fr"]);
   let articles: BlogArticle[] = blogArticles;
 
   if (categories && categories.length > 0) {
@@ -55,7 +63,8 @@ export default function RelatedArticles({
   // Fallback: if filters wiped everything, show most recent.
   if (articles.length === 0) articles = blogArticles;
 
-  articles = articles.slice(0, limit);
+  // Filtres appliqués sur les champs français (catégories, mots-clés), puis traduction des cartes
+  articles = articles.slice(0, limit).map((a) => localizeArticle(a, locale));
 
   const bgClass = tone === "light" ? "bg-bg-card" : "bg-bg";
 
@@ -65,9 +74,9 @@ export default function RelatedArticles({
         <div className="reveal">
           <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between lg:mb-12">
             <div>
-              <p className="mb-3 text-eyebrow uppercase text-fg-muted">{eyebrow}</p>
-              <h2 className="max-w-[24ch] text-display-md text-fg">{title}</h2>
-              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">{subtitle}</p>
+              <p className="mb-3 text-eyebrow uppercase text-fg-muted">{loc(eyebrow)}</p>
+              <h2 className="max-w-[24ch] text-display-md text-fg">{loc(title)}</h2>
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">{loc(subtitle)}</p>
             </div>
             <Link
               href="/blog"
@@ -106,6 +115,7 @@ export default function RelatedArticles({
                       <Clock className="h-3.5 w-3.5" aria-hidden="true" />
                       {article.readingTime}
                     </span>
+                    {isEn && <span lang="en">Article in French</span>}
                   </div>
                   <h3 className="mb-2 line-clamp-2 text-heading-md text-fg transition-colors group-hover:text-emerald">
                     {article.title}

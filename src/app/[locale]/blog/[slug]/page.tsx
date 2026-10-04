@@ -8,6 +8,7 @@ import { getArticleContent } from "@/lib/blog-content";
 import { Calendar, Clock, ArrowLeft, Share2, User } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SchemaOrg from "@/components/SchemaOrg";
+import { SITE_URL as SITE } from "@/lib/site";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -22,8 +23,7 @@ export async function generateMetadata({
   const article = getArticleBySlug(slug);
   if (!article) return {};
 
-  const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
-
+  
   return {
     title: article.title,
     description: article.description,
@@ -84,26 +84,26 @@ export default async function BlogArticlePage({
     "@type": "Article",
     headline: article.title,
     description: article.description,
-    image: `https://greentechcycle.fr${article.image}`,
+    image: `${SITE}${article.image}`,
     datePublished: article.publishedAt,
     dateModified: article.updatedAt,
     author: {
       "@type": "Organization",
       name: "GreenTechCycle",
-      url: "https://greentechcycle.fr",
+      url: `${SITE}`,
     },
     publisher: {
       "@type": "Organization",
       name: "GreenTechCycle",
-      url: "https://greentechcycle.fr",
+      url: `${SITE}`,
       logo: {
         "@type": "ImageObject",
-        url: "https://greentechcycle.fr/logo/logo-primary.svg",
+        url: `${SITE}/logo/logo-primary.svg`,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://greentechcycle.fr/${locale}/blog/${slug}`,
+      "@id": `${SITE}/${locale}/blog/${slug}`,
     },
   };
 

@@ -1536,8 +1536,8 @@ export default function RegulationPage() {
 
       <RelatedArticles
         categories={["Réglementation", "Conformité"]}
-        title="Guides de conformité réglementaire"
-        subtitle="CSRD, NIS2, DEEE : des analyses détaillées pour sécuriser votre conformité IT."
+        title={{ fr: "Guides de conformité réglementaire", en: "Regulatory compliance guides" }}
+        subtitle={{ fr: "CSRD, NIS2, DEEE : des analyses détaillées pour sécuriser votre conformité IT.", en: "CSRD, NIS2, WEEE: detailed analyses to secure your IT compliance." }}
         limit={3}
         tone="light"
       />

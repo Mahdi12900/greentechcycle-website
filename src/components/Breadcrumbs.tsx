@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { SITE_URL } from "@/lib/site";
 
 interface BreadcrumbItem {
   label: string;
@@ -23,7 +24,7 @@ export default function Breadcrumbs({ items, dark = false }: BreadcrumbsProps) {
       "@type": "ListItem",
       position: index + 1,
       name: item.label,
-      item: `https://greentechcycle.fr${item.href}`,
+      item: `${SITE_URL}${item.href}`,
     })),
   };
 

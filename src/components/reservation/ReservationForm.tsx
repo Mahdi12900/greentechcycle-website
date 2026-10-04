@@ -2,7 +2,7 @@
 
 import { EMAILS } from "@/lib/contact";
 import { useState, useMemo } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 
 import {
@@ -37,6 +37,7 @@ function emailIsValid(email: string): boolean {
 
 export default function ReservationForm({ offerSlug }: { offerSlug: string | null }) {
   const t = useTranslations("reserver");
+  const isEn = useLocale() === "en";
 
   const sizes = t.raw("form.sizes") as SelectOption[];
   const personas = t.raw("form.personas") as SelectOption[];
@@ -148,7 +149,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       onSubmit={submit}
       noValidate
       className="bg-bg-card rounded-2xl border border-track p-6 lg:p-10 max-w-3xl mx-auto"
-      aria-label="Formulaire de réservation"
+      aria-label={isEn ? "Booking form" : "Formulaire de réservation"}
     >
       {/* Stepper */}
       <div className="flex items-center justify-between mb-8">
@@ -169,9 +170,9 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       {/* Step 1, coordonnées */}
       {step === 1 && (
         <div className="reveal">
-          <h3 className="text-heading-lg text-fg mb-6">
+          <h2 className="text-heading-lg text-fg mb-6">
             {t("form.step1Title")}
-          </h3>
+          </h2>
           <div className="grid sm:grid-cols-2 gap-4">
             <Field
               id="r-name"
@@ -210,9 +211,9 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       {/* Step 2, organisation */}
       {step === 2 && (
         <div className="reveal">
-          <h3 className="text-heading-lg text-fg mb-6">
+          <h2 className="text-heading-lg text-fg mb-6">
             {t("form.step2Title")}
-          </h3>
+          </h2>
           <div className="grid sm:grid-cols-2 gap-4">
             <Field
               id="r-company"
@@ -247,9 +248,9 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       {/* Step 3, besoin */}
       {step === 3 && (
         <div className="reveal">
-          <h3 className="text-heading-lg text-fg mb-6">
+          <h2 className="text-heading-lg text-fg mb-6">
             {t("form.step3Title")}
-          </h3>
+          </h2>
           <div className="grid gap-4">
             <Field
               id="r-sites"
@@ -286,9 +287,9 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       {/* Step 4, créneaux + consent */}
       {step === 4 && (
         <div className="reveal">
-          <h3 className="text-heading-lg text-fg mb-2">
+          <h2 className="text-heading-lg text-fg mb-2">
             {t("form.step4Title")}
-          </h3>
+          </h2>
           <p className="text-body-sm text-fg-muted mb-6">{t("form.labels.slots")}</p>
           <div className="grid sm:grid-cols-2 gap-3 mb-6">
             {slots.map((s) => {

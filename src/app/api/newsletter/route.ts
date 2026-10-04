@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sendMail } from "@/lib/mailer";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Email format validation (RFC-5322 subset)
@@ -81,38 +82,16 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  /* ── Resend confirmation email via REST API ─────────────────────────────── */
-  const resendApiKey = process.env.RESEND_API_KEY;
-
-  if (resendApiKey) {
-    try {
-      const subject =
-        locale === "en"
-          ? "You are subscribed to GreenTechCycle news"
-          : "Votre inscription à la newsletter GreenTechCycle est confirmée";
-      const html =
-        locale === "en"
-          ? "<p>Thank you for subscribing to GreenTechCycle news.</p>"
-          : "<p>Merci de votre inscription à la newsletter GreenTechCycle.</p>";
-
-      await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${resendApiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from: process.env.RESEND_FROM || "GreenTechCycle <noreply@greentechcycle.fr>",
-          to: email,
-          subject,
-          html,
-        }),
-      });
-    } catch (err) {
-      console.error("[newsletter] Resend send failed:", err);
-      // Non-blocking
-    }
-  }
+  /* ── E-mail de confirmation : SMTP ou Resend (src/lib/mailer.ts), non bloquant ── */
+  const subject =
+    locale === "en"
+      ? "You are subscribed to GreenTechCycle news"
+      : "Votre inscription à la newsletter GreenTechCycle est confirmée";
+  const html =
+    locale === "en"
+      ? "<p>Thank you for subscribing to GreenTechCycle news.</p>"
+      : "<p>Merci de votre inscription à la newsletter GreenTechCycle.</p>";
+  await sendMail({ to: email, subject, html });
 
   return NextResponse.json({ success: true }, { status: 200 });
 }

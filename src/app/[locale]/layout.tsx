@@ -12,8 +12,8 @@ import SchemaOrg from "@/components/SchemaOrg";
 import SalesAssistantWidget from "@/components/SalesAssistantWidget";
 import { fontDisplay, fontMono, fontSans } from "@/app/fonts";
 import { SiteUiProvider } from "@/components/SiteUiContext";
+import { SITE_URL as SITE } from "@/lib/site";
 
-const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -117,8 +117,8 @@ export default async function LocaleLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "GreenTechCycle",
-    url: "https://greentechcycle.fr",
-    logo: "https://greentechcycle.fr/logo/logo-primary.svg",
+    url: `${SITE}`,
+    logo: `${SITE}/logo/logo-primary.svg`,
     description:
       "Plateforme ITAD unifiée : effacement attesté, traçabilité horodatée (SHA-256), reporting ESG/CSRD et bilan carbone pour la gestion responsable des actifs IT.",
     // Entité légale : fiche Pappers lue le 2026-10-04 (src/lib/contact.ts)
@@ -147,7 +147,7 @@ export default async function LocaleLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "GreenTechCycle",
-    url: "https://greentechcycle.fr",
+    url: `${SITE}`,
     description:
       "Plateforme ITAD unifiée pour la gestion responsable des actifs IT en fin de vie.",
     inLanguage: ["fr", "en"],

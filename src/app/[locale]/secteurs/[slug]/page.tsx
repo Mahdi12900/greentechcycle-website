@@ -5,6 +5,8 @@ import { ALL_SECTOR_SLUGS, getSectorDef } from "@/data/sectors";
 import type { SectorSlug } from "@/data/sectors";
 import { getSectorContent } from "@/data/sectors-i18n";
 import SectorDetailPage from "./SectorDetailPage";
+import { SITE_URL as SITE } from "@/lib/site";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Static params - generate all 16 slugs
@@ -28,8 +30,7 @@ export async function generateMetadata({
   const title = `${content.hero.title} | ITAD GreenTechCycle`;
   const description = content.hero.subtitle;
 
-  const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
-
+  
   return {
     title,
     description,
@@ -45,9 +46,11 @@ export async function generateMetadata({
       title,
       description,
       type: "website",
+      images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
+      images: [DEFAULT_OG_IMAGE],
       title,
       description,
     },

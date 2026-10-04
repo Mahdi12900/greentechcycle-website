@@ -525,7 +525,7 @@ export default function MethodologyPage() {
                       {period.items.map((item, j) => (
                         <div key={j} className="bg-bg-card rounded-2xl p-5 border border-track hover:border-track-strong hover:border-track transition">
                           <div className="flex items-center justify-between mb-2">
-                            <h4 className="font-semibold text-fg text-sm">{item.title}</h4>
+                            <h3 className="font-semibold text-fg text-sm">{item.title}</h3>
                             <RoadmapBadge status={item.status} tx={tx} />
                           </div>
                           <p className="text-sm text-fg-strong leading-relaxed">{item.desc}</p>
@@ -627,8 +627,8 @@ export default function MethodologyPage() {
       </section>
 
       <RelatedArticles
-        title="Approfondir notre méthodologie"
-        subtitle="Notre méthodologie s'appuie sur les meilleures pratiques du secteur. Découvrez les analyses qui les sous-tendent."
+        title={{ fr: "Approfondir notre méthodologie", en: "Explore our methodology further" }}
+        subtitle={{ fr: "Notre méthodologie s'appuie sur les meilleures pratiques du secteur. Découvrez les analyses qui les sous-tendent.", en: "Our methodology builds on industry best practice. Read the analyses behind it." }}
         limit={3}
         tone="light"
       />

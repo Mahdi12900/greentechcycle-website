@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { ALL_SECTOR_SLUGS } from "@/data/sectors";
 import { blogArticles } from "@/lib/blog-data";
 
-const BASE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
+import { SITE_URL as BASE } from "@/lib/site";
 const LOCALES = ["fr", "en"] as const;
 const NOW = new Date();
 
@@ -31,6 +31,9 @@ const STATIC_PAGES: [string, MetadataRoute.Sitemap[number]["changeFrequency"], n
   ["/ecosysteme", "monthly", 0.7],
   ["/impact", "monthly", 0.8],
   ["/demo", "weekly", 0.9],
+  ["/lab", "monthly", 0.7],
+  ["/certifications", "monthly", 0.8],
+  ["/resultats-clients", "monthly", 0.7],
   // Services sub-pages
   ["/services/effacement-securise", "monthly", 0.8],
   ["/services/recyclage-deee", "monthly", 0.8],
@@ -38,6 +41,7 @@ const STATIC_PAGES: [string, MetadataRoute.Sitemap[number]["changeFrequency"], n
   ["/services/cybersecurite", "monthly", 0.8],
   ["/services/audit-inventaire", "monthly", 0.8],
   ["/services/wakibox", "monthly", 0.8],
+  ["/services/collecte-logistique", "monthly", 0.8],
   // Legal
   ["/cgu", "yearly", 0.3],
   ["/confidentialite", "yearly", 0.3],

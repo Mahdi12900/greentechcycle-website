@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 
@@ -23,6 +23,8 @@ export default function ClientJourneyPage({
   params: Promise<{ locale: string }>;
 }) {
   const t = useTranslations("ClientJourney");
+  const isEn = useLocale() === "en";
+  const tx = (fr: string, en: string) => (isEn ? en : fr);
 
   const steps = t.raw("steps") as {
     number: string;
@@ -56,6 +58,7 @@ export default function ClientJourneyPage({
       {/* Timeline Section */}
       <section className="bg-bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <h2 id="journey-steps-title" className="sr-only">{tx("Les étapes du parcours client", "The client journey steps")}</h2>
           {/* Desktop Timeline (Horizontal) */}
           <div className="hidden lg:block max-w-6xl mx-auto">
             <div className="reveal-stagger">
@@ -153,18 +156,21 @@ export default function ClientJourneyPage({
       </section>
 
       <RelatedArticles
-        title="Ressources pour votre parcours"
-        subtitle="Articles pratiques pour préparer chaque étape : audit, sécurité des données, comptes-rendus ESG et conformité."
+        title={{ fr: "Ressources pour votre parcours", en: "Resources for your journey" }}
+        subtitle={{ fr: "Articles pratiques pour préparer chaque étape : audit, sécurité des données, comptes-rendus ESG et conformité.", en: "Practical articles to prepare each step: audit, data security, ESG reporting and compliance." }}
         limit={3}
         tone="light"
       />
 
       <CtaSection
-        title="Prêt à démarrer votre parcours ?"
-        subtitle="Notre équipe vous accompagne à chaque étape, de l'audit initial à la restitution finale de votre projet ITAD."
-        primaryLabel="Planifier un appel"
+        title={tx("Prêt à démarrer votre parcours ?", "Ready to start your journey?")}
+        subtitle={tx(
+          "Notre équipe vous accompagne à chaque étape, de l'audit initial à la restitution finale de votre projet ITAD.",
+          "Our team supports you at every step, from the initial audit to the final report of your ITAD project."
+        )}
+        primaryLabel={tx("Planifier un appel", "Schedule a call")}
         primaryHref="/contact"
-        secondaryLabel="Demander une démo"
+        secondaryLabel={tx("Demander une démo", "Request a demo")}
         secondaryHref="/demo"
         variant="call"
         tone="dark"

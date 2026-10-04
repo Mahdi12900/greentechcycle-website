@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import {
   Shield,
@@ -26,6 +26,8 @@ export default function SecurityPage({
   params: Promise<{ locale: string }>;
 }) {
   const t = useTranslations("Security");
+  const isEn = useLocale() === "en";
+  const tx = (fr: string, en: string) => (isEn ? en : fr);
 
   const levelItems = t.raw("levels.items") as Array<{
     level: string;
@@ -82,7 +84,7 @@ export default function SecurityPage({
                     <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-dim text-emerald">
                       <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />
                     </span>
-                    <div className="mb-2 font-display text-display-sm text-fg">Niveau {item.level}</div>
+                    <div className="mb-2 font-display text-display-sm text-fg">{tx("Niveau", "Level")} {item.level}</div>
                     <h3 className="text-sm font-semibold text-fg mb-1">{item.name}</h3>
                     <p className="text-xs text-fg-strong mb-2">{item.desc}</p>
                     <span className="text-xs text-emerald font-medium">{item.norm}</span>
@@ -176,18 +178,21 @@ export default function SecurityPage({
 
       <RelatedArticles
         categories={["Sécurité", "Conformité"]}
-        title="Analyses cybersécurité & conformité"
-        subtitle="NIS2, effacement NIST 800-88, RGPD : approfondissez les sujets clés de la sécurité des données en fin de vie IT."
+        title={{ fr: "Analyses cybersécurité & conformité", en: "Cybersecurity & compliance analyses" }}
+        subtitle={{ fr: "NIS2, effacement NIST 800-88, RGPD : approfondissez les sujets clés de la sécurité des données en fin de vie IT.", en: "NIS2, NIST 800-88 erasure, GDPR: dig into the key topics of end-of-life IT data security." }}
         limit={3}
         tone="light"
       />
 
       <CtaSection
-        title="Protégez vos données jusqu'à la dernière étape"
-        subtitle="Audit de sécurité gratuit, certificats d'effacement conformes NIST 800-88, traçabilité complète. Parlons de votre besoin."
-        primaryLabel="Télécharger le guide sécurité"
+        title={tx("Protégez vos données jusqu'à la dernière étape", "Protect your data through to the very last step")}
+        subtitle={tx(
+          "Audit de sécurité gratuit, certificats d'effacement conformes NIST 800-88, traçabilité complète. Parlons de votre besoin.",
+          "Free security audit, NIST 800-88 compliant erasure certificates, full traceability. Let's talk about your needs."
+        )}
+        primaryLabel={tx("Parler à un expert", "Talk to an expert")}
         primaryHref="/contact"
-        secondaryLabel="Demander un audit"
+        secondaryLabel={tx("Demander un audit", "Request an audit")}
         secondaryHref="/demo"
         variant="download"
         tone="dark"
