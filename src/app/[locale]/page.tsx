@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 import { CountUp } from "@/components/motion";
 import VideoBackground from "@/components/visuals/VideoBackground";
+import VideoModal from "@/components/visuals/VideoModal";
 import { KpiStat, KpiBar } from "@/components/kpi/Kpi";
 import { KPIS } from "@/content/kpis";
 import TrustBand from "@/components/TrustBand";
@@ -200,6 +201,8 @@ export default function HomePage() {
                   {t("hero.cta2")}
                 </ButtonLink>
               </div>
+              {/* Présentation vidéo (25 s, voix off anglaise) en fenêtre modale */}
+              <VideoModal id="demo-video" className="mt-4" />
 
               <p className="mt-6 max-w-[65ch] text-caption italic text-fg-muted">{t("hero.source")}</p>
             </div>

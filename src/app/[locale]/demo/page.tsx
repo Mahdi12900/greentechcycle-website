@@ -43,24 +43,15 @@ export default function DemoPage() {
 
   return (
     <div>
-      {/* Hero court (paper) */}
-      <section className="bg-bg py-16 lg:py-24" aria-labelledby="demo-title">
+      {/* Hero : titre + vidéo de présentation en grand, juste sous le titre */}
+      <section className="bg-bg pb-16 pt-12 lg:pb-24 lg:pt-16" aria-labelledby="demo-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <h1 id="demo-title" className="max-w-[20ch] text-display-lg text-fg">{t("hero.title")}</h1>
             <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("hero.subtitle")}</p>
-            <div className="mt-8">
-              <ButtonLink href="#demo-form" size="lg">{t("form.submit")}</ButtonLink>
-            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Aperçu vidéo */}
-      <Section tone="cream" bordered>
-        <div className="reveal">
-          <SectionHeader title={t("video.title")} />
-          <figure>
+          <figure className="mx-auto mt-10 max-w-[1100px]" aria-labelledby="demo-video-title">
+            <h2 id="demo-video-title" className="mb-4 text-display-sm text-fg">{t("video.title")}</h2>
             <div className="relative aspect-video overflow-hidden rounded-2xl border border-track shadow-float">
               <VideoPlayer
                 id="demo-video"
@@ -69,8 +60,11 @@ export default function DemoPage() {
             </div>
             <figcaption className="mt-3 text-caption text-fg-muted">{t("video.placeholder")}</figcaption>
           </figure>
+          <div className="mt-10">
+            <ButtonLink href="#demo-form" size="lg">{t("form.submit")}</ButtonLink>
+          </div>
         </div>
-      </Section>
+      </section>
 
       {/* Écrans de la plateforme */}
       <Section tone="paper">

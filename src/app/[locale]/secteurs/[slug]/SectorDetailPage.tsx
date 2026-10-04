@@ -216,7 +216,7 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
         {SECTOR_VIDEOS[slug] && (
           <div className="reveal mt-12 max-w-3xl">
             <p className="mb-4 text-eyebrow uppercase text-fg-muted">{isFr ? "Cas client en vidéo" : "Customer case on video"}</p>
-            <VideoFigure id={SECTOR_VIDEOS[slug]} />
+            <VideoFigure id={SECTOR_VIDEOS[slug]} preview />
           </div>
         )}
       </Section>

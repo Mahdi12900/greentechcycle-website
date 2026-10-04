@@ -96,8 +96,9 @@ export interface SlotVideoSpec {
   description?: { fr: string; en: string };
 }
 
-const v = (name: string) => [
-  { src: `/videos/${name}.webm`, type: "video/webm" },
+// Codecs déclarés : un navigateur qui ne décode pas VP9/Opus (anciens Safari iOS) passe au MP4 H.264
+const v = (name: string, audio = true) => [
+  { src: `/videos/${name}.webm`, type: audio ? 'video/webm; codecs="vp9, opus"' : 'video/webm; codecs="vp9"' },
   { src: `/videos/${name}.mp4`, type: "video/mp4" },
 ];
 
@@ -105,7 +106,7 @@ export const SLOT_VIDEOS: Partial<Record<string, SlotVideoSpec>> = {
   // Fond animé du hero d'accueil : boucle muette 9 s (WebM 82 Ko / MP4 267 Ko)
   "home-hero-background": {
     kind: "loop",
-    sources: v("gtc-hero-loop-en"),
+    sources: v("gtc-hero-loop-en", false),
     poster: "/videos/gtc-hero-loop-en-poster.webp",
     duration: 9,
   },

@@ -8,10 +8,13 @@ import MediaSlot from "@/components/visuals/MediaSlot";
 import ClientWordmarks from "@/components/ClientWordmarks";
 import VideoPlayer, { VideoFigure } from "@/components/visuals/VideoPlayer";
 
-/** Vidéos de cas présentées dans le bloc « En vidéo » : index dans UseCases.cases */
-const VIDEO_CASES = [
-  { video: "case-chu", useCase: 1 },
-  { video: "case-energie", useCase: 5 },
+/** Grille « Vidéos » : titre de chaque carte repris du contenu existant du cas correspondant */
+type HeadingSrc = (cases: CaseItem[], tf1: { title: string }, useCaseTitles: string[]) => string;
+const VIDEO_CARDS: { video: string; heading: HeadingSrc }[] = [
+  { video: "case-banque", heading: (c) => c.find((x) => x.slug === "banque-cac40")?.title ?? "" },
+  { video: "case-tf1", heading: (_c, tf1) => tf1.title },
+  { video: "case-chu", heading: (_c, _t, u) => u[1] ?? "" },
+  { video: "case-energie", heading: (_c, _t, u) => u[5] ?? "" },
 ];
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
@@ -325,6 +328,26 @@ export default function CasUsagesPage() {
         </div>
       </section>
 
+      {/* ═══ VIDÉOS — les 4 cas clients en vidéo (anglais), aperçu muet à l'écran ═══ */}
+      <Section id="videos" tone="cream" aria-labelledby="videos-title">
+        <div className="reveal">
+          <SectionHeader
+            id="videos-title"
+            eyebrow={tx("Vidéos", "Videos")}
+            title={tx("Quatre missions, en vidéo.", "Four missions, on video.")}
+            intro={tx("Voix off en anglais · 33 à 35 secondes chacune.", "English voice-over · 33 to 35 seconds each.")}
+          />
+        </div>
+        <div className="grid gap-x-8 gap-y-12 md:grid-cols-2">
+          {VIDEO_CARDS.map((vc) => (
+            <article key={vc.video} className="min-w-0">
+              <h3 className="mb-4 max-w-[48ch] text-heading-md text-fg">{vc.heading(cases, tf1, useCaseTitles)}</h3>
+              <VideoFigure id={vc.video} preview />
+            </article>
+          ))}
+        </div>
+      </Section>
+
       {/* ═══ CHIFFRES CLÉS (night) ═══ */}
       <Section tone="night" spacing="dense" aria-label={tx("Chiffres clés GreenTechCycle", "GreenTechCycle key figures")}>
         <StatRow tone="dark">
@@ -449,25 +472,6 @@ export default function CasUsagesPage() {
           </div>
         </div>
       </section>
-
-      {/* ═══ CAS EN VIDÉO — missions racontées dans les vidéos (titres repris de UseCases) ═══ */}
-      <Section id="cas-en-video" tone="paper" aria-labelledby="cas-en-video-title">
-        <div className="reveal">
-          <SectionHeader
-            id="cas-en-video-title"
-            eyebrow={tx("En vidéo", "On video")}
-            title={tx("Deux autres missions, en vidéo.", "Two more missions, on video.")}
-          />
-        </div>
-        <div className="reveal-stagger grid gap-8 lg:grid-cols-2">
-          {VIDEO_CASES.map((vc) => (
-            <div key={vc.video} className="reveal min-w-0">
-              <h3 className="mb-4 max-w-[40ch] text-heading-lg text-fg">{useCaseTitles[vc.useCase]}</h3>
-              <VideoFigure id={vc.video} />
-            </div>
-          ))}
-        </div>
-      </Section>
 
       {/* ═══ COMPARATIF — tableau §6.13 ═══ */}
       <Section tone="paper" aria-labelledby="comparative-title">
