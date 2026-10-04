@@ -102,7 +102,7 @@ const v = (name: string) => [
 ];
 
 export const SLOT_VIDEOS: Partial<Record<string, SlotVideoSpec>> = {
-  // Fond animé du hero d'accueil : boucle muette 9 s (WebM 84 Ko / MP4 268 Ko)
+  // Fond animé du hero d'accueil : boucle muette 9 s (WebM 82 Ko / MP4 267 Ko)
   "home-hero-background": {
     kind: "loop",
     sources: v("gtc-hero-loop-en"),
