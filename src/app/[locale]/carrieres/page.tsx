@@ -1,6 +1,7 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { EMAILS, PREFILL } from "@/lib/contact";
 import { Link } from "@/i18n/navigation";
 
 import { Target, Eye, Award, Lightbulb, Mail, ArrowRight, Sparkles, Heart, Rocket } from "lucide-react";
@@ -8,6 +9,7 @@ import RelatedArticles from "@/components/RelatedArticles";
 
 export default function CareersPage() {
   const t = useTranslations("Careers");
+  const isEn = useLocale() === "en";
 
   const values = [
     { icon: Target, color: "bg-emerald-dim text-emerald" },
@@ -78,6 +80,17 @@ export default function CareersPage() {
                       <p className="text-fg-strong text-sm leading-relaxed">
                         {t(`values.items.${index}.desc`)}
                       </p>
+                      {/* Valeur « Innovation » : contact du lab R&D / partenariats (lab.rd@) */}
+                      {index === 3 && (
+                        <a
+                          href={`mailto:${EMAILS.lab}?subject=${encodeURIComponent(isEn ? PREFILL.en.labSubject : PREFILL.fr.labSubject)}`}
+                          className="mt-4 inline-flex min-h-[44px] items-center gap-2 text-caption font-semibold text-emerald underline-offset-4 hover:underline"
+                        >
+                          <Mail className="h-4 w-4" aria-hidden="true" />
+                          {isEn ? "R&D lab or partnership: " : "Lab R&D ou partenariat : "}
+                          {EMAILS.lab}
+                        </a>
+                      )}
                     </div>
                   </div>
                 );

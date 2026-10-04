@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: "GreenTechCycle <newsletter@greentechcycle.fr>",
+          from: process.env.RESEND_FROM || "GreenTechCycle <noreply@greentechcycle.fr>",
           to: email,
           subject,
           html,

@@ -5,7 +5,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Logo from "@/components/Logo";
 import { Mail, MessageCircle, MapPin, Linkedin, Twitter, ArrowUpRight, Send } from "lucide-react";
-import { CONTACT_EMAIL, PREFILL, mailtoHref, whatsappHref } from "@/lib/contact";
+import { EMAILS, PREFILL, mailtoHref, whatsappHref } from "@/lib/contact";
 import CertificationStrip from "@/components/CertificationStrip";
 
 export default function Footer() {
@@ -13,7 +13,8 @@ export default function Footer() {
   const locale = useLocale();
   const isEn = locale === "en";
   const pre = isEn ? PREFILL.en : PREFILL.fr;
-  const mail = mailtoHref(pre.subject);
+  // Pied de page : adresse support (clients existants)
+  const mail = mailtoHref(pre.supportSubject, "", EMAILS.support);
   const wa = whatsappHref(pre.whatsapp);
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -113,7 +114,7 @@ export default function Footer() {
                 <li>
                   <a href={mail} className="inline-flex items-center gap-3 hover:text-fg">
                     <Mail className="h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-                    {CONTACT_EMAIL}
+                    {EMAILS.support}
                   </a>
                 </li>
               )}

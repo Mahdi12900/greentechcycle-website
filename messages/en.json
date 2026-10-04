@@ -95,7 +95,7 @@
     "contact": {
       "title": "Contact us",
       "address": "Registered office (WAKI CLOUD SOLUTION)\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
-      "email": "contact@greentechcycle.fr"
+      "email": "support@greentechcycle.fr"
     },
     "cta": "Request free audit",
     "columns": {
@@ -2063,7 +2063,7 @@
       "title": "If you would rather write or call before filling a form.",
       "body": "Our team answers emails and calls personally, no automated switchboard, no random routing. Urgent and confidential requests are handled with the same responsiveness as formal ones.",
       "address": "WAKI CLOUD SOLUTION\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
-      "email": "contact@greentechcycle.fr"
+      "email": "sales@greentechcycle.fr"
     },
     "conversion": {
       "eyebrow": "Or if you are not in a rush",
@@ -2223,7 +2223,7 @@
       "title": "Spontaneous Application",
       "description": "No opening matches your profile? Send us your spontaneous application.",
       "cta": "Send my application",
-      "email": "recruitment@greentechcycle.fr"
+      "email": "sales@greentechcycle.fr"
     }
   },
   "Legal": {
@@ -2294,7 +2294,7 @@
         },
         "controller": {
           "title": "Data Controller",
-          "text": "WAKI CLOUD SOLUTION (GreenTechCycle)\n3 rue des Tournelles, 77174 Villeneuve-Saint-Denis\nDPO: dpo@greentechcycle.fr"
+          "text": "WAKI CLOUD SOLUTION (GreenTechCycle)\n3 rue des Tournelles, 77174 Villeneuve-Saint-Denis\nDPO: support@greentechcycle.fr"
         },
         "data": {
           "title": "Data Collected",
@@ -2314,7 +2314,7 @@
         },
         "rights": {
           "title": "Your Rights",
-          "text": "Under GDPR, you have the following rights:\n• Right of access to your data\n• Right to rectification\n• Right to erasure\n• Right to data portability\n• Right to object\n• Right to restriction of processing\n\nTo exercise your rights: dpo@greentechcycle.fr"
+          "text": "Under GDPR, you have the following rights:\n• Right of access to your data\n• Right to rectification\n• Right to erasure\n• Right to data portability\n• Right to object\n• Right to restriction of processing\n\nTo exercise your rights: support@greentechcycle.fr"
         },
         "cookies": {
           "title": "Cookies",
@@ -6765,7 +6765,7 @@
     },
     "error": {
       "title": "Something went wrong.",
-      "body": "Please try again in a moment or write to us at mahdi@greentechcycle.fr."
+      "body": "Please try again in a moment or write to us at sales@greentechcycle.fr."
     },
     "offers": {
       "pilote-audit-3j": "GTC Pilot - Audit & 3-day kickoff",

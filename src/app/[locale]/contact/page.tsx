@@ -9,7 +9,7 @@ import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Tag from "@/components/ui/Tag";
 import ContactChannels from "@/components/ContactChannels";
-import { LEGAL } from "@/lib/contact";
+import { CONTACT_TOPICS, LEGAL, isContactTopic, mailtoHref, type ContactTopic } from "@/lib/contact";
 import {
   ArrowDown,
   Send,
@@ -41,6 +41,9 @@ function ContactInner() {
   const offers = t.raw("offers") as Offer[];
 
   const initialOffer = (searchParams?.get("offre") ?? "audit-decommissionnement").trim();
+  // Sujet → destinataire (src/lib/contact.ts) : ?sujet=support|lab pré-sélectionne le sujet
+  const sujetParam = searchParams?.get("sujet");
+  const [topic, setTopic] = useState<ContactTopic>(isContactTopic(sujetParam) ? sujetParam : "commercial");
 
   const [form, setForm] = useState({
     offre: initialOffer,
@@ -91,7 +94,8 @@ function ContactInner() {
           needs: `Échéance : ${form.timeline}`,
           message: form.message,
           consent: form.consent,
-          offerSlug: form.offre,
+          offerSlug: topic === "commercial" ? form.offre : null,
+          topic,
           source: "contact",
         }),
       });
@@ -162,17 +166,30 @@ function ContactInner() {
           <div className="grid items-start gap-8 lg:grid-cols-[360px_1fr] lg:gap-12">
             {/* Panneau de l'offre — collant uniquement en lg+ (seule barre fixe : le header) */}
             <div className="rounded-xl border border-track bg-bg p-6 lg:sticky lg:top-24" aria-live="polite">
-              <p className="text-eyebrow uppercase text-fg-muted">{t("form.selectedOfferLabel")}</p>
-              <h3 className="mt-3 text-heading-lg text-fg">{selectedOffer.name}</h3>
-              <p className="mt-2 text-body-sm text-fg-strong">{selectedOffer.pitch}</p>
-              <p className="mt-4 inline-flex items-center gap-2 text-caption font-semibold text-emerald">
-                <Clock className="h-4 w-4" aria-hidden="true" />
-                {selectedOffer.duration}
-              </p>
-              <div className="mt-6 border-t border-track pt-4">
-                <p className="text-eyebrow uppercase text-fg-muted">{t("form.nextStepLabel")}</p>
-                <p className="mt-2 text-body-sm text-fg-strong">{selectedOffer.nextStep}</p>
-              </div>
+              {topic === "commercial" ? (
+                <>
+                  <p className="text-eyebrow uppercase text-fg-muted">{t("form.selectedOfferLabel")}</p>
+                  <h3 className="mt-3 text-heading-lg text-fg">{selectedOffer.name}</h3>
+                  <p className="mt-2 text-body-sm text-fg-strong">{selectedOffer.pitch}</p>
+                  <p className="mt-4 inline-flex items-center gap-2 text-caption font-semibold text-emerald">
+                    <Clock className="h-4 w-4" aria-hidden="true" />
+                    {selectedOffer.duration}
+                  </p>
+                  <div className="mt-6 border-t border-track pt-4">
+                    <p className="text-eyebrow uppercase text-fg-muted">{t("form.nextStepLabel")}</p>
+                    <p className="mt-2 text-body-sm text-fg-strong">{selectedOffer.nextStep}</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="text-eyebrow uppercase text-fg-muted">{tx("Objet de votre demande", "Your request")}</p>
+                  <h3 className="mt-3 text-heading-lg text-fg">{CONTACT_TOPICS[topic].label[isEn ? "en" : "fr"]}</h3>
+                  <p className="mt-2 text-body-sm text-fg-strong">
+                    {tx("Votre message est transmis directement à", "Your message goes straight to")}{" "}
+                    <span className="font-mono text-emerald">{CONTACT_TOPICS[topic].recipient}</span>
+                  </p>
+                </>
+              )}
               <figure className="mt-6 border-t border-track pt-4">
                 <blockquote className="text-body-sm text-fg">&laquo;&nbsp;{t("hero.floatQuote")}&nbsp;&raquo;</blockquote>
                 <figcaption className="mt-2 text-caption text-fg-muted">
@@ -193,6 +210,31 @@ function ContactInner() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  <fieldset>
+                    <legend className={label}>{tx("Objet de votre demande", "What is your request about?")}</legend>
+                    <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                      {(Object.keys(CONTACT_TOPICS) as ContactTopic[]).map((k) => (
+                        <label
+                          key={k}
+                          className={`flex min-h-[44px] cursor-pointer items-center gap-3 rounded-lg border px-3 py-2 text-body-sm transition-colors ${
+                            topic === k ? "border-emerald bg-emerald-dim text-fg" : "border-track bg-bg text-fg-strong hover:border-track-strong"
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="topic"
+                            value={k}
+                            checked={topic === k}
+                            onChange={() => setTopic(k)}
+                            className="h-4 w-4 flex-shrink-0 accent-emerald"
+                          />
+                          {CONTACT_TOPICS[k].label[isEn ? "en" : "fr"]}
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+
+                  {topic === "commercial" && (
                   <div>
                     <label htmlFor="offre" className={label}>
                       {t("form.fields.offer")}
@@ -205,6 +247,7 @@ function ContactInner() {
                       ))}
                     </select>
                   </div>
+                  )}
 
                   <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div>
@@ -320,6 +363,14 @@ function ContactInner() {
                       <p className="font-semibold">
                         {tx("L'envoi n'a pas abouti. Vos réponses sont conservées : réessayez, ou passez par un canal direct.", "Sending failed. Your answers are kept: try again, or use a direct channel.")}
                       </p>
+                      {mailtoHref(tx("Demande via le site", "Website request"), "", CONTACT_TOPICS[topic].recipient) && (
+                        <a
+                          href={mailtoHref(tx("Demande via le site", "Website request"), "", CONTACT_TOPICS[topic].recipient) as string}
+                          className="mt-2 inline-flex min-h-[44px] items-center font-mono text-caption text-emerald underline underline-offset-4"
+                        >
+                          {CONTACT_TOPICS[topic].recipient}
+                        </a>
+                      )}
                       <ContactChannels variant="pills" formHref={null} className="mt-3" />
                     </div>
                   )}

@@ -1,12 +1,13 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { ArrowUpRight, Mail, MessageCircle, FileText } from "lucide-react";
-import { PREFILL, mailtoHref, whatsappHref, CONTACT_EMAIL } from "@/lib/contact";
+import { ArrowUpRight, LifeBuoy, Mail, MessageCircle, FileText } from "lucide-react";
+import { PREFILL, mailtoHref, whatsappHref, CONTACT_EMAIL, EMAILS } from "@/lib/contact";
 
 /**
  * ContactChannels — voies directes « tech » (phase 3) : WhatsApp click-to-chat
- * (wa.me + message pré-rempli), email (mailto pré-rempli) et formulaire.
+ * (wa.me + message pré-rempli), email commercial (sales@), support (support@,
+ * variante cartes) et formulaire.
  * Les canaux non configurés (variables d'environnement absentes) ne sont pas
  * rendus : jamais de lien mort ni de numéro inventé.
  *
@@ -26,7 +27,8 @@ export default function ContactChannels({
   const isEn = useLocale() === "en";
   const pre = isEn ? PREFILL.en : PREFILL.fr;
   const wa = whatsappHref(pre.whatsapp);
-  const mail = mailtoHref(pre.subject);
+  const mail = mailtoHref(pre.subject); // commercial (sales@)
+  const support = variant === "cards" ? mailtoHref(pre.supportSubject, "", EMAILS.support) : null;
 
   const channels = [
     wa && {
@@ -42,8 +44,16 @@ export default function ContactChannels({
       href: mail,
       external: false,
       icon: Mail,
-      label: "Email",
+      label: isEn ? "Sales email" : "Email commercial",
       meta: CONTACT_EMAIL,
+    },
+    support && {
+      key: "support",
+      href: support,
+      external: false,
+      icon: LifeBuoy,
+      label: isEn ? "Client support" : "Support client",
+      meta: EMAILS.support,
     },
     formHref && {
       key: "form",
@@ -86,7 +96,7 @@ export default function ContactChannels({
   }
 
   return (
-    <ul className={`reveal-stagger grid gap-3 sm:grid-cols-2 lg:grid-cols-3 ${className}`}>
+    <ul className={`reveal-stagger grid gap-3 sm:grid-cols-2 lg:grid-cols-4 ${className}`}>
       {channels.map((c) => (
         <li key={c.key} className="reveal">
           <a

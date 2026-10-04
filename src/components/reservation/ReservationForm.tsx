@@ -1,5 +1,6 @@
 "use client";
 
+import { EMAILS } from "@/lib/contact";
 import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
@@ -338,7 +339,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
             <p className="text-body-sm font-semibold text-fg mb-1">{t("fallback.title")}</p>
             <p className="text-caption text-fg-strong leading-relaxed">{t("fallback.body")}</p>
             <a
-              href="mailto:mahdi@greentechcycle.fr"
+              href={`mailto:${EMAILS.sales}`}
               className="inline-flex items-center gap-1 text-caption font-semibold text-fg underline underline-offset-4 mt-1"
             >
               {t("fallback.mailtoLabel")}

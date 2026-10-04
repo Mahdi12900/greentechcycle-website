@@ -95,7 +95,7 @@
     "contact": {
       "title": "Nous contacter",
       "address": "Siège social (WAKI CLOUD SOLUTION)\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
-      "email": "contact@greentechcycle.fr"
+      "email": "support@greentechcycle.fr"
     },
     "cta": "Demander l'audit gratuit",
     "columns": {
@@ -2063,7 +2063,7 @@
       "title": "Si vous préférez écrire ou téléphoner avant de remplir un formulaire.",
       "body": "Notre équipe répond personnellement aux courriels et aux appels, pas de standard automatisé, pas d'attribution aléatoire. Nous prenons en charge les demandes urgentes et confidentielles avec la même réactivité que les demandes formelles.",
       "address": "WAKI CLOUD SOLUTION\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
-      "email": "contact@greentechcycle.fr"
+      "email": "sales@greentechcycle.fr"
     },
     "conversion": {
       "eyebrow": "Et si vous n'êtes pas pressé",
@@ -2223,7 +2223,7 @@
       "title": "Candidature spontanée",
       "description": "Aucune offre ne correspond à votre profil ? Envoyez-nous votre candidature spontanée.",
       "cta": "Envoyer ma candidature",
-      "email": "recrutement@greentechcycle.fr"
+      "email": "sales@greentechcycle.fr"
     }
   },
   "Legal": {
@@ -2294,7 +2294,7 @@
         },
         "controller": {
           "title": "Responsable du traitement",
-          "text": "WAKI CLOUD SOLUTION (GreenTechCycle)\n3 rue des Tournelles, 77174 Villeneuve-Saint-Denis\nDPO : dpo@greentechcycle.fr"
+          "text": "WAKI CLOUD SOLUTION (GreenTechCycle)\n3 rue des Tournelles, 77174 Villeneuve-Saint-Denis\nDPO : support@greentechcycle.fr"
         },
         "data": {
           "title": "Données collectées",
@@ -2314,7 +2314,7 @@
         },
         "rights": {
           "title": "Vos droits",
-          "text": "Conformément au RGPD, vous disposez des droits suivants :\n• Droit d'accès à vos données\n• Droit de rectification\n• Droit à l'effacement\n• Droit à la portabilité\n• Droit d'opposition\n• Droit à la limitation du traitement\n\nPour exercer vos droits : dpo@greentechcycle.fr"
+          "text": "Conformément au RGPD, vous disposez des droits suivants :\n• Droit d'accès à vos données\n• Droit de rectification\n• Droit à l'effacement\n• Droit à la portabilité\n• Droit d'opposition\n• Droit à la limitation du traitement\n\nPour exercer vos droits : support@greentechcycle.fr"
         },
         "cookies": {
           "title": "Cookies",
@@ -6765,7 +6765,7 @@
     },
     "error": {
       "title": "Un problème est survenu.",
-      "body": "Merci de réessayer dans un instant ou de nous écrire directement à mahdi@greentechcycle.fr."
+      "body": "Merci de réessayer dans un instant ou de nous écrire directement à sales@greentechcycle.fr."
     },
     "offers": {
       "pilote-audit-3j": "Pilote GTC - Audit & démarrage 3 jours",

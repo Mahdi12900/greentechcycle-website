@@ -13,7 +13,7 @@ export async function GET() {
       <description><![CDATA[${article.description}]]></description>
       <pubDate>${new Date(article.publishedAt).toUTCString()}</pubDate>
       <category>${article.category}</category>
-      <author>contact@greentechcycle.fr (${article.author})</author>
+      <author>sales@greentechcycle.fr (${article.author})</author>
     </item>`
     )
     .join("");
