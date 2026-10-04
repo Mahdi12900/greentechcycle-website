@@ -19,8 +19,8 @@ export default function RecyclageDEEEPage() {
       "For what can no longer serve, we orchestrate WEEE-compliant recycling under extended producer responsibility. Every material is tracked, weighed, recovered, and directly feeds your CSRD reporting."
     ),
     description: tx(
-      "Quand un actif est irrécupérable, l'enjeu n'est plus la valeur marchande, c'est la responsabilité environnementale et juridique. Notre réseau d'éco-organismes certifiés (Ecologic, Ecosystem) garantit une traçabilité de bout en bout. Chaque matière, des métaux ferreux aux cartes électroniques, est pesée, photographiée et valorisée en filière dédiée. Le bilan carbone évité et les matières premières secondaires réinjectées remontent automatiquement dans votre rapport CSRD ESRS E5, sans aucune ressaisie manuelle. Mise en décharge : zéro.",
-      "When an asset is unrecoverable, the issue is no longer market value but environmental and legal responsibility. Our certified eco-organisation network (Ecologic, Ecosystem) guarantees end-to-end traceability. Every material, from ferrous metals to electronic boards, is weighed, photographed and recovered via a dedicated channel. The avoided carbon footprint and secondary raw materials feed automatically into your CSRD ESRS E5 reporting, with no manual re-entry. Landfill rate: zero."
+      "Quand un actif est irrécupérable, l'enjeu n'est plus la valeur marchande, c'est la responsabilité environnementale et juridique. Notre réseau d'éco-organismes (Ecologic, Ecosystem) garantit une traçabilité de bout en bout. Chaque matière, des métaux ferreux aux cartes électroniques, est pesée, photographiée et valorisée en filière dédiée. Le bilan carbone évité et les matières premières secondaires réinjectées remontent automatiquement dans votre rapport CSRD ESRS E5, sans aucune ressaisie manuelle. Mise en décharge : zéro.",
+      "When an asset is unrecoverable, the issue is no longer market value but environmental and legal responsibility. Our eco-organisation network (Ecologic, Ecosystem) guarantees end-to-end traceability. Every material, from ferrous metals to electronic boards, is weighed, photographed and recovered via a dedicated channel. The avoided carbon footprint and secondary raw materials feed automatically into your CSRD ESRS E5 reporting, with no manual re-entry. Landfill rate: zero."
     ),
     narrative: tx(
       "La traçabilité matière n'est pas une promesse marketing : c'est une exigence réglementaire qui se vérifie poste par poste, ligne de bordereau par ligne de bordereau. Voici comment elle est tenue.",
@@ -35,8 +35,8 @@ export default function RecyclageDEEEPage() {
     image:
       "/images/recycling.jpg",
     imageAlt: tx(
-      "Démantèlement et tri de cartes électroniques en filière DEEE certifiée",
-      "Dismantling and sorting of electronic boards in a certified WEEE channel"
+      "Démantèlement et tri de cartes électroniques en filière DEEE",
+      "Dismantling and sorting of electronic boards in a WEEE channel"
     ),
     imageSecondary:
       "/photos/hands-electronics.jpg",
@@ -46,7 +46,7 @@ export default function RecyclageDEEEPage() {
     ),
     benefits: [
       tx("Conformité DEEE et REP intégrale", "Full WEEE and EPR compliance"),
-      tx("Réseau Ecologic et Ecosystem certifié", "Certified Ecologic and Ecosystem network"),
+      tx("Réseau Ecologic et Ecosystem", "Ecologic and Ecosystem network"),
       tx("Traçabilité matière par matière", "Material-by-material traceability"),
       tx("Bilan carbone évité calculé automatiquement", "Avoided carbon footprint computed automatically"),
       tx("Alimentation automatique ESRS E5 et CSRD", "Automatic ESRS E5 and CSRD feed"),
@@ -78,8 +78,8 @@ export default function RecyclageDEEEPage() {
         {
           title: tx("Valorisation en filière", "Channel recovery"),
           desc: tx(
-            "Acheminement vers les filières de recyclage certifiées, extraction des métaux rares, refonte des métaux ferreux et non ferreux, regranulation des plastiques. Les matières secondaires sont tracées jusqu'au client final.",
-            "Routing to certified recycling channels, rare metals extraction, ferrous and non-ferrous remelting, plastics re-granulation. Secondary materials are tracked to the end customer."
+            "Acheminement vers les filières de recyclage, extraction des métaux rares, refonte des métaux ferreux et non ferreux, regranulation des plastiques. Les matières secondaires sont tracées jusqu'au client final.",
+            "Routing to recycling channels, rare metals extraction, ferrous and non-ferrous remelting, plastics re-granulation. Secondary materials are tracked to the end customer."
           ),
         },
         {
@@ -102,7 +102,7 @@ export default function RecyclageDEEEPage() {
       { metric: tx("Mise en décharge", "Landfill rate"), value: "0 %" },
       { metric: tx("Délai bordereau", "Tracking slip turnaround"), value: "72 h" },
     ],
-    certifications: ["R2v3", "ISO 14001", "DEEE/WEEE", "Ecologic", "Ecosystem"],
+    certifications: ["DEEE/WEEE", "Ecologic", "Ecosystem"],
     quote: {
       text: tx(
         "Notre rapport ESRS E5 a été validé sans réserve par KPMG dès le premier exercice. Les exports automatiques de GreenTechCycle ont fait gagner deux semaines à notre équipe RSE.",

@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Méthodologie | Approche certifiée pour l'ITAD",
+  title: "Méthodologie | Approche documentée pour l'ITAD",
   description:
-    "Notre méthodologie ITAD certifiée : processus qualité ISO 14001, effacement NIST 800-88, traçabilité horodatée (SHA-256) et comptes-rendus conformes aux standards internationaux.",
-  keywords: ["méthodologie ITAD", "ISO 14001", "NIST 800-88", "processus qualité", "standards internationaux"],
+    "Notre méthodologie ITAD : effacement selon NIST SP 800-88, traçabilité horodatée (SHA-256) et comptes-rendus conformes aux standards internationaux.",
+  keywords: ["méthodologie ITAD", "NIST 800-88", "processus qualité", "standards internationaux"],
   openGraph: {
     title: "Méthodologie ITAD | GreenTechCycle",
-    description: "Approche certifiée ISO 14001, effacement NIST 800-88 et traçabilité horodatée (SHA-256).",
+    description: "Effacement selon NIST SP 800-88 et traçabilité horodatée (SHA-256).",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Méthodologie ITAD | GreenTechCycle",
-    description: "Approche certifiée ISO 14001 et NIST 800-88.",
+    description: "Effacement selon NIST SP 800-88, preuves horodatées.",
   },
 };
 

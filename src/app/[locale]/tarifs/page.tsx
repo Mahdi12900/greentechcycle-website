@@ -310,20 +310,20 @@ export default function TarifsPage() {
       tag: tx("Brique 3", "Brick 3"),
       name: tx("Service ITAD", "ITAD Service"),
       pitch: tx(
-        "Audit de parc, effacement certifié NIST 800-88, reconditionnement, recyclage DEEE réglementaire. Mission cadrée selon volume, sécurité et conformité.",
-        "Fleet audit, NIST 800-88 certified erasure, refurbishment, regulatory WEEE recycling. Engagement scoped by volume, security and compliance."
+        "Audit de parc, effacement selon NIST 800-88, reconditionnement, recyclage DEEE réglementaire. Mission cadrée selon volume, sécurité et conformité.",
+        "Fleet audit, NIST 800-88 erasure, refurbishment, regulatory WEEE recycling. Engagement scoped by volume, security and compliance."
       ),
       price: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
       subline: tx(
-        "Effacement certifié NIST 800-88, prix dégressif selon volume et logistique.",
-        "NIST 800-88 certified erasure, tiered pricing based on volume and logistics."
+        "Effacement selon NIST 800-88, prix dégressif selon volume et logistique.",
+        "NIST 800-88 erasure, tiered pricing based on volume and logistics."
       ),
       ctaLabel: tx("Voir le service ITAD", "Explore the ITAD service"),
       ctaHref: "/services/recyclage-deee",
       photo: "/photos/hp-atelier-itad.jpg",
       photoAlt: tx(
-        "Atelier de reconditionnement et effacement certifié",
-        "Refurbishment and certified erasure workshop"
+        "Atelier de reconditionnement et effacement attesté",
+        "Refurbishment and attested erasure workshop"
       ),
     },
   ];
@@ -656,19 +656,19 @@ export default function TarifsPage() {
         "Audit, erasure, value recovery, recycling. Scoped to fit."
       ),
       body: tx(
-        "Notre ancre tarifaire part de 15 € HT/poste (effacement certifié NIST 800-88 r2). Chaque mission ITAD dépend du volume d'équipements, de leur typologie, du niveau de sécurité exigé et des contraintes réglementaires sectorielles. Un devis détaillé vous est remis sous 48 heures.",
-        "Our pricing anchor starts at €15 HT/device (NIST 800-88 r2 certified erasure). Every ITAD engagement depends on equipment volume, hardware mix, required security level and sector-specific regulatory constraints. A detailed quote is delivered within 48 hours."
+        "Notre ancre tarifaire part de 15 € HT/poste (effacement selon NIST 800-88 r2). Chaque mission ITAD dépend du volume d'équipements, de leur typologie, du niveau de sécurité exigé et des contraintes réglementaires sectorielles. Un devis détaillé vous est remis sous 48 heures.",
+        "Our pricing anchor starts at €15 HT/device (NIST 800-88 r2 erasure). Every ITAD engagement depends on equipment volume, hardware mix, required security level and sector-specific regulatory constraints. A detailed quote is delivered within 48 hours."
       ),
       bullets: tx(
         [
           "Audit et inventaire, cartographie exhaustive",
-          "Effacement certifié NIST 800-88 r2 unitaire",
+          "Effacement selon NIST 800-88 r2 unitaire",
           "Reconditionnement et revente, valeur récupérée",
           "Recyclage DEEE réglementaire avec bordereaux",
         ],
         [
           "Audit and inventory, exhaustive mapping",
-          "Per-unit NIST 800-88 r2 certified erasure",
+          "Per-unit NIST 800-88 r2 erasure",
           "Refurbishment and resale, value recovered",
           "Regulatory WEEE recycling with tracking slips",
         ]
@@ -689,7 +689,7 @@ export default function TarifsPage() {
   /* ── ITAD services list (preserved as quick navigation) ────────────────── */
   const itadServices = [
     { slug: "audit-inventaire", icon: Search, name: tx("Audit et inventaire de parc", "Fleet audit and inventory") },
-    { slug: "effacement-securise", icon: Lock, name: tx("Effacement sécurisé certifié", "Certified secure erasure") },
+    { slug: "effacement-securise", icon: Lock, name: tx("Effacement sécurisé", "Secure erasure") },
     { slug: "reconditionnement-valorisation", icon: RefreshCcw, name: tx("Reconditionnement et valorisation", "Refurbishment and value recovery") },
     { slug: "recyclage-deee", icon: Recycle, name: tx("Recyclage DEEE réglementaire", "Regulatory WEEE recycling") },
     { slug: "cybersecurite", icon: ShieldCheck, name: tx("Cybersécurité ITAD", "ITAD cybersecurity") },

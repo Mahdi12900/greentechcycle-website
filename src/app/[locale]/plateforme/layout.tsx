@@ -58,7 +58,7 @@ const platformeSchema = {
     "Traçabilité SHA-256 des certificats de destruction",
     "Comptes-rendus CSRD ESRS E5 automatisés",
     "Intégration API REST",
-    "Effacement certifié NIST 800-88",
+    "Effacement selon NIST 800-88",
     "Reporting carbone actifs IT",
   ],
   provider: {

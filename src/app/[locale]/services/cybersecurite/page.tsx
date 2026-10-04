@@ -104,7 +104,7 @@ export default function CybersecuritePage() {
       { metric: tx("Archivage des preuves", "Evidence archival"), value: tx("10 ans", "10 yrs") },
       { metric: tx("Alerte écart GPS", "GPS deviation alert"), value: "< 500 m" },
     ],
-    certifications: ["R2v3", "ISO 27001 (en cours)", "NIST 800-88", "HMG IS5"],
+    certifications: ["ISO 27001 (en cours)", "NIST 800-88", "HMG IS5"],
     quote: {
       text: tx(
         "Quand l'inspection ACPR est arrivée, j'ai posé un seul PDF sur la table. Quinze minutes plus tard, le sujet était clos. C'est ce niveau de preuve que nous attendions depuis dix ans.",

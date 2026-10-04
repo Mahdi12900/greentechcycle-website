@@ -31,8 +31,8 @@ export const blogArticles: BlogArticle[] = [
     slug: "securite-donnees-fin-de-vie-equipements-it",
     title: "Sécurité des données en fin de vie : protéger vos informations lors du décommissionnement IT",
     description:
-      "Guide complet sur la sécurisation des données lors du retrait des équipements IT. Méthodes d'effacement certifié NIST 800-88 et bonnes pratiques RGPD.",
-    keywords: ["sécurité données", "effacement certifié", "NIST 800-88", "RGPD", "décommissionnement IT", "fin de vie"],
+      "Guide complet sur la sécurisation des données lors du retrait des équipements IT. Méthodes d'effacement NIST 800-88 et bonnes pratiques RGPD.",
+    keywords: ["sécurité données", "effacement sécurisé", "NIST 800-88", "RGPD", "décommissionnement IT", "fin de vie"],
     author: "GreenTechCycle",
     publishedAt: "2026-03-22",
     updatedAt: "2026-04-08",

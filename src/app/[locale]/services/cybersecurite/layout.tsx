@@ -15,8 +15,8 @@ export async function generateMetadata({
     : "Cybersécurité du parc IT, NIS2 et DORA | GreenTechCycle";
 
   const description = isEn
-    ? "ITAD cybersecurity: secure decommissioning, NIS2 and DORA compliance, certified erasure and timestamped traceability (SHA-256) for critical IT infrastructure."
-    : "Cybersécurité ITAD : décommissionnement sécurisé, conformité NIS2 et DORA, effacement certifié et traçabilité horodatée (SHA-256) pour les infrastructures IT critiques.";
+    ? "ITAD cybersecurity: secure decommissioning, NIS2 and DORA compliance, attested erasure and timestamped traceability (SHA-256) for critical IT infrastructure."
+    : "Cybersécurité ITAD : décommissionnement sécurisé, conformité NIS2 et DORA, effacement attesté et traçabilité horodatée (SHA-256) pour les infrastructures IT critiques.";
 
   return {
     title,

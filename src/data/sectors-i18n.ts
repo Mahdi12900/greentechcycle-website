@@ -172,7 +172,7 @@ export function getHubLabels(locale: string): HubLabels {
     ctaPrimary: fr ? "Demander un audit sectoriel" : "Request a sector audit",
     ctaSecondary: fr ? "Voir les cas d'usages" : "View use cases",
     trustItems: [
-      "R2v3 · ISO 14001",
+      fr ? "ISO 27001 : démarche en cours" : "ISO 27001: in progress",
       "NIST 800-88 rev2",
       fr ? "Conforme RGPD · NIS2 · DORA" : "GDPR · NIS2 · DORA compliant",
       "CSRD ESRS E5 ready",

@@ -118,7 +118,7 @@ export default function ProcessITADPage() {
       <RelatedArticles
         categories={["Réglementation", "Sécurité", "Durabilité"]}
         title="Aller plus loin sur l'ITAD"
-        subtitle="Conformité DEEE, sécurité des données, économie circulaire : explorez les sujets adjacents à notre processus certifié."
+        subtitle="Conformité DEEE, sécurité des données, économie circulaire : explorez les sujets adjacents à notre processus."
         limit={3}
         tone="light"
       />

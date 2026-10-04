@@ -62,7 +62,7 @@ const articleContents: Record<string, string> = {
 
 <ul>
 <li><strong>Valorisation financière</strong> : le reconditionnement génère une valeur résiduelle qui améliore votre TCO IT.</li>
-<li><strong>Réduction des risques</strong> : l'effacement certifié protège contre les fuites de données et les sanctions RGPD.</li>
+<li><strong>Réduction des risques</strong> : l'effacement attesté protège contre les fuites de données et les sanctions RGPD.</li>
 <li><strong>Image de marque</strong> : un reporting ESG solide sur l'IT renforce votre crédibilité auprès des investisseurs et parties prenantes.</li>
 <li><strong>Anticipation réglementaire</strong> : vous vous préparez aux futures évolutions (taxonomie verte, éco-conception).</li>
 </ul>
@@ -99,11 +99,11 @@ const articleContents: Record<string, string> = {
 <h3>Destroy (Destruction physique)</h3>
 <p>Destruction physique du support (broyage, incinération, désintégration). Réservée aux données les plus sensibles ou lorsque le support ne peut pas être effacé de manière fiable (SSD endommagé, par exemple).</p>
 
-<h2>Méthodes d'effacement certifié en pratique</h2>
+<h2>Méthodes d'effacement attesté en pratique</h2>
 
 <p>Pour garantir un effacement conforme, plusieurs méthodes sont disponibles :</p>
 
-<h3>Effacement logiciel certifié</h3>
+<h3>Effacement logiciel attesté</h3>
 <p>Des solutions comme Blancco, WhiteCanyon ou les outils intégrés aux plateformes ITAD effectuent un effacement multi-passes conforme au NIST 800-88. Chaque opération génère un <strong>certificat d'effacement</strong> avec :</p>
 <ul>
 <li>Numéro de série du support</li>
@@ -157,7 +157,7 @@ const articleContents: Record<string, string> = {
 <p>Notre plateforme intègre la sécurité des données à chaque étape du processus ITAD :</p>
 
 <ul>
-<li><strong>Effacement certifié NIST 800-88</strong> niveau Purge sur tous les supports, avec certificat individuel horodaté.</li>
+<li><strong>Effacement selon NIST 800-88</strong> niveau Purge sur tous les supports, avec certificat individuel horodaté.</li>
 <li><strong>Traçabilité horodatée (SHA-256)</strong> de chaque opération, créant une preuve immuable et auditable.</li>
 <li><strong>Chaîne de possession sécurisée</strong> avec transport dédié, locaux sous vidéosurveillance et personnel habilité.</li>
 <li><strong>Reporting automatisé</strong> pour votre DPO, intégrant les preuves d'effacement dans votre registre des traitements.</li>
@@ -165,7 +165,7 @@ const articleContents: Record<string, string> = {
 
 <h2>Conclusion</h2>
 
-<p>La sécurité des données ne s'arrête pas à la mise hors service d'un équipement, elle se prolonge jusqu'à la certitude que les données sont irréversiblement détruites. Dans un contexte réglementaire de plus en plus exigeant (RGPD, NIS2, DORA), investir dans un processus d'effacement certifié n'est plus une option mais une nécessité. Chaque équipement non effacé est une bombe à retardement juridique et réputationnelle.</p>
+<p>La sécurité des données ne s'arrête pas à la mise hors service d'un équipement, elle se prolonge jusqu'à la certitude que les données sont irréversiblement détruites. Dans un contexte réglementaire de plus en plus exigeant (RGPD, NIS2, DORA), investir dans un processus d'effacement attesté n'est plus une option mais une nécessité. Chaque équipement non effacé est une bombe à retardement juridique et réputationnelle.</p>
 `,
 
   "nis2-compliance-it-infrastructure": `
@@ -248,7 +248,7 @@ const articleContents: Record<string, string> = {
 <ul>
 <li><strong>Inventaire en temps réel</strong> de tous vos actifs en cours de décommissionnement</li>
 <li><strong>Traçabilité horodatée (SHA-256)</strong> constituant une preuve auditable de chaque opération</li>
-<li><strong>Certification R2v3</strong> de nos processus, ISO 27001 en cours</li>
+<li><strong>Démarche ISO 27001</strong> en cours</li>
 <li><strong>Effacement NIST 800-88</strong> systématique avec certificat individuel</li>
 <li><strong>SLA garantis</strong> pour le traitement des actifs critiques</li>
 <li><strong>Reporting automatisé</strong> pour vos audits de conformité</li>
@@ -289,7 +289,7 @@ const articleContents: Record<string, string> = {
 <p>Lorsqu'un équipement ne répond plus aux besoins d'un utilisateur, le reconditionnement lui offre une seconde vie :</p>
 <ul>
 <li><strong>Diagnostic complet</strong> : test de tous les composants, identification des pièces à remplacer.</li>
-<li><strong>Effacement certifié</strong> : suppression sécurisée des données conformément au NIST 800-88.</li>
+<li><strong>Effacement attesté</strong> : suppression sécurisée des données conformément au NIST 800-88.</li>
 <li><strong>Remise à niveau</strong> : remplacement des composants défectueux, nettoyage, réinstallation logicielle.</li>
 <li><strong>Garantie</strong> : un équipement reconditionné professionnellement est garanti 12 à 24 mois.</li>
 </ul>
@@ -487,12 +487,12 @@ const articleContents: Record<string, string> = {
 <li><strong>Priorisation du réemploi</strong> : chaque actif est évalué pour reconditionnement avant orientation vers le recyclage</li>
 <li><strong>Certificats de traitement</strong> conformes à la réglementation, disponibles en temps réel sur la plateforme</li>
 <li><strong>Reporting automatisé</strong> : registre des déchets, bilans annuels, données ESG prêtes pour votre CSRD</li>
-<li><strong>Conformité garantie</strong> : nos processus sont certifiés R2v3 et ISO 14001</li>
+<li><strong>Conformité documentée</strong> : bordereaux de suivi et certificats pour chaque opération</li>
 </ul>
 
 <h2>Conclusion</h2>
 
-<p>La réglementation DEEE se renforce chaque année, portée par les objectifs européens d'économie circulaire et la prise de conscience environnementale. Pour les entreprises, la conformité n'est pas seulement une obligation légale, c'est une responsabilité environnementale et une opportunité de valorisation. En structurant votre gestion des DEEE avec un partenaire ITAD certifié, vous sécurisez votre conformité tout en maximisant la valeur résiduelle de vos actifs IT.</p>
+<p>La réglementation DEEE se renforce chaque année, portée par les objectifs européens d'économie circulaire et la prise de conscience environnementale. Pour les entreprises, la conformité n'est pas seulement une obligation légale, c'est une responsabilité environnementale et une opportunité de valorisation. En structurant votre gestion des DEEE avec un partenaire ITAD spécialisé, vous sécurisez votre conformité tout en maximisant la valeur résiduelle de vos actifs IT.</p>
 `,
 };
 

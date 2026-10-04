@@ -347,7 +347,7 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
                 {isFr ? "Voir les cas d'usages →" : "See use cases →"}
               </Link>
             </p>
-            <p className="mt-4">R2v3 · ISO 14001 · NIST 800-88 · RGPD · CSRD</p>
+            <p className="mt-4">{isFr ? "Effacement selon NIST SP 800-88 · ISO 27001 en cours · RGPD · CSRD" : "Erasure per NIST SP 800-88 · ISO 27001 in progress · GDPR · CSRD"}</p>
           </div>
         }
       />

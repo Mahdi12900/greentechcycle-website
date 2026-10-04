@@ -227,7 +227,7 @@ export default function CasUsagesPage() {
     {
       icon: ShieldCheck,
       tag: tx("Sécurité irréprochable", "Flawless security"),
-      title: tx("Traçabilité end-to-end certifiée", "Certified end-to-end traceability"),
+      title: tx("Traçabilité end-to-end horodatée", "Timestamped end-to-end traceability"),
       body: tx(
         "Chaque support traité reçoit un certificat NIST 800-88 r2 individuel, horodaté, avec hash SHA-256. Piste d'audit exploitable immédiatement par vos auditeurs ACPR, Big 4 ou DPO.",
         "Every processed medium receives an individual, timestamped NIST 800-88 r2 certificate with a SHA-256 hash. An audit trail your ACPR, Big 4 or DPO auditors can use immediately."
@@ -603,7 +603,7 @@ export default function CasUsagesPage() {
             <ol className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-caption text-fg-muted">
               {[
                 tx("Audit flash 72h", "72h flash audit"),
-                tx("Effacement certifié NIST", "NIST certified erasure"),
+                tx("Effacement selon NIST", "NIST erasure"),
                 tx("Valorisation marché", "Market value recovery"),
                 tx("Rapport CSRD prêt", "CSRD report ready"),
               ].map((l, i) => (

@@ -15,8 +15,8 @@ export default function AuditInventairePage() {
     eyebrow: tx("01 · Cartographie", "01 · Mapping"),
     title: tx("Audit & inventaire IT", "IT audit & inventory"),
     subtitle: tx(
-      "Avant d'effacer, valoriser ou recycler, il faut savoir ce que l'on possède réellement. Notre audit pose le socle de toute décision : un inventaire physique, certifié et opposable, livré en cinq jours ouvrés.",
-      "Before erasing, recovering or recycling, you have to know what you actually own. Our audit lays the foundation for every decision: a physical, certified and admissible inventory, delivered in five working days."
+      "Avant d'effacer, valoriser ou recycler, il faut savoir ce que l'on possède réellement. Notre audit pose le socle de toute décision : un inventaire physique, attesté et opposable, livré en cinq jours ouvrés.",
+      "Before erasing, recovering or recycling, you have to know what you actually own. Our audit lays the foundation for every decision: a physical, attested and admissible inventory, delivered in five working days."
     ),
     description: tx(
       "La plupart des parcs informatiques d'ETI dérivent d'années d'acquisitions, de migrations et de projets gelés. Personne, en interne, ne sait précisément ce qui se trouve dans la baie 7 du datacenter B ni dans le placard du site de Lille. Nos techniciens passent sur site, scannent, photographient et qualifient chaque équipement, du serveur en production au smartphone oublié au fond d'un tiroir. Trois axes d'évaluation guident le travail : criticité des données, état physique et valeur résiduelle marchande.",
@@ -102,7 +102,7 @@ export default function AuditInventairePage() {
       { metric: tx("Précision d'inventaire garantie", "Guaranteed inventory accuracy"), value: "99,2 %" },
       { metric: tx("Connecteurs déployés", "Connectors deployed"), value: tx("J+1", "Day 1") },
     ],
-    certifications: ["R2v3", "ISO 27001 (en cours)", "NIST 800-88", "ITIL v4"],
+    certifications: ["ISO 27001 (en cours)", "NIST 800-88", "ITIL v4"],
     quote: {
       text: tx(
         "L'audit GreenTechCycle nous a remis 14 % d'actifs hors comptabilité. Le rapport est passé en COMEX sans une seule retouche.",

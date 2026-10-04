@@ -32,7 +32,7 @@
           "cyber": "Cybersécurité ITAD",
           "wakibox": "WakiBox (collecte IoT)",
           "collection": "Collecte & logistique",
-          "certifications": "Certifications & conformité",
+          "certifications": "Conformité & démarche",
           "useCases": "Cas d'usages clients",
           "process": "Processus ITAD",
           "security": "Sécurité & effacement",
@@ -88,10 +88,10 @@
     "languageSwitch": "EN"
   },
   "TrustBar": {
-    "text": "R2v3 • ISO 14001 • ISO 27001 (en cours) • NIST 800-88 • RGPD & CSRD • ESS / ESUS"
+    "text": "Effacement selon NIST SP 800-88 • Empreinte SHA-256 par actif • ISO 27001 en cours • RGPD & CSRD"
   },
   "Footer": {
-    "tagline": "Votre partenaire de confiance pour la gestion responsable et sécurisée de vos actifs informatiques en fin de vie. Certifié R2, e-Stewards et ISO 14001.",
+    "tagline": "Votre partenaire de confiance pour la gestion responsable et sécurisée de vos actifs informatiques en fin de vie.",
     "contact": {
       "title": "Nous contacter",
       "address": "Siège social (WAKI CLOUD SOLUTION)\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
@@ -222,15 +222,15 @@
       "cta": "Vérifiez →"
     },
     "hero": {
-      "eyebrow": "Plateforme ITAD certifiée R2v3 · NIST 800-88 · SecNumCloud-ready",
-      "title": "La plateforme qui unifie votre ITAD : effacement certifié, conformité garantie, valorisation maximale.",
+      "eyebrow": "Plateforme ITAD · effacement selon NIST SP 800-88 · preuve SHA-256",
+      "title": "La plateforme qui unifie votre ITAD : effacement attesté, conformité garantie, valorisation maximale.",
       "subtitle": "Un tableau de bord, %kpi.team% experts habilités, 4 sites en France, 0 faille.",
       "proofStat": "78 % de l'empreinte carbone d'un parc IT est figée à la fabrication. Sur les 22 % restants, chaque poste reconditionné évite 150 kgCO₂e.",
       "cta1": "Réserver ma démo (30 min)",
       "cta2": "Demander l'audit gratuit",
       "source": "Source : ADEME : Évaluation environnementale du numérique 2024 (scope 3.1 fabrication, moyenne pondérée laptop/desktop/serveur).",
-      "trust1": "R2v3 · ISO 14001 · ISO 27001 (en cours)",
-      "trust2": "NIST 800-88 rev2 · HMG IS5 Enhanced",
+      "trust1": "ISO 27001 : démarche en cours",
+      "trust2": "Méthodes NIST SP 800-88 rev2 · HMG IS5 Enhanced",
       "trust3": "Conforme RGPD · NIS2 · DORA · CSRD ESRS E5"
     },
     "trustBand": {
@@ -280,7 +280,7 @@
         },
         {
           "label": "Économie circulaire",
-          "desc": "Filière ESS partenaire · R2v3 · taux réemploi %kpi.reuse.full%"
+          "desc": "Filière ESS partenaire · taux réemploi %kpi.reuse.full%"
         }
       ],
       "diagramCenter": "GreenTechCycle",
@@ -299,14 +299,14 @@
         },
         {
           "n": "02",
-          "title": "Effacement certifié",
+          "title": "Effacement attesté",
           "desc": "NIST 800-88 rev2 Purge avec validation 4-eyes, broyage 6 mm conforme HMG IS5 Enhanced, certificat individuel hash SHA-256.",
           "kpi": "Certificat horodaté sous 24 h"
         },
         {
           "n": "03",
           "title": "Reconditionnement / Recyclage",
-          "desc": "Reconditionnement via filière ESS partenaire (Envie, Ateliers du Bocage) ou recyclage R2v3 selon score qualité.",
+          "desc": "Reconditionnement via filière ESS partenaire (Envie, Ateliers du Bocage) ou recyclage en filière DEEE selon score qualité.",
           "kpi": "Taux réemploi moyen %kpi.reuse.full%"
         },
         {
@@ -343,7 +343,7 @@
         {
           "date": "31 mars 2025",
           "label": "PCI-DSS v4.0",
-          "body": "Entrée en vigueur stricte. Impose une destruction certifiée pour tout actif portant des certificats EMV ou des données de porteur, y compris caisses POS et terminaux de paiement.",
+          "body": "Entrée en vigueur stricte. Impose une destruction attestée pour tout actif portant des certificats EMV ou des données de porteur, y compris caisses POS et terminaux de paiement.",
           "penalty": "Suspension acquéreur"
         },
         {
@@ -434,7 +434,7 @@
         {
           "slug": "industriel-csrd-esrs-e5",
           "sector": "Industriel 4 500 ETP",
-          "regulation": "CSRD ESRS E5 · ISO 14001",
+          "regulation": "CSRD ESRS E5",
           "title": "Premier rapport ESRS E5 produit en 4 mois sur 1 800 actifs OT.",
           "results": [
             "421 tCO₂e évitées",
@@ -454,9 +454,9 @@
           "stat": "0 réserve sur 41 audits"
         },
         {
-          "title": "Sept référentiels, pas un.",
-          "body": "R2v3 (R2:2013 SERI), ISO 14001:2015, ISO 27001:2022 (en cours), ISO 9001:2015, NIST SP 800-88 rev2, HMG IS5 Enhanced, e-Stewards. Le statut de chaque référentiel est publié sur la page Certifications & conformité.",
-          "stat": "6 référentiels actifs · ISO 27001 en cours"
+          "title": "Des méthodes publiées, une certification en cours.",
+          "body": "Effacement selon NIST SP 800-88 rev2, IEEE 2883 pour les SSD et NVMe, destruction selon HMG IS5 Enhanced. Démarche ISO 27001 en cours. Le détail est publié sur la page Conformité & démarche.",
+          "stat": "ISO 27001 en cours"
         },
         {
           "title": "Mapping ESRS E5 prêt RFP.",
@@ -465,8 +465,8 @@
         },
         {
           "title": "Équipe ESS française, pas un guichet logistique.",
-          "body": "%kpi.team% collaborateurs en CDI, 41 % de femmes, 27 % issus du reconditionnement social, âge médian 34 ans. 4 sites en France (Lyon HQ + 3 ateliers). Statut entreprise solidaire d'utilité sociale (ESUS), agrément clause d'insertion AGEC.",
-          "stat": "%kpi.team% ETP · ESUS · 4 sites FR"
+          "body": "%kpi.team% collaborateurs en CDI, 41 % de femmes, 27 % issus du reconditionnement social, âge médian 34 ans. 4 sites en France (Lyon HQ + 3 ateliers).",
+          "stat": "%kpi.team% ETP · 4 sites FR"
         }
       ]
     },
@@ -516,7 +516,7 @@
       "platformCta": "Voir les tarifs",
       "itadBrick": "Service ITAD",
       "itadAnchor": "À partir de 15 € HT/poste",
-      "itadDesc": "Effacement certifié NIST 800-88, prix dégressif selon volume et logistique.",
+      "itadDesc": "Effacement selon NIST 800-88, prix dégressif selon volume et logistique.",
       "itadCta": "Voir les tarifs",
       "plans": [
         {
@@ -572,7 +572,7 @@
         {
           "icon": "factory",
           "label": "Industrie & OT",
-          "detail": "CSRD ESRS E5 · ISO 14001"
+          "detail": "CSRD ESRS E5"
         },
         {
           "icon": "landmark",
@@ -630,7 +630,7 @@
         },
         {
           "title": "Valorisation du parc",
-          "desc": "Revente sur le marché du reconditionné, don associatif ou recyclage certifié.",
+          "desc": "Revente sur le marché du reconditionné, don associatif ou recyclage tracé.",
           "href": "/services/reconditionnement-valorisation",
           "icon": "euro"
         }
@@ -667,7 +667,7 @@
         "Conforme RGPD",
         "SecNumCloud-ready",
         "ISO 27001:2022 (en cours)",
-        "R2v3 · NIST 800-88",
+        "Effacement selon NIST SP 800-88",
         "Réponse < 4 h ouvrées"
       ]
     }
@@ -680,13 +680,13 @@
     "items": [
       {
         "id": "effacement",
-        "title": "Effacement certifié",
+        "title": "Effacement attesté",
         "subtitle": "NIST 800-88 • DoD 5220.22-M",
         "engagement": "Certificat sous 24h",
-        "description": "Effacement logiciel et destruction physique certifiés, conformes aux normes les plus strictes. Chaque opération génère un certificat individuel avec hash de vérification.",
+        "description": "Effacement logiciel et destruction physique attestés, conformes aux normes les plus strictes. Chaque opération génère un certificat individuel avec hash de vérification.",
         "features": [
           "Effacement 3 passes selon NIST 800-88",
-          "Destruction physique certifiée (broyage, démagnétisation)",
+          "Destruction physique attestée (broyage, démagnétisation)",
           "Certificat individuel par actif avec hash SHA-256",
           "Traçabilité complète de la chaîne d'effacement",
           "Support de tous les types de médias (HDD, SSD, bandes)",
@@ -696,7 +696,7 @@
       {
         "id": "collecte",
         "title": "Collecte sécurisée sur site",
-        "subtitle": "Logistique certifiée",
+        "subtitle": "Logistique tracée",
         "engagement": "Intervention sous 48h",
         "description": "Collecte sécurisée directement dans vos locaux avec chain of custody ininterrompue. Véhicules tracés GPS et personnel habilité.",
         "features": [
@@ -728,7 +728,7 @@
         "title": "Bilan carbone IT",
         "subtitle": "Méthodologie Boavizta • ADEME",
         "engagement": "Calcul automatique",
-        "description": "Calcul automatique de l'empreinte carbone de votre parc IT en fin de vie. Méthodologie certifiée basée sur les référentiels Boavizta et ADEME.",
+        "description": "Calcul automatique de l'empreinte carbone de votre parc IT en fin de vie. Méthodologie basée sur les référentiels Boavizta et ADEME.",
         "features": [
           "Calcul automatique via API Boavizta",
           "Scopes 1, 2 et 3 du GHG Protocol",
@@ -741,7 +741,7 @@
       {
         "id": "tracabilite-sha256",
         "title": "Traçabilité horodatée (SHA-256)",
-        "subtitle": "Chain of custody certifiée",
+        "subtitle": "Chain of custody horodatée",
         "engagement": "Preuve immuable",
         "description": "Chaque étape du cycle de vie de vos actifs est horodatée et scellée par une empreinte SHA-256 dans un journal d'audit chaîné, vérifiable par QR code.",
         "features": [
@@ -793,7 +793,7 @@
       },
       {
         "number": "04",
-        "title": "Effacement certifié",
+        "title": "Effacement attesté",
         "description": "Effacement logiciel NIST 800-88 ou destruction physique. Certificat individuel par actif avec hash de vérification."
       },
       {
@@ -804,7 +804,7 @@
       {
         "number": "06",
         "title": "Revalorisation",
-        "description": "Revente sur le marché du reconditionné, don associatif ou recyclage certifié. Maximisation de la valeur résiduelle."
+        "description": "Revente sur le marché du reconditionné, don associatif ou recyclage tracé. Maximisation de la valeur résiduelle."
       },
       {
         "number": "07",
@@ -1021,7 +1021,7 @@
       "cta2": "Voir nos cas clients",
       "trust1": "Souveraineté française · OVHcloud SecNumCloud",
       "trust2": "Certificats horodatés (SHA-256) conservés 10 ans",
-      "trust3": "0 % décharge · engagement contractuel R2v3"
+      "trust3": "0 % décharge · engagement contractuel"
     }
   },
   "WhyGTC": {
@@ -1097,7 +1097,7 @@
         "photoAlt": "Équipe terrain GreenTechCycle issue de parcours d'insertion par l'activité économique",
         "bullets": [
           "27 % de l'effectif technique recruté via l'insertion par l'activité économique",
-          "Programme de qualification interne avec validation par certification reconnue",
+          "Programme de qualification interne",
           "Suivi individuel sur dix-huit mois avec un référent métier dédié"
         ]
       },
@@ -1121,14 +1121,14 @@
         "slug": "excellence",
         "eyebrow": "Conviction 05 · Excellence opérationnelle",
         "title": "Trente-huit personnes, douze ingénieurs, un directeur de la protection des données.",
-        "body": "Nous avons choisi de rester une équipe humaine de taille maîtrisée et de la composer de profils que nos clients reconnaissent : ingénieurs R2v3, auditeurs CSRD, techniciens habilités NIST 800-88, directeur de la protection des données dédié. Tous nos engagements de service sont contractualisés avec des pénalités. Nous préférons décliner une mission plutôt que de tirer sur la qualité.",
+        "body": "Nous avons choisi de rester une équipe humaine de taille maîtrisée et de la composer de profils que nos clients reconnaissent : ingénieurs ITAD, auditeurs CSRD, techniciens habilités NIST 800-88, directeur de la protection des données dédié. Tous nos engagements de service sont contractualisés avec des pénalités. Nous préférons décliner une mission plutôt que de tirer sur la qualité.",
         "proofValue": "99,9 %",
         "proofLabel": "Disponibilité contractualisée",
         "proofDetail": "Engagement de service avec pénalités automatiques",
         "photo": "/photos/team-collab.jpg",
         "photoAlt": "Équipe pluridisciplinaire GreenTechCycle réunie en revue de mission",
         "bullets": [
-          "12 ingénieurs certifiés R2v3 et 4 auditeurs CSRD intégrés à l'équipe",
+          "12 ingénieurs ITAD et 4 auditeurs CSRD intégrés à l'équipe",
           "18 techniciens habilités NIST 800-88 et plateaux sous vidéo-surveillance",
           "Directeur de la protection des données et délégué sécurité dédiés à plein temps"
         ]
@@ -1166,7 +1166,7 @@
           "metric": "0",
           "suffix": "%",
           "label": "mise en décharge des actifs reçus",
-          "source": "Engagement contractuel R2v3 pour chaque mission"
+          "source": "Engagement contractuel pour chaque mission"
         },
         {
           "metric": "10",
@@ -1216,7 +1216,7 @@
       {
         "number": "4",
         "title": "Interventions terrain",
-        "description": "Collectes sécurisées, effacement certifié et reconditionnement. Suivi en temps réel depuis la plateforme.",
+        "description": "Collectes sécurisées, effacement attesté et reconditionnement. Suivi en temps réel depuis la plateforme.",
         "duration": "En continu"
       },
       {
@@ -1298,7 +1298,7 @@
         "date": "2024",
         "status": "active",
         "description": "Directive sur la sécurité des réseaux et systèmes d'information, Extension du périmètre aux ETI et renforcement des obligations de sécurité.",
-        "itadImpact": "Effacement certifié obligatoire pour les entités essentielles et importantes. Notification des incidents liés aux données.",
+        "itadImpact": "Effacement attesté obligatoire pour les entités essentielles et importantes. Notification des incidents liés aux données.",
         "sanctions": "Jusqu'à 10M€ ou 2% du CA mondial pour les entités essentielles."
       },
       {
@@ -1326,7 +1326,7 @@
     },
     "carbon": {
       "title": "Méthodologie carbone",
-      "subtitle": "Calcul d'impact environnemental certifié",
+      "subtitle": "Calcul d'impact environnemental sourcé (Boavizta, ADEME)",
       "description": "Notre calcul d'empreinte carbone s'appuie sur les référentiels Boavizta et ADEME, couvrant les scopes 1, 2 et 3 du GHG Protocol.",
       "items": [
         "API Boavizta pour les facteurs d'émission des équipements IT",
@@ -1446,7 +1446,7 @@
         {
           "level": "5",
           "name": "Destruction physique",
-          "desc": "Broyage, démagnétisation ou incinération certifiée. Pour données classifiées défense.",
+          "desc": "Broyage, démagnétisation ou incinération attestée. Pour données classifiées défense.",
           "norm": "NIST 800-88 Destroy"
         }
       ]
@@ -1465,13 +1465,12 @@
       ]
     },
     "certifications": {
-      "title": "Nos certifications",
+      "title": "Méthodes et démarche",
       "items": [
-        "R2v3 (Responsible Recycling)",
-        "ISO 14001 (Management environnemental)",
-        "ISO 27001 (Sécurité de l'information) : en cours",
-        "e-Stewards",
-        "Qualiopi (formation)"
+        "NIST SP 800-88 (méthode d'effacement)",
+        "IEEE 2883 (supports SSD et NVMe)",
+        "HMG IS5 Enhanced (destruction)",
+        "ISO 27001 : démarche en cours"
       ]
     },
     "architecture": {
@@ -1481,8 +1480,7 @@
         "Chiffrement AES-256 au repos et TLS 1.3 en transit",
         "WAF et protection DDoS",
         "Sauvegardes chiffrées multi-sites",
-        "Tests d'intrusion annuels par cabinet indépendant",
-        "SOC 2 Type II en cours d'obtention"
+        "Tests d'intrusion annuels par cabinet indépendant"
       ]
     }
   },
@@ -1808,7 +1806,7 @@
     },
     "proof": {
       "eyebrow": "Section 7",
-      "title": "Preuves & certifications",
+      "title": "Preuves & méthodes",
       "lead": "Une mesure carbone n'a de valeur opposable que si elle s'appuie sur des standards d'audit reconnus. GTC s'aligne sur les méthodologies de référence en sécurité des données, en mesure environnementale et en circularité.",
       "methodsTitle": "Méthodologies appliquées",
       "methods": [
@@ -1842,14 +1840,6 @@
         {
           "name": "Institut du Numérique Responsable (INR)",
           "desc": "Référentiel GES numérique 2022, charte numérique responsable."
-        },
-        {
-          "name": "R2v3 (Responsible Recycling)",
-          "desc": "Standard SERI pour le recyclage responsable des équipements électroniques."
-        },
-        {
-          "name": "WEEELABEX",
-          "desc": "Standard européen de traitement des DEEE, audité annuellement."
         }
       ]
     },
@@ -2096,7 +2086,7 @@
       },
       {
         "q": "Quel est le taux de réemploi moyen ?",
-        "a": "En moyenne, %kpi.reuse.full% des équipements collectés sont reconditionnés et réemployés. Le reste est recyclé dans des filières certifiées."
+        "a": "En moyenne, %kpi.reuse.full% des équipements collectés sont reconditionnés et réemployés. Le reste est recyclé dans des filières tracées."
       },
       {
         "q": "Proposez-vous des dons associatifs ?",
@@ -2104,7 +2094,7 @@
       },
       {
         "q": "Comment mesurez-vous les émissions évitées ?",
-        "a": "En comparant l'impact carbone du réemploi vs la fabrication d'un équipement neuf, selon la méthodologie Boavizta certifiée."
+        "a": "En comparant l'impact carbone du réemploi vs la fabrication d'un équipement neuf, selon la méthodologie Boavizta."
       },
       {
         "q": "Fournissez-vous un rapport d'impact annuel ?",
@@ -2136,7 +2126,7 @@
     "compliance": [
       {
         "q": "Êtes-vous conforme RGPD ?",
-        "a": "Oui, en tant que sous-traitant au sens du RGPD. DPA disponible, registre des traitements à jour, DPO désigné et certifications à l'appui."
+        "a": "Oui, en tant que sous-traitant au sens du RGPD. DPA disponible, registre des traitements à jour, DPO désigné et preuves documentées à l'appui."
       },
       {
         "q": "Comment prouvez-vous la destruction des données ?",
@@ -2148,7 +2138,7 @@
       },
       {
         "q": "Quid de la conformité NIS2 ?",
-        "a": "Notre processus d'effacement certifié répond aux exigences NIS2 pour les entités essentielles et importantes. Documentation de conformité disponible."
+        "a": "Notre processus d'effacement attesté répond aux exigences NIS2 pour les entités essentielles et importantes. Documentation de conformité disponible."
       },
       {
         "q": "Comment gérez-vous les transferts de données hors UE ?",
@@ -2178,7 +2168,7 @@
         },
         {
           "title": "Excellence",
-          "desc": "Certifications, normes, audits : nous visons l'excellence opérationnelle au quotidien."
+          "desc": "Normes, méthodes, audits : nous visons l'excellence opérationnelle au quotidien."
         },
         {
           "title": "Innovation",
@@ -2360,7 +2350,7 @@
     "useCasesSubtitle": "Banque, santé, industrie, public, retail, énergie, telco, université, chiffres récupérés et tCO₂e évitées par cas.",
     "useCasesCta": "Recevoir les cas",
     "servicesTitle": "Comparatif des 6 services GTC",
-    "servicesSubtitle": "Effacement, collecte, reconditionnement, recyclage, cybersécurité, WakiBox, SLA contractuels et certifications par service.",
+    "servicesSubtitle": "Effacement, collecte, reconditionnement, recyclage, cybersécurité, WakiBox, SLA contractuels et méthodes par service.",
     "servicesCta": "Recevoir le comparatif"
   },
   "UseCases": {
@@ -2401,7 +2391,7 @@
         "sectorBadge": "CHU public 9 000 lits",
         "regulation": "RGPD santé + HDS + CNIL",
         "title": "Reconditionnement et effacement de 800 disques d'imagerie médicale sans rupture de soin",
-        "context": "CHU régional public, 9 000 lits, parc d'imagerie médicale (IRM, scanners, échographes) en fin de cycle. 800 disques durs et SSD contiennent des images DICOM patient soumises à conservation 20 ans puis destruction certifiée. Décret 2018-137 et certification HDS imposent la destruction physique pour tout support classé HDS.",
+        "context": "CHU régional public, 9 000 lits, parc d'imagerie médicale (IRM, scanners, échographes) en fin de cycle. 800 disques durs et SSD contiennent des images DICOM patient soumises à conservation 20 ans puis destruction attestée. Décret 2018-137 et certification HDS imposent la destruction physique pour tout support classé HDS.",
         "problem": "La continuité de soin interdit toute interruption d'examen. Les disques doivent être extraits, sortis du périmètre HDS, détruits selon référentiel ANS-DGOS, et la chaîne de garde tracée pour répondre à un contrôle CNIL. Le DPO doit signer un PV de destruction par actif sans pouvoir interrompre les blocs.",
         "stakeholders": "DSI biomédical, DPO, Direction qualité-risques, RSSI, Pharmaciens responsables de stérilisation, ARS",
         "solution": "Pro Service Audit & Inventaire sur site avec accompagnement biomédical ; effacement NIST 800-88 Purge en zone vidéosurveillée ; broyage 6 mm conforme HMG IS5 Enhanced ; PV CNIL et HDS générés automatiquement ; reconditionnement des actifs IT non-HDS reversé à filière ESS (Emmaüs Connect).",
@@ -2413,7 +2403,7 @@
       {
         "id": "industriel-csrd-esrs-e5",
         "sectorBadge": "Industriel 4 500 collaborateurs",
-        "regulation": "CSRD ESRS E5 + ISO 14001",
+        "regulation": "CSRD ESRS E5",
         "title": "Production du premier rapport ESRS E5 et valorisation de 1 800 actifs OT",
         "context": "ETI industrielle française, 4 500 collaborateurs, 11 sites de production, première publication CSRD ESRS E5 due au 30 juin 2026. Parc OT mixte (automates Siemens S7, HMI Schneider, PC industriels Beckhoff) en fin de cycle, scope 3.1 dominant le bilan carbone. Direction RSE sous pression du commissaire aux comptes.",
         "problem": "L'ESRS E5 §29-§39 exige des données auditables : ressources entrantes, sortantes, taux de circularité, déchets dangereux. Aucun outil interne ne calcule ces 16 data points. Les 4 prestataires ITAD historiques fournissent 4 formats Excel hétérogènes, intraçables.",
@@ -2443,7 +2433,7 @@
         "sectorBadge": "Retail 220 magasins",
         "regulation": "PCI-DSS v4.0 + RGPD + AGEC",
         "title": "Déploiement WakiBox et collecte mutualisée sur 220 magasins en 90 jours",
-        "context": "Enseigne retail française, 220 magasins, renouvellement triennal des caisses POS et terminaux de paiement. 850 caisses POS, 1 600 TPE, 4 200 ESL (étiquettes électroniques) à sortir du parc. PCI-DSS v4.0 entrée en vigueur 31 mars 2025 impose une destruction certifiée des actifs portant des certificats EMV.",
+        "context": "Enseigne retail française, 220 magasins, renouvellement triennal des caisses POS et terminaux de paiement. 850 caisses POS, 1 600 TPE, 4 200 ESL (étiquettes électroniques) à sortir du parc. PCI-DSS v4.0 entrée en vigueur 31 mars 2025 impose une destruction attestée des actifs portant des certificats EMV.",
         "problem": "Coordonner 220 sites en 90 jours sans rupture commerciale, traiter du matériel hétérogène (POS, TPE, ESL, périphériques), produire un PV PCI-DSS par site et un reporting CSRD consolidé. Les directeurs régionaux résistent à toute friction opérationnelle.",
         "stakeholders": "DSI retail, RSSI, DPO, Direction des opérations, 220 directeurs de magasin, Direction RSE",
         "solution": "Plan de roll-out 6 vagues (37 magasins/vague, 14 jours) ; déploiement de 84 WakiBox IoT pour collecte mutualisée des accessoires/ESL ; effacement PCI-DSS Appendix A1 ; destruction physique des TPE en zone scellée ; reconditionnement POS 3 ans → marché EMEA reconditionné ; reporting CSRD ESRS E5 par enseigne.",
@@ -2605,7 +2595,7 @@
         "items": [
           {
             "title": "Décommissionnement datacenter de trading",
-            "description": "Effacement certifié de 2 400 serveurs contenant des algorithmes de trading haute fréquence et des données de marché classifiées.",
+            "description": "Effacement attesté de 2 400 serveurs contenant des algorithmes de trading haute fréquence et des données de marché classifiées.",
             "result": "100 % conforme DORA, 1,2 M€ de valeur récupérée"
           },
           {
@@ -2616,7 +2606,7 @@
           {
             "title": "Migration guichets automatiques",
             "description": "Retrait et destruction sécurisée de 1 600 GAB contenant données cartes SAM, certificats EMV et logs transactionnels.",
-            "result": "Destruction certifiée 100 %, rapport ACPR livré J+5"
+            "result": "Destruction attestée 100 %, rapport ACPR livré J+5"
           },
           {
             "title": "Audit régulateur ACPR/AMF",
@@ -2661,7 +2651,7 @@
           },
           {
             "role": "RSSI / CISO",
-            "concern": "Effacement certifié et chaîne de garde",
+            "concern": "Effacement attesté et chaîne de garde",
             "ctaAngle": "Certificats NIST 800-88 avec validation 4-eyes"
           },
           {
@@ -2707,7 +2697,7 @@
         "items": [
           {
             "question": "GTC est-il qualifié au titre de DORA art. 28-30 ?",
-            "answer": "Oui. GTC figure au registre TPP en tant que prestataire ITAD critique. Nous fournissons le dossier de qualification DORA complet, incluant les rapports d'audit annuels, la certification R2v3, l'état d'avancement ISO 27001 (en cours) et la matrice de conformité article 28."
+            "answer": "Oui. GTC figure au registre TPP en tant que prestataire ITAD critique. Nous fournissons le dossier de qualification DORA complet, incluant les rapports d'audit annuels, l'état d'avancement ISO 27001 (en cours) et la matrice de conformité article 28."
           },
           {
             "question": "Quel est le délai de restitution des certificats d'effacement ?",
@@ -2795,7 +2785,7 @@
           {
             "title": "Migration PACS imagerie",
             "description": "Effacement et destruction de 340 stations d'imagerie contenant des données DICOM patients sur 15 ans.",
-            "result": "100 % destruction certifiée, rapport CNIL livré J+3"
+            "result": "100 % destruction attestée, rapport CNIL livré J+3"
           },
           {
             "title": "Retrait dispositifs IoMT",
@@ -2869,7 +2859,7 @@
         "title": "Pourquoi choisir GTC pour la santé",
         "items": [
           {
-            "title": "Expertise HDS certifiée",
+            "title": "Expertise des exigences HDS",
             "description": "Processus d'effacement et de destruction conformes aux exigences de la certification Hébergeur de Données de Santé."
           },
           {
@@ -2891,11 +2881,11 @@
         "items": [
           {
             "question": "Êtes-vous certifié HDS ?",
-            "answer": "GTC opère en conformité avec les exigences HDS pour la destruction de données de santé. Nos certificats NIST 800-88 sont reconnus par la CNIL et les ARS comme preuve de destruction conforme."
+            "answer": "Non. GreenTechCycle n'est pas certifiée HDS : nous opérons en conformité avec les exigences HDS pour la destruction des données de santé, et chaque destruction donne lieu à un certificat d'effacement par actif."
           },
           {
             "question": "Comment traitez-vous les équipements d'imagerie PACS ?",
-            "answer": "Les stations PACS sont traitées en zone sécurisée dédiée. Les données DICOM sont effacées selon le protocole NIST 800-88 Purge, puis les disques font l'objet d'une destruction physique certifiée."
+            "answer": "Les stations PACS sont traitées en zone sécurisée dédiée. Les données DICOM sont effacées selon le protocole NIST 800-88 Purge, puis les disques font l'objet d'une destruction physique attestée."
           },
           {
             "question": "Pouvez-vous intervenir sans interrompre les soins ?",
@@ -2979,7 +2969,7 @@
           {
             "title": "Décommissionnement SCADA",
             "description": "Retrait sécurisé de 240 RTU et concentrateurs SCADA contenant des topologies réseau et des clés cryptographiques.",
-            "result": "Destruction certifiée 100 %, matrice NIS2 validée"
+            "result": "Destruction attestée 100 %, matrice NIS2 validée"
           },
           {
             "title": "Migration datacenter usine",
@@ -2988,7 +2978,7 @@
           },
           {
             "title": "Renouvellement IoT capteurs",
-            "description": "Collecte et traitement de 8 000 capteurs IoT industriels en fin de vie, avec effacement firmware et recyclage certifié.",
+            "description": "Collecte et traitement de 8 000 capteurs IoT industriels en fin de vie, avec effacement firmware et recyclage tracé.",
             "result": "98 % recyclage matière, 0 donnée résiduelle"
           }
         ]
@@ -3336,13 +3326,13 @@
         "items": [
           {
             "title": "Remplacement concentrateurs Linky",
-            "description": "Décommissionnement de 35 000 concentrateurs de première génération avec effacement firmware et recyclage certifié.",
+            "description": "Décommissionnement de 35 000 concentrateurs de première génération avec effacement firmware et recyclage tracé.",
             "result": "100 % traçabilité, 1 200 tCO₂e évitées"
           },
           {
             "title": "Migration SCADA poste de conduite",
             "description": "Retrait sécurisé de 180 RTU et stations de conduite contenant topologies réseau et clés cryptographiques.",
-            "result": "Destruction IGI 1300 certifiée, audit ANSSI validé"
+            "result": "Destruction IGI 1300 attestée, audit ANSSI validé"
           },
           {
             "title": "Décommissionnement datacenter trading",
@@ -3393,7 +3383,7 @@
           {
             "role": "RSSI / CISO",
             "concern": "Destruction IGI 1300 et chaîne de garde",
-            "ctaAngle": "Destruction certifiée + certificat horodaté (SHA-256)"
+            "ctaAngle": "Destruction attestée + certificat horodaté (SHA-256)"
           },
           {
             "role": "Responsable OT",
@@ -3531,7 +3521,7 @@
           {
             "title": "Remplacement caméras embarquées",
             "description": "Effacement et destruction de 3 600 caméras de vidéosurveillance embarquées contenant des enregistrements RGPD.",
-            "result": "Destruction certifiée, rapport CNIL livré"
+            "result": "Destruction attestée, rapport CNIL livré"
           }
         ]
       },
@@ -3783,7 +3773,7 @@
           },
           {
             "title": "Conformité NF X50-140",
-            "description": "Processus certifié conforme à la norme NF X50-140 pour la gestion des DEEE dans le secteur public."
+            "description": "Processus aligné sur la norme NF X50-140 pour la gestion des DEEE dans le secteur public."
           },
           {
             "title": "Transparence CRC",
@@ -3804,7 +3794,7 @@
           },
           {
             "question": "Quelle conformité pour les marchés publics ?",
-            "answer": "Notre dossier technique intègre tous les critères RSE pondérés, les certifications R2v3/ISO 14001, la conformité NF X50-140 et les preuves de traçabilité exigées par le code de la commande publique."
+            "answer": "Notre dossier technique intègre tous les critères RSE pondérés, l'alignement sur la norme NF X50-140 et les preuves de traçabilité exigées par le code de la commande publique."
           },
           {
             "question": "Pouvez-vous consolider plusieurs collectivités ?",
@@ -3883,7 +3873,7 @@
           },
           {
             "title": "Renouvellement parc développeurs",
-            "description": "Remplacement de 850 MacBook Pro et 120 stations GPU, avec effacement certifié et revente reconditionnée.",
+            "description": "Remplacement de 850 MacBook Pro et 120 stations GPU, avec effacement attesté et revente reconditionnée.",
             "result": "412 €/poste récupéré, 0 donnée résiduelle"
           },
           {
@@ -3930,7 +3920,7 @@
           {
             "role": "CTO / VP Engineering",
             "concern": "Décommissionnement datacenter et IP",
-            "ctaAngle": "Effacement certifié serveurs GPU + chaîne de garde"
+            "ctaAngle": "Effacement attesté serveurs GPU + chaîne de garde"
           },
           {
             "role": "CISO / Security Lead",
@@ -4063,7 +4053,7 @@
           {
             "title": "Migration broadcast SDI vers IP",
             "description": "Décommissionnement de 480 équipements SDI legacy (matrices, routeurs, encodeurs) lors de la migration vers une infrastructure IP.",
-            "result": "340 k€ valeur récupérée, certification complète"
+            "result": "340 k€ valeur récupérée, traçabilité complète"
           },
           {
             "title": "Fermeture studio régional",
@@ -4119,7 +4109,7 @@
           {
             "role": "RSSI",
             "concern": "Protection des contenus et données d'audience",
-            "ctaAngle": "Effacement certifié + chaîne de garde scellée"
+            "ctaAngle": "Effacement attesté + chaîne de garde scellée"
           },
           {
             "role": "DAF",
@@ -4258,7 +4248,7 @@
         "items": [
           {
             "title": "Renouvellement annuel Big Four",
-            "description": "Remplacement de 2 400 ThinkPad X1 Carbon dans un cabinet Big Four, avec effacement certifié et revente reconditionnée.",
+            "description": "Remplacement de 2 400 ThinkPad X1 Carbon dans un cabinet Big Four, avec effacement attesté et revente reconditionnée.",
             "result": "412 €/poste récupéré, 100 % certificats J+24h"
           },
           {
@@ -4315,7 +4305,7 @@
           {
             "role": "RSSI / DPO",
             "concern": "Secret professionnel et données client",
-            "ctaAngle": "Effacement certifié NIST 800-88 + chaîne de garde"
+            "ctaAngle": "Effacement selon NIST 800-88 + chaîne de garde"
           },
           {
             "role": "DAF / CFO",
@@ -4338,7 +4328,7 @@
           },
           {
             "title": "SLA 48 h garanti",
-            "description": "Chaque laptop reçu est effacé et certifié sous 48 h maximum. Certificat individuel NIST 800-88 avec hash SHA-256."
+            "description": "Chaque laptop reçu est effacé et attesté par certificat sous 48 h maximum. Certificat individuel NIST 800-88 avec hash SHA-256."
           },
           {
             "title": "Cotation premium",
@@ -4355,7 +4345,7 @@
         "items": [
           {
             "question": "Comment garantissez-vous la confidentialité des données client ?",
-            "answer": "Chaque laptop est traité individuellement avec effacement NIST 800-88 Purge et chaîne de garde scellée. Le secret professionnel est garanti par notre certification R2v3 et nos protocoles de sécurité audités annuellement."
+            "answer": "Chaque laptop est traité individuellement avec effacement NIST 800-88 Purge et chaîne de garde scellée. Le secret professionnel est garanti par nos protocoles de sécurité audités annuellement."
           },
           {
             "question": "Pouvez-vous collecter chez les consultants en télétravail ?",
@@ -4499,7 +4489,7 @@
           {
             "role": "RSSI / DPO",
             "concern": "Protection données essais cliniques",
-            "ctaAngle": "Effacement certifié + vérification durées de rétention"
+            "ctaAngle": "Effacement attesté + vérification durées de rétention"
           },
           {
             "role": "Directeur R&D",
@@ -4673,7 +4663,7 @@
           {
             "role": "Directeur de projet",
             "concern": "Protection des données projet et BIM",
-            "ctaAngle": "Effacement certifié en fin de chantier"
+            "ctaAngle": "Effacement attesté en fin de chantier"
           },
           {
             "role": "DAF",
@@ -4717,7 +4707,7 @@
           },
           {
             "question": "Comment gérez-vous le matériel durci abîmé ?",
-            "answer": "Les tablettes et PC durcis endommagés sont traités individuellement. L'effacement est réalisé si le support est fonctionnel, sinon destruction physique certifiée. La valeur de revente est ajustée en fonction de l'état."
+            "answer": "Les tablettes et PC durcis endommagés sont traités individuellement. L'effacement est réalisé si le support est fonctionnel, sinon destruction physique attestée. La valeur de revente est ajustée en fonction de l'état."
           },
           {
             "question": "Pouvez-vous consolider le reporting de 12 filiales ?",
@@ -4806,7 +4796,7 @@
           {
             "title": "Renouvellement bornes check-in",
             "description": "Retrait et recyclage de 680 bornes de check-in automatique contenant des données passeport et carte bancaire.",
-            "result": "Destruction certifiée, RGPD conforme"
+            "result": "Destruction attestée, RGPD conforme"
           },
           {
             "title": "Consolidation DEEE groupe hôtelier",
@@ -4852,7 +4842,7 @@
           {
             "role": "RSSI",
             "concern": "PCI-DSS et données clients hôteliers",
-            "ctaAngle": "Effacement certifié POS/PMS + destruction"
+            "ctaAngle": "Effacement attesté POS/PMS + destruction"
           },
           {
             "role": "Directeur d'exploitation",
@@ -4949,7 +4939,7 @@
         "items": [
           {
             "title": "RGPD mineurs",
-            "description": "Les données d'élèves mineurs bénéficient d'une protection RGPD renforcée (art. 8). L'effacement doit être irréversible et certifié."
+            "description": "Les données d'élèves mineurs bénéficient d'une protection RGPD renforcée (art. 8). L'effacement doit être irréversible et attesté."
           },
           {
             "title": "Budget limité",
@@ -4979,7 +4969,7 @@
           },
           {
             "title": "Groupe scolaire primaire-collège",
-            "description": "Remplacement de 850 tablettes et 120 PC dans 8 écoles et 2 collèges, avec effacement RGPD mineurs certifié.",
+            "description": "Remplacement de 850 tablettes et 120 PC dans 8 écoles et 2 collèges, avec effacement RGPD mineurs attesté.",
             "result": "100 % RGPD conforme, financement DEEE mobilisé"
           },
           {
@@ -5031,7 +5021,7 @@
           {
             "role": "DPO",
             "concern": "RGPD mineurs et données étudiantes",
-            "ctaAngle": "Effacement certifié RGPD art. 8 + certificats"
+            "ctaAngle": "Effacement attesté RGPD art. 8 + certificats"
           },
           {
             "role": "Responsable financier",
@@ -5053,7 +5043,7 @@
             "description": "Intervention exclusivement pendant les vacances scolaires et universitaires pour zéro perturbation des cours."
           },
           {
-            "title": "RGPD mineurs certifié",
+            "title": "RGPD mineurs attesté",
             "description": "Protocole d'effacement renforcé pour les données d'élèves mineurs, conforme RGPD art. 8 avec certificat individuel."
           },
           {
@@ -5079,7 +5069,7 @@
           },
           {
             "question": "Gérez-vous les tablettes scolaires (iPad, Chromebook) ?",
-            "answer": "Oui. Nous traitons iPad, Chromebook, tablettes Android et PC portables scolaires. Effacement MDM, réinitialisation usine certifiée et recyclage ou réemploi."
+            "answer": "Oui. Nous traitons iPad, Chromebook, tablettes Android et PC portables scolaires. Effacement MDM, réinitialisation usine attestée et recyclage ou réemploi."
           },
           {
             "question": "Pouvez-vous mutualiser plusieurs établissements ?",
@@ -5389,7 +5379,7 @@
           {
             "role": "DPO",
             "concern": "RGPD millions d'abonnés sur CPE",
-            "ctaAngle": "Effacement industriel certifié NIST 800-88"
+            "ctaAngle": "Effacement industriel selon NIST 800-88"
           },
           {
             "role": "Directeur réseau",
@@ -5495,7 +5485,7 @@
   },
   "casUsages": {
     "hero": {
-      "eyebrow": "Cas clients certifiés, 8 secteurs documentés",
+      "eyebrow": "Cas clients documentés, 8 secteurs",
       "title": "8 secteurs. 8 cas réels. Des résultats chiffrés.",
       "subtitle": "Identifiez le scénario qui ressemble au vôtre et obtenez une estimation ROI personnalisée.",
       "cta1": "Demander un audit",
@@ -5564,7 +5554,7 @@
           "value": 38000,
           "suffix": "+",
           "label": "certificats NIST 800-88 émis",
-          "source": "Base de données certifications GTC"
+          "source": "Base de données des certificats d'effacement GTC"
         },
         {
           "value": 28500,
@@ -5639,7 +5629,7 @@
           ],
           "solution": [
             "Audit exhaustif du parc (scan SNMP + agents WMI) en 72h sur 4 sites",
-            "Effacement certifié NIST 800-88 r2 et HMG IS5 Enhanced sur 100% des supports",
+            "Effacement selon NIST 800-88 r2 et HMG IS5 Enhanced sur 100% des supports",
             "Chaîne de garde numérique horodatée, piste d'audit ACPR-ready",
             "Reconditionnement sélectif Win11-compatible (tri automatisé par grade A/B/C)",
             "Rapport CSRD : extraction scope 3.1 prête à l'emploi pour l'exercice 2025"
@@ -5665,7 +5655,7 @@
             {
               "label": "Postes traités",
               "value": "2 400",
-              "detail": "certifiés NIST 800-88"
+              "detail": "effacés selon NIST 800-88"
             }
           ],
           "quote": "La traçabilité que GTC fournit nous a permis de passer l'audit ACPR en 4 jours au lieu de trois semaines. C'est un avantage compétitif concret, pas un argument marketing.",
@@ -5720,7 +5710,7 @@
               "detail": "inventaire + évacuation"
             }
           ],
-          "quote": "Nous avions 4 200 postes contenant des données patients. GTC a géré l'effacement certifié et le reconditionnement en 5 jours. Notre DPO a signé le rapport sans réserve.",
+          "quote": "Nous avions 4 200 postes contenant des données patients. GTC a géré l'effacement attesté et le reconditionnement en 5 jours. Notre DPO a signé le rapport sans réserve.",
           "quoteName": "Philippe D.",
           "quoteRole": "DSI",
           "quoteSector": "CHU Régional",
@@ -5887,7 +5877,7 @@
           "quoteRole": "DAF Retail",
           "quoteSector": "Enseigne nationale",
           "seeAlso": "banque-cac40",
-          "seeAlsoLabel": "Banque, traçabilité certifiée"
+          "seeAlsoLabel": "Banque, traçabilité horodatée"
         },
         {
           "slug": "energie-dora",
@@ -5964,7 +5954,7 @@
           ],
           "solution": [
             "Valorisation marché : cotation des 2 800 serveurs en 48h (base prix marché secondaire)",
-            "Effacement certifié NIST 800-88 r2 sur 100% des supports de stockage",
+            "Effacement selon NIST 800-88 r2 sur 100% des supports de stockage",
             "Logistique dédiée : démontage, conditionnement, transport sécurisé en 60 jours",
             "Revente à réseau acheteurs qualifiés européens (entreprises, revendeurs, intégrateurs)",
             "Bilan carbone : calcul précis tCO2e évitées vs fabrication neuf (Boavizta)"
@@ -6016,7 +6006,7 @@
             "Délai impératif : renouvellement coordonné avec la rentrée universitaire (septembre)"
           ],
           "solution": [
-            "Inventaire + effacement certifié NIST 800-88 r2 sur 4 500 postes en 10 jours",
+            "Inventaire + effacement selon NIST 800-88 r2 sur 4 500 postes en 10 jours",
             "Tri en 3 grades : grade A → don ESS, grade B → revente, grade C → recyclage DEEE",
             "Partenariat avec 12 associations ESS et 3 ESAT pour la redistribution solidaire",
             "Certificats d'effacement individuels transmis au DPO de l'université",
@@ -6045,7 +6035,7 @@
               "detail": "avant rentrée universitaire"
             }
           ],
-          "quote": "GTC a transformé notre contrainte budgétaire en démarche RSE exemplaire. 4 500 ordinateurs redonnés à des associations, le tout certifié NIST 800-88. C'est l'économie circulaire concrète.",
+          "quote": "GTC a transformé notre contrainte budgétaire en démarche RSE exemplaire. 4 500 ordinateurs redonnés à des associations, le tout effacé selon NIST 800-88. C'est l'économie circulaire concrète.",
           "quoteName": "Frédéric T.",
           "quoteRole": "DSI",
           "quoteSector": "Université publique",
@@ -6166,9 +6156,9 @@
       ]
     },
     "partners": {
-      "eyebrow": "Intégrations & certifications",
+      "eyebrow": "Intégrations",
       "title": "Écosystème partenaires",
-      "note": "Intégrations certifiées, connecteurs disponibles dans la plateforme GreenTechCycle.",
+      "note": "Intégrations et connecteurs disponibles dans la plateforme GreenTechCycle.",
       "items": [
         "ServiceNow",
         "SAP",
@@ -6192,7 +6182,7 @@
         },
         {
           "q": "Mes données quittent-elles l'UE ?",
-          "a": "Non. 100% du traitement est réalisé sur sol français, dans nos 4 sites certifiés (Lyon, Paris, Bordeaux, Lille). Aucune sous-traitance hors UE. Chaîne de custody documentée de A à Z, disponible en 48h."
+          "a": "Non. 100% du traitement est réalisé sur sol français, dans nos 4 sites (Lyon, Paris, Bordeaux, Lille). Aucune sous-traitance hors UE. Chaîne de custody documentée de A à Z, disponible en 48h."
         },
         {
           "q": "Quels engagements SLA proposez-vous ?",
@@ -6237,20 +6227,20 @@
     },
     "editorialBodies": {
       "banque-cac40": "En 2023, une banque européenne tier-1 fait face à l'inévitable : 2 400 postes trading floor Windows 10 doivent migrer avant la fin du support, sous la double contrainte NIS2 et DORA. Chaque support sortant de production représente un risque documentaire, un angle d'attaque potentiel lors du prochain contrôle ACPR. GreenTechCycle a intégré la chaîne ITAD au cœur du plan de migration, transformant une pression réglementaire en avantage mesurable : 312 tCO2e évitées.",
-      "chu-sante": "Un CHU de 9 000 lits accumule depuis cinq ans une flotte de 4 200 postes en fin de vie, portant des données patients soumises au secret médical et aux exigences RGPD les plus strictes. La DSI n'a ni budget pour du matériel neuf, ni tolérance pour un incident de fuite. GreenTechCycle a déployé en 5 jours ouvrés un protocole d'effacement certifié NIST 800-88, redonnant une seconde vie à chaque machine en circuit court. Le DPO a signé le rapport sans réserve.",
+      "chu-sante": "Un CHU de 9 000 lits accumule depuis cinq ans une flotte de 4 200 postes en fin de vie, portant des données patients soumises au secret médical et aux exigences RGPD les plus strictes. La DSI n'a ni budget pour du matériel neuf, ni tolérance pour un incident de fuite. GreenTechCycle a déployé en 5 jours ouvrés un protocole d'effacement selon NIST 800-88, redonnant une seconde vie à chaque machine en circuit court. Le DPO a signé le rapport sans réserve.",
       "industriel-csrd": "Un industriel du CAC60 doit publier son premier rapport CSRD ESRS E5 pour l'exercice 2025, avec des auditeurs Big 4 exigeant des preuves chiffrées et une traçabilité scope 3 irréprochable. Sur 12 sites en 5 pays, les équipements OT constituent à la fois un risque (propriété intellectuelle industrielle) et une opportunité : valeur résiduelle non provisionnée. GreenTechCycle a livré le rapport CSRD à J-90 de clôture, validé sans réserve dès la première itération.",
       "ministere-collectivite": "Une grande mairie de 2 500 ETP navigue entre triple contrainte : code de la commande publique imposant des critères environnementaux ≥ 5%, obligation RGPD sur les données administratives, et exigence politique d'exemplarité en matière d'achat responsable. GreenTechCycle a conçu le premier schéma directeur ITAD intégrant une clause sociale ESS agréée, 100% des équipements revendus en filière française, zéro donnée traitée hors sol national.",
       "retail-wakibox": "Gérer les déchets IT de 350 magasins dispersés sur tout le territoire, c'est un défi logistique autant qu'une obligation réglementaire. Avant WakiBox, chaque point de vente gérait ses équipements en fin de vie de manière informelle, rendant tout audit DEEE impossible. GreenTechCycle a industrialisé la collecte avec ses boîtiers IoT intelligents, transformant le chaos en processus traçable, avec un ROI positif dès le sixième mois.",
       "energie-dora": "Quand l'ACPR annonce un contrôle DORA, le compte à rebours démarre. Trois semaines : c'est le délai habituel pour produire une chaîne de custody sur un parc hybride IT/OT d'une utility CAC40. GreenTechCycle l'a fait en 4 jours, non par miracle, mais par méthode : procédure d'audit flash rodée, templates ACPR-ready, et expert GTC présent de J-1 à J+4 aux côtés du RSSI. Zéro écart documentaire. Zéro sanction.",
       "telco-datacenter": "Trois datacenters à décommissionner en 60 jours. 2 800 serveurs. Des données clients d'opérateur télécom sous exigences ANSSI. La réponse : l'expertise marché secondaire international : réseau d'acheteurs qualifiés européens, valorisation à la cotation en temps réel, exécution dans les délais contractuels.",
-      "universite-ess": "4 500 postes pédagogiques à décommissionner avant la rentrée universitaire, avec des données étudiants à effacer et un budget public qui n'autorise pas la destruction. GreenTechCycle a organisé en 10 jours l'effacement certifié NIST 800-88, le tri en 3 grades et le don solidaire à 12 associations ESS partenaires, transformant une contrainte budgétaire en acte concret d'économie circulaire. 520 tCO2e évitées. 4 500 ordinateurs redonnés."
+      "universite-ess": "4 500 postes pédagogiques à décommissionner avant la rentrée universitaire, avec des données étudiants à effacer et un budget public qui n'autorise pas la destruction. GreenTechCycle a organisé en 10 jours l'effacement selon NIST 800-88, le tri en 3 grades et le don solidaire à 12 associations ESS partenaires, transformant une contrainte budgétaire en acte concret d'économie circulaire. 520 tCO2e évitées. 4 500 ordinateurs redonnés."
     },
     "featuredTf1": {
       "eyebrow": "À la une : Média audiovisuel",
       "badge": "Cas phare",
       "title": "TF1, l'ITAD audiovisuel à grande échelle",
       "subtitle": "Groupe TF1 · Plateaux, régies, datacenters broadcast · Contrat-cadre récurrent",
-      "body": "Premier groupe audiovisuel privé en France, TF1 exploite un parc IT hybride couvrant les plateaux de tournage, les régies de diffusion, les datacenters broadcast et l'infrastructure bureautique de ses filiales. À l'heure de la CSRD et du renforcement des exigences RGPD sur les données audiovisuelles sensibles, le groupe a confié à GreenTechCycle un contrat-cadre récurrent multi-sites couvrant l'intégralité du cycle ITAD : audit-inventaire, effacement certifié, reconditionnement, recyclage DEEE et rapports trimestriels de conformité CSRD.",
+      "body": "Premier groupe audiovisuel privé en France, TF1 exploite un parc IT hybride couvrant les plateaux de tournage, les régies de diffusion, les datacenters broadcast et l'infrastructure bureautique de ses filiales. À l'heure de la CSRD et du renforcement des exigences RGPD sur les données audiovisuelles sensibles, le groupe a confié à GreenTechCycle un contrat-cadre récurrent multi-sites couvrant l'intégralité du cycle ITAD : audit-inventaire, effacement attesté, reconditionnement, recyclage DEEE et rapports trimestriels de conformité CSRD.",
       "photo": "/photos/case-media-tf1.jpg",
       "photoAlt": "Régie technique de diffusion audiovisuelle : équipements broadcast en cours de décommissionnement",
       "metrics": [
@@ -6505,7 +6495,7 @@
     "flows": {
       "eyebrow": "Flux acceptés et flux exclus",
       "title": "Ce que la box prend, ce qu'elle ne prend pas.",
-      "intro": "Waki Box est conçue pour les petits DEEE diffus du tertiaire : ce que vos collaborateurs vident de leurs tiroirs sans savoir où le mettre. Pour tout ce qui contient des données (ordinateurs, serveurs, smartphones professionnels) la box n'est pas le bon outil : c'est notre offre ITAD distincte qui prend le relais avec effacement certifié NIST 800-88.",
+      "intro": "Waki Box est conçue pour les petits DEEE diffus du tertiaire : ce que vos collaborateurs vident de leurs tiroirs sans savoir où le mettre. Pour tout ce qui contient des données (ordinateurs, serveurs, smartphones professionnels) la box n'est pas le bon outil : c'est notre offre ITAD distincte qui prend le relais avec effacement selon NIST 800-88.",
       "acceptedTitle": "Flux acceptés dans la Waki Box",
       "accepted": [
         "Piles alcalines, salines, boutons",
@@ -6524,7 +6514,7 @@
         "Équipements réseau actifs (commutateurs, pare-feu, points d'accès)",
         "Supports de stockage (disques durs, SSD, bandes, clés USB)"
       ],
-      "linkLabel": "Voir l'offre ITAD avec effacement certifié",
+      "linkLabel": "Voir l'offre ITAD avec effacement attesté",
       "linkHref": "/services/effacement-securise"
     },
     "faq": {
@@ -6757,7 +6747,7 @@
       "audit-inventaire": "Service · Audit et inventaire de parc IT",
       "effacement-securise": "Service · Effacement sécurisé NIST 800-88",
       "reconditionnement-valorisation": "Service · Reconditionnement et valorisation",
-      "recyclage-deee": "Service · Recyclage DEEE certifié",
+      "recyclage-deee": "Service · Recyclage DEEE tracé",
       "cybersecurite": "Service · Cybersécurité ITAD",
       "cybersecurite-itad": "Service · Cybersécurité ITAD",
       "wakibox": "Service · Bornes WakiBox connectées",
@@ -6872,7 +6862,7 @@
         "title": "Fermeture de 45 points de vente",
         "highlights": [
           "3 200 actifs IT collectés en 6 semaines",
-          "Chaîne de garde certifiée par magasin",
+          "Chaîne de garde horodatée par magasin",
           "189 tCO₂e évitées"
         ],
         "quote": "Un seul dashboard pour suivre 45 sites en parallèle, c'est ce qui nous manquait.",
@@ -6887,7 +6877,7 @@
         "highlights": [
           "1 800 actifs SCADA/OT traités",
           "Registre TPP DORA complet en 4 semaines",
-          "Certification NIST 800-88 Purge sur 100 % des actifs",
+          "Effacement NIST 800-88 Purge sur 100 % des actifs",
           "215 tCO₂e évitées"
         ],
         "quote": "Le registre DORA art. 28 était prêt avant l'échéance du régulateur.",

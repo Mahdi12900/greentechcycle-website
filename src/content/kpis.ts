@@ -89,7 +89,7 @@ export const KPIS = {
     unit: { fr: " %", en: "%" },
     label: { fr: "taux de réemploi moyen", en: "average reuse rate" },
     period: { fr: "2025", en: "2025" },
-    source: { fr: "Filière ESS partenaire · R2v3", en: "Partner social-economy channel · R2v3" },
+    source: { fr: "Filière ESS partenaire", en: "Partner social-economy channel" },
     date: "2025-12",
     toValidate: false,
     alternatives: ["72 % (Pourquoi GTC, FAQ, Reconditionnement, Méthodologie, Plateforme)"],

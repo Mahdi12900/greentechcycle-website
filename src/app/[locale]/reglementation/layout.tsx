@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Réglementation ITAD | CSRD, RGPD, NIS2, DEEE",
   description:
-    "Guide complet des réglementations applicables à l'ITAD : CSRD, RGPD, NIS2, directive DEEE, R2v3. Restez conforme avec GreenTechCycle.",
-  keywords: ["réglementation ITAD", "CSRD", "RGPD", "NIS2", "DEEE", "R2v3", "conformité IT"],
+    "Guide complet des réglementations applicables à l'ITAD : CSRD, RGPD, NIS2, directive DEEE. Restez conforme avec GreenTechCycle.",
+  keywords: ["réglementation ITAD", "CSRD", "RGPD", "NIS2", "DEEE", "conformité IT"],
   openGraph: {
     title: "Réglementation ITAD | GreenTechCycle",
     description: "Guide des réglementations ITAD : CSRD, RGPD, NIS2, DEEE. Conformité simplifiée.",

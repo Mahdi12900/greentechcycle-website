@@ -15,8 +15,8 @@ export async function generateMetadata({
     : "Reconditionnement et valorisation matériel IT | GreenTechCycle";
 
   const description = isEn
-    ? "Certified IT equipment refurbishment and value recovery. Resale, donation or responsible recycling. R2v3 certified, CSRD reporting included."
-    : "Reconditionnement certifié et valorisation du matériel IT en fin de vie. Revente, don ou recyclage responsable. Certifié R2v3, reporting CSRD inclus.";
+    ? "IT equipment refurbishment and value recovery. Resale, donation or responsible recycling. CSRD reporting included."
+    : "Reconditionnement et valorisation du matériel IT en fin de vie. Revente, don ou recyclage responsable. Reporting CSRD inclus.";
 
   return {
     title,

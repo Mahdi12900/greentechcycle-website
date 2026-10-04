@@ -210,8 +210,8 @@ export default function HomePage() {
             <div className="reveal lg:col-span-5">
               <div className="parallax-slow relative aspect-[4/5] overflow-hidden rounded-2xl border border-track shadow-float">
                 <MediaSlot fill id="home-hero" alt={tx(
-                    "Atelier de reconditionnement GreenTechCycle, chaîne d'effacement et de tri certifiée",
-                    "GreenTechCycle refurbishment workshop, certified erasure and sorting line"
+                    "Atelier de reconditionnement GreenTechCycle, chaîne d'effacement et de tri",
+                    "GreenTechCycle refurbishment workshop, erasure and sorting line"
                   )} fallback={<DashboardMock state="inventory" />} />
               </div>
               <div className="mt-6 grid grid-cols-2 border-t border-track pt-6">

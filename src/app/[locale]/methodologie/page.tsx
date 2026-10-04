@@ -240,10 +240,10 @@ export default function MethodologyPage() {
       accent: "text-emerald",
       bg: "bg-white/[0.03]",
       border: "border-track",
-      title: tx("Certification & Livrables", "Certification & Deliverables"),
+      title: tx("Certificats & livrables", "Certificates & deliverables"),
       description: tx(
-        "Génération automatique de l'ensemble des livrables certifiés : certificats d'effacement avec hash SHA-256 vérifiable, rapport RSE/Carbone, rapport financier, PV d'huissier si Chain of Custody premium.",
-        "Automatic generation of all certified deliverables: erasure certificates with verifiable SHA-256 hash, CSR/Carbon report, financial report, bailiff report for premium Chain of Custody."
+        "Génération automatique de l'ensemble des livrables : certificats d'effacement avec hash SHA-256 vérifiable, rapport RSE/Carbone, rapport financier, PV d'huissier si Chain of Custody premium.",
+        "Automatic generation of all deliverables: erasure certificates with verifiable SHA-256 hash, CSR/Carbon report, financial report, bailiff report for premium Chain of Custody."
       ),
       inputs: tx("Rapports d'audit validés, données de traitement, données carbone", "Validated audit reports, processing data, carbon data"),
       outputs: tx("Dossier complet client : certificats, rapport RSE, rapport financier, PV huissier (PDF, Excel, API)", "Complete client package: certificates, CSR report, financial report, bailiff minutes (PDF, Excel, API)"),
@@ -311,7 +311,7 @@ export default function MethodologyPage() {
       period: tx("2027 S2", "2027 H2"),
       items: [
         { title: tx("Architecture Edge Computing", "Edge Computing Architecture"), desc: tx("Processing distribué pour les clients multi-sites, réduction des latences et des transferts", "Distributed processing for multi-site clients, reduced latency and transfers"), status: "planned" as RoadmapStatus },
-        { title: tx("API Marketplace", "API Marketplace"), desc: tx("Connecteurs tiers certifiés · écosystème ouvert de partenaires intégrés", "Certified third-party connectors · open integrated partner ecosystem"), status: "planned" as RoadmapStatus },
+        { title: tx("API Marketplace", "API Marketplace"), desc: tx("Connecteurs tiers · écosystème ouvert de partenaires intégrés", "Third-party connectors · open integrated partner ecosystem"), status: "planned" as RoadmapStatus },
       ],
     },
   ];

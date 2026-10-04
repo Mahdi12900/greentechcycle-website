@@ -166,7 +166,7 @@ export default function CollecteLogistiquePage() {
                   {tx("Collecte connectée WakiBox", "WakiBox connected collection")}
                 </TextLink>
                 <TextLink href="/certifications" tone="dark">
-                  {tx("Certifications & conformité", "Certifications & compliance")}
+                  {tx("Conformité & démarche", "Compliance & approach")}
                 </TextLink>
               </div>
             </article>

@@ -35,23 +35,21 @@ export async function generateMetadata({
       template: "%s | GreenTechCycle",
     },
     description: isEn
-      ? "GreenTechCycle, unified ITAD platform. Certified erasure, timestamped traceability (SHA-256), ESG/CSRD reporting and carbon footprint for responsible IT asset management."
-      : "GreenTechCycle, plateforme ITAD unifiée. Effacement certifié, traçabilité horodatée (SHA-256), reporting ESG/CSRD et bilan carbone pour une gestion responsable de vos actifs IT.",
+      ? "GreenTechCycle, unified ITAD platform. Attested erasure, timestamped traceability (SHA-256), ESG/CSRD reporting and carbon footprint for responsible IT asset management."
+      : "GreenTechCycle, plateforme ITAD unifiée. Effacement attesté, traçabilité horodatée (SHA-256), reporting ESG/CSRD et bilan carbone pour une gestion responsable de vos actifs IT.",
     icons: {
       icon: { url: "/favicon.svg", type: "image/svg+xml" },
       apple: "/icon.svg",
     },
     keywords: [
       "ITAD",
-      "effacement certifié",
+      "effacement NIST 800-88",
       "NIST 800-88",
       "traçabilité horodatée (SHA-256)",
       "reporting CSRD",
       "bilan carbone IT",
       "économie circulaire",
       "reconditionnement IT",
-      "R2v3",
-      "ISO 14001",
       "RGPD",
       "France",
       "recyclage IT",
@@ -67,8 +65,8 @@ export async function generateMetadata({
         ? "GreenTechCycle | Unified ITAD Platform"
         : "GreenTechCycle | Plateforme ITAD unifiée",
       description: isEn
-        ? "Certified erasure, timestamped traceability (SHA-256) and CSRD reporting. The platform that unifies your ITAD."
-        : "Effacement certifié, traçabilité horodatée (SHA-256) et reporting CSRD. La plateforme qui unifie votre ITAD.",
+        ? "Attested erasure, timestamped traceability (SHA-256) and CSRD reporting. The platform that unifies your ITAD."
+        : "Effacement attesté, traçabilité horodatée (SHA-256) et reporting CSRD. La plateforme qui unifie votre ITAD.",
       images: [
         {
           url: "/photos/team-collab.jpg",
@@ -84,8 +82,8 @@ export async function generateMetadata({
         ? "GreenTechCycle | Unified ITAD Platform"
         : "GreenTechCycle | Plateforme ITAD unifiée",
       description: isEn
-        ? "Certified erasure, timestamped traceability (SHA-256) and CSRD reporting. The platform that unifies your ITAD."
-        : "Effacement certifié, traçabilité horodatée (SHA-256) et reporting CSRD. La plateforme qui unifie votre ITAD.",
+        ? "Attested erasure, timestamped traceability (SHA-256) and CSRD reporting. The platform that unifies your ITAD."
+        : "Effacement attesté, traçabilité horodatée (SHA-256) et reporting CSRD. La plateforme qui unifie votre ITAD.",
       images: ["/photos/team-collab.jpg"],
     },
     robots: { index: true, follow: true },
@@ -122,7 +120,7 @@ export default async function LocaleLayout({
     url: "https://greentechcycle.fr",
     logo: "https://greentechcycle.fr/logo/logo-primary.svg",
     description:
-      "Plateforme ITAD unifiée : effacement certifié, traçabilité horodatée (SHA-256), reporting ESG/CSRD et bilan carbone pour la gestion responsable des actifs IT.",
+      "Plateforme ITAD unifiée : effacement attesté, traçabilité horodatée (SHA-256), reporting ESG/CSRD et bilan carbone pour la gestion responsable des actifs IT.",
     // Entité légale : fiche Pappers lue le 2026-10-04 (src/lib/contact.ts)
     legalName: LEGAL.name,
     identifier: { "@type": "PropertyValue", propertyID: "SIREN", value: LEGAL.siren.replace(/\s/g, "") },

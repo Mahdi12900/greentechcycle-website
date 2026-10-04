@@ -103,7 +103,7 @@ export default function ReconditionnementPage() {
       { metric: tx("Taux de réemploi moyen", "Average reuse rate"), value: tx(formatKpi("reuse", "fr"), formatKpi("reuse", "en")) },
       { metric: tx("Garantie équipements", "Equipment warranty"), value: tx("12 mois", "12 mo") },
     ],
-    certifications: ["R2v3", "ISO 14001", "Boavizta member"],
+    certifications: ["Boavizta member"],
     quote: {
       text: tx(
         "Notre direction financière a découvert que la fin de vie IT pouvait devenir une ligne de produits.",

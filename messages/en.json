@@ -32,7 +32,7 @@
           "cyber": "ITAD cybersecurity",
           "wakibox": "WakiBox (IoT collection)",
           "collection": "Collection & logistics",
-          "certifications": "Certifications & compliance",
+          "certifications": "Compliance & approach",
           "useCases": "Client use cases",
           "process": "ITAD process",
           "security": "Security & erasure",
@@ -88,10 +88,10 @@
     "languageSwitch": "FR"
   },
   "TrustBar": {
-    "text": "R2v3 • ISO 14001 • ISO 27001 (in progress) • NIST 800-88 • GDPR & CSRD • SSE / ESUS"
+    "text": "Erasure per NIST SP 800-88 • SHA-256 fingerprint per asset • ISO 27001 in progress • GDPR & CSRD"
   },
   "Footer": {
-    "tagline": "Your trusted partner for responsible and secure management of end-of-life IT assets. R2, e-Stewards and ISO 14001 certified.",
+    "tagline": "Your trusted partner for responsible and secure management of end-of-life IT assets.",
     "contact": {
       "title": "Contact us",
       "address": "Registered office (WAKI CLOUD SOLUTION)\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
@@ -222,15 +222,15 @@
       "cta": "Check now →"
     },
     "hero": {
-      "eyebrow": "ITAD platform · R2v3 · NIST 800-88 · SecNumCloud-ready",
-      "title": "The platform that unifies your ITAD: certified erasure, guaranteed compliance, maximum value recovery.",
+      "eyebrow": "ITAD platform · erasure per NIST SP 800-88 · SHA-256 proof",
+      "title": "The platform that unifies your ITAD: attested erasure, guaranteed compliance, maximum value recovery.",
       "subtitle": "One dashboard, %kpi.team% cleared experts, 4 sites in France, zero gaps.",
       "proofStat": "78% of an IT estate's carbon footprint is locked at manufacturing. For the remaining 22%, each refurbished device avoids 150 kgCO₂e.",
       "cta1": "Book my demo (30 min)",
       "cta2": "Request free audit",
       "source": "Source: ADEME : Environmental Assessment of Digital Technology 2024 (scope 3.1 manufacturing, weighted laptop/desktop/server average).",
-      "trust1": "R2v3 · ISO 14001 · ISO 27001 (in progress)",
-      "trust2": "NIST 800-88 rev2 · HMG IS5 Enhanced",
+      "trust1": "ISO 27001: certification in progress",
+      "trust2": "NIST SP 800-88 rev2 · HMG IS5 Enhanced methods",
       "trust3": "GDPR · NIS2 · DORA · CSRD ESRS E5 compliant"
     },
     "trustBand": {
@@ -280,7 +280,7 @@
         },
         {
           "label": "Circular economy",
-          "desc": "Social-economy partners · R2v3 · %kpi.reuse.full% reuse rate"
+          "desc": "Social-economy partners · %kpi.reuse.full% reuse rate"
         }
       ],
       "diagramCenter": "GreenTechCycle",
@@ -299,14 +299,14 @@
         },
         {
           "n": "02",
-          "title": "Certified erasure",
+          "title": "Attested erasure",
           "desc": "NIST 800-88 rev2 Purge with 4-eyes validation, HMG IS5 Enhanced 6 mm shredding, individual SHA-256 certificate.",
           "kpi": "Timestamped certificate within 24h"
         },
         {
           "n": "03",
           "title": "Refurb / recycling",
-          "desc": "Refurbishment via French social-economy partners (Envie, Ateliers du Bocage) or R2v3 recycling depending on quality grade.",
+          "desc": "Refurbishment via French social-economy partners (Envie, Ateliers du Bocage) or WEEE-channel recycling depending on quality grade.",
           "kpi": "Average reuse rate %kpi.reuse.full%"
         },
         {
@@ -343,7 +343,7 @@
         {
           "date": "31 Mar 2025",
           "label": "PCI-DSS v4.0",
-          "body": "Strict enforcement begins. Requires certified destruction for any asset carrying EMV certificates or cardholder data, POS systems and payment terminals included.",
+          "body": "Strict enforcement begins. Requires attested destruction for any asset carrying EMV certificates or cardholder data, POS systems and payment terminals included.",
           "penalty": "Acquirer suspension"
         },
         {
@@ -434,7 +434,7 @@
         {
           "slug": "industriel-csrd-esrs-e5",
           "sector": "Industrial · 4,500 FTE",
-          "regulation": "CSRD ESRS E5 · ISO 14001",
+          "regulation": "CSRD ESRS E5",
           "title": "First ESRS E5 disclosure produced in 4 months on 1,800 OT assets.",
           "results": [
             "421 tCO₂e avoided",
@@ -454,9 +454,9 @@
           "stat": "0 reservations across 41 audits"
         },
         {
-          "title": "Seven standards, not one.",
-          "body": "R2v3 (R2:2013 SERI), ISO 14001:2015, ISO 27001:2022 (in progress), ISO 9001:2015, NIST SP 800-88 rev2, HMG IS5 Enhanced, e-Stewards. The status of each standard is published on the Certifications & compliance page.",
-          "stat": "6 active standards · ISO 27001 in progress"
+          "title": "Published methods, a certification in progress.",
+          "body": "Erasure per NIST SP 800-88 rev2, IEEE 2883 for SSD and NVMe, destruction per HMG IS5 Enhanced. ISO 27001 certification in progress. Details are published on the Compliance & approach page.",
+          "stat": "ISO 27001 in progress"
         },
         {
           "title": "ESRS E5 mapping ready for RFP.",
@@ -465,8 +465,8 @@
         },
         {
           "title": "French social-economy team, not a logistics window.",
-          "body": "%kpi.team% permanent staff, 41% women, 27% from social refurbishment programmes, median age 34. 4 sites in France (Lyon HQ + 3 workshops). ESUS social-economy status, AGEC inclusion-clause certification.",
-          "stat": "%kpi.team% FTE · ESUS · 4 sites FR"
+          "body": "%kpi.team% permanent staff, 41% women, 27% from social refurbishment programmes, median age 34. 4 sites in France (Lyon HQ + 3 workshops).",
+          "stat": "%kpi.team% FTE · 4 sites FR"
         }
       ]
     },
@@ -516,7 +516,7 @@
       "platformCta": "View pricing",
       "itadBrick": "ITAD Service",
       "itadAnchor": "Starting at €15 HT/device",
-      "itadDesc": "NIST 800-88 certified erasure, tiered pricing based on volume and logistics.",
+      "itadDesc": "NIST 800-88 erasure, tiered pricing based on volume and logistics.",
       "itadCta": "View pricing",
       "plans": [
         {
@@ -572,7 +572,7 @@
         {
           "icon": "factory",
           "label": "Industry & OT",
-          "detail": "CSRD ESRS E5 · ISO 14001"
+          "detail": "CSRD ESRS E5"
         },
         {
           "icon": "landmark",
@@ -630,7 +630,7 @@
         },
         {
           "title": "Fleet Value Recovery",
-          "desc": "Resale on the refurbished market, charitable donation or certified recycling.",
+          "desc": "Resale on the refurbished market, charitable donation or traced recycling.",
           "href": "/services/reconditionnement-valorisation",
           "icon": "euro"
         }
@@ -667,7 +667,7 @@
         "GDPR compliant",
         "SecNumCloud-ready",
         "ISO 27001:2022 (in progress)",
-        "R2v3 · NIST 800-88",
+        "Erasure per NIST SP 800-88",
         "Reply < 4 business hours"
       ]
     }
@@ -680,13 +680,13 @@
     "items": [
       {
         "id": "erasure",
-        "title": "Certified Erasure",
+        "title": "Attested Erasure",
         "subtitle": "NIST 800-88 • DoD 5220.22-M",
         "engagement": "Certificate within 24h",
-        "description": "Certified software erasure and physical destruction, compliant with the strictest standards. Each operation generates an individual certificate with verification hash.",
+        "description": "Attested software erasure and physical destruction, compliant with the strictest standards. Each operation generates an individual certificate with verification hash.",
         "features": [
           "3-pass erasure per NIST 800-88",
-          "Certified physical destruction (shredding, degaussing)",
+          "Attested physical destruction (shredding, degaussing)",
           "Individual certificate per asset with SHA-256 hash",
           "Complete erasure chain traceability",
           "Support for all media types (HDD, SSD, tapes)",
@@ -696,7 +696,7 @@
       {
         "id": "collection",
         "title": "Secure On-site Collection",
-        "subtitle": "Certified logistics",
+        "subtitle": "Traced logistics",
         "engagement": "Intervention within 48h",
         "description": "Secure collection directly at your premises with uninterrupted chain of custody. GPS-tracked vehicles and authorized personnel.",
         "features": [
@@ -728,7 +728,7 @@
         "title": "IT Carbon Assessment",
         "subtitle": "Boavizta • ADEME methodology",
         "engagement": "Automatic calculation",
-        "description": "Automatic calculation of your end-of-life IT fleet carbon footprint. Certified methodology based on Boavizta and ADEME frameworks.",
+        "description": "Automatic calculation of your end-of-life IT fleet carbon footprint. Methodology based on Boavizta and ADEME frameworks.",
         "features": [
           "Automatic calculation via Boavizta API",
           "GHG Protocol scopes 1, 2 and 3",
@@ -741,7 +741,7 @@
       {
         "id": "tracabilite-sha256",
         "title": "Timestamped Traceability (SHA-256)",
-        "subtitle": "Certified chain of custody",
+        "subtitle": "Timestamped chain of custody",
         "engagement": "Immutable proof",
         "description": "Every step of your assets' lifecycle is timestamped and sealed with a SHA-256 fingerprint in a chained audit log, verifiable by QR code.",
         "features": [
@@ -793,7 +793,7 @@
       },
       {
         "number": "04",
-        "title": "Certified Erasure",
+        "title": "Attested Erasure",
         "description": "NIST 800-88 software erasure or physical destruction. Individual certificate per asset with verification hash."
       },
       {
@@ -804,7 +804,7 @@
       {
         "number": "06",
         "title": "Value Recovery",
-        "description": "Resale on the refurbished market, charitable donation or certified recycling. Maximizing residual value."
+        "description": "Resale on the refurbished market, charitable donation or traced recycling. Maximizing residual value."
       },
       {
         "number": "07",
@@ -1021,7 +1021,7 @@
       "cta2": "See our client cases",
       "trust1": "French sovereignty · OVHcloud SecNumCloud",
       "trust2": "Timestamped certificates (SHA-256) kept 10 years",
-      "trust3": "0% landfill · contractual R2v3 commitment"
+      "trust3": "0% landfill · contractual commitment"
     }
   },
   "WhyGTC": {
@@ -1097,7 +1097,7 @@
         "photoAlt": "GreenTechCycle field team built from inclusion-through-economic-activity programmes",
         "bullets": [
           "27% of the technical workforce recruited through inclusion programmes",
-          "Internal qualification programme validated by recognised certification",
+          "Internal qualification programme",
           "Eighteen-month individual follow-up with a dedicated business mentor"
         ]
       },
@@ -1121,14 +1121,14 @@
         "slug": "excellence",
         "eyebrow": "Conviction 05 · Operational excellence",
         "title": "Thirty-eight people, twelve engineers, one Data Protection Officer.",
-        "body": "We chose to remain a human-scale team and to staff it with profiles our clients recognise: R2v3-certified engineers, CSRD auditors, NIST 800-88-trained technicians, a dedicated Data Protection Officer. All our service commitments are contractual, with penalties. We would rather decline a mission than cut corners on quality.",
+        "body": "We chose to remain a human-scale team and to staff it with profiles our clients recognise: ITAD engineers, CSRD auditors, NIST 800-88-trained technicians, a dedicated Data Protection Officer. All our service commitments are contractual, with penalties. We would rather decline a mission than cut corners on quality.",
         "proofValue": "99.9%",
         "proofLabel": "Contractual availability",
         "proofDetail": "Service commitment with automatic penalties",
         "photo": "/photos/team-collab.jpg",
         "photoAlt": "GreenTechCycle multi-disciplinary team in a mission review",
         "bullets": [
-          "12 R2v3-certified engineers and 4 CSRD auditors on staff",
+          "12 ITAD engineers and 4 CSRD auditors on staff",
           "18 NIST 800-88-trained technicians and video-monitored floors",
           "Full-time Data Protection Officer and dedicated security delegate"
         ]
@@ -1166,7 +1166,7 @@
           "metric": "0",
           "suffix": "%",
           "label": "landfill disposal of received assets",
-          "source": "Contractual R2v3 commitment for every mission"
+          "source": "Contractual commitment for every mission"
         },
         {
           "metric": "10",
@@ -1216,7 +1216,7 @@
       {
         "number": "4",
         "title": "Field Operations",
-        "description": "Secure collections, certified erasure and refurbishment. Real-time tracking from the platform.",
+        "description": "Secure collections, attested erasure and refurbishment. Real-time tracking from the platform.",
         "duration": "Ongoing"
       },
       {
@@ -1298,7 +1298,7 @@
         "date": "2024",
         "status": "active",
         "description": "Network and Information Security Directive : Extended scope to mid-size companies with strengthened security obligations.",
-        "itadImpact": "Mandatory certified erasure for essential and important entities. Data-related incident notification.",
+        "itadImpact": "Mandatory attested erasure for essential and important entities. Data-related incident notification.",
         "sanctions": "Up to €10M or 2% of global turnover for essential entities."
       },
       {
@@ -1326,7 +1326,7 @@
     },
     "carbon": {
       "title": "Carbon Methodology",
-      "subtitle": "Certified environmental impact calculation",
+      "subtitle": "Sourced environmental impact calculation (Boavizta, ADEME)",
       "description": "Our carbon footprint calculation is based on Boavizta and ADEME frameworks, covering GHG Protocol scopes 1, 2 and 3.",
       "items": [
         "Boavizta API for IT equipment emission factors",
@@ -1446,7 +1446,7 @@
         {
           "level": "5",
           "name": "Physical Destruction",
-          "desc": "Shredding, degaussing or certified incineration. For defense-classified data.",
+          "desc": "Shredding, degaussing or attested incineration. For defense-classified data.",
           "norm": "NIST 800-88 Destroy"
         }
       ]
@@ -1465,13 +1465,12 @@
       ]
     },
     "certifications": {
-      "title": "Our Certifications",
+      "title": "Methods and approach",
       "items": [
-        "R2v3 (Responsible Recycling)",
-        "ISO 14001 (Environmental Management)",
-        "ISO 27001 (Information Security): in progress",
-        "e-Stewards",
-        "Qualiopi (Training)"
+        "NIST SP 800-88 (erasure method)",
+        "IEEE 2883 (SSD and NVMe media)",
+        "HMG IS5 Enhanced (destruction)",
+        "ISO 27001: certification in progress"
       ]
     },
     "architecture": {
@@ -1481,8 +1480,7 @@
         "AES-256 encryption at rest and TLS 1.3 in transit",
         "WAF and DDoS protection",
         "Encrypted multi-site backups",
-        "Annual penetration testing by independent firm",
-        "SOC 2 Type II certification in progress"
+        "Annual penetration testing by independent firm"
       ]
     }
   },
@@ -1808,7 +1806,7 @@
     },
     "proof": {
       "eyebrow": "Section 7",
-      "title": "Proof & certifications",
+      "title": "Proof & methods",
       "lead": "A carbon measurement is only opposable when it relies on recognised audit standards. GTC aligns with reference methodologies in data security, environmental measurement and circularity.",
       "methodsTitle": "Methodologies applied",
       "methods": [
@@ -1842,14 +1840,6 @@
         {
           "name": "French Sustainable Digital Institute (INR)",
           "desc": "2022 digital GHG reference framework, sustainable digital charter."
-        },
-        {
-          "name": "R2v3 (Responsible Recycling)",
-          "desc": "SERI standard for responsible electronics recycling."
-        },
-        {
-          "name": "WEEELABEX",
-          "desc": "European WEEE treatment standard, audited annually."
         }
       ]
     },
@@ -2096,7 +2086,7 @@
       },
       {
         "q": "What is the average reuse rate?",
-        "a": "On average, %kpi.reuse.full% of collected equipment is refurbished and reused. The remainder is recycled through certified channels."
+        "a": "On average, %kpi.reuse.full% of collected equipment is refurbished and reused. The remainder is recycled through traced channels."
       },
       {
         "q": "Do you offer charitable donations?",
@@ -2104,7 +2094,7 @@
       },
       {
         "q": "How do you measure avoided emissions?",
-        "a": "By comparing the carbon impact of reuse vs manufacturing new equipment, using certified Boavizta methodology."
+        "a": "By comparing the carbon impact of reuse vs manufacturing new equipment, using the Boavizta methodology."
       },
       {
         "q": "Do you provide an annual impact report?",
@@ -2136,7 +2126,7 @@
     "compliance": [
       {
         "q": "Are you GDPR compliant?",
-        "a": "Yes, as a data processor under GDPR. DPA available, up-to-date processing register, designated DPO and supporting certifications."
+        "a": "Yes, as a data processor under GDPR. DPA available, up-to-date processing register, designated DPO and supporting documented evidence."
       },
       {
         "q": "How do you prove data destruction?",
@@ -2148,7 +2138,7 @@
       },
       {
         "q": "What about NIS2 compliance?",
-        "a": "Our certified erasure process meets NIS2 requirements for essential and important entities. Compliance documentation available."
+        "a": "Our attested erasure process meets NIS2 requirements for essential and important entities. Compliance documentation available."
       },
       {
         "q": "How do you handle data transfers outside the EU?",
@@ -2178,7 +2168,7 @@
         },
         {
           "title": "Excellence",
-          "desc": "Certifications, standards, audits: we aim for operational excellence every day."
+          "desc": "Standards, methods, audits: we aim for operational excellence every day."
         },
         {
           "title": "Innovation",
@@ -2360,7 +2350,7 @@
     "useCasesSubtitle": "Banking, healthcare, industry, public, retail, energy, telco, university, recovered figures and avoided tCO₂e per case.",
     "useCasesCta": "Get the cases",
     "servicesTitle": "Comparison of GTC's 6 services",
-    "servicesSubtitle": "Erasure, collection, refurbishment, recycling, cybersecurity, WakiBox, contractual SLAs and certifications per service.",
+    "servicesSubtitle": "Erasure, collection, refurbishment, recycling, cybersecurity, WakiBox, contractual SLAs and methods per service.",
     "servicesCta": "Get the comparison"
   },
   "UseCases": {
@@ -2401,7 +2391,7 @@
         "sectorBadge": "9,000-bed teaching hospital",
         "regulation": "GDPR health + HDS + DPA",
         "title": "Refurbishment and erasure of 800 medical-imaging drives without disrupting care",
-        "context": "Regional public teaching hospital, 9,000 beds, end-of-life medical imaging fleet (MRI, CT, ultrasound). 800 HDDs and SSDs hold patient DICOM imaging subject to 20-year retention and certified destruction. Health-data-hosting certification mandates physical destruction for any HDS-classified medium.",
+        "context": "Regional public teaching hospital, 9,000 beds, end-of-life medical imaging fleet (MRI, CT, ultrasound). 800 HDDs and SSDs hold patient DICOM imaging subject to 20-year retention and attested destruction. Health-data-hosting certification mandates physical destruction for any HDS-classified medium.",
         "problem": "Continuity of care prohibits any examination interruption. Drives must be extracted, removed from the HDS perimeter, destroyed per national health-data agency standard, with chain of custody documented for a data protection authority audit. The DPO must sign a destruction protocol per asset without halting any operating block.",
         "stakeholders": "Biomedical CIO, DPO, Quality & risk director, CISO, Sterilisation pharmacists, Regional health agency",
         "solution": "On-site Audit & Inventory Pro Service with biomedical accompaniment; NIST 800-88 Purge erasure in CCTV-monitored zone; HMG IS5 Enhanced 6 mm shred; auto-generated HDS protocols; non-HDS IT assets refurbished and donated through a social inclusion partner.",
@@ -2413,7 +2403,7 @@
       {
         "id": "industriel-csrd-esrs-e5",
         "sectorBadge": "Industrial mid-cap 4,500 employees",
-        "regulation": "CSRD ESRS E5 + ISO 14001",
+        "regulation": "CSRD ESRS E5",
         "title": "First ESRS E5 disclosure and value recovery on 1,800 OT assets",
         "context": "French industrial mid-cap, 4,500 employees, 11 production sites, first CSRD ESRS E5 disclosure due 30 June 2026. Mixed OT fleet (Siemens S7 PLCs, Schneider HMIs, Beckhoff industrial PCs) end-of-life, scope 3.1 dominating the carbon footprint. CSR director under pressure from the statutory auditor.",
         "problem": "ESRS E5 §29-§39 requires auditable data: resource inflows, outflows, circularity rate, hazardous waste. No internal tool computes these 16 data points. The 4 historical ITAD vendors deliver 4 untraceable Excel formats.",
@@ -2443,7 +2433,7 @@
         "sectorBadge": "Retail 220 stores",
         "regulation": "PCI-DSS v4.0 + GDPR + circular-economy law",
         "title": "WakiBox rollout and pooled collection across 220 stores in 90 days",
-        "context": "French retail brand, 220 stores, triennial renewal of POS and payment terminals. 850 POS, 1,600 payment terminals, 4,200 electronic shelf labels (ESL) to retire. PCI-DSS v4.0 in force since 31 March 2025 mandates certified destruction of assets carrying EMV certificates.",
+        "context": "French retail brand, 220 stores, triennial renewal of POS and payment terminals. 850 POS, 1,600 payment terminals, 4,200 electronic shelf labels (ESL) to retire. PCI-DSS v4.0 in force since 31 March 2025 mandates attested destruction of assets carrying EMV certificates.",
         "problem": "Coordinate 220 sites in 90 days without commercial disruption, handle heterogeneous hardware (POS, payment terminals, ESL, peripherals), produce a PCI-DSS protocol per site and a consolidated CSRD report. Regional managers resist any operational friction.",
         "stakeholders": "Retail CIO, CISO, DPO, Operations Director, 220 store managers, CSR Director",
         "solution": "6-wave rollout (37 stores/wave, 14 days); deployment of 84 WakiBox IoT kiosks for pooled accessory/ESL collection; PCI-DSS Appendix A1 erasure; physical destruction of payment terminals in sealed zone; 3-year POS refurbished to EMEA market; CSRD ESRS E5 reporting per brand.",
@@ -2605,7 +2595,7 @@
         "items": [
           {
             "title": "Trading datacentre decommissioning",
-            "description": "Certified erasure of 2,400 servers containing high-frequency trading algorithms and classified market data.",
+            "description": "Attested erasure of 2,400 servers containing high-frequency trading algorithms and classified market data.",
             "result": "100% DORA compliant, €1.2M value recovered"
           },
           {
@@ -2616,7 +2606,7 @@
           {
             "title": "ATM migration",
             "description": "Secure removal and destruction of 1,600 ATMs containing SAM cards, EMV certificates and transaction logs.",
-            "result": "100% certified destruction, regulatory report D+5"
+            "result": "100% attested destruction, regulatory report D+5"
           },
           {
             "title": "Regulatory audit",
@@ -2661,7 +2651,7 @@
           },
           {
             "role": "CISO",
-            "concern": "Certified erasure and chain of custody",
+            "concern": "Attested erasure and chain of custody",
             "ctaAngle": "NIST 800-88 certificates with 4-eyes validation"
           },
           {
@@ -2707,7 +2697,7 @@
         "items": [
           {
             "question": "Is GTC qualified under DORA art. 28-30?",
-            "answer": "Yes. GTC is listed in the TPP register as a critical ITAD provider. We supply the full DORA qualification file, including annual audit reports, R2v3 certification, ISO 27001 progress status (in progress) and the article 28 compliance matrix."
+            "answer": "Yes. GTC is listed in the TPP register as a critical ITAD provider. We supply the full DORA qualification file, including annual audit reports, ISO 27001 progress status (in progress) and the article 28 compliance matrix."
           },
           {
             "question": "What is the erasure certificate turnaround?",
@@ -2795,7 +2785,7 @@
           {
             "title": "PACS imaging migration",
             "description": "Erasure and destruction of 340 imaging stations containing 15 years of patient DICOM data.",
-            "result": "100% certified destruction, regulatory report D+3"
+            "result": "100% attested destruction, regulatory report D+3"
           },
           {
             "title": "IoMT device retirement",
@@ -2869,7 +2859,7 @@
         "title": "Why choose GTC for healthcare",
         "items": [
           {
-            "title": "Certified HDS expertise",
+            "title": "Expertise in HDS requirements",
             "description": "Erasure and destruction processes compliant with Health Data Hosting certification requirements."
           },
           {
@@ -2891,11 +2881,11 @@
         "items": [
           {
             "question": "Are you HDS certified?",
-            "answer": "GTC operates in compliance with HDS requirements for health data destruction. Our NIST 800-88 certificates are recognised as proof of compliant destruction."
+            "answer": "No. GreenTechCycle is not HDS certified: we operate in line with HDS requirements for the destruction of health data, and every destruction produces a per-asset erasure certificate."
           },
           {
             "question": "How do you handle PACS imaging equipment?",
-            "answer": "PACS stations are processed in a dedicated secure zone. DICOM data is erased per NIST 800-88 Purge, then disks undergo certified physical destruction."
+            "answer": "PACS stations are processed in a dedicated secure zone. DICOM data is erased per NIST 800-88 Purge, then disks undergo attested physical destruction."
           },
           {
             "question": "Can you operate without disrupting care?",
@@ -2979,7 +2969,7 @@
           {
             "title": "SCADA decommissioning",
             "description": "Secure removal of 240 RTUs and SCADA concentrators containing network topologies and cryptographic keys.",
-            "result": "100% certified destruction, NIS2 matrix validated"
+            "result": "100% attested destruction, NIS2 matrix validated"
           },
           {
             "title": "Factory datacentre migration",
@@ -2988,7 +2978,7 @@
           },
           {
             "title": "IoT sensor renewal",
-            "description": "Collection and processing of 8,000 end-of-life industrial IoT sensors, with firmware erasure and certified recycling.",
+            "description": "Collection and processing of 8,000 end-of-life industrial IoT sensors, with firmware erasure and traced recycling.",
             "result": "98% material recycling, 0 residual data"
           }
         ]
@@ -3336,13 +3326,13 @@
         "items": [
           {
             "title": "Smart-meter concentrator replacement",
-            "description": "Decommissioning of 35,000 first-generation concentrators with firmware erasure and certified recycling.",
+            "description": "Decommissioning of 35,000 first-generation concentrators with firmware erasure and traced recycling.",
             "result": "100% traceability, 1,200 tCO₂e avoided"
           },
           {
             "title": "SCADA control room migration",
             "description": "Secure removal of 180 RTUs and control stations containing network topologies and cryptographic keys.",
-            "result": "Certified restricted-distribution destruction, audit validated"
+            "result": "Attested restricted-distribution destruction, audit validated"
           },
           {
             "title": "Energy trading DC decommissioning",
@@ -3393,7 +3383,7 @@
           {
             "role": "CISO",
             "concern": "Restricted-distribution destruction and chain of custody",
-            "ctaAngle": "Certified destruction + timestamped certificate (SHA-256)"
+            "ctaAngle": "Attested destruction + timestamped certificate (SHA-256)"
           },
           {
             "role": "OT Manager",
@@ -3531,7 +3521,7 @@
           {
             "title": "Onboard camera replacement",
             "description": "Erasure and destruction of 3,600 onboard surveillance cameras containing GDPR recordings.",
-            "result": "Certified destruction, regulatory report delivered"
+            "result": "Attested destruction, regulatory report delivered"
           }
         ]
       },
@@ -3783,7 +3773,7 @@
           },
           {
             "title": "WEEE standards compliant",
-            "description": "Process certified compliant with WEEE management standards for the public sector."
+            "description": "Process aligned with WEEE management standards for the public sector."
           },
           {
             "title": "Government audit transparency",
@@ -3804,7 +3794,7 @@
           },
           {
             "question": "What compliance for public procurement?",
-            "answer": "Our technical file includes all weighted CSR criteria, R2v3/ISO 14001 certifications, WEEE standards compliance and traceability evidence."
+            "answer": "Our technical file includes all weighted CSR criteria, WEEE standards compliance and traceability evidence."
           },
           {
             "question": "Can you consolidate multiple authorities?",
@@ -3883,7 +3873,7 @@
           },
           {
             "title": "Developer fleet renewal",
-            "description": "Replacement of 850 MacBook Pros and 120 GPU workstations with certified erasure and refurbished resale.",
+            "description": "Replacement of 850 MacBook Pros and 120 GPU workstations with attested erasure and refurbished resale.",
             "result": "€412/device recovered, 0 residual data"
           },
           {
@@ -3930,7 +3920,7 @@
           {
             "role": "CTO / VP Engineering",
             "concern": "Datacentre decommissioning and IP",
-            "ctaAngle": "Certified GPU server erasure + chain of custody"
+            "ctaAngle": "Attested GPU server erasure + chain of custody"
           },
           {
             "role": "CISO / Security Lead",
@@ -4063,7 +4053,7 @@
           {
             "title": "SDI to IP broadcast migration",
             "description": "Decommissioning of 480 legacy SDI equipment (matrices, routers, encoders) during IP infrastructure migration.",
-            "result": "€340K value recovered, full certification"
+            "result": "€340K value recovered, full traceability"
           },
           {
             "title": "Regional studio closure",
@@ -4119,7 +4109,7 @@
           {
             "role": "CISO",
             "concern": "Content and audience data protection",
-            "ctaAngle": "Certified erasure + sealed chain of custody"
+            "ctaAngle": "Attested erasure + sealed chain of custody"
           },
           {
             "role": "CFO",
@@ -4258,7 +4248,7 @@
         "items": [
           {
             "title": "Big Four annual renewal",
-            "description": "Replacement of 2,400 ThinkPad X1 Carbons in a Big Four firm with certified erasure and refurbished resale.",
+            "description": "Replacement of 2,400 ThinkPad X1 Carbons in a Big Four firm with attested erasure and refurbished resale.",
             "result": "€412/device recovered, 100% certificates D+24h"
           },
           {
@@ -4315,7 +4305,7 @@
           {
             "role": "CISO / DPO",
             "concern": "Professional secrecy and client data",
-            "ctaAngle": "Certified NIST 800-88 erasure + chain of custody"
+            "ctaAngle": "NIST 800-88 erasure + chain of custody"
           },
           {
             "role": "CFO",
@@ -4338,7 +4328,7 @@
           },
           {
             "title": "Guaranteed 48h SLA",
-            "description": "Every laptop received is erased and certified within 48 hours maximum. Individual NIST 800-88 certificate with SHA-256 hash."
+            "description": "Every laptop received is erased and attested by certificate within 48 hours maximum. Individual NIST 800-88 certificate with SHA-256 hash."
           },
           {
             "title": "Premium pricing",
@@ -4355,7 +4345,7 @@
         "items": [
           {
             "question": "How do you guarantee client data confidentiality?",
-            "answer": "Every laptop is individually processed with NIST 800-88 Purge erasure and sealed chain of custody. Professional secrecy is guaranteed by our R2v3 certification and annually audited security protocols."
+            "answer": "Every laptop is individually processed with NIST 800-88 Purge erasure and sealed chain of custody. Professional secrecy is guaranteed by our annually audited security protocols."
           },
           {
             "question": "Can you collect from remote-working consultants?",
@@ -4499,7 +4489,7 @@
           {
             "role": "CISO / DPO",
             "concern": "Clinical trial data protection",
-            "ctaAngle": "Certified erasure + retention period verification"
+            "ctaAngle": "Attested erasure + retention period verification"
           },
           {
             "role": "R&D Director",
@@ -4673,7 +4663,7 @@
           {
             "role": "Project Director",
             "concern": "Project and BIM data protection",
-            "ctaAngle": "Certified end-of-project erasure"
+            "ctaAngle": "Attested end-of-project erasure"
           },
           {
             "role": "CFO",
@@ -4717,7 +4707,7 @@
           },
           {
             "question": "How do you handle damaged rugged equipment?",
-            "answer": "Damaged equipment is individually assessed. Erasure if the device is functional, otherwise certified physical destruction. Resale value is adjusted based on condition."
+            "answer": "Damaged equipment is individually assessed. Erasure if the device is functional, otherwise attested physical destruction. Resale value is adjusted based on condition."
           },
           {
             "question": "Can you consolidate 12 subsidiaries?",
@@ -4806,7 +4796,7 @@
           {
             "title": "Check-in kiosk renewal",
             "description": "Removal and recycling of 680 automated check-in kiosks containing passport and credit card data.",
-            "result": "Certified destruction, GDPR compliant"
+            "result": "Attested destruction, GDPR compliant"
           },
           {
             "title": "Hotel group WEEE consolidation",
@@ -4852,7 +4842,7 @@
           {
             "role": "CISO",
             "concern": "PCI-DSS and hotel customer data",
-            "ctaAngle": "Certified POS/PMS erasure + destruction"
+            "ctaAngle": "Attested POS/PMS erasure + destruction"
           },
           {
             "role": "Operations Director",
@@ -4949,7 +4939,7 @@
         "items": [
           {
             "title": "Minor GDPR",
-            "description": "Minor student data benefits from enhanced GDPR protection (art. 8). Erasure must be irreversible and certified."
+            "description": "Minor student data benefits from enhanced GDPR protection (art. 8). Erasure must be irreversible and attested."
           },
           {
             "title": "Limited budget",
@@ -4979,7 +4969,7 @@
           },
           {
             "title": "Primary-secondary school group",
-            "description": "Replacement of 850 tablets and 120 PCs across 8 schools and 2 colleges with certified minor GDPR erasure.",
+            "description": "Replacement of 850 tablets and 120 PCs across 8 schools and 2 colleges with attested minor GDPR erasure.",
             "result": "100% GDPR compliant, WEEE funding mobilised"
           },
           {
@@ -5031,7 +5021,7 @@
           {
             "role": "DPO",
             "concern": "Minor GDPR and student data",
-            "ctaAngle": "Certified GDPR art. 8 erasure + certificates"
+            "ctaAngle": "Attested GDPR art. 8 erasure + certificates"
           },
           {
             "role": "Finance Manager",
@@ -5053,7 +5043,7 @@
             "description": "Intervention exclusively during school and university holidays for zero classroom disruption."
           },
           {
-            "title": "Certified minor GDPR",
+            "title": "Attested minor GDPR erasure",
             "description": "Enhanced erasure protocol for minor student data, GDPR art. 8 compliant with individual certificate."
           },
           {
@@ -5079,7 +5069,7 @@
           },
           {
             "question": "Do you handle school tablets (iPad, Chromebook)?",
-            "answer": "Yes. We process iPad, Chromebook, Android tablets and school laptops. MDM erasure, certified factory reset and recycling or reuse."
+            "answer": "Yes. We process iPad, Chromebook, Android tablets and school laptops. MDM erasure, attested factory reset and recycling or reuse."
           },
           {
             "question": "Can you pool multiple institutions?",
@@ -5389,7 +5379,7 @@
           {
             "role": "DPO",
             "concern": "GDPR for millions of subscribers on CPE",
-            "ctaAngle": "Industrial certified NIST 800-88 erasure"
+            "ctaAngle": "Industrial NIST 800-88 erasure"
           },
           {
             "role": "Network Director",
@@ -5495,7 +5485,7 @@
   },
   "casUsages": {
     "hero": {
-      "eyebrow": "Certified client cases, 8 documented sectors",
+      "eyebrow": "Documented client cases, 8 sectors",
       "title": "8 sectors. 8 real cases. Measurable results.",
       "subtitle": "Identify the scenario that matches your situation and get a personalised ROI estimate.",
       "cta1": "Request an audit",
@@ -5564,7 +5554,7 @@
           "value": 38000,
           "suffix": "+",
           "label": "NIST 800-88 certificates issued",
-          "source": "GTC certification database"
+          "source": "GTC erasure certificate database"
         },
         {
           "value": 28500,
@@ -5639,7 +5629,7 @@
           ],
           "solution": [
             "Full estate audit (SNMP scan + WMI agents) in 72h across 4 sites",
-            "NIST 800-88 r2 and HMG IS5 Enhanced certified erasure on 100% of media",
+            "NIST 800-88 r2 and HMG IS5 Enhanced erasure on 100% of media",
             "Timestamped digital chain of custody, ACPR audit-ready",
             "Selective Win11-compatible refurbishment (automated grading A/B/C)",
             "CSRD report: scope 3.1 extract ready for 2025 financial year"
@@ -5665,7 +5655,7 @@
             {
               "label": "Devices processed",
               "value": "2,400",
-              "detail": "NIST 800-88 certified"
+              "detail": "erased per NIST 800-88"
             }
           ],
           "quote": "The traceability GTC provides allowed us to pass the ACPR audit in 4 days instead of three weeks. That's a concrete competitive advantage, not a marketing claim.",
@@ -5720,7 +5710,7 @@
               "detail": "inventory + removal"
             }
           ],
-          "quote": "We had 4,200 workstations containing patient data. GTC handled certified erasure and refurbishment in 5 days. Our DPO signed the report with no reservations.",
+          "quote": "We had 4,200 workstations containing patient data. GTC handled attested erasure and refurbishment in 5 days. Our DPO signed the report with no reservations.",
           "quoteName": "Philippe D.",
           "quoteRole": "CIO",
           "quoteSector": "Regional Hospital",
@@ -5887,7 +5877,7 @@
           "quoteRole": "CFO Retail",
           "quoteSector": "National retail chain",
           "seeAlso": "banque-cac40",
-          "seeAlsoLabel": "Banking, certified traceability"
+          "seeAlsoLabel": "Banking, timestamped traceability"
         },
         {
           "slug": "energie-dora",
@@ -5964,7 +5954,7 @@
           ],
           "solution": [
             "Market valorisation: 2,800 servers priced in 48h (secondary market database)",
-            "NIST 800-88 r2 certified erasure on 100% of storage media",
+            "NIST 800-88 r2 erasure on 100% of storage media",
             "Dedicated logistics: dismantling, packaging, secure transport over 60 days",
             "Resale to qualified European buyers (enterprises, resellers, integrators)",
             "Carbon balance: precise tCO2e calculation vs new manufacturing (Boavizta)"
@@ -6016,7 +6006,7 @@
             "Hard deadline: renewal coordinated with university intake (September)"
           ],
           "solution": [
-            "Inventory + NIST 800-88 r2 certified erasure on 4,500 devices in 10 days",
+            "Inventory + NIST 800-88 r2 erasure on 4,500 devices in 10 days",
             "3-grade sorting: grade A → ESS donation, grade B → resale, grade C → WEEE recycling",
             "Partnership with 12 ESS associations and 3 sheltered workshops for redistribution",
             "Individual erasure certificates delivered to university DPO",
@@ -6045,7 +6035,7 @@
               "detail": "before university intake"
             }
           ],
-          "quote": "GTC turned our budget constraint into an exemplary CSR initiative. 4,500 computers donated to associations, all NIST 800-88 certified. That's the circular economy in practice.",
+          "quote": "GTC turned our budget constraint into an exemplary CSR initiative. 4,500 computers donated to associations, all erased per NIST 800-88. That's the circular economy in practice.",
           "quoteName": "Frédéric T.",
           "quoteRole": "CIO",
           "quoteSector": "Public university",
@@ -6166,9 +6156,9 @@
       ]
     },
     "partners": {
-      "eyebrow": "Integrations & certifications",
+      "eyebrow": "Integrations",
       "title": "Partner ecosystem",
-      "note": "Certified integrations, connectors available in the GreenTechCycle platform.",
+      "note": "Integrations and connectors available in the GreenTechCycle platform.",
       "items": [
         "ServiceNow",
         "SAP",
@@ -6192,7 +6182,7 @@
         },
         {
           "q": "Does my data leave the EU?",
-          "a": "No. 100% of processing is done on French soil across our 4 certified sites (Lyon, Paris, Bordeaux, Lille). No non-EU subcontracting. Full chain of custody documented from A to Z, available within 48h."
+          "a": "No. 100% of processing is done on French soil across our 4 sites (Lyon, Paris, Bordeaux, Lille). No non-EU subcontracting. Full chain of custody documented from A to Z, available within 48h."
         },
         {
           "q": "What SLA commitments do you offer?",
@@ -6237,20 +6227,20 @@
     },
     "editorialBodies": {
       "banque-cac40": "In 2023, a tier-1 European bank faced the inevitable: 2,400 Windows 10 trading-floor devices had to migrate before end of support, under the dual constraints of NIS2 and DORA. Every device leaving production represented a documentary risk, a potential attack surface for the next ACPR inspection. GreenTechCycle integrated the ITAD chain into the core of the migration plan, turning regulatory pressure into measurable advantage: 312 tCO2e avoided.",
-      "chu-sante": "A 9,000-bed university hospital had accumulated a fleet of 4,200 end-of-life devices over five years, carrying patient data subject to medical confidentiality and the strictest GDPR requirements. The IT department had neither budget for new equipment nor tolerance for a data breach. GreenTechCycle deployed a NIST 800-88 certified erasure protocol within 5 working days, giving each machine a second life through a local supply chain. The DPO signed the report without reservation.",
+      "chu-sante": "A 9,000-bed university hospital had accumulated a fleet of 4,200 end-of-life devices over five years, carrying patient data subject to medical confidentiality and the strictest GDPR requirements. The IT department had neither budget for new equipment nor tolerance for a data breach. GreenTechCycle deployed a NIST 800-88 erasure protocol within 5 working days, giving each machine a second life through a local supply chain. The DPO signed the report without reservation.",
       "industriel-csrd": "A CAC60 industrial group needed to publish its first CSRD ESRS E5 report for fiscal year 2025, with Big 4 auditors demanding quantified evidence and irreproachable scope 3 traceability. Across 12 sites in 5 countries, OT equipment represented both a risk (industrial intellectual property) and an opportunity: unprovisioned residual value. GreenTechCycle delivered the CSRD report D-90 before year-end, validated without reservation on the first iteration.",
       "ministere-collectivite": "A large municipality with 2,500 FTEs navigated a triple constraint: public procurement code requiring environmental criteria ≥5%, GDPR obligations on administrative data, and political demands for exemplary responsible purchasing. GreenTechCycle designed the first ITAD master plan integrating an approved ESS social clause, 100% of equipment resold through French supply chains, zero data processed outside national territory.",
       "retail-wakibox": "Managing IT waste from 350 stores scattered across the country is both a logistical challenge and a regulatory obligation. Before WakiBox, each point of sale managed end-of-life equipment informally, making any WEEE audit impossible. GreenTechCycle industrialised collection with its smart IoT units, turning chaos into a traceable process, with a positive ROI from the sixth month.",
       "energie-dora": "When the ACPR announces a DORA inspection, the countdown begins. Three weeks: that's the typical timeframe to produce a full chain of custody for a hybrid IT/OT fleet at a CAC40 utility. GreenTechCycle did it in 4 days, not by magic, but by method: battle-tested flash audit procedure, ACPR-ready templates, and a GTC expert on-site from D-1 to D+4 alongside the CISO. Zero documentary discrepancy. Zero penalty.",
       "telco-datacenter": "Three data centres to decommission in 60 days. 2,800 servers. Telecom operator customer data under ANSSI requirements. The answer: international secondary-market expertise: a network of qualified European buyers, real-time market pricing, and on-time execution.",
-      "universite-ess": "4,500 teaching devices to decommission before the start of the academic year, with student data to erase and a public budget that didn't allow for destruction. GreenTechCycle organised in 10 days the certified NIST 800-88 erasure, grading into 3 categories, and donation to 12 ESS partner associations, turning a budget constraint into a concrete circular economy initiative. 520 tCO2e avoided. 4,500 computers given to students who needed them."
+      "universite-ess": "4,500 teaching devices to decommission before the start of the academic year, with student data to erase and a public budget that didn't allow for destruction. GreenTechCycle organised in 10 days the NIST 800-88 erasure, grading into 3 categories, and donation to 12 ESS partner associations, turning a budget constraint into a concrete circular economy initiative. 520 tCO2e avoided. 4,500 computers given to students who needed them."
     },
     "featuredTf1": {
       "eyebrow": "Spotlight : Broadcast Media",
       "badge": "Featured case",
       "title": "TF1, large-scale broadcast ITAD",
       "subtitle": "TF1 Group · Studios, control rooms, broadcast datacenters · Recurring framework contract",
-      "body": "France's leading private broadcasting group, TF1 operates a hybrid IT estate spanning production studios, broadcast control rooms, media datacenters and office infrastructure across its subsidiaries. With CSRD obligations and strengthened GDPR requirements on sensitive audiovisual data, the group entrusted GreenTechCycle with a recurring multi-site framework contract covering the full ITAD lifecycle: inventory audit, certified erasure, refurbishment, WEEE recycling and quarterly CSRD compliance reports.",
+      "body": "France's leading private broadcasting group, TF1 operates a hybrid IT estate spanning production studios, broadcast control rooms, media datacenters and office infrastructure across its subsidiaries. With CSRD obligations and strengthened GDPR requirements on sensitive audiovisual data, the group entrusted GreenTechCycle with a recurring multi-site framework contract covering the full ITAD lifecycle: inventory audit, attested erasure, refurbishment, WEEE recycling and quarterly CSRD compliance reports.",
       "photo": "/photos/case-media-tf1.jpg",
       "photoAlt": "Broadcast control room, technical equipment undergoing ITAD decommissioning",
       "metrics": [
@@ -6505,7 +6495,7 @@
     "flows": {
       "eyebrow": "Accepted and excluded streams",
       "title": "What the bin takes, what it doesn't.",
-      "intro": "Waki Box is designed for the diffuse small WEEE of office environments: what your employees empty from their drawers without knowing where to put it. For anything that holds data (laptops, servers, business smartphones) the bin is the wrong tool: that is where our distinct ITAD offer takes over with NIST 800-88 certified erasure.",
+      "intro": "Waki Box is designed for the diffuse small WEEE of office environments: what your employees empty from their drawers without knowing where to put it. For anything that holds data (laptops, servers, business smartphones) the bin is the wrong tool: that is where our distinct ITAD offer takes over with NIST 800-88 erasure.",
       "acceptedTitle": "Streams accepted in the Waki Box",
       "accepted": [
         "Alkaline, saline and button batteries",
@@ -6524,7 +6514,7 @@
         "Active network gear (switches, firewalls, access points)",
         "Storage media (hard drives, SSDs, tapes, USB sticks)"
       ],
-      "linkLabel": "See the ITAD offer with certified erasure",
+      "linkLabel": "See the ITAD offer with attested erasure",
       "linkHref": "/services/effacement-securise"
     },
     "faq": {
@@ -6757,7 +6747,7 @@
       "audit-inventaire": "Service · IT fleet audit and inventory",
       "effacement-securise": "Service · NIST 800-88 secure erasure",
       "reconditionnement-valorisation": "Service · Refurbishment and recovery",
-      "recyclage-deee": "Service · Certified WEEE recycling",
+      "recyclage-deee": "Service · Traced WEEE recycling",
       "cybersecurite": "Service · ITAD cybersecurity",
       "cybersecurite-itad": "Service · ITAD cybersecurity",
       "wakibox": "Service · WakiBox connected kiosks",
@@ -6872,7 +6862,7 @@
         "title": "Closure of 45 retail stores",
         "highlights": [
           "3,200 IT assets collected in 6 weeks",
-          "Certified chain of custody per store",
+          "Timestamped chain of custody per store",
           "189 tCO₂e avoided"
         ],
         "quote": "A single dashboard to track 45 sites in parallel—that's what we were missing.",
@@ -6887,7 +6877,7 @@
         "highlights": [
           "1,800 SCADA/OT assets processed",
           "Complete DORA TPP register in 4 weeks",
-          "NIST 800-88 Purge certification on 100% of assets",
+          "NIST 800-88 Purge erasure on 100% of assets",
           "215 tCO₂e avoided"
         ],
         "quote": "The DORA art. 28 register was ready before the regulator's deadline.",

@@ -22,7 +22,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     ],
     useCases: [
       { title: "Post-merger renewal: accelerated inventory and auditor traceability", description: "During a banking merger, 30-40% of the IT estate becomes redundant. GreenTechCycle deploys ITAM connectors for a full inventory in 2-3 weeks, applies automated decisioning, and generates a complete chain of custody for post-merger auditors." },
-      { title: "DORA compliance: ITAD provider registry and incident tracking", description: "DORA requires an up-to-date registry of all third-party ICT providers. GreenTechCycle centralizes ITAD chain information (R2v3 certifications, ISO 27001, SLAs, incident tracking) and generates ACPR exports in one click." },
+      { title: "DORA compliance: ITAD provider registry and incident tracking", description: "DORA requires an up-to-date registry of all third-party ICT providers. GreenTechCycle centralizes ITAD chain information (compliance status, SLAs, incident tracking) and generates ACPR exports in one click." },
       { title: "CSRD ESRS E5 multi-subsidiary reporting", description: "With 5 to 30 entities across multiple countries, consolidating IT end-of-life data is challenging. GreenTechCycle centralizes flows, calculates ESRS E5 indicators by entity and group, and produces an auditable report." },
       { title: "Waki Box in bank branches", description: "With 500-2,000 branches, small WEEE accumulates everywhere. The Waki Box provides fleet-wide granularity: every deposit is tracked, collections are optimized by route, and HQ gets a real-time dashboard." },
     ],
@@ -63,13 +63,13 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       "End-of-life imaging equipment (MRI, CT scanners) contain locally stored patient images.",
     ],
     useCases: [
-      { title: "Certified erasure of end-of-life medical devices", description: "MRI and CT scanners store patient images locally. GreenTechCycle orchestrates NIST 800-88 Purge erasure with a CNIL-compliant certificate during replacement cycles." },
+      { title: "Attested erasure of end-of-life medical devices", description: "MRI and CT scanners store patient images locally. GreenTechCycle orchestrates NIST 800-88 Purge erasure with a CNIL-compliant certificate during replacement cycles." },
       { title: "Unified multi-site platform for university hospitals", description: "A typical university hospital has 12 sites with 12 different ITAD processes. GreenTechCycle unifies inventories and applies a consistent security policy." },
       { title: "Value recovery from administrative equipment", description: "Administrative workstations (finance, HR, reception) don't contain patient data and are eligible for refurbishment." },
       { title: "Waki Box in wards and reception areas", description: "Blood pressure monitors, oximeters, bed remotes, batteries, the Waki Box secures small WEEE, prevents lithium battery fire risks, and traces every deposit." },
     ],
     roi: [
-      { lever: "Certified destruction optimization", gain: "-25 to 35% on costs" },
+      { lever: "Attested destruction optimization", gain: "-25 to 35% on costs" },
       { lever: "GDPR Article 9 penalty avoidance", gain: "Up to 4% of revenue" },
       { lever: "Centralized WEEE logistics", gain: "-0.3 to 0.5 FTE/year" },
       { lever: "Lithium battery fire safety", gain: "Risk eliminated via controlled collection" },
@@ -145,7 +145,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       "Coordination between HQ and franchised stores adds complexity.",
     ],
     useCases: [
-      { title: "PCI DSS certified erasure of payment terminals and POS systems", description: "500 stores with 5,000-10,000 terminals renewed every 5-7 years. GreenTechCycle applies NIST 800-88 with individual PCI DSS certificates per device." },
+      { title: "PCI DSS attested erasure of payment terminals and POS systems", description: "500 stores with 5,000-10,000 terminals renewed every 5-7 years. GreenTechCycle applies NIST 800-88 with individual PCI DSS certificates per device." },
       { title: "Waki Box in every store: brand tool and centralized management", description: "The Waki Box serves as collection point for scanner batteries, internal WEEE, and even customer deposits (take-back program for stores over 200m²)." },
       { title: "Consolidated group CSRD reporting: 800 stores, one report", description: "GreenTechCycle automatically centralizes flows from every store and generates a consolidated CSRD report with ESRS E5 granularity." },
       { title: "POS renewal optimization", description: "Scoring identifies POS systems with 1-2 years of remaining life for reallocation to lower-traffic stores." },
@@ -186,7 +186,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     ],
     useCases: [
       { title: "Smart meter decommissioning: anticipating the 2030 wave", description: "35 million Linky meters deployed 2015-2021 will reach end-of-life in massive waves. GreenTechCycle traces individual decommissioning, orchestrates consumption data erasure, and organizes recycling." },
-      { title: "Internal data center ITAD: security and value recovery", description: "Thousands of servers renewed every 4-6 years. GreenTechCycle orchestrates R2v3 erasure (ISO 27001 in progress), maximizes residual value and produces ANSSI-required certificates." },
+      { title: "Internal data center ITAD: security and value recovery", description: "Thousands of servers renewed every 4-6 years. GreenTechCycle orchestrates erasure (ISO 27001 in progress), maximizes residual value and produces ANSSI-required certificates." },
       { title: "Frontline CSRD reporting: the rigor analysts demand", description: "GreenTechCycle produces ESRS E5 indicators of superior granularity and reliability, directly usable in your CSRD declaration and investor roadshows." },
       { title: "Waki Box for distributed sites", description: "Electrical substations, relay stations, mobile teams: the Waki Box centralizes small WEEE flows and automatically feeds each site's environmental reporting." },
     ],
@@ -218,7 +218,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     },
     painPoints: [
       "Fleets of 10,000-100,000 PDAs require structured lifecycle management with per-user tracking.",
-      "Onboard equipment in trains, buses and ships contains sensitive operational data requiring certified erasure at maintenance sites.",
+      "Onboard equipment in trains, buses and ships contains sensitive operational data requiring attested erasure at maintenance sites.",
       "Sensitive sites impose strict access protocols that complicate ITAD operations.",
       "Heavy batteries (forklifts, pallet trucks, AGVs) are a major environmental and safety issue in logistics warehouses.",
       "Transport CSRD reporting covers Scope 1 (fuel) and Scope 2 (energy) well, but Scope 3 IT is often a blind spot.",
@@ -226,7 +226,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     ],
     useCases: [
       { title: "Massive mobile terminal management", description: "50,000 PDAs for controllers, drivers and agents, renewed every 4-5 years. GreenTechCycle tracks each device per user, automates returns, and applies optimal decisioning." },
-      { title: "Certified erasure of onboard equipment", description: "Trains, buses, ships contain sensitive operational data. GreenTechCycle orchestrates certified erasure directly at maintenance sites." },
+      { title: "Attested erasure of onboard equipment", description: "Trains, buses, ships contain sensitive operational data. GreenTechCycle orchestrates attested erasure directly at maintenance sites." },
       { title: "CSRD fleet IT reporting: filling the Scope 3 blind spot", description: "GreenTechCycle precisely quantifies IT fleet carbon footprint for CSRD reporting." },
       { title: "Waki Box for warehouses and logistics platforms", description: "50,000m² warehouses generate significant battery, bulb and small WEEE volumes. The Waki Box centralizes these flows with automatic traceability." },
     ],
@@ -322,7 +322,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
     quote: "Your developers cost €100K/year but their laptop changes every 3 years for €2,500. GTC saves you 50% via internal reuse while building your CSR credibility to attract top talent. ROI in 3 months.",
     objections: [
       { question: "We're only 80 people, CSRD doesn't apply yet", answer: "That's the ideal time. Setting up processes now, when volumes are manageable, means you'll be ready when the obligation applies. And reuse savings are immediate." },
-      { question: "We manage this internally with a spreadsheet", answer: "The spreadsheet works up to 50 workstations. Beyond that, GreenTechCycle automates what spreadsheets can't: scoring, certified erasure, legally defensible traceability." },
+      { question: "We manage this internally with a spreadsheet", answer: "The spreadsheet works up to 50 workstations. Beyond that, GreenTechCycle automates what spreadsheets can't: scoring, attested erasure, legally defensible traceability." },
     ],
     cta: { title: "Optimize your tech fleet", button: "Request a scale-up demo" },
   },
@@ -342,7 +342,7 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       "Professional broadcast batteries (cameras, light packs, walkie-talkies, wireless mics) are massive (100-300Wh per Anton/Bauer or V-Mount battery) with significant fire risks.",
     ],
     useCases: [
-      { title: "Certified erasure of editing stations and video servers", description: "Editing stations contain terabytes of rushes, pre-edits, client archives and embargoed content. GreenTechCycle orchestrates NIST 800-88 Purge with thorough verification and produces legally defensible certificates. Media groups have 200-1,500 active stations and process 30-250 per year." },
+      { title: "Attested erasure of editing stations and video servers", description: "Editing stations contain terabytes of rushes, pre-edits, client archives and embargoed content. GreenTechCycle orchestrates NIST 800-88 Purge with thorough verification and produces legally defensible certificates. Media groups have 200-1,500 active stations and process 30-250 per year." },
       { title: "Broadcast station refurbishment and internal reuse", description: "An Avid/Final Cut/Premiere station purchased for €6,000-15,000 for VFX or color grading retains ample power for news, sports or light post-production. Automatic scoring evaluates residual power vs. target use criticality." },
       { title: "Media-specific CSRD ESRS E5 reporting", description: "TF1, M6, Lagardère and Vivendi-Canal+ are scrutinized by ESG analysts. IT + broadcast Scope 3 is poorly understood but significant. GreenTechCycle provides ESRS E5 granularity by equipment type with auditable figures." },
       { title: "Professional broadcast battery management", description: "A news camera uses 4-8 Anton/Bauer or V-Mount batteries at 100-300Wh each. GreenTechCycle centralizes management with ADR-certified transport partners and full traceability." },
@@ -363,13 +363,13 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       { role: "Procurement", description: "Negotiates ITAD contracts and seeks optimization levers on a high-value fleet." },
       { role: "Legal Director", description: "Ensures IP and contractual confidentiality compliance in the ITAD chain." },
     ],
-    quote: "Your editing stations contain the rushes that make the difference between you and your competitors. An ITAD breach could cost an exclusive, a premiere, a contract. GTC is the only platform that reconciles broadcast-grade certified erasure, court-defensible traceability, fleet economic optimization, and group ESG reporting.",
+    quote: "Your editing stations contain the rushes that make the difference between you and your competitors. An ITAD breach could cost an exclusive, a premiere, a contract. GTC is the only platform that reconciles broadcast-grade attested erasure, court-defensible traceability, fleet economic optimization, and group ESG reporting.",
     tf1Reference: "TF1 trusts us to manage their IT and broadcast fleet. We understand the specific constraints of your sector, from premium editing stations to broadcast batteries to group ESG reporting. Here's how we can replicate these results for you.",
     objections: [
       { question: "Our broadcast equipment is too specific for a generalist platform", answer: "GreenTechCycle's data model accepts any equipment type with category-specific scoring and decisioning rules. TF1 entrusts us with their Avid stations, video servers and IP cameras." },
       { question: "Our current providers are broadcast specialists", answer: "GreenTechCycle orchestrates, it doesn't replace. Your specialized providers stay. The platform adds unified visibility and consolidated reporting." },
       { question: "Content leak risk is critical", answer: "The maximum risk is the status quo: Excel processes and multiple providers without unified traceability. GreenTechCycle creates an irrefutable chain of custody with signatures, timestamps and photos at every step." },
-      { question: "Our ESG storytelling is managed internally by communications", answer: "Precise, auditable figures are necessary. Communication based on estimates risks greenwashing accusations. GreenTechCycle provides real, measured, certified figures." },
+      { question: "Our ESG storytelling is managed internally by communications", answer: "Precise, auditable figures are necessary. Communication based on estimates risks greenwashing accusations. GreenTechCycle provides real, measured, sourced figures." },
     ],
     cta: { title: "Join TF1 and secure your broadcast ITAD", button: "Request a media demo" },
   },
@@ -388,8 +388,8 @@ export const sectorContentEn: Record<SectorSlug, SectorContent> = {
       "A firm selling rigor and compliance must apply the same standards internally.",
     ],
     useCases: [
-      { title: "Certified erasure guaranteeing professional secrecy", description: "GreenTechCycle applies NIST 800-88 Purge with legally defensible certificates, ensuring client data is irreversibly destroyed." },
-      { title: "Internal reuse between assignments and hierarchy levels", description: "GreenTechCycle orchestrates internal reallocations with certified erasure between each user." },
+      { title: "Attested erasure guaranteeing professional secrecy", description: "GreenTechCycle applies NIST 800-88 Purge with legally defensible certificates, ensuring client data is irreversibly destroyed." },
+      { title: "Internal reuse between assignments and hierarchy levels", description: "GreenTechCycle orchestrates internal reallocations with attested erasure between each user." },
       { title: "Instant response to client ESG questionnaires", description: "GreenTechCycle responds instantly with CO₂ avoided, reuse rate and full traceability, a commercial advantage during contract renewals." },
     ],
     roi: [
@@ -701,7 +701,7 @@ export const hubLabelsEn = {
   howToReadBricks: [
     { title: "SaaS Platform", description: "Traceability, decisioning scoring, CSRD/ESG reporting and real-time dashboards to drive your ITAD." },
     { title: "Waki Box", description: "Connected secure collection box for small WEEE and batteries, deployed in your premises with automatic reporting." },
-    { title: "ITAD Service", description: "NIST 800-88 certified erasure, refurbishment, recovery and recycling orchestrated by the platform." },
+    { title: "ITAD Service", description: "NIST 800-88 erasure, refurbishment, recovery and recycling orchestrated by the platform." },
   ],
   sectorGridTitle: "16 sectors, one platform",
   tf1Badge: "TF1 Reference",
@@ -712,6 +712,6 @@ export const hubLabelsEn = {
   ctaSubtitle: "Request a personalized audit for your industry sector.",
   ctaPrimary: "Request an audit",
   ctaSecondary: "See use cases",
-  trustItems: ["R2v3 certified", "ISO 14001", "NIST 800-88", "GDPR & CSRD compliant"],
+  trustItems: ["Erasure per NIST SP 800-88", "ISO 27001 in progress", "GDPR & CSRD"],
   viewSector: "Discover this sector",
 };

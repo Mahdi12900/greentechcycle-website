@@ -118,8 +118,8 @@ export const SLOT_VIDEOS: Partial<Record<string, SlotVideoSpec>> = {
     duration: 24.7,
     title: { fr: "Présentation GreenTechCycle", en: "GreenTechCycle presentation" },
     description: {
-      fr: "Vidéo de 25 secondes, voix off en anglais : l'ITAD comme chaîne de preuves, les chiffres clés (152 ETI clientes, 12 412 actifs traités, 45 tCO₂e évitées, 73 % de réemploi) et le cycle collecte, effacement certifié, reconditionnement, recyclage.",
-      en: "25-second video with English voice-over: ITAD as a chain of proof, key figures (152 mid-cap clients, 12,412 assets processed, 45 tCO₂e avoided, 73% reuse) and the collection, certified erasure, refurbishment, recycling cycle.",
+      fr: "Vidéo de 25 secondes, voix off en anglais : l'ITAD comme chaîne de preuves, les chiffres clés (152 ETI clientes, 12 412 actifs traités, 45 tCO₂e évitées, 73 % de réemploi) et le cycle collecte, effacement attesté, reconditionnement, recyclage.",
+      en: "25-second video with English voice-over: ITAD as a chain of proof, key figures (152 mid-cap clients, 12,412 assets processed, 45 tCO₂e avoided, 73% reuse) and the collection, attested erasure, refurbishment, recycling cycle.",
     },
   },
   // Cas Banque CAC40 (UseCases.cases[0]) : 35 s
@@ -130,8 +130,8 @@ export const SLOT_VIDEOS: Partial<Record<string, SlotVideoSpec>> = {
     duration: 35.4,
     title: { fr: "Cas client : banque tier-1 CAC40", en: "Customer case: tier-1 CAC40 bank" },
     description: {
-      fr: "Vidéo de 35 secondes, voix off en anglais : 2 400 postes trading floor migrés vers Windows 11 sous NIS2 et DORA ; collecte scellée, effacement NIST certifié, reconditionnement, recyclage, rapport signé ; résultat : 11 semaines au lieu de 6 mois, 312 tCO₂e évitées, pré-audit superviseur en 4 jours au lieu de 3 semaines.",
-      en: "35-second video with English voice-over: 2,400 trading-floor workstations migrated to Windows 11 under NIS2 and DORA; sealed collection, certified NIST erasure, refurbishment, recycling, signed reporting; result: 11 weeks instead of 6 months, 312 tCO₂e avoided, supervisor pre-audit in 4 days instead of 3 weeks.",
+      fr: "Vidéo de 35 secondes, voix off en anglais : 2 400 postes trading floor migrés vers Windows 11 sous NIS2 et DORA ; collecte scellée, effacement NIST, reconditionnement, recyclage, rapport signé ; résultat : 11 semaines au lieu de 6 mois, 312 tCO₂e évitées, pré-audit superviseur en 4 jours au lieu de 3 semaines.",
+      en: "35-second video with English voice-over: 2,400 trading-floor workstations migrated to Windows 11 under NIS2 and DORA; sealed collection, NIST erasure, refurbishment, recycling, signed reporting; result: 11 weeks instead of 6 months, 312 tCO₂e avoided, supervisor pre-audit in 4 days instead of 3 weeks.",
     },
   },
   // Cas CHU (UseCases.cases[1]) : 34 s
@@ -154,8 +154,8 @@ export const SLOT_VIDEOS: Partial<Record<string, SlotVideoSpec>> = {
     duration: 33,
     title: { fr: "Cas client : TF1", en: "Customer case: TF1" },
     description: {
-      fr: "Vidéo de 33 secondes, voix off en anglais : studios, régies et datacenters broadcast de TF1 sous un contrat ITAD récurrent ; audit d'inventaire, effacement certifié, reconditionnement broadcast ; résultat : 100 % d'effacement conforme NIST 800-88, 18 t valorisées chaque année, 74 % de réemploi.",
-      en: "33-second video with English voice-over: TF1's studios, control rooms and broadcast datacenters under one recurring ITAD contract; inventory audit, certified erasure, broadcast refurbishment; result: 100% NIST 800-88 compliant erasure, 18 t recovered every year, 74% reuse rate.",
+      fr: "Vidéo de 33 secondes, voix off en anglais : studios, régies et datacenters broadcast de TF1 sous un contrat ITAD récurrent ; audit d'inventaire, effacement attesté, reconditionnement broadcast ; résultat : 100 % d'effacement conforme NIST 800-88, 18 t valorisées chaque année, 74 % de réemploi.",
+      en: "33-second video with English voice-over: TF1's studios, control rooms and broadcast datacenters under one recurring ITAD contract; inventory audit, attested erasure, broadcast refurbishment; result: 100% NIST 800-88 compliant erasure, 18 t recovered every year, 74% reuse rate.",
     },
   },
   // Cas Énergie (UseCases.cases[5]) : 35 s

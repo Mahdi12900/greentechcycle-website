@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Processus ITAD | Cycle de vie des actifs IT",
   description:
-    "Notre processus ITAD en 4 étapes : audit, collecte sécurisée, effacement certifié et valorisation. Traçabilité complète et conformité garantie pour vos équipements IT.",
+    "Notre processus ITAD en 4 étapes : audit, collecte sécurisée, effacement attesté et valorisation. Traçabilité complète et conformité garantie pour vos équipements IT.",
   keywords: ["processus ITAD", "cycle de vie IT", "décommissionnement", "audit IT", "valorisation actifs"],
   openGraph: {
     title: "Processus ITAD | GreenTechCycle",

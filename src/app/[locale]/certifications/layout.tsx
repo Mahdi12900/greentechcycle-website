@@ -11,12 +11,12 @@ export async function generateMetadata({
   const isEn = locale === "en";
 
   const title = isEn
-    ? "Certifications & compliance | R2v3, ISO 14001, ISO 27001 in progress | GreenTechCycle"
-    : "Certifications & conformité | R2v3, ISO 14001, ISO 27001 en cours | GreenTechCycle";
+    ? "Compliance & approach | ISO 27001 in progress, NIST SP 800-88 erasure | GreenTechCycle"
+    : "Conformité & démarche | ISO 27001 en cours, effacement NIST SP 800-88 | GreenTechCycle";
 
   const description = isEn
-    ? "Status of every GreenTechCycle certification and method: R2v3, ISO 14001, ISO 9001, e-Stewards, ISO 27001 in progress, NIST SP 800-88, SHA-256 timestamped proofs."
-    : "Statut de chaque certification et méthode GreenTechCycle : R2v3, ISO 14001, ISO 9001, e-Stewards, ISO 27001 en cours, NIST SP 800-88, preuves horodatées SHA-256.";
+    ? "GreenTechCycle does not hold any certification to date; ISO 27001 certification is in progress. Applied methods (NIST SP 800-88, IEEE 2883, HMG IS5), SHA-256 proof per asset, regulatory context."
+    : "GreenTechCycle ne détient pas de certification à ce jour ; la démarche ISO 27001 est en cours. Méthodes appliquées (NIST SP 800-88, IEEE 2883, HMG IS5), preuve SHA-256 par actif, cadre réglementaire.";
 
   return {
     title,
@@ -34,6 +34,6 @@ export async function generateMetadata({
   };
 }
 
-export default function CertificationsLayout({ children }: { children: React.ReactNode }) {
+export default function ComplianceLayout({ children }: { children: React.ReactNode }) {
   return children;
 }

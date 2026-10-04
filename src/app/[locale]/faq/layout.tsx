@@ -35,15 +35,15 @@ const faqSchema = {
       name: "Comment GreenTechCycle garantit-il l'effacement sécurisé des données ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "GreenTechCycle utilise des méthodes d'effacement certifiées conformes à la norme NIST 800-88. Chaque opération génère un certificat d'effacement individuel horodaté et traçable par son empreinte SHA-256, garantissant la conformité RGPD.",
+        text: "GreenTechCycle applique des méthodes d'effacement conformes à la norme NIST SP 800-88. Chaque opération génère un certificat d'effacement individuel horodaté et traçable par son empreinte SHA-256, garantissant la conformité RGPD.",
       },
     },
     {
       "@type": "Question",
-      name: "Quelles certifications possède GreenTechCycle ?",
+      name: "GreenTechCycle est-elle certifiée ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "GreenTechCycle est certifié R2v3 (Responsible Recycling), ISO 14001 (management environnemental) et respecte les standards NIST 800-88 pour l'effacement des données. Nos processus sont conformes aux exigences RGPD et CSRD.",
+        text: "GreenTechCycle ne détient pas encore de certification : la démarche ISO 27001 est en cours. Nous appliquons la méthode NIST SP 800-88 pour l'effacement des données, et nos processus sont alignés sur les exigences RGPD et CSRD.",
       },
     },
     {
@@ -59,7 +59,7 @@ const faqSchema = {
       name: "Que deviennent les équipements après traitement ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Les équipements sont prioritairement reconditionnés pour le réemploi. Ceux qui ne peuvent être reconditionnés sont recyclés dans des filières certifiées pour récupérer les matières premières (métaux, plastiques). La destruction n'intervient qu'en dernier recours pour les supports ne pouvant être effacés.",
+        text: "Les équipements sont prioritairement reconditionnés pour le réemploi. Ceux qui ne peuvent être reconditionnés sont recyclés dans des filières tracées pour récupérer les matières premières (métaux, plastiques). La destruction n'intervient qu'en dernier recours pour les supports ne pouvant être effacés.",
       },
     },
     {

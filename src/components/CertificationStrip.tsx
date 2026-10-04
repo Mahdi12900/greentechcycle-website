@@ -4,7 +4,8 @@ import { useTranslations } from "next-intl";
 import { ShieldCheck } from "lucide-react";
 
 /**
- * Bandeau statique des certifications (DESIGN.md §6.1) — remplace l'ancien
+ * Bandeau de preuves (DESIGN.md §6.1) — méthodes et démarche, AUCUNE certification
+ * (GTC n'en détient pas ; ISO 27001 en cours). Texte : messages TrustBar.text. — remplace l'ancien
  * TrustBar fixe. Placé en bas de hero (accueil, secteurs, plateforme, tarifs)
  * ou en pied de footer (variante sombre).
  */

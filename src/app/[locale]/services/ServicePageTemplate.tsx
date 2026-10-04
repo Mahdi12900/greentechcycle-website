@@ -107,7 +107,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
     methodology: isEn ? "Our methodology" : "Notre méthodologie",
     deliverables: isEn ? "Deliverables" : "Livrables",
     sla: isEn ? "Contractual commitments" : "Engagements contractuels",
-    certifications: isEn ? "Certifications" : "Certifications",
+    certifications: isEn ? "Methods & standards" : "Méthodes & référentiels",
     faqTitle: isEn ? "Frequently asked questions" : "Questions fréquentes",
     scrollCta: isEn ? "Read the methodology" : "Lire la méthodologie",
     bookCta: isEn ? "Book a slot" : "Réserver",

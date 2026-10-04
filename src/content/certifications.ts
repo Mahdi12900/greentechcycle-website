@@ -1,86 +1,31 @@
 /**
- * Certifications, référentiels et statuts — page /certifications (phase 3, 2026-10-04).
+ * Conformité & démarche — page /certifications (mis à jour le 2026-10-04).
  *
- * Règle : uniquement ce qui est déjà écrit dans le contenu GreenTechCycle, avec le
- * statut tel qu'écrit (ISO 27001 = « en cours », décision du 2026-10-04).
- * `source` cite l'emplacement d'origine (clé de messages/*.json ou fichier).
+ * FAIT (utilisateur, 2026-10-04) : GreenTechCycle ne détient AUCUNE certification à ce jour.
+ * La démarche ISO 27001 est en cours. R2v3, ISO 14001, ISO 9001, e-Stewards, HMG IS5,
+ * Qualiopi… ne doivent jamais être présentés comme obtenus.
  *
- * `toProvide` : numéro de certificat, organisme et date de validité — À FOURNIR par
- * GreenTechCycle. Ces champs ne sont JAMAIS affichés tant qu'ils sont vides
- * (aucune valeur fictive).
+ * Ce fichier ne liste donc que :
+ *  - les MÉTHODES appliquées (normes techniques d'effacement / destruction déjà décrites
+ *    dans le contenu GTC) — ce ne sont pas des certifications ;
+ *  - la démarche EN COURS (ISO 27001), sans date cible (aucune n'a été communiquée) ;
+ *  - le cadre réglementaire auquel la plateforme aide les clients à répondre ;
+ *  - les preuves réellement produites par la plateforme.
+ * `source` cite l'emplacement d'origine dans le contenu.
  */
 
-export type CertStatus = "certification" | "inProgress" | "method" | "status";
+export type ItemStatus = "method" | "inProgress";
 
-export interface CertItem {
+export interface ComplianceItem {
   id: string;
   name: string;
-  status: CertStatus;
+  status: ItemStatus;
   description: { fr: string; en: string };
   source: string;
-  toProvide?: { number: string | null; issuer: string | null; validUntil: string | null };
 }
 
-const TBD = { number: null, issuer: null, validUntil: null };
-
-export const CERTIFICATIONS: CertItem[] = [
-  {
-    id: "r2v3",
-    name: "R2v3",
-    status: "certification",
-    description: {
-      fr: "Responsible Recycling (R2:2013 SERI). Engagement contractuel R2v3 pour chaque mission.",
-      en: "Responsible Recycling (R2:2013 SERI). Contractual R2v3 commitment on every mission.",
-    },
-    source: "Home.differentiators.items[1] · Security.certifications.items[0] (« R2v3 (Responsible Recycling) ») · WhyGTC.commitments.items[4].source",
-    toProvide: TBD,
-  },
-  {
-    id: "iso14001",
-    name: "ISO 14001:2015",
-    status: "certification",
-    description: { fr: "Management environnemental.", en: "Environmental management." },
-    source: "Home.differentiators.items[1] · Security.certifications.items[1]",
-    toProvide: TBD,
-  },
-  {
-    id: "iso27001",
-    name: "ISO 27001:2022",
-    status: "inProgress",
-    description: { fr: "Sécurité de l'information. Démarche en cours.", en: "Information security. Process in progress." },
-    source: "TrustBar.text (« ISO 27001 (en cours) ») · décision utilisateur 2026-10-04",
-    toProvide: TBD,
-  },
-  {
-    id: "iso9001",
-    name: "ISO 9001:2015",
-    status: "certification",
-    description: { fr: "Management de la qualité.", en: "Quality management." },
-    source: "Home.differentiators.items[1]",
-    toProvide: TBD,
-  },
-  {
-    id: "estewards",
-    name: "e-Stewards",
-    status: "certification",
-    description: {
-      fr: "Recyclage responsable des équipements électroniques.",
-      en: "Responsible recycling of electronic equipment.",
-    },
-    source: "Home.differentiators.items[1] · Security.certifications.items[3]",
-    toProvide: TBD,
-  },
-  {
-    id: "qualiopi",
-    name: "Qualiopi",
-    status: "certification",
-    description: { fr: "Formation.", en: "Training." },
-    source: "Security.certifications.items[4] (« Qualiopi (formation) »)",
-    toProvide: TBD,
-  },
-];
-
-export const METHODS: CertItem[] = [
+/** Méthodes appliquées (normes techniques), pas des certifications */
+export const METHODS: ComplianceItem[] = [
   {
     id: "nist80088",
     name: "NIST SP 800-88",
@@ -89,43 +34,50 @@ export const METHODS: CertItem[] = [
       fr: "Effacement Clear, Purge ou Destroy selon la classification de vos données.",
       en: "Clear, Purge or Destroy erasure according to your data classification.",
     },
-    source: "Platform.faq.items[2].a (« Trois niveaux NIST 800-88 … (Clear, Purge, Destroy) appliqués selon la classification de vos données »)",
+    source: "Platform.faq.items[2].a",
   },
   {
     id: "ieee2883",
     name: "IEEE 2883-2022",
     status: "method",
     description: { fr: "Appliquée aux supports SSD et NVMe.", en: "Applied to SSD and NVMe media." },
-    source: "Platform.faq.items[2].a (« Pour les supports SSD et NVMe, nous appliquons IEEE 2883 »)",
+    source: "Platform.faq.items[2].a",
   },
   {
     id: "hmgis5",
     name: "HMG IS5 Enhanced",
     status: "method",
     description: {
-      fr: "Niveau Enhanced, cité pour les missions de destruction les plus sensibles.",
-      en: "Enhanced level, cited for the most sensitive destruction missions.",
+      fr: "Méthode de destruction appliquée aux missions les plus sensibles (broyage 6 mm).",
+      en: "Destruction method applied to the most sensitive missions (6 mm shredding).",
     },
-    source: "Home.differentiators.items[1] · UseCases (« broyage HMG IS5 Enhanced 6 mm »)",
+    source: "Home.valueChain.steps[1] · UseCases (« broyage HMG IS5 Enhanced 6 mm »)",
   },
   {
     id: "dod522022m",
     name: "DoD 5220.22-M",
     status: "method",
     description: { fr: "Effacement par passes multiples.", en: "Multi-pass overwrite." },
-    source: "services/effacement-securise (certifications) · Services.items.effacement (« 3 passes »)",
-  },
-  {
-    id: "esus",
-    name: "ESUS",
-    status: "status",
-    description: {
-      fr: "Statut entreprise solidaire d'utilité sociale.",
-      en: "Solidarity enterprise of social utility status.",
-    },
-    source: "Home.differentiators.items[3].body",
+    source: "services/effacement-securise · Services.items.effacement (« 3 passes »)",
   },
 ];
+
+/** Démarche en cours — aucune date cible communiquée, donc aucune affichée */
+export const IN_PROGRESS: ComplianceItem[] = [
+  {
+    id: "iso27001",
+    name: "ISO 27001",
+    status: "inProgress",
+    description: {
+      fr: "Système de management de la sécurité de l'information : démarche de certification en cours.",
+      en: "Information security management system: certification process in progress.",
+    },
+    source: "Décision utilisateur 2026-10-04 (« ISO c'est en cours »)",
+  },
+];
+
+/** Cadre réglementaire couvert par les contenus Réglementation (renvoi vers /reglementation) */
+export const REGULATIONS = ["CSRD · ESRS E5", "RGPD", "NIS2", "DORA", "AGEC", "DEEE"];
 
 /** Preuves réellement produites par la plateforme (dépôt greentechcycle-command-center, lu le 2026-10-04). */
 export const PLATFORM_PROOFS = {

@@ -15,8 +15,8 @@ export default function EffacementSecurisePage() {
     eyebrow: tx("02 · Sécurité des données", "02 · Data security"),
     title: tx("Effacement sécurisé", "Secure data erasure"),
     subtitle: tx(
-      "Quand un poste sort de votre organisation, ce n'est pas la machine qui inquiète : ce sont les fichiers qu'elle a hébergés. Nous garantissons un effacement opposable, certifié actif par actif, archivé dix ans.",
-      "When a device leaves your organisation, it isn't the machine that worries you: it's the files it has hosted. We guarantee admissible erasure, certified asset by asset, archived for ten years."
+      "Quand un poste sort de votre organisation, ce n'est pas la machine qui inquiète : ce sont les fichiers qu'elle a hébergés. Nous garantissons un effacement opposable, attesté actif par actif, archivé dix ans.",
+      "When a device leaves your organisation, it isn't the machine that worries you: it's the files it has hosted. We guarantee admissible erasure, attested asset by asset, archived for ten years."
     ),
     description: tx(
       "Trois familles de méthodes coexistent dans le monde de l'effacement, et choisir la mauvaise revient à laisser une porte ouverte. Nous appliquons NIST 800-88 dans la majorité des cas, DoD 5220.22-M sur les environnements historiquement sensibles, et IEEE 2883-2022 sur les SSD modernes où les méthodes anciennes deviennent inopérantes. Chaque opération est tracée, horodatée et signée. Un audit interne est déclenché automatiquement sur chaque lot, nous ne vous laissons pas vérifier seul.",
@@ -82,7 +82,7 @@ export default function EffacementSecurisePage() {
           ),
         },
         {
-          title: tx("Vérification et certification", "Verification and certification"),
+          title: tx("Vérification et certificat", "Verification and certificate"),
           desc: tx(
             "Échantillonnage aléatoire, tentative de récupération forensique, génération du certificat individuel horodaté (empreinte SHA-256). Chaque preuve est versée à votre dossier accessible à tout moment.",
             "Random sampling, forensic recovery attempt, generation of a timestamped individual certificate (SHA-256 fingerprint). Every proof is filed in your dossier, accessible at any time."
@@ -101,7 +101,7 @@ export default function EffacementSecurisePage() {
       { metric: tx("Taux de réussite de l'effacement", "Erasure success rate"), value: "99,97 %" },
       { metric: tx("Archivage des preuves", "Evidence archival"), value: tx("10 ans", "10 yrs") },
     ],
-    certifications: ["NIST 800-88 rev2", "DoD 5220.22-M", "IEEE 2883-2022", "R2v3", "ISO 27001 (en cours)"],
+    certifications: ["NIST 800-88 rev2", "DoD 5220.22-M", "IEEE 2883-2022", "ISO 27001 (en cours)"],
     quote: {
       text: tx(
         "Quatre jours d'audit ACPR, zéro question restée sans preuve. Le registre horodaté de GreenTechCycle a fait taire les inspecteurs en quinze minutes.",
@@ -127,7 +127,7 @@ export default function EffacementSecurisePage() {
       },
     ],
     ctaPrimaryLabel: tx("Réserver une mission", "Book a mission"),
-    ctaSecondaryLabel: tx("Voir les certifications", "See certifications"),
+    ctaSecondaryLabel: tx("Voir notre démarche de conformité", "See our compliance approach"),
     ctaSecondaryHref: "/securite",
     pricingAnchor: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
     pricingHref: "/tarifs",

@@ -6,11 +6,11 @@ const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 export const metadata: Metadata = {
   title: "Services ITAD | Effacement, Collecte, Reconditionnement",
   description:
-    "Découvrez nos services ITAD complets : effacement certifié NIST 800-88, collecte sécurisée, reconditionnement, reporting CSRD et traçabilité horodatée (SHA-256) pour vos actifs IT.",
-  keywords: ["services ITAD", "effacement certifié", "collecte IT", "reconditionnement", "reporting CSRD", "traçabilité horodatée (SHA-256)"],
+    "Découvrez nos services ITAD complets : effacement selon NIST 800-88, collecte sécurisée, reconditionnement, reporting CSRD et traçabilité horodatée (SHA-256) pour vos actifs IT.",
+  keywords: ["services ITAD", "effacement attesté", "collecte IT", "reconditionnement", "reporting CSRD", "traçabilité horodatée (SHA-256)"],
   openGraph: {
     title: "Services ITAD | GreenTechCycle",
-    description: "Services ITAD complets : effacement certifié, collecte sécurisée, reconditionnement et reporting CSRD.",
+    description: "Services ITAD complets : effacement attesté, collecte sécurisée, reconditionnement et reporting CSRD.",
     type: "website",
     images: [
       {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Services ITAD | GreenTechCycle",
-    description: "Services ITAD complets : effacement certifié, collecte sécurisée, reconditionnement et reporting CSRD.",
+    description: "Services ITAD complets : effacement attesté, collecte sécurisée, reconditionnement et reporting CSRD.",
     images: [`${SITE}/photos/service-audit.jpg`],
   },
 };
@@ -53,8 +53,8 @@ const servicesItemListSchema = {
       position: 2,
       item: {
         "@type": "Service",
-        name: "Effacement sécurisé certifié",
-        description: "Effacement certifié NIST 800-88, DoD 5220.22-M, avec attestation de destruction opposable.",
+        name: "Effacement sécurisé",
+        description: "Effacement selon NIST 800-88, DoD 5220.22-M, avec attestation de destruction opposable.",
         url: "https://greentechcycle.fr/fr/services/effacement-securise",
         provider: { "@type": "Organization", name: "GreenTechCycle" },
         offers: {
@@ -76,7 +76,7 @@ const servicesItemListSchema = {
       item: {
         "@type": "Service",
         name: "Reconditionnement et valorisation",
-        description: "Reconditionnement, recertification et valorisation des équipements IT avec traçabilité des flux.",
+        description: "Reconditionnement, tests et valorisation des équipements IT avec traçabilité des flux.",
         url: "https://greentechcycle.fr/fr/services/reconditionnement-valorisation",
         provider: { "@type": "Organization", name: "GreenTechCycle" },
       },
@@ -98,7 +98,7 @@ const servicesItemListSchema = {
       item: {
         "@type": "Service",
         name: "Cybersécurité ITAD",
-        description: "Sécurisation des données en fin de vie : destruction certifiée des supports, audit de risques et conformité RGPD.",
+        description: "Sécurisation des données en fin de vie : destruction attestée des supports, audit de risques et conformité RGPD.",
         url: "https://greentechcycle.fr/fr/services/cybersecurite",
         provider: { "@type": "Organization", name: "GreenTechCycle" },
       },

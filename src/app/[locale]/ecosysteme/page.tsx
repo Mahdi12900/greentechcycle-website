@@ -336,7 +336,7 @@ export default function EcosystemPage({
       <RelatedArticles
         keywords={["nis2", "cybersécurité", "sécurité"]}
         title="Écosystème & cybersécurité : aller plus loin"
-        subtitle="Les intégrations IT impliquent de nouveaux défis de sécurité. Découvrez nos analyses NIS2, RGPD et effacement certifié."
+        subtitle="Les intégrations IT impliquent de nouveaux défis de sécurité. Découvrez nos analyses NIS2, RGPD et effacement attesté."
         limit={3}
         tone="light"
       />

@@ -588,8 +588,8 @@ export default function RegulationPage() {
           keyFigure: tx("35M+ compteurs Linky déployés", "35M+ Linky meters deployed"),
           subFigure: tx("Données de consommation fines protégées", "Detailed consumption data protected"),
           gtcHelp: tx(
-            "Effacement certifié des équipements de mesure, traçabilité des compteurs intelligents par numéro de série.",
-            "Certified metering equipment erasure, smart meter traceability by serial number."
+            "Effacement attesté des équipements de mesure, traçabilité des compteurs intelligents par numéro de série.",
+            "Attested metering equipment erasure, smart meter traceability by serial number."
           ),
         },
         {
@@ -755,8 +755,8 @@ export default function RegulationPage() {
       keyFigure: tx("35M€ ou 7% du CA mondial", "€35M or 7% of global revenue"),
       subFigure: tx("Registre UE des systèmes IA · Source : Commission UE", "EU register of AI systems · Source: EU Commission"),
       gtcHelp: tx(
-        "Traçabilité dédiée des accélérateurs IA (GPU, TPU), effacement certifié des datasets et modèles, registre AI Act-ready.",
-        "Dedicated AI accelerator traceability (GPU, TPU), certified dataset and model erasure, AI Act-ready register."
+        "Traçabilité dédiée des accélérateurs IA (GPU, TPU), effacement attesté des datasets et modèles, registre AI Act-ready.",
+        "Dedicated AI accelerator traceability (GPU, TPU), attested dataset and model erasure, AI Act-ready register."
       ),
     },
     {
@@ -1005,7 +1005,7 @@ export default function RegulationPage() {
     {
       icon: Shield,
       title: tx("Multi-standard", "Multi-standard"),
-      text: tx("Réponse à la complexité : NIST, DoD, IEEE, RGPD, NIS2, CSRD couverts dans un parcours unique et certifié.", "Answer to complexity: NIST, DoD, IEEE, GDPR, NIS2, CSRD covered in a single certified workflow."),
+      text: tx("Réponse à la complexité : NIST, DoD, IEEE, RGPD, NIS2, CSRD couverts dans un parcours unique et documenté.", "Answer to complexity: NIST, DoD, IEEE, GDPR, NIS2, CSRD covered in a single documented workflow."),
     },
   ];
 
@@ -1317,8 +1317,8 @@ export default function RegulationPage() {
               </h2>
               <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
-                  "GreenTechCycle a été conçu pour répondre à chacun de ces défis avec une plateforme unifiée, certifiée et auditable.",
-                  "GreenTechCycle was designed to address each of these challenges with a unified, certified and auditable platform."
+                  "GreenTechCycle a été conçu pour répondre à chacun de ces défis avec une plateforme unifiée et auditable.",
+                  "GreenTechCycle was designed to address each of these challenges with a unified and auditable platform."
                 )}
               </p>
             </div>
@@ -1365,8 +1365,8 @@ export default function RegulationPage() {
                   <ShieldCheck className="w-6 h-6 text-emerald" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-fg mb-0.5">{tx("Nos certifications", "Our certifications")}</p>
-                  <p className="text-xs text-fg-muted">{tx("R2v3, NIST, DoD · ISO 27001 en cours", "R2v3, NIST, DoD · ISO 27001 in progress")}</p>
+                  <p className="text-sm font-semibold text-fg mb-0.5">{tx("Méthodes & démarche", "Methods & approach")}</p>
+                  <p className="text-xs text-fg-muted">{tx("NIST SP 800-88, DoD · ISO 27001 en cours", "NIST SP 800-88, DoD · ISO 27001 in progress")}</p>
                 </div>
                 <ArrowRight className="w-5 h-5 text-fg-muted group-hover:text-emerald group-hover:translate-x-0.5 transition" />
               </Link>
@@ -1553,10 +1553,10 @@ export default function RegulationPage() {
         primaryHref="/contact"
         secondaryLabel={tx("Voir la démo", "See the demo")}
         secondaryHref="/demo"
-        reassurance={[tx("Audit gratuit", "Free audit"), tx("Réponse sous 24h", "Response within 24h"), tx("Expertise certifiée", "Certified expertise"), tx("RGPD · NIS2 · CSRD", "GDPR · NIS2 · CSRD")].join(" · ")}
+        reassurance={[tx("Audit gratuit", "Free audit"), tx("Réponse sous 24h", "Response within 24h"), tx("Expertise réglementaire", "Regulatory expertise"), tx("RGPD · NIS2 · CSRD", "GDPR · NIS2 · CSRD")].join(" · ")}
         footnote={
           <p className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            <Link href="/securite" className="font-medium text-emerald hover:text-fg">{tx("Nos certifications", "Our certifications")} →</Link>
+            <Link href="/securite" className="font-medium text-emerald hover:text-fg">{tx("Méthodes & démarche", "Methods & approach")} →</Link>
             <Link href="/methodologie" className="font-medium text-emerald hover:text-fg">{tx("Méthodologie", "Methodology")} →</Link>
             <Link href="/blog" className="font-medium text-emerald hover:text-fg">{tx("Ressources", "Resources")} →</Link>
           </p>

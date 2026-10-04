@@ -103,7 +103,7 @@ export default function WakiBoxPage() {
       { metric: tx("Délai de collecte après alerte", "Collection after alert"), value: tx("48 h", "48h") },
       { metric: tx("Support et maintenance", "Support and maintenance"), value: tx("J+1", "Day 1") },
     ],
-    certifications: ["R2v3", "CE", "RoHS"],
+    certifications: ["CE", "RoHS"],
     quote: {
       text: tx(
         "En six mois, nos 142 magasins ont collecté 18 tonnes d'équipements en fin de vie. Avant WakiBox, on en récupérait à peine quatre. Le geste est devenu naturel.",
