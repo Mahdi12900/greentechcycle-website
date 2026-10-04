@@ -37,11 +37,12 @@ export default function MediaSlot({
   sizes?: string;
   className?: string;
 }) {
-  // Vidéo explicite, sinon celle déclarée pour cet emplacement dans le registre
-  const vid = video ?? SLOT_VIDEOS[id];
+  // Vidéo explicite, sinon la boucle déclarée pour cet emplacement dans le registre
+  const reg = SLOT_VIDEOS[id];
+  const vid = video ?? (reg?.kind === "loop" ? { sources: reg.sources, poster: reg.poster } : undefined);
   const videoReady = (VIDEO_READY_SLOTS as readonly string[]).includes(id) || undefined;
   const content = vid ? (
-    <SlotVideo src={vid.src} poster={vid.poster} />
+    <SlotVideo {...("sources" in vid ? { sources: vid.sources } : { src: vid.src })} poster={vid.poster} />
   ) : src ? (
     <Image src={src} alt={alt} fill priority={priority} className="object-cover" sizes={sizes} />
   ) : (

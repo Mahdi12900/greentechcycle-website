@@ -29,6 +29,7 @@ import {
   UserRound,
 } from "lucide-react";
 import { CountUp } from "@/components/motion";
+import VideoBackground from "@/components/visuals/VideoBackground";
 import { KpiStat, KpiBar } from "@/components/kpi/Kpi";
 import { KPIS } from "@/content/kpis";
 import TrustBand from "@/components/TrustBand";
@@ -155,8 +156,11 @@ export default function HomePage() {
       {/* ==========================================================
           1–2. HERO — notice CSRD intégrée, split 7/5, preuve chiffrée
          ========================================================== */}
-      <section className="bg-bg py-16 lg:py-32" aria-labelledby="hero-title">
-        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-bg py-16 lg:py-32" aria-labelledby="hero-title">
+        {/* Fond vidéo (boucle muette 9 s, registre SLOT_VIDEOS) : poster rendu côté serveur,
+            vidéo chargée après `load`, poster seul en mouvement réduit / Save-Data */}
+        <VideoBackground id="home-hero-background" />
+        <div className="relative mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
               <Link

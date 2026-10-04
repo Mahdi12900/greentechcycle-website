@@ -2,16 +2,18 @@
 
 import DashboardMock from "@/components/visuals/DashboardMock";
 import MediaSlot from "@/components/visuals/MediaSlot";
-import { useTranslations } from "next-intl";
+import VideoPlayer from "@/components/visuals/VideoPlayer";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { Button, ButtonLink } from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { Play, Monitor, Send, CheckCircle } from "lucide-react";
+import { Monitor, Send, CheckCircle } from "lucide-react";
 
 export default function DemoPage() {
   const t = useTranslations("Demo");
+  const isEn = useLocale() === "en";
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -60,16 +62,24 @@ export default function DemoPage() {
         <div className="reveal">
           <SectionHeader title={t("video.title")} />
           <figure>
-            <div className="relative aspect-video overflow-hidden rounded-2xl border border-track">
-              <MediaSlot fill id="demo-video" alt="Aperçu de la plateforme GreenTechCycle - Demandez une démo" fallback={<DashboardMock state="inventory" />} />
-              <div className="absolute inset-0 flex items-center justify-center bg-bg/30">
-                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-bg text-emerald shadow-float" aria-hidden="true">
-                  <Play className="ml-1 h-7 w-7" fill="currentColor" />
-                </span>
-              </div>
+            <div className="relative aspect-video overflow-hidden rounded-2xl border border-track shadow-float">
+              <VideoPlayer
+                id="demo-video"
+                title={isEn ? "GreenTechCycle presentation video, 25 seconds, French voice-over, captions available" : "Vidéo de présentation GreenTechCycle, 25 secondes, voix off en français, sous-titres disponibles"}
+                fallback={<MediaSlot fill id="demo-video" alt="Aperçu de la plateforme GreenTechCycle" fallback={<DashboardMock state="inventory" />} />}
+              />
             </div>
             <figcaption className="mt-3 text-caption text-fg-muted">{t("video.placeholder")}</figcaption>
           </figure>
+          {/* Transcription de la voix off (accessibilité, lisible sans lecture de la vidéo) */}
+          <details className="mt-4 max-w-[65ch] rounded-xl border border-track bg-bg p-4 text-body-sm text-fg-strong">
+            <summary className="cursor-pointer font-medium text-fg">{isEn ? "Read the transcript" : "Lire la transcription"}</summary>
+            <p className="mt-3">
+              {isEn
+                ? "ITAD is not a product. It is a chain of proof. 152 mid-cap clients. 12,412 assets processed. 45 tonnes of CO₂ avoided. 73% reuse. Collection, certified erasure, refurbishment, recycling. GreenTechCycle: the platform that unifies your ITAD."
+                : "L'ITAD n'est pas un produit. C'est une chaîne de preuves. 152 ETI clientes. 12 412 actifs traités. 45 tonnes de CO₂ évitées. 73 % de réemploi. Collecte, effacement certifié, reconditionnement, recyclage. GreenTechCycle : la plateforme qui unifie votre ITAD."}
+            </p>
+          </details>
         </div>
       </Section>
 

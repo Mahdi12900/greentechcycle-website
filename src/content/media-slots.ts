@@ -23,7 +23,8 @@ export interface MediaSlotEntry {
 
 export const MEDIA_SLOTS: MediaSlotEntry[] = [
   // Accueil
-  { id: "home-hero", page: "/", ratio: "4/3", subject: "Atelier ITAD GreenTechCycle, opérateur et lot de laptops — VIDÉO PRÊTE (SLOT_VIDEOS) : boucle muette 8–12 s", fallback: "DashboardMock inventory", previous: "/photos/hp-atelier-itad.jpg", state: "fallback" },
+  { id: "home-hero", page: "/", ratio: "4/3", subject: "Atelier ITAD GreenTechCycle, opérateur et lot de laptops", fallback: "DashboardMock inventory", previous: "/photos/hp-atelier-itad.jpg", state: "fallback" },
+  { id: "home-hero-background", page: "/", ratio: "16/9", subject: "Fond animé du hero — boucle muette 9 s (SLOT_VIDEOS, vidéo de test)", fallback: "poster gtc-hero-loop-poster.webp", state: "video" },
   { id: "home-case-{slug}", page: "/", ratio: "16/10", subject: "Site client réel par cas (banque, hôpital, industrie)", fallback: "GeometryField + pictogramme", previous: "/photos/case-{banque|hopital|industrie}.jpg", state: "fallback" },
   { id: "home-testimonial", page: "/", ratio: "1/1", subject: "Portrait du DSI cité (avec accord)", fallback: "GeometryField UserRound", previous: "/photos/hp-dsi-strategy.jpg", state: "fallback" },
 
@@ -58,7 +59,7 @@ export const MEDIA_SLOTS: MediaSlotEntry[] = [
   { id: "tarifs-brique-{name}", page: "/tarifs", ratio: "16/10", subject: "Visuel de chaque brique tarifaire", fallback: "GeometryField + pictogramme", previous: "b.photo", state: "fallback" },
   { id: "tarifs-pilote", page: "/tarifs", ratio: "4/3", subject: "Signature du pilote / audit", fallback: "CertificateCard", previous: "/photos/hp-audit-signature.jpg", state: "fallback" },
   { id: "tarifs-devis-{slug}", page: "/tarifs", ratio: "16/10", subject: "Visuel par type de devis", fallback: "DashboardMock erasure / LifecycleDiagram", previous: "card.photo", state: "fallback" },
-  { id: "demo-video", page: "/demo", ratio: "16/9", subject: "Vidéo de démonstration de la plateforme — VIDÉO PRÊTE (SLOT_VIDEOS) : capture d'écran 20–30 s", fallback: "DashboardMock inventory", previous: "/images/hero-dashboard.jpg", state: "fallback" },
+  { id: "demo-video", page: "/demo", ratio: "16/9", subject: "Présentation GreenTechCycle 24,5 s, voix off FR, sous-titres FR/EN (SLOT_VIDEOS, vidéo de test) — à remplacer par la capture réelle de la plateforme", fallback: "DashboardMock inventory", previous: "/images/hero-dashboard.jpg", state: "video" },
 
   // Blog
   { id: "blog-hero", page: "/blog", ratio: "16/9", subject: "Illustration éditoriale", fallback: "GeometryField", previous: "/photos/blog-economie-circulaire.jpg", state: "fallback" },
@@ -68,16 +69,43 @@ export const MEDIA_SLOTS: MediaSlotEntry[] = [
 ];
 
 /**
- * Vidéos par emplacement (phase vidéo). VIDE tant que GreenTechCycle n'a pas
- * livré ses fichiers : aucun fichier n'est référencé. Pour activer une vidéo,
- * déposer les fichiers dans /public/videos puis décommenter la ligne.
- * Format : MP4 H.264 ≤ 4 Mo, muet, en boucle, + poster JPEG (1920×1080 pour un hero).
- * Les emplacements « vidéo prêts » portent `data-video-ready` dans le HTML.
+ * Vidéos par emplacement (phase vidéo, branchées le 2026-10-04 — vidéos de TEST).
+ * Fichiers dans /public/videos (MP4 H.264 « faststart » + WebM VP9 pour la boucle).
+ * - `loop`   : vidéo d'ambiance muette, en boucle, sans contrôle (VideoBackground / SlotVideo) ;
+ *              poster seul si prefers-reduced-motion ou Save-Data ; chargée après l'événement load.
+ * - `player` : vidéo avec voix off, contrôles, muette par défaut + bouton « Activer le son »,
+ *              sous-titres WebVTT fr/en (VideoPlayer).
+ * Les emplacements portent `data-video-ready` / `data-media-slot` dans le HTML.
  */
-export const SLOT_VIDEOS: Partial<Record<string, { src: string; poster: string }>> = {
-  // "home-hero": { src: "/videos/home-hero.mp4", poster: "/videos/home-hero.jpg" },
-  // "demo-video": { src: "/videos/demo-plateforme.mp4", poster: "/videos/demo-plateforme.jpg" },
+export interface SlotVideoSpec {
+  kind: "loop" | "player";
+  sources: { src: string; type: string }[];
+  poster: string;
+  /** Durée (s), pour le libellé accessible */
+  duration?: number;
+  captions?: { fr: string; en: string };
+}
+
+export const SLOT_VIDEOS: Partial<Record<string, SlotVideoSpec>> = {
+  // Fond animé du hero d'accueil : boucle 9 s (cycle collecte → effacement → reconditionnement → recyclage)
+  "home-hero-background": {
+    kind: "loop",
+    sources: [
+      { src: "/videos/gtc-hero-loop.webm", type: "video/webm" }, // 85 Ko
+      { src: "/videos/gtc-hero-loop.mp4", type: "video/mp4" }, // 268 Ko
+    ],
+    poster: "/videos/gtc-hero-loop-poster.webp",
+    duration: 9,
+  },
+  // /demo : présentation 24,5 s, voix off française + musique
+  "demo-video": {
+    kind: "player",
+    sources: [{ src: "/videos/gtc-presentation.mp4", type: "video/mp4" }], // 1,8 Mo
+    poster: "/videos/gtc-presentation-poster.webp",
+    duration: 24.5,
+    captions: { fr: "/videos/gtc-presentation.fr.vtt", en: "/videos/gtc-presentation.en.vtt" },
+  },
 };
 
-/** Emplacements prévus pour une vidéo (phase 3) */
-export const VIDEO_READY_SLOTS = ["home-hero", "demo-video"] as const;
+/** Emplacements prévus pour une vidéo */
+export const VIDEO_READY_SLOTS = ["home-hero-background", "demo-video"] as const;
