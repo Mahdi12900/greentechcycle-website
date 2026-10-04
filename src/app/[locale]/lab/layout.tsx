@@ -15,8 +15,8 @@ export async function generateMetadata({
     : "GreenTechCycle Lab | R&D appliquée : preuve, sécurité et IT circulaire";
 
   const description = isEn
-    ? "GreenTechCycle Lab, GreenTechCycle's applied R&D lab: mission, red lines, the five dimensions of proof, refusal policy, data and AI governance, eight research programmes and a call for ITAD and refurbishing partners."
-    : "GreenTechCycle Lab, le laboratoire de R&D appliquée de GreenTechCycle : mission, lignes rouges, cinq dimensions de la preuve, politique de refus, gouvernance des données et de l'IA, huit programmes de recherche et appel à partenaires ITAD et reconditionneurs.";
+    ? "GreenTechCycle Lab, GreenTechCycle's applied R&D lab: mission, red lines, the five dimensions of proof, refusal policy, data and AI governance, eight research programmes and pilot programmes open to organisations in every sector."
+    : "GreenTechCycle Lab, le laboratoire de R&D appliquée de GreenTechCycle : mission, lignes rouges, cinq dimensions de la preuve, politique de refus, gouvernance des données et de l'IA, huit programmes de recherche et programmes pilotes ouverts aux organisations de chaque secteur.";
 
   return {
     title,

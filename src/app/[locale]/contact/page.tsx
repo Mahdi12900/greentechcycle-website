@@ -10,6 +10,8 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import Tag from "@/components/ui/Tag";
 import ContactChannels from "@/components/ContactChannels";
 import { CONTACT_TOPICS, LEGAL, isContactTopic, mailtoHref, type ContactTopic } from "@/lib/contact";
+import { getSectorDef } from "@/data/sectors";
+import { getSectorName } from "@/data/sectors-i18n";
 import {
   ArrowDown,
   Send,
@@ -44,6 +46,15 @@ function ContactInner() {
   // Sujet → destinataire (src/lib/contact.ts) : ?sujet=support|lab pré-sélectionne le sujet
   const sujetParam = searchParams?.get("sujet");
   const [topic, setTopic] = useState<ContactTopic>(isContactTopic(sujetParam) ? sujetParam : "commercial");
+  // ?secteur=<slug> (page /lab, programmes pilotes) : pré-remplit le message avec le secteur.
+  // Seuls les 16 slugs de src/data/sectors.ts sont acceptés.
+  const secteurParam = searchParams?.get("secteur");
+  const sectorName = secteurParam && getSectorDef(secteurParam) ? getSectorName(locale, secteurParam) : null;
+  const sectorPrefill = sectorName
+    ? locale === "en"
+      ? `Sector: ${sectorName}. We would like to discuss a GreenTechCycle Lab pilot programme.`
+      : `Secteur : ${sectorName}. Nous souhaitons échanger sur un programme pilote GreenTechCycle Lab.`
+    : "";
 
   const [form, setForm] = useState({
     offre: initialOffer,
@@ -54,7 +65,7 @@ function ContactInner() {
     fleet: "1000-5000",
     phone: "",
     timeline: "1-3-mois",
-    message: "",
+    message: sectorPrefill,
     consent: false,
   });
   const [submitted, setSubmitted] = useState(false);
@@ -91,7 +102,7 @@ function ContactInner() {
           company: form.company,
           size: form.fleet,
           persona: form.role,
-          needs: `Échéance : ${form.timeline}`,
+          needs: `Échéance : ${form.timeline}${sectorName ? ` · Secteur : ${sectorName}` : ""}`,
           message: form.message,
           consent: form.consent,
           offerSlug: topic === "commercial" ? form.offre : null,

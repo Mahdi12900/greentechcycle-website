@@ -1,12 +1,15 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { Ban, Bot, FlaskConical, Handshake, Lock, Mail, ShieldAlert } from "lucide-react";
+import { Ban, Bot, FlaskConical, Lock, Mail, ShieldAlert, Users } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Tag from "@/components/ui/Tag";
-import { ButtonLink } from "@/components/ui/Button";
+import Pictogram from "@/components/ui/Pictogram";
+import { SECTORS } from "@/data/sectors";
+import { getSectorName } from "@/data/sectors-i18n";
+import { ButtonLink, TextLink } from "@/components/ui/Button";
 import { EMAILS, PREFILL, mailtoHref } from "@/lib/contact";
 import {
   LAB_AI_RULES,
@@ -20,6 +23,7 @@ import {
   LAB_PROGRAMMES,
   LAB_PROOF_DIMENSIONS,
   LAB_RED_LINES,
+  LAB_SECTOR_PILOTS,
   LAB_REFUSAL_CASES,
 } from "@/content/lab";
 
@@ -68,8 +72,8 @@ export default function LabPage() {
                 )}
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="#partenaires" size="lg">
-                  {tx("Devenir partenaire du Lab", "Partner with the Lab")}
+                <ButtonLink href="#pilotes" size="lg">
+                  {tx("Rejoindre un programme pilote", "Join a pilot programme")}
                 </ButtonLink>
                 <ButtonLink href="#programmes" variant="secondary" size="lg" arrow={false}>
                   {tx("Voir les 8 programmes", "See the 8 programmes")}
@@ -374,51 +378,74 @@ export default function LabPage() {
         </div>
       </Section>
 
-      {/* ═══ APPEL À PARTENAIRES (p. 16) + CONTACT ═══ */}
-      <Section id="partenaires" tone="forest">
+      {/* ═══ PROGRAMMES PILOTES PAR SECTEUR (correction utilisateur 2026-10-04 : appel aux futurs clients) ═══ */}
+      <Section id="pilotes" tone="forest">
         <div className="fx-halo pointer-events-none absolute inset-0" aria-hidden="true" />
-        <div className="relative grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="reveal lg:col-span-7">
-            <Tag variant="brand" icon={<Handshake className="h-3.5 w-3.5" aria-hidden="true" />}>
-              {tx("Appel à partenaires", "Call for partners")}
+        <div className="relative">
+          <div className="reveal">
+            <Tag variant="brand" icon={<Users className="h-3.5 w-3.5" aria-hidden="true" />}>
+              {tx("Programmes pilotes", "Pilot programmes")}
             </Tag>
             <h2 className="mt-6 max-w-[24ch] text-display-md text-fg">
-              {tx("Prestataires ITAD, reconditionneurs : construisons le banc d'essai ensemble.", "ITAD providers, refurbishers: let's build the test bench together.")}
+              {tx("Rejoignez nos programmes pilotes.", "Join our pilot programmes.")}
             </h2>
             <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">
               {tx(
-                "Le Lab recherche des partenaires ITAD et des reconditionneurs pour son banc d'essai matériel : des supports variés, des protocoles partagés et des pilotes bornés et mesurables, pas une promesse d'IA autonome.",
-                "The Lab is looking for ITAD providers and refurbishers to join its hardware test bench: varied media, shared protocols and bounded, measurable pilots, not a promise of autonomous AI."
+                "Le Lab cherche des organisations prêtes à tester ses programmes de recherche sur un périmètre borné, avec des critères de succès définis d'avance. Pour chaque secteur, voici les programmes qui pourraient s'appliquer : ce sont des pistes de pilote, pas des résultats.",
+                "The Lab is looking for organisations ready to test its research programmes on a bounded scope, with success criteria set upfront. For each sector, here are the programmes that could apply: these are pilot leads, not results."
               )}
             </p>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/contact?sujet=lab" size="lg">
-                {tx("Proposer un partenariat", "Propose a partnership")}
+          </div>
+          <ul className="reveal-stagger mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[...SECTORS]
+              .sort((x, y) => x.number - y.number)
+              .map((sector) => {
+                const pilot = LAB_SECTOR_PILOTS.find((p) => p.slug === sector.slug);
+                if (!pilot) return null;
+                const name = getSectorName(locale, sector.slug);
+                return (
+                  <li key={sector.slug} className="reveal h-full">
+                    <article className="flex h-full flex-col rounded-xl border border-track bg-bg-card p-5">
+                      <div className="flex items-center gap-3">
+                        <Pictogram icon={sector.icon} />
+                        <h3 className="text-heading-md text-fg">{name}</h3>
+                      </div>
+                      <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={tx("Programmes concernés", "Relevant programmes")}>
+                        {pilot.programmes.map((id) => (
+                          <li key={id} className="rounded-md border border-track px-2 py-0.5 font-mono text-caption text-emerald">
+                            {id}
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="mt-3 flex-1 text-body-sm text-fg-strong">{pilot.why[lang]}</p>
+                      <TextLink href={`/contact?sujet=lab&secteur=${sector.slug}`} className="mt-4">
+                        <span>
+                          {tx("Candidater au pilote", "Apply for the pilot")}
+                          <span className="sr-only"> · {name}</span>
+                        </span>
+                      </TextLink>
+                    </article>
+                  </li>
+                );
+              })}
+          </ul>
+          <div className="reveal mt-10 flex flex-col gap-4 rounded-xl border border-track bg-bg-card p-5 sm:flex-row sm:items-center sm:justify-between">
+            <p className="max-w-[65ch] text-body-sm text-fg-strong">
+              {tx(
+                "Votre secteur n'est pas listé, ou vous voulez discuter d'un programme précis ? Écrivez au Lab.",
+                "Your sector isn't listed, or you want to discuss a specific programme? Write to the Lab."
+              )}
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/contact?sujet=lab" size="md">
+                {tx("Contacter le Lab", "Contact the Lab")}
               </ButtonLink>
               {labMail && (
-                <ButtonLink href={labMail} variant="secondary" size="lg" arrow={false}>
+                <ButtonLink href={labMail} variant="secondary" size="md" arrow={false}>
                   <Mail className="h-4 w-4" aria-hidden="true" />
                   {EMAILS.lab}
                 </ButtonLink>
               )}
-            </div>
-          </div>
-          <div className="reveal min-w-0 lg:col-span-5">
-            <div className="rounded-2xl border border-track bg-bg-card p-6 font-mono text-caption sm:text-body-sm">
-              <p className="text-fg-muted">{tx("# ce que le Lab propose aux partenaires", "# what the Lab offers partners")}</p>
-              <ul className="mt-3 space-y-2 text-fg-strong">
-                <li>
-                  <span className="text-emerald">+</span> {tx("protocoles d'essai documentés et partagés", "documented, shared test protocols")}
-                </li>
-                <li>
-                  <span className="text-emerald">+</span> {tx("pilotes bornés, critères de succès définis d'avance", "bounded pilots, success criteria set upfront")}
-                </li>
-                <li>
-                  <span className="text-emerald">+</span> {tx("données minimisées, jamais d'action destructive sans double validation", "minimised data, no destructive action without two-person sign-off")}
-                </li>
-              </ul>
-              <p className="mt-6 text-fg-muted">{tx("# contact", "# contact")}</p>
-              <p className="mt-1 break-all text-fg">{EMAILS.lab}</p>
             </div>
           </div>
         </div>

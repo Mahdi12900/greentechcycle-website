@@ -256,3 +256,146 @@ export const LAB_METHOD: L[] = [
   { fr: "Critères de succès et d'échec", en: "Success and failure criteria" },
   { fr: "Décision Continuer / Pivoter / Arrêter", en: "Continue / Pivot / Stop decision" },
 ];
+
+/**
+ * Programmes pilotes par secteur (correction utilisateur du 2026-10-04 : l'appel à partenaires
+ * ITAD / reconditionneurs est remplacé par un appel aux FUTURS CLIENTS, par secteur).
+ *
+ * Règle : chaque rapprochement découle uniquement de la description du programme dans le
+ * manuel (p. 12–14) et d'une caractéristique du secteur déjà présente sur le site (fiches
+ * secteur, cas clients). Aucun résultat n'est annoncé : ce sont des pistes de pilote.
+ *   01 assainissement des supports · 02 preuve vérifiable · 03 rapprochement d'inventaires
+ *   hétérogènes · 04 valeur future des actifs · 05 scénarios de réemploi et de fin de vie ·
+ *   06 planification des tâches non critiques (coût, carbone, sécurité) · 07 réduction de
+ *   l'exposition des données avant traitement externe · 08 graphe exigences–contrôles–preuves.
+ */
+export const LAB_SECTOR_PILOTS: { slug: string; programmes: string[]; why: L }[] = [
+  {
+    slug: "finance",
+    programmes: ["GTCL-01", "GTCL-02", "GTCL-08"],
+    why: {
+      fr: "Supports chargés de données clients et obligations DORA et NIS2 à démontrer : assainissement, preuve et gouvernance réglementaire.",
+      en: "Media holding customer data and DORA and NIS2 obligations to demonstrate: sanitisation, proof and regulatory governance.",
+    },
+  },
+  {
+    slug: "sante",
+    programmes: ["GTCL-01", "GTCL-07", "GTCL-02"],
+    why: {
+      fr: "Données de santé sur les supports : assainissement documenté, dé-identification avant tout traitement externe, preuve.",
+      en: "Health data on media: documented sanitisation, de-identification before any external processing, proof.",
+    },
+  },
+  {
+    slug: "industrie",
+    programmes: ["GTCL-03", "GTCL-05"],
+    why: {
+      fr: "Parcs hétérogènes répartis sur plusieurs sites : rapprochement des inventaires et scénarios de réemploi ou de fin de vie.",
+      en: "Mixed fleets spread across several sites: inventory reconciliation and reuse or end-of-life scenarios.",
+    },
+  },
+  {
+    slug: "retail",
+    programmes: ["GTCL-03", "GTCL-04"],
+    why: {
+      fr: "Équipements dispersés entre de nombreux points de vente : inventaire consolidé et estimation de la valeur future avant renouvellement.",
+      en: "Equipment spread across many stores: consolidated inventory and future-value estimates before renewal.",
+    },
+  },
+  {
+    slug: "energie",
+    programmes: ["GTCL-01", "GTCL-08"],
+    why: {
+      fr: "Équipements sensibles et obligations de cybersécurité : choix documenté de la méthode d'assainissement, lien exigences–preuves.",
+      en: "Sensitive equipment and cybersecurity obligations: documented choice of sanitisation method, requirement-to-evidence links.",
+    },
+  },
+  {
+    slug: "transport-logistique",
+    programmes: ["GTCL-03", "GTCL-06"],
+    why: {
+      fr: "Parcs dispersés et opérations continues : inventaire consolidé, planification des tâches non critiques selon coût, carbone et sécurité.",
+      en: "Dispersed fleets and continuous operations: consolidated inventory, scheduling of non-critical jobs by cost, carbon and security.",
+    },
+  },
+  {
+    slug: "public",
+    programmes: ["GTCL-08", "GTCL-02"],
+    why: {
+      fr: "Exigences réglementaires et contrôles : graphe exigences–contrôles–preuves et preuve vérifiable de façon indépendante.",
+      en: "Regulatory requirements and audits: requirement–control–evidence graph and independently verifiable proof.",
+    },
+  },
+  {
+    slug: "tech",
+    programmes: ["GTCL-01", "GTCL-06", "GTCL-05"],
+    why: {
+      fr: "Supports SSD et NVMe, charges de calcul : assainissement par type de support, planification selon l'intensité carbone, réemploi.",
+      en: "SSD and NVMe media, compute workloads: sanitisation by media type, carbon-aware scheduling, reuse.",
+    },
+  },
+  {
+    slug: "medias-audiovisuel",
+    programmes: ["GTCL-03", "GTCL-05"],
+    why: {
+      fr: "Équipements de production variés : rapprochement d'inventaires hétérogènes et scénarios de réemploi.",
+      en: "Varied production equipment: reconciliation of mixed inventories and reuse scenarios.",
+    },
+  },
+  {
+    slug: "conseil",
+    programmes: ["GTCL-07", "GTCL-04"],
+    why: {
+      fr: "Données clients confidentielles sur les postes : dé-identification avant traitement externe, valeur future des postes.",
+      en: "Confidential client data on laptops: de-identification before external processing, future value of devices.",
+    },
+  },
+  {
+    slug: "pharma-biotech",
+    programmes: ["GTCL-07", "GTCL-01", "GTCL-08"],
+    why: {
+      fr: "Données de recherche et de santé, cadre réglementaire exigeant : dé-identification, assainissement, gouvernance réglementaire.",
+      en: "Research and health data, demanding regulation: de-identification, sanitisation, regulatory governance.",
+    },
+  },
+  {
+    slug: "btp",
+    programmes: ["GTCL-03", "GTCL-05"],
+    why: {
+      fr: "Équipements répartis entre sièges et chantiers : inventaire consolidé et scénarios de fin de vie.",
+      en: "Equipment split between offices and sites: consolidated inventory and end-of-life scenarios.",
+    },
+  },
+  {
+    slug: "horeca",
+    programmes: ["GTCL-03", "GTCL-04"],
+    why: {
+      fr: "Équipements répartis entre de nombreux établissements : inventaire consolidé et valeur future des actifs.",
+      en: "Equipment spread across many venues: consolidated inventory and future asset value.",
+    },
+  },
+  {
+    slug: "education-recherche",
+    programmes: ["GTCL-07", "GTCL-05"],
+    why: {
+      fr: "Données personnelles d'étudiants et de chercheurs : dé-identification avant traitement externe, scénarios de réemploi.",
+      en: "Personal data of students and researchers: de-identification before external processing, reuse scenarios.",
+    },
+  },
+  {
+    slug: "agroalimentaire",
+    programmes: ["GTCL-03", "GTCL-05"],
+    why: {
+      fr: "Sites de production et bureaux : rapprochement des inventaires et scénarios de réemploi ou de fin de vie.",
+      en: "Production sites and offices: inventory reconciliation and reuse or end-of-life scenarios.",
+    },
+  },
+  {
+    slug: "telecom",
+    programmes: ["GTCL-01", "GTCL-03", "GTCL-08"],
+    why: {
+      fr: "Équipements et supports en grand volume, obligations sectorielles : assainissement, inventaire consolidé, lien exigences–preuves.",
+      en: "Large volumes of equipment and media, sector obligations: sanitisation, consolidated inventory, requirement-to-evidence links.",
+    },
+  },
+];
