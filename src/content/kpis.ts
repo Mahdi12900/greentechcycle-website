@@ -9,10 +9,10 @@
  * Règle : aucun montant en euros (valeur récupérée, CA, économies) n'est publié
  * pour l'instant — décision du 2026-10-04.
  *
- * `toValidate: true` = valeur reprise de la page d'accueil datée, en attendant
- * l'arbitrage de GreenTechCycle entre les valeurs contradictoires listées dans
- * `alternatives` (relevées dans le contenu existant). Changer `value` ici
- * suffit à mettre tout le site à jour.
+ * Valeurs de l'accueil validées par GreenTechCycle le 2026-10-04 (`toValidate: false`) ;
+ * `alternatives` garde la trace des valeurs contradictoires écartées.
+ * `toValidate: true` = chiffre hors accueil, encore à confirmer (certificats, postes
+ * reconditionnés). Changer `value` ici suffit à mettre tout le site à jour.
  */
 
 export type Locale = "fr" | "en";
@@ -38,8 +38,8 @@ export interface Kpi {
 }
 
 export const KPIS = {
-  // ⚠ toValidate : accueil « 152 ETI clientes en production (avr. 2026) » ;
-  // ailleurs « 180+ entreprises accompagnées 2024-2025 » et « 280+ clients accompagnés ».
+  // Validé par GreenTechCycle le 2026-10-04 (valeur de l'accueil). Valeurs écartées :
+  // « 180+ entreprises accompagnées 2024-2025 », « 280+ clients accompagnés ».
   clients: {
     value: 152,
     unit: { fr: "", en: "" },
@@ -47,11 +47,10 @@ export const KPIS = {
     period: { fr: "avril 2026", en: "April 2026" },
     source: { fr: "Liste publique sur demande NDA", en: "Public list available under NDA" },
     date: "2026-04",
-    toValidate: true,
+    toValidate: false,
     alternatives: ["180+ (Résultats clients, 2024-2025)", "280+ (index Secteurs)"],
   },
-  // ⚠ toValidate : accueil « 12 412 actifs IT traités (41 missions 2025) » ;
-  // ailleurs « 42 000+ (2024-2025) » et « 84 000+ orchestrés (cumul mars 2026) ».
+  // Validé le 2026-10-04 (valeur de l'accueil). Écartées : « 42 000+ », « 84 000+ orchestrés ».
   assets: {
     value: 12412,
     unit: { fr: "", en: "" },
@@ -59,10 +58,10 @@ export const KPIS = {
     period: { fr: "2025", en: "2025" },
     source: { fr: "41 missions facturées 2025", en: "41 invoiced missions in 2025" },
     date: "2025-12",
-    toValidate: true,
+    toValidate: false,
     alternatives: ["42 000+ (Résultats clients, 2024-2025)", "84 000+ actifs orchestrés (Plateforme, cumul mars 2026)"],
   },
-  // ⚠ toValidate : accueil « 45 tCO₂e évitées en 2025 » ; ailleurs « 1 850 tCO₂e » et « 6 200 t (cumul) ».
+  // Validé le 2026-10-04 (valeur de l'accueil). Écartées : « 1 850 tCO₂e », « 6 200 t (cumul) ».
   carbon: {
     value: 45,
     unit: { fr: " tCO₂e", en: " tCO₂e" },
@@ -70,10 +69,10 @@ export const KPIS = {
     period: { fr: "2025", en: "2025" },
     source: { fr: "Méthode Boavizta v1.4 + ADEME v23", en: "Boavizta v1.4 + ADEME v23 method" },
     date: "2025-12",
-    toValidate: true,
+    toValidate: false,
     alternatives: ["1 850 tCO₂e (Résultats clients)", "6 200 t cumul quatre ans (Plateforme, Services)"],
   },
-  // ⚠ toValidate : « 38 experts habilités » / « 38 techniciens » / « 38 collaborateurs en CDI » / « 38 ETP ».
+  // Validé le 2026-10-04 (valeur de l'accueil, « 38 experts habilités »).
   team: {
     value: 38,
     unit: { fr: "", en: "" },
@@ -81,10 +80,10 @@ export const KPIS = {
     period: { fr: "2026", en: "2026" },
     source: { fr: "Effectif GreenTechCycle", en: "GreenTechCycle headcount" },
     date: "2026-04",
-    toValidate: true,
+    toValidate: false,
     alternatives: ["38 techniciens habilités", "38 collaborateurs en CDI", "12 techniciens habilités confidentiel défense"],
   },
-  // ⚠ toValidate : « taux réemploi 73 % » (accueil) ; « 72 % » ailleurs (Pourquoi GTC, FAQ, services).
+  // Validé le 2026-10-04 (valeur de l'accueil). Écartée : « 72 % ».
   reuse: {
     value: 73,
     unit: { fr: " %", en: "%" },
@@ -92,7 +91,7 @@ export const KPIS = {
     period: { fr: "2025", en: "2025" },
     source: { fr: "Filière ESS partenaire · R2v3", en: "Partner social-economy channel · R2v3" },
     date: "2025-12",
-    toValidate: true,
+    toValidate: false,
     alternatives: ["72 % (Pourquoi GTC, FAQ, Reconditionnement, Méthodologie, Plateforme)"],
   },
   // ⚠ toValidate : valeur unique dans le contenu, mais à rapprocher des 12 412 actifs (2025).

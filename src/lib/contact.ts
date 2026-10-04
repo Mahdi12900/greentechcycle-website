@@ -4,9 +4,9 @@
  * LEGAL : uniquement ce qu'indique la fiche Pappers lue le 2026-10-04
  * (https://www.pappers.fr/entreprise/waki-cloud-solution-891123952). Rien d'autre.
  *
- * Canaux : le numéro WhatsApp et l'email de contact ne sont pas encore connus.
- * Ils sont lus dans les variables d'environnement publiques (injectées au build) ;
- * un canal non configuré n'est simplement pas affiché. Aucun téléphone n'est
+ * Canaux : WhatsApp = +33 7 45 01 32 39 par défaut (variable d'environnement
+ * prioritaire) ; l'email de contact n'est pas encore connu : lu dans
+ * NEXT_PUBLIC_CONTACT_EMAIL, et masqué tant qu'il n'est pas défini. Aucun téléphone n'est
  * publié tant qu'il n'est pas confirmé.
  */
 
@@ -24,8 +24,13 @@ export const LEGAL = {
   readOn: "2026-10-04",
 } as const;
 
-/** Numéro WhatsApp au format international, chiffres uniquement (ex. 33612345678). */
-export const WHATSAPP_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(/\D/g, "");
+/**
+ * Numéro WhatsApp au format international, chiffres uniquement.
+ * Valeur par défaut : +33 7 45 01 32 39 (communiqué par GreenTechCycle le 2026-10-04),
+ * surchargeable par NEXT_PUBLIC_WHATSAPP_NUMBER.
+ */
+const WHATSAPP_DEFAULT = "33745013239";
+export const WHATSAPP_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || WHATSAPP_DEFAULT).replace(/\D/g, "");
 
 /** Email de contact public. Vide = canal masqué. */
 export const CONTACT_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "").trim())
