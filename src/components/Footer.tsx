@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Logo from "@/components/Logo";
-import { Mail, MessageCircle, Linkedin, Twitter, ArrowUpRight, Send } from "lucide-react";
-import { EMAILS, PREFILL, mailtoHref, whatsappHref } from "@/lib/contact";
+import { Mail, MessageCircle, Linkedin, Twitter, ArrowUpRight, Send, Globe } from "lucide-react";
+import { EMAILS, PREFILL, SERVICE_AREAS, mailtoHref, whatsappHref } from "@/lib/contact";
 import CertificationStrip from "@/components/CertificationStrip";
 
 export default function Footer() {
@@ -102,6 +102,17 @@ export default function Footer() {
               <Logo size="lg" />
             </Link>
             <p className="mt-6 max-w-[65ch] text-body-sm text-fg-muted">{t("tagline")}</p>
+            {/* Zones d'intervention (décision utilisateur, 2026-10-05) : src/lib/contact.ts */}
+            <p className="mt-4 flex items-start gap-2 text-caption text-fg-muted">
+              <Globe className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+              <span>
+                <span className="font-semibold text-fg-strong">
+                  {SERVICE_AREAS.label[isEn ? "en" : "fr"]}
+                  {isEn ? ":" : " :"}
+                </span>{" "}
+                {SERVICE_AREAS.text[isEn ? "en" : "fr"]}
+              </span>
+            </p>
           </div>
 
           <div>

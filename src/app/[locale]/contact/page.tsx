@@ -9,7 +9,7 @@ import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Tag from "@/components/ui/Tag";
 import ContactChannels from "@/components/ContactChannels";
-import { CONTACT_TOPICS, LEGAL, isContactTopic, mailtoHref, type ContactTopic } from "@/lib/contact";
+import { CONTACT_TOPICS, LEGAL, SERVICE_AREAS, isContactTopic, mailtoHref, type ContactTopic } from "@/lib/contact";
 import { getSectorDef } from "@/data/sectors";
 import { getSectorName } from "@/data/sectors-i18n";
 import {
@@ -17,6 +17,7 @@ import {
   Send,
   CheckCircle2,
   Building2,
+  Globe,
   ShieldCheck,
   Clock,
   Leaf,
@@ -92,12 +93,22 @@ function ContactInfo() {
         <SectionHeader tone="dark" eyebrow={t("info.eyebrow")} title={t("info.title")} intro={t("info.body")} />
       </div>
       <ContactChannels />
-      <div className="reveal mt-3 flex items-start gap-4 rounded-xl border border-track bg-bg-card p-5">
-        <Building2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-        <div>
-          <p className="text-eyebrow uppercase text-fg-muted">{tx("Identité légale", "Legal identity")}</p>
-          <p className="mt-2 text-body text-fg">{LEGAL.name}</p>
-          <p className="mt-2 font-mono text-caption text-fg-muted">SIREN {LEGAL.siren} · {LEGAL.rcs}</p>
+      <div className="reveal mt-3 grid gap-4 sm:grid-cols-2">
+        <div className="flex items-start gap-4 rounded-xl border border-track bg-bg-card p-5">
+          <Building2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+          <div>
+            <p className="text-eyebrow uppercase text-fg-muted">{tx("Identité légale", "Legal identity")}</p>
+            <p className="mt-2 text-body text-fg">{LEGAL.name}</p>
+            <p className="mt-2 font-mono text-caption text-fg-muted">SIREN {LEGAL.siren} · {LEGAL.rcs}</p>
+          </div>
+        </div>
+        {/* Zones d'intervention (décision utilisateur, 2026-10-05) : src/lib/contact.ts */}
+        <div className="flex items-start gap-4 rounded-xl border border-track bg-bg-card p-5">
+          <Globe className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+          <div>
+            <p className="text-eyebrow uppercase text-fg-muted">{SERVICE_AREAS.label[isEn ? "en" : "fr"]}</p>
+            <p className="mt-2 text-body text-fg">{SERVICE_AREAS.text[isEn ? "en" : "fr"]}</p>
+          </div>
         </div>
       </div>
 

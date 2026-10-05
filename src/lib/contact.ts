@@ -101,3 +101,29 @@ export const PREFILL = {
     labSubject: "Lab project / R&D partnership — GreenTechCycle",
   },
 } as const;
+
+/**
+ * Zones d'intervention (décision utilisateur, 2026-10-05) : France, Europe, Afrique du Sud
+ * et pays du Golfe. Source unique utilisée par le pied de page, /contact, /pourquoi-gtc et le
+ * JSON-LD Organization.areaServed. Aucune autre affirmation (pas d'agence locale, pas de
+ * partenaire, pas d'éco-organisme) : seule la zone de service est communiquée.
+ */
+export const SERVICE_AREAS = {
+  label: { fr: "Zones d'intervention", en: "Service areas" },
+  text: {
+    fr: "France, Europe, Afrique du Sud et pays du Golfe",
+    en: "France, Europe, South Africa and the Gulf countries",
+  },
+  /** Country/Place pour schema.org Organization.areaServed (reports/*.md, 2026-10-05) */
+  jsonLd: [
+    { "@type": "Country", name: "France" },
+    { "@type": "Place", name: "Europe" },
+    { "@type": "Country", name: "South Africa" },
+    { "@type": "Country", name: "United Arab Emirates" },
+    { "@type": "Country", name: "Saudi Arabia" },
+    { "@type": "Country", name: "Qatar" },
+    { "@type": "Country", name: "Kuwait" },
+    { "@type": "Country", name: "Bahrain" },
+    { "@type": "Country", name: "Oman" },
+  ],
+} as const;

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LEGAL } from "@/lib/contact";
+import { LEGAL, SERVICE_AREAS } from "@/lib/contact";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -125,6 +125,8 @@ export default async function LocaleLayout({
     // Adresse du siège social volontairement omise (décision utilisateur, go-live 2026-10-05).
     legalName: LEGAL.name,
     identifier: { "@type": "PropertyValue", propertyID: "SIREN", value: LEGAL.siren.replace(/\s/g, "") },
+    // Zones d'intervention (décision utilisateur, 2026-10-05) : src/lib/contact.ts
+    areaServed: SERVICE_AREAS.jsonLd,
     sameAs: [
       "https://www.linkedin.com/company/greentechcycle",
       "https://twitter.com/greentechcycle",
