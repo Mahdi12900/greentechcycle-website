@@ -32,6 +32,9 @@ import { CountUp } from "@/components/motion";
 import VideoBackground from "@/components/visuals/VideoBackground";
 import FilmModal from "@/components/visuals/FilmModal";
 import FilmSection from "@/components/FilmSection";
+import SchemaOrg from "@/components/SchemaOrg";
+import { videoObjectSchema } from "@/lib/seo";
+import { SLOT_VIDEOS } from "@/content/media-slots";
 import { KpiStat, KpiBar } from "@/components/kpi/Kpi";
 import { KPIS } from "@/content/kpis";
 import TrustBand from "@/components/TrustBand";
@@ -153,8 +156,13 @@ export default function HomePage() {
     popular?: boolean;
   }>;
 
+  // Donnée structurée VideoObject du film de marque (plan SEO du 2026-10-05) : exposée une
+  // fois pour toute la page (hero + section « le film » jouent la même vidéo "brand-film").
+  const brandFilmSpec = SLOT_VIDEOS["brand-film"];
+
   return (
     <div className="bg-bg">
+      {brandFilmSpec && <SchemaOrg data={videoObjectSchema(brandFilmSpec, lang)} />}
       {/* ==========================================================
           1–2. HERO — notice CSRD intégrée, split 7/5, preuve chiffrée
          ========================================================== */}

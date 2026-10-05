@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { pageMetadata, type LocaleParams, type PageCopy } from "@/lib/seo";
+import { pageMetadata, videoObjectSchema, type LocaleParams, type PageCopy } from "@/lib/seo";
+import SchemaOrg from "@/components/SchemaOrg";
+import { SLOT_VIDEOS } from "@/content/media-slots";
 
 const META_COPY: PageCopy = {
   fr: {
@@ -20,6 +22,15 @@ export async function generateMetadata({ params }: LocaleParams): Promise<Metada
   return pageMetadata(locale, "/demo", META_COPY);
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+/* VideoObject du film de marque (plan SEO du 2026-10-05) : /demo le joue en entier */
+export default async function Layout({ children, params }: { children: React.ReactNode } & LocaleParams) {
+  const { locale } = await params;
+  const lang = locale === "en" ? "en" : "fr";
+  const spec = SLOT_VIDEOS["brand-film"];
+  return (
+    <>
+      {spec && <SchemaOrg data={videoObjectSchema(spec, lang)} />}
+      {children}
+    </>
+  );
 }

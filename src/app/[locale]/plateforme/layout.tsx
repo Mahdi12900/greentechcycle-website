@@ -6,14 +6,14 @@ import { SITE_URL as SITE } from "@/lib/site";
 
 const META_COPY: PageCopy = {
   fr: {
-    title: "Plateforme ITAD unifiée | Tableau de bord et traçabilité",
+    title: "Plateforme ITAD unifiée | Tableau de bord",
     description:
-      "Plateforme SaaS ITAD unifiée : tableau de bord temps réel, traçabilité horodatée (SHA-256), comptes-rendus automatisés et intégration API pour la gestion de vos actifs IT en fin de vie.",
+      "Plateforme SaaS ITAD unifiée : traçabilité horodatée (SHA-256), comptes-rendus automatisés et intégration API pour vos actifs IT en fin de vie.",
   },
   en: {
-    title: "Unified ITAD platform | Dashboard and traceability",
+    title: "Unified ITAD platform | Dashboard",
     description:
-      "Unified ITAD SaaS platform: real-time dashboard, timestamped traceability (SHA-256), automated reporting and API integration to manage your end-of-life IT assets.",
+      "Unified ITAD SaaS platform: timestamped traceability (SHA-256), automated reporting and API integration for your end-of-life IT assets.",
   },
 };
 

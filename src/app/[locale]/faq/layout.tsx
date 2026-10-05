@@ -4,14 +4,14 @@ import SchemaOrg from "@/components/SchemaOrg";
 
 const META_COPY: PageCopy = {
   fr: {
-    title: "FAQ | Questions fréquentes sur l'ITAD et le recyclage IT",
+    title: "FAQ | ITAD et recyclage IT",
     description:
-      "Réponses aux questions fréquentes sur l'ITAD, l'effacement de données, le reconditionnement, la conformité CSRD et la gestion des DEEE en entreprise.",
+      "Réponses aux questions fréquentes sur l'ITAD, l'effacement de données, le reconditionnement et la conformité CSRD.",
   },
   en: {
-    title: "FAQ | Frequently asked questions on ITAD and IT recycling",
+    title: "FAQ | ITAD & IT recycling",
     description:
-      "Answers to frequently asked questions on ITAD, data erasure, refurbishment, CSRD compliance and WEEE management in business.",
+      "Answers to frequently asked questions on ITAD, data erasure, refurbishment and CSRD compliance.",
   },
 };
 

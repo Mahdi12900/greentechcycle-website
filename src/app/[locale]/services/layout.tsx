@@ -6,14 +6,14 @@ import { SITE_URL as SITE } from "@/lib/site";
 
 const META_COPY: PageCopy = {
   fr: {
-    title: "Services ITAD | Effacement, collecte, reconditionnement",
+    title: "Services ITAD | Effacement, collecte",
     description:
-      "Découvrez nos services ITAD : effacement selon NIST 800-88, collecte sécurisée, reconditionnement, reporting CSRD et traçabilité horodatée (SHA-256) pour vos actifs IT.",
+      "Nos services ITAD : effacement selon NIST 800-88, collecte sécurisée, reconditionnement et reporting CSRD pour vos actifs IT.",
   },
   en: {
-    title: "ITAD services | Erasure, collection, refurbishment",
+    title: "ITAD services | Erasure, collection",
     description:
-      "Explore our ITAD services: NIST 800-88 erasure, secure collection, refurbishment, CSRD reporting and timestamped traceability (SHA-256) for your IT assets.",
+      "Our ITAD services: NIST 800-88 erasure, secure collection, refurbishment and CSRD reporting for your IT assets.",
   },
 };
 

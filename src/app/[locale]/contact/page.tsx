@@ -27,8 +27,100 @@ import {
  * /contact — DESIGN.md §10.6. Formulaire qualifié pré-rempli via ?offre=<slug>.
  * Hero court paper → formulaire #formulaire (cream) → voies directes (night).
  * Le bandeau d'urgence devient une notice ; la section « conversion verte » est coupée.
+ *
+ * SEO (2026-10-05, reports/seo-plan-gtc.md) : le H1 et la section de coordonnées ne dépendent
+ * d'aucun paramètre d'URL — ils sont sortis de `ContactForm` pour ne plus être gelés derrière
+ * le `<Suspense>` qu'impose `useSearchParams()`. Avant ce découpage, le HTML servi au premier
+ * chargement (avant hydratation) ne contenait aucun `<h1>`, seulement le repli du Suspense :
+ * un robot qui ne rend pas le JavaScript ne voyait donc aucun titre de page.
  */
-function ContactInner() {
+function ContactHero() {
+  const t = useTranslations("Contact");
+  return (
+    <section className="bg-bg py-12 lg:py-16" aria-labelledby="contact-hero">
+      <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+        <div className="reveal">
+          <Tag variant="brand" icon={<CalendarCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
+            {t("urgency.text")}
+          </Tag>
+          <p className="mt-6 text-eyebrow uppercase text-fg-muted">{t("hero.eyebrow")}</p>
+          <h1 id="contact-hero" className="mt-3 max-w-[24ch] text-display-lg text-fg">
+            {t("hero.title")}
+          </h1>
+          <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("hero.subtitle")}</p>
+          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-caption text-fg-strong">
+            <li className="inline-flex items-center gap-2">
+              <Clock className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+              {t("hero.trust1")}
+            </li>
+            <li className="inline-flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+              {t("hero.trust2")}
+            </li>
+            <li className="inline-flex items-center gap-2">
+              <Leaf className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+              {t("hero.trust3")}
+            </li>
+          </ul>
+          <a
+            href="#formulaire"
+            className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-fg-muted hover:text-fg"
+          >
+            <ArrowDown className="h-4 w-4" aria-hidden="true" />
+            {t("hero.scrollLabel")}
+          </a>
+          {/* Voies directes : WhatsApp / email (si configurés) / formulaire */}
+          <ContactChannels variant="pills" className="mt-6" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Repli affiché le temps que `useSearchParams()` se résolve : garde la hauteur de section approximative. */
+function ContactFormFallback() {
+  return <section className="border-t border-track bg-bg-card py-12 lg:py-16" aria-hidden="true" style={{ minHeight: "480px" }} />;
+}
+
+function ContactInfo() {
+  const t = useTranslations("Contact");
+  const isEn = useLocale() === "en";
+  const tx = (fr: string, en: string) => (isEn ? en : fr);
+  return (
+    <Section tone="forest">
+      <div className="reveal">
+        <SectionHeader tone="dark" eyebrow={t("info.eyebrow")} title={t("info.title")} intro={t("info.body")} />
+      </div>
+      <ContactChannels />
+      <div className="reveal mt-3 flex items-start gap-4 rounded-xl border border-track bg-bg-card p-5">
+        <Building2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+        <div>
+          <p className="text-eyebrow uppercase text-fg-muted">{tx("Identité légale", "Legal identity")}</p>
+          <p className="mt-2 text-body text-fg">{LEGAL.name}</p>
+          <p className="mt-2 font-mono text-caption text-fg-muted">SIREN {LEGAL.siren} · {LEGAL.rcs}</p>
+        </div>
+      </div>
+
+      {/* Ancienne S4 « conversion verte » coupée (la page est déjà la conversion) :
+          ses deux liens de découverte restent accessibles ici. */}
+      <div className="mt-12 border-t border-track pt-8">
+        <p className="text-eyebrow uppercase text-fg-muted">{t("conversion.eyebrow")}</p>
+        <p className="mt-2 max-w-[65ch] text-body-sm text-fg-muted">{t("conversion.subtitle")}</p>
+        <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+          <TextLink href="/cas-usages" tone="dark">
+            {t("conversion.cta1")}
+          </TextLink>
+          <TextLink href="/plateforme" tone="dark">
+            {t("conversion.cta2")}
+          </TextLink>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+/** Formulaire #formulaire (cream) : seule partie qui dépend de `useSearchParams()` (?offre, ?sujet, ?secteur). */
+function ContactForm() {
   const t = useTranslations("Contact");
   const locale = useLocale();
   const searchParams = useSearchParams();
@@ -128,45 +220,6 @@ function ContactInner() {
 
   return (
     <div>
-      {/* ═══════════════ HERO court (paper) ═══════════════ */}
-      <section className="bg-bg py-12 lg:py-16" aria-labelledby="contact-hero">
-        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <div className="reveal">
-            <Tag variant="brand" icon={<CalendarCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
-              {t("urgency.text")}
-            </Tag>
-            <p className="mt-6 text-eyebrow uppercase text-fg-muted">{t("hero.eyebrow")}</p>
-            <h1 id="contact-hero" className="mt-3 max-w-[24ch] text-display-lg text-fg">
-              {t("hero.title")}
-            </h1>
-            <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("hero.subtitle")}</p>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-caption text-fg-strong">
-              <li className="inline-flex items-center gap-2">
-                <Clock className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-                {t("hero.trust1")}
-              </li>
-              <li className="inline-flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-                {t("hero.trust2")}
-              </li>
-              <li className="inline-flex items-center gap-2">
-                <Leaf className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-                {t("hero.trust3")}
-              </li>
-            </ul>
-            <a
-              href="#formulaire"
-              className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-fg-muted hover:text-fg"
-            >
-              <ArrowDown className="h-4 w-4" aria-hidden="true" />
-              {t("hero.scrollLabel")}
-            </a>
-            {/* Voies directes : WhatsApp / email (si configurés) / formulaire */}
-            <ContactChannels variant="pills" className="mt-6" />
-          </div>
-        </div>
-      </section>
-
       {/* ═══════════════ FORMULAIRE #formulaire (cream) ═══════════════ */}
       <section className="border-t border-track bg-bg-card py-12 lg:py-16" id="formulaire" aria-labelledby="form-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
@@ -391,47 +444,18 @@ function ContactInner() {
           </div>
         </div>
       </section>
-
-      {/* ═══════════════ COORDONNÉES & VOIES DIRECTES (3 colonnes) ═══════════════
-          forest plutôt que night : la section précède le footer (night) et §4.3
-          interdit deux sections night consécutives. */}
-      <Section tone="forest">
-        <div className="reveal">
-          <SectionHeader tone="dark" eyebrow={t("info.eyebrow")} title={t("info.title")} intro={t("info.body")} />
-        </div>
-        <ContactChannels />
-        <div className="reveal mt-3 flex items-start gap-4 rounded-xl border border-track bg-bg-card p-5">
-          <Building2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-          <div>
-            <p className="text-eyebrow uppercase text-fg-muted">{tx("Identité légale", "Legal identity")}</p>
-            <p className="mt-2 text-body text-fg">{LEGAL.name}</p>
-            <p className="mt-2 font-mono text-caption text-fg-muted">SIREN {LEGAL.siren} · {LEGAL.rcs}</p>
-          </div>
-        </div>
-
-        {/* Ancienne S4 « conversion verte » coupée (la page est déjà la conversion) :
-            ses deux liens de découverte restent accessibles ici. */}
-        <div className="mt-12 border-t border-track pt-8">
-          <p className="text-eyebrow uppercase text-fg-muted">{t("conversion.eyebrow")}</p>
-          <p className="mt-2 max-w-[65ch] text-body-sm text-fg-muted">{t("conversion.subtitle")}</p>
-          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
-            <TextLink href="/cas-usages" tone="dark">
-              {t("conversion.cta1")}
-            </TextLink>
-            <TextLink href="/plateforme" tone="dark">
-              {t("conversion.cta2")}
-            </TextLink>
-          </div>
-        </div>
-      </Section>
     </div>
   );
 }
 
 export default function ContactPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-bg" />}>
-      <ContactInner />
-    </Suspense>
+    <div>
+      <ContactHero />
+      <Suspense fallback={<ContactFormFallback />}>
+        <ContactForm />
+      </Suspense>
+      <ContactInfo />
+    </div>
   );
 }

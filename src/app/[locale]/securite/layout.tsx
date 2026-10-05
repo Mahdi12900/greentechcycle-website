@@ -3,7 +3,7 @@ import { pageMetadata, type LocaleParams, type PageCopy } from "@/lib/seo";
 
 const META_COPY: PageCopy = {
   fr: {
-    title: "Sécurité des données | Effacement selon NIST 800-88",
+    title: "Sécurité des données | NIST 800-88",
     description:
       "Effacement selon NIST 800-88, traçabilité horodatée (empreinte SHA-256), chaîne de possession documentée et conformité RGPD pour vos données en fin de vie.",
   },

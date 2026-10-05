@@ -35,8 +35,8 @@ export async function generateMetadata({
       template: "%s | GreenTechCycle",
     },
     description: isEn
-      ? "GreenTechCycle, unified ITAD platform. Attested erasure, timestamped traceability (SHA-256), ESG/CSRD reporting and carbon footprint for responsible IT asset management."
-      : "GreenTechCycle, plateforme ITAD unifiée. Effacement attesté, traçabilité horodatée (SHA-256), reporting ESG/CSRD et bilan carbone pour une gestion responsable de vos actifs IT.",
+      ? "GreenTechCycle, unified ITAD platform: attested erasure, SHA-256 traceability, CSRD reporting and carbon footprint for your IT assets."
+      : "GreenTechCycle, plateforme ITAD unifiée : effacement attesté, traçabilité SHA-256, reporting CSRD et bilan carbone pour vos actifs IT.",
     icons: {
       icon: { url: "/favicon.svg", type: "image/svg+xml" },
       apple: "/icon.svg",
