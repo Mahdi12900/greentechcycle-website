@@ -184,7 +184,17 @@ function escapeHtml(v: string): string {
   return v.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string);
 }
 
-type EmailOutcome = { ok: boolean; stage?: "internal" | "confirmation"; reason?: string; internal: boolean; confirmation: boolean };
+type EmailOutcome = {
+  ok: boolean;
+  stage?: "internal" | "confirmation";
+  reason?: string;
+  internal: boolean;
+  confirmation: boolean;
+  calendarCopy: boolean;
+};
+
+/** outlook_495F440A0341820A@outlook.com : compte Outlook.com connecté par l'utilisateur (2026-10-05). */
+const DEFAULT_BOOKING_CALENDAR_EMAIL = "outlook_495F440A0341820A@outlook.com";
 
 /**
  * Envoie l'email interne (sales@/support@/lab.rd@) puis, s'il réussit, l'email de
@@ -195,7 +205,7 @@ type EmailOutcome = { ok: boolean; stage?: "internal" | "confirmation"; reason?:
 async function sendBookingEmails(record: StoredReservation): Promise<EmailOutcome> {
   if (mailTransport() === "none") {
     console.error("[reservation] Aucun transport e-mail configuré (SMTP_* ou RESEND_API_KEY)");
-    return { ok: false, stage: "internal", reason: "no_transport", internal: false, confirmation: false };
+    return { ok: false, stage: "internal", reason: "no_transport", internal: false, confirmation: false, calendarCopy: false };
   }
 
   const internalRecipient = process.env.CONTACT_EMAIL || CONTACT_TOPICS[record.topic].recipient;
@@ -281,11 +291,35 @@ async function sendBookingEmails(record: StoredReservation): Promise<EmailOutcom
   });
   if (!internalOk) {
     console.error(`[reservation] Échec envoi email interne id=${record.id} to=${internalRecipient}`);
-    return { ok: false, stage: "internal", reason: "send_failed", internal: false, confirmation: false };
+    return { ok: false, stage: "internal", reason: "send_failed", internal: false, confirmation: false, calendarCopy: false };
+  }
+
+  // Copie agenda (Outlook.com) : uniquement pour un vrai rendez-vous (ics présent). Ne doit jamais
+  // faire échouer la réservation — sales@ reste la trace qui fait foi. Échec simplement journalisé.
+  let calendarCopy = false;
+  if (icsAttachment) {
+    const calendarEmail = process.env.BOOKING_CALENDAR_EMAIL || DEFAULT_BOOKING_CALENDAR_EMAIL;
+    const calendarDateLabel = new Intl.DateTimeFormat("fr-FR", {
+      timeZone: "Europe/Paris",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(new Date(record.appointmentStart as string));
+    calendarCopy = await sendMail({
+      to: calendarEmail,
+      subject: `Démo GreenTechCycle — ${record.company || record.name} — ${calendarDateLabel}`,
+      html: `<p>Invitation calendaire pour la démo GreenTechCycle — ${e(record.company || record.name)}, le ${e(calendarDateLabel)} (heure de Paris). Référence : ${record.id}.</p>`,
+      attachments: icsAttachment,
+    });
+    if (!calendarCopy) {
+      console.error(`[reservation] Échec envoi copie agenda id=${record.id} to=${calendarEmail}`);
+    }
   }
 
   if (!record.email) {
-    return { ok: true, internal: true, confirmation: false };
+    return { ok: true, internal: true, confirmation: false, calendarCopy };
   }
 
   const confirmationOk = await sendMail({
@@ -297,10 +331,10 @@ async function sendBookingEmails(record: StoredReservation): Promise<EmailOutcom
   });
   if (!confirmationOk) {
     console.error(`[reservation] Échec envoi confirmation prospect id=${record.id} to=${record.email}`);
-    return { ok: false, stage: "confirmation", reason: "send_failed", internal: true, confirmation: false };
+    return { ok: false, stage: "confirmation", reason: "send_failed", internal: true, confirmation: false, calendarCopy };
   }
 
-  return { ok: true, internal: true, confirmation: true };
+  return { ok: true, internal: true, confirmation: true, calendarCopy };
 }
 
 export async function POST(req: Request) {
@@ -347,6 +381,7 @@ export async function POST(req: Request) {
     persisted: supabaseOk ? "supabase" : fileOk ? "file" : "none",
     emailInternal: emailOutcome.internal,
     emailConfirmation: emailOutcome.confirmation,
+    calendarCopy: emailOutcome.calendarCopy,
     emailOk: emailOutcome.ok,
     ...(emailOutcome.ok ? {} : { emailFailureStage: emailOutcome.stage, emailFailureReason: emailOutcome.reason }),
   });
