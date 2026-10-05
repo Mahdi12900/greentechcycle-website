@@ -2,12 +2,17 @@ import { NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 import { randomUUID } from "crypto";
+import { CONTACT_TOPICS, isContactTopic, type ContactTopic } from "@/lib/contact";
+import { mailTransport, sendMail } from "@/lib/mailer";
 
 /* ─────────────────────────────────────────────────────────────────────────
    /api/reservation, qualified lead intake.
    - Persistence: Supabase (table `reservations`) when env vars are set.
    - Fallback: append a JSON line to `reservations.jsonl` at repo root.
-   - Email: Resend transactional email when RESEND_API_KEY is set.
+   - Email : src/lib/mailer.ts — SMTP (nodemailer) si SMTP_HOST/SMTP_USER/SMTP_PASS sont
+     définis, sinon Resend si RESEND_API_KEY, sinon aucun envoi (journalisé).
+     Routage par sujet (src/lib/contact.ts → CONTACT_TOPICS) : commercial → sales@,
+     support → support@, lab → lab.rd@ ; expéditeur noreply@ (jamais affiché).
    - Always returns { success, reservation_id, mode } so the form can degrade
      gracefully on the client side.
 ───────────────────────────────────────────────────────────────────────── */
@@ -28,6 +33,7 @@ type ReservationPayload = {
   slots?: string[];
   consent?: boolean;
   offerSlug?: string | null;
+  topic?: string;
   source?: string;
 };
 
@@ -47,6 +53,7 @@ type StoredReservation = {
   slots: string[];
   consent: boolean;
   offerSlug: string | null;
+  topic: ContactTopic;
   source: string;
 };
 
@@ -78,6 +85,8 @@ function buildRecord(payload: ReservationPayload): StoredReservation {
       : [],
     consent: !!payload.consent,
     offerSlug: payload.offerSlug ? sanitize(payload.offerSlug, 80) : null,
+    // Réservations de démo / devis sans sujet explicite → commercial
+    topic: isContactTopic(payload.topic) ? payload.topic : "commercial",
     source: sanitize(payload.source ?? "site-reserver", 80),
   };
 }
@@ -110,7 +119,8 @@ async function persistInSupabase(record: StoredReservation): Promise<boolean> {
         message: record.message,
         creneaux: record.slots,
         status: record.status,
-        source: record.source,
+        // Le sujet voyage dans « source » (ex. contact:support) : pas de nouvelle colonne requise
+        source: record.topic === "commercial" ? record.source : `${record.source}:${record.topic}`,
       }),
     });
     if (!res.ok) {
@@ -140,34 +150,40 @@ async function persistInFile(record: StoredReservation): Promise<boolean> {
 }
 
 async function sendEmails(record: StoredReservation): Promise<{ internal: boolean; confirmation: boolean }> {
-  const apiKey = process.env.RESEND_API_KEY;
-  const internalRecipient = process.env.CONTACT_EMAIL ?? "mahdi@greentechcycle.fr";
-  const fromAddress = process.env.RESEND_FROM ?? "GreenTechCycle <reservations@greentechcycle.fr>";
+  // Destinataire interne selon le sujet ; CONTACT_EMAIL (serveur) peut tout rediriger (tests).
+  const internalRecipient = process.env.CONTACT_EMAIL || CONTACT_TOPICS[record.topic].recipient;
+  // Les champs saisis sont échappés avant d'être insérés dans le HTML des emails
+  const e = (v: string) => v.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string);
+  const topicLabel = CONTACT_TOPICS[record.topic].label.fr;
 
-  if (!apiKey) return { internal: false, confirmation: false };
+  if (mailTransport() === "none") {
+    console.warn("[reservation] Aucun transport e-mail configuré (SMTP_* ou RESEND_API_KEY) : demande enregistrée sans envoi");
+    return { internal: false, confirmation: false };
+  }
 
-  const offerLabel = record.offerSlug ?? "demande générale";
-  const internalSubject = `Nouvelle réservation · ${offerLabel} · ${record.company || record.name}`;
+  const offerLabel = e(record.offerSlug ?? "demande générale");
+  const internalSubject = `[${record.topic}] ${record.offerSlug ?? "demande"} · ${record.company || record.name}`;
   const internalHtml = `
-    <h2>Nouvelle réservation qualifiée</h2>
+    <h2>Nouvelle demande · ${e(topicLabel)}</h2>
     <p><strong>Référence :</strong> ${record.id}</p>
+    <p><strong>Sujet :</strong> ${e(topicLabel)}</p>
     <p><strong>Offre :</strong> ${offerLabel}</p>
-    <p><strong>Source :</strong> ${record.source}</p>
+    <p><strong>Source :</strong> ${e(record.source)}</p>
     <hr/>
-    <p><strong>${record.name}</strong>, ${record.persona}</p>
-    <p>${record.email} · ${record.phone}</p>
-    <p>${record.company} · ${record.size}</p>
-    <p><strong>Sites :</strong> ${record.sites || "-"}</p>
+    <p><strong>${e(record.name)}</strong>, ${e(record.persona)}</p>
+    <p>${e(record.email)} · ${e(record.phone)}</p>
+    <p>${e(record.company)} · ${e(record.size)}</p>
+    <p><strong>Sites :</strong> ${e(record.sites) || "-"}</p>
     <hr/>
     <p><strong>Volumes / besoins :</strong></p>
-    <p>${record.needs.replace(/\n/g, "<br/>") || "-"}</p>
+    <p>${e(record.needs).replace(/\n/g, "<br/>") || "-"}</p>
     <p><strong>Message :</strong></p>
-    <p>${(record.message || "").replace(/\n/g, "<br/>") || "-"}</p>
-    <p><strong>Créneaux préférés :</strong> ${record.slots.join(" · ") || "-"}</p>
+    <p>${e(record.message || "").replace(/\n/g, "<br/>") || "-"}</p>
+    <p><strong>Créneaux préférés :</strong> ${e(record.slots.join(" · ")) || "-"}</p>
   `;
 
   const confirmationHtml = `
-    <p>Bonjour ${record.name.split(" ")[0] || ""},</p>
+    <p>Bonjour ${e(record.name.split(" ")[0] || "")},</p>
     <p>Merci pour votre demande concernant <strong>${offerLabel}</strong>.</p>
     <p>Un responsable GreenTechCycle vous recontacte sous 24 heures ouvrées
     avec une proposition personnalisée et la confirmation d'un créneau.</p>
@@ -175,31 +191,12 @@ async function sendEmails(record: StoredReservation): Promise<{ internal: boolea
     <p>L'équipe GreenTechCycle</p>
   `;
 
-  const send = async (to: string, subject: string, html: string): Promise<boolean> => {
-    try {
-      const res = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ from: fromAddress, to, subject, html }),
-      });
-      if (!res.ok) {
-        const text = await res.text().catch(() => "");
-        console.error("[reservation] Resend failed", res.status, text);
-        return false;
-      }
-      return true;
-    } catch (err) {
-      console.error("[reservation] Resend exception", err);
-      return false;
-    }
-  };
-
   const [internal, confirmation] = await Promise.all([
-    send(internalRecipient, internalSubject, internalHtml),
-    record.email ? send(record.email, "Votre réservation GreenTechCycle", confirmationHtml) : Promise.resolve(false),
+    // Réponse directe au demandeur depuis la boîte interne (sales@, support@ ou lab.rd@)
+    sendMail({ to: internalRecipient, subject: internalSubject, html: internalHtml, replyTo: record.email || undefined }),
+    record.email
+      ? sendMail({ to: record.email, subject: "Votre demande GreenTechCycle", html: confirmationHtml, replyTo: internalRecipient })
+      : Promise.resolve(false),
   ]);
 
   return { internal, confirmation };
@@ -216,12 +213,13 @@ export async function POST(req: Request) {
     );
   }
 
-  // Minimum required fields
+  // Minimum required fields (le formulaire /contact n'exige pas de téléphone)
+  const phoneOptional = sanitize(payload.source, 40) === "contact";
   if (
     !sanitize(payload.name) ||
     !sanitize(payload.email) ||
     !emailIsValid(sanitize(payload.email)) ||
-    !sanitize(payload.phone) ||
+    (!phoneOptional && !sanitize(payload.phone)) ||
     !sanitize(payload.company) ||
     !payload.consent
   ) {

@@ -3,17 +3,27 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import { Menu, X, ChevronDown, Globe } from "lucide-react";
-import Image from "next/image";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import Logo from "@/components/Logo";
+import { useSiteUi } from "@/components/SiteUiContext";
 
+/**
+ * Header unique (DESIGN.md §6.1–6.2).
+ * - Seul élément fixe en haut. Se retire (`data-hidden`) quand une barre
+ *   d'onglets (SectionNav) prend le relais.
+ * - Logo seul, 5 menus + Tarifs, switch langue texte, bouton primaire md.
+ */
 export default function Header() {
   const t = useTranslations("Header");
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
+  const { headerHidden } = useSiteUi();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const navRef = useRef<HTMLElement>(null);
 
   const megaMenus: Record<string, { href: string; label: string }[]> = {
     platform: [
@@ -31,6 +41,8 @@ export default function Header() {
       { href: "/services/recyclage-deee", label: t("megaMenu.solutions.items.recycling") },
       { href: "/services/cybersecurite", label: t("megaMenu.solutions.items.cyber") },
       { href: "/services/wakibox", label: t("megaMenu.solutions.items.wakibox") },
+      { href: "/services/collecte-logistique", label: t("megaMenu.solutions.items.collection") },
+      { href: "/certifications", label: t("megaMenu.solutions.items.certifications") },
       { href: "/cas-usages", label: t("megaMenu.solutions.items.useCases") },
     ],
     sectors: [
@@ -66,17 +78,26 @@ export default function Header() {
       { href: "/resultats-clients", label: t("megaMenu.company.items.results") },
       { href: "/parcours-client", label: t("megaMenu.company.items.journey") },
       { href: "/ecosysteme", label: t("megaMenu.company.items.ecosystem") },
+      { href: "/lab", label: t("megaMenu.company.items.lab") },
       { href: "/carrieres", label: t("megaMenu.company.items.careers") },
     ],
   };
 
   const navItems = [
-    { key: "platform", label: t("nav.platform"), hasMenu: true },
-    { key: "solutions", label: t("nav.solutions"), hasMenu: true },
-    { key: "sectors", label: t("nav.sectors"), hasMenu: true },
-    { key: "resources", label: t("nav.resources"), hasMenu: true },
-    { key: "company", label: t("nav.company"), hasMenu: true },
+    { key: "platform", label: t("nav.platform") },
+    { key: "solutions", label: t("nav.solutions") },
+    { key: "sectors", label: t("nav.sectors") },
+    { key: "resources", label: t("nav.resources") },
+    { key: "company", label: t("nav.company") },
   ];
+
+  /** Un menu est « actif » si la page courante fait partie de ses liens. */
+  const isActiveGroup = (key: string) =>
+    megaMenus[key].some((l) => {
+      const base = l.href.split("#")[0];
+      return base !== "/tarifs" && (pathname === base || pathname.startsWith(base + "/"));
+    });
+  const pricingActive = pathname === "/tarifs";
 
   function handleMouseEnter(key: string) {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -97,125 +118,217 @@ export default function Header() {
     setOpenMenu(null);
   }, [pathname]);
 
+  /* Échap ferme menus ; clic extérieur ferme le menu déroulant */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpenMenu(null);
+        setMobileOpen(false);
+      }
+    };
+    const onClick = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) setOpenMenu(null);
+    };
+    window.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onClick);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onClick);
+    };
+  }, []);
+
+  /* Bordure basse après 8 px de défilement (§6.1) — écouteur passif */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  /* Panneau mobile plein écran : bloque le scroll de la page */
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mobileOpen]);
+
+  const linkBase =
+    "relative inline-flex h-10 items-center gap-1 rounded-lg px-3 text-body-sm font-medium transition-colors";
+  const linkIdle = "text-fg-strong hover:bg-white/[0.04] hover:text-fg";
+  const linkActive =
+    "text-fg after:absolute after:inset-x-3 after:-bottom-[13px] lg:after:-bottom-[17px] after:h-0.5 after:bg-emerald";
+
+  const hidden = headerHidden && !mobileOpen;
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-      <div className="container-max mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo + tagline */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="flex flex-col">
-              <Image src="/logo/logo-horizontal.svg" alt="GreenTechCycle" width={200} height={40} className="h-10 w-auto" priority />
-              <span className="hidden sm:block text-[10px] font-medium text-gray-400 tracking-wider uppercase mt-0.5 ml-0.5">
-                {t("nav.home") === "Accueil" ? "Plateforme ITAD unifiée" : "Unified ITAD Platform"}
-              </span>
-            </div>
+    <header
+      data-hidden={hidden ? "true" : undefined}
+      className={`fixed inset-x-0 top-0 z-50 border-b bg-bg/80 backdrop-blur-md transition-[transform,border-color] duration-200 ease-out ${
+        scrolled || mobileOpen ? "is-scrolled border-track" : "border-transparent"
+      } ${hidden ? "-translate-y-full" : "translate-y-0"}`}
+    >
+      <div className="container-max px-5 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between gap-6 lg:h-[72px]">
+          <Link href="/" className="flex flex-shrink-0 items-center" aria-label="GreenTechCycle — accueil">
+            <Logo />
           </Link>
 
-          {/* Desktop nav with mega-menus */}
-          <nav className="hidden lg:flex items-center gap-1" aria-label="Navigation principale">
-            <Link href="/" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary transition-colors rounded-lg hover:bg-gray-50">
-              {t("nav.home")}
-            </Link>
-            {navItems.map((item) => (
-              <div
-                key={item.key}
-                className="relative"
-                onMouseEnter={() => handleMouseEnter(item.key)}
-                onMouseLeave={handleMouseLeave}
-              >
-                <button
-                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary transition-colors rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1"
-                  aria-expanded={openMenu === item.key}
-                  aria-haspopup="true"
+          {/* Navigation desktop */}
+          <nav ref={navRef} className="hidden items-center gap-1 lg:flex" aria-label={locale === "en" ? "Main navigation" : "Navigation principale"}>
+            {navItems.map((item) => {
+              const open = openMenu === item.key;
+              const active = isActiveGroup(item.key);
+              return (
+                <div
+                  key={item.key}
+                  className="relative"
+                  onMouseEnter={() => handleMouseEnter(item.key)}
+                  onMouseLeave={handleMouseLeave}
                 >
-                  {item.label}
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${openMenu === item.key ? "rotate-180" : ""}`} aria-hidden="true" />
-                </button>
-                {openMenu === item.key && (
-                  <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50" role="menu">
-                    {megaMenus[item.key].map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className="block px-4 py-2.5 text-sm text-gray-600 hover:text-primary hover:bg-gray-50 transition-colors focus:outline-none focus:bg-gray-50 focus:text-primary"
-                        role="menuitem"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-            <Link href="/pourquoi-gtc" className="px-3 py-2 text-sm font-medium text-[#10B981] hover:text-primary transition-colors rounded-lg hover:bg-gray-50">
-              {t("nav.whyGtc")}
-            </Link>
-            <Link href="/tarifs" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary transition-colors rounded-lg hover:bg-gray-50">
+                  <button
+                    type="button"
+                    onClick={() => setOpenMenu(open ? null : item.key)}
+                    className={`${linkBase} ${active ? linkActive : linkIdle}`}
+                    aria-expanded={open}
+                    aria-controls={`menu-${item.key}`}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      className={`h-4 w-4 text-fg-muted transition-transform ${open ? "rotate-180" : ""}`}
+                      aria-hidden="true"
+                    />
+                  </button>
+                  {open && (
+                    <div
+                      id={`menu-${item.key}`}
+                      className={`absolute left-0 top-full z-50 mt-2 rounded-xl border border-track bg-bg p-2 shadow-float ${
+                        item.key === "sectors" ? "grid w-[480px] grid-cols-2 gap-x-2" : "w-64"
+                      }`}
+                    >
+                      {megaMenus[item.key].map((link) => {
+                        const current = pathname === link.href;
+                        return (
+                          <Link
+                            key={link.href}
+                            href={link.href}
+                            aria-current={current ? "page" : undefined}
+                            className={`block rounded-lg px-3 py-2 text-body-sm transition-colors hover:bg-white/[0.04] hover:text-fg ${
+                              current ? "font-semibold text-fg" : "text-fg-strong"
+                            }`}
+                          >
+                            {link.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+            <Link
+              href="/tarifs"
+              aria-current={pricingActive ? "page" : undefined}
+              className={`${linkBase} ${pricingActive ? linkActive : linkIdle}`}
+            >
               {t("nav.pricing")}
             </Link>
           </nav>
 
-          {/* Right side */}
-          <div className="hidden lg:flex items-center gap-3">
+          {/* Droite */}
+          <div className="hidden items-center gap-2 lg:flex">
             <button
+              type="button"
               onClick={switchLocale}
-              className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-500 hover:text-primary transition-colors rounded-lg hover:bg-gray-50"
-              aria-label="Switch language"
+              className="inline-flex h-10 items-center rounded-lg px-3 text-body-sm font-medium text-fg-strong transition-colors hover:bg-white/[0.04] hover:text-fg"
+              aria-label={locale === "fr" ? "Switch to English" : "Passer en français"}
+              lang={locale === "fr" ? "en" : "fr"}
             >
-              <Globe className="w-4 h-4" />
               {locale === "fr" ? "EN" : "FR"}
             </button>
             <Link
               href="/demo"
-              className="inline-flex items-center px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary-600 transition-colors"
+              className="group inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-lg bg-emerald px-5 text-body-sm font-semibold text-bg transition-colors hover:bg-emerald-hover"
             >
               {t("cta")}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
           </div>
 
-          {/* Mobile toggle */}
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg" aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={mobileOpen}>
-            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {/* Bascule mobile */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-lg text-fg lg:hidden"
+            aria-label={
+              mobileOpen
+                ? locale === "en" ? "Close menu" : "Fermer le menu"
+                : locale === "en" ? "Open menu" : "Ouvrir le menu"
+            }
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+          >
+            {mobileOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Panneau mobile plein écran sous la barre */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 max-h-[80vh] overflow-y-auto" role="navigation" aria-label="Menu mobile">
-          <div className="px-4 py-4 space-y-1">
-            <Link href="/" className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">
-              {t("nav.home")}
-            </Link>
-            <Link href="/tarifs" className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">
+        <nav
+          id="mobile-menu"
+          className="fixed inset-x-0 bottom-0 top-16 flex flex-col border-t border-track bg-bg lg:hidden"
+          aria-label={locale === "en" ? "Mobile menu" : "Menu mobile"}
+        >
+          <div className="flex-1 overflow-y-auto px-5 py-6">
+            <Link
+              href="/tarifs"
+              className="flex h-11 items-center text-heading-md text-fg"
+            >
               {t("nav.pricing")}
             </Link>
             {navItems.map((item) => (
-              <div key={item.key}>
-                <div className="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider mt-3">
-                  {item.label}
-                </div>
-                {megaMenus[item.key].map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="block px-6 py-2.5 text-sm text-gray-600 hover:bg-gray-50 rounded-lg"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+              <div key={item.key} className="mt-6 border-t border-track pt-6">
+                <p className="mb-2 text-eyebrow uppercase text-fg-muted">{item.label}</p>
+                <ul className={item.key === "sectors" ? "grid grid-cols-2 gap-x-4" : ""}>
+                  {megaMenus[item.key].map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        aria-current={pathname === link.href ? "page" : undefined}
+                        className="flex min-h-[44px] items-center text-body text-fg-strong hover:text-fg"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
-            <div className="pt-3 flex items-center gap-2">
-              <button onClick={switchLocale} className="flex-1 text-center px-4 py-3 border border-gray-200 text-gray-600 font-medium rounded-lg">
-                <Globe className="w-4 h-4 inline mr-1.5" />{locale === "fr" ? "English" : "Français"}
-              </button>
-              <Link href="/demo" className="flex-1 text-center px-4 py-3 bg-primary text-white font-semibold rounded-lg">
-                {t("cta")}
-              </Link>
-            </div>
           </div>
-        </div>
+          <div
+            className="flex gap-3 border-t border-track bg-bg px-5 pt-4"
+            style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }}
+          >
+            <button
+              type="button"
+              onClick={switchLocale}
+              className="h-12 rounded-lg border border-track px-4 text-body-sm font-semibold text-fg"
+              lang={locale === "fr" ? "en" : "fr"}
+            >
+              {locale === "fr" ? "English" : "Français"}
+            </button>
+            <Link
+              href="/demo"
+              className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-lg bg-emerald px-6 text-body font-semibold text-bg hover:bg-emerald-hover"
+            >
+              {t("cta")}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </nav>
       )}
     </header>
   );

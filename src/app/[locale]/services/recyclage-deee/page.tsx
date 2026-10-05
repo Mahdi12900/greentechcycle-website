@@ -12,15 +12,15 @@ export default function RecyclageDEEEPage() {
 
   const data: ServicePageData = {
     slug: "recyclage-deee",
-    eyebrow: tx("04 (Économie circulaire", "04) Circular economy"),
+    eyebrow: tx("04 · Économie circulaire", "04 · Circular economy"),
     title: tx("Recyclage responsable des DEEE", "Responsible WEEE recycling"),
     subtitle: tx(
       "Pour ce qui ne peut plus servir, nous orchestrons un recyclage entièrement conforme à la directive DEEE et à la responsabilité élargie du producteur. Chaque matière est tracée, pesée, valorisée, et nourrit directement votre rapport CSRD.",
       "For what can no longer serve, we orchestrate WEEE-compliant recycling under extended producer responsibility. Every material is tracked, weighed, recovered, and directly feeds your CSRD reporting."
     ),
     description: tx(
-      "Quand un actif est irrécupérable, l'enjeu n'est plus la valeur marchande, c'est la responsabilité environnementale et juridique. Notre réseau d'éco-organismes certifiés (Ecologic, Ecosystem) garantit une traçabilité de bout en bout. Chaque matière, des métaux ferreux aux cartes électroniques, est pesée, photographiée et valorisée en filière dédiée. Le bilan carbone évité et les matières premières secondaires réinjectées remontent automatiquement dans votre rapport CSRD ESRS E5, sans aucune ressaisie manuelle. Mise en décharge : zéro.",
-      "When an asset is unrecoverable, the issue is no longer market value but environmental and legal responsibility. Our certified eco-organisation network (Ecologic, Ecosystem) guarantees end-to-end traceability. Every material, from ferrous metals to electronic boards, is weighed, photographed and recovered via a dedicated channel. The avoided carbon footprint and secondary raw materials feed automatically into your CSRD ESRS E5 reporting, with no manual re-entry. Landfill rate: zero."
+      "Quand un actif est irrécupérable, l'enjeu n'est plus la valeur marchande, c'est la responsabilité environnementale et juridique. Notre réseau d'éco-organismes (Ecologic, Ecosystem) garantit une traçabilité de bout en bout. Chaque matière, des métaux ferreux aux cartes électroniques, est pesée, photographiée et valorisée en filière dédiée. Le bilan carbone évité et les matières premières secondaires réinjectées remontent automatiquement dans votre rapport CSRD ESRS E5, sans aucune ressaisie manuelle. Mise en décharge : zéro.",
+      "When an asset is unrecoverable, the issue is no longer market value but environmental and legal responsibility. Our eco-organisation network (Ecologic, Ecosystem) guarantees end-to-end traceability. Every material, from ferrous metals to electronic boards, is weighed, photographed and recovered via a dedicated channel. The avoided carbon footprint and secondary raw materials feed automatically into your CSRD ESRS E5 reporting, with no manual re-entry. Landfill rate: zero."
     ),
     narrative: tx(
       "La traçabilité matière n'est pas une promesse marketing : c'est une exigence réglementaire qui se vérifie poste par poste, ligne de bordereau par ligne de bordereau. Voici comment elle est tenue.",
@@ -33,29 +33,29 @@ export default function RecyclageDEEEPage() {
     icon: Recycle,
     badge: tx("100 % traçable", "100% traceable"),
     image:
-      "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=1600&q=80",
+      "/images/recycling.jpg",
     imageAlt: tx(
-      "Démantèlement et tri de cartes électroniques en filière DEEE certifiée",
-      "Dismantling and sorting of electronic boards in a certified WEEE channel"
+      "Démantèlement et tri de cartes électroniques en filière DEEE",
+      "Dismantling and sorting of electronic boards in a WEEE channel"
     ),
     imageSecondary:
-      "https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&w=1600&q=80",
+      "/photos/hands-electronics.jpg",
     imageSecondaryAlt: tx(
       "Atelier de recyclage de matériel informatique",
       "IT material recycling workshop"
     ),
     benefits: [
       tx("Conformité DEEE et REP intégrale", "Full WEEE and EPR compliance"),
-      tx("Réseau Ecologic et Ecosystem certifié", "Certified Ecologic and Ecosystem network"),
+      tx("Réseau Ecologic et Ecosystem", "Ecologic and Ecosystem network"),
       tx("Traçabilité matière par matière", "Material-by-material traceability"),
       tx("Bilan carbone évité calculé automatiquement", "Avoided carbon footprint computed automatically"),
       tx("Alimentation automatique ESRS E5 et CSRD", "Automatic ESRS E5 and CSRD feed"),
       tx("Bordereau de suivi des déchets numérisé", "Digital waste tracking slip"),
     ],
     proof: [
-      { value: "98,1", unit: "%", label: tx("matière valorisée mesurée", "measured material recovery"), color: "#10B981" },
-      { value: "0", unit: "%", label: tx("mise en décharge", "landfill rate"), color: "#0EA5E9" },
-      { value: "72", unit: "h", label: tx("bordereau délivré", "tracking slip delivery"), color: "#F59E0B" },
+      { value: "98,1", unit: "%", label: tx("matière valorisée mesurée", "measured material recovery") },
+      { value: "0", unit: "%", label: tx("mise en décharge", "landfill rate") },
+      { value: "72", unit: "h", label: tx("bordereau délivré", "tracking slip delivery") },
     ],
     methodology: {
       title: tx("De l'actif inopérant à la donnée CSRD", "From unfit asset to CSRD data point"),
@@ -78,15 +78,15 @@ export default function RecyclageDEEEPage() {
         {
           title: tx("Valorisation en filière", "Channel recovery"),
           desc: tx(
-            "Acheminement vers les filières de recyclage certifiées, extraction des métaux rares, refonte des métaux ferreux et non ferreux, regranulation des plastiques. Les matières secondaires sont tracées jusqu'au client final.",
-            "Routing to certified recycling channels, rare metals extraction, ferrous and non-ferrous remelting, plastics re-granulation. Secondary materials are tracked to the end customer."
+            "Acheminement vers les filières de recyclage, extraction des métaux rares, refonte des métaux ferreux et non ferreux, regranulation des plastiques. Les matières secondaires sont tracées jusqu'au client final.",
+            "Routing to recycling channels, rare metals extraction, ferrous and non-ferrous remelting, plastics re-granulation. Secondary materials are tracked to the end customer."
           ),
         },
         {
           title: tx("Restitution CSRD automatisée", "Automated CSRD output"),
           desc: tx(
-            "Génération automatique des points de donnée ESRS E5 : ressources entrantes et sortantes, taux de circularité, intensité matière. Export XBRL et PDF signé eIDAS prêts pour vos commissaires aux comptes.",
-            "Automatic generation of ESRS E5 data points: incoming and outgoing resources, circularity rate, material intensity. eIDAS-signed XBRL and PDF exports ready for your auditors."
+            "Génération automatique des points de donnée ESRS E5 : ressources entrantes et sortantes, taux de circularité, intensité matière. Export XBRL et PDF horodaté avec empreinte SHA-256 prêts pour vos commissaires aux comptes.",
+            "Automatic generation of ESRS E5 data points: incoming and outgoing resources, circularity rate, material intensity. XBRL and PDF exports timestamped with a SHA-256 fingerprint ready for your auditors."
           ),
         },
       ],
@@ -102,7 +102,7 @@ export default function RecyclageDEEEPage() {
       { metric: tx("Mise en décharge", "Landfill rate"), value: "0 %" },
       { metric: tx("Délai bordereau", "Tracking slip turnaround"), value: "72 h" },
     ],
-    certifications: ["R2v3", "ISO 14001", "DEEE/WEEE", "Ecologic", "Ecosystem"],
+    certifications: ["DEEE/WEEE", "Ecologic", "Ecosystem"],
     quote: {
       text: tx(
         "Notre rapport ESRS E5 a été validé sans réserve par KPMG dès le premier exercice. Les exports automatiques de GreenTechCycle ont fait gagner deux semaines à notre équipe RSE.",
@@ -130,7 +130,7 @@ export default function RecyclageDEEEPage() {
     ctaPrimaryLabel: tx("Réserver une collecte", "Book a collection"),
     ctaSecondaryLabel: tx("Voir l'impact carbone", "See carbon impact"),
     ctaSecondaryHref: "/impact",
-    pricingAnchor: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+    pricingAnchor: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
     pricingHref: "/tarifs",
     isEn,
   };

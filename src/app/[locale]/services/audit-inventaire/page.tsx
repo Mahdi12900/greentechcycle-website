@@ -12,11 +12,11 @@ export default function AuditInventairePage() {
 
   const data: ServicePageData = {
     slug: "audit-inventaire",
-    eyebrow: tx("01 (Cartographie", "01) Mapping"),
+    eyebrow: tx("01 · Cartographie", "01 · Mapping"),
     title: tx("Audit & inventaire IT", "IT audit & inventory"),
     subtitle: tx(
-      "Avant d'effacer, valoriser ou recycler, il faut savoir ce que l'on possède réellement. Notre audit pose le socle de toute décision : un inventaire physique, certifié et opposable, livré en cinq jours ouvrés.",
-      "Before erasing, recovering or recycling, you have to know what you actually own. Our audit lays the foundation for every decision: a physical, certified and admissible inventory, delivered in five working days."
+      "Avant d'effacer, valoriser ou recycler, il faut savoir ce que l'on possède réellement. Notre audit pose le socle de toute décision : un inventaire physique, attesté et opposable, livré en cinq jours ouvrés.",
+      "Before erasing, recovering or recycling, you have to know what you actually own. Our audit lays the foundation for every decision: a physical, attested and admissible inventory, delivered in five working days."
     ),
     description: tx(
       "La plupart des parcs informatiques d'ETI dérivent d'années d'acquisitions, de migrations et de projets gelés. Personne, en interne, ne sait précisément ce qui se trouve dans la baie 7 du datacenter B ni dans le placard du site de Lille. Nos techniciens passent sur site, scannent, photographient et qualifient chaque équipement, du serveur en production au smartphone oublié au fond d'un tiroir. Trois axes d'évaluation guident le travail : criticité des données, état physique et valeur résiduelle marchande.",
@@ -38,7 +38,7 @@ export default function AuditInventairePage() {
       "GreenTechCycle technician qualifying a server during an IT audit"
     ),
     imageSecondary:
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=80",
+      "/photos/service-audit.jpg",
     imageSecondaryAlt: tx(
       "Inventaire physique d'un parc informatique en cours",
       "Physical inventory of an IT estate in progress"
@@ -52,9 +52,9 @@ export default function AuditInventairePage() {
       tx("Rapport exécutif PDF prêt pour le COMEX", "Executive PDF report ready for the leadership"),
     ],
     proof: [
-      { value: "5", unit: "jours", label: tx("livrable garanti", "guaranteed delivery"), color: "#10B981" },
-      { value: "99,2", unit: "%", label: tx("précision moyenne mesurée", "measured average accuracy"), color: "#0EA5E9" },
-      { value: "12", unit: "k+", label: tx("actifs cartographiés en 2025", "assets mapped in 2025"), color: "#F59E0B" },
+      { value: "5", unit: "jours", label: tx("livrable garanti", "guaranteed delivery") },
+      { value: "99,2", unit: "%", label: tx("précision moyenne mesurée", "measured average accuracy") },
+      { value: "12", unit: "k+", label: tx("actifs cartographiés en 2025", "assets mapped in 2025") },
     ],
     methodology: {
       title: tx("Quatre étapes, un seul référentiel", "Four steps, a single source of truth"),
@@ -84,14 +84,14 @@ export default function AuditInventairePage() {
         {
           title: tx("Rapport exécutif et plan d'action", "Executive report and action plan"),
           desc: tx(
-            "Vous recevez un PDF signé eIDAS, un export tableur complet, un plan de décommissionnement par lots et une estimation de retour sur investissement. Tout est exploitable immédiatement, sans ressaisie.",
-            "You receive an eIDAS-signed PDF, a full spreadsheet export, a batched decommissioning plan and a return-on-investment estimate. Everything is immediately usable, with no re-entry."
+            "Vous recevez un PDF horodaté avec empreinte SHA-256, un export tableur complet, un plan de décommissionnement par lots et une estimation de retour sur investissement. Tout est exploitable immédiatement, sans ressaisie.",
+            "You receive a PDF timestamped with a SHA-256 fingerprint, a full spreadsheet export, a batched decommissioning plan and a return-on-investment estimate. Everything is immediately usable, with no re-entry."
           ),
         },
       ],
     },
     deliverables: [
-      tx("Rapport d'inventaire PDF signé eIDAS", "eIDAS-signed PDF inventory report"),
+      tx("Rapport d'inventaire PDF horodaté avec empreinte SHA-256", "PDF inventory report timestamped with a SHA-256 fingerprint"),
       tx("Export tableur du parc complet", "Full estate spreadsheet export"),
       tx("Notation par actif sur trois axes", "Per-asset three-axis rating"),
       tx("Estimation globale de la valeur résiduelle", "Global residual value estimate"),
@@ -102,11 +102,11 @@ export default function AuditInventairePage() {
       { metric: tx("Précision d'inventaire garantie", "Guaranteed inventory accuracy"), value: "99,2 %" },
       { metric: tx("Connecteurs déployés", "Connectors deployed"), value: tx("J+1", "Day 1") },
     ],
-    certifications: ["R2v3", "ISO 27001", "NIST 800-88", "ITIL v4"],
+    certifications: ["ISO 27001 (en cours)", "NIST 800-88", "ITIL v4"],
     quote: {
       text: tx(
-        "L'audit GreenTechCycle nous a remis 14 % d'actifs hors comptabilité, soit 412 000 € de valeur que nous croyions perdue. Le rapport est passé en COMEX sans une seule retouche.",
-        "The GreenTechCycle audit recovered 14% of off-book assets, €412,000 of value we thought lost. The report went to the executive committee without a single edit."
+        "L'audit GreenTechCycle nous a remis 14 % d'actifs hors comptabilité. Le rapport est passé en COMEX sans une seule retouche.",
+        "The GreenTechCycle audit recovered 14% of off-book assets. The report went to the executive committee without a single edit."
       ),
       name: "Sophie L.",
       role: tx("DSI, groupe industriel coté", "CIO, listed industrial group"),

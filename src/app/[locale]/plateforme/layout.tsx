@@ -1,43 +1,37 @@
 import type { Metadata } from "next";
+import { pageMetadata, type LocaleParams, type PageCopy } from "@/lib/seo";
 import SchemaOrg from "@/components/SchemaOrg";
+import { SITE_URL as SITE } from "@/lib/site";
 
-const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
-export const metadata: Metadata = {
-  title: "Plateforme ITAD unifiee | Tableau de bord et tracabilite",
-  description:
-    "Plateforme SaaS ITAD unifiee : tableau de bord temps reel, tracabilite blockchain, comptes-rendus automatises et integration API pour la gestion de vos actifs IT en fin de vie.",
-  keywords: ["plateforme ITAD", "SaaS", "tableau de bord", "tracabilite blockchain", "comptes-rendus automatises", "API"],
-  openGraph: {
-    title: "Plateforme ITAD unifiee | GreenTechCycle",
-    description: "Plateforme SaaS ITAD : tableau de bord temps reel, tracabilite blockchain et comptes-rendus automatises.",
-    type: "website",
-    images: [
-      {
-        url: `${SITE}/photos/hp-datacenter-green.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "GreenTechCycle - Plateforme ITAD SaaS",
-      },
-    ],
+const META_COPY: PageCopy = {
+  fr: {
+    title: "Plateforme ITAD unifiée | Tableau de bord et traçabilité",
+    description:
+      "Plateforme SaaS ITAD unifiée : tableau de bord temps réel, traçabilité horodatée (SHA-256), comptes-rendus automatisés et intégration API pour la gestion de vos actifs IT en fin de vie.",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Plateforme ITAD unifiee | GreenTechCycle",
-    description: "Plateforme SaaS ITAD : tableau de bord temps reel, tracabilite blockchain et comptes-rendus automatises.",
-    images: [`${SITE}/photos/hp-datacenter-green.jpg`],
+  en: {
+    title: "Unified ITAD platform | Dashboard and traceability",
+    description:
+      "Unified ITAD SaaS platform: real-time dashboard, timestamped traceability (SHA-256), automated reporting and API integration to manage your end-of-life IT assets.",
   },
 };
+
+/* Métadonnées par langue (audit final B3) : titre, description, canonical, hreflang, Open Graph */
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/plateforme", META_COPY);
+}
 
 const platformeSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "Plateforme GTC - ITAD SaaS",
   description:
-    "Plateforme SaaS ITAD unifiee : tableau de bord temps reel, tracabilite blockchain, comptes-rendus automatises CSRD/ESG et integration API pour la gestion responsable des actifs IT en fin de vie.",
+    "Plateforme SaaS ITAD unifiée : tableau de bord temps réel, traçabilité horodatée (SHA-256), comptes-rendus automatisés CSRD/ESG et intégration API pour la gestion responsable des actifs IT en fin de vie.",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
-  url: "https://greentechcycle.fr/fr/plateforme",
+  url: `${SITE}/fr/plateforme`,
   brand: { "@type": "Brand", name: "GreenTechCycle" },
   offers: {
     "@type": "Offer",
@@ -51,20 +45,20 @@ const platformeSchema = {
       referenceQuantity: { "@type": "QuantitativeValue", value: "1", unitText: "mois" },
     },
     availability: "https://schema.org/InStock",
-    url: "https://greentechcycle.fr/fr/reserver?offre=audit-decommissionnement",
+    url: `${SITE}/fr/reserver?offre=audit-decommissionnement`,
   },
   featureList: [
-    "Tableau de bord temps reel multi-sites",
-    "Tracabilite blockchain certificats de destruction",
-    "Comptes-rendus CSRD ESRS E5 automatises",
-    "Integration API REST",
-    "Effacement certifie NIST 800-88",
+    "Tableau de bord temps réel multi-sites",
+    "Traçabilité SHA-256 des certificats de destruction",
+    "Comptes-rendus CSRD ESRS E5 automatisés",
+    "Intégration API REST",
+    "Effacement selon NIST 800-88",
     "Reporting carbone actifs IT",
   ],
   provider: {
     "@type": "Organization",
     name: "GreenTechCycle",
-    url: "https://greentechcycle.fr",
+    url: `${SITE}`,
   },
 };
 

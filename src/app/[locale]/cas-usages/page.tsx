@@ -1,19 +1,26 @@
 "use client";
 
+import { KPIS, formatKpi } from "@/content/kpis";
+import CertificateCard from "@/components/visuals/CertificateCard";
+import DashboardMock from "@/components/visuals/DashboardMock";
+import GeometryField from "@/components/visuals/GeometryField";
+import MediaSlot from "@/components/visuals/MediaSlot";
+import ClientWordmarks from "@/components/ClientWordmarks";
+import VideoPlayer, { VideoFigure } from "@/components/visuals/VideoPlayer";
+
+/** Grille « Vidéos » : titre de chaque carte repris du contenu existant du cas correspondant */
+type HeadingSrc = (cases: CaseItem[], tf1: { title: string }, useCaseTitles: string[]) => string;
+const VIDEO_CARDS: { video: string; heading: HeadingSrc }[] = [
+  { video: "case-banque", heading: (c) => c.find((x) => x.slug === "banque-cac40")?.title ?? "" },
+  { video: "case-tf1", heading: (_c, tf1) => tf1.title },
+  { video: "case-chu", heading: (_c, _t, u) => u[1] ?? "" },
+  { video: "case-energie", heading: (_c, _t, u) => u[5] ?? "" },
+];
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
+import { CountUp } from "@/components/motion";
 import {
-  FadeIn,
-  StaggerContainer,
-  StaggerItem,
-  CountUp,
-  ScaleIn,
-} from "@/components/motion";
-import {
-  ArrowRight,
-  ChevronRight,
   ArrowDown,
   Building2,
   HeartPulse,
@@ -23,22 +30,32 @@ import {
   Zap,
   Radio,
   GraduationCap,
-  Quote,
-  Shield,
   ShieldCheck,
-  FileCheck,
   Leaf,
   Euro,
-  Server,
   Send,
   CheckCircle2,
-  BarChart3,
-  TrendingUp,
-  Award,
-  Tv,
   MonitorPlay,
 } from "lucide-react";
+import CtaSection from "@/components/CtaSection";
+import { Button, ButtonLink, TextLink } from "@/components/ui/Button";
+import Section from "@/components/ui/Section";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Pictogram from "@/components/ui/Pictogram";
+import Tag from "@/components/ui/Tag";
+import Table from "@/components/ui/Table";
+import Accordion from "@/components/ui/Accordion";
+import { Stat, StatRow } from "@/components/ui/Stat";
 
+/**
+ * /cas-usages — DESIGN.md §10.7.
+ * hero (paper) → chiffres (night) → intro + différenciateurs + partenaires (paper)
+ * → cas phare TF1 #cas-tf1-media (forest) → 8 cas en grille 2 colonnes (cream)
+ * → comparatif en tableau (paper) → témoignages (night) → FAQ (paper)
+ * → passerelle secteurs (cream) → CTA unique (forest, avec mini-formulaire).
+ * Ids conservés : #cas-<slug>, #cas-tf1-media. Alias ajoutés pour les liens
+ * entrants existants (accueil, résultats clients) qui pointaient dans le vide.
+ */
 /* ─────────────────────────────────────────────────────────────────────────────
    Types
 ───────────────────────────────────────────────────────────────────────────── */
@@ -87,1794 +104,561 @@ const CASE_TO_SECTOR: Record<string, { slug: string; labelFr: string; labelEn: s
   "universite-ess": { slug: "education-recherche", labelFr: "Éducation et recherche", labelEn: "Education and research" },
 };
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   Layout logic per case index, dramatic alternation v3
-   index 0 → white bg,          photo left     (Banque)
-   index 1 → #F8FAFC,           photo right    (CHU)
-   index 2 → #0F172A dark,      photo left     (Industrie)
-   index 3 → white bg,          photo right    (Public)
-   index 4 → #0C1E1A tinted,    photo left     (Retail), deep teal tinted
-   index 5 → #F8FAFC,           photo right    (Énergie)
-   index 6 → #0F172A dark,      photo left     (Telco)
-   index 7 → white bg,          photo right    (Éducation)
-───────────────────────────────────────────────────────────────────────────── */
-function getCaseLayout(index: number) {
-  const photoOnLeft = index % 2 === 0;
-  const isDark = index === 2 || index === 4 || index === 6;
-  let bgStyle: string;
-  if (index === 4) {
-    bgStyle = "bg-[#0C1E1A]";
-  } else if (index === 2 || index === 6) {
-    bgStyle = "bg-[#0F172A]";
-  } else if (index % 2 === 1) {
-    bgStyle = "bg-[#F8FAFC]";
-  } else {
-    bgStyle = "bg-white";
-  }
-  return { photoOnLeft, isDark, bgStyle };
-}
+
+/* Alias d'ancre : slugs utilisés par /[locale] et /resultats-clients */
+const CASE_ALIASES: Record<string, string[]> = {
+  "banque-cac40": ["banque-cac40-windows11-nis2"],
+  "chu-sante": ["chu-public-rgpd-sante"],
+  "industriel-csrd": ["industriel-csrd-esrs-e5", "industrie-automobile-csrd"],
+  "ministere-collectivite": ["collectivite-territoriale"],
+  "retail-wakibox": ["retail-fermeture-sites"],
+  "energie-dora": ["energie-dora-compliance"],
+};
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   CaseSection, intra-page component
+   Carte de cas — grille régulière 2 colonnes
 ───────────────────────────────────────────────────────────────────────────── */
-function CaseSection({
-  c,
-  index,
-  editorialBody,
-  locale,
-}: {
-  c: CaseItem;
-  index: number;
-  editorialBody: string;
-  locale: string;
-}) {
-  const isFr = locale === "fr";
+/** Cas de la grille dotés d'une vidéo dont le récit correspond au texte du cas */
+const CASE_VIDEOS: Record<string, string> = { "banque-cac40": "case-banque" };
+
+function CaseCard({ c, index, editorialBody, isFr }: { c: CaseItem; index: number; editorialBody: string; isFr: boolean }) {
   const sectorLink = CASE_TO_SECTOR[c.slug];
-  const { photoOnLeft, isDark, bgStyle } = getCaseLayout(index);
-  const caseNumber = String(index + 1).padStart(2, "0");
   const CaseIcon = CASE_ICONS[index] ?? Building2;
-  const accentColor = c.badgeColor;
-
-  const kpis = c.metrics.slice(0, 3);
-
-  const textColor = isDark ? "text-white" : "text-[#0F172A]";
-  const subTextColor = isDark ? "text-gray-300" : "text-gray-600";
-  const borderColor = isDark ? "border-white/10" : "border-gray-100";
-  const kpiLabelColor = isDark ? "text-gray-400" : "text-gray-500";
-
   return (
-    <section
-      id={`cas-${c.slug}`}
-      className={`relative w-full overflow-hidden ${bgStyle}`}
-      aria-labelledby={`case-title-${c.slug}`}
-    >
-      <div
-        className={`flex flex-col lg:flex-row min-h-[90vh] ${
-          !photoOnLeft ? "lg:flex-row-reverse" : ""
-        }`}
-      >
-        {/* ── Photo panel, 52% cinematic ── */}
-        <div className="relative w-full lg:w-[52%] min-h-[60vw] lg:min-h-0 overflow-hidden flex-shrink-0">
-          <Image
-            src={c.photo}
-            alt={c.photoAlt}
-            fill
-            loading="lazy"
-            className="object-cover transition-transform duration-[1400ms] hover:scale-[1.04]"
-            sizes="(max-width: 1024px) 100vw, 48vw"
-          />
-          {/* Gradient overlay, blend with content panel */}
-          <div
-            className={`absolute inset-0 ${
-              isDark
-                ? photoOnLeft
-                  ? "bg-gradient-to-r from-transparent via-transparent to-[#0F172A]/70"
-                  : "bg-gradient-to-l from-transparent via-transparent to-[#0F172A]/70"
-                : photoOnLeft
-                ? "bg-gradient-to-r from-transparent to-white/15"
-                : "bg-gradient-to-l from-transparent to-white/15"
-            }`}
-          />
-          {/* Bottom fade */}
-          <div
-            className={`absolute bottom-0 left-0 right-0 h-1/4 ${
-              isDark
-                ? "bg-gradient-to-t from-[#0F172A]/50 to-transparent"
-                : "bg-gradient-to-t from-black/20 to-transparent"
-            }`}
-          />
-
-          {/* Ghost case number watermark, bleeds off bottom, reinforced opacity */}
-          <div
-            className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-            style={{
-              fontSize: "clamp(10rem, 28vw, 22rem)",
-              color: isDark ? "rgba(255,255,255,0.055)" : "rgba(0,0,0,0.05)",
-              right: photoOnLeft ? "-0.5rem" : "auto",
-              left: photoOnLeft ? "auto" : "-0.5rem",
-              bottom: "-0.15em",
-            }}
-            aria-hidden="true"
-          >
-            {caseNumber}
-          </div>
-
-          {/* Sector badge */}
-          <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/92 backdrop-blur-sm shadow-lg">
-            <CaseIcon className="h-3.5 w-3.5 text-[#0F172A]" aria-hidden="true" />
-            <span className="text-[11px] font-semibold text-[#0F172A] tracking-wide uppercase">
-              {c.sector}
-            </span>
-          </div>
+    <article id={`cas-${c.slug}`} aria-labelledby={`case-title-${c.slug}`} className="relative flex h-full flex-col overflow-hidden rounded-xl border border-track bg-bg">
+      {(CASE_ALIASES[c.slug] ?? []).map((a) => (
+        <span key={a} id={a} className="absolute top-0" aria-hidden="true" />
+      ))}
+      {CASE_VIDEOS[c.slug] ? (
+        // Vidéo du cas (anglais, lecture au clic, registre SLOT_VIDEOS)
+        <div className="relative aspect-video border-b border-track">
+          <VideoPlayer id={CASE_VIDEOS[c.slug]} />
         </div>
-
-        {/* ── Content panel ── */}
-        <div className="relative w-full lg:flex-1 flex items-center px-6 sm:px-10 lg:px-14 xl:px-18 py-14 lg:py-20">
-          {/* Left accent bar */}
-          <div
-            className="absolute top-0 left-0 w-[3px] h-full"
-            style={{ backgroundColor: accentColor }}
-            aria-hidden="true"
-          />
-
-          <div className="max-w-xl w-full">
-            <FadeIn>
-              {/* Case number + accent line */}
-              <div className="flex items-center gap-4 mb-6">
-                <span
-                  className="text-5xl lg:text-6xl font-black leading-none tracking-tighter tabular-nums"
-                  style={{ color: accentColor }}
-                >
-                  {caseNumber}
-                </span>
-                <span
-                  className="flex-1 h-[1px] opacity-25"
-                  style={{ backgroundColor: accentColor }}
-                  aria-hidden="true"
-                />
-              </div>
-
-              {/* Title, editorial XXL */}
-              <h2
-                id={`case-title-${c.slug}`}
-                className={`text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight mb-6 ${textColor}`}
-              >
-                {c.title}
-              </h2>
-
-              {/* Editorial body, prose with drop cap */}
-              <p className={`text-[1.05rem] lg:text-[1.1rem] leading-[1.82] mb-8 first-letter:text-[3.2em] first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:leading-[0.8] ${subTextColor} ${isDark ? "first-letter:text-white/60" : "first-letter:text-[#0F172A]"}`}>
-                {editorialBody}
-              </p>
-
-              {/* 3 KPIs horizontal, XXL */}
-              <div
-                className={`grid grid-cols-3 gap-4 mb-10 pb-10 border-b ${borderColor}`}
-              >
-                {kpis.map((kpi, j) => (
-                  <div key={j} className="flex flex-col gap-1.5">
-                    <span
-                      className="text-3xl lg:text-[2.4rem] font-black tracking-tight leading-none tabular-nums"
-                      style={{ color: accentColor }}
-                    >
-                      {kpi.value}
-                    </span>
-                    <span
-                      className={`text-[11px] font-semibold leading-tight mt-1 ${
-                        isDark ? "text-gray-300" : "text-[#0F172A]"
-                      }`}
-                    >
-                      {kpi.label}
-                    </span>
-                    <span className={`text-[10px] leading-snug ${kpiLabelColor}`}>
-                      {kpi.detail}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Client pull quote, XXL editorial */}
-              <blockquote
-                className="mb-10 pl-5 border-l-[4px] relative"
-                style={{ borderLeftColor: accentColor + "65" }}
-              >
-                <span
-                  className="absolute -top-4 -left-1 font-serif leading-none select-none pointer-events-none"
-                  style={{ fontSize: "4rem", color: accentColor + "20" }}
-                  aria-hidden="true"
-                >
-                  &ldquo;
-                </span>
-                <p
-                  className={`italic text-lg lg:text-xl leading-[1.6] mb-4 font-medium ${
-                    isDark ? "text-gray-200" : "text-gray-700"
-                  }`}
-                >
-                  {c.quote}
-                </p>
-                <footer
-                  className={`text-sm font-semibold not-italic ${
-                    isDark ? "text-gray-400" : "text-gray-500"
-                  }`}
-                >
-                 , {c.quoteName}, {c.quoteRole},{" "}
-                  <span className="italic font-normal">{c.quoteSector}</span>
-                </footer>
-              </blockquote>
-
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 flex-wrap mb-5">
-                <Link
-                  href={`/contact?cas=${c.slug}`}
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${
-                    isDark
-                      ? "bg-white text-[#0F172A] hover:bg-gray-100 hover:shadow-white/20"
-                      : "text-white hover:opacity-90"
-                  }`}
-                  style={
-                    isDark
-                      ? {}
-                      : {
-                          backgroundColor: accentColor,
-                          boxShadow: `0 4px 16px ${accentColor}30`,
-                        }
-                  }
-                >
-                  {isFr ? "Discuter d'un cas similaire" : "Discuss a similar case"}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </div>
-
-              {/* Cross-link vers la fiche secteur correspondante */}
-              {sectorLink && (
-                <Link
-                  href={`/secteurs/${sectorLink.slug}`}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm transition-all duration-200 hover:-translate-y-0.5 ${
-                    isDark
-                      ? "border-white/15 bg-white/[0.04] text-gray-300 hover:border-white/30 hover:text-white"
-                      : "border-gray-200 bg-white/60 text-gray-600 hover:border-gray-300 hover:text-[#0F172A]"
-                  }`}
-                >
-                  <span className={`text-[10px] font-bold uppercase tracking-[0.12em] ${isDark ? "text-gray-500" : "text-gray-400"}`}>
-                    {isFr ? "Voir la fiche secteur" : "View sector profile"}
-                  </span>
-                  <span className="font-semibold">{sectorLink[isFr ? "labelFr" : "labelEn"]}</span>
-                  <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
-                </Link>
-              )}
-            </FadeIn>
-          </div>
+      ) : (
+        <div className="relative aspect-[16/10] border-b border-track">
+          <MediaSlot fill id={`cas-${c.slug}`} alt={c.photoAlt} fallback={<GeometryField icon={CaseIcon} />} />
+        </div>
+      )}
+      <div className="flex flex-1 flex-col p-6 lg:p-8">
+        <div className="flex items-center gap-3">
+          <Pictogram icon={CaseIcon} />
+          <Tag variant="brand">{c.sector}</Tag>
+        </div>
+        <p className="mt-6 text-eyebrow uppercase text-fg-muted">{String(index + 1).padStart(2, "0")}</p>
+        <h2 id={`case-title-${c.slug}`} className="mt-2 font-display text-display-sm text-fg">{c.title}</h2>
+        <p className="mt-3 text-body-sm text-fg-strong">{editorialBody}</p>
+        <dl className="mt-6 grid grid-cols-3 border-y border-track py-4">
+          {c.metrics.slice(0, 3).map((kpi, j) => (
+            <div key={j} className={`flex flex-col-reverse justify-end ${j > 0 ? "border-l border-track pl-3" : "pr-3"}`}>
+              <dt className="mt-1 text-caption text-fg-strong">
+                <span className="block font-semibold text-fg">{kpi.label}</span>
+                <span className="text-fg-muted">{kpi.detail}</span>
+              </dt>
+              <dd className="font-display text-display-sm tabular-nums text-emerald">{kpi.value}</dd>
+            </div>
+          ))}
+        </dl>
+        {c.quote ? (
+          <figure className="mt-6 flex-1 border-l-2 border-emerald pl-4">
+            <blockquote className="text-body-sm italic text-fg">&laquo;&nbsp;{c.quote}&nbsp;&raquo;</blockquote>
+            <figcaption className="mt-2 text-caption text-fg-muted">
+              <span className="font-semibold text-fg-strong">{c.quoteName}</span> · {c.quoteRole} · {c.quoteSector}
+            </figcaption>
+          </figure>
+        ) : (
+          <div className="flex-1" />
+        )}
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <ButtonLink href={`/contact?cas=${c.slug}`} variant="secondary">
+            {isFr ? "Discuter d'un cas similaire" : "Discuss a similar case"}
+          </ButtonLink>
+          {sectorLink && (
+            <TextLink href={`/secteurs/${sectorLink.slug}`}>
+              {isFr ? "Fiche secteur" : "Sector profile"} : {sectorLink[isFr ? "labelFr" : "labelEn"]}
+            </TextLink>
+          )}
         </div>
       </div>
-    </section>
+    </article>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   ComparativeBar, animated progress bar
-───────────────────────────────────────────────────────────────────────────── */
-function ComparativeBar({
-  label,
-  pct,
-  value,
-  accentColor,
-}: {
-  label: string;
-  pct: number;
-  value: string;
-  accentColor: string;
-}) {
-  return (
-    <div className="flex items-center gap-3">
-      <div className="w-28 flex-shrink-0 text-right">
-        <span className="text-[12px] font-semibold text-[#0F172A] leading-tight">
-          {label}
-        </span>
-      </div>
-      <div className="flex-1 relative h-7 bg-[#F1F5F9] rounded-lg overflow-hidden">
-        <div
-          className="absolute top-0 left-0 h-full rounded-lg"
-          style={{
-            width: `${pct}%`,
-            backgroundColor: accentColor,
-            opacity: 0.82,
-          }}
-        />
-        <div className="absolute inset-0 flex items-center pl-3">
-          <span className="text-[11px] font-bold text-white drop-shadow-sm">
-            {pct}%
-          </span>
-        </div>
-      </div>
-      <div className="w-20 flex-shrink-0 text-left">
-        <span className="text-[12px] font-semibold text-[#0F172A] tabular-nums">
-          {value}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   Main page, CasUsagesPage
+   Page
 ───────────────────────────────────────────────────────────────────────────── */
 export default function CasUsagesPage() {
   const t = useTranslations("casUsages");
+  const tUseCases = useTranslations("UseCases");
   const locale = useLocale();
   const isFr = locale === "fr";
+  const tx = (fr: string, en: string) => (isFr ? fr : en);
 
   const cases = t.raw("cases.items") as CaseItem[];
-  const kpiItems = t.raw("kpis.items") as Array<{
-    value: number;
-    suffix: string;
-    label: string;
-    source: string;
-  }>;
+  // Bloc « Impact » : registre unique src/content/kpis.ts (le cumul « 4 800 000 € » est retiré)
+  const lang = isFr ? "fr" : "en";
+  const kpiItems = (["clients", "assets", "carbon", "reuse"] as const).map((id) => ({
+    value: KPIS[id].value,
+    suffix: KPIS[id].unit[lang],
+    label: KPIS[id].label[lang],
+    source: `${KPIS[id].source[lang]} · ${KPIS[id].period[lang]}`,
+  }));
   const editorialBodies = t.raw("editorialBodies") as Record<string, string>;
+  const matrixHeaders = t.raw("matrix.headers") as string[];
   const matrixRows = t.raw("matrix.rows") as MatrixRow[];
   const trustBadges = t.raw("finalCta.trustBadges") as string[];
+  const testimonials = t.raw("testimonials.items") as Array<{ quote: string; name: string; role: string; sector: string }>;
+  const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
+  // Titres des missions racontées dans les vidéos CHU et Énergie (contenu GTC existant, UseCases)
+  const useCaseTitles = (tUseCases.raw("cases") as Array<{ title: string }>).map((c) => c.title);
+  const tf1 = t.raw("featuredTf1") as {
+    eyebrow: string; badge: string; title: string; subtitle: string; body: string; photo: string; photoAlt: string;
+    metrics: KPIItem[]; quote: string; quoteName: string; quoteRole: string; quoteSector: string;
+    cta: string; ctaHref: string; ctaSecondary: string; scrollTarget: string;
+  };
 
-  const [formData, setFormData] = useState({
-    company: "",
-    sector: "",
-    challenge: "",
-  });
+  const [formData, setFormData] = useState({ company: "", sector: "", challenge: "" });
   const [submitted, setSubmitted] = useState(false);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
   };
 
-  // Bar colors cycling per case
-  const barColors = [
-    "#0EA5E9",
-    "#10B981",
-    "#F59E0B",
-    "#0EA5E9",
-    "#10B981",
-    "#F59E0B",
-    "#0EA5E9",
-    "#10B981",
+  const differentiators = [
+    {
+      icon: ShieldCheck,
+      tag: tx("Sécurité irréprochable", "Flawless security"),
+      title: tx("Traçabilité end-to-end horodatée", "Timestamped end-to-end traceability"),
+      body: tx(
+        "Chaque support traité reçoit un certificat NIST 800-88 r2 individuel, horodaté, avec hash SHA-256. Piste d'audit exploitable immédiatement par vos auditeurs ACPR, Big 4 ou DPO.",
+        "Every processed medium receives an individual, timestamped NIST 800-88 r2 certificate with a SHA-256 hash. An audit trail your ACPR, Big 4 or DPO auditors can use immediately."
+      ),
+    },
+    {
+      icon: Euro,
+      tag: tx("ROI démontrable", "Demonstrable ROI"),
+      title: tx("Valeur récupérée bien au-delà des estimations", "Value recovered well beyond estimates"),
+      body: tx(
+        "Notre réseau d'acheteurs qualifiés en secondaire international permet de récupérer en moyenne 3× la valeur estimée en interne. Le ROI de chaque mission est documenté à J+30.",
+        "Our network of qualified international secondary-market buyers recovers on average 3× the internally estimated value. The ROI of every mission is documented at D+30."
+      ),
+    },
+    {
+      icon: Leaf,
+      tag: tx("Impact mesurable", "Measurable impact"),
+      title: tx("Scope 3 audit-ready, première itération", "Audit-ready Scope 3, first iteration"),
+      body: tx(
+        "Nos bilans CO₂ suivent la méthodologie Boavizta/ADEME, exportables directement au format GRI/ESRS E5. Validés sans réserve par les cabinets Big 4 dès la première publication CSRD.",
+        "Our CO₂ assessments follow the Boavizta/ADEME methodology, exportable directly in GRI/ESRS E5 format. Approved without reservation by Big 4 firms from the first CSRD publication."
+      ),
+    },
   ];
 
-  const comparativeData = matrixRows.map((row, i) => ({
-    label: row[0] ?? "",
-    recovery: parseInt((row[5] ?? "97").replace("%", "").trim()) || 97,
-    value: row[1] ?? "",
-    co2: row[2] ?? "",
-    conformite: row[3] ?? "",
-    duree: row[4] ?? "",
-    accentColor: barColors[i] ?? "#10B981",
-  }));
+  const sectorCatalogue = (Object.values(CASE_TO_SECTOR) as Array<{ slug: string; labelFr: string; labelEn: string }>).concat([
+    { slug: "medias-audiovisuel", labelFr: "Médias et audiovisuel", labelEn: "Media and broadcast" },
+    { slug: "tech", labelFr: "Tech et services numériques", labelEn: "Tech and digital services" },
+    { slug: "conseil", labelFr: "Conseil, audit et services pro", labelEn: "Consulting, audit and pro services" },
+    { slug: "transport-logistique", labelFr: "Transport et logistique", labelEn: "Transport and logistics" },
+    { slug: "pharma-biotech", labelFr: "Pharmaceutique et biotech", labelEn: "Pharma and biotech" },
+    { slug: "btp", labelFr: "Construction et BTP", labelEn: "Construction" },
+    { slug: "horeca", labelFr: "Hôtellerie et tourisme", labelEn: "Hospitality and tourism" },
+    { slug: "agroalimentaire", labelFr: "Agroalimentaire", labelEn: "Food industry" },
+  ]);
+
+  const field =
+    "mt-2 h-11 w-full rounded-lg border border-track bg-bg px-3 text-body text-fg placeholder:text-fg-muted focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25";
 
   return (
-    <main className="overflow-hidden bg-white">
-
-      {/* Urgency band, same pattern as home */}
-      <div className="bg-[#0F172A] text-white py-3 px-4 border-b border-white/5">
-        <div className="container mx-auto flex items-center justify-center gap-3 text-sm font-medium text-center">
-          <ShieldCheck className="h-4 w-4 flex-shrink-0 text-[#10B981]" aria-hidden="true" />
-          <p className="text-xs leading-snug text-gray-300">
-            <span className="font-semibold text-white">38 000+</span> certificats NIST 800-88 émis ·{" "}
-            <span className="font-semibold text-white">6 200 tCO2e</span> évitées · Réponse audit sous{" "}
-            <span className="font-semibold text-white">72h</span>
-          </p>
-          <Link
-            href="/contact"
-            className="hidden sm:inline-flex items-center gap-1 text-[#10B981] hover:text-[#34D399] font-semibold text-xs transition-colors"
-          >
-            Demander un audit <ArrowRight className="h-3 w-3" aria-hidden="true" />
-          </Link>
-        </div>
-      </div>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S1, HERO ÉDITORIAL FEATURED
-          Full-viewport split dark: content LEFT (55%) + photo RIGHT (45%)
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
-        aria-labelledby="hero-editorial-title"
-      >
-        {/* Ambient glow layers */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 10% 10%, rgba(16,185,129,0.18) 0%, transparent 60%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 90% 90%, rgba(14,165,233,0.12) 0%, transparent 55%)",
-          }}
-        />
-
-        {/* ── Left content column (55%) ── */}
-        <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-24">
-          <FadeIn>
-            {/* Featured badge */}
-            <div className="flex items-center gap-3 mb-10">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
-                <span
-                  className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
-                  style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
-                />
-                {t("editorialHero.featuredLabel")}
-              </span>
+    <div>
+      {/* ═══ HERO paper ═══ */}
+      <section className="bg-bg py-16 lg:py-24" aria-labelledby="hero-editorial-title">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="reveal min-w-0 lg:col-span-7">
+              <Tag variant="brand" icon={<ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
+                {`${formatKpi("assets", lang)} ${KPIS.assets.label[lang]} · ${formatKpi("carbon", lang)} ${KPIS.carbon.label[lang]}`}
+              </Tag>
+              <p className="mt-6 text-eyebrow uppercase text-fg-muted">{t("editorialHero.featuredLabel")}</p>
+              <h1 id="hero-editorial-title" className="mt-3 max-w-[22ch] text-display-lg text-fg">{t("editorialHero.headline")}</h1>
+              <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("editorialHero.subtitle")}</p>
+              <dl className="mt-8 grid max-w-[600px] grid-cols-3 border-y border-track py-6">
+                {[
+                  { v: "312", unit: "tCO₂e", l: tx("évitées (Boavizta v1.4)", "avoided (Boavizta v1.4)") },
+                  { v: tx("2 400", "2,400"), unit: "", l: tx("postes migrés en 11 semaines", "devices migrated in 11 weeks") },
+                  { v: tx("4 jours", "4 days"), unit: "", l: tx("audit ACPR réussi", "ACPR audit passed") },
+                ].map((item, i) => (
+                  <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-track pl-4" : "pr-4"}`}>
+                    <dt className="mt-1 text-caption text-fg-muted">{item.l}</dt>
+                    <dd className="font-display text-display-sm tabular-nums text-emerald">
+                      {item.v}
+                      {item.unit && <span className="ml-1 font-sans text-body-sm text-fg-strong">{item.unit}</span>}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="/contact" size="lg">{t("editorialHero.cta1")}</ButtonLink>
+                <ButtonLink href="/demo" variant="secondary" size="lg">{t("editorialHero.cta2")}</ButtonLink>
+              </div>
+              <a href="#cas-banque-cac40" className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-fg-muted hover:text-fg">
+                <ArrowDown className="h-4 w-4" aria-hidden="true" />
+                {t("editorialHero.scrollCta")}
+              </a>
             </div>
-
-            {/* Main headline, XXL editorial */}
-            <h1
-              id="hero-editorial-title"
-              className="text-white font-black tracking-tight mb-8"
-              style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
-            >
-              {t("editorialHero.headline")}
-            </h1>
-
-            {/* Sub-title prose */}
-            <p className="text-gray-300 text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-10">
-              {t("editorialHero.subtitle")}
-            </p>
-
-            {/* Proof strip, 3 key figures */}
-            <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10 pb-10 border-b border-white/8">
-              {[
-                { v: "1 850", unit: "tCO₂e", l: "évitées en 4 ans", color: "#10B981" },
-                { v: "638 k€", unit: "", l: "valeur récupérée", color: "#0EA5E9" },
-                { v: "4 jours", unit: "", l: "audit ACPR réussi", color: "#F59E0B" },
-              ].map((item, i) => (
-                <div key={i} className="flex flex-col">
-                  <span
-                    className="text-3xl lg:text-4xl font-black tracking-tight leading-none tabular-nums"
-                    style={{ color: item.color }}
-                  >
-                    {item.v}
-                    {item.unit && (
-                      <span className="text-base ml-1 font-semibold opacity-80">
-                        {item.unit}
-                      </span>
-                    )}
-                  </span>
-                  <span className="text-xs text-gray-500 mt-1.5 font-medium">{item.l}</span>
+            <div className="reveal lg:col-span-5">
+              <figure>
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
+                  <MediaSlot fill id="cas-usages-hero" alt={tx(
+                      "Infrastructure IT d'une banque CAC40 lors d'une mission de décommissionnement GreenTechCycle",
+                      "IT infrastructure of a CAC40 bank during a GreenTechCycle decommissioning mission"
+                    )} fallback={<CertificateCard />} />
                 </div>
-              ))}
-            </div>
-
-            {/* Dual CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-10">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
-              >
-                {t("editorialHero.cta1")}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="/demo"
-                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
-              >
-                {t("editorialHero.cta2")}
-                <ChevronRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </div>
-
-            {/* Scroll anchor */}
-            <a
-              href="#cas-banque-cac40"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-300 text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
-            >
-              <ArrowDown
-                className="h-4 w-4 transition-transform group-hover:translate-y-1"
-                aria-hidden="true"
-              />
-              {t("editorialHero.scrollCta")}
-            </a>
-          </FadeIn>
-        </div>
-
-        {/* ── Right photo column (45%) ── */}
-        <div className="relative w-full lg:w-[45%] min-h-[52vh] lg:min-h-0 overflow-hidden flex-shrink-0">
-          <Image
-            src="/photos/case-banque.jpg"
-            alt="Infrastructure IT d'une banque CAC40 lors d'une mission de décommissionnement GreenTechCycle"
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 45vw"
-          />
-          {/* Left blend gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/85 via-[#0F172A]/25 to-transparent" />
-          {/* Bottom fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F172A]/55 to-transparent" />
-
-          {/* Floating testimonial card */}
-          <div className="absolute bottom-8 right-5 sm:right-8 max-w-[270px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-gray-100 hidden sm:block">
-            <Quote className="h-6 w-6 text-[#0EA5E9] mb-3" aria-hidden="true" />
-            <p className="text-[12px] text-[#0F172A] leading-snug font-medium mb-3">
-              &ldquo;GTC a transformé notre contrainte réglementaire en avantage compétitif concret.&rdquo;
-            </p>
-            <div className="flex items-center gap-2.5 pt-3 border-t border-gray-100">
-              <div className="w-7 h-7 rounded-full bg-[#0EA5E9]/12 flex items-center justify-center flex-shrink-0">
-                <Building2 className="h-3.5 w-3.5 text-[#0EA5E9]" aria-hidden="true" />
-              </div>
-              <div>
-                <p className="text-[11px] font-bold text-[#0F172A] leading-none">Marc B.</p>
-                <p className="text-[10px] text-gray-500 mt-0.5 leading-tight">
-                  {t("editorialHero.featuredMeta")}
-                </p>
-              </div>
+                <figcaption className="mt-6 border-l-2 border-emerald pl-4">
+                  <p className="text-body-sm text-fg">
+                    &laquo;&nbsp;{tx("GTC a transformé notre contrainte réglementaire en avantage compétitif concret.", "GTC turned our regulatory constraint into a concrete competitive advantage.")}&nbsp;&raquo;
+                  </p>
+                  <p className="mt-2 text-caption text-fg-muted">
+                    <span className="font-semibold text-fg-strong">Marc B.</span> · {t("editorialHero.featuredMeta")}
+                  </p>
+                </figcaption>
+              </figure>
             </div>
           </div>
+          {/* Clients (registre src/content/clients.ts) — non rattachés aux cas anonymisés ci-dessous */}
+          <ClientWordmarks variant="compact" className="mt-12 border-t border-track pt-8" />
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S2 (BANDEAU CHIFFRES XXVL) fond #0F172A
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        className="bg-[#0F172A] relative overflow-hidden border-t border-white/5"
-        aria-label="Chiffres clés GreenTechCycle"
-      >
-        {/* Ambient radial */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(16,185,129,0.09) 0%, transparent 65%)",
-          }}
-        />
-
-        <div className="container mx-auto px-4 relative z-10 py-16 lg:py-20">
-          <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-white/5">
-            {kpiItems.map((kpi, i) => {
-              const KIcon = [Leaf, Euro, FileCheck, Server][i] ?? Leaf;
-              const accentColors = ["#10B981", "#0EA5E9", "#F59E0B", "#10B981"];
-              const accent = accentColors[i] ?? "#10B981";
-              const isMillions = kpi.value >= 1000000;
-              return (
-                <StaggerItem key={i}>
-                  <div className="px-5 lg:px-10 py-8 lg:py-10 text-center flex flex-col items-center">
-                    {/* Icon */}
-                    <div
-                      className="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-5"
-                      style={{ backgroundColor: accent + "18" }}
-                    >
-                      <KIcon className="h-5 w-5" style={{ color: accent }} aria-hidden="true" />
-                    </div>
-
-                    {/* Giant CountUp number */}
-                    <p
-                      className="font-black tracking-tighter leading-none mb-3 tabular-nums"
-                      style={{
-                        fontSize: "clamp(2.8rem, 6.5vw, 5.5rem)",
-                        color: accent,
-                      }}
-                    >
-                      {isMillions ? (
-                        <CountUp end={kpi.value / 1000000} decimals={1} suffix=" M€" />
-                      ) : (
-                        <CountUp end={kpi.value} suffix={kpi.suffix} />
-                      )}
-                    </p>
-
-                    <p className="text-[13px] font-medium text-gray-400 leading-snug max-w-[15ch] mx-auto mb-1.5">
-                      {kpi.label}
-                    </p>
-                    <p className="text-[10px] text-gray-600 italic">{kpi.source}</p>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-
-          <p className="mt-4 text-center text-[11px] text-gray-600 italic max-w-3xl mx-auto">
-            {t("kpis.footnote")}
-          </p>
+      {/* ═══ VIDÉOS — les 4 cas clients en vidéo (anglais), aperçu muet à l'écran ═══ */}
+      <Section id="videos" tone="cream" aria-labelledby="videos-title">
+        <div className="reveal">
+          <SectionHeader
+            id="videos-title"
+            eyebrow={tx("Vidéos", "Videos")}
+            title={tx("Quatre missions, en vidéo.", "Four missions, on video.")}
+            intro={tx("Voix off en anglais · 33 à 35 secondes chacune.", "English voice-over · 33 to 35 seconds each.")}
+          />
         </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S2b (TROIS DIFFÉRENCIATEURS ÉDITORIAUX) fond #F8FAFC
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="py-16 lg:py-20 bg-[#F8FAFC] border-b border-gray-100">
-        <div className="container mx-auto px-4">
-          <StaggerContainer className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                icon: ShieldCheck,
-                accent: "#10B981",
-                tag: "Sécurité irréprochable",
-                title: "Traçabilité end-to-end certifiée",
-                body: "Chaque support traité reçoit un certificat NIST 800-88 r2 individuel, horodaté, avec hash SHA-256. Piste d'audit exploitable immédiatement par vos auditeurs ACPR, Big 4 ou DPO.",
-              },
-              {
-                icon: Euro,
-                accent: "#0EA5E9",
-                tag: "ROI démontrable",
-                title: "Valeur récupérée bien au-delà des estimations",
-                body: "Notre réseau d'acheteurs qualifiés en secondaire international permet de récupérer en moyenne 3× la valeur estimée en interne. Le ROI de chaque mission est documenté à J+30.",
-              },
-              {
-                icon: Leaf,
-                accent: "#F59E0B",
-                tag: "Impact mesurable",
-                title: "Scope 3 audit-ready, première itération",
-                body: "Nos bilans CO₂ suivent la méthodologie Boavizta/ADEME, exportables directement au format GRI/ESRS E5. Validés sans réserve par les cabinets Big 4 dès la première publication CSRD.",
-              },
-            ].map((d, i) => {
-              const DIcon = d.icon;
-              return (
-                <StaggerItem key={i}>
-                  <div className="bg-white rounded-2xl p-7 border border-gray-100 h-full hover:shadow-lg hover:border-gray-200 transition-all duration-300">
-                    <div className="flex items-start gap-4 mb-5">
-                      <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                        style={{ backgroundColor: d.accent + "15" }}
-                      >
-                        <DIcon
-                          className="h-5 w-5"
-                          style={{ color: d.accent }}
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <div>
-                        <span
-                          className="inline-block text-[10px] font-bold uppercase tracking-[0.1em] mb-1"
-                          style={{ color: d.accent }}
-                        >
-                          {d.tag}
-                        </span>
-                        <h3 className="text-base font-bold text-[#0F172A] leading-snug tracking-tight">
-                          {d.title}
-                        </h3>
-                      </div>
-                    </div>
-                    <p className="text-[13px] text-gray-600 leading-relaxed">{d.body}</p>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
+        <div className="grid gap-x-8 gap-y-12 md:grid-cols-2">
+          {VIDEO_CARDS.map((vc) => (
+            <article key={vc.video} className="min-w-0">
+              <h3 className="mb-4 max-w-[48ch] text-heading-md text-fg">{vc.heading(cases, tf1, useCaseTitles)}</h3>
+              <VideoFigure id={vc.video} preview />
+            </article>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S3 (INTRODUCTION ÉDITORIALE) fond blanc
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 lg:py-32 bg-white">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-6">
-                {t("cases.eyebrow")}
-              </p>
+      {/* ═══ CHIFFRES CLÉS (night) ═══ */}
+      <Section tone="night" spacing="dense" aria-label={tx("Chiffres clés GreenTechCycle", "GreenTechCycle key figures")}>
+        <StatRow tone="dark">
+          {kpiItems.map((kpi, i) => (
+            <Stat
+              key={i}
+              tone="dark"
+              value={kpi.value >= 1000000 ? <CountUp end={kpi.value / 1000000} decimals={1} suffix=" M€" /> : <CountUp end={kpi.value} suffix={kpi.suffix} />}
+              label={kpi.label}
+              source={kpi.source}
+            />
+          ))}
+        </StatRow>
+        <p className="mt-8 max-w-[65ch] text-caption italic text-fg-muted">{t("kpis.footnote")}</p>
+      </Section>
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F172A] mb-8 tracking-tight leading-[1.1]">
-                {t("editorialIntro.headline")}
-              </h2>
-
-              <p className="text-lg lg:text-xl text-gray-500 leading-[1.82] mb-10 font-light max-w-2xl mx-auto">
-                {t("editorialIntro.text")}
-              </p>
-
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#0E9F6E] font-semibold text-sm group transition-colors"
-              >
-                {t("editorialIntro.cta")}
-                <ArrowRight
-                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </Link>
+      {/* ═══ INTRO + DIFFÉRENCIATEURS + PARTENAIRES (paper) ═══ */}
+      <Section tone="paper">
+        <div className="reveal">
+          <SectionHeader eyebrow={t("cases.eyebrow")} title={t("editorialIntro.headline")} intro={t("editorialIntro.text")}>
+            <div className="mt-6">
+              <TextLink href="/contact">{t("editorialIntro.cta")}</TextLink>
             </div>
-          </FadeIn>
+          </SectionHeader>
+        </div>
+        <div className="reveal-stagger grid gap-6 md:grid-cols-3">
+          {differentiators.map((d, i) => (
+            <div key={i} className="reveal h-full">
+              <div className="h-full rounded-xl border border-track bg-bg p-6">
+                <Pictogram icon={d.icon} />
+                <p className="mt-4 text-eyebrow uppercase text-fg-muted">{d.tag}</p>
+                <h3 className="mt-2 text-heading-md text-fg">{d.title}</h3>
+                <p className="mt-2 text-body-sm text-fg-strong">{d.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
 
-          {/* Sector anchor nav, desktop only */}
-          <div className="hidden lg:block mt-16 pt-10 border-t border-gray-100">
-            <p className="text-[10px] font-semibold tracking-[0.2em] text-gray-400 uppercase text-center mb-6">
-              {t("nav.label")}
-            </p>
-            <nav
-              className="flex flex-wrap justify-center gap-3"
-              aria-label="Navigation par cas sectoriel"
-            >
+        <div className="mt-12 grid gap-8 border-t border-track pt-10 lg:grid-cols-2">
+          <div>
+            <p className="text-eyebrow uppercase text-fg-muted">{t("nav.label")}</p>
+            <nav aria-label={tx("Navigation par cas sectoriel", "Navigation by sector case")} className="mt-4 flex flex-wrap gap-2">
+              <a href="#cas-tf1-media" className="inline-flex min-h-[44px] items-center rounded-lg border border-track px-4 text-body-sm font-medium text-fg-strong hover:border-track-strong hover:text-fg">TF1</a>
               {cases.map((c, i) => {
                 const NavIcon = CASE_ICONS[i] ?? Building2;
                 return (
-                  <a
-                    key={c.slug}
-                    href={`#cas-${c.slug}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-gray-200 bg-white hover:border-[#10B981]/50 hover:bg-[#10B981]/4 text-[12px] font-semibold text-gray-600 hover:text-[#0F172A] transition-all duration-200 group"
-                  >
-                    <NavIcon
-                      className="h-3.5 w-3.5 text-gray-400 group-hover:text-[#10B981] transition-colors"
-                      aria-hidden="true"
-                    />
+                  <a key={c.slug} href={`#cas-${c.slug}`} className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-track px-4 text-body-sm font-medium text-fg-strong hover:border-track-strong hover:text-fg">
+                    <NavIcon className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                     {c.sector}
                   </a>
                 );
               })}
             </nav>
           </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S3b (PARTENAIRES & CERTIFICATIONS) bandeau discret fond blanc
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="py-12 bg-white border-y border-gray-100">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <p className="text-[10px] font-semibold tracking-[0.2em] text-gray-400 uppercase text-center mb-8">
-              {t("partners.eyebrow")}
-            </p>
-          </FadeIn>
-          <StaggerContainer className="flex flex-wrap items-center justify-center gap-4 lg:gap-6">
-            {(t.raw("partners.items") as string[]).map((p, i) => (
-              <StaggerItem key={i}>
-                <div className="px-5 py-2.5 rounded-lg border border-gray-150 bg-[#F8FAFC] hover:border-[#10B981]/30 transition-colors">
-                  <span className="text-[13px] font-semibold text-gray-600">{p}</span>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-          <FadeIn>
-            <p className="mt-6 text-center text-[11px] text-gray-400 italic max-w-xl mx-auto">
-              {t("partners.note")}
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S3c (CAS PHARE TF1) FEATURED STORY PLEINE LARGEUR
-          Fond sombre cinéma #0F172A, photo full-bleed à droite (45%)
-         ════════════════════════════════════════════════════════════════ */}
-      {(() => {
-        const tf1 = t.raw("featuredTf1") as {
-          eyebrow: string; badge: string; title: string; subtitle: string;
-          body: string; photo: string; photoAlt: string;
-          metrics: KPIItem[]; quote: string; quoteName: string;
-          quoteRole: string; quoteSector: string;
-          cta: string; ctaHref: string; ctaSecondary: string; scrollTarget: string;
-        };
-        return (
-          <section
-            id="cas-tf1-media"
-            className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
-            aria-labelledby="tf1-featured-title"
-          >
-            {/* Ambient glow */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse 80% 60% at 15% 20%, rgba(245,158,11,0.14) 0%, transparent 55%)",
-              }}
-            />
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse 60% 50% at 85% 80%, rgba(14,165,233,0.10) 0%, transparent 50%)",
-              }}
-            />
-
-            {/* Ghost watermark TF1 */}
-            <div
-              className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-              style={{
-                fontSize: "clamp(12rem, 30vw, 26rem)",
-                color: "rgba(255,255,255,0.03)",
-                right: "2rem",
-                top: "50%",
-                transform: "translateY(-50%)",
-              }}
-              aria-hidden="true"
-            >
-              TF1
-            </div>
-
-            {/* ── Left content column (55%) ── */}
-            <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-28">
-              <FadeIn>
-                {/* Badge */}
-                <div className="flex items-center gap-3 mb-8">
-                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#F59E0B]/30 bg-[#F59E0B]/10 text-[11px] font-bold tracking-[0.12em] text-[#F59E0B] uppercase">
-                    <MonitorPlay className="h-3.5 w-3.5" aria-hidden="true" />
-                    {tf1.badge}
-                  </span>
-                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] font-semibold tracking-[0.1em] text-gray-500 uppercase">
-                    <span
-                      className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"
-                      style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
-                    />
-                    {tf1.eyebrow}
-                  </span>
-                </div>
-
-                {/* Headline */}
-                <h2
-                  id="tf1-featured-title"
-                  className="text-white font-black tracking-tight mb-6"
-                  style={{ fontSize: "clamp(2rem, 5vw, 4.2rem)", lineHeight: 1.04 }}
-                >
-                  {tf1.title}
-                </h2>
-
-                {/* Subtitle */}
-                <p className="text-gray-400 text-sm font-semibold tracking-wide uppercase mb-6">
-                  {tf1.subtitle}
-                </p>
-
-                {/* Body, editorial prose */}
-                <p className="text-gray-300 text-base lg:text-[1.08rem] leading-[1.78] max-w-xl mb-10 first-letter:text-[2.8em] first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:leading-[0.8] first-letter:text-white/70">
-                  {tf1.body}
-                </p>
-
-                {/* 4 KPIs, grid */}
-                <div className="grid grid-cols-2 gap-x-8 gap-y-5 mb-10 pb-10 border-b border-white/10">
-                  {tf1.metrics.map((kpi: KPIItem, j: number) => (
-                    <div key={j} className="flex flex-col gap-1">
-                      <span className="text-3xl lg:text-4xl font-black tracking-tight leading-none tabular-nums text-[#F59E0B]">
-                        {kpi.value}
-                      </span>
-                      <span className="text-[12px] font-semibold text-white leading-tight mt-1">
-                        {kpi.label}
-                      </span>
-                      <span className="text-[10px] text-gray-500 leading-snug">
-                        {kpi.detail}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Pull quote */}
-                <blockquote className="mb-10 pl-5 border-l-[4px] border-[#F59E0B]/40 relative">
-                  <span
-                    className="absolute -top-4 -left-1 font-serif leading-none select-none pointer-events-none"
-                    style={{ fontSize: "3.5rem", color: "rgba(245,158,11,0.15)" }}
-                    aria-hidden="true"
-                  >
-                    &ldquo;
-                  </span>
-                  <p className="italic text-lg lg:text-xl leading-[1.6] mb-3 font-medium text-gray-200">
-                    {tf1.quote}
-                  </p>
-                  <footer className="text-sm font-semibold not-italic text-gray-400">
-                   , {tf1.quoteName}, {tf1.quoteRole},{" "}
-                    <span className="italic font-normal">{tf1.quoteSector}</span>
-                  </footer>
-                </blockquote>
-
-                {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Link
-                    href={tf1.ctaHref}
-                    className="inline-flex items-center justify-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-[#0F172A] font-bold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#F59E0B]/25 hover:-translate-y-0.5 text-sm"
-                  >
-                    {tf1.cta}
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                  <a
-                    href={tf1.scrollTarget}
-                    className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
-                  >
-                    {tf1.ctaSecondary}
-                    <ArrowDown className="h-4 w-4" aria-hidden="true" />
-                  </a>
-                </div>
-              </FadeIn>
-            </div>
-
-            {/* ── Right photo column (45%) ── */}
-            <div className="relative w-full lg:w-[45%] min-h-[52vh] lg:min-h-0 overflow-hidden flex-shrink-0">
-              <Image
-                src={tf1.photo}
-                alt={tf1.photoAlt}
-                fill
-                loading="lazy"
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 45vw"
-              />
-              {/* Left blend gradient */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/80 via-[#0F172A]/20 to-transparent" />
-              {/* Bottom fade */}
-              <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F172A]/50 to-transparent" />
-
-              {/* Floating KPI card, 65k overlay */}
-              <div className="absolute bottom-8 right-5 sm:right-8 max-w-[240px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-gray-100 hidden sm:block">
-                <Tv className="h-6 w-6 text-[#F59E0B] mb-3" aria-hidden="true" />
-                <p className="text-2xl font-black text-[#0F172A] tabular-nums leading-none mb-1">
-                  {tf1.metrics[0]?.value}{" "}
-                  <span className="text-xs font-semibold text-gray-500">{tf1.metrics[0]?.detail?.split("·")[0]?.trim()}</span>
-                </p>
-                <p className="text-[11px] text-gray-600 leading-snug font-medium">
-                  {tf1.metrics[0]?.label}
-                </p>
-              </div>
-            </div>
-          </section>
-        );
-      })()}
-
-      {/* ════════════════════════════════════════════════════════════════
-          S4 → S11, 8 CAS SECTORIELS EN SECTIONS PLEINE LARGEUR ALTERNÉES
-         ════════════════════════════════════════════════════════════════ */}
-
-      {/* Sticky side nav, desktop only */}
-      <div className="hidden xl:block fixed right-4 top-1/2 -translate-y-1/2 z-40">
-        <nav
-          className="flex flex-col gap-2 bg-white/90 backdrop-blur-md rounded-2xl p-2.5 shadow-lg ring-1 ring-gray-100"
-          aria-label="Navigation cas"
-        >
-          <a
-            href="#cas-tf1-media"
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-[#F59E0B]/10 text-[10px] font-bold text-gray-500 hover:text-[#F59E0B] transition-colors uppercase tracking-wider"
-            title="TF1 Média"
-          >
-            <Tv className="h-3 w-3" aria-hidden="true" />
-            <span className="sr-only sm:not-sr-only">TF1</span>
-          </a>
-          {cases.map((c, i) => {
-            const NavIcon = CASE_ICONS[i] ?? Building2;
-            return (
-              <a
-                key={c.slug}
-                href={`#cas-${c.slug}`}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-[#10B981]/10 text-[10px] font-bold text-gray-500 hover:text-[#10B981] transition-colors uppercase tracking-wider"
-                title={c.sector}
-              >
-                <NavIcon className="h-3 w-3" aria-hidden="true" />
-                <span className="sr-only sm:not-sr-only">{String(i + 1).padStart(2, "0")}</span>
-              </a>
-            );
-          })}
-        </nav>
-      </div>
-
-      {cases.map((c, i) => (
-        <CaseSection
-          key={c.slug}
-          c={c}
-          index={i}
-          editorialBody={editorialBodies[c.slug] ?? c.subtitle}
-          locale={locale}
-        />
-      ))}
-
-      {/* ════════════════════════════════════════════════════════════════
-          S12, SECTION COMPARATIVE VISUELLE
-          Liste éditoriale avec barres de progression, pas de tableau
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        className="py-24 lg:py-32 bg-white"
-        aria-labelledby="comparative-title"
-      >
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#0EA5E9] uppercase mb-4">
-                {t("matrix.eyebrow")}
-              </p>
-              <h2
-                id="comparative-title"
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F172A] mb-5 tracking-tight leading-[1.1]"
-              >
-                {t("matrix.title")}
-              </h2>
-              <p className="text-gray-600 text-base lg:text-lg leading-relaxed">
-                {t("matrix.subtitle")}
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="max-w-5xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 mb-12">
-
-              {/* Left : Recovery rate bars */}
-              <FadeIn direction="right">
-                <div>
-                  <div className="flex items-center gap-2 mb-6 pb-4 border-b border-gray-100">
-                    <TrendingUp className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
-                    <h3 className="text-[11px] font-bold text-[#0F172A] uppercase tracking-[0.12em]">
-                      Taux de récupération actifs
-                    </h3>
-                  </div>
-                  <div className="space-y-3">
-                    {comparativeData.map((row, i) => (
-                      <ComparativeBar
-                        key={i}
-                        label={row.label}
-                        pct={row.recovery}
-                        value={`${row.recovery}%`}
-                        accentColor={row.accentColor}
-                      />
-                    ))}
-                  </div>
-                  <p className="mt-4 text-[10px] text-gray-400 italic">
-                    Actifs récupérés (revente + reconditionnement + recyclage) vs total traité
-                  </p>
-                </div>
-              </FadeIn>
-
-              {/* Right, Value + CO2 card list */}
-              <FadeIn direction="left">
-                <div>
-                  <div className="flex items-center gap-2 mb-6 pb-4 border-b border-gray-100">
-                    <BarChart3 className="h-4 w-4 text-[#0EA5E9]" aria-hidden="true" />
-                    <h3 className="text-[11px] font-bold text-[#0F172A] uppercase tracking-[0.12em]">
-                      Valeur récupérée &amp; impact CO₂
-                    </h3>
-                  </div>
-                  <div className="space-y-2">
-                    {comparativeData.map((row, i) => (
-                      <a
-                        key={i}
-                        href={`#cas-${cases[i]?.slug ?? ""}`}
-                        className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#F8FAFC] hover:bg-[#EFF6FF] transition-colors group cursor-pointer"
-                      >
-                        <span
-                          className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 text-[10px] font-black text-white"
-                          style={{ backgroundColor: row.accentColor }}
-                        >
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-[12px] font-semibold text-[#0F172A] truncate group-hover:text-[#0EA5E9] transition-colors">
-                            {row.label}
-                          </p>
-                        </div>
-                        <div className="flex items-center gap-5 flex-shrink-0">
-                          <div className="text-right">
-                            <p
-                              className="text-[13px] font-black leading-none tabular-nums"
-                              style={{ color: row.accentColor }}
-                            >
-                              {row.value}
-                            </p>
-                            <p className="text-[9px] text-gray-400 mt-0.5 uppercase tracking-wider">
-                              économies
-                            </p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-[13px] font-black text-[#10B981] leading-none tabular-nums">
-                              {row.co2}
-                            </p>
-                            <p className="text-[9px] text-gray-400 mt-0.5 uppercase tracking-wider">
-                              tCO2e
-                            </p>
-                          </div>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </FadeIn>
-            </div>
-
-            {/* Bottom, Compliance matrix */}
-            <FadeIn>
-              <div className="bg-[#F8FAFC] rounded-2xl p-6 lg:p-8 border border-gray-100">
-                <div className="flex items-center gap-2 mb-6">
-                  <Award className="h-4 w-4 text-[#F59E0B]" aria-hidden="true" />
-                  <h3 className="text-[11px] font-bold text-[#0F172A] uppercase tracking-[0.12em]">
-                    Conformités réglementaires atteintes
-                  </h3>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                  {comparativeData.map((row, i) => (
-                    <div
-                      key={i}
-                      className="bg-white rounded-xl px-4 py-3.5 border border-gray-100 hover:shadow-md transition-shadow"
-                    >
-                      <div className="flex items-center gap-2 mb-2.5">
-                        <span
-                          className="w-6 h-6 rounded-md flex items-center justify-center text-[9px] font-black text-white flex-shrink-0"
-                          style={{ backgroundColor: row.accentColor }}
-                        >
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <p className="text-[11px] font-bold text-[#0F172A] truncate leading-none">
-                          {row.label}
-                        </p>
-                      </div>
-                      <p className="text-[11px] text-gray-500 leading-relaxed">
-                        {row.conformite}
-                      </p>
-                      <p className="text-[10px] text-gray-400 mt-1.5 font-medium">
-                        {row.duree}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-5 text-[10px] text-gray-400 italic text-center leading-relaxed">
-                  {t("matrix.footnote")}
-                </p>
-              </div>
-            </FadeIn>
+          <div>
+            <p className="text-eyebrow uppercase text-fg-muted">{t("partners.eyebrow")}</p>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {(t.raw("partners.items") as string[]).map((p, i) => (
+                <li key={i}><Tag variant="neutral">{p}</Tag></li>
+              ))}
+            </ul>
+            <p className="mt-4 text-caption italic text-fg-muted">{t("partners.note")}</p>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S12b (TÉMOIGNAGES 4 PERSONAS) fond sombre #0F172A
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        className="py-24 lg:py-32 bg-[#0F172A] relative overflow-hidden"
-        aria-labelledby="testimonials-title"
-      >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 70% at 50% 50%, rgba(16,185,129,0.08) 0%, transparent 65%)",
-          }}
-        />
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-4">
-                {t("testimonials.eyebrow")}
-              </p>
-              <h2
-                id="testimonials-title"
-                className="text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.1]"
-              >
-                {t("testimonials.title")}
-              </h2>
-            </div>
-          </FadeIn>
-
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {(t.raw("testimonials.items") as Array<{
-              quote: string;
-              name: string;
-              role: string;
-              sector: string;
-            }>).map((item, i) => {
-              const TIcon = CASE_ICONS[i] ?? Building2;
-              const accentColors = ["#0EA5E9", "#10B981", "#F59E0B", "#0EA5E9"];
-              const accent = accentColors[i] ?? "#10B981";
-              return (
-                <StaggerItem key={i}>
-                  <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 h-full flex flex-col hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300">
-                    <Quote
-                      className="h-7 w-7 mb-4 flex-shrink-0"
-                      style={{ color: accent }}
-                      aria-hidden="true"
-                    />
-                    <blockquote className="flex-1 mb-5">
-                      <p className="text-[13px] text-gray-300 leading-relaxed italic">
-                        &ldquo;{item.quote}&rdquo;
-                      </p>
-                    </blockquote>
-                    <footer className="flex items-center gap-3 pt-4 border-t border-white/8">
-                      <div
-                        className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-                        style={{ backgroundColor: accent + "20" }}
-                      >
-                        <TIcon
-                          className="h-4 w-4"
-                          style={{ color: accent }}
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-[12px] font-bold text-white leading-none truncate">
-                          {item.name}
-                        </p>
-                        <p className="text-[10px] text-gray-500 mt-0.5 truncate">
-                          {item.role} · {item.sector}
-                        </p>
-                      </div>
-                    </footer>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-
-          <FadeIn>
-            <p className="mt-8 text-center text-[11px] text-gray-600 italic">
-              {t("testimonials.consentNote")}
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S12c (FAQ DSI/RSSI) fond blanc
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        className="py-24 lg:py-32 bg-white"
-        aria-labelledby="faq-cas-title"
-      >
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-14">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-4">
-                {t("faq.eyebrow")}
-              </p>
-              <h2
-                id="faq-cas-title"
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0F172A] tracking-tight leading-[1.1]"
-              >
-                {t("faq.title")}
-              </h2>
-            </div>
-          </FadeIn>
-
-          <StaggerContainer className="grid md:grid-cols-2 gap-5 max-w-5xl mx-auto">
-            {(t.raw("faq.items") as Array<{ q: string; a: string }>).map(
-              (item, i) => (
-                <StaggerItem key={i}>
-                  <div className="bg-[#F8FAFC] border border-gray-100 rounded-2xl p-7 h-full hover:border-[#10B981]/30 hover:shadow-md transition-all duration-300">
-                    <div className="flex items-start gap-3 mb-4">
-                      <span
-                        className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg text-[#10B981] text-sm font-bold"
-                        style={{ backgroundColor: "#10B981" + "15" }}
-                      >
-                        Q{i + 1}
-                      </span>
-                      <h3 className="font-bold text-[#0F172A] text-[15px] leading-snug tracking-tight">
-                        {item.q}
-                      </h3>
-                    </div>
-                    <p className="text-sm text-gray-600 leading-relaxed pl-11">
-                      {item.a}
-                    </p>
-                  </div>
-                </StaggerItem>
-              )
-            )}
-          </StaggerContainer>
-
-          <FadeIn>
-            <div className="mt-12 text-center">
-              <Link
-                href="/faq"
-                className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#0E9F6E] font-semibold text-sm group transition-colors"
-              >
-                {t("faq.allQuestionsLink")}
-                <ArrowRight
-                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </Link>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S12d (CROSS-LINK 16 SECTEURS) bandeau éditorial fond #0F1115
-          Pointe vers le hub /secteurs sans dupliquer le contenu
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        className="relative py-20 lg:py-24 bg-[#0F1115] overflow-hidden"
-        aria-labelledby="cross-secteurs-title"
-      >
-        {/* Ghost watermark 16 */}
-        <div
-          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none text-white/[0.025]"
-          style={{
-            fontSize: "clamp(10rem, 26vw, 22rem)",
-            right: "-0.05em",
-            bottom: "-0.15em",
-          }}
-          aria-hidden="true"
-        >
-          16
-        </div>
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 55% at 20% 30%, rgba(14,165,233,0.12) 0%, transparent 60%)",
-          }}
-        />
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-center max-w-6xl mx-auto">
-            <FadeIn>
-              <div>
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-[#67E8F9] uppercase mb-5">
-                  {isFr ? "Au-delà des 8 cas chiffrés" : "Beyond the 8 quantified cases"}
-                </p>
-                <h2
-                  id="cross-secteurs-title"
-                  className="text-white font-bold tracking-tight mb-6"
-                  style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-                >
-                  {isFr ? (
-                    <>16 fiches sectorielles complètes,<br /><span className="text-[#0EA5E9]">de la banque au broadcast.</span></>
-                  ) : (
-                    <>16 complete sector profiles,<br /><span className="text-[#0EA5E9]">from banking to broadcast.</span></>
-                  )}
-                </h2>
-                <p className="text-gray-300 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-8 max-w-xl">
-                  {isFr
-                    ? "Chaque secteur a son audit, ses douleurs, son ROI, ses personas et ses objections. Le hub /secteurs synthétise les 16 marchés que nous couvrons en France et en Europe, y compris la référence broadcast TF1."
-                    : "Each sector has its audit, its pain points, its ROI, its personas and its objections. The /secteurs hub synthesises the 16 markets we cover in France and Europe, including the TF1 broadcast reference."}
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-3 mb-10">
-                  <Link
-                    href="/secteurs"
-                    className="inline-flex items-center justify-center gap-2 bg-[#0EA5E9] hover:bg-[#0284C7] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#0EA5E9]/25 hover:-translate-y-0.5 text-sm"
-                  >
-                    {isFr ? "Explorer les 16 secteurs" : "Explore the 16 sectors"}
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                  <Link
-                    href="/secteurs/medias-audiovisuel"
-                    className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
-                  >
-                    <Tv className="h-4 w-4 text-[#F59E0B]" aria-hidden="true" />
-                    {isFr ? "Voir la fiche TF1 / Médias" : "See the TF1 / Media profile"}
-                  </Link>
-                </div>
-
-                <div className="grid grid-cols-3 gap-4 max-w-md">
-                  {[
-                    { v: "16", l: isFr ? "secteurs couverts" : "sectors covered", c: "#10B981" },
-                    { v: "TF1", l: isFr ? "référence broadcast" : "broadcast reference", c: "#F59E0B" },
-                    { v: "3", l: isFr ? "phases priorité" : "priority phases", c: "#0EA5E9" },
-                  ].map((it, k) => (
-                    <div key={k} className="flex flex-col">
-                      <span
-                        className="text-2xl lg:text-3xl font-black tracking-tight leading-none tabular-nums"
-                        style={{ color: it.c }}
-                      >
-                        {it.v}
-                      </span>
-                      <span className="text-[10px] text-gray-500 mt-1.5 font-medium uppercase tracking-wider">
-                        {it.l}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+      {/* ═══ CAS PHARE TF1 (forest, featured) ═══ */}
+      <section id="cas-tf1-media" className="bg-bg-card py-16 text-fg lg:py-24" aria-labelledby="tf1-featured-title">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="reveal min-w-0 lg:col-span-7">
+              <div className="flex flex-wrap gap-2">
+                <Tag variant="dark" icon={<MonitorPlay className="h-3.5 w-3.5" aria-hidden="true" />}>{tf1.badge}</Tag>
+                <Tag variant="dark">{tf1.eyebrow}</Tag>
               </div>
-            </FadeIn>
-
-            <FadeIn>
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                {[
-                  { name: isFr ? "Médias / TF1" : "Media / TF1", slug: "medias-audiovisuel", accent: "#F59E0B", featured: true },
-                  { name: isFr ? "Banque" : "Banking", slug: "finance", accent: "#0EA5E9" },
-                  { name: isFr ? "Santé" : "Healthcare", slug: "sante", accent: "#10B981" },
-                  { name: isFr ? "Industrie" : "Industry", slug: "industrie", accent: "#0EA5E9" },
-                  { name: isFr ? "Public" : "Public", slug: "public", accent: "#10B981" },
-                  { name: isFr ? "Énergie" : "Energy", slug: "energie", accent: "#F59E0B" },
-                ].map((s) => (
-                  <Link
-                    key={s.slug}
-                    href={`/secteurs/${s.slug}`}
-                    className="group relative aspect-[4/3] rounded-xl border border-white/10 hover:border-white/30 bg-white/[0.03] hover:bg-white/[0.07] transition-all duration-300 overflow-hidden"
-                  >
-                    {s.featured && (
-                      <span
-                        className="absolute top-2 right-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider z-10"
-                        style={{ backgroundColor: s.accent, color: "#0F1115" }}
-                      >
-                        <Award className="w-2.5 h-2.5" aria-hidden="true" />
-                        {isFr ? "Phare" : "Featured"}
-                      </span>
-                    )}
-                    <div className="absolute inset-0 flex flex-col justify-end p-4">
-                      <span
-                        className="absolute top-3 left-3 font-black leading-none text-white/[0.18]"
-                        style={{ fontSize: "2.5rem" }}
-                        aria-hidden="true"
-                      >
-                        {s.slug === "medias-audiovisuel" ? "TF1" : ""}
-                      </span>
-                      <span
-                        className="text-[10px] font-bold uppercase tracking-[0.12em] mb-1"
-                        style={{ color: s.accent }}
-                      >
-                        {isFr ? "Secteur" : "Sector"}
-                      </span>
-                      <span className="text-sm font-bold text-white leading-tight">{s.name}</span>
-                      <span className="inline-flex items-center gap-1 text-[11px] text-gray-400 group-hover:text-white mt-2 transition-colors">
-                        {isFr ? "Voir la fiche" : "View profile"}
-                        <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
-                      </span>
-                    </div>
-                  </Link>
+              <h2 id="tf1-featured-title" className="mt-6 max-w-[24ch] text-display-md text-fg">{tf1.title}</h2>
+              <p className="mt-4 text-eyebrow uppercase text-fg-muted">{tf1.subtitle}</p>
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-muted">{tf1.body}</p>
+              <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 border-y border-track py-6">
+                {tf1.metrics.map((kpi, j) => (
+                  <div key={j} className="flex flex-col-reverse justify-end">
+                    <dt className="mt-1 text-caption text-fg-muted">
+                      <span className="block font-semibold text-fg">{kpi.label}</span>
+                      {kpi.detail}
+                    </dt>
+                    <dd className="font-display text-display-sm tabular-nums text-emerald">{kpi.value}</dd>
+                  </div>
                 ))}
+              </dl>
+              <figure className="mt-8 border-l-2 border-emerald pl-4">
+                <blockquote className="font-display text-display-sm text-fg">&laquo;&nbsp;{tf1.quote}&nbsp;&raquo;</blockquote>
+                <figcaption className="mt-3 text-caption text-fg-muted">
+                  <span className="font-semibold text-fg">{tf1.quoteName}</span> · {tf1.quoteRole} · {tf1.quoteSector}
+                </figcaption>
+              </figure>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href={tf1.ctaHref} tone="dark" size="lg">{tf1.cta}</ButtonLink>
+                <ButtonLink href={tf1.scrollTarget} tone="dark" variant="secondary" size="lg" arrow={false}>{tf1.ctaSecondary}</ButtonLink>
               </div>
-              <p className="mt-4 text-[11px] text-gray-500 text-center italic">
-                {isFr ? "+ 10 autres secteurs : retail, telco, éducation, BTP, HoReCa, agro, transport, pharma, conseil, tech." : "+ 10 more sectors: retail, telco, education, construction, hospitality, agro, transport, pharma, consulting, tech."}
-              </p>
-            </FadeIn>
+            </div>
+            <div className="reveal lg:col-span-5">
+              {/* Vidéo du cas TF1 (anglais, lecture au clic) ; visuel codé si absente */}
+              <div className="relative aspect-video overflow-hidden rounded-2xl border border-track shadow-float">
+                <VideoPlayer
+                  id="case-tf1"
+                  fallback={<MediaSlot fill id="cas-tf1-media" alt={tf1.photoAlt} fallback={<DashboardMock state="reporting" />} />}
+                />
+              </div>
+              <p className="mt-3 text-caption text-fg-muted">{tx("Vidéo · 33 s · voix off en anglais", "Video · 33 s · English voice-over")}</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S13 (ENCART CONVERSION) fond #10B981 pleine largeur
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        className="py-20 lg:py-28 bg-[#10B981] relative overflow-hidden"
-        aria-labelledby="conversion-title"
-      >
-        {/* Ambient */}
-        <div
-          className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none opacity-30"
-          style={{ background: "white" }}
-        />
-        <div
-          className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl pointer-events-none"
-          style={{ background: "rgba(5,150,105,0.5)" }}
-        />
+      {/* ═══ 8 CAS SECTORIELS — grille régulière 2 colonnes ═══ */}
+      <section className="bg-bg-card py-16 lg:py-24" aria-label={tx("Cas clients sectoriels", "Sector client cases")}>
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="grid gap-6 lg:grid-cols-2">
+            {cases.map((c, i) => (
+              <CaseCard key={c.slug} c={c} index={i} editorialBody={editorialBodies[c.slug] ?? c.subtitle} isFr={isFr} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <FadeIn>
-              <div className="text-center mb-10">
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-white/65 uppercase mb-4">
-                  {t("conversion.eyebrow")}
-                </p>
-                <h2
-                  id="conversion-title"
-                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-5 tracking-tight leading-[1.1]"
-                >
-                  {t("conversion.title")}
-                </h2>
-                <p className="text-white/80 text-base lg:text-lg leading-relaxed max-w-2xl mx-auto">
-                  {t("conversion.subtitle")}
-                </p>
+      {/* ═══ COMPARATIF — tableau §6.13 ═══ */}
+      <Section tone="paper" aria-labelledby="comparative-title">
+        <div className="reveal">
+          <SectionHeader id="comparative-title" eyebrow={t("matrix.eyebrow")} title={t("matrix.title")} intro={t("matrix.subtitle")} />
+        </div>
+        <div className="reveal">
+          <Table
+            caption={t("matrix.title")}
+            head={matrixHeaders}
+            numeric={[1, 4]}
+            emphasis={[4]}
+            rows={matrixRows.map((row, i) => [
+              cases[i] ? (
+                <a key="l" href={`#cas-${cases[i].slug}`} className="text-fg hover:text-emerald">{row[0]}</a>
+              ) : (
+                row[0]
+              ),
+              row[1],
+              row[2],
+              row[3],
+              row[4],
+            ])}
+          />
+          <p className="mt-4 max-w-[65ch] text-caption italic text-fg-muted">
+            {tx(
+              "Taux de récupération : actifs récupérés (revente + reconditionnement + recyclage) vs total traité.",
+              "Recovery rate: assets recovered (resale + refurbishment + recycling) vs total processed."
+            )}{" "}
+            {t("matrix.footnote")}
+          </p>
+        </div>
+      </Section>
+
+      {/* ═══ TÉMOIGNAGES + CITATION FINALE (night) ═══ */}
+      <Section tone="night" aria-labelledby="testimonials-title">
+        <div className="reveal">
+          <figure className="max-w-[65ch]">
+            <blockquote className="font-display text-display-sm text-fg">&laquo;&nbsp;{t("editorialFinalQuote.text")}&nbsp;&raquo;</blockquote>
+            <figcaption className="mt-4 text-caption text-fg-muted">
+              <span className="font-semibold text-fg">{t("editorialFinalQuote.name")}</span> · {t("editorialFinalQuote.role")}
+            </figcaption>
+            <p className="mt-3 text-caption italic text-fg-muted">{t("editorialFinalQuote.consentNote")}</p>
+            <div className="mt-4">
+              <TextLink href="#cas-banque-cac40" tone="dark">{tx("Voir le cas Banque CAC40 complet", "See the full CAC40 bank case")}</TextLink>
+            </div>
+          </figure>
+        </div>
+        <div className="mt-16 border-t border-track pt-10">
+          <SectionHeader tone="dark" id="testimonials-title" eyebrow={t("testimonials.eyebrow")} title={t("testimonials.title")} size="sm" />
+          <div className="reveal-stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {testimonials.map((item, i) => (
+              <div key={i} className="reveal h-full">
+                <figure className="flex h-full flex-col rounded-xl border border-track bg-bg p-6">
+                  <blockquote className="flex-1 text-body-sm text-fg">&laquo;&nbsp;{item.quote}&nbsp;&raquo;</blockquote>
+                  <figcaption className="mt-6 border-t border-track pt-4 text-caption text-fg-muted">
+                    <span className="font-semibold text-fg">{item.name}</span> · {item.role} · {item.sector}
+                  </figcaption>
+                </figure>
               </div>
-            </FadeIn>
+            ))}
+          </div>
+          <p className="mt-6 text-caption italic text-fg-muted">{t("testimonials.consentNote")}</p>
+        </div>
+      </Section>
 
-            {submitted ? (
-              <FadeIn>
-                <div className="bg-white rounded-2xl p-10 text-center max-w-md mx-auto shadow-2xl">
-                  <CheckCircle2
-                    className="h-14 w-14 text-[#10B981] mx-auto mb-5"
-                    aria-hidden="true"
-                  />
-                  <h3 className="text-2xl font-bold text-[#0F172A] mb-3">
-                    {t("conversion.successTitle")}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed text-sm">
-                    {t("conversion.successBody")}
-                  </p>
+      {/* ═══ FAQ (paper) ═══ */}
+      <Section tone="paper" aria-labelledby="faq-cas-title">
+        <div className="mx-auto max-w-[720px]">
+          <div className="reveal">
+            <SectionHeader id="faq-cas-title" eyebrow={t("faq.eyebrow")} title={t("faq.title")} />
+          </div>
+          <Accordion items={faqItems.map((f) => ({ question: f.q, answer: f.a }))} />
+          <div className="mt-8">
+            <TextLink href="/faq">{t("faq.allQuestionsLink")}</TextLink>
+          </div>
+        </div>
+      </Section>
+
+      {/* ═══ PASSERELLE 16 SECTEURS (cream) — fusion S12d + S14b ═══ */}
+      <Section tone="cream" aria-labelledby="cross-secteurs-title">
+        <div className="reveal">
+          <SectionHeader
+            id="cross-secteurs-title"
+            eyebrow={tx("Au-delà des 8 cas chiffrés · Catalogue sectoriel complet", "Beyond the 8 quantified cases · Full sector catalogue")}
+            title={tx("16 fiches sectorielles complètes, de la banque au broadcast.", "16 complete sector profiles, from banking to broadcast.")}
+            intro={tx(
+              "Chaque secteur dispose d'une fiche complète : profil réglementaire, douleurs spécifiques, cas d'usage prioritaires, ROI attendu, personas décideurs et objections. Le hub /secteurs synthétise les 16 marchés que nous couvrons en France et en Europe, y compris la référence broadcast TF1.",
+              "Each sector has a complete profile: regulatory framework, specific pain points, priority use cases, expected ROI, decision-maker personas and objections. The /secteurs hub synthesises the 16 markets we cover in France and Europe, including the TF1 broadcast reference."
+            )}
+          />
+        </div>
+        <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          {sectorCatalogue.map((s) => (
+            <li key={s.slug}>
+              <Link
+                href={`/secteurs/${s.slug}`}
+                className="group flex min-h-[44px] items-center justify-between gap-2 rounded-lg border border-track bg-bg px-4 py-3 text-body-sm font-medium text-fg transition-colors hover:border-track-strong hover:text-emerald"
+              >
+                {isFr ? s.labelFr : s.labelEn}
+                {s.slug === "medias-audiovisuel" && <Tag variant="brand">TF1</Tag>}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <ButtonLink href="/secteurs" variant="secondary">{tx("Voir les 16 fiches secteurs", "View the 16 sector profiles")}</ButtonLink>
+          <TextLink href="/secteurs/medias-audiovisuel" className="min-h-[44px]">{tx("Voir la fiche TF1 / Médias", "See the TF1 / Media profile")}</TextLink>
+        </div>
+      </Section>
+
+      {/* ═══ CTA UNIQUE (+ mini-formulaire de conversion) ═══ */}
+      <CtaSection
+        eyebrow={t("finalCta.eyebrow")}
+        title={t("finalCta.title")}
+        subtitle={t("finalCta.subtitle")}
+        primaryLabel={t("finalCta.cta1")}
+        primaryHref="/contact"
+        secondaryLabel={t("finalCta.cta2")}
+        secondaryHref="/demo"
+        reassurance={
+          <>
+            <span className="sr-only">{tx("Garanties contractuelles : ", "Contractual guarantees: ")}</span>
+            {trustBadges.join(" · ")}
+          </>
+        }
+        footnote={
+          <div className="mx-auto mt-8 max-w-[720px] text-left">
+            <ol className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-caption text-fg-muted">
+              {[
+                tx("Audit flash 72h", "72h flash audit"),
+                tx("Effacement selon NIST", "NIST erasure"),
+                tx("Valorisation marché", "Market value recovery"),
+                tx("Rapport CSRD prêt", "CSRD report ready"),
+              ].map((l, i) => (
+                <li key={i}>
+                  <span className="font-semibold text-emerald">{String(i + 1).padStart(2, "0")}</span> {l}
+                </li>
+              ))}
+            </ol>
+            <div className="mt-8 rounded-xl bg-bg p-6 text-fg lg:p-8" aria-labelledby="conversion-title">
+              <p className="text-eyebrow uppercase text-fg-muted">{t("conversion.eyebrow")}</p>
+              <h3 id="conversion-title" className="mt-2 font-display text-display-sm text-fg">{t("conversion.title")}</h3>
+              <p className="mt-2 text-body-sm text-fg-strong">{t("conversion.subtitle")}</p>
+              {submitted ? (
+                <div className="mt-6 flex items-start gap-3" role="status">
+                  <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-emerald" aria-hidden="true" />
+                  <div>
+                    <p className="text-heading-md text-fg">{t("conversion.successTitle")}</p>
+                    <p className="mt-1 text-body-sm text-fg-strong">{t("conversion.successBody")}</p>
+                  </div>
                 </div>
-              </FadeIn>
-            ) : (
-              <FadeIn>
-                <form
-                  onSubmit={handleSubmit}
-                  className="bg-white rounded-2xl p-6 lg:p-8 shadow-2xl shadow-[#0F172A]/15 max-w-2xl mx-auto"
-                  noValidate
-                >
-                  <div className="grid md:grid-cols-3 gap-4 mb-6">
+              ) : (
+                <form onSubmit={handleSubmit} className="mt-6" noValidate>
+                  <div className="grid gap-4 md:grid-cols-3">
                     {[
-                      {
-                        id: "conv-company",
-                        label: t("conversion.fields.company"),
-                        placeholder: "Votre entreprise",
-                        key: "company" as const,
-                      },
-                      {
-                        id: "conv-sector",
-                        label: t("conversion.fields.sector"),
-                        placeholder: "Banque, Santé, Retail…",
-                        key: "sector" as const,
-                      },
-                      {
-                        id: "conv-challenge",
-                        label: t("conversion.fields.challenge"),
-                        placeholder: "CSRD, NIS2, valeur…",
-                        key: "challenge" as const,
-                      },
-                    ].map((field) => (
-                      <div key={field.id}>
-                        <label
-                          htmlFor={field.id}
-                          className="block text-[10px] font-bold text-[#0F172A] mb-2 uppercase tracking-[0.12em]"
-                        >
-                          {field.label}
-                        </label>
+                      { id: "conv-company", label: t("conversion.fields.company"), placeholder: tx("Votre entreprise", "Your company"), key: "company" as const },
+                      { id: "conv-sector", label: t("conversion.fields.sector"), placeholder: tx("Banque, Santé, Retail…", "Banking, Healthcare, Retail…"), key: "sector" as const },
+                      { id: "conv-challenge", label: t("conversion.fields.challenge"), placeholder: tx("CSRD, NIS2, valeur…", "CSRD, NIS2, value…"), key: "challenge" as const },
+                    ].map((f) => (
+                      <div key={f.id}>
+                        <label htmlFor={f.id} className="block text-body-sm font-medium text-fg">{f.label}</label>
                         <input
-                          id={field.id}
+                          id={f.id}
                           type="text"
-                          value={formData[field.key]}
-                          onChange={(e) =>
-                            setFormData((d) => ({
-                              ...d,
-                              [field.key]: e.target.value,
-                            }))
-                          }
-                          placeholder={field.placeholder}
                           required
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#F8FAFC] text-[#0F172A] text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#10B981]/40 focus:border-[#10B981] transition"
+                          value={formData[f.key]}
+                          onChange={(e) => setFormData((d) => ({ ...d, [f.key]: e.target.value }))}
+                          placeholder={f.placeholder}
+                          className={field}
                         />
                       </div>
                     ))}
                   </div>
-
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <p className="text-[10px] text-gray-400 italic leading-snug max-w-[28ch]">
-                      {t("conversion.privacy")}
-                    </p>
-                    <button
-                      type="submit"
-                      className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm whitespace-nowrap flex-shrink-0"
-                    >
+                  <div className="mt-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                    <p className="max-w-[40ch] text-caption italic text-fg-muted">{t("conversion.privacy")}</p>
+                    <Button type="submit">
                       <Send className="h-4 w-4" aria-hidden="true" />
                       {t("conversion.cta")}
-                    </button>
+                    </Button>
                   </div>
                 </form>
-              </FadeIn>
-            )}
+              )}
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S14 (CITATION FINALE LARGE) magazine-style
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="py-28 lg:py-40 bg-white relative overflow-hidden">
-        {/* Enormous ghost quote mark background */}
-        <div
-          className="absolute inset-x-0 top-0 flex justify-center overflow-hidden pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          <span
-            className="text-gray-50 font-black leading-none"
-            style={{ fontSize: "clamp(14rem, 38vw, 32rem)" }}
-          >
-            &ldquo;
-          </span>
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-4xl mx-auto text-center">
-              {/* Green accent bar */}
-              <div
-                className="w-10 h-[3px] bg-[#10B981] mx-auto mb-12 rounded-full"
-                aria-hidden="true"
-              />
-
-              <blockquote>
-                <p className="text-2xl md:text-3xl lg:text-[2.2rem] font-bold text-[#0F172A] leading-[1.38] tracking-tight mb-10">
-                  &ldquo;{t("editorialFinalQuote.text")}&rdquo;
-                </p>
-                <footer className="flex items-center justify-center gap-5">
-                  <div className="w-16 h-px bg-gray-200" aria-hidden="true" />
-                  <div>
-                    <p className="font-bold text-[#0F172A] text-base leading-none">
-                      {t("editorialFinalQuote.name")}
-                    </p>
-                    <p className="text-gray-500 text-sm mt-1">
-                      {t("editorialFinalQuote.role")}
-                    </p>
-                  </div>
-                  <div className="w-16 h-px bg-gray-200" aria-hidden="true" />
-                </footer>
-              </blockquote>
-
-              <p className="mt-8 text-[11px] text-gray-400 italic">
-                {t("editorialFinalQuote.consentNote")}
-              </p>
-
-              <div className="mt-10">
-                <Link
-                  href="#cas-banque-cac40"
-                  className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#0E9F6E] font-semibold text-sm group transition-colors"
-                >
-                  Voir le cas Banque CAC40 complet
-                  <ArrowRight
-                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </Link>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S14b (PASSERELLE VERS LES 16 SECTEURS) fond #F8FAFC
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative py-20 lg:py-28 bg-[#F8FAFC] overflow-hidden">
-        <div
-          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-          style={{
-            fontSize: "clamp(10rem, 22vw, 18rem)",
-            color: "rgba(0,0,0,0.035)",
-            right: "-0.05em",
-            bottom: "-0.12em",
-          }}
-          aria-hidden="true"
-        >
-          16
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-3xl mb-12">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-4">
-                {isFr ? "Catalogue sectoriel complet" : "Full sector catalogue"}
-              </p>
-              <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-              >
-                {isFr
-                  ? "Au-delà de ces 8 cas : 16 fiches sectorielles détaillées."
-                  : "Beyond these 8 cases: 16 detailed sector profiles."}
-              </h2>
-              <p className="text-gray-600 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] max-w-2xl">
-                {isFr
-                  ? "Chaque secteur dispose d'une fiche complète : profil réglementaire, douleurs spécifiques, cas d'usage prioritaires, ROI attendu, personas décideurs et objections. De la finance à la pharma, du retail à l'éducation."
-                  : "Each sector has a complete profile: regulatory framework, specific pain points, priority use cases, expected ROI, decision-maker personas and objections. From finance to pharma, from retail to education."}
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="max-w-5xl">
-            <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-10">
-              {(Object.values(CASE_TO_SECTOR) as Array<{ slug: string; labelFr: string; labelEn: string }>)
-                .concat([
-                  { slug: "medias-audiovisuel", labelFr: "Médias et audiovisuel", labelEn: "Media and broadcast" },
-                  { slug: "tech", labelFr: "Tech et services numériques", labelEn: "Tech and digital services" },
-                  { slug: "conseil", labelFr: "Conseil, audit et services pro", labelEn: "Consulting, audit and pro services" },
-                  { slug: "transport-logistique", labelFr: "Transport et logistique", labelEn: "Transport and logistics" },
-                  { slug: "pharma-biotech", labelFr: "Pharmaceutique et biotech", labelEn: "Pharma and biotech" },
-                  { slug: "btp", labelFr: "Construction et BTP", labelEn: "Construction" },
-                  { slug: "horeca", labelFr: "Hôtellerie et tourisme", labelEn: "Hospitality and tourism" },
-                  { slug: "agroalimentaire", labelFr: "Agroalimentaire", labelEn: "Food industry" },
-                ])
-                .map((s) => (
-                  <StaggerItem key={s.slug}>
-                    <Link
-                      href={`/secteurs/${s.slug}`}
-                      className="group flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-white border border-gray-150 hover:border-[#10B981]/40 hover:shadow-md transition-all duration-200"
-                    >
-                      <span className="text-[12px] font-semibold text-[#0F172A] leading-tight group-hover:text-[#047857] transition-colors line-clamp-2">
-                        {isFr ? s.labelFr : s.labelEn}
-                      </span>
-                      <ChevronRight className="h-3.5 w-3.5 text-gray-400 group-hover:text-[#10B981] flex-shrink-0 transition-all group-hover:translate-x-0.5" aria-hidden="true" />
-                    </Link>
-                  </StaggerItem>
-                ))}
-            </StaggerContainer>
-
-            <FadeIn>
-              <Link
-                href="/secteurs"
-                className="inline-flex items-center gap-2 bg-[#0F172A] hover:bg-[#1E293B] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
-              >
-                {isFr ? "Voir les 16 fiches secteurs" : "View the 16 sector profiles"}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S15, CTA FINAL DOUBLE + BANDEAU CONFIANCE
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        className="relative py-28 lg:py-32 overflow-hidden bg-[#0F172A]"
-        aria-labelledby="final-cta-title"
-      >
-        {/* Background photo, very subtle */}
-        <Image
-          src="/photos/hp-atelier-itad.jpg"
-          alt="Atelier de reconditionnement GreenTechCycle, chaîne d'effacement certifiée"
-          fill
-          loading="lazy"
-          className="object-cover opacity-15"
-          sizes="100vw"
-        />
-        {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F172A]/96 via-[#0F172A]/92 to-[#0F172A]/88" />
-        {/* Green radial accent */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 60% at 75% 20%, rgba(16,185,129,0.16) 0%, transparent 55%)",
-          }}
-        />
-
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-4xl mx-auto text-center text-white">
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-5">
-                {t("finalCta.eyebrow")}
-              </p>
-
-              <h2
-                id="final-cta-title"
-                className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight leading-[1.05]"
-              >
-                {t("finalCta.title")}
-              </h2>
-
-              <p className="text-gray-400 text-base lg:text-xl mb-12 max-w-3xl mx-auto leading-relaxed">
-                {t("finalCta.subtitle")}
-              </p>
-
-              {/* Process, 4 quick steps */}
-              <div className="flex flex-wrap justify-center gap-3 mb-10">
-                {[
-                  { n: "01", l: "Audit flash 72h" },
-                  { n: "02", l: "Effacement certifié NIST" },
-                  { n: "03", l: "Valorisation marché" },
-                  { n: "04", l: "Rapport CSRD prêt" },
-                ].map((step, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/8 border border-white/12"
-                  >
-                    <span className="text-[11px] font-black text-[#10B981]">{step.n}</span>
-                    <span className="text-[12px] font-semibold text-white/80">{step.l}</span>
-                    {i < 3 && (
-                      <ChevronRight className="h-3 w-3 text-white/25 ml-1" aria-hidden="true" />
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              {/* Dual CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-14">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-white hover:text-[#10B981] text-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 shadow-xl shadow-[#10B981]/25 hover:-translate-y-0.5 text-base"
-                >
-                  {t("finalCta.cta1")}
-                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
-                </Link>
-                <Link
-                  href="/demo"
-                  className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white text-white hover:text-[#0F172A] border-2 border-white/25 hover:border-white font-semibold px-10 py-5 rounded-xl transition-all duration-300 text-base"
-                >
-                  {t("finalCta.cta2")}
-                  <ChevronRight className="h-5 w-5" aria-hidden="true" />
-                </Link>
-              </div>
-
-              {/* Trust badges */}
-              <div className="pt-8 border-t border-white/10">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-white/35 mb-5 font-semibold">
-                  Garanties contractuelles
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-                  {trustBadges.map((badge, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-white/75">
-                      <Shield className="h-4 w-4 text-[#10B981] flex-shrink-0" aria-hidden="true" />
-                      <span className="font-medium">{badge}</span>
-                      {i < trustBadges.length - 1 && (
-                        <span
-                          className="hidden sm:inline w-px h-4 bg-white/12 ml-3"
-                          aria-hidden="true"
-                        />
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-    </main>
+        }
+      />
+    </div>
   );
 }

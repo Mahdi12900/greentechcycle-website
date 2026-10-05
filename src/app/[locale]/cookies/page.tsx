@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { FadeIn } from "@/components/motion";
+
 import { Cookie, ShieldCheck, BarChart3, Sparkles, Megaphone } from "lucide-react";
 import LegalPageLayout from "@/components/LegalPageLayout";
 import CtaSection from "@/components/CtaSection";
@@ -15,10 +15,10 @@ function CookiesContent({ locale }: { locale: string }) {
   const t = useTranslations("Legal.cookies");
 
   const categories = [
-    { key: "necessary", icon: ShieldCheck, color: "bg-emerald-50 text-emerald-600 border-emerald-100" },
-    { key: "analytics", icon: BarChart3, color: "bg-blue-50 text-blue-600 border-blue-100" },
-    { key: "functional", icon: Sparkles, color: "bg-amber-50 text-amber-600 border-amber-100" },
-    { key: "marketing", icon: Megaphone, color: "bg-rose-50 text-rose-600 border-rose-100" },
+    { key: "necessary", icon: ShieldCheck, color: "bg-white/[0.03] text-emerald border-emerald-line" },
+    { key: "analytics", icon: BarChart3, color: "bg-white/[0.03] text-emerald border-track" },
+    { key: "functional", icon: Sparkles, color: "bg-amber-dim text-amber border-amber/40" },
+    { key: "marketing", icon: Megaphone, color: "bg-white/[0.03] text-emerald border-track" },
   ] as const;
 
   return (
@@ -28,25 +28,25 @@ function CookiesContent({ locale }: { locale: string }) {
         title={t("title")}
         subtitle="Transparence sur les cookies déposés par GreenTechCycle : finalités, durées et outils de gestion de vos préférences."
         breadcrumbLabel="Cookies"
-        icon={<Cookie className="h-7 w-7 text-accent" />}
+        icon={<Cookie className="h-7 w-7 text-emerald" />}
       >
         <div className="space-y-10">
           {/* Intro */}
-          <FadeIn delay={0.05}>
-            <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-100 shadow-sm">
-              <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3 tracking-tight">
+          <div className="reveal">
+            <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-track">
+              <h2 className="text-display-md text-fg mb-3">
                 {t("content.intro.title")}
               </h2>
-              <p className="text-gray-600 whitespace-pre-line leading-relaxed">
+              <p className="text-fg-strong whitespace-pre-line leading-relaxed">
                 {t("content.intro.text")}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           {/* Categories */}
-          <FadeIn delay={0.1}>
+          <div className="reveal">
             <div>
-              <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-6 tracking-tight">
+              <h2 className="text-display-md text-fg mb-6">
                 {t("content.categories.title")}
               </h2>
 
@@ -54,46 +54,46 @@ function CookiesContent({ locale }: { locale: string }) {
                 {categories.map(({ key, icon: Icon, color }) => (
                   <div
                     key={key}
-                    className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300"
+                    className="bg-bg-card rounded-2xl p-6 border border-track hover:border-track-strong transition-colors duration-150"
                   >
                     <div className={`inline-flex items-center justify-center w-11 h-11 rounded-xl border mb-4 ${color}`}>
                       <Icon className="h-5 w-5" />
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    <h3 className="text-heading-md text-fg mb-2">
                       {t(`content.categories.${key}.title`)}
                     </h3>
-                    <p className="text-sm text-gray-600 whitespace-pre-line leading-relaxed">
+                    <p className="text-sm text-fg-strong whitespace-pre-line leading-relaxed">
                       {t(`content.categories.${key}.text`)}
                     </p>
                   </div>
                 ))}
               </div>
             </div>
-          </FadeIn>
+          </div>
 
           {/* Management */}
-          <FadeIn delay={0.2}>
-            <div className="bg-gradient-to-br from-primary-50 to-accent/5 rounded-2xl p-6 md:p-8 border border-primary/10">
-              <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3 tracking-tight">
+          <div className="reveal">
+            <div className="rounded-2xl p-6 md:p-8 border border-emerald/10 bg-white/[0.03]">
+              <h2 className="text-display-md text-fg mb-3">
                 {t("content.management.title")}
               </h2>
-              <p className="text-gray-600 whitespace-pre-line leading-relaxed">
+              <p className="text-fg-strong whitespace-pre-line leading-relaxed">
                 {t("content.management.text")}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           {/* Duration */}
-          <FadeIn delay={0.3}>
-            <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-100 shadow-sm">
-              <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-3 tracking-tight">
+          <div className="reveal">
+            <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-track">
+              <h2 className="text-display-md text-fg mb-3">
                 {t("content.duration.title")}
               </h2>
-              <p className="text-gray-600 whitespace-pre-line leading-relaxed">
+              <p className="text-fg-strong whitespace-pre-line leading-relaxed">
                 {t("content.duration.text")}
               </p>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </LegalPageLayout>
 

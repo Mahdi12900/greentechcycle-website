@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { StaggerContainer, StaggerItem, FadeIn } from "@/components/motion";
+
 import {
   Lock,
   Info,
@@ -46,12 +46,12 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
         title={t("title")}
         subtitle="Votre confiance est notre priorité. Découvrez comment GreenTechCycle traite, protège et sécurise vos données personnelles conformément au RGPD."
         breadcrumbLabel="Confidentialité"
-        icon={<Lock className="h-7 w-7 text-accent" />}
+        icon={<Lock className="h-7 w-7 text-emerald" />}
       >
         {/* Table of contents */}
-        <FadeIn>
-          <div className="mb-10 bg-gradient-to-br from-primary-50 to-white rounded-2xl p-6 md:p-7 border border-primary/10">
-            <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">
+        <div className="reveal">
+          <div className="mb-10 rounded-2xl p-6 md:p-7 border border-emerald/10 bg-white/[0.03]">
+            <h2 className="text-display-md text-emerald uppercase mb-4">
               Sommaire
             </h2>
             <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
@@ -59,9 +59,9 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
                 <a
                   key={key}
                   href={`#section-${key}`}
-                  className="flex items-center gap-2 text-sm text-gray-700 hover:text-primary transition-colors py-1"
+                  className="flex items-center gap-2 text-sm text-fg-strong hover:text-emerald transition-colors py-1"
                 >
-                  <span className="text-xs font-mono text-primary/60 w-6">
+                  <span className="text-xs font-mono text-emerald w-6">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span>{t(`content.${key}.title`)}</span>
@@ -69,37 +69,37 @@ function ConfidentialiteContent({ locale }: { locale: string }) {
               ))}
             </div>
           </div>
-        </FadeIn>
+        </div>
 
-        <StaggerContainer className="space-y-6">
+        <div className="reveal-stagger space-y-6">
           {sections.map(({ key, icon: Icon }, i) => (
-            <StaggerItem key={key}>
+            <div key={key} className="reveal">
               <div
                 id={`section-${key}`}
-                className="scroll-mt-24 bg-white rounded-2xl p-6 md:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300"
+                className="scroll-mt-24 bg-bg-card rounded-2xl p-6 md:p-8 border border-track hover:border-track-strong transition-colors duration-150"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-emerald-dim border border-emerald/20 flex items-center justify-center text-emerald">
                     <Icon className="h-5 w-5" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="text-xs font-mono text-primary/60">
+                      <span className="text-xs font-mono text-emerald">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <h2 className="text-xl md:text-2xl font-semibold text-gray-900 tracking-tight">
+                      <h2 className="text-display-md text-fg">
                         {t(`content.${key}.title`)}
                       </h2>
                     </div>
-                    <p className="text-gray-600 whitespace-pre-line leading-relaxed">
+                    <p className="text-fg-strong whitespace-pre-line leading-relaxed">
                       {t(`content.${key}.text`)}
                     </p>
                   </div>
                 </div>
               </div>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </LegalPageLayout>
 
       <CtaSection

@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
-import { useLocale } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
-import { X, BookOpen } from "lucide-react";
+import { X } from "lucide-react";
+import { useSiteUi } from "@/components/SiteUiContext";
+
+const SESSION_KEY = "gtc-exit-popup-seen";
 
 /**
  * Page-aware exit-intent popup. The lead magnet pitched is chosen from the
@@ -33,6 +35,20 @@ export default function ExitPopup() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const { setOverlay } = useSiteUi();
+
+  useEffect(() => {
+    setOverlay("exit", visible);
+    return () => setOverlay("exit", false);
+  }, [visible, setOverlay]);
+
+  useEffect(() => {
+    if (!visible) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && dismiss();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
 
   // Fallback helper: contextual keys may not yet exist in i18n; default to
   // the historical generic copy so the component never throws.
@@ -46,10 +62,21 @@ export default function ExitPopup() {
 
   useEffect(() => {
     if (typeof window === "undefined" || localStorage.getItem("gtc-exit-popup-dismissed")) return;
+    // Une fois par session au plus (DESIGN.md §11 étape 8)
+    try {
+      if (sessionStorage.getItem(SESSION_KEY)) return;
+    } catch {
+      /* noop */
+    }
 
     function handleMouseLeave(e: MouseEvent) {
       if (e.clientY <= 0) {
         setVisible(true);
+        try {
+          sessionStorage.setItem(SESSION_KEY, "1");
+        } catch {
+          /* noop */
+        }
         document.removeEventListener("mouseout", handleMouseLeave);
       }
     }
@@ -89,38 +116,53 @@ export default function ExitPopup() {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label={tx(ctx.titleKey, "title")}>
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
-        <button onClick={dismiss} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg p-1" aria-label="Fermer">
-          <X className="w-5 h-5" aria-hidden="true" />
+    <div
+      className="fixed inset-0 z-[70] flex items-center justify-center bg-bg/60 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="exit-popup-title"
+      onClick={(e) => e.target === e.currentTarget && dismiss()}
+    >
+      <div className="relative w-full max-w-md rounded-xl border border-track bg-bg p-8 shadow-float">
+        <button
+          type="button"
+          onClick={dismiss}
+          className="absolute right-2 top-2 flex h-11 w-11 items-center justify-center rounded-lg text-fg-muted hover:bg-white/[0.04] hover:text-fg"
+          aria-label={locale === "en" ? "Close" : "Fermer"}
+        >
+          <X className="h-5 w-5" aria-hidden="true" />
         </button>
-        <div className="flex items-center justify-center w-14 h-14 bg-[#10B981]/10 rounded-xl mb-5">
-          <BookOpen className="w-7 h-7 text-[#10B981]" />
-        </div>
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{tx(ctx.titleKey, "title")}</h3>
-        <p className="text-sm text-gray-600 mb-6">{tx(ctx.subtitleKey, "subtitle")}</p>
+        <p className="text-eyebrow uppercase text-fg-muted">{locale === "en" ? "Free resource" : "Ressource offerte"}</p>
+        <h2 id="exit-popup-title" className="mt-3 pr-8 text-display-sm text-fg">{tx(ctx.titleKey, "title")}</h2>
+        <p className="mt-3 text-body-sm text-fg-strong">{tx(ctx.subtitleKey, "subtitle")}</p>
         {submitted ? (
-          <p className="text-[#10B981] font-semibold text-center py-4">Merci !</p>
+          <p className="mt-6 text-body font-semibold text-emerald" role="status">
+            {locale === "en" ? "Thank you!" : "Merci !"}
+          </p>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-3">
+          <form onSubmit={handleSubmit} className="mt-6 space-y-3">
+            <label htmlFor="exit-popup-email" className="sr-only">
+              {t("placeholder")}
+            </label>
             <input
+              id="exit-popup-email"
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t("placeholder")}
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none"
+              className="h-11 w-full rounded-lg border border-track bg-bg px-3 text-body text-fg placeholder:text-fg-muted focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25"
             />
             <button
               type="submit"
               disabled={submitting}
-              className="w-full py-3 bg-[#10B981] text-white font-semibold rounded-lg hover:bg-[#0E9F6E] transition-colors text-sm disabled:opacity-60 disabled:cursor-not-allowed"
+              className="h-12 w-full rounded-lg bg-emerald px-6 text-body font-semibold text-bg transition-colors hover:bg-emerald-hover disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {submitting ? "..." : tx(ctx.ctaKey, "cta")}
+              {submitting ? "…" : tx(ctx.ctaKey, "cta")}
             </button>
           </form>
         )}
-        <button onClick={dismiss} className="mt-3 w-full text-center text-xs text-gray-400 hover:text-gray-600">
+        <button type="button" onClick={dismiss} className="mt-3 h-11 w-full text-center text-caption text-fg-muted hover:text-fg">
           {t("dismiss")}
         </button>
       </div>

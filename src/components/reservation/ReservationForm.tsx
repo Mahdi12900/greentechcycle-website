@@ -1,9 +1,10 @@
 "use client";
 
+import { EMAILS } from "@/lib/contact";
 import { useState, useMemo } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
-import { FadeIn } from "@/components/motion";
+
 import {
   ArrowRight,
   ArrowLeft,
@@ -36,6 +37,7 @@ function emailIsValid(email: string): boolean {
 
 export default function ReservationForm({ offerSlug }: { offerSlug: string | null }) {
   const t = useTranslations("reserver");
+  const isEn = useLocale() === "en";
 
   const sizes = t.raw("form.sizes") as SelectOption[];
   const personas = t.raw("form.personas") as SelectOption[];
@@ -146,12 +148,12 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
     <form
       onSubmit={submit}
       noValidate
-      className="bg-white rounded-3xl border border-gray-150 shadow-xl shadow-[#0F172A]/5 p-6 lg:p-10 max-w-3xl mx-auto"
-      aria-label="Formulaire de réservation"
+      className="bg-bg-card rounded-2xl border border-track p-6 lg:p-10 max-w-3xl mx-auto"
+      aria-label={isEn ? "Booking form" : "Formulaire de réservation"}
     >
       {/* Stepper */}
       <div className="flex items-center justify-between mb-8">
-        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-400">
+        <p className="uppercase text-fg-muted text-eyebrow">
           {stepCounter}
         </p>
         <div className="flex items-center gap-1.5">
@@ -159,13 +161,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
             <span
               key={i}
               aria-hidden="true"
-              className={`h-1.5 rounded-full transition-all ${
-                i + 1 === step
-                  ? "w-8 bg-[#10B981]"
-                  : i + 1 < step
-                  ? "w-4 bg-[#10B981]/60"
-                  : "w-4 bg-gray-200"
-              }`}
+              className={`h-1.5 rounded-full transition-colors ${ i + 1 === step ? "w-8 bg-emerald" : i + 1 < step ? "w-4 bg-emerald/60" : "w-4 bg-track" }`}
             />
           ))}
         </div>
@@ -173,10 +169,10 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
 
       {/* Step 1, coordonnées */}
       {step === 1 && (
-        <FadeIn>
-          <h3 className="text-xl lg:text-2xl font-bold text-[#0F172A] mb-6 tracking-tight">
+        <div className="reveal">
+          <h2 className="text-heading-lg text-fg mb-6">
             {t("form.step1Title")}
-          </h3>
+          </h2>
           <div className="grid sm:grid-cols-2 gap-4">
             <Field
               id="r-name"
@@ -209,15 +205,15 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
               className="sm:col-span-2"
             />
           </div>
-        </FadeIn>
+        </div>
       )}
 
       {/* Step 2, organisation */}
       {step === 2 && (
-        <FadeIn>
-          <h3 className="text-xl lg:text-2xl font-bold text-[#0F172A] mb-6 tracking-tight">
+        <div className="reveal">
+          <h2 className="text-heading-lg text-fg mb-6">
             {t("form.step2Title")}
-          </h3>
+          </h2>
           <div className="grid sm:grid-cols-2 gap-4">
             <Field
               id="r-company"
@@ -246,15 +242,15 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
               options={personas}
             />
           </div>
-        </FadeIn>
+        </div>
       )}
 
       {/* Step 3, besoin */}
       {step === 3 && (
-        <FadeIn>
-          <h3 className="text-xl lg:text-2xl font-bold text-[#0F172A] mb-6 tracking-tight">
+        <div className="reveal">
+          <h2 className="text-heading-lg text-fg mb-6">
             {t("form.step3Title")}
-          </h3>
+          </h2>
           <div className="grid gap-4">
             <Field
               id="r-sites"
@@ -285,16 +281,16 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
               optional
             />
           </div>
-        </FadeIn>
+        </div>
       )}
 
       {/* Step 4, créneaux + consent */}
       {step === 4 && (
-        <FadeIn>
-          <h3 className="text-xl lg:text-2xl font-bold text-[#0F172A] mb-2 tracking-tight">
+        <div className="reveal">
+          <h2 className="text-heading-lg text-fg mb-2">
             {t("form.step4Title")}
-          </h3>
-          <p className="text-[13px] text-gray-500 mb-6">{t("form.labels.slots")}</p>
+          </h2>
+          <p className="text-body-sm text-fg-muted mb-6">{t("form.labels.slots")}</p>
           <div className="grid sm:grid-cols-2 gap-3 mb-6">
             {slots.map((s) => {
               const checked = data.slots.includes(s.value);
@@ -302,56 +298,50 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
               return (
                 <label
                   key={s.value}
-                  className={`flex items-start gap-3 px-4 py-3 rounded-xl border cursor-pointer transition ${
-                    checked
-                      ? "bg-[#10B981]/8 border-[#10B981]/40"
-                      : disabled
-                      ? "bg-gray-50 border-gray-100 cursor-not-allowed opacity-60"
-                      : "bg-white border-gray-200 hover:border-[#10B981]/30"
-                  }`}
+                  className={`flex items-start gap-3 px-4 py-3 rounded-xl border cursor-pointer transition ${ checked ? "bg-emerald/8 border-emerald/40" : disabled ? "bg-bg-card border-track cursor-not-allowed opacity-60" : "bg-bg-card border-track hover:border-emerald/30" }`}
                 >
                   <input
                     type="checkbox"
                     checked={checked}
                     disabled={disabled}
                     onChange={() => toggleSlot(s.value)}
-                    className="mt-0.5 h-4 w-4 accent-[#10B981]"
+                    className="mt-0.5 h-4 w-4 accent-emerald"
                   />
-                  <span className="text-[13px] text-[#0F172A] leading-snug">{s.label}</span>
+                  <span className="text-body-sm text-fg leading-snug">{s.label}</span>
                 </label>
               );
             })}
           </div>
-          {errors.slots && <p className="text-xs text-red-600 mb-4">{errors.slots}</p>}
+          {errors.slots && <p className="text-xs text-danger mb-4">{errors.slots}</p>}
 
           <label className="flex items-start gap-3 mt-4 cursor-pointer">
             <input
               type="checkbox"
               checked={data.consent}
               onChange={(e) => update("consent", e.target.checked)}
-              className="mt-1 h-4 w-4 accent-[#10B981]"
+              className="mt-1 h-4 w-4 accent-emerald"
             />
-            <span className="text-[12px] text-gray-600 leading-relaxed">
+            <span className="text-caption text-fg-strong leading-relaxed">
               {t("form.labels.consent")}
             </span>
           </label>
-          {errors.consent && <p className="text-xs text-red-600 mt-2">{errors.consent}</p>}
-        </FadeIn>
+          {errors.consent && <p className="text-xs text-danger mt-2">{errors.consent}</p>}
+        </div>
       )}
 
       {/* Status banners */}
       {submitState === "fallback" && (
-        <div className="mt-6 flex items-start gap-3 px-5 py-4 rounded-xl bg-[#FEF3F2] border border-[#F59E0B]/30">
+        <div className="mt-6 flex items-start gap-3 px-5 py-4 rounded-xl bg-amber-dim border border-amber/30">
           <AlertTriangle
-            className="h-5 w-5 text-[#F59E0B] flex-shrink-0 mt-0.5"
+            className="h-5 w-5 text-amber flex-shrink-0 mt-0.5"
             aria-hidden="true"
           />
           <div>
-            <p className="text-[13px] font-semibold text-[#0F172A] mb-1">{t("fallback.title")}</p>
-            <p className="text-[12px] text-gray-600 leading-relaxed">{t("fallback.body")}</p>
+            <p className="text-body-sm font-semibold text-fg mb-1">{t("fallback.title")}</p>
+            <p className="text-caption text-fg-strong leading-relaxed">{t("fallback.body")}</p>
             <a
-              href="mailto:mahdi@greentechcycle.fr"
-              className="inline-flex items-center gap-1 text-[12px] font-semibold text-[#0F172A] underline underline-offset-4 mt-1"
+              href={`mailto:${EMAILS.sales}`}
+              className="inline-flex items-center gap-1 text-caption font-semibold text-fg underline underline-offset-4 mt-1"
             >
               {t("fallback.mailtoLabel")}
               <ArrowRight className="h-3 w-3" aria-hidden="true" />
@@ -360,22 +350,22 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
         </div>
       )}
       {submitState === "error" && (
-        <div className="mt-6 flex items-start gap-3 px-5 py-4 rounded-xl bg-[#FEF3F2] border border-red-300">
-          <AlertTriangle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
+        <div className="mt-6 flex items-start gap-3 px-5 py-4 rounded-xl bg-amber-dim border border-danger">
+          <AlertTriangle className="h-5 w-5 text-danger flex-shrink-0 mt-0.5" aria-hidden="true" />
           <div>
-            <p className="text-[13px] font-semibold text-[#0F172A] mb-1">{t("error.title")}</p>
-            <p className="text-[12px] text-gray-600 leading-relaxed">{t("error.body")}</p>
+            <p className="text-body-sm font-semibold text-fg mb-1">{t("error.title")}</p>
+            <p className="text-caption text-fg-strong leading-relaxed">{t("error.body")}</p>
           </div>
         </div>
       )}
 
       {/* Navigation */}
-      <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between gap-4 flex-wrap">
+      <div className="mt-8 pt-6 border-t border-track flex items-center justify-between gap-4 flex-wrap">
         {step > 1 ? (
           <button
             type="button"
             onClick={goPrev}
-            className="inline-flex items-center gap-2 text-[#0F172A] hover:text-[#10B981] font-semibold text-sm transition-colors"
+            className="inline-flex items-center gap-2 text-fg hover:text-emerald font-semibold text-sm transition-colors"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             {t("form.previous")}
@@ -387,7 +377,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
           <button
             type="button"
             onClick={goNext}
-            className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
+            className="inline-flex items-center gap-2 bg-emerald hover:bg-emerald-hover text-bg font-semibold px-6 py-3 rounded-xl transition-colors duration-150 hover:border-track-strong hover: text-sm"
           >
             {t("form.next")}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -396,7 +386,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
+            className="inline-flex items-center gap-2 bg-emerald hover:bg-emerald-hover disabled:opacity-60 disabled:cursor-not-allowed text-bg font-semibold px-7 py-3.5 rounded-xl transition-colors duration-150 hover:border-track-strong hover: text-sm"
           >
             {submitting ? (
               <>
@@ -446,10 +436,10 @@ function Field({
     <div className={className}>
       <label
         htmlFor={id}
-        className="block text-[10px] font-bold text-[#0F172A] mb-2 uppercase tracking-[0.12em]"
+        className="block text-fg mb-2 uppercase text-eyebrow"
       >
         {label}
-        {!optional && <span className="text-[#10B981] ml-1">*</span>}
+        {!optional && <span className="text-emerald ml-1">*</span>}
       </label>
       <input
         id={id}
@@ -459,11 +449,9 @@ function Field({
         placeholder={placeholder}
         autoComplete={autoComplete}
         aria-invalid={!!error}
-        className={`w-full px-4 py-3 rounded-xl border text-[#0F172A] text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#10B981]/40 focus:border-[#10B981] transition ${
-          error ? "border-red-300 bg-red-50/40" : "border-gray-200 bg-[#F8FAFC]"
-        }`}
+        className={`w-full px-4 py-3 rounded-xl border text-fg text-sm placeholder:text-fg-muted focus:outline-none focus:ring-2 focus:ring-emerald/40 focus:border-emerald transition ${ error ? "border-danger bg-amber-dim" : "border-track bg-bg-card" }`}
       />
-      {error && <p className="mt-1.5 text-[11px] text-red-600">{error}</p>}
+      {error && <p className="mt-1.5 text-caption text-danger">{error}</p>}
     </div>
   );
 }
@@ -491,10 +479,10 @@ function TextareaField({
     <div>
       <label
         htmlFor={id}
-        className="block text-[10px] font-bold text-[#0F172A] mb-2 uppercase tracking-[0.12em]"
+        className="block text-fg mb-2 uppercase text-eyebrow"
       >
         {label}
-        {!optional && <span className="text-[#10B981] ml-1">*</span>}
+        {!optional && <span className="text-emerald ml-1">*</span>}
       </label>
       <textarea
         id={id}
@@ -503,11 +491,9 @@ function TextareaField({
         placeholder={placeholder}
         rows={rows}
         aria-invalid={!!error}
-        className={`w-full px-4 py-3 rounded-xl border text-[#0F172A] text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#10B981]/40 focus:border-[#10B981] transition resize-y ${
-          error ? "border-red-300 bg-red-50/40" : "border-gray-200 bg-[#F8FAFC]"
-        }`}
+        className={`w-full px-4 py-3 rounded-xl border text-fg text-sm placeholder:text-fg-muted focus:outline-none focus:ring-2 focus:ring-emerald/40 focus:border-emerald transition resize-y ${ error ? "border-danger bg-amber-dim" : "border-track bg-bg-card" }`}
       />
-      {error && <p className="mt-1.5 text-[11px] text-red-600">{error}</p>}
+      {error && <p className="mt-1.5 text-caption text-danger">{error}</p>}
     </div>
   );
 }
@@ -531,19 +517,17 @@ function SelectField({
     <div>
       <label
         htmlFor={id}
-        className="block text-[10px] font-bold text-[#0F172A] mb-2 uppercase tracking-[0.12em]"
+        className="block text-fg mb-2 uppercase text-eyebrow"
       >
         {label}
-        <span className="text-[#10B981] ml-1">*</span>
+        <span className="text-emerald ml-1">*</span>
       </label>
       <select
         id={id}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         aria-invalid={!!error}
-        className={`w-full px-4 py-3 rounded-xl border text-[#0F172A] text-sm focus:outline-none focus:ring-2 focus:ring-[#10B981]/40 focus:border-[#10B981] transition ${
-          error ? "border-red-300 bg-red-50/40" : "border-gray-200 bg-[#F8FAFC]"
-        }`}
+        className={`w-full px-4 py-3 rounded-xl border text-fg text-sm focus:outline-none focus:ring-2 focus:ring-emerald/40 focus:border-emerald transition ${ error ? "border-danger bg-amber-dim" : "border-track bg-bg-card" }`}
       >
         <option value="">-</option>
         {options.map((opt) => (
@@ -552,7 +536,7 @@ function SelectField({
           </option>
         ))}
       </select>
-      {error && <p className="mt-1.5 text-[11px] text-red-600">{error}</p>}
+      {error && <p className="mt-1.5 text-caption text-danger">{error}</p>}
     </div>
   );
 }

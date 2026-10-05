@@ -2,84 +2,343 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* ─────────────────────────────────────────────────────────────────────────────
+   Système de design v2 « Dark Tech » — voir DESIGN.md.
+   Polices auto-hébergées via next/font/local (src/app/fonts.ts) : aucun CDN.
+   Les variables/utilitaires v1 (« Épuré ») restent le temps de la migration.
+───────────────────────────────────────────────────────────────────────────── */
 
 @layer base {
+  :root {
+    /* ── v2 « Dark Tech » (DESIGN.md v2 §2.1) ─────────────────────────── */
+    --color-bg: #08090b;
+    --color-bg-card: #0f1115;
+    --color-track: #2c2f36;
+    --color-track-strong: #646973;
+    --color-bar: #363a42;
+    --color-fg: #ededef;
+    --color-fg-muted: #8a8f98;
+    --color-fg-strong: #c2c6cc;
+    --color-emerald: #10b981;
+    --color-emerald-hover: #34d399;
+    --color-emerald-dim: rgba(16, 185, 129, 0.12);
+    --color-emerald-line: rgba(16, 185, 129, 0.35);
+    --color-amber: #f59e0b;
+    --color-amber-dim: rgba(245, 158, 11, 0.12);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+    --header-h: 4rem;
+    --radius-sm: 0.5rem;   /* boutons, inputs, tags */
+    --radius-md: 0.75rem;  /* cartes, panneaux */
+    --radius-lg: 1rem;     /* images, panneau de chat */
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --header-h: 4.5rem;
+    }
+  }
+
   html {
     scroll-behavior: smooth;
+    /* Les ancres (#douleurs…) atterrissent sous l'unique barre collée */
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {
-    @apply antialiased text-gray-900 bg-white;
-    font-feature-settings: "ss01", "cv11";
+    @apply antialiased font-sans text-fg bg-bg;
+    font-feature-settings: "ss01", "cv11", "tnum";
+  }
+
+  /* Thème sombre unique (DESIGN.md v2) : `class="dark"` posé sur <html>. */
+  html.dark {
+    color-scheme: dark;
+  }
+  html.dark body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  /* H1/H2 = Geist 600 serré — DESIGN.md v2 §3.2 (plus de serif). */
+  h1,
+  h2 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+    /* Mots longs : coupure seulement s'ils ne tiennent pas sur la ligne (360 px) */
+    overflow-wrap: break-word;
   }
 
   ::selection {
-    @apply bg-accent/30 text-dark;
+    background: var(--color-emerald);
+    color: var(--color-bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-emerald);
+    outline-offset: 2px;
   }
 }
 
 @layer components {
   .section-padding {
-    @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
+    @apply px-5 sm:px-6 lg:px-8 py-16 lg:py-24;
   }
 
   .container-max {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-site mx-auto;
+  }
+
+  /* Les tokens de taille display/stat portent la police display (= Geist) */
+  .text-display-xl,
+  .text-display-lg,
+  .text-display-md,
+  .text-display-sm,
+  .text-stat {
+    font-family: var(--font-display), system-ui, sans-serif;
+  }
+
+  .text-stat {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Eyebrow v2 = Geist Mono, capitales — DESIGN.md v2 §3.2 */
+  .text-eyebrow {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    text-transform: uppercase;
+  }
+
+  /* ── Effets de fond v2 (DESIGN.md v2 §5.1) — calques statiques ────────
+     À poser en `absolute inset-0 pointer-events-none` dans une section
+     `relative overflow-hidden`. Hero et CTA final uniquement. */
+  .fx-halo {
+    background: radial-gradient(60% 50% at 50% 0%, rgba(16, 185, 129, 0.09), transparent 70%);
+  }
+  .fx-dots {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .fx-vignette {
+    background: radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+  }
+  /* Estompe un calque d'effet (points) vers les bords */
+  .fx-fade {
+    -webkit-mask-image: radial-gradient(70% 60% at 50% 30%, #000, transparent);
+    mask-image: radial-gradient(70% 60% at 50% 30%, #000, transparent);
+  }
+  /* Lueur séparée sur un élément émeraude (trait, point, boucle) : max 3 par écran */
+  .glow {
+    position: relative;
+  }
+  .glow::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    background: inherit;
+    filter: blur(12px);
+    opacity: 0.35;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* ── Mouvement v2 (DESIGN.md v2 §8.3) — CSS scroll-driven, progressif ──
+     Sans support (`@supports`), sans JS ou pour un robot : aucune règle,
+     le contenu est affiché tel quel. */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+    .reveal-scale {
+      animation: reveal-scale linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 50%;
+    }
+    .parallax-slow {
+      animation: parallax-slow linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+    .parallax-fast {
+      animation: parallax-fast linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+    /* Cascade : `--reveal-i` (0–5) décale la plage d'entrée de 6 % par item.
+       `.reveal-stagger` l'attribue automatiquement aux enfants directs. */
+    .reveal {
+      animation-range: entry calc(var(--reveal-i, 0) * 6%) entry calc(40% + var(--reveal-i, 0) * 6%);
+    }
+    .reveal-stagger > :nth-child(6n + 2) { --reveal-i: 1; }
+    .reveal-stagger > :nth-child(6n + 3) { --reveal-i: 2; }
+    .reveal-stagger > :nth-child(6n + 4) { --reveal-i: 3; }
+    .reveal-stagger > :nth-child(6n + 5) { --reveal-i: 4; }
+    .reveal-stagger > :nth-child(6n + 6) { --reveal-i: 5; }
+    /* Trait SVG dessiné au défilement (pathLength=1) — LifecycleDiagram, §8.2 */
+    .draw-on-scroll {
+      stroke-dasharray: 1;
+      animation: draw-stroke linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 55%;
+    }
+    /* Barres de graphique qui montent à l'entrée — DashboardMock */
+    .viz-grow .viz-bar {
+      transform-box: fill-box;
+      transform-origin: bottom;
+      animation: viz-grow linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+    /* Jauge circulaire (KpiGauge) : l'arc part de 0 jusqu'à sa valeur réelle.
+       Le HTML servi porte déjà l'arc final (dasharray « v 100 »). */
+    .gauge-fill {
+      animation: gauge-fill linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 45%;
+    }
+    /* Barre horizontale (KpiBar) : remplissage en scaleX (transform seul). */
+    .bar-fill {
+      transform-origin: left;
+      animation: bar-fill linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 40%;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal,
+      .reveal-scale,
+      .parallax-slow,
+      .parallax-fast,
+      .draw-on-scroll,
+      .viz-grow .viz-bar,
+      .gauge-fill,
+      .bar-fill {
+        animation: none;
+      }
+    }
+  }
+  @keyframes reveal-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes reveal-scale {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes parallax-slow {
+    from { transform: translateY(40px); }
+    to { transform: translateY(-40px); }
+  }
+  @keyframes draw-stroke {
+    from { stroke-dashoffset: 1; }
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes gauge-fill {
+    from { stroke-dashoffset: var(--gauge-v, 100); }
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes bar-fill {
+    from { transform: scaleX(0); }
+    to { transform: none; }
+  }
+  @keyframes viz-grow {
+    from { transform: scaleY(0.15); }
+    to { transform: none; }
+  }
+  @keyframes parallax-fast {
+    from { transform: translateY(80px); }
+    to { transform: translateY(-80px); }
+  }
+
+  /* Contenu éditorial (articles de blog) — DESIGN.md v2 : titres Geist 600,
+     liens émeraude, corps fg-strong, rythme 8 px. Pas de plugin
+     @tailwindcss/typography : styles locaux, limités aux balises produites. */
+  .prose {
+    @apply text-body-lg text-fg-strong;
+    max-width: 65ch;
+  }
+  .prose > * + * {
+    margin-top: 1rem;
+  }
+  .prose h2 {
+    @apply mt-12 text-display-sm text-fg;
+  }
+  .prose h3 {
+    @apply mt-8 font-sans text-heading-lg text-fg;
+  }
+  .prose h4 {
+    @apply mt-6 font-sans text-heading-md text-fg;
+  }
+  .prose p {
+    @apply text-body-lg text-fg-strong;
+  }
+  .prose strong {
+    @apply font-semibold text-fg;
+  }
+  .prose a {
+    @apply font-medium text-emerald underline underline-offset-4 hover:text-emerald-hover;
+  }
+  .prose ul,
+  .prose ol {
+    @apply space-y-2 pl-6;
+  }
+  .prose ul {
+    list-style: disc;
+  }
+  .prose ol {
+    list-style: decimal;
+  }
+  .prose li::marker {
+    @apply text-emerald;
+  }
+  .prose blockquote {
+    @apply border-l-2 border-emerald pl-4 font-display text-display-sm text-fg;
+  }
+  .prose table {
+    @apply w-full border-collapse text-body-sm;
+  }
+  .prose th,
+  .prose td {
+    @apply border-t border-track px-3 py-2 text-left;
+  }
+  .prose th {
+    @apply bg-bg-card text-eyebrow uppercase text-fg-muted;
+  }
+
+  /* Indice de défilement horizontal (onglets, tableaux) — DESIGN.md §6.9 */
+  .scroll-hint {
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent);
+  }
+  .scroll-hint.is-end {
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 }
 
 @layer utilities {
-  /* Slow pulses used behind hero gradient blobs */
-  @keyframes pulse-slow {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 0.9; transform: scale(1.08); }
+  .scrollbar-hide {
+    scrollbar-width: none;
   }
-  @keyframes pulse-slower {
-    0%, 100% { opacity: 0.5; transform: scale(1.04); }
-    50% { opacity: 0.8; transform: scale(1); }
-  }
-  .animate-pulse-slow {
-    animation: pulse-slow 7s ease-in-out infinite;
-  }
-  .animate-pulse-slower {
-    animation: pulse-slower 11s ease-in-out infinite;
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 
-  /* Marquee / subtle shimmer if ever needed */
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-  .animate-shimmer {
-    background-size: 200% 100%;
-    animation: shimmer 6s linear infinite;
-  }
-
-  /* Horizontal marquee used for press logos / outlets */
-  @keyframes marquee {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @keyframes scroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  .animate-marquee {
-    animation: marquee 28s linear infinite;
-    will-change: transform;
-  }
-  .animate-marquee:hover {
-    animation-play-state: paused;
-  }
-
-  /* Typing dots animation for chat widget */
+  /* Indicateur de saisie du chat */
   @keyframes typing-bounce {
     0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
     30% { transform: translateY(-4px); opacity: 1; }
   }
   .typing-dot {
-    @apply h-2 w-2 rounded-full bg-slate-400;
+    @apply h-2 w-2 rounded-full bg-fg-muted;
     animation: typing-bounce 1.4s ease-in-out infinite;
   }
   .animation-delay-200 {
@@ -88,8 +347,6 @@
   .animation-delay-400 {
     animation-delay: 0.4s;
   }
-
-  /* Custom scrollbar for chat */
   .custom-scrollbar::-webkit-scrollbar {
     width: 4px;
   }
@@ -97,7 +354,13 @@
     background: transparent;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: var(--color-track);
     border-radius: 999px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .typing-dot {
+      animation: none;
+    }
   }
 }

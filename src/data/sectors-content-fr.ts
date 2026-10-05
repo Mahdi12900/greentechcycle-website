@@ -32,7 +32,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
       {
         title: "Conformité DORA : registre prestataires ITAD et suivi d'incidents",
-        description: "DORA exige un registre à jour de tous les prestataires ICT tiers, incluant leurs certifications, SLA et incidents. GreenTechCycle centralise ces informations pour votre chaîne ITAD (certifications R2v3, ISO 27001, SLA de traitement, tracking d'incidents) et génère les exports nécessaires pour l'ACPR en un clic.",
+        description: "DORA exige un registre à jour de tous les prestataires ICT tiers, incluant leurs certifications, SLA et incidents. GreenTechCycle centralise ces informations pour votre chaîne ITAD (statut de conformité, SLA de traitement, tracking d'incidents) et génère les exports nécessaires pour l'ACPR en un clic.",
       },
       {
         title: "Reporting CSRD ESRS E5 multi-filiales",
@@ -45,7 +45,6 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
     ],
     roi: [
       { lever: "Internalisation partielle ITAD", gain: "-30 à 40 % sur la facture ITAD annuelle" },
-      { lever: "Reconditionnement postes éligibles", gain: "+80 à 150 € par poste reconditionné" },
       { lever: "Automatisation reporting", gain: "-0,5 à 1 ETP sur le reporting ESG/conformité" },
       { lever: "Évitement amendes DORA/RGPD", gain: "Jusqu'à 2 % du CA mondial" },
       { lever: "Impact carbone mesuré", gain: "300 kg CO₂e évités par poste reconditionné" },
@@ -65,7 +64,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
       {
         question: "Nos données sont trop sensibles pour une plateforme tierce",
-        answer: "Hébergement France (Supabase eu-west-1), conforme RGPD, certifié ISO 27001, isolation multi-tenant par Row Level Security, audit de pénétration annuel. Vos données restent souveraines.",
+        answer: "Hébergement France (Supabase eu-west-1), conforme RGPD, ISO 27001 en cours, isolation multi-tenant par Row Level Security, audit de pénétration annuel. Vos données restent souveraines.",
       },
       {
         question: "Le coût semble élevé par rapport à nos contrats actuels",
@@ -96,11 +95,11 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       "Les établissements multi-sites, souvent répartis sur 5 à 30 bâtiments, cumulent autant de processus ITAD différents. L'absence de politique unifiée génère des risques et des surcoûts.",
       "Le risque réputationnel et juridique d'une fuite de données patients est considérable. Au-delà de l'amende RGPD (jusqu'à 4 % du CA), c'est la confiance des patients et la crédibilité de l'établissement qui sont en jeu.",
       "Les groupes hospitaliers privés cotés (Elsan, Ramsay, Vivalto) font face à des obligations de reporting CSRD croissantes, ajoutant une couche de complexité à la gestion de fin de vie IT.",
-      "Les équipements d'imagerie médicale en fin de vie (IRM, scanners) contiennent des images patients stockées localement. Leur cycle de remplacement (7 à 10 ans) nécessite un effacement certifié de niveau médical.",
+      "Les équipements d'imagerie médicale en fin de vie (IRM, scanners) contiennent des images patients stockées localement. Leur cycle de remplacement (7 à 10 ans) nécessite un effacement attesté de niveau médical.",
     ],
     useCases: [
       {
-        title: "Effacement certifié des dispositifs médicaux en fin de vie",
+        title: "Effacement attesté des dispositifs médicaux en fin de vie",
         description: "Les IRM et scanners stockent localement des images patients. Lors du remplacement (tous les 7 à 10 ans), GreenTechCycle orchestre un effacement NIST 800-88 Purge avec certificat conforme CNIL, garantissant la destruction irréversible des données médicales tout en documentant chaque étape pour les audits HAS.",
       },
       {
@@ -109,7 +108,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
       {
         title: "Récupération de valeur sur le matériel bureautique",
-        description: "Les postes administratifs (DAF, DRH, accueil) ne contiennent pas de données patients et sont éligibles au reconditionnement. Sur un parc de 10 000 postes, la récupération de 50 à 100 € par poste représente 500 000 € à 1 M€ de valeur, directement réinjectables dans le budget IT hospitalier.",
+        description: "Les postes administratifs (DAF, DRH, accueil) ne contiennent pas de données patients et sont éligibles au reconditionnement.",
       },
       {
         title: "Waki Box dans les services et accueils",
@@ -117,8 +116,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
     ],
     roi: [
-      { lever: "Récupération valeur bureautique", gain: "60 à 90 € par poste éligible" },
-      { lever: "Optimisation destruction certifiée", gain: "-25 à 35 % sur les coûts" },
+      { lever: "Optimisation destruction attestée", gain: "-25 à 35 % sur les coûts" },
       { lever: "Évitement amende RGPD article 9", gain: "Jusqu'à 4 % du CA" },
       { lever: "Logistique DEEE centralisée", gain: "-0,3 à 0,5 ETP par an" },
       { lever: "Sécurité incendie batteries lithium", gain: "Risque éliminé via collecte contrôlée" },
@@ -187,7 +185,6 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
     ],
     roi: [
       { lever: "Consolidation contrats multi-sites", gain: "-30 à 40 % sur la facture ITAD" },
-      { lever: "Reconditionnement IT bureautique", gain: "+50 à 100 € par poste" },
       { lever: "Avantage commercial ESG", gain: "Impact direct sur le CA (réponse RFP accélérée)" },
       { lever: "Évitement amende REACH/RoHS", gain: "Jusqu'à 7 500 € par infraction" },
       { lever: "Automatisation reporting RSE/QSE", gain: "-0,5 ETP" },
@@ -238,7 +235,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
     ],
     useCases: [
       {
-        title: "Effacement certifié TPE et caisses : conformité PCI DSS garantie",
+        title: "Effacement attesté TPE et caisses : conformité PCI DSS garantie",
         description: "Avec 500 magasins et 5 000 à 10 000 TPE renouvelés tous les 5 à 7 ans, l'effacement conforme PCI DSS est un enjeu industriel. GreenTechCycle applique le protocole NIST 800-88 avec certificat individuel par appareil, garantissant la conformité PCI DSS de bout en bout.",
       },
       {
@@ -251,12 +248,10 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
       {
         title: "Optimisation du renouvellement des caisses",
-        description: "Le scoring GreenTechCycle identifie les caisses disposant encore de 1 à 2 ans de vie utile, permettant leur réaffectation dans des magasins à moindre flux. L'économie de 200 à 500 € par caisse réutilisée, multipliée sur le réseau, représente un levier financier significatif.",
+        description: "Le scoring GreenTechCycle identifie les caisses disposant encore de 1 à 2 ans de vie utile, permettant leur réaffectation dans des magasins à moindre flux.",
       },
     ],
     roi: [
-      { lever: "Effacement unitaire TPE/caisses", gain: "-15 à 20 € par appareil" },
-      { lever: "Reconditionnement back-office", gain: "+80 à 120 € par poste" },
       { lever: "Logistique multi-magasins optimisée", gain: "-35 à 45 % sur les coûts" },
       { lever: "Storytelling ESG et acquisition", gain: "Impact mesurable sur la fréquentation" },
       { lever: "Évitement PCI DSS", gain: "Jusqu'à 100 000 € par infraction" },
@@ -312,7 +307,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
       {
         title: "ITAD datacenters internes : sécurité et valorisation",
-        description: "Des milliers de serveurs renouvelés tous les 4 à 6 ans, contenant des données clients et d'infrastructure critique. GreenTechCycle orchestre l'effacement R2v3 + ISO 27001, maximise la valeur résiduelle des serveurs reconditionnables (100 à 500 € par unité) et produit les certificats exigés par l'ANSSI.",
+        description: "Des milliers de serveurs renouvelés tous les 4 à 6 ans, contenant des données clients et d'infrastructure critique. GreenTechCycle orchestre l'effacement (démarche ISO 27001 en cours), maximise la valeur résiduelle des serveurs reconditionnables et produit les certificats exigés par l'ANSSI.",
       },
       {
         title: "Reporting CSRD première ligne : la rigueur que les analystes exigent",
@@ -325,8 +320,6 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
     ],
     roi: [
       { lever: "Optimisation opérateurs datacenter", gain: "-50 % sur les coûts spécialisés" },
-      { lever: "Volume smart meters", gain: "-3 à 5 € par unité sur le traitement" },
-      { lever: "Reconditionnement serveurs", gain: "+100 à 500 € par serveur éligible" },
       { lever: "Évitement NIS2", gain: "Jusqu'à 10 M€ ou 2 % du CA" },
       { lever: "Notation ESG améliorée", gain: "Impact direct sur la valorisation boursière" },
     ],
@@ -368,7 +361,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
     },
     painPoints: [
       "Les flottes de 10 000 à 100 000 PDA (contrôleurs SNCF, conducteurs, agents RATP) nécessitent un cycle de vie structuré : attribution, retour, effacement, décision, avec un tracking par utilisateur sur des milliers d'agents mobiles.",
-      "Les équipements embarqués dans les locomotives, bus et navires contiennent des données opérationnelles sensibles (plans de chargement, données clients, configurations réseau). Leur effacement certifié doit être orchestré sur les sites de maintenance, pas en central.",
+      "Les équipements embarqués dans les locomotives, bus et navires contiennent des données opérationnelles sensibles (plans de chargement, données clients, configurations réseau). Leur effacement attesté doit être orchestré sur les sites de maintenance, pas en central.",
       "Les sites sensibles (aéroports, ports, gares) imposent des protocoles d'accès stricts qui complexifient les opérations de collecte et de traitement ITAD.",
       "Les batteries lourdes (chariots élévateurs, transpalettes, AGV) représentent un enjeu environnemental et sécuritaire majeur dans les entrepôts logistiques.",
       "Le reporting CSRD des transporteurs couvre bien le Scope 1 (carburant) et le Scope 2 (énergie), mais le Scope 3 IT est souvent un angle mort, faute de données fiables.",
@@ -377,11 +370,11 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
     useCases: [
       {
         title: "Gestion massive des terminaux mobiles",
-        description: "50 000 PDA de contrôleurs, conducteurs et agents, renouvelés tous les 4 à 5 ans. GreenTechCycle trace chaque appareil par utilisateur, automatise les retours, orchestre l'effacement certifié et applique le scoring décisionnel optimal (reconditionnement interne, revente, recyclage).",
+        description: "50 000 PDA de contrôleurs, conducteurs et agents, renouvelés tous les 4 à 5 ans. GreenTechCycle trace chaque appareil par utilisateur, automatise les retours, orchestre l'effacement attesté et applique le scoring décisionnel optimal (reconditionnement interne, revente, recyclage).",
       },
       {
-        title: "Effacement certifié des équipements embarqués",
-        description: "Locomotives, bus, navires contiennent des données opérationnelles sensibles. GreenTechCycle orchestre l'effacement certifié directement sur les sites de maintenance, avec des certificats conformes aux exigences de sûreté du transport.",
+        title: "Effacement attesté des équipements embarqués",
+        description: "Locomotives, bus, navires contiennent des données opérationnelles sensibles. GreenTechCycle orchestre l'effacement attesté directement sur les sites de maintenance, avec des certificats conformes aux exigences de sûreté du transport.",
       },
       {
         title: "Reporting CSRD fleet IT : combler l'angle mort du Scope 3",
@@ -393,7 +386,6 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
     ],
     roi: [
-      { lever: "Reconditionnement PDA", gain: "100 à 200 € par terminal reconditionné" },
       { lever: "Effacement embarqué centralisé", gain: "Réduction du risque réputationnel" },
       { lever: "Logistique retour optimisée", gain: "-25 à 35 % sur les coûts" },
       { lever: "Automatisation support", gain: "-0,5 ETP service support" },
@@ -462,7 +454,6 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
     ],
     roi: [
       { lever: "Conformité AGEC documentée", gain: "Réputation d'exemplarité" },
-      { lever: "Reconditionnement bureautique", gain: "60 à 80 € par poste" },
       { lever: "Automatisation BEGES", gain: "-0,3 à 0,5 ETP" },
       { lever: "Logistique multi-sites optimisée", gain: "-30 à 40 %" },
     ],
@@ -507,12 +498,12 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       "La marque employeur est un enjeu critique dans la guerre des talents tech. Les développeurs, de plus en plus sensibles aux engagements RSE de leur employeur, évaluent la cohérence entre discours et pratiques.",
       "La croissance rapide des scale-ups fait grossir le parc IT sans que la visibilité suive. Quand l'entreprise passe de 50 à 500 collaborateurs en 3 ans, la gestion du parc en fin de vie est rarement une priorité, jusqu'à ce que les armoires débordent.",
       "Les données stockées sur les laptops (code source, accès clients, propriété intellectuelle) sont parmi les plus sensibles de l'entreprise. Un laptop mal effacé peut compromettre des mois de développement ou des accès clients.",
-      "Les MacBook Pro et stations de travail haut de gamme conservent une valeur résiduelle élevée (400 à 800 € après 3 ans) qui est systématiquement perdue quand les appareils sont simplement stockés ou jetés.",
+      "Les MacBook Pro et stations de travail haut de gamme conservent une valeur résiduelle élevée qui est systématiquement perdue quand les appareils sont simplement stockés ou jetés.",
     ],
     useCases: [
       {
         title: "Réemploi interne : un MacBook Pro senior devient un poste commercial",
-        description: "Un MacBook Pro de 3 ans pour un développeur senior conserve une puissance largement suffisante pour un commercial, un RH ou un junior. L'économie de 1 500 à 2 500 € par poste, sur 100 postes par an, représente 150 000 à 250 000 € d'économies annuelles. GreenTechCycle orchestre l'effacement, le reconditionnement et la réattribution.",
+        description: "Un MacBook Pro de 3 ans pour un développeur senior conserve une puissance largement suffisante pour un commercial, un RH ou un junior. GreenTechCycle orchestre l'effacement, le reconditionnement et la réattribution.",
       },
       {
         title: "Marque employeur RSE : des indicateurs publiables",
@@ -520,7 +511,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
       {
         title: "Programme collaborateur partant : le laptop reconditionné comme avantage RH",
-        description: "Un collaborateur quitte l'entreprise ? Proposez-lui de racheter son laptop reconditionné à prix avantageux. GreenTechCycle orchestre l'effacement certifié, le reconditionnement, le transfert de propriété et la facturation. Un avantage RH apprécié qui prolonge la durée de vie de l'appareil.",
+        description: "Un collaborateur quitte l'entreprise ? Proposez-lui de racheter son laptop reconditionné à prix avantageux. GreenTechCycle orchestre l'effacement attesté, le reconditionnement, le transfert de propriété et la facturation. Un avantage RH apprécié qui prolonge la durée de vie de l'appareil.",
       },
       {
         title: "Reporting CSRD scale-ups : anticiper le cap des 250 salariés",
@@ -528,8 +519,6 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
     ],
     roi: [
-      { lever: "Réemploi interne MacBook Pro", gain: "1 500 à 2 500 € par poste réutilisé" },
-      { lever: "Revente externe", gain: "400 à 800 € par poste revendu" },
       { lever: "Évitement RGPD code source", gain: "Jusqu'à 4 % du CA" },
       { lever: "Marque employeur", gain: "Amélioration du taux de conversion talents" },
     ],
@@ -547,7 +536,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
       {
         question: "On gère ça en interne avec un tableur",
-        answer: "Le tableur fonctionne jusqu'à 50 postes. Au-delà, les oublis s'accumulent, les laptops traînent dans les armoires, et la valeur résiduelle se dégrade. GreenTechCycle automatise ce que le tableur ne peut pas : scoring, effacement certifié, traçabilité opposable.",
+        answer: "Le tableur fonctionne jusqu'à 50 postes. Au-delà, les oublis s'accumulent, les laptops traînent dans les armoires, et la valeur résiduelle se dégrade. GreenTechCycle automatise ce que le tableur ne peut pas : scoring, effacement attesté, traçabilité opposable.",
       },
     ],
     cta: {
@@ -578,12 +567,12 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
     ],
     useCases: [
       {
-        title: "Effacement certifié stations de montage et serveurs vidéo",
+        title: "Effacement attesté stations de montage et serveurs vidéo",
         description: "Les stations de montage contiennent des téraoctets de rushs, prémontages, archives clients et contenus sous embargo. GreenTechCycle orchestre un effacement NIST 800-88 Purge avec vérification approfondie, produit un certificat opposable et documente la chaîne de traçabilité de la régie à la destination finale. Les groupes médias comptent 200 à 1 500 stations actives et en traitent 30 à 250 par an.",
       },
       {
         title: "Reconditionnement et réemploi interne des stations broadcast",
-        description: "Une station Avid, Final Cut ou Premiere achetée 6 000 à 15 000 € pour les effets spéciaux ou l'étalonnage cinéma conserve une puissance largement suffisante pour le news, le sport ou la post-production légère après 3 à 5 ans. Le scoring automatique évalue la puissance résiduelle par rapport à la criticité de l'usage cible. L'économie de 1 500 à 3 000 € par station, sur 50 à 100 unités par an, représente 75 000 à 300 000 € d'économies.",
+        description: "Une station Avid, Final Cut ou Premiere achetée 6 000 à 15 000 € pour les effets spéciaux ou l'étalonnage cinéma conserve une puissance largement suffisante pour le news, le sport ou la post-production légère après 3 à 5 ans. Le scoring automatique évalue la puissance résiduelle par rapport à la criticité de l'usage cible.",
       },
       {
         title: "Reporting CSRD ESRS E5 spécifique secteur médias",
@@ -599,9 +588,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
     ],
     roi: [
-      { lever: "Réemploi interne stations", gain: "1 500 à 3 000 € par station" },
       { lever: "Effacement broadcast sécurisé", gain: "Évitement contentieux propriété intellectuelle" },
-      { lever: "Revente équipements éligibles", gain: "500 à 2 000 € par poste" },
       { lever: "Logistique multi-sites broadcast", gain: "-30 à 40 % sur les coûts" },
       { lever: "Automatisation reporting", gain: "-0,5 à 1 ETP" },
       { lever: "Évitement RGPD fuite contenu", gain: "Jusqu'à 4 % du CA" },
@@ -615,7 +602,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       { role: "Achats", description: "Négocie les contrats ITAD et recherche des leviers d'optimisation sur un parc de haute valeur." },
       { role: "Direction Juridique", description: "Veille au respect de la propriété intellectuelle et de la confidentialité contractuelle dans la chaîne ITAD." },
     ],
-    quote: "Vos stations de montage contiennent les rushs qui font la différence entre vous et vos concurrents. Une faille ITAD peut coûter une exclusivité, une avant-première, un contrat. GTC est la seule plateforme qui réconcilie effacement certifié niveau broadcast, traçabilité opposable aux tribunaux, optimisation économique du parc, et reporting ESG groupe.",
+    quote: "Vos stations de montage contiennent les rushs qui font la différence entre vous et vos concurrents. Une faille ITAD peut coûter une exclusivité, une avant-première, un contrat. GTC est la seule plateforme qui réconcilie effacement attesté niveau broadcast, traçabilité opposable aux tribunaux, optimisation économique du parc, et reporting ESG groupe.",
     tf1Reference: "TF1 nous fait confiance pour la gestion de son parc IT et broadcast. Nous comprenons les contraintes spécifiques de votre secteur, des stations de montage haut de gamme aux batteries broadcast, en passant par le reporting ESG groupe. Voici comment nous pouvons reproduire ces résultats chez vous.",
     objections: [
       {
@@ -632,7 +619,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
       {
         question: "Notre storytelling ESG est géré en interne par la communication",
-        answer: "Des chiffres précis et auditables sont nécessaires. Une communication basée sur des estimations expose au risque de greenwashing, avec des conséquences ARCOM et ONG. GreenTechCycle fournit les chiffres réels, mesurés et certifiés que votre direction de la communication peut exploiter en toute sécurité.",
+        answer: "Des chiffres précis et auditables sont nécessaires. Une communication basée sur des estimations expose au risque de greenwashing, avec des conséquences ARCOM et ONG. GreenTechCycle fournit les chiffres réels, mesurés et sourcés que votre direction de la communication peut exploiter en toute sécurité.",
       },
     ],
     cta: {
@@ -662,12 +649,12 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
     ],
     useCases: [
       {
-        title: "Effacement certifié garantissant le secret professionnel",
+        title: "Effacement attesté garantissant le secret professionnel",
         description: "Un mauvais effacement du laptop d'un partner peut entraîner une mise en cause du cabinet et la perte de clients. GreenTechCycle applique l'effacement NIST 800-88 Purge avec certificat opposable, garantissant que les données clients sont irréversiblement détruites et que la preuve est juridiquement recevable.",
       },
       {
         title: "Réemploi interne entre missions et niveaux hiérarchiques",
-        description: "Le laptop d'un senior parti en mission longue peut être réattribué. Le laptop d'un partner partant à la retraite peut servir à un junior. GreenTechCycle orchestre les réattributions internes avec effacement certifié entre chaque utilisateur.",
+        description: "Le laptop d'un senior parti en mission longue peut être réattribué. Le laptop d'un partner partant à la retraite peut servir à un junior. GreenTechCycle orchestre les réattributions internes avec effacement attesté entre chaque utilisateur.",
       },
       {
         title: "Réponse instantanée aux questionnaires ESG clients",
@@ -675,8 +662,6 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
     ],
     roi: [
-      { lever: "Réemploi interne laptops", gain: "800 à 1 500 € par poste réattribué" },
-      { lever: "Revente externe", gain: "300 à 600 € par poste" },
       { lever: "Évitement mise en cause secret pro", gain: "Inestimable (réputation + clients)" },
       { lever: "Gain commercial ESG", gain: "Avantage dans les renouvellements de contrats" },
     ],
@@ -737,7 +722,6 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
     ],
     roi: [
-      { lever: "Reconditionnement IT bureautique", gain: "50 à 120 € par poste" },
       { lever: "Conformité GxP documentée", gain: "Évitement de non-conformité audit" },
       { lever: "Protection brevets et R&D", gain: "Valeur inestimable (centaines de M€ de R&D)" },
       { lever: "Reporting CSRD automatisé", gain: "-0,3 à 0,5 ETP" },
@@ -800,7 +784,6 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
     ],
     roi: [
       { lever: "Réduction perte/vol tablettes", gain: "-10 à 15 % sur le taux de perte" },
-      { lever: "Reconditionnement tablettes", gain: "80 à 150 € par tablette" },
       { lever: "Avantage commercial RFP ESG", gain: "Impact sur le taux de succès" },
     ],
     personas: [
@@ -850,7 +833,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
         description: "500 hôtels, des cycles de 5-7 ans : le renouvellement des TV de chambres et des équipements est un projet logistique majeur. GreenTechCycle orchestre la dépose, le tri B2B/recyclage et produit la traçabilité ESG exploitable dans le rapport CSRD du groupe.",
       },
       {
-        title: "Effacement certifié terminaux client PMS et check-in",
+        title: "Effacement attesté terminaux client PMS et check-in",
         description: "Les bornes de check-in et les terminaux PMS stockent des données de réservation et des numéros de carte bancaire. GreenTechCycle garantit l'effacement conforme et produit les certificats PCI DSS unitaires.",
       },
       {
@@ -859,8 +842,7 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
     ],
     roi: [
-      { lever: "Reconditionnement back-office", gain: "60 à 100 € par poste" },
-      { lever: "Effacement PCI DSS certifié", gain: "Évitement amende (jusqu'à 100 000 €)" },
+      { lever: "Effacement aligné sur PCI DSS", gain: "Évitement amende (jusqu'à 100 000 €)" },
       { lever: "Storytelling RSE marque", gain: "Impact sur la satisfaction et fidélité client" },
     ],
     personas: [
@@ -920,7 +902,6 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
     ],
     roi: [
-      { lever: "Reconditionnement postes admin", gain: "40 à 80 € par poste" },
       { lever: "Programme prêt étudiant", gain: "Valeur d'usage prolongée + image" },
       { lever: "Automatisation BEGES", gain: "-0,2 à 0,3 ETP" },
       { lever: "Exemplarité environnementale", gain: "Impact tutelles et recrutement" },
@@ -982,7 +963,6 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
       },
     ],
     roi: [
-      { lever: "Reconditionnement terminaux mobiles", gain: "60 à 120 € par terminal" },
       { lever: "Reporting CSRD automatisé", gain: "-0,3 ETP" },
       { lever: "Optimisation logistique sites ruraux", gain: "-20 à 30 % sur les coûts" },
     ],
@@ -1044,7 +1024,6 @@ export const sectorContentFr: Record<SectorSlug, SectorContent> = {
     ],
     roi: [
       { lever: "Reconditionnement boxes", gain: "50-70 % d'économie vs achat neuf" },
-      { lever: "Valorisation serveurs datacenter", gain: "100 à 400 € par serveur" },
       { lever: "Conformité REEN documentée", gain: "Évitement sanctions réglementaires" },
       { lever: "Image numérique responsable", gain: "Impact sur la perception publique" },
     ],
@@ -1151,7 +1130,7 @@ export const hubLabelsFr = {
   howToReadBricks: [
     { title: "Plateforme SaaS", description: "Traçabilité, scoring décisionnel, reporting CSRD/ESG et tableaux de bord temps réel pour piloter votre ITAD." },
     { title: "Waki Box", description: "Box connectée de collecte sécurisée pour les petits DEEE et batteries, déployée dans vos locaux avec remontée automatique." },
-    { title: "Service ITAD", description: "Effacement certifié NIST 800-88, reconditionnement, valorisation et recyclage orchestrés par la plateforme." },
+    { title: "Service ITAD", description: "Effacement selon NIST 800-88, reconditionnement, valorisation et recyclage orchestrés par la plateforme." },
   ],
   sectorGridTitle: "16 secteurs, une plateforme",
   tf1Badge: "Référence TF1",
@@ -1162,6 +1141,6 @@ export const hubLabelsFr = {
   ctaSubtitle: "Demandez un audit personnalisé pour votre secteur d'activité.",
   ctaPrimary: "Demander un audit",
   ctaSecondary: "Voir les cas d'usages",
-  trustItems: ["R2v3 certifié", "ISO 14001", "NIST 800-88", "Conforme RGPD & CSRD"],
+  trustItems: ["Effacement selon NIST SP 800-88", "ISO 27001 en cours", "RGPD & CSRD"],
   viewSector: "Découvrir le secteur",
 };

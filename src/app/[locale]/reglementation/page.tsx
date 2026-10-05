@@ -1,6 +1,13 @@
 "use client";
 
 import { useLocale } from "next-intl";
+import type { LucideIcon } from "lucide-react";
+import SectionNav from "@/components/SectionNav";
+import CtaSection from "@/components/CtaSection";
+import { ButtonLink } from "@/components/ui/Button";
+import Pictogram from "@/components/ui/Pictogram";
+import Tag from "@/components/ui/Tag";
+import { Stat, StatRow } from "@/components/ui/Stat";
 import { Link } from "@/i18n/navigation";
 import { useState } from "react";
 import {
@@ -48,13 +55,7 @@ import {
   Atom,
 } from "lucide-react";
 import RelatedArticles from "@/components/RelatedArticles";
-import {
-  FadeIn,
-  StaggerContainer,
-  StaggerItem,
-  CountUp,
-  ScaleIn,
-} from "@/components/motion";
+import { CountUp } from "@/components/motion";
 
 // ---------- i18n helper ----------
 const useTx = () => {
@@ -67,13 +68,13 @@ type Status = "active" | "upcoming" | "update";
 
 function StatusBadge({ status, tx }: { status: Status; tx: ReturnType<typeof useTx> }) {
   const labels = {
-    active: { label: tx("En vigueur", "In force"), cls: "bg-accent/10 text-accent border-accent/30" },
-    upcoming: { label: tx("À venir 2026", "Upcoming 2026"), cls: "bg-amber-100 text-amber-700 border-amber-200" },
-    update: { label: tx("Mise à jour 2025", "Updated 2025"), cls: "bg-sky-100 text-sky-700 border-sky-200" },
+    active: { label: tx("En vigueur", "In force"), cls: "bg-emerald-dim text-emerald border-emerald/30" },
+    upcoming: { label: tx("À venir 2026", "Upcoming 2026"), cls: "bg-amber-dim text-amber border-amber/40" },
+    update: { label: tx("Mise à jour 2025", "Updated 2025"), cls: "bg-emerald-dim text-emerald border-track" },
   };
   const s = labels[status];
   return (
-    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold rounded-full border ${s.cls}`}>
+    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-caption font-semibold rounded-full border ${s.cls}`}>
       <CircleDot className="w-3 h-3" />
       {s.label}
     </span>
@@ -90,7 +91,6 @@ function SectorSection({
   sector: {
     id: string;
     icon: React.ElementType;
-    color: string;
     bgColor: string;
     borderColor: string;
     textColor: string;
@@ -115,26 +115,24 @@ function SectorSection({
 }) {
   const Icon = sector.icon;
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="rounded-2xl border border-track bg-bg-card overflow-hidden hover:border-track-strong transition-shadow">
       <button
         onClick={toggle}
-        className="w-full flex items-center gap-4 p-6 md:p-8 text-left hover:bg-slate-50/50 transition"
+        className="w-full flex items-center gap-4 p-6 md:p-8 text-left hover:bg-white/[0.03] transition"
       >
-        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${sector.color} flex items-center justify-center shadow-lg flex-shrink-0`}>
-          <Icon className="w-7 h-7 text-white" />
-        </div>
+        <Pictogram icon={Icon as LucideIcon} size="lg" />
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl md:text-2xl font-bold text-slate-900">{sector.title}</h3>
-          <p className="text-sm text-slate-500 mt-1">{sector.description}</p>
+          <h3 className="text-heading-lg text-fg">{sector.title}</h3>
+          <p className="text-sm text-fg-muted mt-1">{sector.description}</p>
         </div>
         <div className="flex items-center gap-3 flex-shrink-0">
-          <span className={`hidden sm:inline-flex items-center gap-1 px-3 py-1 rounded-full ${sector.bgColor} ${sector.textColor} text-xs font-bold`}>
+          <span className="hidden h-7 items-center rounded-full bg-bg-card px-3 text-caption font-semibold text-fg-strong sm:inline-flex">
             {sector.items.length} {tx("réglementations", "regulations")}
           </span>
           {isOpen ? (
-            <ChevronDown className="w-5 h-5 text-slate-400" />
+            <ChevronDown className="w-5 h-5 text-fg-muted" />
           ) : (
-            <ChevronRight className="w-5 h-5 text-slate-400" />
+            <ChevronRight className="w-5 h-5 text-fg-muted" />
           )}
         </div>
       </button>
@@ -145,21 +143,20 @@ function SectorSection({
             {sector.items.map((reg) => (
               <article
                 key={reg.name}
-                className="group h-full bg-white rounded-2xl border border-slate-200 hover:border-slate-300 hover:shadow-xl transition-all overflow-hidden"
+                className="group h-full bg-bg-card rounded-2xl border border-track hover:border-track hover:border-track-strong transition-colors overflow-hidden"
               >
-                <div className={`h-1.5 bg-gradient-to-r ${sector.color}`} />
                 <div className="p-6">
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <h4 className="text-lg font-bold text-slate-900">{reg.name}</h4>
+                        <h4 className="text-lg font-semibold text-fg">{reg.name}</h4>
                         <StatusBadge status={reg.status} tx={tx} />
                       </div>
-                      <p className="text-sm text-slate-500">{reg.fullName}</p>
+                      <p className="text-sm text-fg-muted">{reg.fullName}</p>
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-3 text-xs text-slate-500 mb-4">
+                  <div className="flex flex-wrap gap-3 text-xs text-fg-muted mb-4">
                     <span className="inline-flex items-center gap-1">
                       <Globe className="w-3.5 h-3.5" />
                       {reg.jurisdiction}
@@ -170,30 +167,30 @@ function SectorSection({
                     </span>
                   </div>
 
-                  <p className="text-sm text-slate-700 leading-relaxed mb-4">{reg.description}</p>
+                  <p className="text-sm text-fg-strong leading-relaxed mb-4">{reg.description}</p>
 
                   {/* Prerequisites */}
-                  <div className="rounded-xl bg-slate-50 border border-slate-100 p-3 mb-4">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                  <div className="rounded-xl bg-bg-card border border-track p-3 mb-4">
+                    <p className="uppercase text-fg-muted mb-1 text-eyebrow">
                       {tx("Pré-requis techniques", "Technical prerequisites")}
                     </p>
-                    <p className="text-sm text-slate-700 leading-relaxed">{reg.prerequisites}</p>
+                    <p className="text-sm text-fg-strong leading-relaxed">{reg.prerequisites}</p>
                   </div>
 
                   {/* Key figure */}
-                  <div className={`rounded-xl ${sector.bgColor} border ${sector.borderColor} p-4 mb-4`}>
-                    <p className={`text-xs font-semibold uppercase tracking-wider ${sector.textColor} mb-1`}>
+                  <div className="rounded-xl border border-track bg-bg p-4 mb-4">
+                    <p className="uppercase text-eyebrow text-fg-muted mb-1">
                       {tx("Impact chiffré", "Quantified impact")}
                     </p>
-                    <p className={`text-lg font-bold ${sector.textColor}`}>{reg.keyFigure}</p>
-                    <p className="text-xs text-slate-500 mt-0.5">{reg.subFigure}</p>
+                    <p className="text-heading-lg text-emerald">{reg.keyFigure}</p>
+                    <p className="text-xs text-fg-muted mt-0.5">{reg.subFigure}</p>
                   </div>
 
                   {/* GTC help */}
-                  <div className="flex items-start gap-2 bg-accent/5 rounded-xl p-3 border border-accent/10">
-                    <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      <span className="font-semibold text-slate-900">{tx("Comment GTC aide", "How GTC helps")} :</span>{" "}
+                  <div className="flex items-start gap-2 bg-white/[0.03] rounded-xl p-3 border border-emerald/10">
+                    <CheckCircle2 className="w-4 h-4 text-emerald flex-shrink-0 mt-0.5" />
+                    <p className="text-xs text-fg-strong leading-relaxed">
+                      <span className="font-semibold text-fg">{tx("Comment GTC aide", "How GTC helps")} :</span>{" "}
                       {reg.gtcHelp}
                     </p>
                   </div>
@@ -215,10 +212,9 @@ export default function RegulationPage() {
     {
       id: "finance",
       icon: Landmark,
-      color: "from-blue-600 to-indigo-700",
-      bgColor: "bg-blue-50",
-      borderColor: "border-blue-200",
-      textColor: "text-blue-700",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
+      textColor: "text-emerald",
       title: tx("Finance & Banque", "Finance & Banking"),
       description: tx(
         "PCI-DSS, DORA, Bâle III/IV, MiFID II, les obligations les plus strictes en matière de données de paiement et résilience opérationnelle.",
@@ -314,10 +310,9 @@ export default function RegulationPage() {
     {
       id: "sante",
       icon: Heart,
-      color: "from-rose-500 to-red-600",
-      bgColor: "bg-rose-50",
-      borderColor: "border-rose-200",
-      textColor: "text-rose-700",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
+      textColor: "text-emerald",
       title: tx("Santé", "Healthcare"),
       description: tx(
         "HIPAA, HDS, MDR, HAS 2024, protection des données de santé, obligations de chiffrement et destruction des PHI.",
@@ -389,7 +384,7 @@ export default function RegulationPage() {
         },
         {
           name: "HAS 2024",
-          fullName: tx("Haute Autorité de Santé (Recommandations ITAD", "French Health Authority) ITAD Recommendations"),
+          fullName: tx("Haute Autorité de Santé · Recommandations ITAD", "French Health Authority · ITAD Recommendations"),
           jurisdiction: tx("France · Établissements de santé", "France · Healthcare facilities"),
           inForce: "2024",
           status: "update" as Status,
@@ -413,10 +408,9 @@ export default function RegulationPage() {
     {
       id: "industrie",
       icon: Factory,
-      color: "from-orange-500 to-amber-600",
-      bgColor: "bg-amber-50",
-      borderColor: "border-amber-200",
-      textColor: "text-amber-700",
+      bgColor: "bg-amber-dim",
+      borderColor: "border-amber/40",
+      textColor: "text-amber",
       title: tx("Industrie & OT", "Industry & OT"),
       description: tx(
         "NIS2, IEC 62443, Directive Machines, cybersécurité industrielle, systèmes OT/SCADA et convergence IT/OT.",
@@ -491,10 +485,9 @@ export default function RegulationPage() {
     {
       id: "public",
       icon: Building2,
-      color: "from-indigo-600 to-purple-700",
-      bgColor: "bg-indigo-50",
-      borderColor: "border-indigo-200",
-      textColor: "text-indigo-700",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
+      textColor: "text-emerald",
       title: tx("Secteur Public & Défense", "Public Sector & Defense"),
       description: tx(
         "ANSSI SecNumCloud, RGS, eIDAS 2.0, IGI 1300, souveraineté numérique et classification défense.",
@@ -503,7 +496,7 @@ export default function RegulationPage() {
       items: [
         {
           name: "ANSSI / SecNumCloud",
-          fullName: tx("Référentiel SecNumCloud v3.2 (ANSSI", "SecNumCloud Framework v3.2) ANSSI"),
+          fullName: tx("Référentiel SecNumCloud v3.2 · ANSSI", "SecNumCloud Framework v3.2 · ANSSI"),
           jurisdiction: tx("France · OIV/OSE", "France · Critical operators"),
           inForce: tx("Rév. 3.2 · 2024", "Rev. 3.2 · 2024"),
           status: "update" as Status,
@@ -569,10 +562,9 @@ export default function RegulationPage() {
     {
       id: "energie",
       icon: Zap,
-      color: "from-yellow-500 to-orange-500",
-      bgColor: "bg-yellow-50",
-      borderColor: "border-yellow-200",
-      textColor: "text-yellow-700",
+      bgColor: "bg-amber-dim",
+      borderColor: "border-amber/40",
+      textColor: "text-amber",
       title: tx("Énergie & Télécoms", "Energy & Telecoms"),
       description: tx(
         "Code de l'énergie, ARCEP, NIS2 sectoriel, obligations des opérateurs d'énergie et télécoms.",
@@ -596,8 +588,8 @@ export default function RegulationPage() {
           keyFigure: tx("35M+ compteurs Linky déployés", "35M+ Linky meters deployed"),
           subFigure: tx("Données de consommation fines protégées", "Detailed consumption data protected"),
           gtcHelp: tx(
-            "Effacement certifié des équipements de mesure, traçabilité des compteurs intelligents par numéro de série.",
-            "Certified metering equipment erasure, smart meter traceability by serial number."
+            "Effacement attesté des équipements de mesure, traçabilité des compteurs intelligents par numéro de série.",
+            "Attested metering equipment erasure, smart meter traceability by serial number."
           ),
         },
         {
@@ -626,10 +618,9 @@ export default function RegulationPage() {
     {
       id: "retail",
       icon: ShoppingBag,
-      color: "from-pink-500 to-rose-600",
-      bgColor: "bg-pink-50",
-      borderColor: "border-pink-200",
-      textColor: "text-pink-700",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
+      textColor: "text-emerald",
       title: tx("Retail & E-commerce", "Retail & E-commerce"),
       description: tx(
         "PCI-DSS, Loi Hamon, DMA, protection des données de paiement et des consommateurs numériques.",
@@ -691,9 +682,9 @@ export default function RegulationPage() {
       inForce: "2018",
       status: "active" as Status,
       icon: Shield,
-      color: "text-sky-700",
-      bgColor: "bg-sky-50",
-      borderColor: "border-sky-200",
+      color: "text-emerald",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
       description: tx(
         "Art. 17 : droit à l'effacement. Art. 33 : notification de violation sous 72h. Art. 83 : amendes jusqu'à 4% du CA mondial ou 20M€. Le RGPD impose une obligation de résultat sur la destruction des données personnelles en fin de vie des équipements.",
         "Art. 17: right to erasure. Art. 33: breach notification within 72h. Art. 83: fines up to 4% of global revenue or €20M. GDPR imposes an obligation of result on personal data destruction at equipment end-of-life."
@@ -712,9 +703,9 @@ export default function RegulationPage() {
       inForce: tx("Octobre 2024", "October 2024"),
       status: "active" as Status,
       icon: Lock,
-      color: "text-indigo-700",
-      bgColor: "bg-indigo-50",
-      borderColor: "border-indigo-200",
+      color: "text-emerald",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
       description: tx(
         "La directive la plus structurante de la décennie. 160 000 entreprises européennes concernées dans 18 secteurs. Notification d'incident sous 24h, gestion des risques cyber supply chain, registre d'actifs obligatoire. La gestion de la fin de vie IT est explicitement dans le périmètre.",
         "The most structuring directive of the decade. 160,000 European companies in 18 sectors. 24h incident notification, cyber supply chain risk management, mandatory asset register. IT end-of-life management is explicitly in scope."
@@ -733,9 +724,9 @@ export default function RegulationPage() {
       inForce: tx("2024 → 2026 (déploiement progressif)", "2024 → 2026 (phased deployment)"),
       status: "active" as Status,
       icon: Leaf,
-      color: "text-emerald-700",
-      bgColor: "bg-emerald-50",
-      borderColor: "border-emerald-200",
+      color: "text-emerald",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-emerald-line",
       description: tx(
         "Comptes-rendus extra-financiers obligatoires avec double matérialité. ESRS E1 (climat), E5 (économie circulaire), S1 (main d'œuvre). L'ITAD contribue directement aux indicateurs E5 (taux de réemploi, tonnages recyclés) et E1 (CO₂ évité). Tiers-attestation obligatoire.",
         "Mandatory non-financial reporting with double materiality. ESRS E1 (climate), E5 (circular economy), S1 (workforce). ITAD directly contributes to E5 indicators (reuse rate, recycled tonnage) and E1 (avoided CO₂). Third-party attestation required."
@@ -754,9 +745,9 @@ export default function RegulationPage() {
       inForce: tx("Août 2024 · phases 2025-2027", "August 2024 · phases 2025-2027"),
       status: "upcoming" as Status,
       icon: Brain,
-      color: "text-purple-700",
-      bgColor: "bg-purple-50",
-      borderColor: "border-purple-200",
+      color: "text-emerald",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
       description: tx(
         "Premier cadre juridique mondial sur l'IA. Classification par niveaux de risque. Registre des systèmes IA à haut risque. Implications ITAD : les serveurs contenant des modèles IA (GPU H100, TPU v5), datasets d'entraînement et poids de modèles nécessitent une traçabilité et une destruction spécifiques.",
         "First global legal framework on AI. Risk-level classification. High-risk AI system register. ITAD implications: servers containing AI models (GPU H100, TPU v5), training datasets and model weights require specific traceability and destruction."
@@ -764,8 +755,8 @@ export default function RegulationPage() {
       keyFigure: tx("35M€ ou 7% du CA mondial", "€35M or 7% of global revenue"),
       subFigure: tx("Registre UE des systèmes IA · Source : Commission UE", "EU register of AI systems · Source: EU Commission"),
       gtcHelp: tx(
-        "Traçabilité dédiée des accélérateurs IA (GPU, TPU), effacement certifié des datasets et modèles, registre AI Act-ready.",
-        "Dedicated AI accelerator traceability (GPU, TPU), certified dataset and model erasure, AI Act-ready register."
+        "Traçabilité dédiée des accélérateurs IA (GPU, TPU), effacement attesté des datasets et modèles, registre AI Act-ready.",
+        "Dedicated AI accelerator traceability (GPU, TPU), attested dataset and model erasure, AI Act-ready register."
       ),
     },
     {
@@ -775,9 +766,9 @@ export default function RegulationPage() {
       inForce: tx("Rév. 2022", "Rev. 2022"),
       status: "update" as Status,
       icon: ShieldCheck,
-      color: "text-blue-700",
-      bgColor: "bg-blue-50",
-      borderColor: "border-blue-200",
+      color: "text-emerald",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-track",
       description: tx(
         "Le standard SMSI de référence mondiale. 70 000+ certifications. Contrôle A.8.10 (effacement d'information), A.7.14 (sortie sécurisée des équipements). Audit de surveillance annuel. Prérequis pour de nombreuses certifications sectorielles (HDS, SecNumCloud).",
         "The global ISMS reference standard. 70,000+ certifications. Control A.8.10 (information deletion), A.7.14 (secure equipment disposal). Annual surveillance audit. Prerequisite for many sectoral certifications (HDS, SecNumCloud)."
@@ -796,9 +787,9 @@ export default function RegulationPage() {
       inForce: tx("Rév. 2015", "Rev. 2015"),
       status: "active" as Status,
       icon: Recycle,
-      color: "text-emerald-700",
-      bgColor: "bg-emerald-50",
-      borderColor: "border-emerald-200",
+      color: "text-emerald",
+      bgColor: "bg-white/[0.03]",
+      borderColor: "border-emerald-line",
       description: tx(
         "350 000+ certifications mondiales. Management environnemental et amélioration continue. Intégration du bilan carbone ITAD dans la démarche ISO 14001 : taux de valorisation, tonnages DEEE, CO₂ évité par le reconditionnement.",
         "350,000+ worldwide certifications. Environmental management and continuous improvement. ITAD carbon assessment integration into ISO 14001: recovery rate, WEEE tonnage, CO₂ avoided through refurbishment."
@@ -818,49 +809,49 @@ export default function RegulationPage() {
       date: tx("Oct 2024", "Oct 2024"),
       title: "NIS2",
       impact: tx("Registre d'actifs obligatoire, notification incident 24h", "Mandatory asset register, 24h incident notification"),
-      business: tx("Amende 10M€ / 2% CA (Préparez votre registre d'actifs MAINTENANT", "Fine €10M / 2% revenue) Prepare your asset register NOW"),
+      business: tx("Amende 10M€ / 2% CA · Préparez votre registre d'actifs MAINTENANT", "Fine €10M / 2% revenue · Prepare your asset register NOW"),
     },
     {
       date: tx("Jan 2025", "Jan 2025"),
       title: "DORA",
       impact: tx("Résilience opérationnelle numérique obligatoire pour la finance", "Mandatory digital operational resilience for finance"),
-      business: tx("22 000 entités (Registre ICT et tests de pénétration requis", "22,000 entities) ICT register and penetration tests required"),
+      business: tx("22 000 entités · Registre ICT et tests de pénétration requis", "22,000 entities · ICT register and penetration tests required"),
     },
     {
       date: tx("Mar 2025", "Mar 2025"),
       title: "PCI-DSS v4.0",
       impact: tx("Fin de la période transitoire, conformité totale obligatoire", "End of transition period, full compliance mandatory"),
-      business: tx("Révocation agrément possible (Auditez vos processus de destruction", "Accreditation revocation possible) Audit your destruction processes"),
+      business: tx("Révocation agrément possible · Auditez vos processus de destruction", "Accreditation revocation possible · Audit your destruction processes"),
     },
     {
       date: tx("Jan 2026", "Jan 2026"),
       title: "CSRD v3",
       impact: tx("PME cotées > 10 salariés soumises aux comptes-rendus extra-financiers", "Listed SMEs > 10 employees subject to non-financial reporting"),
-      business: tx("50 000 entreprises (Mettez en place votre reporting ESRS E5 maintenant", "50,000 companies) Set up your ESRS E5 reporting now"),
+      business: tx("50 000 entreprises · Mettez en place votre reporting ESRS E5 maintenant", "50,000 companies · Set up your ESRS E5 reporting now"),
     },
     {
       date: tx("Août 2026", "Aug 2026"),
       title: "AI Act · HR",
       impact: tx("Systèmes IA haut risque : registre, traçabilité, audit", "High-risk AI systems: register, traceability, audit"),
-      business: tx("GPU/TPU à tracer (Identifiez vos assets IA et leur cycle de vie", "GPU/TPU to track) Identify your AI assets and their lifecycle"),
+      business: tx("GPU/TPU à tracer · Identifiez vos assets IA et leur cycle de vie", "GPU/TPU to track · Identify your AI assets and their lifecycle"),
     },
     {
       date: tx("Jan 2027", "Jan 2027"),
       title: tx("Directive Machines", "Machinery Dir."),
       impact: tx("Cybersécurité intégrée by design, exigences fin de vie", "Cybersecurity integrated by design, EOL requirements"),
-      business: tx("Industrie (Anticipez la gestion de fin de vie des machines connectées", "Industry) Anticipate connected machinery EOL management"),
+      business: tx("Industrie · Anticipez la gestion de fin de vie des machines connectées", "Industry · Anticipate connected machinery EOL management"),
     },
     {
       date: tx("Fév 2027", "Feb 2027"),
       title: tx("Passeport batterie", "Battery passport"),
       impact: tx("Passeport numérique obligatoire pour toutes les batteries industrielles", "Mandatory digital passport for all industrial batteries"),
-      business: tx("Traçabilité batterie par batterie (Préparez votre chaîne de custody", "Battery-by-battery traceability) Prepare your chain of custody"),
+      business: tx("Traçabilité batterie par batterie · Préparez votre chaîne de custody", "Battery-by-battery traceability · Prepare your chain of custody"),
     },
     {
       date: tx("Jan 2028", "Jan 2028"),
       title: tx("Passeport produit numérique", "Digital product passport"),
       impact: tx("ESPR : passeport numérique pour les produits IT (EcoDesign)", "ESPR: digital passport for IT products (EcoDesign)"),
-      business: tx("IT concerné (Chaque asset devra avoir son passeport numérique", "IT concerned) Every asset will need its digital passport"),
+      business: tx("IT concerné · Chaque asset devra avoir son passeport numérique", "IT concerned · Every asset will need its digital passport"),
     },
   ];
 
@@ -869,7 +860,6 @@ export default function RegulationPage() {
     {
       id: "geopolitique",
       icon: Globe,
-      color: "from-red-500 to-rose-600",
       title: tx("Instabilité géopolitique", "Geopolitical instability"),
       items: [
         {
@@ -898,7 +888,6 @@ export default function RegulationPage() {
     {
       id: "energie",
       icon: Zap,
-      color: "from-amber-500 to-yellow-600",
       title: tx("Défi énergétique", "Energy challenge"),
       items: [
         {
@@ -920,7 +909,6 @@ export default function RegulationPage() {
     {
       id: "ia-emergent",
       icon: Brain,
-      color: "from-purple-500 to-violet-600",
       title: tx("IA & Technologies émergentes", "AI & Emerging technologies"),
       items: [
         {
@@ -949,11 +937,10 @@ export default function RegulationPage() {
     {
       id: "posture-it",
       icon: Cloud,
-      color: "from-cyan-500 to-teal-600",
       title: tx("Nouvelle posture IT", "New IT posture"),
       items: [
         {
-          title: tx("De 'posséder' à 'utiliser' (FinOps, GreenOps", "From 'own' to 'use') FinOps, GreenOps"),
+          title: tx("De 'posséder' à 'utiliser' · FinOps, GreenOps", "From 'own' to 'use' · FinOps, GreenOps"),
           text: tx(
             "Le shift vers le cloud n'élimine pas les assets physiques : serveurs on-premise résiduels, postes de travail, équipements réseau. La question 'que faire des assets physiques restants ?' devient critique dans chaque migration cloud.",
             "The shift to cloud doesn't eliminate physical assets: residual on-premise servers, workstations, network equipment. The question 'what to do with remaining physical assets?' becomes critical in every cloud migration."
@@ -979,12 +966,12 @@ export default function RegulationPage() {
 
   // ---------- Sources ----------
   const sources = [
-    { name: "ENISA", desc: tx("European Union Agency for Cybersecurity (rapports annuels sur les menaces", "European Union Agency for Cybersecurity) annual threat reports") },
+    { name: "ENISA", desc: tx("European Union Agency for Cybersecurity · rapports annuels sur les menaces", "European Union Agency for Cybersecurity · annual threat reports") },
     { name: "Gartner", desc: tx("Prédictions cybersécurité, Magic Quadrant ITAM", "Cybersecurity predictions, ITAM Magic Quadrant") },
-    { name: "Greenpeace", desc: tx("Rapports empreinte carbone du numérique (« Clicking Clean »", "Digital carbon footprint reports) 'Clicking Clean'") },
+    { name: "Greenpeace", desc: tx("Rapports empreinte carbone du numérique · « Clicking Clean »", "Digital carbon footprint reports · 'Clicking Clean'") },
     { name: "ADEME", desc: tx("Facteurs d'émission, bilans carbone reconditionnement", "Emission factors, refurbishment carbon assessments") },
-    { name: "CNIL / EDPB", desc: tx("Statistiques amendes RGPD (4,5Md€ cumulés", "GDPR fine statistics) €4.5B cumulative") },
-    { name: "IEA", desc: tx("International Energy Agency (consommation énergétique data centers", "International Energy Agency) data center energy consumption") },
+    { name: "CNIL / EDPB", desc: tx("Statistiques amendes RGPD · 4,5Md€ cumulés", "GDPR fine statistics · €4.5B cumulative") },
+    { name: "IEA", desc: tx("International Energy Agency · consommation énergétique data centers", "International Energy Agency · data center energy consumption") },
     { name: "NIST", desc: tx("Référentiels cybersécurité, standards post-quantum PQC 2024", "Cybersecurity frameworks, post-quantum PQC standards 2024") },
   ];
 
@@ -1018,7 +1005,7 @@ export default function RegulationPage() {
     {
       icon: Shield,
       title: tx("Multi-standard", "Multi-standard"),
-      text: tx("Réponse à la complexité : NIST, DoD, IEEE, RGPD, NIS2, CSRD couverts dans un parcours unique et certifié.", "Answer to complexity: NIST, DoD, IEEE, GDPR, NIS2, CSRD covered in a single certified workflow."),
+      text: tx("Réponse à la complexité : NIST, DoD, IEEE, RGPD, NIS2, CSRD couverts dans un parcours unique et documenté.", "Answer to complexity: NIST, DoD, IEEE, GDPR, NIS2, CSRD covered in a single documented workflow."),
     },
   ];
 
@@ -1026,166 +1013,41 @@ export default function RegulationPage() {
   const toggleSector = (id: string) => setOpenSectors((prev) => ({ ...prev, [id]: !prev[id] }));
 
   return (
-    <main className="min-h-screen bg-white">
-      {/* ═══════════════ HERO ═══════════════ */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-primary-900 to-slate-950 py-24 lg:py-36">
-        {/* Animated background layers */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 -right-40 w-[600px] h-[600px] bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: "8s" }} />
-          <div className="absolute bottom-1/4 -left-40 w-[500px] h-[500px] bg-emerald-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDuration: "10s", animationDelay: "2s" }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(16,185,129,0.08),transparent_70%)]" />
-        </div>
-
-        {/* Grid pattern overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        {/* Floating regulation badges (decorative) */}
-        <div className="hidden lg:block absolute top-28 left-[8%] rotate-[-8deg] opacity-40">
-          <div className="px-3 py-1.5 rounded-lg bg-white/10 backdrop-blur border border-white/20 text-[11px] font-bold text-white tracking-wider flex items-center gap-1.5">
-            <Shield className="w-3 h-3 text-accent" /> RGPD
-          </div>
-        </div>
-        <div className="hidden lg:block absolute top-40 right-[10%] rotate-[5deg] opacity-40">
-          <div className="px-3 py-1.5 rounded-lg bg-white/10 backdrop-blur border border-white/20 text-[11px] font-bold text-white tracking-wider flex items-center gap-1.5">
-            <Lock className="w-3 h-3 text-accent" /> NIS2
-          </div>
-        </div>
-        <div className="hidden lg:block absolute bottom-40 left-[12%] rotate-[6deg] opacity-40">
-          <div className="px-3 py-1.5 rounded-lg bg-white/10 backdrop-blur border border-white/20 text-[11px] font-bold text-white tracking-wider flex items-center gap-1.5">
-            <Leaf className="w-3 h-3 text-accent" /> CSRD
-          </div>
-        </div>
-        <div className="hidden lg:block absolute bottom-52 right-[14%] rotate-[-4deg] opacity-40">
-          <div className="px-3 py-1.5 rounded-lg bg-white/10 backdrop-blur border border-white/20 text-[11px] font-bold text-white tracking-wider flex items-center gap-1.5">
-            <Recycle className="w-3 h-3 text-accent" /> DEEE
-          </div>
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-5xl mx-auto">
-              {/* Centered shield/balance emblem */}
-              <div className="flex justify-center mb-8">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-accent/30 blur-2xl rounded-full" />
-                  <div className="relative w-24 h-24 rounded-3xl bg-gradient-to-br from-accent/20 to-emerald-500/10 border border-accent/30 backdrop-blur-xl flex items-center justify-center shadow-[0_0_60px_rgba(16,185,129,0.4)]">
-                    <Scale className="w-11 h-11 text-accent" strokeWidth={1.75} />
-                  </div>
-                  <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-accent flex items-center justify-center shadow-lg shadow-accent/40 ring-4 ring-slate-950">
-                    <ShieldCheck className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex justify-center mb-6">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-white/90 text-xs font-medium tracking-wider uppercase">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                  {tx("Expertise IT · Métier · Réglementaire", "Expertise IT · Business · Regulatory")}
-                </span>
-              </div>
-
-              <h1 className="text-center text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-8 leading-[1.05] tracking-tight">
-                {tx("La conformité n'est pas", "Compliance is not")}
-                <br />
-                <span className="bg-gradient-to-r from-accent via-emerald-300 to-accent bg-clip-text text-transparent">
-                  {tx("une option.", "an option.")}
-                </span>
-              </h1>
-
-              <p className="text-center text-lg md:text-xl text-slate-300/90 mb-14 max-w-3xl mx-auto leading-relaxed font-light">
-                {tx(
-                  "GreenTechCycle maîtrise l'intersection entre IT, métier et réglementation. Une plateforme unique pour naviguer la complexité ITAD et transformer la conformité en ",
-                  "GreenTechCycle masters the intersection of IT, business and regulation. One platform to navigate ITAD complexity and turn compliance into "
-                )}
-                <span className="text-accent font-medium">
-                  {tx("avantage concurrentiel.", "competitive advantage.")}
-                </span>
-              </p>
-
-              {/* Hero KPIs, premium 4-column */}
-              <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-5xl mx-auto">
-                {[
-                  { num: 30, suffix: "+", decimals: 0, label: tx("Réglementations maîtrisées", "Regulations mastered"), icon: Gavel, accent: true },
-                  { num: 78, suffix: "%", decimals: 0, label: tx("Non-conformes RGPD", "Non-compliant GDPR"), icon: AlertTriangle },
-                  { num: 4.5, suffix: tx(" Md€", "B€"), decimals: 1, label: tx("Amendes RGPD cumulées", "Cumulative GDPR fines"), icon: BarChart3 },
-                  { num: 160, suffix: "k", decimals: 0, label: tx("Entreprises NIS2 UE", "EU companies NIS2"), icon: Network },
-                ].map((kpi, i) => {
-                  const KIcon = kpi.icon;
-                  return (
-                    <StaggerItem key={i}>
-                      <div className="group relative rounded-2xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-xl border border-white/10 px-5 py-6 hover:border-accent/40 hover:from-white/[0.1] transition-all duration-500 h-full">
-                        <div className="absolute top-4 right-4 opacity-30 group-hover:opacity-60 transition">
-                          <KIcon className="w-5 h-5 text-accent" />
-                        </div>
-                        <div className={`text-4xl md:text-5xl font-black mb-3 ${kpi.accent ? "text-accent" : "text-white"}`}>
-                          <CountUp end={kpi.num} decimals={kpi.decimals} suffix={kpi.suffix} />
-                        </div>
-                        <p className="text-[11px] uppercase tracking-wider text-slate-400 font-medium leading-snug">
-                          {kpi.label}
-                        </p>
-                      </div>
-                    </StaggerItem>
-                  );
-                })}
-              </StaggerContainer>
-
-              <div className="flex flex-col sm:flex-row gap-3 justify-center mt-14">
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent hover:bg-accent-600 text-white font-semibold rounded-xl shadow-[0_10px_40px_-10px_rgba(16,185,129,0.6)] hover:shadow-[0_15px_50px_-10px_rgba(16,185,129,0.8)] transition-all hover:-translate-y-0.5"
-                >
-                  <ShieldCheck className="w-4 h-4" />
-                  {tx("Demander un audit de conformité", "Request compliance audit")}
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
-                </Link>
-                <a
-                  href="#sectors"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-xl border border-white/15 backdrop-blur-xl transition-all"
-                >
-                  <Landmark className="w-4 h-4" />
-                  {tx("Explorer par secteur", "Explore by sector")}
-                </a>
-              </div>
-
-              {/* Scroll indicator */}
-              <div className="hidden lg:flex justify-center mt-16">
-                <div className="flex flex-col items-center gap-2 text-slate-500 text-xs tracking-widest uppercase">
-                  <span>{tx("Défiler", "Scroll")}</span>
-                  <div className="w-px h-12 bg-gradient-to-b from-slate-500 to-transparent animate-pulse" />
-                </div>
-              </div>
+    <div>
+      {/* ═══════════════ HERO (paper) ═══════════════ */}
+      <section className="bg-bg py-16 lg:py-24" aria-labelledby="reg-hero-title">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
+            <p className="text-eyebrow uppercase text-fg-muted">{tx("Expertise IT · Métier · Réglementaire", "Expertise IT · Business · Regulatory")}</p>
+            <h1 id="reg-hero-title" className="mt-3 max-w-[20ch] text-display-lg text-fg">
+              {tx("La conformité n'est pas une option.", "Compliance is not an option.")}
+            </h1>
+            <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">
+              {tx(
+                "GreenTechCycle maîtrise l'intersection entre IT, métier et réglementation. Une plateforme unique pour naviguer la complexité ITAD et transformer la conformité en avantage concurrentiel.",
+                "GreenTechCycle masters the intersection of IT, business and regulation. One platform to navigate ITAD complexity and turn compliance into competitive advantage."
+              )}
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/contact" size="lg">{tx("Demander un audit de conformité", "Request compliance audit")}</ButtonLink>
+              <ButtonLink href="#sectors" variant="secondary" size="lg">{tx("Explorer par secteur", "Explore by sector")}</ButtonLink>
             </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ═══════════════ TRUST STRIP ═══════════════ */}
-      <section className="relative bg-slate-950 border-y border-white/5 py-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-primary-900/40 to-slate-950" />
-        <div className="container mx-auto px-4 relative">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs">
-            <span className="text-slate-500 uppercase tracking-widest font-semibold">
-              {tx("Réglementations couvertes", "Regulations covered")}
-            </span>
-            {[
-              { label: "RGPD", icon: Shield },
-              { label: "NIS2", icon: Lock },
-              { label: "CSRD", icon: Leaf },
-              { label: "DORA", icon: BarChart3 },
-              { label: "ISO 27001", icon: ShieldCheck },
-              { label: "HDS", icon: Heart },
-              { label: "PCI-DSS", icon: CreditCard },
-              { label: "AI Act", icon: Brain },
-              { label: "DEEE", icon: Recycle },
-            ].map(({ label, icon: BIcon }) => (
-              <span key={label} className="inline-flex items-center gap-1.5 text-slate-300 font-semibold tracking-wide">
-                <BIcon className="w-3.5 h-3.5 text-accent" />
+          </div>
+          <div className="mt-12 border-t border-track pt-8">
+            <StatRow>
+              {[
+                <Stat key="a" accent value={<CountUp end={30} suffix="+" />} label={tx("Réglementations maîtrisées", "Regulations mastered")} />,
+                <Stat key="b" value={<CountUp end={78} suffix="%" />} label={tx("Non-conformes RGPD", "Non-compliant GDPR")} />,
+                <Stat key="c" value={<CountUp end={4.5} decimals={1} suffix={tx(" Md€", "B€")} />} label={tx("Amendes RGPD cumulées", "Cumulative GDPR fines")} />,
+                <Stat key="d" value={<CountUp end={160} suffix="k" />} label={tx("Entreprises NIS2 UE", "EU companies NIS2")} />,
+              ]}
+            </StatRow>
+          </div>
+          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-track pt-6 text-caption text-fg-strong">
+            <span className="text-eyebrow uppercase text-fg-muted">{tx("Réglementations couvertes", "Regulations covered")}</span>
+            {["RGPD", "NIS2", "CSRD", "DORA", "ISO 27001", "HDS", "PCI-DSS", "AI Act", "DEEE"].map((label) => (
+              <span key={label} className="inline-flex items-center gap-2">
+                <ShieldCheck className="h-3.5 w-3.5 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                 {label}
               </span>
             ))}
@@ -1193,89 +1055,59 @@ export default function RegulationPage() {
         </div>
       </section>
 
-      {/* ═══════════════ SECTOR NAV ═══════════════ */}
-      <section className="sticky top-0 z-20 bg-white/90 backdrop-blur-xl border-b border-slate-200/80 py-3 shadow-sm">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center gap-3">
-            <span className="hidden md:inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">
-              <Target className="w-3 h-3" />
-              {tx("Naviguer", "Navigate")}
-            </span>
-            <div className="flex gap-2 overflow-x-auto scrollbar-hide flex-1">
-              <a
-                href="#transversal"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-900 bg-slate-900 text-white text-sm font-semibold whitespace-nowrap hover:bg-slate-800 hover:shadow-md transition"
-              >
-                <Globe className="w-4 h-4" />
-                {tx("Transversales", "Cross-sector")}
-              </a>
-              {sectors.map((s) => {
-                const Icon = s.icon;
-                return (
-                  <a
-                    key={s.id}
-                    href={`#sectors`}
-                    onClick={() => setOpenSectors((prev) => ({ ...prev, [s.id]: true }))}
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border ${s.borderColor} ${s.bgColor} ${s.textColor} text-sm font-semibold whitespace-nowrap hover:shadow-md hover:-translate-y-0.5 transition`}
-                  >
-                    <Icon className="w-4 h-4" />
-                    {s.title}
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ═══════════════ NAVIGATION DE SECTIONS (règle un-seul-sticky §6.2) ═══════════════ */}
+      <SectionNav
+        label={tx("Sections de la page réglementation", "Regulation page sections")}
+        anchors={[
+          { id: "transversal", label: tx("Transversales", "Cross-sector") },
+          { id: "sectors", label: tx("Par secteur", "By sector") },
+          { id: "calendrier", label: tx("Calendrier", "Timeline") },
+          { id: "enjeux", label: tx("Enjeux", "Issues") },
+          { id: "reponse-gtc", label: tx("Notre réponse", "Our answer") },
+          { id: "ressources", label: tx("Ressources", "Resources") },
+          { id: "sources", label: tx("Sources", "Sources") },
+        ]}
+      />
 
       {/* ═══════════════ TRANSVERSAL REGULATIONS ═══════════════ */}
-      <section id="transversal" className="relative py-24 lg:py-32 bg-gradient-to-b from-white via-slate-50 to-white overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-gradient-to-b from-accent/[0.04] to-transparent blur-3xl pointer-events-none" />
+      <section id="transversal" className="relative overflow-hidden bg-bg py-16 lg:py-24">
 
-        <div className="container mx-auto px-4 relative">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-5">
-                <Globe className="w-3.5 h-3.5" />
-                {tx("Socle commun", "Common foundation")}
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative">
+          <div className="reveal">
+            <div className="mb-10 max-w-[720px] lg:mb-12">
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Socle commun", "Common foundation")}
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-display-md text-fg mb-5">
                 {tx("Réglementations ", "Cross-sector ")}
-                <span className="relative">
-                  <span className="relative z-10">{tx("transversales", "regulations")}</span>
-                  <span className="absolute bottom-1 left-0 right-0 h-3 bg-accent/20 -z-0" />
-                </span>
+                {tx("transversales", "regulations")}
               </h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
                   "Ces réglementations s'appliquent à toutes les entreprises, quel que soit le secteur. Elles forment le socle de conformité minimum que chaque DSI doit maîtriser.",
                   "These regulations apply to all companies regardless of sector. They form the minimum compliance foundation every CIO must master."
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          <div className="reveal-stagger grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {transversal.map((reg) => {
               const Icon = reg.icon;
               return (
-                <StaggerItem key={reg.name}>
-                  <article className="group relative h-full bg-white rounded-3xl border border-slate-200/80 hover:border-accent/30 hover:shadow-2xl hover:shadow-slate-900/5 hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+                <div key={reg.name} className="reveal">
+                  <article className="group relative h-full bg-bg-card rounded-2xl border border-track hover:border-emerald/30 hover:border-track-strong hover: transition-colors duration-150 overflow-hidden">
                     {/* Decorative corner glow */}
-                    <div className={`absolute -top-16 -right-16 w-40 h-40 ${reg.bgColor} rounded-full blur-3xl opacity-0 group-hover:opacity-70 transition-opacity duration-700`} />
 
                     <div className="relative p-7">
                       <div className="flex items-start justify-between gap-3 mb-5">
-                        <div className={`w-14 h-14 rounded-2xl ${reg.bgColor} border ${reg.borderColor} flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
-                          <Icon className={`w-7 h-7 ${reg.color}`} strokeWidth={1.75} />
-                        </div>
+                        <Pictogram icon={Icon as LucideIcon} size="lg" />
                         <StatusBadge status={reg.status} tx={tx} />
                       </div>
 
-                      <h3 className="text-2xl font-bold text-slate-900 mb-1 tracking-tight">{reg.name}</h3>
-                      <p className="text-xs text-slate-500 mb-4 font-medium">{reg.fullName}</p>
+                      <h3 className="text-heading-lg text-fg mb-1">{reg.name}</h3>
+                      <p className="text-xs text-fg-muted mb-4 font-medium">{reg.fullName}</p>
 
-                      <div className="flex flex-wrap gap-3 text-[11px] text-slate-500 mb-5 pb-5 border-b border-slate-100">
+                      <div className="flex flex-wrap gap-3 text-caption text-fg-muted mb-5 pb-5 border-b border-track">
                         <span className="inline-flex items-center gap-1">
                           <Globe className="w-3 h-3" /> {reg.jurisdiction}
                         </span>
@@ -1284,124 +1116,103 @@ export default function RegulationPage() {
                         </span>
                       </div>
 
-                      <p className="text-sm text-slate-600 leading-relaxed mb-5 line-clamp-5">{reg.description}</p>
+                      <p className="text-sm text-fg-strong leading-relaxed mb-5 line-clamp-5">{reg.description}</p>
 
-                      <div className={`rounded-2xl ${reg.bgColor} border ${reg.borderColor} p-4 mb-4`}>
-                        <p className={`text-xs font-bold uppercase tracking-wider ${reg.color} mb-1 flex items-center gap-1.5`}>
+                      <div className="rounded-xl border border-track bg-bg-card p-4 mb-4">
+                        <p className="uppercase text-eyebrow text-fg-muted mb-1 flex items-center gap-1.5">
                           <TrendingUp className="w-3 h-3" />
                           {tx("Impact chiffré", "Quantified impact")}
                         </p>
-                        <p className={`text-base font-bold ${reg.color}`}>{reg.keyFigure}</p>
-                        <p className="text-[11px] text-slate-500 mt-1">{reg.subFigure}</p>
+                        <p className="text-heading-lg text-emerald">{reg.keyFigure}</p>
+                        <p className="text-caption text-fg-muted mt-1">{reg.subFigure}</p>
                       </div>
 
-                      <div className="flex items-start gap-2.5 bg-gradient-to-br from-accent/5 to-emerald-50 rounded-2xl p-4 border border-accent/10">
-                        <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-accent flex items-center justify-center shadow-sm shadow-accent/30">
-                          <CheckCircle2 className="w-4 h-4 text-white" />
-                        </div>
-                        <p className="text-xs text-slate-700 leading-relaxed">
-                          <span className="font-bold text-slate-900">{tx("Comment GTC aide", "How GTC helps")} :</span> {reg.gtcHelp}
+                      <div className="flex items-start gap-2.5 rounded-xl p-4 border border-track bg-white/[0.03]">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
+                        <p className="text-xs text-fg-strong leading-relaxed">
+                          <span className="font-semibold text-fg">{tx("Comment GTC aide", "How GTC helps")} :</span> {reg.gtcHelp}
                         </p>
                       </div>
                     </div>
                   </article>
-                </StaggerItem>
+                </div>
               );
             })}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
       {/* ═══════════════ REGULATIONS BY SECTOR ═══════════════ */}
-      <section id="sectors" className="py-24 lg:py-32 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-5">
-                <Landmark className="w-3.5 h-3.5" />
-                {tx("Par secteur d'activité", "By industry sector")}
+      <section id="sectors" className="bg-bg-card py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
+            <div className="mb-10 max-w-[720px] lg:mb-12">
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Par secteur d'activité", "By industry sector")}
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-display-md text-fg mb-5">
                 {tx("Cadre réglementaire ", "Regulatory framework ")}
-                <span className="text-primary">{tx("par secteur", "by sector")}</span>
+                {tx("par secteur", "by sector")}
               </h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
                   "Le DSI cherche ce qui s'applique à SON secteur. Cliquez sur votre domaine pour voir les réglementations qui vous concernent, avec pré-requis techniques et impact business.",
                   "The CIO looks for what applies to THEIR sector. Click your domain to see the regulations that concern you, with technical prerequisites and business impact."
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           <div className="max-w-6xl mx-auto space-y-4">
             {sectors.map((sector, i) => (
-              <FadeIn key={sector.id} delay={i * 0.04}>
+              <div key={sector.id} className="reveal">
                 <SectorSection
                   sector={sector}
                   isOpen={!!openSectors[sector.id]}
                   toggle={() => toggleSector(sector.id)}
                   tx={tx}
                 />
-              </FadeIn>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* ═══════════════ TIMELINE 2024→2028 ═══════════════ */}
-      <section className="relative py-24 lg:py-32 bg-slate-950 overflow-hidden">
+      <section id="calendrier" className="relative bg-bg-card overflow-hidden py-16 lg:py-24">
         {/* Decorative backgrounds */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
-          <div className="absolute top-1/3 left-[10%] w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/3 right-[10%] w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-        </div>
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: "radial-gradient(circle, rgba(16,185,129,0.8) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
 
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/30 text-accent text-xs font-bold uppercase tracking-widest mb-5">
-                <Clock className="w-3.5 h-3.5" />
-                {tx("Agenda réglementaire 2024 (2028", "Regulatory agenda 2024) 2028")}
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
+          <div className="reveal">
+            <div className="mb-10 max-w-[720px] lg:mb-12">
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Agenda réglementaire 2024 · 2028", "Regulatory agenda 2024 · 2028")}
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-display-md text-fg mb-5">
                 {tx("Chaque jalon,", "Every milestone,")}
-                <br />
-                <span className="bg-gradient-to-r from-accent via-emerald-300 to-accent bg-clip-text text-transparent">
-                  {tx("un impact business concret", "concrete business impact")}
-                </span>
+ {tx("un impact business concret", "concrete business impact")}
               </h2>
-              <p className="text-lg text-slate-400 leading-relaxed">
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-muted">
                 {tx(
                   "Pas juste des dates, ce qui change pour le DSI/RSSI, l'impact financier, et ce que GTC recommande de faire maintenant.",
                   "Not just dates, what changes for the CIO/CISO, the financial impact, and what GTC recommends doing now."
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           <div className="relative max-w-4xl mx-auto">
             {/* Vertical line */}
-            <div className="absolute left-[27px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-accent/40 to-transparent" />
+            <div className="absolute left-[27px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-px bg-track" />
 
             <div className="space-y-8 md:space-y-12">
               {timeline.map((t, i) => {
                 const isLeft = i % 2 === 0;
                 return (
-                  <FadeIn key={i} delay={i * 0.08} direction={isLeft ? "right" : "left"}>
+                  <div key={i} className="reveal">
                     <div className={`relative flex items-start gap-4 md:gap-8 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}>
                       {/* Timeline node */}
                       <div className="relative z-10 flex-shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2">
-                        <div className="w-14 h-14 rounded-2xl bg-slate-900 border-2 border-accent flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.4)]">
-                          <span className="text-[10px] font-bold text-accent uppercase tracking-widest text-center leading-tight px-1">
+                        <div className="w-14 h-14 rounded-2xl bg-bg-card border border-track flex items-center justify-center">
+                          <span className="text-fg-muted uppercase text-center leading-tight px-1 text-eyebrow">
                             {t.date}
                           </span>
                         </div>
@@ -1412,28 +1223,28 @@ export default function RegulationPage() {
 
                       {/* Card */}
                       <div className={`flex-1 md:w-1/2 ${isLeft ? "md:pr-12" : "md:pl-12"}`}>
-                        <div className="group bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-accent/40 hover:shadow-[0_20px_60px_-15px_rgba(16,185,129,0.25)] transition-all duration-500">
+                        <div className="group border border-track rounded-2xl p-6 hover:border-white/30 transition-colors duration-150 bg-white/[0.03]">
                           <div className="flex items-center gap-2 mb-3">
-                            <span className="inline-flex md:hidden items-center text-[10px] font-bold uppercase tracking-widest text-accent">
+                            <span className="inline-flex md:hidden items-center uppercase text-fg-muted text-eyebrow">
                               {t.date}
                             </span>
-                            <span className="md:ml-0 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-emerald-400">
-                              <Sparkles className="w-3 h-3" />
+                            <span className="md:ml-0 inline-flex items-center gap-1 uppercase text-fg-muted text-eyebrow">
+                              
                               {tx("Jalon clé", "Key milestone")}
                             </span>
                           </div>
-                          <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">{t.title}</h3>
-                          <p className="text-sm text-slate-300 leading-relaxed mb-4">{t.impact}</p>
-                          <div className="flex items-start gap-2 bg-gradient-to-br from-accent/15 to-emerald-500/5 rounded-xl px-3 py-2.5 border border-accent/20">
-                            <AlertTriangle className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                            <p className="text-xs text-accent/90 font-medium leading-relaxed">
+                          <h3 className="text-heading-lg text-fg mb-2">{t.title}</h3>
+                          <p className="text-sm text-fg-muted leading-relaxed mb-4">{t.impact}</p>
+                          <div className="flex items-start gap-2 rounded-xl px-3 py-2.5 border border-track bg-white/5">
+                            <AlertTriangle className="w-4 h-4 text-amber flex-shrink-0 mt-0.5" />
+                            <p className="text-xs text-amber font-medium leading-relaxed">
                               {t.business}
                             </p>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </FadeIn>
+                  </div>
                 );
               })}
             </div>
@@ -1442,56 +1253,49 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ ENJEUX & CRISES ACTUELLES ═══════════════ */}
-      <section className="py-24 lg:py-32 bg-white">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold uppercase tracking-widest mb-5">
-                <Activity className="w-3.5 h-3.5" />
-                {tx("Contexte géopolitique & technologique", "Geopolitical & technological context")}
+      <section id="enjeux" className="bg-bg py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
+            <div className="mb-10 max-w-[720px] lg:mb-12">
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Contexte géopolitique & technologique", "Geopolitical & technological context")}
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-display-md text-fg mb-5">
                 {tx("Enjeux & crises qui ", "Issues & crises ")}
-                <span className="bg-gradient-to-r from-rose-600 to-orange-500 bg-clip-text text-transparent">
-                  {tx("redéfinissent l'ITAD", "redefining ITAD")}
-                </span>
+                {tx("redéfinissent l'ITAD", "redefining ITAD")}
               </h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
                   "Au-delà de la réglementation, des forces géopolitiques, énergétiques et technologiques redessinent les priorités de la gestion des actifs IT.",
                   "Beyond regulation, geopolitical, energy and technological forces are reshaping IT asset management priorities."
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
             {enjeuxSections.map((section, i) => {
               const SectionIcon = section.icon;
               return (
-                <FadeIn key={section.id} delay={i * 0.06}>
-                  <div className="group relative h-full rounded-3xl border border-slate-200 bg-gradient-to-br from-white to-slate-50/30 overflow-hidden hover:shadow-xl hover:border-slate-300 transition-all duration-500">
+                <div key={section.id} className="reveal">
+                  <div className="group relative h-full rounded-2xl border border-track overflow-hidden hover:border-track-strong hover:border-track transition-colors duration-150 bg-bg">
                     {/* Gradient top bar */}
-                    <div className={`h-1.5 bg-gradient-to-r ${section.color}`} />
 
                     <div className="p-7 md:p-8">
                       <div className="flex items-center gap-4 mb-6">
-                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${section.color} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
-                          <SectionIcon className="w-7 h-7 text-white" strokeWidth={1.75} />
-                        </div>
-                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight">{section.title}</h3>
+                        <Pictogram icon={SectionIcon as LucideIcon} size="lg" />
+                        <h3 className="text-heading-lg text-fg">{section.title}</h3>
                       </div>
                       <div className="space-y-4">
                         {section.items.map((item, j) => (
-                          <div key={j} className="relative pl-5 border-l-2 border-slate-200 hover:border-accent transition-colors">
-                            <h4 className="font-bold text-slate-900 mb-1.5 text-sm tracking-tight">{item.title}</h4>
-                            <p className="text-sm text-slate-600 leading-relaxed">{item.text}</p>
+                          <div key={j} className="relative pl-5 border-l-2 border-track hover:border-emerald transition-colors">
+                            <h4 className="font-semibold text-fg mb-1.5 text-sm tracking-tight">{item.title}</h4>
+                            <p className="text-sm text-fg-strong leading-relaxed">{item.text}</p>
                           </div>
                         ))}
                       </div>
                     </div>
                   </div>
-                </FadeIn>
+                </div>
               );
             })}
           </div>
@@ -1499,132 +1303,120 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ PROPOSITION DE VALEUR GTC ═══════════════ */}
-      <section className="relative py-24 lg:py-32 bg-gradient-to-br from-slate-50 via-white to-emerald-50/30 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+      <section id="reponse-gtc" className="relative overflow-hidden bg-bg-card py-16 lg:py-24">
 
-        <div className="container mx-auto px-4 relative">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-5">
-                <Sparkles className="w-3.5 h-3.5" />
-                {tx("Notre réponse", "Our answer")}
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative">
+          <div className="reveal">
+            <div className="mb-10 max-w-[720px] lg:mb-12">
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Notre réponse", "Our answer")}
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-display-md text-fg mb-5">
                 {tx("Comment ", "How ")}
-                <span className="relative inline-block">
-                  <span className="relative z-10 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">GreenTechCycle</span>
-                </span>
+                GreenTechCycle
                 {tx(" vous aide", " helps you")}
               </h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
-                  "GreenTechCycle a été conçu pour répondre à chacun de ces défis avec une plateforme unifiée, certifiée et auditable.",
-                  "GreenTechCycle was designed to address each of these challenges with a unified, certified and auditable platform."
+                  "GreenTechCycle a été conçu pour répondre à chacun de ces défis avec une plateforme unifiée et auditable.",
+                  "GreenTechCycle was designed to address each of these challenges with a unified and auditable platform."
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto mb-14">
+          <div className="reveal-stagger grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto mb-14">
             {valueProps.map((vp, i) => {
               const VPIcon = vp.icon;
               return (
-                <StaggerItem key={i}>
-                  <div className="group relative h-full bg-white rounded-3xl p-7 border border-slate-200 hover:shadow-2xl hover:shadow-slate-900/5 hover:border-accent/30 hover:-translate-y-1 transition-all duration-500 overflow-hidden">
-                    <div className="absolute -top-10 -right-10 w-32 h-32 bg-accent/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div key={i} className="reveal">
+                  <div className="group relative h-full bg-bg-card rounded-2xl p-7 border border-track hover:border-track-strong hover: hover:border-emerald/30 transition-colors duration-150 overflow-hidden">
                     <div className="relative">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/15 to-emerald-50 border border-accent/20 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                        <VPIcon className="w-7 h-7 text-accent" strokeWidth={1.75} />
-                      </div>
-                      <h3 className="text-lg font-bold text-slate-900 mb-2.5 tracking-tight">{vp.title}</h3>
-                      <p className="text-sm text-slate-600 leading-relaxed">{vp.text}</p>
+                      <Pictogram icon={VPIcon as LucideIcon} size="lg" className="mb-5" />
+                      <h3 className="text-heading-md text-fg mb-2.5">{vp.title}</h3>
+                      <p className="text-sm text-fg-strong leading-relaxed">{vp.text}</p>
                     </div>
                   </div>
-                </StaggerItem>
+                </div>
               );
             })}
-          </StaggerContainer>
+          </div>
 
           {/* Services & certifications links */}
-          <FadeIn>
+          <div className="reveal">
             <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-4">
               <Link
                 href="/services"
-                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 hover:border-primary hover:shadow-lg transition-all"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-bg-card border border-track hover:border-emerald hover:border-track-strong transition-colors"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Workflow className="w-6 h-6 text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-emerald-dim flex items-center justify-center flex-shrink-0">
+                  <Workflow className="w-6 h-6 text-emerald" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-slate-900 mb-0.5">{tx("Nos services", "Our services")}</p>
-                  <p className="text-xs text-slate-500">{tx("ITAD, destruction, reconditionnement", "ITAD, destruction, refurbishment")}</p>
+                  <p className="text-sm font-semibold text-fg mb-0.5">{tx("Nos services", "Our services")}</p>
+                  <p className="text-xs text-fg-muted">{tx("ITAD, destruction, reconditionnement", "ITAD, destruction, refurbishment")}</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition" />
+                <ArrowRight className="w-5 h-5 text-fg-muted group-hover:text-emerald group-hover:translate-x-0.5 transition" />
               </Link>
               <Link
                 href="/securite"
-                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 hover:border-accent hover:shadow-lg transition-all"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-bg-card border border-track hover:border-emerald hover:border-track-strong transition-colors"
               >
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                  <ShieldCheck className="w-6 h-6 text-accent" />
+                <div className="w-12 h-12 rounded-xl bg-emerald-dim flex items-center justify-center flex-shrink-0">
+                  <ShieldCheck className="w-6 h-6 text-emerald" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-slate-900 mb-0.5">{tx("Nos certifications", "Our certifications")}</p>
-                  <p className="text-xs text-slate-500">{tx("ISO 27001, R2v3, NIST, DoD", "ISO 27001, R2v3, NIST, DoD")}</p>
+                  <p className="text-sm font-semibold text-fg mb-0.5">{tx("Méthodes & démarche", "Methods & approach")}</p>
+                  <p className="text-xs text-fg-muted">{tx("NIST SP 800-88, DoD · ISO 27001 en cours", "NIST SP 800-88, DoD · ISO 27001 in progress")}</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-accent group-hover:translate-x-1 transition" />
+                <ArrowRight className="w-5 h-5 text-fg-muted group-hover:text-emerald group-hover:translate-x-0.5 transition" />
               </Link>
               <Link
                 href="/methodologie"
-                className="group flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200 hover:border-secondary hover:shadow-lg transition-all"
+                className="group flex items-center gap-4 p-5 rounded-2xl bg-bg-card border border-track hover:border-track-strong hover:border-track-strong transition-colors"
               >
-                <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-6 h-6 text-secondary" />
+                <div className="w-12 h-12 rounded-xl bg-bg/10 flex items-center justify-center flex-shrink-0">
+                  <BookOpen className="w-6 h-6 text-emerald" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-slate-900 mb-0.5">{tx("Notre méthodologie", "Our methodology")}</p>
-                  <p className="text-xs text-slate-500">{tx("Processus ITAD 7 étapes", "ITAD 7-step process")}</p>
+                  <p className="text-sm font-semibold text-fg mb-0.5">{tx("Notre méthodologie", "Our methodology")}</p>
+                  <p className="text-xs text-fg-muted">{tx("Processus ITAD 7 étapes", "ITAD 7-step process")}</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-secondary group-hover:translate-x-1 transition" />
+                <ArrowRight className="w-5 h-5 text-fg-muted group-hover:text-emerald group-hover:translate-x-0.5 transition" />
               </Link>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* ═══════════════ BLOG / RESSOURCES ═══════════════ */}
-      <section className="py-24 lg:py-32 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-14">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-xs font-bold uppercase tracking-widest mb-5">
-                <BookOpen className="w-3.5 h-3.5" />
-                {tx("Ressources & analyses", "Resources & insights")}
+      <section id="ressources" className="bg-bg py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
+            <div className="mb-10 max-w-[720px] lg:mb-12">
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Ressources & analyses", "Resources & insights")}
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-5 tracking-tight leading-[1.1]">
+              <h2 className="text-display-md text-fg mb-5">
                 {tx("Approfondir la ", "Dive deeper into ")}
-                <span className="text-primary">{tx("conformité", "compliance")}</span>
+                {tx("conformité", "compliance")}
               </h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
                   "Analyses, guides pratiques et retours d'expérience pour comprendre et anticiper les exigences réglementaires ITAD.",
                   "Analyses, practical guides and insights to understand and anticipate ITAD regulatory requirements."
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-10">
+          <div className="reveal-stagger grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-10">
             {[
               {
                 slug: "nis2-compliance-it-infrastructure",
                 title: tx("NIS2 & conformité IT : obligations d'infrastructure", "NIS2 & IT compliance: infrastructure obligations"),
                 excerpt: tx("Décryptage des exigences NIS2 pour la gestion de votre parc IT : registre d'actifs, notification d'incidents, chain of custody.", "Breakdown of NIS2 requirements for IT fleet management: asset register, incident notification, chain of custody."),
                 icon: Lock,
-                color: "from-indigo-500 to-blue-600",
-                iconBg: "bg-indigo-50",
-                iconColor: "text-indigo-600",
+                iconBg: "bg-white/[0.03]",
+                iconColor: "text-emerald",
                 tag: "NIS2 · Cybersécurité",
               },
               {
@@ -1632,9 +1424,8 @@ export default function RegulationPage() {
                 title: tx("CSRD & ITAD : intégrer l'IT aux comptes-rendus ESG", "CSRD & ITAD: embedding IT into ESG reporting"),
                 excerpt: tx("Comment contribuer aux indicateurs ESRS E1 et E5 avec votre programme ITAD : CO₂ évité, taux de réemploi, bilan matière.", "How to contribute to ESRS E1 and E5 indicators with your ITAD program: avoided CO₂, reuse rate, material balance."),
                 icon: Leaf,
-                color: "from-emerald-500 to-teal-600",
-                iconBg: "bg-emerald-50",
-                iconColor: "text-emerald-600",
+                iconBg: "bg-white/[0.03]",
+                iconColor: "text-emerald",
                 tag: "CSRD · ESG",
               },
               {
@@ -1642,9 +1433,8 @@ export default function RegulationPage() {
                 title: tx("Sécurité des données en fin de vie IT", "End-of-life IT data security"),
                 excerpt: tx("Protéger vos données sensibles lors du décommissionnement : méthodes d'effacement NIST, DoD, IEEE, certificats et preuves.", "Protect sensitive data during decommissioning: NIST, DoD, IEEE erasure methods, certificates and evidence."),
                 icon: Shield,
-                color: "from-rose-500 to-red-600",
-                iconBg: "bg-rose-50",
-                iconColor: "text-rose-600",
+                iconBg: "bg-white/[0.03]",
+                iconColor: "text-emerald",
                 tag: "RGPD · Sécurité",
               },
               {
@@ -1652,9 +1442,8 @@ export default function RegulationPage() {
                 title: tx("Guide DEEE : obligations entreprises 2026", "WEEE guide: 2026 company obligations"),
                 excerpt: tx("Responsabilité Élargie du Producteur, éco-organismes, traçabilité des DEEE : ce que chaque entreprise doit mettre en place.", "Extended Producer Responsibility, eco-organisations, WEEE traceability: what every company must put in place."),
                 icon: Recycle,
-                color: "from-green-500 to-emerald-600",
-                iconBg: "bg-green-50",
-                iconColor: "text-green-600",
+                iconBg: "bg-white/[0.03]",
+                iconColor: "text-emerald",
                 tag: "DEEE · AGEC",
               },
               {
@@ -1662,236 +1451,117 @@ export default function RegulationPage() {
                 title: tx("Économie circulaire IT en entreprise", "Circular IT economy in enterprise"),
                 excerpt: tx("Du reconditionnement à la valorisation des actifs : construire une stratégie circulaire rentable et conforme loi AGEC.", "From refurbishment to asset recovery: building a profitable circular strategy compliant with AGEC law."),
                 icon: Zap,
-                color: "from-amber-500 to-orange-600",
-                iconBg: "bg-amber-50",
-                iconColor: "text-amber-600",
+                iconBg: "bg-amber-dim",
+                iconColor: "text-amber",
                 tag: "AGEC · Circularité",
               },
             ].map((article, i) => {
               const AIcon = article.icon;
               return (
-                <StaggerItem key={i}>
+                <div key={i} className="reveal">
                   <Link
                     href={`/blog/${article.slug}`}
-                    className="group relative h-full flex flex-col bg-white rounded-3xl border border-slate-200 overflow-hidden hover:shadow-2xl hover:shadow-slate-900/5 hover:-translate-y-1 hover:border-slate-300 transition-all duration-500"
+                    className="group relative h-full flex flex-col bg-bg-card rounded-2xl border border-track overflow-hidden hover:border-track-strong hover: hover:border-track transition-colors duration-150"
                   >
                     {/* Visual header */}
-                    <div className={`relative h-40 bg-gradient-to-br ${article.color} flex items-center justify-center overflow-hidden`}>
-                      <div className="absolute inset-0 opacity-20" style={{
-                        backgroundImage: "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4), transparent 50%), radial-gradient(circle at 80% 50%, rgba(255,255,255,0.2), transparent 50%)",
-                      }} />
-                      <AIcon className="w-20 h-20 text-white/90 relative z-10 group-hover:scale-110 transition-transform duration-500" strokeWidth={1.25} />
-                      <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/20 backdrop-blur text-[10px] font-bold text-white tracking-wider uppercase border border-white/30">
-                        {article.tag}
-                      </span>
+                    <div className="flex items-center justify-between gap-3 border-b border-track bg-bg-card px-6 py-4">
+                      <Tag variant="neutral">{article.tag}</Tag>
+                      <AIcon className="h-6 w-6 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                     </div>
 
                     <div className="flex-1 p-6 flex flex-col">
-                      <h3 className="text-lg font-bold text-slate-900 mb-3 tracking-tight leading-snug group-hover:text-primary transition">
+                      <h3 className="text-heading-md text-fg mb-3 group-hover:text-emerald transition">
                         {article.title}
                       </h3>
-                      <p className="text-sm text-slate-600 leading-relaxed mb-5 flex-1">
+                      <p className="text-sm text-fg-strong leading-relaxed mb-5 flex-1">
                         {article.excerpt}
                       </p>
-                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent group-hover:gap-2.5 transition-all">
+                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald group-hover:gap-2.5 transition-colors">
                         {tx("Lire l'article", "Read article")}
                         <ArrowRight className="w-4 h-4" />
                       </span>
                     </div>
                   </Link>
-                </StaggerItem>
+                </div>
               );
             })}
-          </StaggerContainer>
+          </div>
 
-          <FadeIn>
+          <div className="reveal">
             <div className="text-center">
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white border-2 border-slate-200 hover:border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 font-semibold transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-bg-card border-2 border-track hover:border-track hover:bg-white/[0.04] hover:text-fg text-fg font-semibold transition-colors"
               >
                 <BookOpen className="w-4 h-4" />
                 {tx("Voir tous les articles", "See all articles")}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* ═══════════════ SOURCES & RÉFÉRENCES ═══════════════ */}
-      <section className="py-16 bg-white border-y border-slate-200">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center mb-10">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-[11px] font-bold uppercase tracking-widest mb-4">
-                <FileCheck className="w-3 h-3" />
-                {tx("Données sourcées", "Sourced data")}
+      <section id="sources" className="bg-bg-card border-y border-track py-12 lg:py-16">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
+            <div className="mb-10 max-w-[720px]">
+              <span className="mb-3 block text-eyebrow uppercase text-fg-muted">{tx("Données sourcées", "Sourced data")}
               </span>
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3 tracking-tight">
+              <h2 className="text-display-md text-fg mb-3">
                 {tx("Sources & Références", "Sources & References")}
               </h2>
-              <p className="text-slate-600">
+              <p className="text-fg-strong">
                 {tx(
                   "Toutes les données citées proviennent de sources institutionnelles et d'analystes reconnus.",
                   "All cited data comes from institutional sources and recognized analysts."
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
           <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {sources.map((s, i) => (
-              <div key={i} className="group bg-slate-50 hover:bg-white rounded-xl p-4 border border-slate-200 hover:border-accent/30 hover:shadow-md transition-all">
+              <div key={i} className="group bg-bg-card hover:bg-white/[0.04] rounded-xl p-4 border border-track hover:border-emerald/30 hover:border-track-strong transition-colors">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <div className="w-1 h-5 bg-accent rounded-full" />
-                  <p className="font-bold text-slate-900 text-sm">{s.name}</p>
+                  <div className="h-5 w-1 rounded-full bg-emerald" aria-hidden="true" />
+                  <p className="font-semibold text-fg text-sm">{s.name}</p>
                 </div>
-                <p className="text-xs text-slate-500 leading-relaxed">{s.desc}</p>
+                <p className="text-xs text-fg-muted leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════ CTA FINAL ═══════════════ */}
-      <section className="relative py-24 lg:py-32 bg-gradient-to-br from-primary-900 via-primary to-slate-950 overflow-hidden">
-        {/* Ambient lights */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-accent/20 rounded-full blur-3xl" />
-          <div className="absolute -top-20 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-20 left-0 w-96 h-96 bg-primary-400/10 rounded-full blur-3xl" />
-        </div>
-
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        />
-
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-5xl mx-auto">
-              {/* Central emblem */}
-              <div className="flex justify-center mb-8">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-accent/40 blur-3xl rounded-full animate-pulse" style={{ animationDuration: "4s" }} />
-                  <div className="relative w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/30 to-emerald-500/10 border border-accent/40 backdrop-blur-xl flex items-center justify-center shadow-[0_0_80px_rgba(16,185,129,0.5)]">
-                    <Scale className="w-10 h-10 text-accent" strokeWidth={1.75} />
-                  </div>
-                </div>
-              </div>
-
-              <h2 className="text-center text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.05]">
-                {tx("Transformez la conformité", "Turn compliance")}
-                <br />
-                <span className="bg-gradient-to-r from-accent via-emerald-300 to-accent bg-clip-text text-transparent">
-                  {tx("en avantage concurrentiel", "into competitive edge")}
-                </span>
-              </h2>
-
-              <p className="text-center text-lg md:text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
-                {tx(
-                  "Nos experts cartographient les réglementations qui vous concernent, identifient les écarts et construisent votre plan d'action priorisé.",
-                  "Our experts map the regulations that apply to you, identify gaps and build your prioritized action plan."
-                )}
-              </p>
-
-              {/* Primary CTAs */}
-              <div className="flex flex-col sm:flex-row gap-3 justify-center mb-12">
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent hover:bg-accent-600 text-white font-semibold rounded-xl shadow-[0_10px_40px_-10px_rgba(16,185,129,0.6)] hover:shadow-[0_15px_50px_-10px_rgba(16,185,129,0.8)] hover:-translate-y-0.5 transition-all"
-                >
-                  <ShieldCheck className="w-5 h-5" />
-                  {tx("Demander un audit de conformité", "Request compliance audit")}
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition" />
-                </Link>
-                <Link
-                  href="/demo"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/15 text-white font-semibold rounded-xl border border-white/20 backdrop-blur-xl transition-all"
-                >
-                  <Eye className="w-5 h-5" />
-                  {tx("Voir la démo", "See the demo")}
-                </Link>
-              </div>
-
-              {/* Secondary CTAs grid */}
-              <div className="grid sm:grid-cols-3 gap-3 max-w-4xl mx-auto">
-                <Link
-                  href="/securite"
-                  className="group flex items-center gap-3 px-5 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-xl transition-all"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center flex-shrink-0">
-                    <ShieldCheck className="w-5 h-5 text-accent" />
-                  </div>
-                  <div className="flex-1 min-w-0 text-left">
-                    <p className="text-sm font-bold text-white">{tx("Nos certifications", "Our certifications")}</p>
-                    <p className="text-xs text-slate-400">{tx("ISO 27001, R2v3, NIST", "ISO 27001, R2v3, NIST")}</p>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white group-hover:translate-x-0.5 transition" />
-                </Link>
-                <Link
-                  href="/methodologie"
-                  className="group flex items-center gap-3 px-5 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-xl transition-all"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center flex-shrink-0">
-                    <BookOpen className="w-5 h-5 text-accent" />
-                  </div>
-                  <div className="flex-1 min-w-0 text-left">
-                    <p className="text-sm font-bold text-white">{tx("Méthodologie", "Methodology")}</p>
-                    <p className="text-xs text-slate-400">{tx("Processus ITAD en 7 étapes", "7-step ITAD process")}</p>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white group-hover:translate-x-0.5 transition" />
-                </Link>
-                <Link
-                  href="/blog"
-                  className="group flex items-center gap-3 px-5 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-xl transition-all"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center flex-shrink-0">
-                    <FileCheck className="w-5 h-5 text-accent" />
-                  </div>
-                  <div className="flex-1 min-w-0 text-left">
-                    <p className="text-sm font-bold text-white">{tx("Ressources", "Resources")}</p>
-                    <p className="text-xs text-slate-400">{tx("Guides & analyses", "Guides & analyses")}</p>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white group-hover:translate-x-0.5 transition" />
-                </Link>
-              </div>
-
-              {/* Trust footer */}
-              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-14 text-xs text-slate-400">
-                <span className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-accent" />
-                  {tx("Audit gratuit", "Free audit")}
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-accent" />
-                  {tx("Réponse sous 24h", "Response within 24h")}
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-accent" />
-                  {tx("Expertise certifiée", "Certified expertise")}
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-accent" />
-                  {tx("RGPD · NIS2 · CSRD", "GDPR · NIS2 · CSRD")}
-                </span>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
       <RelatedArticles
         categories={["Réglementation", "Conformité"]}
-        title="Guides de conformité réglementaire"
-        subtitle="CSRD, NIS2, DEEE : des analyses détaillées pour sécuriser votre conformité IT."
+        title={{ fr: "Guides de conformité réglementaire", en: "Regulatory compliance guides" }}
+        subtitle={{ fr: "CSRD, NIS2, DEEE : des analyses détaillées pour sécuriser votre conformité IT.", en: "CSRD, NIS2, WEEE: detailed analyses to secure your IT compliance." }}
         limit={3}
         tone="light"
       />
-    </main>
+
+      {/* ═══════════════ CTA UNIQUE ═══════════════ */}
+      <CtaSection
+        title={tx("Transformez la conformité en avantage concurrentiel", "Turn compliance into competitive edge")}
+        subtitle={tx(
+          "Nos experts cartographient les réglementations qui vous concernent, identifient les écarts et construisent votre plan d'action priorisé.",
+          "Our experts map the regulations that apply to you, identify gaps and build your prioritized action plan."
+        )}
+        primaryLabel={tx("Demander un audit de conformité", "Request compliance audit")}
+        primaryHref="/contact"
+        secondaryLabel={tx("Voir la démo", "See the demo")}
+        secondaryHref="/demo"
+        reassurance={[tx("Audit gratuit", "Free audit"), tx("Réponse sous 24h", "Response within 24h"), tx("Expertise réglementaire", "Regulatory expertise"), tx("RGPD · NIS2 · CSRD", "GDPR · NIS2 · CSRD")].join(" · ")}
+        footnote={
+          <p className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            <Link href="/securite" className="font-medium text-emerald hover:text-fg">{tx("Méthodes & démarche", "Methods & approach")} →</Link>
+            <Link href="/methodologie" className="font-medium text-emerald hover:text-fg">{tx("Méthodologie", "Methodology")} →</Link>
+            <Link href="/blog" className="font-medium text-emerald hover:text-fg">{tx("Ressources", "Resources")} →</Link>
+          </p>
+        }
+      />
+    </div>
   );
 }

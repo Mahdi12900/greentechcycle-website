@@ -21,6 +21,14 @@ import { headers } from "next/headers";
  * real visitor — human or crawler — keeps getting the exact same redirect to
  * "/fr" as before, so the visible i18n behavior and SEO (one canonical URL
  * per locale, reached the same way as always) are unchanged.
+ *
+ * Merge note (go-live, 2026-10-05): redesign-epure independently fixed the
+ * same underlying issue with `export const dynamic = "force-dynamic"` (see
+ * reports/deploy-preview-gtc.md). Calling `headers()` below already forces
+ * dynamic rendering on this route by itself, so that extra directive is
+ * redundant here and was dropped during the merge — behavior for real
+ * visitors is unchanged (redirect to "/fr"), and this version additionally
+ * keeps main's literal-200-for-probes behavior plus `/api/health`.
  */
 export default function RootPage() {
   const accept = headers().get("accept") || "";

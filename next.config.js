@@ -7,16 +7,6 @@ const nextConfig = {
   output: process.env.BUILD_MODE === 'mobile' ? 'export' : 'standalone',
   images: {
     unoptimized: process.env.BUILD_MODE === 'mobile',
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "i.pravatar.cc",
-      },
-    ],
   },
 };
 

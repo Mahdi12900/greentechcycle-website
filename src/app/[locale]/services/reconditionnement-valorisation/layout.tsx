@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { SITE_URL as SITE } from "@/lib/site";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 
-const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
 export async function generateMetadata({
   params,
@@ -15,8 +16,8 @@ export async function generateMetadata({
     : "Reconditionnement et valorisation matériel IT | GreenTechCycle";
 
   const description = isEn
-    ? "Certified IT equipment refurbishment and value recovery. Resale, donation or responsible recycling. R2v3 certified, CSRD reporting included."
-    : "Reconditionnement certifié et valorisation du matériel IT en fin de vie. Revente, don ou recyclage responsable. Certifié R2v3, reporting CSRD inclus.";
+    ? "IT equipment refurbishment and value recovery. Resale, donation or responsible recycling. CSRD reporting included."
+    : "Reconditionnement et valorisation du matériel IT en fin de vie. Revente, don ou recyclage responsable. Reporting CSRD inclus.";
 
   return {
     title,
@@ -29,8 +30,8 @@ export async function generateMetadata({
         "x-default": `${SITE}/fr/services/reconditionnement-valorisation`,
       },
     },
-    openGraph: { title, description, type: "website" },
-    twitter: { card: "summary_large_image", title, description },
+    openGraph: { title, description, type: "website", url: `${SITE}/${locale}/services/reconditionnement-valorisation`, images: [DEFAULT_OG_IMAGE] },
+    twitter: { card: "summary_large_image", title, description, images: [DEFAULT_OG_IMAGE] },
   };
 }
 

@@ -1,92 +1,34 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { animate, useInView, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { useLocale } from "next-intl";
 
-export function FadeIn({
-  children,
-  delay = 0,
-  direction = "up",
-  className = "",
-}: {
-  children: ReactNode;
-  delay?: number;
-  direction?: "up" | "down" | "left" | "right" | "none";
-  className?: string;
-}) {
-  const directions = {
-    up: { y: 30, x: 0 },
-    down: { y: -30, x: 0 },
-    left: { x: 30, y: 0 },
-    right: { x: -30, y: 0 },
-    none: { x: 0, y: 0 },
-  };
+/**
+ * Mouvement v2 — DESIGN.md v2 §8.
+ * Les entrées de contenu sont en CSS (`.reveal`, `.reveal-stagger`,
+ * `.reveal-scale`, `.parallax-*` dans globals.css) : aucun `opacity: 0` dans
+ * le HTML servi. Ce module ne garde que le compteur animé.
+ */
 
-  return (
-    <motion.div
-      initial={{ opacity: 0, ...directions[direction] }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function StaggerContainer({
-  children,
-  className = "",
-  staggerDelay = 0.08,
-}: {
-  children: ReactNode;
-  className?: string;
-  staggerDelay?: number;
-}) {
-  return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      variants={{
-        hidden: {},
-        visible: { transition: { staggerChildren: staggerDelay } },
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export function StaggerItem({
-  children,
-  className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 24 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+function formatNumber(v: number, decimals: number, lang: string) {
+  return v.toLocaleString(lang === "en" ? "en-GB" : "fr-FR", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
 }
 
 /**
- * CountUp, animates a number from 0 to `end` once the element is in view.
- * Triggered by IntersectionObserver via framer-motion's useInView.
+ * CountUp — la valeur finale est rendue côté serveur, formatée selon la langue
+ * (lisible sans JS et par les robots). Côté client, si le compteur est encore hors écran au montage,
+ * il repart de 0 et s'anime (1,6 s) à son entrée dans le viewport.
+ * Mouvement réduit : valeur finale, sans animation.
  */
 export function CountUp({
   end,
-  duration = 2,
+  duration = 1.6,
   suffix = "",
   prefix = "",
   decimals = 0,
@@ -97,58 +39,44 @@ export function CountUp({
   prefix?: string;
   decimals?: number;
 }) {
+  const reduce = useReducedMotion();
+  const lang = useLocale();
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) =>
-    decimals > 0 ? latest.toFixed(decimals) : Math.round(latest).toString()
-  );
-  const [display, setDisplay] = useState<string>(decimals > 0 ? (0).toFixed(decimals) : "0");
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const [display, setDisplay] = useState<string>(() => formatNumber(end, decimals, lang));
+  const armed = useRef(false);
+
+  // Au montage : formatage localisé ; si l'élément est sous la ligne de
+  // flottaison, on « arme » le compteur (repart de 0) pour l'animer à l'entrée.
+  useEffect(() => {
+    setDisplay(formatNumber(end, decimals, lang));
+    if (reduce) return;
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    if (rect.top > window.innerHeight) {
+      armed.current = true;
+      setDisplay(formatNumber(0, decimals, lang));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
-    const unsub = rounded.on("change", (v) => setDisplay(v));
-    return () => unsub();
-  }, [rounded]);
-
-  useEffect(() => {
-    if (!inView) return;
-    const controls = animate(count, end, {
+    if (!inView || !armed.current || reduce) return;
+    armed.current = false;
+    const controls = animate(0, end, {
       duration,
-      ease: [0.22, 1, 0.36, 1],
+      ease: EASE,
+      onUpdate: (v) => setDisplay(formatNumber(v, decimals, lang)),
     });
     return () => controls.stop();
-  }, [inView, end, duration, count]);
+  }, [inView, end, duration, decimals, reduce, lang]);
 
   return (
-    <span ref={ref}>
+    <span ref={ref} className="tabular-nums">
       {prefix}
       {display}
       {suffix}
     </span>
-  );
-}
-
-/**
- * Simple scroll-triggered scale/opacity reveal, good for large KPI numbers.
- */
-export function ScaleIn({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
   );
 }

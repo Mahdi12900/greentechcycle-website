@@ -1,10 +1,15 @@
 "use client";
 
+import GeometryField from "@/components/visuals/GeometryField";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
-import { blogArticles, type BlogArticle } from "@/lib/blog-data";
-import { ArrowRight, BookOpen, Calendar, Clock, Tag } from "lucide-react";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+import { blogArticles, localizeArticle, type BlogArticle } from "@/lib/blog-data";
+import { ArrowRight, Calendar, Clock } from "lucide-react";
+import { useLocale } from "next-intl";
+
+
+/** Texte simple (même valeur dans les deux langues) ou { fr, en } */
+type Localized = string | { fr: string; en: string };
 
 interface RelatedArticlesProps {
   /** Filter by one or more categories (exact match on BlogArticle.category). */
@@ -14,13 +19,13 @@ interface RelatedArticlesProps {
   /** Max items to show. */
   limit?: number;
   /** Override heading. */
-  title?: string;
+  title?: Localized;
   /** Override subtitle. */
-  subtitle?: string;
+  subtitle?: Localized;
   /** Background tone. */
   tone?: "white" | "light" | "primary";
   /** Eyebrow label. */
-  eyebrow?: string;
+  eyebrow?: Localized;
   className?: string;
 }
 
@@ -28,12 +33,18 @@ export default function RelatedArticles({
   categories,
   keywords,
   limit = 3,
-  title = "Articles liés à consulter",
-  subtitle = "Approfondissez le sujet avec nos analyses sur la décarbonisation, la gestion des actifs IT et la cybersécurité.",
+  title = { fr: "Articles liés à consulter", en: "Related articles" },
+  subtitle = {
+    fr: "Approfondissez le sujet avec nos analyses sur la décarbonisation, la gestion des actifs IT et la cybersécurité.",
+    en: "Go further with our analyses on decarbonisation, IT asset management and cybersecurity.",
+  },
   tone = "light",
-  eyebrow = "Ressources",
+  eyebrow = { fr: "Ressources", en: "Resources" },
   className = "",
 }: RelatedArticlesProps) {
+  const locale = useLocale();
+  const isEn = locale === "en";
+  const loc = (v: Localized) => (typeof v === "string" ? v : v[isEn ? "en" : "fr"]);
   let articles: BlogArticle[] = blogArticles;
 
   if (categories && categories.length > 0) {
@@ -52,97 +63,73 @@ export default function RelatedArticles({
   // Fallback: if filters wiped everything, show most recent.
   if (articles.length === 0) articles = blogArticles;
 
-  articles = articles.slice(0, limit);
+  // Filtres appliqués sur les champs français (catégories, mots-clés), puis traduction des cartes
+  articles = articles.slice(0, limit).map((a) => localizeArticle(a, locale));
 
-  const bgClass =
-    tone === "white"
-      ? "bg-white"
-      : tone === "primary"
-      ? "bg-gradient-to-br from-primary-50 via-white to-accent/5"
-      : "bg-[#F8FAFC]";
+  const bgClass = tone === "light" ? "bg-bg-card" : "bg-bg";
 
   return (
-    <section className={`relative py-20 md:py-24 overflow-hidden ${bgClass} ${className}`}>
-      {/* Subtle decorative shape */}
-      <div className="absolute top-10 right-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="container-max mx-auto px-4 relative z-10">
-        <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
-            <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
-                <BookOpen className="h-3.5 w-3.5" />
-                {eyebrow}
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 tracking-tight">
-                {title}
-              </h2>
-              <p className="text-gray-600 text-base md:text-lg leading-relaxed">{subtitle}</p>
+    <section className={`py-16 lg:py-24 ${bgClass} ${className}`}>
+      <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+        <div className="reveal">
+          <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between lg:mb-12">
+            <div>
+              <p className="mb-3 text-eyebrow uppercase text-fg-muted">{loc(eyebrow)}</p>
+              <h2 className="max-w-[24ch] text-display-md text-fg">{loc(title)}</h2>
+              <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">{loc(subtitle)}</p>
             </div>
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors group shrink-0"
+              className="group inline-flex flex-shrink-0 items-center gap-1 text-body-sm font-medium text-emerald hover:text-emerald-hover"
             >
-              Voir tous les articles
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              {isEn ? "See all articles" : "Voir tous les articles"}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
           </div>
-        </FadeIn>
+        </div>
 
-        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="reveal-stagger grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {articles.map((article) => (
-            <StaggerItem key={article.slug}>
+            <div key={article.slug} className="reveal h-full">
               <Link
                 href={`/blog/${article.slug}`}
-                className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-track bg-bg transition-[border-color,box-shadow] duration-150 hover:border-track-strong hover:border-track-strong"
               >
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image
-                    src={article.image}
-                    alt={article.imageAlt}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                  <div className="absolute top-4 left-4">
-                    <span className="inline-flex items-center gap-1.5 bg-accent text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
-                      <Tag className="h-3 w-3" />
-                      {article.category}
-                    </span>
-                  </div>
+                <div className="relative aspect-[16/10] overflow-hidden border-b border-track">
+                  <MediaSlot fill id={`related-${article.slug}`} alt={article.imageAlt} fallback={<GeometryField />} />
                 </div>
-                <div className="flex flex-col flex-1 p-6">
-                  <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
-                    <span className="inline-flex items-center gap-1.5">
-                      <Calendar className="h-3.5 w-3.5" />
-                      {new Date(article.publishedAt).toLocaleDateString("fr-FR", {
+                <div className="flex flex-1 flex-col p-6">
+                  <span className="mb-3 inline-flex h-7 w-fit items-center rounded-full bg-emerald-dim px-3 text-caption font-semibold text-emerald">
+                    {article.category}
+                  </span>
+                  <div className="mb-3 flex items-center gap-4 text-caption text-fg-muted">
+                    <span className="inline-flex items-center gap-1">
+                      <Calendar className="h-3.5 w-3.5" aria-hidden="true" />
+                      {new Date(article.publishedAt).toLocaleDateString(isEn ? "en-GB" : "fr-FR", {
                         day: "numeric",
                         month: "short",
                         year: "numeric",
                       })}
                     </span>
-                    <span className="inline-flex items-center gap-1.5">
-                      <Clock className="h-3.5 w-3.5" />
+                    <span className="inline-flex items-center gap-1">
+                      <Clock className="h-3.5 w-3.5" aria-hidden="true" />
                       {article.readingTime}
                     </span>
+                    {isEn && <span lang="en">Article in French</span>}
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                  <h3 className="mb-2 line-clamp-2 text-heading-md text-fg transition-colors group-hover:text-emerald">
                     {article.title}
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed line-clamp-3 mb-4">
-                    {article.description}
-                  </p>
-                  <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-accent transition-colors">
-                    Lire l&apos;article
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <p className="mb-4 line-clamp-3 text-body-sm text-fg-strong">{article.description}</p>
+                  <span className="mt-auto inline-flex items-center gap-1 text-body-sm font-medium text-emerald">
+                    {isEn ? "Read the article" : "Lire l'article"}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                   </span>
                 </div>
               </Link>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
       </div>
     </section>
   );

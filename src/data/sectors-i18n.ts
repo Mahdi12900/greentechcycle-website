@@ -59,6 +59,53 @@ export function getSectorName(locale: string, slug: SectorSlug | string): string
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
+   Taglines (1 ligne d'angle par secteur, carte de la grille — DESIGN.md §6.6).
+   Reprennent les cadres déjà cités en tête de chaque fiche (hero.subtitle).
+───────────────────────────────────────────────────────────────────────────── */
+const SECTOR_TAGLINES: Record<string, Record<SectorSlug, string>> = {
+  fr: {
+    finance: "DORA · NIS2 · ACPR/AMF · CSRD",
+    sante: "HDS · RGPD article 9 · NIS2",
+    industrie: "CSRD · ISO 14001 · REACH/RoHS",
+    retail: "CSRD · PCI DSS · RGPD",
+    energie: "NIS2 · CSRD · ANSSI",
+    "transport-logistique": "CSRD · sites sensibles · flottes massives",
+    public: "Loi AGEC · BEGES · ANSSI",
+    tech: "Marque employeur · MacBook Pro · CSRD",
+    "medias-audiovisuel": "CSRD · propriété intellectuelle · sécurité broadcast",
+    conseil: "Secret professionnel · mobilité · rigueur",
+    "pharma-biotech": "BPF · GxP · FDA/EMA",
+    btp: "CSRD donneurs d'ordre · chantiers distribués",
+    horeca: "PCI DSS · CSRD · storytelling RSE",
+    "education-recherche": "BEGES · exemplarité · budgets contraints",
+    agroalimentaire: "CSRD · HACCP · sites distribués",
+    telecom: "Loi REEN · AGEC · volumes massifs",
+  },
+  en: {
+    finance: "DORA · NIS2 · ACPR/AMF · CSRD",
+    sante: "HDS · GDPR Article 9 · NIS2",
+    industrie: "CSRD · ISO 14001 · REACH/RoHS",
+    retail: "CSRD · PCI DSS · GDPR",
+    energie: "NIS2 · CSRD · ANSSI",
+    "transport-logistique": "CSRD · sensitive sites · massive fleets",
+    public: "AGEC law · carbon reporting · ANSSI",
+    tech: "Employer brand · MacBook Pro · CSRD",
+    "medias-audiovisuel": "CSRD · intellectual property · broadcast security",
+    conseil: "Professional secrecy · mobility · rigor",
+    "pharma-biotech": "GMP · GxP · FDA/EMA",
+    btp: "OEM CSRD pressure · distributed sites",
+    horeca: "PCI DSS · CSRD · CSR storytelling",
+    "education-recherche": "Carbon reporting · exemplarity · tight budgets",
+    agroalimentaire: "CSRD · HACCP · distributed sites",
+    telecom: "REEN law · AGEC · massive volumes",
+  },
+};
+
+export function getSectorTagline(locale: string, slug: SectorSlug | string): string {
+  return SECTOR_TAGLINES[locale]?.[slug as SectorSlug] ?? SECTOR_TAGLINES.fr[slug as SectorSlug] ?? "";
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
    Hub page labels
 ───────────────────────────────────────────────────────────────────────────── */
 type HubLabels = {
@@ -111,8 +158,8 @@ export function getHubLabels(locale: string): HubLabels {
       ? "Matrice de priorisation sectorielle"
       : "Sector Prioritisation Matrix",
     annexe1Cols: fr
-      ? ["Secteur", "Taille de deal", "Vélocité", "Priorité"]
-      : ["Sector", "Deal size", "Velocity", "Priority"],
+      ? ["Secteur", "Vélocité", "Priorité"]
+      : ["Sector", "Velocity", "Priority"],
     annexe2Title: fr
       ? "Séquencement commercial recommandé"
       : "Recommended Commercial Sequencing",
@@ -125,7 +172,7 @@ export function getHubLabels(locale: string): HubLabels {
     ctaPrimary: fr ? "Demander un audit sectoriel" : "Request a sector audit",
     ctaSecondary: fr ? "Voir les cas d'usages" : "View use cases",
     trustItems: [
-      "R2v3 · ISO 14001",
+      fr ? "ISO 27001 : démarche en cours" : "ISO 27001: in progress",
       "NIST 800-88 rev2",
       fr ? "Conforme RGPD · NIS2 · DORA" : "GDPR · NIS2 · DORA compliant",
       "CSRD ESRS E5 ready",

@@ -1,21 +1,24 @@
 import type { Metadata } from "next";
+import { pageMetadata, type LocaleParams, type PageCopy } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact | Demandez un devis ITAD gratuit",
-  description:
-    "Contactez GreenTechCycle pour un devis ITAD personnalisé. Audit gratuit de votre parc IT, estimation de la valeur résiduelle et accompagnement conformité CSRD/RGPD.",
-  keywords: ["contact ITAD", "devis gratuit", "audit parc IT", "estimation valeur résiduelle", "accompagnement CSRD"],
-  openGraph: {
-    title: "Contactez-nous | GreenTechCycle",
-    description: "Demandez un devis ITAD personnalisé. Audit gratuit et estimation de la valeur résiduelle de votre parc IT.",
-    type: "website",
+const META_COPY: PageCopy = {
+  fr: {
+    title: "Contact | Demandez un devis ITAD",
+    description:
+      "Contactez GreenTechCycle pour un devis ITAD personnalisé, une question de support ou un projet avec le GreenTechCycle Lab, par formulaire, WhatsApp ou e-mail.",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contactez-nous | GreenTechCycle",
-    description: "Demandez un devis ITAD personnalisé. Audit gratuit de votre parc IT.",
+  en: {
+    title: "Contact | Request an ITAD quote",
+    description:
+      "Contact GreenTechCycle for a tailored ITAD quote, a support question or a GreenTechCycle Lab project, via form, WhatsApp or email.",
   },
 };
+
+/* Métadonnées par langue (audit final B3) : titre, description, canonical, hreflang, Open Graph */
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/contact", META_COPY);
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

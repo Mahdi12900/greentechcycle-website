@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { SITE_URL as SITE } from "@/lib/site";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 
-const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
 export async function generateMetadata({
   params,
@@ -12,7 +13,7 @@ export async function generateMetadata({
 
   const title = isEn
     ? "Waki Box, Connected Professional WEEE Collection Kiosk | From €39 ex-VAT/month | GreenTechCycle"
-    : "Waki Box, box DEEE professionnelle connectée | A partir de 39 € HT/mois | GreenTechCycle";
+    : "Waki Box, box DEEE professionnelle connectée | À partir de 39 € HT/mois | GreenTechCycle";
 
   const description = isEn
     ? "Waki Box: connected WEEE collection kiosk for the workplace. Real-time monitoring, fill alerts, CSRD ESRS E5 reporting. Three plans from €39 ex-VAT/month."
@@ -29,8 +30,8 @@ export async function generateMetadata({
         "x-default": `${SITE}/fr/services/wakibox`,
       },
     },
-    openGraph: { title, description, type: "website" },
-    twitter: { card: "summary_large_image", title, description },
+    openGraph: { title, description, type: "website", url: `${SITE}/${locale}/services/wakibox`, images: [DEFAULT_OG_IMAGE] },
+    twitter: { card: "summary_large_image", title, description, images: [DEFAULT_OG_IMAGE] },
   };
 }
 

@@ -1,40 +1,39 @@
 "use client";
 
 /**
- * /tarifs : Refonte v4 (avril 2026)
+ * /tarifs — architecture « Épuré » (DESIGN.md §10.5).
  *
- * Repositionnement explicite : seule la brique Waki Box est à tarif public.
- * Plateforme GTC SaaS et Service ITAD restent sur devis personnalisé.
- *
- * Architecture :
- *   S1  Hero clarifié, « Tarifs Waki Box, la seule brique GTC à prix public »
- *   S2  Bandeau 3 briques GTC (pédagogie, Waki Box mise en avant)
- *   S3  Trois plans Waki Box, composition asymétrique avec photos
- *   S4  Programme pilote, fond #10B981 + illustration
- *   S5  Comparatif Waki Box, visualisation par barres
- *   S6  Modules complémentaires, card-grid asymétrique
- *   S7  Plateforme & ITAD, sur devis (deux grandes cartes éditoriales)
- *   S8  FAQ tarifaire, accordéon magazine
- *   S9  CTA double + bandeau confiance + cross-link /cas-usages /secteurs
+ *   1  Hero cream : « Tarifs Waki Box, la seule brique GTC à prix public. »
+ *   2  3 briques GTC + « trois portes d'entrée » (fusion du doublon S6d)
+ *   3  3 plans Waki Box #plans — grille régulière, comparatif intégré aux cartes
+ *   4  Programme pilote Waki Box — section leaf-100
+ *   6  Modules complémentaires — tableau
+ *   7  Comparateur interactif — carte unique
+ *   8  Bundles RSE — 2 cartes
+ *   9  Pilote GTC 3 jours #pilote — carte unique (ancre conservée : liée depuis /plateforme)
+ *  11  Sur devis #sur-devis — night, 2 cartes éditoriales
+ *  12  FAQ — accordéon
+ *  13  CTA unique
  */
 
+import CertificateCard from "@/components/visuals/CertificateCard";
+import DashboardMock from "@/components/visuals/DashboardMock";
+import GeometryField from "@/components/visuals/GeometryField";
+import LifecycleDiagram from "@/components/visuals/LifecycleDiagram";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+import { useState } from "react";
+
 import {
   ArrowRight,
-  CheckCircle2,
-  HelpCircle,
-  ChevronDown,
+  Check,
+  Minus,
   Rocket,
   Users,
   Building2,
-  Sparkles,
   ShieldCheck,
   FileCheck,
-  Leaf,
-  Award,
   Search,
   RefreshCcw,
   Recycle,
@@ -42,88 +41,39 @@ import {
   Box,
   Monitor,
   Wrench,
-  Layers,
   Star,
   Zap,
-  Clock,
-  Gift,
-  Package,
   Megaphone,
   GraduationCap,
-  ClipboardList,
-  ToggleLeft,
-  ToggleRight,
   Microscope,
+  Clock,
 } from "lucide-react";
-import { useState } from "react";
+import CertificationStrip from "@/components/CertificationStrip";
+import CtaSection from "@/components/CtaSection";
+import { ButtonLink, TextLink } from "@/components/ui/Button";
+import Section from "@/components/ui/Section";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Pictogram from "@/components/ui/Pictogram";
+import Tag from "@/components/ui/Tag";
+import Table from "@/components/ui/Table";
+import Accordion from "@/components/ui/Accordion";
+import { ITAD_TIERS, PLATFORM_TIERS, PRICE_ANCHORS, type PriceTier } from "@/content/pricing";
 
-/* ── FAQ accordion ───────────────────────────────────────────────────────── */
-function FAQItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="border-b border-gray-200 py-5">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 text-left group"
-        aria-expanded={open}
-      >
-        <span className="font-semibold text-[#0F172A] text-[15px] leading-snug">
-          {q}
-        </span>
-        <ChevronDown
-          className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform ${
-            open ? "rotate-180 text-[#047857]" : ""
-          }`}
-          aria-hidden="true"
-        />
-      </button>
-      {open && (
-        <p className="mt-4 text-[14.5px] text-gray-600 leading-[1.78] pr-8">
-          {a}
-        </p>
-      )}
-    </div>
-  );
-}
-
-/* ── Ghost number ────────────────────────────────────────────────────────── */
-function GhostNumber({
-  n,
-  isDark,
-  align = "right",
-}: {
-  n: string;
-  isDark: boolean;
-  align?: "left" | "right";
-}) {
-  return (
-    <div
-      className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-      style={{
-        fontSize: "clamp(8rem, 22vw, 18rem)",
-        color: isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.035)",
-        [align === "right" ? "right" : "left"]: "-0.05em",
-        bottom: "-0.12em",
-      }}
-      aria-hidden="true"
-    >
-      {n}
-    </div>
-  );
-}
-
-/* ── Plan Comparator Interactive ───────────────────────────────────────────── */
+/* ── Comparateur interactif (carte unique, §10.5-7) ─────────────────────── */
 function PlanComparator({ isEn }: { isEn: boolean }) {
-  function tx<T>(fr: T, en: T): T { return isEn ? en : fr; }
+  function tx<T>(fr: T, en: T): T {
+    return isEn ? en : fr;
+  }
+  const numberLocale = isEn ? "en-GB" : "fr-FR";
 
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
   const [selectedPlan, setSelectedPlan] = useState<"essentiel" | "confort" | "premium">("confort");
   const [checkedAddons, setCheckedAddons] = useState<Set<string>>(new Set());
 
   const plans = {
-    essentiel: { price: 39, setup: 150, name: "Essentiel", accent: "#0EA5E9" },
-    confort: { price: 79, setup: 290, name: "Confort", accent: "#10B981" },
-    premium: { price: 149, setup: 490, name: "Premium", accent: "#F59E0B" },
+    essentiel: { price: 39, setup: 150, name: "Essentiel" },
+    confort: { price: 79, setup: 290, name: "Confort" },
+    premium: { price: 149, setup: 490, name: "Premium" },
   };
 
   const addonList = [
@@ -156,193 +106,179 @@ function PlanComparator({ isEn }: { isEn: boolean }) {
   const toggleAddon = (slug: string) => {
     setCheckedAddons((prev) => {
       const next = new Set(prev);
-      if (next.has(slug)) next.delete(slug); else next.add(slug);
+      if (next.has(slug)) next.delete(slug);
+      else next.add(slug);
       return next;
     });
   };
 
+  const perMonth = tx("/mois", "/mo");
+
   return (
-    <div className="max-w-5xl mx-auto">
-      {/* Billing toggle */}
-      <div className="flex items-center justify-center gap-4 mb-10">
-        <button
-          onClick={() => setBilling("monthly")}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-            billing === "monthly"
-              ? "bg-[#10B981] text-white shadow-lg shadow-[#10B981]/25"
-              : "bg-gray-100 text-gray-500 hover:bg-gray-200"
-          }`}
-        >
-          {tx("Mensuel", "Monthly")}
-        </button>
-        <button
-          onClick={() => setBilling("annual")}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-            billing === "annual"
-              ? "bg-[#10B981] text-white shadow-lg shadow-[#10B981]/25"
-              : "bg-gray-100 text-gray-500 hover:bg-gray-200"
-          }`}
-        >
-          {tx("Annuel", "Annual")}
-          <span className="ml-1 px-1.5 py-0.5 rounded bg-[#F59E0B] text-white text-[10px] font-bold">-15%</span>
-        </button>
+    <div className="rounded-xl border border-track bg-bg p-6 lg:p-8">
+      {/* Facturation : contrôle segmenté */}
+      <div role="radiogroup" aria-label={tx("Facturation", "Billing")} className="inline-flex rounded-lg border border-track bg-bg-card p-1">
+        {(["monthly", "annual"] as const).map((b) => (
+          <button
+            key={b}
+            type="button"
+            role="radio"
+            aria-checked={billing === b}
+            onClick={() => setBilling(b)}
+            className={`inline-flex h-10 items-center gap-2 rounded-md px-4 text-body-sm font-semibold transition-colors ${
+              billing === b ? "bg-bg text-fg shadow-float" : "text-fg-strong hover:text-fg"
+            }`}
+          >
+            {b === "monthly" ? tx("Mensuel", "Monthly") : tx("Annuel", "Annual")}
+            {b === "annual" && <span className="rounded bg-amber-dim px-2 text-caption font-semibold text-amber">-15%</span>}
+          </button>
+        ))}
       </div>
 
-      {/* Plan selector */}
-      <div className="grid grid-cols-3 gap-3 mb-8">
-        {(Object.entries(plans) as [keyof typeof plans, typeof plans[keyof typeof plans]][]).map(([key, p]) => {
+      {/* Choix du plan */}
+      <div role="radiogroup" aria-label={tx("Plan Waki Box", "Waki Box plan")} className="mt-6 grid gap-3 sm:grid-cols-3">
+        {(Object.entries(plans) as [keyof typeof plans, (typeof plans)[keyof typeof plans]][]).map(([key, p]) => {
           const isSelected = selectedPlan === key;
           return (
             <button
               key={key}
+              type="button"
+              role="radio"
+              aria-checked={isSelected}
               onClick={() => setSelectedPlan(key)}
-              className={`rounded-2xl border p-5 text-left transition-all duration-200 hover:-translate-y-0.5 ${
-                isSelected
-                  ? "ring-2 shadow-lg"
-                  : "border-gray-200 hover:border-gray-300 bg-white"
+              className={`rounded-xl border p-4 text-left transition-colors ${
+                isSelected ? "border-emerald bg-white/[0.03]" : "border-track bg-bg hover:border-track-strong"
               }`}
-              style={isSelected ? { borderColor: p.accent, boxShadow: `0 8px 24px ${p.accent}20` } : {}}
             >
-              {isSelected && key === "confort" && (
-                <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#10B981] text-white text-[10px] font-bold mb-2">
-                  <Sparkles className="h-2.5 w-2.5" />
-                  {tx("Le plus choisi", "Most chosen")}
-                </div>
-              )}
-              <p className="text-[10px] font-bold uppercase tracking-wider mb-1.5" style={{ color: p.accent }}>
-                {tx("Plan", "Plan")} {p.name}
-              </p>
-              <p className="text-2xl font-black" style={{ color: isSelected ? p.accent : "#0F172A" }}>
+              <span className="flex items-center justify-between gap-2">
+                <span className="text-eyebrow uppercase text-fg-muted">Plan {p.name}</span>
+                {key === "confort" && <Tag variant="brand">{tx("Le plus choisi", "Most chosen")}</Tag>}
+              </span>
+              <span className="mt-2 block font-display text-display-sm tabular-nums text-emerald">
                 {billing === "annual" ? Math.round(p.price * 0.85) : p.price}
-                <span className="text-sm font-semibold ml-1 opacity-70">€ HT{tx("/mois", "/mo")}</span>
-              </p>
+                <span className="ml-1 font-sans text-body-sm text-fg-muted">€ HT{perMonth}</span>
+              </span>
               {billing === "annual" && (
-                <p className="text-[11px] text-gray-400 mt-1">
-                  {tx(`soit ${Math.round(p.price * 0.85 * 12)} € HT/an`, `i.e. €${Math.round(p.price * 0.85 * 12)} ex-VAT/year`)}
-                </p>
+                <span className="mt-1 block text-caption text-fg-muted">
+                  {tx(
+                    `soit ${Math.round(p.price * 0.85 * 12).toLocaleString(numberLocale)} € HT/an`,
+                    `i.e. €${Math.round(p.price * 0.85 * 12).toLocaleString(numberLocale)} ex-VAT/year`
+                  )}
+                </span>
               )}
-              <p className="text-[11px] text-gray-500 mt-2">
+              <span className="mt-1 block text-caption text-fg-muted">
                 {tx("Mise en service", "Setup")} : {p.setup} € HT
-              </p>
+              </span>
             </button>
           );
         })}
       </div>
 
-      <div className="grid lg:grid-cols-[1fr_320px] gap-6">
-        {/* Add-ons checklist */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-          <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-500 mb-4">
-            {tx("Modules à ajouter (optionnel)", "Add-on modules (optional)")}
-          </p>
-          <div className="space-y-3">
+      <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
+        {/* Modules à cocher */}
+        <fieldset>
+          <legend className="text-eyebrow uppercase text-fg-muted">{tx("Modules à ajouter (optionnel)", "Add-on modules (optional)")}</legend>
+          <div className="mt-3 divide-y divide-track rounded-xl border border-track">
             {addonList.map((addon) => {
               const checked = checkedAddons.has(addon.slug);
               return (
-                <label
-                  key={addon.slug}
-                  className={`flex items-start gap-3 p-3.5 rounded-xl border cursor-pointer transition-all ${
-                    checked
-                      ? "bg-[#F0FDF9] border-[#10B981]/40"
-                      : "border-gray-100 hover:border-gray-200 hover:bg-gray-50"
-                  }`}
-                >
+                <label key={addon.slug} className={`flex cursor-pointer items-start gap-3 px-4 py-3 transition-colors ${checked ? "bg-white/[0.03]" : "hover:bg-white/[0.04]"}`}>
                   <input
                     type="checkbox"
                     checked={checked}
                     onChange={() => toggleAddon(addon.slug)}
-                    className="mt-0.5 h-4 w-4 rounded accent-[#10B981] cursor-pointer"
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 cursor-pointer accent-emerald"
                   />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-[13px] font-semibold text-[#0F172A] leading-snug">{addon.name}</p>
-                    <p className="text-[11px] text-gray-500 mt-0.5">
-                      <span className="font-bold text-[#047857]">{addon.price.toLocaleString("fr-FR")} € HT</span>
-                      {addon.recurrence !== "one-shot" && <span className="ml-1">{addon.recurrence}</span>}
-                      {addon.recurrence === "one-shot" && <span className="ml-1 italic">{tx("one-shot", "one-time")}</span>}
-                    </p>
-                  </div>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-body-sm font-medium text-fg">{addon.name}</span>
+                    <span className="block text-caption text-fg-muted">
+                      <span className="font-semibold tabular-nums text-fg-strong">{addon.price.toLocaleString(numberLocale)} € HT</span>{" "}
+                      {addon.recurrence === "one-shot" ? <span className="italic">{tx("one-shot", "one-time")}</span> : addon.recurrence}
+                    </span>
+                  </span>
                 </label>
               );
             })}
           </div>
-        </div>
+        </fieldset>
 
         {/* Total dynamique */}
         <div className="space-y-4">
-          <div className="bg-[#0F172A] rounded-2xl p-6 text-white">
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-400 mb-4">
-              {tx("Estimation mensuelle", "Monthly estimate")}
-            </p>
-            <div className="space-y-2 mb-4 pb-4 border-b border-white/10">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-300">Waki Box {plans[selectedPlan].name}</span>
-                <span className="font-semibold">{baseMonthly} € HT{tx("/mois", "/mo")}</span>
+          <div className="rounded-xl bg-bg-card p-6 text-fg" aria-live="polite">
+            <p className="text-eyebrow uppercase text-fg-muted">{tx("Estimation mensuelle", "Monthly estimate")}</p>
+            <dl className="mt-4 space-y-2 border-b border-track pb-4 text-body-sm">
+              <div className="flex justify-between gap-4">
+                <dt className="text-fg-muted">Waki Box {plan.name}</dt>
+                <dd className="tabular-nums">{baseMonthly} € HT{perMonth}</dd>
               </div>
               {addonMonthlyContrib > 0 && (
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-300">{tx("Modules récurrents", "Recurring modules")}</span>
-                  <span className="font-semibold">+{addonMonthlyContrib} € HT{tx("/mois", "/mo")}</span>
+                <div className="flex justify-between gap-4">
+                  <dt className="text-fg-muted">{tx("Modules récurrents", "Recurring modules")}</dt>
+                  <dd className="tabular-nums">+{addonMonthlyContrib} € HT{perMonth}</dd>
                 </div>
               )}
-            </div>
-            <div className="flex items-end justify-between">
-              <p className="text-[11px] text-gray-500">{tx("Total récurrent", "Recurring total")}</p>
-              <p className="text-3xl font-black tabular-nums text-[#10B981]">
-                {totalMonthly} <span className="text-base font-semibold opacity-80">€ HT{tx("/mois", "/mo")}</span>
+            </dl>
+            <div className="mt-4 flex items-end justify-between gap-4">
+              <p className="text-caption text-fg-muted">{tx("Total récurrent", "Recurring total")}</p>
+              <p className="font-display text-display-sm tabular-nums text-emerald">
+                {totalMonthly}
+                <span className="ml-1 font-sans text-body-sm text-fg-muted">€ HT{perMonth}</span>
               </p>
             </div>
             {billing === "annual" && (
-              <p className="text-[11px] text-gray-500 mt-2 text-right">
-                {tx("soit", "i.e.")} {totalAnnual.toLocaleString("fr-FR")} € HT{tx("/an", "/year")}
+              <p className="mt-1 text-right text-caption text-fg-muted">
+                {tx("soit", "i.e.")} {totalAnnual.toLocaleString(numberLocale)} € HT{tx("/an", "/year")}
               </p>
             )}
-            <div className="mt-4 pt-4 border-t border-white/10">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-400">{tx("Mise en service (one-shot)", "Setup (one-time)")}</span>
-                <span className="text-gray-300">{plan.setup} € HT</span>
-              </div>
+            <div className="mt-4 flex justify-between gap-4 border-t border-track pt-4 text-body-sm">
+              <span className="text-fg-muted">{tx("Mise en service (one-shot)", "Setup (one-time)")}</span>
+              <span className="tabular-nums">{plan.setup} € HT</span>
             </div>
           </div>
 
-          {/* Bundle suggestion */}
           {bundle && (
-            <div className="bg-gradient-to-br from-[#F0FDF9] to-[#ECFDF5] border border-[#10B981]/30 rounded-2xl p-5">
-              <div className="flex items-start gap-2 mb-3">
-                <Gift className="h-5 w-5 text-[#047857] flex-shrink-0 mt-0.5" aria-hidden="true" />
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#047857] mb-1">
-                    {tx("Bundle suggéré", "Suggested bundle")}
-                  </p>
-                  <p className="text-[14px] font-bold text-[#0F172A] leading-snug">{bundle.name}</p>
-                </div>
-              </div>
-              <p className="text-2xl font-black text-[#047857] mb-1">
-                {bundle.price.toLocaleString("fr-FR")} € HT
-                <span className="text-sm font-semibold opacity-70 ml-1">one-shot</span>
+            <div className="rounded-xl border border-track bg-white/[0.03] p-4">
+              <p className="text-eyebrow uppercase text-fg-muted">{tx("Bundle suggéré", "Suggested bundle")}</p>
+              <p className="mt-1 text-body-sm font-semibold text-fg">{bundle.name}</p>
+              <p className="mt-2 text-heading-md tabular-nums text-emerald">
+                {bundle.price.toLocaleString(numberLocale)} € HT <span className="text-caption font-normal text-fg-muted">one-shot</span>
               </p>
-              <p className="text-[12px] text-[#047857] font-semibold">
+              <p className="mt-1 text-caption font-semibold text-emerald">
                 {tx(`Économie : ${bundle.saving} €`, `Saving: €${bundle.saving}`)} (-{Math.round((bundle.saving / (bundle.price + bundle.saving)) * 100)}%)
               </p>
             </div>
           )}
 
-          {/* CTA */}
-          <Link
-            href={`/reserver?offre=waki-box-${selectedPlan}`}
-            className="w-full inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#10B981]/25 text-sm"
-          >
-            {tx("Réserver Waki Box", "Book Waki Box")} {plans[selectedPlan].name}
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+          <ButtonLink href={`/reserver?offre=waki-box-${selectedPlan}`} size="lg" fullWidth>
+            {tx("Réserver Waki Box", "Book Waki Box")} {plan.name}
+          </ButtonLink>
         </div>
       </div>
     </div>
   );
 }
 
+/** Grille de paliers publics (Plateforme / ITAD), lue dans src/content/pricing.ts */
+function TierGrid({ tiers, lang, caption }: { tiers: PriceTier[]; lang: "fr" | "en"; caption: string }) {
+  return (
+    <dl className="mt-4 divide-y divide-track overflow-hidden rounded-lg border border-track" aria-label={caption}>
+      {tiers.map((t) => (
+        <div key={t.id} className="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+          <dt className="min-w-0">
+            <span className="block text-body-sm font-semibold text-fg">{t.name[lang]}</span>
+            <span className="block text-caption text-fg-muted">{t.scope[lang]}</span>
+          </dt>
+          <dd className="text-body-sm font-semibold tabular-nums text-emerald sm:text-right">{t.price[lang]}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 export default function TarifsPage() {
   const locale = useLocale();
   const isEn = locale === "en";
+  const lang = isEn ? "en" : "fr";
   function tx<T>(fr: T, en: T): T {
     return isEn ? en : fr;
   }
@@ -357,14 +293,13 @@ export default function TarifsPage() {
         "Console unifiée d'inventaire, audit, effacement et reporting CSRD. Tarification adaptée au volume d'actifs et au niveau d'intégration.",
         "Unified console for inventory, audit, erasure and CSRD reporting. Pricing scales with asset volume and integration depth."
       ),
-      price: tx("À partir de 2 500 € HT/mois", "Starting at €2,500 HT/month"),
+      price: PRICE_ANCHORS.platform[lang],
       subline: tx(
-        "Base 500 postes, étude personnalisée selon votre parc, vos modules et vos volumes.",
-        "Base 500 devices, bespoke study based on your fleet, modules and volumes."
+        "Essentiel jusqu'à 200 actifs, Standard de 201 à 2 000, Grand compte au-delà : grille complète plus bas.",
+        "Essential up to 200 assets, Standard from 201 to 2,000, Enterprise beyond: full grid below."
       ),
       ctaLabel: tx("Voir la plateforme", "Explore the platform"),
       ctaHref: "/plateforme",
-      accent: "#0EA5E9",
       photo: "/photos/hp-datacenter-green.jpg",
       photoAlt: tx(
         "Salle serveurs sécurisée : Plateforme GTC SaaS",
@@ -376,13 +311,12 @@ export default function TarifsPage() {
       tag: tx("Brique 2 (tarif complet)", "Brick 2 (full pricing)"),
       name: "Waki Box",
       pitch: tx(
-        "Bornes connectées de collecte DEEE en entreprise, plateforme de suivi, alertes temps réel. Trois plans publics, un programme pilote.",
-        "Connected WEEE collection kiosks for the workplace, monitoring platform, real-time alerts. Three public plans, one pilot programme."
+        "Le suivi en temps réel de vos flux DEEE : bornes connectées, pesée, alertes et reporting prêt pour la CSRD. Vous payez la mesure et la preuve, pas l'enlèvement. Trois plans publics, un programme pilote.",
+        "Real-time tracking of your WEEE flows: connected kiosks, weighing, alerts and CSRD-ready reporting. You pay for measurement and proof, not for pick-up. Three public plans, one pilot programme."
       ),
       price: tx("Dès 39 € HT/mois", "From €39 ex-VAT/month"),
       ctaLabel: tx("Voir les plans Waki Box", "See Waki Box plans"),
       ctaHref: "#plans",
-      accent: "#10B981",
       featured: true,
       photo: "/photos/ewaste-recycling.jpg",
       photoAlt: tx(
@@ -395,21 +329,20 @@ export default function TarifsPage() {
       tag: tx("Brique 3", "Brick 3"),
       name: tx("Service ITAD", "ITAD Service"),
       pitch: tx(
-        "Audit de parc, effacement certifié NIST 800-88, reconditionnement, recyclage DEEE réglementaire. Mission cadrée selon volume, sécurité et conformité.",
-        "Fleet audit, NIST 800-88 certified erasure, refurbishment, regulatory WEEE recycling. Engagement scoped by volume, security and compliance."
+        "Audit de parc, effacement selon NIST 800-88, reconditionnement, recyclage DEEE réglementaire. Mission cadrée selon volume, sécurité et conformité.",
+        "Fleet audit, NIST 800-88 erasure, refurbishment, regulatory WEEE recycling. Engagement scoped by volume, security and compliance."
       ),
-      price: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+      price: PRICE_ANCHORS.itad[lang],
       subline: tx(
-        "Effacement certifié NIST 800-88, prix dégressif selon volume et logistique.",
-        "NIST 800-88 certified erasure, tiered pricing based on volume and logistics."
+        "Serveur, baie ou équipement complexe : à partir de 55 € HT/unité. Prix dégressif selon volume et logistique.",
+        "Server, rack or complex equipment: from €55 ex-VAT/unit. Tiered pricing based on volume and logistics."
       ),
       ctaLabel: tx("Voir le service ITAD", "Explore the ITAD service"),
       ctaHref: "/services/recyclage-deee",
-      accent: "#F59E0B",
       photo: "/photos/hp-atelier-itad.jpg",
       photoAlt: tx(
-        "Atelier de reconditionnement et effacement certifié",
-        "Refurbishment and certified erasure workshop"
+        "Atelier de reconditionnement et effacement attesté",
+        "Refurbishment and attested erasure workshop"
       ),
     },
   ];
@@ -451,7 +384,6 @@ export default function TarifsPage() {
           "Email support : D+2",
         ]
       ),
-      accent: "#0EA5E9",
     },
     {
       slug: "waki-box-confort",
@@ -467,8 +399,8 @@ export default function TarifsPage() {
       setup: "290",
       engagement: tx("12 mois", "12 months"),
       tagline: tx(
-        "Jusqu'à trois bornes, cinq utilisateurs, des alertes temps réel et un export CSRD prêt à signer, le plan que choisissent huit clients sur dix.",
-        "Up to three kiosks, five users, real-time alerts and a CSRD export ready to sign, the plan eight out of ten clients choose."
+        "Jusqu'à trois bornes, cinq utilisateurs, des alertes temps réel et un export CSRD prêt à signer.",
+        "Up to three kiosks, five users, real-time alerts and a CSRD export ready to sign."
       ),
       photo: "/photos/hp-dsi-strategy.jpg",
       photoAlt: tx(
@@ -491,7 +423,6 @@ export default function TarifsPage() {
           "Priority support : D+1",
         ]
       ),
-      accent: "#10B981",
     },
     {
       slug: "waki-box-premium",
@@ -530,7 +461,6 @@ export default function TarifsPage() {
           "Dedicated support, 4h SLA",
         ]
       ),
-      accent: "#F59E0B",
     },
   ];
 
@@ -700,15 +630,15 @@ export default function TarifsPage() {
     {
       slug: "plateforme",
       kicker: tx("Plateforme GTC SaaS", "GTC SaaS Platform"),
-      priceBadge: tx("Dès 2 500 € HT/mois", "From €2,500 HT/month"),
-      anchorNote: tx("À partir de 2 500 € HT/mois", "Starting at €2,500 HT/month"),
+      priceBadge: tx("Dès 1 400 € HT/mois", "From €1,400 ex-VAT/month"),
+      tiers: PLATFORM_TIERS,
       title: tx(
         "Une console unifiée, une intégration au cas par cas.",
         "A unified console, integrated case by case."
       ),
       body: tx(
-        "Notre ancre tarifaire part de 2 500 € HT/mois (base 500 postes, un module). Le prix s'affine selon le nombre d'actifs gérés, les utilisateurs concurrents, les connecteurs ERP/SIRH activés et le niveau de SLA exigé.",
-        "Our pricing anchor starts at €2,500 HT/month (base 500 devices, one module). The price adapts based on the number of managed assets, concurrent users, active ERP/HRIS connectors and required SLA."
+        "Trois paliers selon le nombre d'actifs gérés. Dans les paliers Standard et Grand compte, le prix s'affine selon les utilisateurs concurrents, les connecteurs ERP/SIRH activés et le niveau de SLA exigé.",
+        "Three tiers based on the number of managed assets. In the Standard and Enterprise tiers, the price adapts to concurrent users, active ERP/HRIS connectors and the required SLA."
       ),
       bullets: tx(
         [
@@ -730,7 +660,6 @@ export default function TarifsPage() {
         "Strategic decision room : bespoke GTC Platform study"
       ),
       icon: Monitor,
-      accent: "#0EA5E9",
       ctaLabel: tx("Demander un devis Plateforme", "Request a Platform quote"),
       ctaHref: "/reserver?offre=demo-conseil&brique=plateforme",
       secondaryLabel: tx("Voir la plateforme", "Explore the platform"),
@@ -739,26 +668,26 @@ export default function TarifsPage() {
     {
       slug: "itad",
       kicker: tx("Service ITAD", "ITAD Service"),
-      priceBadge: tx("Dès 15 € HT/poste", "From €15 HT/device"),
-      anchorNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+      priceBadge: tx("Dès 19 € HT/poste", "From €19 ex-VAT/device"),
+      tiers: ITAD_TIERS,
       title: tx(
         "Audit, effacement, valorisation, recyclage. Cadré sur mesure.",
         "Audit, erasure, value recovery, recycling. Scoped to fit."
       ),
       body: tx(
-        "Notre ancre tarifaire part de 15 € HT/poste (effacement certifié NIST 800-88 r2). Chaque mission ITAD dépend du volume d'équipements, de leur typologie, du niveau de sécurité exigé et des contraintes réglementaires sectorielles. Un devis détaillé vous est remis sous 48 heures.",
-        "Our pricing anchor starts at €15 HT/device (NIST 800-88 r2 certified erasure). Every ITAD engagement depends on equipment volume, hardware mix, required security level and sector-specific regulatory constraints. A detailed quote is delivered within 48 hours."
+        "Deux prix unitaires publics, effacement selon NIST 800-88 r2 compris. Le total de la mission dépend du volume, du niveau de sécurité exigé et des contraintes réglementaires sectorielles : le devis détaillé vous est remis sous 48 heures.",
+        "Two public unit prices, NIST 800-88 r2 erasure included. The total for an engagement depends on volume, the required security level and sector-specific regulatory constraints: the detailed quote is delivered within 48 hours."
       ),
       bullets: tx(
         [
           "Audit et inventaire, cartographie exhaustive",
-          "Effacement certifié NIST 800-88 r2 unitaire",
+          "Effacement selon NIST 800-88 r2 unitaire",
           "Reconditionnement et revente, valeur récupérée",
           "Recyclage DEEE réglementaire avec bordereaux",
         ],
         [
           "Audit and inventory, exhaustive mapping",
-          "Per-unit NIST 800-88 r2 certified erasure",
+          "Per-unit NIST 800-88 r2 erasure",
           "Refurbishment and resale, value recovered",
           "Regulatory WEEE recycling with tracking slips",
         ]
@@ -769,7 +698,6 @@ export default function TarifsPage() {
         "ITAD refurbishment and value recovery workshop"
       ),
       icon: Wrench,
-      accent: "#F59E0B",
       ctaLabel: tx("Demander un devis ITAD", "Request an ITAD quote"),
       ctaHref: "/reserver?offre=demo-conseil&brique=itad",
       secondaryLabel: tx("Voir le service ITAD", "Explore the ITAD service"),
@@ -780,7 +708,7 @@ export default function TarifsPage() {
   /* ── ITAD services list (preserved as quick navigation) ────────────────── */
   const itadServices = [
     { slug: "audit-inventaire", icon: Search, name: tx("Audit et inventaire de parc", "Fleet audit and inventory") },
-    { slug: "effacement-securise", icon: Lock, name: tx("Effacement sécurisé certifié", "Certified secure erasure") },
+    { slug: "effacement-securise", icon: Lock, name: tx("Effacement sécurisé", "Secure erasure") },
     { slug: "reconditionnement-valorisation", icon: RefreshCcw, name: tx("Reconditionnement et valorisation", "Refurbishment and value recovery") },
     { slug: "recyclage-deee", icon: Recycle, name: tx("Recyclage DEEE réglementaire", "Regulatory WEEE recycling") },
     { slug: "cybersecurite", icon: ShieldCheck, name: tx("Cybersécurité ITAD", "ITAD cybersecurity") },
@@ -789,7 +717,7 @@ export default function TarifsPage() {
   /* ── FAQ ────────────────────────────────────────────────────────────────── */
   const faqItems = tx(
     [
-      { q: "Waki Box affiche des tarifs complets, Plateforme et ITAD des ancres : quelle différence ?", a: "Waki Box est une offre packagée et standardisée : le tarif affiché est le tarif final, sans variable cachée. Pour la Plateforme GTC SaaS et le Service ITAD, nous affichons des ancres de départ (2 500 € HT/mois et 15 € HT/poste respectivement) qui permettent de calibrer les budgets. Le devis détaillé, remis sous 48 heures, affine ces ancres selon votre parc, vos modules et vos contraintes réglementaires." },
+      { q: "Pourquoi certains prix sont-ils indiqués « à partir de » ?", a: "Waki Box est une offre packagée : le tarif affiché est le tarif final. La Plateforme GTC SaaS et le Service ITAD ont aussi une grille publique : Plateforme Essentiel à 1 400 € HT/mois jusqu'à 200 actifs, Standard à partir de 2 500 € HT/mois de 201 à 2 000 actifs, Grand compte à partir de 4,20 € HT/actif/mois au-delà ; ITAD à partir de 19 € HT/poste et 55 € HT/unité pour les serveurs, baies et équipements complexes. « À partir de » signifie que le prix peut évoluer selon les modules, les connecteurs, le SLA ou la logistique : le devis détaillé, remis sous 48 heures, le précise ligne par ligne." },
       { q: "Les prix Waki Box affichés sont-ils HT ou TTC ?", a: "Tous les prix sont exprimés hors taxes (HT). La TVA applicable en France métropolitaine est de 20 %. Les factures mentionnent le montant HT, la TVA et le total TTC." },
       { q: "Puis-je résilier avant la fin de mon engagement ?", a: "L'engagement initial (12 ou 24 mois selon le plan) est ferme. Au-delà, le contrat est reconduit tacitement par période de 12 mois, résiliable avec un préavis de 3 mois avant chaque échéance." },
       { q: "Les tarifs Waki Box sont-ils indexés ?", a: "Une indexation annuelle est prévue, plafonnée à 3 % et basée sur l'indice INSEE des prix à la consommation. Toute révision est notifiée 60 jours avant application." },
@@ -797,10 +725,10 @@ export default function TarifsPage() {
       { q: "Existe-t-il des remises pour les grands volumes Waki Box ?", a: "Oui. Le plan Premium intègre des conditions tarifaires dégressives à partir de dix bornes. Contactez-nous pour un devis personnalisé incluant la volumétrie exacte." },
       { q: "Puis-je combiner Waki Box, Plateforme GTC et services ITAD ?", a: "Absolument. De nombreux clients associent un plan Waki Box pour la collecte au quotidien avec un abonnement Plateforme pour le pilotage parc et des missions ITAD ponctuelles. Les trois briques s'articulent dans une seule relation contractuelle." },
       { q: "Sous quel délai recevrai-je un devis Plateforme ou ITAD ?", a: "48 heures ouvrées après un échange initial de cadrage de 30 minutes. Le devis détaille le périmètre, les hypothèses retenues, les options et la grille de prix unitaire, pas de chiffrage opaque." },
-      { q: "Le Pilote GTC à 2 900 € HT est-il vraiment remboursé si je signe la Plateforme ?", a: "Oui. Si vous signez un abonnement Plateforme GTC SaaS dans les 90 jours suivant la restitution écrite du Pilote, les 2 900 € HT sont automatiquement déduits de votre premiere facture annuelle. Cette garantie est inscrite dans le contrat Pilote. Aucune démarche supplémentaire n'est nécessaire de votre côté." },
+      { q: "Le Pilote GTC à 2 900 € HT est-il vraiment remboursé si je signe la Plateforme ?", a: "Oui. Si vous signez un abonnement Plateforme GTC SaaS dans les 90 jours suivant la restitution écrite du Pilote, les 2 900 € HT sont automatiquement déduits de votre première facture annuelle. Cette garantie est inscrite dans le contrat Pilote. Aucune démarche supplémentaire n'est nécessaire de votre côté." },
     ],
     [
-      { q: "Waki Box shows full pricing, Platform and ITAD show anchors: what is the difference?", a: "Waki Box is a standardised packaged offering: the displayed price is the final price, with no hidden variable. For the GTC SaaS Platform and the ITAD Service, we now show starting price anchors (€2,500 HT/month and €15 HT/device respectively) to help calibrate budgets. The detailed quote, delivered within 48 hours, refines those anchors based on your fleet, your modules and your regulatory constraints." },
+      { q: "Why are some prices shown as \"from\"?", a: "Waki Box is a packaged offering: the displayed price is the final price. The GTC SaaS Platform and the ITAD Service also have a public grid: Platform Essential at €1,400 ex-VAT/month up to 200 assets, Standard from €2,500 ex-VAT/month for 201 to 2,000 assets, Enterprise from €4.20 ex-VAT/asset/month beyond that; ITAD from €19 ex-VAT/device and €55 ex-VAT/unit for servers, racks and complex equipment. \"From\" means the price can change with modules, connectors, SLA or logistics: the detailed quote, delivered within 48 hours, specifies it line by line." },
       { q: "Are Waki Box prices shown ex-VAT or inc-VAT?", a: "All prices are shown excluding VAT (ex-VAT). The applicable VAT rate in mainland France is 20%. Invoices detail the ex-VAT amount, VAT and total inc-VAT." },
       { q: "Can I cancel before the end of my commitment?", a: "The initial commitment (12 or 24 months depending on plan) is firm. After that, the contract auto-renews for 12-month periods, cancellable with 3 months' notice before each renewal date." },
       { q: "Are Waki Box prices indexed?", a: "Annual indexation is capped at 3%, based on the INSEE consumer price index. Any revision is notified 60 days before application." },
@@ -812,1525 +740,754 @@ export default function TarifsPage() {
     ]
   );
 
-  const trustBadges = [
-    { icon: Award, label: "R2v3" },
-    { icon: ShieldCheck, label: "ISO 27001" },
-    { icon: Leaf, label: "ISO 14001" },
-    { icon: FileCheck, label: "NIST 800-88" },
+
+  const planKeys = ["essentiel", "confort", "premium"] as const;
+
+  /* « Trois portes d'entrée » (ancienne S6d), fusionnées avec les 3 briques */
+  const entryPoints = [
+    {
+      icon: Microscope,
+      tag: tx("Gratuit", "Free"),
+      meta: tx("2 minutes", "2 minutes"),
+      title: tx("Diagnostic DEEE Flash", "WEEE Flash Diagnostic"),
+      desc: tx(
+        "Évaluez la maturité DEEE de votre organisation en 5 questions. Vous repartez avec un score, une recommandation de formule, et un point d'entrée pour aller plus loin.",
+        "Assess your organisation's WEEE maturity in 5 questions. You leave with a score, a formula recommendation, and a starting point to go further."
+      ),
+      note: tx("Sans inscription. Résultat instantané.", "No sign-up. Instant result."),
+      cta: tx("Lancer le diagnostic", "Start the diagnostic"),
+      href: "/reserver?offre=diagnostic-flash",
+    },
+    {
+      icon: Clock,
+      tag: tx("Recommandé", "Recommended"),
+      meta: tx("30 minutes", "30 minutes"),
+      title: tx("Démo conseil", "Advisory demo"),
+      desc: tx(
+        "Un appel avec un expert GreenTechCycle pour cadrer votre besoin, identifier les leviers de valeur, et vous proposer un plan d'action concret.",
+        "A call with a GreenTechCycle expert to frame your need, identify value levers, and provide a concrete action plan."
+      ),
+      note: tx("Aucun engagement. Restitution écrite envoyée après l'appel.", "No commitment. Written summary sent after the call."),
+      cta: tx("Réserver la démo", "Book the demo"),
+      href: "/reserver?offre=demo-conseil",
+      featured: true,
+    },
+    {
+      icon: Rocket,
+      tag: tx("1er mois offert", "1st month free"),
+      meta: tx("puis 39 € HT/mois", "then €39 HT/mo"),
+      title: tx("Pilote Waki Box", "Waki Box Pilot"),
+      desc: tx(
+        "Installez votre première box dans un site pilote, testez la collecte connectée, mesurez votre impact sur 3 mois. Désengagement à tout moment.",
+        "Install your first kiosk at a pilot site, test connected collection, measure your impact over 3 months. Cancel anytime."
+      ),
+      note: tx("Sans frais d'installation. Box installée sous 10 jours.", "No installation fee. Box installed within 10 days."),
+      cta: tx("Démarrer le pilote", "Start the pilot"),
+      href: "/reserver?offre=pilote-waki-box",
+    },
+  ];
+
+  const bundles = [
+    {
+      name: tx("Bundle Confort RSE Essentiel", "Essential RSE Comfort Bundle"),
+      plan: tx("Avec plan Confort (79 € HT/mois)", "With Comfort plan (€79 HT/month)"),
+      price: "990",
+      saving: tx("Économie 150 € vs séparé", "Saving €150 vs separate"),
+      pitch: tx("Lancez votre démarche DEEE en 30 jours, clés en main.", "Launch your WEEE approach in 30 days, turnkey."),
+      items: tx(
+        ["Kit signalétique RSE : 350 € HT (inclus)", "Formation collaborateurs 2 h : 590 € HT (inclus)", "Diagnostic DEEE Flash : offert"],
+        ["RSE signage kit: €350 HT (included)", "Employee training 2h: €590 HT (included)", "WEEE Flash diagnostic: free"]
+      ),
+      href: "/reserver?offre=waki-box-confort&bundle=confort-rse-essentiel",
+    },
+    {
+      name: tx("Bundle Premium Conformité", "Premium Compliance Bundle"),
+      plan: tx("Avec plan Premium (dès 149 € HT/mois)", "With Premium plan (from €149 HT/month)"),
+      price: isEn ? "2,990" : "2 990",
+      saving: tx("Économie 740 € (-20 %) vs séparé", "Saving €740 (-20%) vs separate"),
+      pitch: tx(
+        "Conformité CSRD et DEEE auditée, documentée, formée, en un seul contrat.",
+        "CSRD and WEEE compliance audited, documented, trained, in a single contract."
+      ),
+      items: tx(
+        [
+          "Audit terrain DEEE : 1 800 € HT/jour (inclus)",
+          "Reporting CSRD ESRS E5 : 990 € HT/an (inclus)",
+          "Formation collaborateurs 2 h : 590 € HT (inclus)",
+          "Kit signalétique RSE : 350 € HT (inclus)",
+        ],
+        [
+          "WEEE field audit: €1,800 HT/day (included)",
+          "CSRD ESRS E5 reporting: €990 HT/year (included)",
+          "Employee training 2h: €590 HT (included)",
+          "RSE signage kit: €350 HT (included)",
+        ]
+      ),
+      href: "/reserver?offre=waki-box-premium&bundle=premium-conformite",
+    },
   ];
 
   return (
-    <main className="overflow-hidden bg-white">
-
-      {/* ════════════════════════════════════════════════════════════════
-          S1 (HERO ÉDITORIAL) split sombre #0F1115 (aligné /secteurs)
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        className="relative w-full min-h-[78vh] flex flex-col lg:flex-row overflow-hidden bg-[#0F1115]"
-        aria-labelledby="tarifs-hero-title"
-      >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 12% 18%, rgba(16,185,129,0.18) 0%, transparent 60%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 45% at 92% 88%, rgba(14,165,233,0.12) 0%, transparent 55%)",
-          }}
-        />
-
-        {/* Ghost watermark XXL */}
-        <div
-          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none text-white/[0.025]"
-          style={{
-            fontSize: "clamp(10rem, 28vw, 24rem)",
-            right: "-0.05em",
-            bottom: "-0.15em",
-          }}
-          aria-hidden="true"
-        >
-          39€
-        </div>
-
-        <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-24">
-          <FadeIn>
-            <div className="flex items-center gap-3 mb-10 flex-wrap">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
-                {tx("Tarifs Waki Box", "Waki Box pricing")}
-              </span>
-              <span className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/10 text-[11px] font-semibold tracking-[0.1em] text-[#67E8F9] uppercase">
-                <Layers className="w-3 h-3" aria-hidden="true" />
-                {tx("Plateforme dès 2 500 €/mois · ITAD dès 15 €/poste", "Platform from €2,500/month · ITAD from €15/device")}
-              </span>
-            </div>
-
-            <h1
-              id="tarifs-hero-title"
-              className="text-white font-black tracking-tight mb-8"
-              style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
-            >
-              {tx(
-                <>Tarifs Waki Box,<br /><span className="text-[#10B981]">la seule brique GTC à prix public.</span></>,
-                <>Waki Box pricing,<br /><span className="text-[#10B981]">the only GTC brick with public rates.</span></>
-              )}
-            </h1>
-
-            <p className="text-gray-300 text-base lg:text-[1.12rem] leading-[1.72] max-w-xl mb-10">
-              {tx(
-                "Trois ancres tarifaires claires : Waki Box dès 39 € HT/mois, Plateforme GTC SaaS à partir de 2 500 € HT/mois, Service ITAD à partir de 15 € HT/poste. Trois plans Waki Box et un programme pilote ci-dessous.",
-                "Three clear pricing anchors: Waki Box from €39 HT/month, GTC SaaS Platform starting at €2,500 HT/month, ITAD Service starting at €15 HT/device. Three Waki Box plans and one pilot programme below."
-              )}
-            </p>
-
-            <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10 pb-10 border-b border-white/8">
-              {[
-                { v: "3", l: tx("plans Waki Box publics", "public Waki Box plans"), color: "#10B981" },
-                { v: "1", l: tx("programme pilote, 1er mois offert", "pilot: 1st month free"), color: "#0EA5E9" },
-                { v: "48 h", l: tx("devis Plateforme & ITAD", "Platform & ITAD quote"), color: "#F59E0B" },
-              ].map((item, i) => (
-                <div key={i} className="flex flex-col">
-                  <span
-                    className="text-3xl lg:text-4xl font-black tracking-tight leading-none tabular-nums"
-                    style={{ color: item.color }}
-                  >
-                    {item.v}
-                  </span>
-                  <span className="text-xs text-gray-500 mt-1.5 font-medium">{item.l}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href="#plans"
-                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
-              >
-                {tx("Voir les plans Waki Box", "See Waki Box plans")}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </a>
-              <a
-                href="#sur-devis"
-                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
-              >
-                {tx("Plateforme et ITAD, étude personnalisée", "Platform and ITAD, bespoke study")}
-              </a>
-            </div>
-          </FadeIn>
-        </div>
-
-        <div className="relative w-full lg:w-[45%] min-h-[52vh] lg:min-h-0 overflow-hidden flex-shrink-0">
-          <Image
-            src="/photos/service-wakibox.jpg"
-            alt={tx(
-              "Borne Waki Box de collecte connectée installée en entreprise",
-              "Waki Box connected collection kiosk installed at a workplace"
-            )}
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 45vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F1115]/85 via-[#0F1115]/25 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F1115]/55 to-transparent" />
-        </div>
-      </section>
-
-      {/* Certifications band */}
-      <section className="bg-[#0F1115] py-8 border-t border-white/5">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
-            {trustBadges.map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300"
-              >
-                <Icon className="h-4 w-4 text-[#6EE7B7]" aria-hidden="true" />
-                <span className="text-xs font-semibold tracking-wide">{label}</span>
+    <div>
+      {/* ═══════════ 1. HERO cream ═══════════ */}
+      <section className="border-b border-track bg-bg-card py-16 lg:py-24" aria-labelledby="tarifs-hero-title">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="reveal min-w-0 lg:col-span-7">
+              <div className="flex flex-wrap gap-2">
+                <Tag variant="brand">{tx("Prix publics, transparents", "Public, transparent prices")}</Tag>
+                <Tag variant="neutral">
+                  {PRICE_ANCHORS.platformShort[lang]} · {PRICE_ANCHORS.itadShort[lang]}
+                </Tag>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S2, BANDEAU PÉDAGOGIQUE : LES 3 BRIQUES GTC
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-white py-20 lg:py-24">
-        <GhostNumber n="01" isDark={false} align="left" />
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
-                {tx("Comment lire nos tarifs", "How to read our pricing")}
-              </p>
-              <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-              >
-                {tx("Trois briques GTC. Trois ancres tarifaires.", "Three GTC bricks. Three pricing anchors.")}
-              </h2>
-              <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+              <h1 id="tarifs-hero-title" className="mt-6 max-w-[20ch] text-display-lg text-fg">
                 {tx(
-                  "Trois briques complémentaires, trois ancres tarifaires. Waki Box affiche ses plans complets (dès 39 € HT/mois). La Plateforme GTC SaaS part de 2 500 € HT/mois, le Service ITAD de 15 € HT/poste : des ancres de départ affinées sur mesure selon votre parc et vos contraintes.",
-                  "Three complementary bricks, three pricing anchors. Waki Box shows its full plans (from €39 HT/month). The GTC SaaS Platform starts at €2,500 HT/month, the ITAD Service at €15 HT/device: starting anchors refined to your fleet and constraints."
+                  <>
+                    Nos prix sont publics.{" "}
+                    <br className="hidden sm:block" />
+                    Pour chaque brique.
+                  </>,
+                  <>
+                    Our prices are public.{" "}
+                    <br className="hidden sm:block" />
+                    For every brick.
+                  </>
+                )}
+              </h1>
+              <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">
+                {tx(
+                  "Waki Box dès 39 € HT/mois, Plateforme GTC SaaS dès 1 400 € HT/mois, Service ITAD dès 19 € HT/poste. Trois plans Waki Box, un programme pilote et les grilles Plateforme et ITAD ci-dessous.",
+                  "Waki Box from €39 ex-VAT/month, GTC SaaS Platform from €1,400 ex-VAT/month, ITAD Service from €19 ex-VAT/device. Three Waki Box plans, one pilot programme and the Platform and ITAD grids below."
                 )}
               </p>
-            </div>
-          </FadeIn>
-
-          <StaggerContainer className="grid md:grid-cols-3 gap-6 lg:gap-7 max-w-6xl">
-            {briques.map((b, i) => {
-              const Icon = b.icon;
-              const isFeatured = "featured" in b && b.featured;
-              const isExternalAnchor = b.ctaHref.startsWith("#");
-              return (
-                <StaggerItem key={i}>
-                  <div
-                    className={`relative h-full rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
-                      isFeatured
-                        ? "ring-2 ring-[#10B981] shadow-xl shadow-[#10B981]/15 lg:scale-[1.03]"
-                        : "ring-1 ring-gray-100 hover:ring-gray-200 shadow-sm"
-                    }`}
-                  >
-                    {isFeatured && (
-                      <div className="absolute top-0 left-0 right-0 z-20 bg-[#10B981] text-white text-center text-[11px] font-bold uppercase tracking-[0.15em] py-1.5">
-                        {tx("Tarifs publics ci-dessous", "Public pricing below")}
-                      </div>
-                    )}
-
-                    {/* Photo */}
-                    <div className={`relative aspect-[16/9] overflow-hidden ${isFeatured ? "mt-7" : ""}`}>
-                      <Image
-                        src={b.photo}
-                        alt={b.photoAlt}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
-                      <div
-                        className="absolute top-3 left-3 w-10 h-10 rounded-xl flex items-center justify-center backdrop-blur-md"
-                        style={{ backgroundColor: `${b.accent}E6` }}
-                      >
-                        <Icon className="w-5 h-5 text-white" aria-hidden="true" />
-                      </div>
-                      <span
-                        className="absolute top-3 right-3 select-none pointer-events-none font-black leading-none text-white/[0.18]"
-                        style={{ fontSize: "4rem" }}
-                        aria-hidden="true"
-                      >
-                        0{i + 1}
-                      </span>
-                    </div>
-
-                    {/* Body */}
-                    <div className="bg-white p-6 lg:p-7">
-                      <p
-                        className="text-[10px] font-bold uppercase tracking-[0.15em] mb-2"
-                        style={{ color: b.accent }}
-                      >
-                        {b.tag}
-                      </p>
-                      <h3 className="text-2xl font-bold text-[#0F172A] mb-3 tracking-tight leading-tight">
-                        {b.name}
-                      </h3>
-                      <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                        {b.pitch}
-                      </p>
-                      <div className="flex items-center justify-between gap-3 pt-5 border-t border-gray-100">
-                        <div className="flex flex-col gap-0.5">
-                          <span
-                            className="text-base font-black tracking-tight"
-                            style={{ color: b.accent }}
-                          >
-                            {b.price}
-                          </span>
-                          {"subline" in b && b.subline && (
-                            <span className="text-[10.5px] text-gray-500 leading-snug max-w-[22ch]">
-                              {b.subline as string}
-                            </span>
-                          )}
-                        </div>
-                        {isExternalAnchor ? (
-                          <a
-                            href={b.ctaHref}
-                            className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors hover:opacity-80"
-                            style={{ color: b.accent }}
-                          >
-                            {b.ctaLabel}
-                            <ArrowRight className="w-3 h-3" aria-hidden="true" />
-                          </a>
-                        ) : (
-                          <Link
-                            href={b.ctaHref}
-                            className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors hover:opacity-80"
-                            style={{ color: b.accent }}
-                          >
-                            {b.ctaLabel}
-                            <ArrowRight className="w-3 h-3" aria-hidden="true" />
-                          </Link>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S3 (3 PLANS WAKI BOX) composition asymétrique éditoriale
-         ════════════════════════════════════════════════════════════════ */}
-      <div id="plans">
-        {plans.map((plan, i) => {
-          const isDark = i === 1;
-          const bgClass = isDark ? "bg-[#0F1115]" : i === 2 ? "bg-[#F8FAFC]" : "bg-white";
-          const textColor = isDark ? "text-white" : "text-[#0F172A]";
-          const subTextColor = isDark ? "text-gray-300" : "text-gray-700";
-          const Icon = plan.icon;
-          const photoOnRight = i === 1; // Confort photo right
-          const isPhotoLeft = i === 0 || i === 2;
-
-          return (
-            <section
-              key={plan.slug}
-              className={`relative w-full overflow-hidden ${bgClass}`}
-              aria-labelledby={`plan-title-${plan.slug}`}
-            >
-              <GhostNumber n={plan.num} isDark={isDark} align={i % 2 === 0 ? "right" : "left"} />
-
-              <div
-                className={`flex flex-col lg:flex-row ${photoOnRight ? "" : "lg:flex-row-reverse"} min-h-[80vh]`}
-              >
-                {/* Photo panel */}
-                <div className="relative w-full lg:w-[45%] min-h-[44vw] lg:min-h-0 overflow-hidden flex-shrink-0">
-                  <Image
-                    src={plan.photo}
-                    alt={plan.photoAlt}
-                    fill
-                    loading="lazy"
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 45vw"
-                  />
-                  <div
-                    className={`absolute inset-0 ${
-                      isDark
-                        ? isPhotoLeft
-                          ? "bg-gradient-to-r from-transparent via-transparent to-[#0F1115]/70"
-                          : "bg-gradient-to-l from-transparent via-transparent to-[#0F1115]/70"
-                        : isPhotoLeft
-                        ? "bg-gradient-to-r from-transparent to-white/10"
-                        : "bg-gradient-to-l from-transparent to-white/10"
-                    }`}
-                  />
-                  <div className="absolute top-6 left-6 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm shadow-lg">
-                    <Icon className="h-3.5 w-3.5" style={{ color: plan.accent }} aria-hidden="true" />
-                    <span className="text-[11px] font-semibold text-[#0F172A] tracking-wide uppercase">
-                      {plan.audience.split(",")[0]?.trim() ?? plan.name}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content panel */}
-                <div className="relative w-full lg:flex-1 flex items-center px-6 sm:px-10 lg:px-14 xl:px-20 py-16 lg:py-24">
-                  <div
-                    className="absolute top-0 left-0 w-[3px] h-full"
-                    style={{ backgroundColor: plan.accent }}
-                    aria-hidden="true"
-                  />
-
-                  <div className="max-w-xl w-full relative z-10">
-                    <FadeIn>
-                      <div className="flex items-center gap-4 mb-6">
-                        <span
-                          className="text-5xl lg:text-6xl font-black leading-none tracking-tighter tabular-nums"
-                          style={{ color: plan.accent }}
-                        >
-                          {plan.num}
-                        </span>
-                        <span
-                          className="flex-1 h-[1px] opacity-25"
-                          style={{ backgroundColor: plan.accent }}
-                          aria-hidden="true"
-                        />
-                        {"popular" in plan && plan.popular && (
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#10B981] text-white text-[11px] font-semibold uppercase tracking-wider">
-                            <Sparkles className="h-3 w-3" aria-hidden="true" />
-                            {tx("Le plus choisi", "Most chosen")}
-                          </span>
-                        )}
-                      </div>
-
-                      <p className={`text-[11px] font-semibold uppercase tracking-[0.15em] mb-3 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-                        {plan.audience}
-                      </p>
-
-                      <h2
-                        id={`plan-title-${plan.slug}`}
-                        className={`font-bold tracking-tight mb-5 ${textColor}`}
-                        style={{ fontSize: "clamp(2rem, 4.4vw, 3.4rem)", lineHeight: 1.04 }}
-                      >
-                        Waki Box {plan.name}
-                      </h2>
-
-                      <p className={`text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-8 ${subTextColor}`}>
-                        {plan.tagline}
-                      </p>
-
-                      {/* Prix */}
-                      <div className={`flex flex-wrap items-end gap-7 mb-8 pb-8 border-b ${isDark ? "border-white/10" : "border-gray-200"}`}>
-                        <div className="flex flex-col">
-                          <span className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-                            {tx("Abonnement mensuel", "Monthly subscription")}
-                          </span>
-                          <span
-                            className="text-4xl lg:text-5xl font-black tracking-tight leading-none tabular-nums"
-                            style={{ color: plan.accent }}
-                          >
-                            {plan.price} <span className="text-lg font-semibold opacity-80">€ HT/mois</span>
-                          </span>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-                            {tx("Mise en service", "Installation")}
-                          </span>
-                          <span className={`text-xl font-bold ${textColor}`}>
-                            {plan.setup} <span className="text-sm font-medium opacity-70">€ HT</span>
-                          </span>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className={`text-[11px] font-semibold uppercase tracking-wider mb-1 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-                            {tx("Engagement", "Commitment")}
-                          </span>
-                          <span className={`text-xl font-bold ${textColor}`}>
-                            {plan.engagement}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Features */}
-                      <ul className="space-y-3 mb-10">
-                        {plan.features.map((f, j) => (
-                          <li key={j} className={`flex items-start gap-3 text-[15px] leading-snug ${subTextColor}`}>
-                            <CheckCircle2 className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: plan.accent }} aria-hidden="true" />
-                            <span>{f}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      {/* CTA */}
-                      <Link
-                        href={`/reserver?offre=${plan.slug}`}
-                        className={`inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${
-                          isDark
-                            ? "bg-white text-[#0F172A] hover:bg-gray-100"
-                            : "text-white"
-                        }`}
-                        style={isDark ? {} : { backgroundColor: plan.accent, boxShadow: `0 4px 16px ${plan.accent}30` }}
-                      >
-                        {tx("Réserver Waki Box", "Book Waki Box")} {plan.name}
-                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                      </Link>
-                    </FadeIn>
-                  </div>
-                </div>
-              </div>
-            </section>
-          );
-        })}
-      </div>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S4 (PROGRAMME PILOTE) fond #10B981 + illustration
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#10B981]">
-        <div
-          className="absolute inset-0 pointer-events-none opacity-30"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 80% 0%, rgba(255,255,255,0.25) 0%, transparent 55%)",
-          }}
-        />
-        <GhostNumber n="04" isDark={true} align="right" />
-
-        <div className="container mx-auto px-4 py-20 lg:py-24 relative z-10">
-          <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
-            <FadeIn>
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <Sparkles className="h-5 w-5 text-white/80" aria-hidden="true" />
-                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-white/80">
-                    {tx("Programme pilote (3 places", "Pilot programme) 3 spots")}
-                  </span>
-                </div>
-
-                <h2
-                  className="text-white font-black tracking-tight mb-6"
-                  style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-                >
+              {/* Différenciateur : prix affichés, quand le marché répond « sur devis » */}
+              <p className="mt-4 flex max-w-[65ch] items-start gap-2 text-body-sm text-fg-strong">
+                <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
+                <span>
+                  <strong className="font-semibold text-fg">{tx("Prix publics, transparents.", "Public, transparent prices.")}</strong>{" "}
                   {tx(
-                    <>Premier mois offert,<br />puis 39 € HT/mois.</>,
-                    <>First month free,<br />then €39 HT/month.</>
+                    "Là où le marché de l'ITAD répond le plus souvent « sur devis », nous affichons nos prix : vous calibrez votre budget avant le premier échange.",
+                    "Where the ITAD market usually answers \"price on request\", we show our prices: you can size your budget before the first call."
                   )}
-                </h2>
-
-                <p className="text-white/90 text-[1.05rem] lg:text-[1.15rem] leading-[1.65] max-w-2xl mb-8">
-                  {tx(
-                    "Installez votre première box dans un site pilote, testez la collecte connectée, mesurez votre impact sur 3 mois. Désengagement à tout moment.",
-                    "Install your first kiosk at a pilot site, test connected collection, measure your impact over 3 months. Cancel anytime."
-                  )}
-                </p>
-
-                <ul className="space-y-2 mb-10">
-                  {tx(
-                    [
-                      "Sans frais d'installation (valeur 150 € offerts)",
-                      "Box installée sous 10 jours ouvrés",
-                      "Bascule vers le plan Essentiel, Confort ou Premium à l'issue",
-                      "Désengagement à tout moment, sans pénalité",
-                    ],
-                    [
-                      "No installation fee (€150 waived)",
-                      "Box installed within 10 business days",
-                      "Switch to Essentiel, Confort or Premium plan afterwards",
-                      "Cancel anytime, no penalty",
-                    ]
-                  ).map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-white/95 text-[15px] leading-snug">
-                      <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  href="/reserver?offre=pilote-waki-box"
-                  className="inline-flex items-center justify-center gap-2 bg-[#0F1115] hover:bg-[#022C22] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
-                >
-                  {tx("Démarrer le pilote", "Start a pilot")}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </div>
-            </FadeIn>
-
-            <FadeIn>
-              <div className="relative aspect-square max-w-md mx-auto rounded-3xl overflow-hidden ring-4 ring-white/15 shadow-2xl shadow-black/30">
-                <Image
-                  src="/photos/hp-audit-signature.jpg"
-                  alt={tx(
-                    "Signature d'un programme pilote Waki Box",
-                    "Signing a Waki Box pilot programme"
-                  )}
-                  fill
-                  loading="lazy"
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#0F1115]/30 via-transparent to-[#10B981]/10" />
-                <div className="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md rounded-2xl px-5 py-4 shadow-lg">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#047857] mb-1">
-                    {tx("Offre pilote", "Pilot offer")}
-                  </p>
-                  <p className="text-3xl font-black text-[#0F172A] leading-none tabular-nums">
-                    {tx("1er mois offert", "1st month free")}
-                    <span className="text-sm font-semibold text-gray-500 block mt-1">{tx("puis 39 € HT/mois", "then €39 HT/month")}</span>
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S5 (COMPARATIF WAKI BOX) visualisation par barres
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#F8FAFC] py-20 lg:py-28">
-        <GhostNumber n="05" isDark={false} align="left" />
-
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
-                {tx("Comparatif Waki Box", "Waki Box comparison")}
+                </span>
               </p>
-              <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-              >
-                {tx("Quel plan pour votre organisation ?", "Which plan for your organisation?")}
-              </h2>
-              <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
-                {tx(
-                  "Quatre critères chiffrés visualisés en barres, plus six fonctions clés en mode présence/absence. Une lecture en dix secondes.",
-                  "Four numeric criteria visualised as bars, plus six key features as presence/absence. A ten-second read."
-                )}
-              </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn>
-            <div className="max-w-5xl bg-white rounded-3xl shadow-sm ring-1 ring-gray-100 p-6 lg:p-10">
-              {/* Plan headers */}
-              <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-3 lg:gap-6 pb-5 mb-6 border-b-2 border-gray-100 items-end">
-                <div />
-                <div className="text-center">
-                  <span className="block text-[10px] font-bold uppercase tracking-[0.12em] text-[#0EA5E9]">Essentiel</span>
-                  <span className="block text-xl font-black text-[#0F172A] mt-1 tabular-nums">39 €</span>
-                </div>
-                <div className="text-center relative">
-                  <span className="absolute -top-7 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#10B981] text-white text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">
-                    <Sparkles className="h-2.5 w-2.5" aria-hidden="true" />
-                    {tx("Le plus choisi", "Most chosen")}
-                  </span>
-                  <span className="block text-[10px] font-bold uppercase tracking-[0.12em] text-[#10B981]">Confort</span>
-                  <span className="block text-xl font-black text-[#0F172A] mt-1 tabular-nums">79 €</span>
-                </div>
-                <div className="text-center">
-                  <span className="block text-[10px] font-bold uppercase tracking-[0.12em] text-[#F59E0B]">Premium</span>
-                  <span className="block text-xl font-black text-[#0F172A] mt-1 tabular-nums">{tx("dès 149 €", "from €149")}</span>
-                </div>
-              </div>
-
-              {/* Numeric bars */}
-              <div className="space-y-7 mb-10">
-                {comparisonRows.map((row) => (
-                  <div key={row.label}>
-                    <p className="text-[12px] font-bold text-[#0F172A] uppercase tracking-[0.1em] mb-3">
-                      {row.label}
-                    </p>
-                    <div className="grid grid-cols-3 gap-3 lg:gap-6">
-                      {[
-                        { ...row.essentiel, accent: "#0EA5E9" },
-                        { ...row.confort, accent: "#10B981" },
-                        { ...row.premium, accent: "#F59E0B" },
-                      ].map((cell, j) => (
-                        <div key={j} className="flex flex-col gap-2">
-                          <div className="relative h-7 bg-[#F1F5F9] rounded-lg overflow-hidden">
-                            <div
-                              className="absolute top-0 left-0 h-full rounded-lg"
-                              style={{
-                                width: `${cell.pct}%`,
-                                backgroundColor: cell.accent,
-                                opacity: 0.85,
-                              }}
-                            />
-                          </div>
-                          <span className="text-[12px] font-semibold text-[#0F172A] tabular-nums">
-                            {cell.value}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+              <dl className="mt-8 grid max-w-[560px] grid-cols-3 border-y border-track py-6">
+                {[
+                  { v: "3", l: tx("plans Waki Box publics", "public Waki Box plans") },
+                  { v: "1", l: tx("programme pilote, 1er mois offert", "pilot: 1st month free") },
+                  { v: "48 h", l: tx("devis détaillé Plateforme & ITAD", "detailed Platform & ITAD quote") },
+                ].map((item, i) => (
+                  <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-track pl-4" : "pr-4"}`}>
+                    <dt className="mt-1 text-caption text-fg-muted">{item.l}</dt>
+                    <dd className="font-display text-display-sm tabular-nums text-emerald">{item.v}</dd>
                   </div>
                 ))}
+              </dl>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="#plans" size="lg">
+                  {tx("Voir les plans Waki Box", "See Waki Box plans")}
+                </ButtonLink>
+                <ButtonLink href="#sur-devis" variant="secondary" size="lg">
+                  {tx("Grilles Plateforme et ITAD", "Platform and ITAD grids")}
+                </ButtonLink>
               </div>
+            </div>
+            <div className="reveal lg:col-span-5">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
+                <MediaSlot fill id="tarifs-hero" alt={tx("Borne Waki Box de collecte connectée installée en entreprise", "Waki Box connected collection kiosk installed at a workplace")} fallback={<DashboardMock state="reporting" compact />} />
+              </div>
+            </div>
+          </div>
+          <CertificationStrip className="mt-12 border-t border-track pt-6" />
+        </div>
+      </section>
 
-              {/* Feature matrix */}
-              <div className="border-t border-gray-100 pt-8">
-                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-gray-500 mb-5">
-                  {tx("Fonctions avancées", "Advanced features")}
-                </p>
-                <div className="space-y-3">
-                  {featureMatrix.map((row, idx) => (
-                    <div
-                      key={idx}
-                      className="grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-3 lg:gap-6 items-center py-2.5 border-b border-gray-50 last:border-0"
-                    >
-                      <span className="text-[13px] font-medium text-[#0F172A]">{row.label}</span>
-                      {[row.essentiel, row.confort, row.premium].map((ok, k) => {
-                        const accent = k === 0 ? "#0EA5E9" : k === 1 ? "#10B981" : "#F59E0B";
+      {/* ═══════════ 2. 3 BRIQUES GTC + portes d'entrée ═══════════ */}
+      <Section tone="paper">
+        <div className="reveal">
+          <SectionHeader
+            eyebrow={tx("Comment lire nos tarifs", "How to read our pricing")}
+            title={tx("Trois briques GTC. Trois grilles publiques.", "Three GTC bricks. Three public grids.")}
+            intro={tx(
+              "Waki Box affiche ses plans complets (dès 39 € HT/mois). La Plateforme GTC SaaS part de 1 400 € HT/mois (jusqu'à 200 actifs), le Service ITAD de 19 € HT/poste (55 € HT/unité pour les serveurs et baies). Le devis détaillé précise ensuite les options propres à votre parc.",
+              "Waki Box shows its full plans (from €39 ex-VAT/month). The GTC SaaS Platform starts at €1,400 ex-VAT/month (up to 200 assets), the ITAD Service at €19 ex-VAT/device (€55 ex-VAT/unit for servers and racks). The detailed quote then specifies the options for your fleet."
+            )}
+          />
+        </div>
+        <div className="reveal-stagger grid gap-6 md:grid-cols-3">
+          {briques.map((b) => {
+            const isFeatured = "featured" in b && b.featured;
+            return (
+              <div key={b.name} className="reveal h-full">
+                <div className={`flex h-full flex-col overflow-hidden rounded-xl border bg-bg ${isFeatured ? "border-emerald" : "border-track"}`}>
+                  <div className="relative aspect-[16/10] border-b border-track">
+                    <MediaSlot fill id={`tarifs-brique-${b.name}`} alt={b.photoAlt} fallback={<GeometryField icon={b.icon} />} />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-eyebrow uppercase text-fg-muted">{b.tag}</p>
+                      {isFeatured && <Tag variant="brand">{tx("Tarifs publics ci-dessous", "Public pricing below")}</Tag>}
+                    </div>
+                    <h3 className="mt-3 text-heading-lg text-fg">{b.name}</h3>
+                    <p className="mt-2 flex-1 text-body-sm text-fg-strong">{b.pitch}</p>
+                    <div className="mt-6 border-t border-track pt-4">
+                      <p className="text-body font-semibold tabular-nums text-emerald">{b.price}</p>
+                      {"subline" in b && b.subline && <p className="mt-1 text-caption text-fg-muted">{b.subline as string}</p>}
+                      {b.ctaHref.startsWith("#") ? (
+                        <a href={b.ctaHref} className="group mt-4 inline-flex items-center gap-1 text-body-sm font-medium text-emerald hover:text-emerald-hover">
+                          {b.ctaLabel}
+                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                        </a>
+                      ) : (
+                        <TextLink href={b.ctaHref} className="mt-4">
+                          {b.ctaLabel}
+                        </TextLink>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Trois portes d'entrée (fusion S6d) */}
+        <div className="mt-16 border-t border-track pt-12">
+          <p className="text-eyebrow uppercase text-fg-muted">{tx("Première étape", "First step")}</p>
+          <h3 className="mt-2 text-display-sm text-fg">{tx("Trois portes d'entrée.", "Three entry points.")}</h3>
+          <p className="mt-3 max-w-[65ch] text-body text-fg-strong">
+            {tx(
+              "Choisissez la première étape qui colle à votre calendrier. Chaque parcours commence par une réservation. Nous validons le périmètre ensemble avant le moindre engagement contractuel.",
+              "Choose the first step that fits your calendar. Each journey starts with a booking. We validate the scope together before any contractual commitment."
+            )}
+          </p>
+          <ul className="mt-8 grid gap-6 md:grid-cols-3">
+            {entryPoints.map((e) => (
+              <li key={e.title} className={`flex flex-col rounded-xl border p-6 ${e.featured ? "border-emerald bg-white/[0.03]" : "border-track bg-bg"}`}>
+                <div className="flex items-center gap-3">
+                  <Pictogram icon={e.icon} />
+                  <Tag variant={e.featured ? "brand" : "neutral"}>{e.tag}</Tag>
+                  <span className="text-caption text-fg-muted">{e.meta}</span>
+                </div>
+                <h4 className="mt-4 text-heading-md text-fg">{e.title}</h4>
+                <p className="mt-2 flex-1 text-body-sm text-fg-strong">{e.desc}</p>
+                <p className="mt-4 border-t border-track pt-4 text-caption italic text-fg-muted">{e.note}</p>
+                <div className="mt-4">
+                  {e.featured ? (
+                    <ButtonLink href={e.href} fullWidth>
+                      {e.cta}
+                    </ButtonLink>
+                  ) : (
+                    <TextLink href={e.href}>{e.cta}</TextLink>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
+      {/* ═══════════ 3. 3 PLANS WAKI BOX #plans (+ comparatif intégré) ═══════════ */}
+      <section id="plans" className="bg-bg-card py-16 lg:py-24" aria-labelledby="plans-title">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
+            <SectionHeader
+              id="plans-title"
+              eyebrow={tx("Comparatif Waki Box", "Waki Box comparison")}
+              title={tx("Quel plan pour votre organisation ?", "Which plan for your organisation?")}
+              intro={tx(
+                "Trois plans publics. Le prix affiché est le prix final ; les différences chiffrées et les fonctions avancées sont détaillées dans chaque carte.",
+                "Three public plans. The displayed price is the final price; numeric differences and advanced features are detailed in each card."
+              )}
+            />
+          </div>
+          <div className="reveal-stagger grid gap-6 lg:grid-cols-3">
+            {plans.map((plan, i) => {
+              const key = planKeys[i];
+              const popular = "popular" in plan && plan.popular;
+              return (
+                <div key={plan.slug} className="reveal h-full">
+                  <article
+                    aria-labelledby={`plan-title-${plan.slug}`}
+                    className={`flex h-full flex-col rounded-xl border bg-bg p-6 lg:p-8 ${popular ? "border-emerald" : "border-track"}`}
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <Pictogram icon={plan.icon} />
+                      {popular && <Tag variant="brand">{tx("Le plus choisi", "Most chosen")}</Tag>}
+                    </div>
+                    <p className="mt-6 text-eyebrow uppercase text-fg-muted">
+                      {plan.num} · {plan.audience}
+                    </p>
+                    <h3 id={`plan-title-${plan.slug}`} className="mt-2 font-display text-display-sm text-fg">
+                      Waki Box {plan.name}
+                    </h3>
+                    <p className="mt-3 text-body-sm text-fg-strong">{plan.tagline}</p>
+
+                    <dl className="mt-6 grid grid-cols-3 gap-3 border-y border-track py-4">
+                      <div className="col-span-3 flex flex-col-reverse justify-end">
+                        <dt className="text-caption text-fg-muted">{tx("Abonnement mensuel", "Monthly subscription")}</dt>
+                        <dd className="font-display text-display-md tabular-nums text-emerald">
+                          {plan.price} <span className="font-sans text-body-sm text-fg-muted">€ HT/{tx("mois", "month")}</span>
+                        </dd>
+                      </div>
+                      <div className="col-span-2 flex flex-col-reverse justify-end">
+                        <dt className="text-caption text-fg-muted">{tx("Mise en service", "Installation")}</dt>
+                        <dd className="text-body-sm font-semibold tabular-nums text-fg">{plan.setup} € HT</dd>
+                      </div>
+                      <div className="flex flex-col-reverse justify-end">
+                        <dt className="text-caption text-fg-muted">{tx("Engagement", "Commitment")}</dt>
+                        <dd className="text-body-sm font-semibold text-fg">{plan.engagement}</dd>
+                      </div>
+                    </dl>
+
+                    <ul className="mt-6 space-y-2">
+                      {plan.features.map((f, j) => (
+                        <li key={j} className="flex items-start gap-2 text-body-sm text-fg-strong">
+                          <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Comparatif (ex-barres) condensé dans la carte */}
+                    <dl className="mt-6 divide-y divide-track border-t border-track text-body-sm">
+                      {comparisonRows.map((row) => (
+                        <div key={row.label} className="flex justify-between gap-4 py-2">
+                          <dt className="text-fg-muted">{row.label}</dt>
+                          <dd className="text-right font-medium text-fg">{row[key].value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                    <p className="mt-4 text-eyebrow uppercase text-fg-muted">{tx("Fonctions avancées", "Advanced features")}</p>
+                    <ul className="mt-2 flex-1 space-y-1 text-body-sm">
+                      {featureMatrix.map((row) => {
+                        const ok = row[key];
                         return (
-                          <div key={k} className="flex justify-center">
+                          <li key={row.label} className={`flex items-start gap-2 ${ok ? "text-fg-strong" : "text-fg-muted"}`}>
                             {ok ? (
-                              <CheckCircle2 className="h-5 w-5" style={{ color: accent }} aria-hidden="true" />
+                              <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
                             ) : (
-                              <span className="text-gray-300 text-xl" aria-hidden="true">-</span>
+                              <Minus className="mt-0.5 h-4 w-4 flex-shrink-0 text-fg-muted" aria-hidden="true" />
                             )}
-                          </div>
+                            <span>
+                              {row.label}
+                              <span className="sr-only">{ok ? tx(" : inclus", ": included") : tx(" : non inclus", ": not included")}</span>
+                            </span>
+                          </li>
                         );
                       })}
+                    </ul>
+
+                    <div className="mt-8">
+                      <ButtonLink href={`/reserver?offre=${plan.slug}`} variant={popular ? "primary" : "secondary"} fullWidth>
+                        {tx("Réserver Waki Box", "Book Waki Box")} {plan.name}
+                      </ButtonLink>
                     </div>
-                  ))}
+                  </article>
                 </div>
-              </div>
-
-              {/* CTA row */}
-              <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-3 lg:gap-6 pt-8 mt-8 border-t-2 border-gray-100">
-                <div />
-                <Link
-                  href="/reserver?offre=waki-box-essentiel"
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-[11px] lg:text-xs font-semibold text-white bg-[#0EA5E9] hover:bg-[#0284C7] transition-colors"
-                >
-                  {tx("Réserver", "Book")}
-                  <ArrowRight className="h-3 w-3" aria-hidden="true" />
-                </Link>
-                <Link
-                  href="/reserver?offre=waki-box-confort"
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-[11px] lg:text-xs font-semibold text-white bg-[#10B981] hover:bg-[#0E9F6E] transition-colors"
-                >
-                  {tx("Réserver", "Book")}
-                  <ArrowRight className="h-3 w-3" aria-hidden="true" />
-                </Link>
-                <Link
-                  href="/reserver?offre=waki-box-premium"
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-[11px] lg:text-xs font-semibold text-white bg-[#F59E0B] hover:bg-[#D97706] transition-colors"
-                >
-                  {tx("Réserver", "Book")}
-                  <ArrowRight className="h-3 w-3" aria-hidden="true" />
-                </Link>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S6 (MODULES COMPLÉMENTAIRES WAKI BOX) card-grid asymétrique
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-white py-20 lg:py-28">
-        <GhostNumber n="06" isDark={false} align="right" />
-
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
-                {tx("Modules complémentaires", "Add-on modules")}
-              </p>
-              <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-              >
-                {tx("Composez votre offre Waki Box sur mesure.", "Build your Waki Box offer to fit.")}
-              </h2>
-              <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
-                {tx(
-                  "Sept modules à la carte, chacun se greffe sur n'importe quel plan. Facturation unitaire, sans engagement supplémentaire.",
-                  "Seven à la carte modules, each plugs into any plan. Unit billing, no additional commitment."
-                )}
-              </p>
-            </div>
-          </FadeIn>
-
-          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 max-w-6xl">
-            {addons.map((addon, i) => {
-              const AddonIcon = addon.icon;
-              const isLarge = i === 0 || i === 5;
-              return (
-                <StaggerItem
-                  key={addon.slug}
-                  className={isLarge ? "md:col-span-2 lg:col-span-2" : ""}
-                >
-                  <div className="group h-full bg-[#F8FAFC] rounded-2xl border border-gray-100 p-6 lg:p-7 hover:border-[#10B981]/40 hover:shadow-lg transition-all duration-300">
-                    <div className="flex flex-col h-full">
-                      <div className="flex items-start gap-4 mb-4">
-                        <div className="w-11 h-11 rounded-xl bg-[#10B981]/10 flex items-center justify-center flex-shrink-0">
-                          <AddonIcon className="h-5 w-5 text-[#047857]" aria-hidden="true" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-[10px] font-bold text-gray-400 tabular-nums tracking-wider">
-                              {String(i + 1).padStart(2, "0")}
-                            </span>
-                            <span className="inline-flex px-1.5 py-0.5 rounded bg-[#10B981]/10 text-[10px] font-semibold text-[#047857] tracking-wide">
-                              {addon.recurrence}
-                            </span>
-                          </div>
-                          <h3 className="font-bold text-[#0F172A] text-base leading-tight">{addon.name}</h3>
-                        </div>
-                      </div>
-                      <p className="text-[13.5px] text-gray-600 leading-relaxed mb-5 flex-1">
-                        {addon.desc}
-                      </p>
-                      <div className="flex items-center justify-between gap-3 pt-4 border-t border-gray-100">
-                        <span className="text-base font-black text-[#047857] tabular-nums whitespace-nowrap">
-                          {addon.price}
-                        </span>
-                        <Link
-                          href={`/reserver?offre=${addon.slug}`}
-                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#047857]/10 text-[#047857] text-xs font-semibold hover:bg-[#047857]/20 transition-colors whitespace-nowrap group-hover:bg-[#10B981] group-hover:text-white"
-                        >
-                          {tx("Réserver", "Book")}
-                          <ArrowRight className="h-3 w-3" aria-hidden="true" />
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </StaggerItem>
               );
             })}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S6b (COMPARATEUR INTERACTIF)
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#F8FAFC] py-20 lg:py-28">
-        <GhostNumber n="06" isDark={false} align="left" />
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
-                {tx("Composez votre offre", "Build your offer")}
-              </p>
-              <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-              >
-                {tx("Calculez votre budget en temps réel.", "Calculate your budget in real time.")}
-              </h2>
-              <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
-                {tx(
-                  "Choisissez un plan, cochez les modules que vous souhaitez ajouter. Le total mensuel se met à jour instantanément, avec ou sans remise annuelle.",
-                  "Choose a plan, tick the modules you want to add. The monthly total updates instantly, with or without the annual discount."
-                )}
-              </p>
-            </div>
-          </FadeIn>
-          <FadeIn>
-            <PlanComparator isEn={isEn} />
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S6c (BUNDLES RSE)
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-white py-20 lg:py-28">
-        <GhostNumber n="07" isDark={false} align="right" />
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
-                {tx("Bundles clés en main", "Turnkey bundles")}
-              </p>
-              <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-              >
-                {tx("Deux bundles pour aller plus vite.", "Two bundles to move faster.")}
-              </h2>
-              <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
-                {tx(
-                  "Des packs tout-en-un pensés pour des organisations qui veulent lancer ou consolider leur démarche DEEE et CSRD en un seul contrat, avec une économie immédiate.",
-                  "All-in-one packs designed for organisations that want to launch or consolidate their WEEE and CSRD approach in a single contract, with an immediate saving."
-                )}
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl">
-            {/* Bundle Confort RSE Essentiel */}
-            <FadeIn>
-              <article className="relative h-full rounded-2xl border border-[#10B981]/25 bg-gradient-to-br from-[#F0FDF9] to-white p-7 lg:p-8 shadow-sm">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#10B981]/10 border border-[#10B981]/20 mb-5">
-                  <Gift className="h-4 w-4 text-[#047857]" aria-hidden="true" />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#047857]">
-                    {tx("Bundle Confort RSE Essentiel", "Essential RSE Comfort Bundle")}
-                  </span>
-                </div>
-                <p className="text-[13px] font-semibold text-[#047857] mb-1">
-                  {tx("Avec plan Confort (79 € HT/mois)", "With Comfort plan (€79 HT/month)")}
-                </p>
-                <p className="text-4xl font-black text-[#0F172A] mb-2 tabular-nums">
-                  990 <span className="text-xl font-semibold opacity-70">€ HT one-shot</span>
-                </p>
-                <p className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#047857] bg-[#10B981]/10 px-2.5 py-1 rounded-full mb-6">
-                  <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
-                  {tx("Économie 150 € vs séparé", "Saving €150 vs separate")}
-                </p>
-                <p className="text-[13px] text-gray-600 leading-relaxed mb-6 italic">
-                  {tx(
-                    "Lancez votre démarche DEEE en 30 jours, clés en main.",
-                    "Launch your WEEE approach in 30 days, turnkey."
-                  )}
-                </p>
-                <ul className="space-y-2.5 mb-8">
-                  {tx(
-                    [
-                      "Kit signalétique RSE : 350 € HT (inclus)",
-                      "Formation collaborateurs 2 h : 590 € HT (inclus)",
-                      "Diagnostic DEEE Flash : offert",
-                    ],
-                    [
-                      "RSE signage kit: €350 HT (included)",
-                      "Employee training 2h: €590 HT (included)",
-                      "WEEE Flash diagnostic: free",
-                    ]
-                  ).map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-[13.5px] text-gray-700 leading-snug">
-                      <CheckCircle2 className="h-4 w-4 text-[#10B981] flex-shrink-0 mt-0.5" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/reserver?offre=waki-box-confort&bundle=confort-rse-essentiel"
-                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#10B981]/25 text-sm"
-                >
-                  {tx("Choisir ce bundle", "Choose this bundle")}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </article>
-            </FadeIn>
-
-            {/* Bundle Premium Conformité */}
-            <FadeIn>
-              <article className="relative h-full rounded-2xl border-2 border-[#F59E0B]/40 bg-gradient-to-br from-[#FFFBEB] to-white p-7 lg:p-8 shadow-lg shadow-[#F59E0B]/10">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F59E0B]/15 border border-[#F59E0B]/30 mb-5">
-                  <Package className="h-4 w-4 text-[#D97706]" aria-hidden="true" />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#D97706]">
-                    {tx("Bundle Premium Conformité", "Premium Compliance Bundle")}
-                  </span>
-                </div>
-                <p className="text-[13px] font-semibold text-[#D97706] mb-1">
-                  {tx("Avec plan Premium (dès 149 € HT/mois)", "With Premium plan (from €149 HT/month)")}
-                </p>
-                <p className="text-4xl font-black text-[#0F172A] mb-2 tabular-nums">
-                  2 990 <span className="text-xl font-semibold opacity-70">€ HT one-shot</span>
-                </p>
-                <p className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#D97706] bg-[#F59E0B]/10 px-2.5 py-1 rounded-full mb-6">
-                  <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
-                  {tx("Économie 740 € (-20 %) vs séparé", "Saving €740 (-20%) vs separate")}
-                </p>
-                <p className="text-[13px] text-gray-600 leading-relaxed mb-6 italic">
-                  {tx(
-                    "Conformité CSRD et DEEE auditée, documentée, formée, en un seul contrat.",
-                    "CSRD and WEEE compliance audited, documented, trained, in a single contract."
-                  )}
-                </p>
-                <ul className="space-y-2.5 mb-8">
-                  {tx(
-                    [
-                      "Audit terrain DEEE : 1 800 € HT/jour (inclus)",
-                      "Reporting CSRD ESRS E5 : 990 € HT/an (inclus)",
-                      "Formation collaborateurs 2 h : 590 € HT (inclus)",
-                      "Kit signalétique RSE : 350 € HT (inclus)",
-                    ],
-                    [
-                      "WEEE field audit: €1,800 HT/day (included)",
-                      "CSRD ESRS E5 reporting: €990 HT/year (included)",
-                      "Employee training 2h: €590 HT (included)",
-                      "RSE signage kit: €350 HT (included)",
-                    ]
-                  ).map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-[13.5px] text-gray-700 leading-snug">
-                      <CheckCircle2 className="h-4 w-4 text-[#F59E0B] flex-shrink-0 mt-0.5" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/reserver?offre=waki-box-premium&bundle=premium-conformite"
-                  className="inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#F59E0B]/25 text-sm"
-                >
-                  {tx("Choisir ce bundle", "Choose this bundle")}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </article>
-            </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S6d (TROIS PORTES D'ENTRÉE)
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#0F1115] py-20 lg:py-28">
-        <GhostNumber n="08" isDark={true} align="left" />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 50% at 50% 20%, rgba(16,185,129,0.09) 0%, transparent 60%)",
-          }}
-        />
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#6EE7B7] mb-4">
-                {tx("Première étape", "First step")}
-              </p>
-              <h2
-                className="text-white font-bold tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-              >
-                {tx("Trois portes d'entrée.", "Three entry points.")}
-              </h2>
-              <p className="text-gray-300 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
-                {tx(
-                  "Choisissez la première étape qui colle à votre calendrier. Chaque parcours commence par une réservation. Nous validons le périmètre ensemble avant le moindre engagement contractuel.",
-                  "Choose the first step that fits your calendar. Each journey starts with a booking. We validate the scope together before any contractual commitment."
-                )}
-              </p>
+      {/* ═══════════ 4. PROGRAMME PILOTE WAKI BOX (leaf-100) ═══════════ */}
+      <Section tone="mint">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="reveal lg:col-span-7">
+            <p className="text-eyebrow uppercase text-emerald">{tx("Programme pilote · 3 places", "Pilot programme · 3 spots")}</p>
+            <h2 className="mt-3 max-w-[24ch] text-display-md text-emerald">
+              {tx(
+                <>
+                  Premier mois offert,{" "}
+                  <br className="hidden sm:block" />
+                  puis 39 € HT/mois.
+                </>,
+                <>
+                  First month free,{" "}
+                  <br className="hidden sm:block" />
+                  then €39 HT/month.
+                </>
+              )}
+            </h2>
+            <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
+              {tx(
+                "Installez votre première box dans un site pilote, testez la collecte connectée, mesurez votre impact sur 3 mois. Désengagement à tout moment.",
+                "Install your first kiosk at a pilot site, test connected collection, measure your impact over 3 months. Cancel anytime."
+              )}
+            </p>
+            <ul className="mt-6 space-y-2">
+              {tx(
+                [
+                  "Sans frais d'installation (valeur 150 € offerts)",
+                  "Box installée sous 10 jours ouvrés",
+                  "Bascule vers le plan Essentiel, Confort ou Premium à l'issue",
+                  "Désengagement à tout moment, sans pénalité",
+                ],
+                [
+                  "No installation fee (€150 waived)",
+                  "Box installed within 10 business days",
+                  "Switch to Essentiel, Confort or Premium plan afterwards",
+                  "Cancel anytime, no penalty",
+                ]
+              ).map((item, i) => (
+                <li key={i} className="flex items-start gap-2 text-body-sm text-fg">
+                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8">
+              <ButtonLink href="/reserver?offre=pilote-waki-box" size="lg">
+                {tx("Démarrer le pilote", "Start a pilot")}
+              </ButtonLink>
             </div>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl">
-            {/* 1. Diagnostic DEEE Flash */}
-            <FadeIn>
-              <article className="h-full bg-white/[0.04] hover:bg-white/[0.07] border border-white/10 hover:border-[#10B981]/40 rounded-2xl p-6 lg:p-7 transition-all duration-300 flex flex-col">
-                <div className="w-12 h-12 rounded-xl bg-[#10B981]/15 flex items-center justify-center mb-5">
-                  <Microscope className="h-6 w-6 text-[#10B981]" aria-hidden="true" />
-                </div>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-flex px-2.5 py-1 rounded-full bg-[#10B981]/15 text-[#6EE7B7] text-[10px] font-bold uppercase tracking-wider">
-                    {tx("Gratuit", "Free")}
-                  </span>
-                  <span className="text-gray-500 text-[11px]">{tx("2 minutes", "2 minutes")}</span>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-3 leading-snug">
-                  {tx("Diagnostic DEEE Flash", "WEEE Flash Diagnostic")}
-                </h3>
-                <p className="text-gray-400 text-[13.5px] leading-relaxed mb-5 flex-1">
-                  {tx(
-                    "Évaluez la maturité DEEE de votre organisation en 5 questions. Vous repartez avec un score, une recommandation de formule, et un point d'entrée pour aller plus loin.",
-                    "Assess your organisation's WEEE maturity in 5 questions. You leave with a score, a formula recommendation, and a starting point to go further."
-                  )}
-                </p>
-                <div className="pt-4 border-t border-white/8">
-                  <p className="text-[11px] text-gray-500 mb-4 italic">
-                    {tx("Sans inscription. Résultat instantané.", "No sign-up. Instant result.")}
-                  </p>
-                  <Link
-                    href="/reserver?offre=diagnostic-flash"
-                    className="inline-flex items-center gap-2 text-[#10B981] hover:text-[#34D399] font-semibold text-sm transition-colors group"
-                  >
-                    {tx("Lancer le diagnostic", "Start the diagnostic")}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                  </Link>
-                </div>
-              </article>
-            </FadeIn>
-
-            {/* 2. Démo conseil (highlighted) */}
-            <FadeIn>
-              <article className="h-full bg-[#10B981]/10 hover:bg-[#10B981]/15 border-2 border-[#10B981]/50 rounded-2xl p-6 lg:p-7 transition-all duration-300 flex flex-col ring-1 ring-[#10B981]/20">
-                <div className="w-12 h-12 rounded-xl bg-[#10B981]/25 flex items-center justify-center mb-5">
-                  <Clock className="h-6 w-6 text-[#10B981]" aria-hidden="true" />
-                </div>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-flex px-2.5 py-1 rounded-full bg-[#10B981] text-white text-[10px] font-bold uppercase tracking-wider">
-                    {tx("Recommandé", "Recommended")}
-                  </span>
-                  <span className="text-gray-400 text-[11px]">{tx("30 minutes", "30 minutes")}</span>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-3 leading-snug">
-                  {tx("Démo conseil", "Advisory demo")}
-                </h3>
-                <p className="text-gray-300 text-[13.5px] leading-relaxed mb-5 flex-1">
-                  {tx(
-                    "Un appel avec un expert GreenTechCycle pour cadrer votre besoin, identifier les leviers de valeur, et vous proposer un plan d'action concret.",
-                    "A call with a GreenTechCycle expert to frame your need, identify value levers, and provide a concrete action plan."
-                  )}
-                </p>
-                <div className="pt-4 border-t border-[#10B981]/20">
-                  <p className="text-[11px] text-gray-400 mb-4 italic">
-                    {tx("Aucun engagement. Restitution écrite envoyée après l'appel.", "No commitment. Written summary sent after the call.")}
-                  </p>
-                  <Link
-                    href="/reserver?offre=demo-conseil"
-                    className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-5 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#10B981]/25 text-sm w-full justify-center"
-                  >
-                    {tx("Réserver la démo", "Book the demo")}
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </div>
-              </article>
-            </FadeIn>
-
-            {/* 3. Pilote Waki Box */}
-            <FadeIn>
-              <article className="h-full bg-white/[0.04] hover:bg-white/[0.07] border border-white/10 hover:border-[#0EA5E9]/40 rounded-2xl p-6 lg:p-7 transition-all duration-300 flex flex-col">
-                <div className="w-12 h-12 rounded-xl bg-[#0EA5E9]/15 flex items-center justify-center mb-5">
-                  <Rocket className="h-6 w-6 text-[#0EA5E9]" aria-hidden="true" />
-                </div>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-flex px-2.5 py-1 rounded-full bg-[#0EA5E9]/15 text-[#67E8F9] text-[10px] font-bold uppercase tracking-wider">
-                    {tx("1er mois offert", "1st month free")}
-                  </span>
-                  <span className="text-gray-500 text-[11px]">{tx("puis 39 € HT/mois", "then €39 HT/mo")}</span>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-3 leading-snug">
-                  {tx("Pilote Waki Box", "Waki Box Pilot")}
-                </h3>
-                <p className="text-gray-400 text-[13.5px] leading-relaxed mb-5 flex-1">
-                  {tx(
-                    "Installez votre première box dans un site pilote, testez la collecte connectée, mesurez votre impact sur 3 mois. Désengagement à tout moment.",
-                    "Install your first kiosk at a pilot site, test connected collection, measure your impact over 3 months. Cancel anytime."
-                  )}
-                </p>
-                <div className="pt-4 border-t border-white/8">
-                  <p className="text-[11px] text-gray-500 mb-4 italic">
-                    {tx("Sans frais d'installation. Box installée sous 10 jours.", "No installation fee. Box installed within 10 days.")}
-                  </p>
-                  <Link
-                    href="/reserver?offre=pilote-waki-box"
-                    className="inline-flex items-center gap-2 text-[#0EA5E9] hover:text-[#38BDF8] font-semibold text-sm transition-colors group"
-                  >
-                    {tx("Démarrer le pilote", "Start the pilot")}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                  </Link>
-                </div>
-              </article>
-            </FadeIn>
           </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S6e (PILOTE GTC - AUDIT & DEMARRAGE 3 JOURS)
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        id="pilote"
-        className="relative w-full overflow-hidden bg-[#F8FAFC] py-20 lg:py-28"
-        aria-labelledby="pilote-title"
-      >
-        <GhostNumber n="04" isDark={false} align="right" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-16 items-start max-w-6xl">
-            <FadeIn>
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#047857]">
-                    {tx("Porte d'entrée 4", "Entry point 4")}
-                  </span>
-                  <span className="h-px flex-1 bg-[#10B981]/30" aria-hidden="true" />
-                </div>
-
-                <h2
-                  id="pilote-title"
-                  className="text-[#0F172A] font-bold tracking-tight mb-6"
-                  style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-                >
-                  {tx(
-                    "Pilote GTC - Audit & démarrage 3 jours.",
-                    "GTC Pilot - Audit & 3-day kickoff."
-                  )}
-                </h2>
-
-                <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-5">
-                  {tx(
-                    "Avant de s'engager sur douze mois, certaines organisations préfèrent mesurer concrètement la valeur GTC sur leur propre parc. Le Pilote GTC répond à ce besoin : trois jours, une équipe senior, un livrable structuré.",
-                    "Before committing to twelve months, some organisations prefer to measure GTC's value concretely against their own fleet. The GTC Pilot meets that need: three days, a senior team, a structured deliverable."
-                  )}
-                </p>
-                <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-5">
-                  {tx(
-                    "Le diagnostic couvre la découverte de parc (asset discovery et notation d'obsolescence), la rédaction d'un plan d'action ITAD priorisé, le lancement de la Plateforme (paramétrage de la premiere branche), et une restitution écrite. Mission conduite par notre équipe ITAM, carbone et cyber.",
-                    "The diagnostic covers fleet discovery (asset discovery and obsolescence scoring), drafting a prioritised ITAD action plan, Platform kickoff (first branch configuration), and a written debrief. Delivered by our ITAM, carbon and cyber team."
-                  )}
-                </p>
-                <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78] mb-8">
-                  {tx(
-                    "Le Pilote se déroule sur site ou en hybride selon la taille du parc. A l'issue des trois jours, vous disposez d'une feuille de route signée, prête à présenter en comité de direction.",
-                    "The Pilot takes place on site or in hybrid mode depending on fleet size. After three days, you have a signed roadmap, ready to present to your executive committee."
-                  )}
-                </p>
-
-                {/* Livrables */}
-                <div className="mb-8">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-500 mb-4">
-                    {tx("Inclus dans la mission", "Included in the engagement")}
-                  </p>
-                  <ul className="space-y-3">
-                    {tx(
-                      [
-                        "Audit inventaire : asset discovery + notation d'obsolescence",
-                        "Plan d'action ITAD personnalise et priorisé",
-                        "Démarrage Plateforme : paramétrage de la premiere branche",
-                        "Restitution écrite remise sous 5 jours ouvrés",
-                      ],
-                      [
-                        "Inventory audit: asset discovery + obsolescence scoring",
-                        "Personalised and prioritised ITAD action plan",
-                        "Platform kickoff: first branch configuration",
-                        "Written debrief delivered within 5 business days",
-                      ]
-                    ).map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-[15px] text-gray-700 leading-snug">
-                        <CheckCircle2 className="h-5 w-5 text-[#10B981] flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Prix + CTA */}
-                <div className="flex flex-wrap items-end gap-6 mb-8 pb-8 border-b border-gray-200">
-                  <div className="flex flex-col">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">
-                      {tx("Mission forfaitaire", "Fixed-fee engagement")}
-                    </span>
-                    <span className="text-4xl lg:text-5xl font-black tracking-tight leading-none tabular-nums text-[#10B981]">
-                      2 900 <span className="text-lg font-semibold opacity-80">€ HT</span>
-                    </span>
-                    <span className="text-sm text-gray-500 mt-1">
-                      {tx("pour 3 jours", "for 3 days")}
-                    </span>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">
-                      {tx("Paiement", "Payment")}
-                    </span>
-                    <span className="text-xl font-bold text-[#0F172A]">
-                      {tx("100 % a la signature", "100% on signing")}
-                    </span>
-                  </div>
-                </div>
-
-                <Link
-                  href="/reserver?offre=pilote-audit-3j"
-                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
-                >
-                  {tx("Réserver le Pilote 3 jours", "Book the 3-day Pilot")}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
+          <div className="reveal lg:col-span-5">
+            <figure>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-track">
+                <MediaSlot fill id="tarifs-pilote" alt={tx("Signature d'un programme pilote Waki Box", "Signing a Waki Box pilot programme")} fallback={<CertificateCard />} />
               </div>
-            </FadeIn>
+              <figcaption className="mt-4 flex items-baseline justify-between gap-4 border-t border-track pt-4">
+                <span className="text-eyebrow uppercase text-emerald">{tx("Offre pilote", "Pilot offer")}</span>
+                <span className="text-body-sm font-semibold text-emerald">
+                  {tx("1er mois offert", "1st month free")} · {tx("puis 39 € HT/mois", "then €39 HT/month")}
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </Section>
 
-            <FadeIn>
-              <div className="space-y-5 lg:pt-16">
-                {/* Encart remboursement vert */}
-                <div className="rounded-2xl bg-[#10B981] p-6 lg:p-7 text-white">
-                  <div className="flex items-start gap-3 mb-4">
-                    <CheckCircle2 className="h-6 w-6 text-white flex-shrink-0 mt-0.5" aria-hidden="true" />
-                    <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/80">
-                      {tx("Garantie de valeur", "Value guarantee")}
-                    </p>
+      {/* ═══════════ 6. MODULES COMPLÉMENTAIRES — tableau ═══════════ */}
+      <Section tone="paper">
+        <div className="reveal">
+          <SectionHeader
+            eyebrow={tx("Modules complémentaires", "Add-on modules")}
+            title={tx("Composez votre offre Waki Box sur mesure.", "Build your Waki Box offer to fit.")}
+            intro={tx(
+              "Sept modules à la carte, chacun se greffe sur n'importe quel plan. Facturation unitaire, sans engagement supplémentaire.",
+              "Seven à la carte modules, each plugs into any plan. Unit billing, no additional commitment."
+            )}
+          />
+        </div>
+        <div className="reveal">
+          <Table
+            caption={tx("Modules complémentaires Waki Box", "Waki Box add-on modules")}
+            head={[
+              tx("Module", "Module"),
+              tx("Description", "Description"),
+              tx("Récurrence", "Recurrence"),
+              tx("Prix", "Price"),
+              <span key="a" className="sr-only">{tx("Action", "Action")}</span>,
+            ]}
+            numeric={[3]}
+            emphasis={[3]}
+            rows={addons.map((addon) => [
+              <span key="n" className="flex items-center gap-3">
+                <addon.icon className="h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+                {addon.name}
+              </span>,
+              <span key="d" className="block min-w-[240px] max-w-[52ch]">
+                {addon.desc}
+              </span>,
+              <Tag key="r" variant="neutral">
+                {addon.recurrence}
+              </Tag>,
+              <span key="p" className="whitespace-nowrap">
+                {addon.price}
+              </span>,
+              <Link
+                key="c"
+                href={`/reserver?offre=${addon.slug}`}
+                className="group inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap font-medium text-emerald hover:text-emerald-hover"
+                aria-label={`${tx("Réserver", "Book")} : ${addon.name}`}
+              >
+                {tx("Réserver", "Book")}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+              </Link>,
+            ])}
+          />
+        </div>
+      </Section>
+
+      {/* ═══════════ 7. COMPARATEUR INTERACTIF — carte unique ═══════════ */}
+      <Section tone="cream">
+        <div className="reveal">
+          <SectionHeader
+            eyebrow={tx("Composez votre offre", "Build your offer")}
+            title={tx("Calculez votre budget en temps réel.", "Calculate your budget in real time.")}
+            intro={tx(
+              "Choisissez un plan, cochez les modules que vous souhaitez ajouter. Le total mensuel se met à jour instantanément, avec ou sans remise annuelle.",
+              "Choose a plan, tick the modules you want to add. The monthly total updates instantly, with or without the annual discount."
+            )}
+          />
+        </div>
+        <div className="reveal">
+          <PlanComparator isEn={isEn} />
+        </div>
+      </Section>
+
+      {/* ═══════════ 8. BUNDLES RSE ═══════════ */}
+      <Section tone="paper">
+        <div className="reveal">
+          <SectionHeader
+            eyebrow={tx("Bundles clés en main", "Turnkey bundles")}
+            title={tx("Deux bundles pour aller plus vite.", "Two bundles to move faster.")}
+            intro={tx(
+              "Des packs tout-en-un pensés pour des organisations qui veulent lancer ou consolider leur démarche DEEE et CSRD en un seul contrat, avec une économie immédiate.",
+              "All-in-one packs designed for organisations that want to launch or consolidate their WEEE and CSRD approach in a single contract, with an immediate saving."
+            )}
+          />
+        </div>
+        <div className="grid gap-6 lg:grid-cols-2">
+          {bundles.map((b) => (
+            <div key={b.name} className="reveal">
+              <article className="flex h-full flex-col rounded-xl border border-track bg-bg p-6 lg:p-8">
+                <p className="text-eyebrow uppercase text-fg-muted">{b.name}</p>
+                <p className="mt-2 text-body-sm font-medium text-fg-strong">{b.plan}</p>
+                <p className="mt-4 font-display text-display-md tabular-nums text-emerald">
+                  {b.price} <span className="font-sans text-body-sm text-fg-muted">€ HT one-shot</span>
+                </p>
+                <div className="mt-2">
+                  <Tag variant="brand">{b.saving}</Tag>
+                </div>
+                <p className="mt-6 text-body-sm italic text-fg-strong">{b.pitch}</p>
+                <ul className="mt-4 flex-1 space-y-2">
+                  {b.items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-body-sm text-fg-strong">
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8">
+                  <ButtonLink href={b.href} variant="secondary">
+                    {tx("Choisir ce bundle", "Choose this bundle")}
+                  </ButtonLink>
+                </div>
+              </article>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ═══════════ 9. PILOTE GTC 3 JOURS #pilote — carte unique ═══════════ */}
+      <section id="pilote" className="bg-bg-card py-16 lg:py-24" aria-labelledby="pilote-title">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
+            <article className="grid gap-10 rounded-xl border border-track bg-bg p-6 lg:grid-cols-12 lg:gap-16 lg:p-10">
+              <div className="lg:col-span-7">
+                <p className="text-eyebrow uppercase text-fg-muted">{tx("Porte d'entrée 4", "Entry point 4")}</p>
+                <h2 id="pilote-title" className="mt-3 max-w-[24ch] text-display-md text-fg">
+                  {tx("Pilote GTC - Audit & démarrage 3 jours.", "GTC Pilot - Audit & 3-day kickoff.")}
+                </h2>
+                <div className="mt-4 max-w-[65ch] space-y-4 text-body text-fg-strong">
+                  <p>
+                    {tx(
+                      "Avant de s'engager sur douze mois, certaines organisations préfèrent mesurer concrètement la valeur GTC sur leur propre parc. Le Pilote GTC répond à ce besoin : trois jours, une équipe senior, un livrable structuré.",
+                      "Before committing to twelve months, some organisations prefer to measure GTC's value concretely against their own fleet. The GTC Pilot meets that need: three days, a senior team, a structured deliverable."
+                    )}
+                  </p>
+                  <p>
+                    {tx(
+                      "Le diagnostic couvre la découverte de parc (asset discovery et notation d'obsolescence), la rédaction d'un plan d'action ITAD priorisé, le lancement de la Plateforme (paramétrage de la première branche), et une restitution écrite. Mission conduite par notre équipe ITAM, carbone et cyber.",
+                      "The diagnostic covers fleet discovery (asset discovery and obsolescence scoring), drafting a prioritised ITAD action plan, Platform kickoff (first branch configuration), and a written debrief. Delivered by our ITAM, carbon and cyber team."
+                    )}
+                  </p>
+                  <p>
+                    {tx(
+                      "Le Pilote se déroule sur site ou en hybride selon la taille du parc. À l'issue des trois jours, vous disposez d'une feuille de route signée, prête à présenter en comité de direction.",
+                      "The Pilot takes place on site or in hybrid mode depending on fleet size. After three days, you have a signed roadmap, ready to present to your executive committee."
+                    )}
+                  </p>
+                </div>
+                <p className="mt-8 text-eyebrow uppercase text-fg-muted">{tx("Inclus dans la mission", "Included in the engagement")}</p>
+                <ul className="mt-3 space-y-2">
+                  {tx(
+                    [
+                      "Audit inventaire : asset discovery + notation d'obsolescence",
+                      "Plan d'action ITAD personnalisé et priorisé",
+                      "Démarrage Plateforme : paramétrage de la première branche",
+                      "Restitution écrite remise sous 5 jours ouvrés",
+                    ],
+                    [
+                      "Inventory audit: asset discovery + obsolescence scoring",
+                      "Personalised and prioritised ITAD action plan",
+                      "Platform kickoff: first branch configuration",
+                      "Written debrief delivered within 5 business days",
+                    ]
+                  ).map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-body-sm text-fg-strong">
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="space-y-6 lg:col-span-5">
+                <dl className="grid grid-cols-2 gap-4 border-y border-track py-6">
+                  <div className="flex flex-col-reverse justify-end">
+                    <dt className="text-caption text-fg-muted">
+                      {tx("Mission forfaitaire", "Fixed-fee engagement")} · {tx("pour 3 jours", "for 3 days")}
+                    </dt>
+                    <dd className="font-display text-display-md tabular-nums text-emerald">
+                      {isEn ? "2,900" : "2 900"} <span className="font-sans text-body-sm text-fg-muted">€ HT</span>
+                    </dd>
                   </div>
-                  <p className="text-white font-bold text-[1.1rem] leading-snug mb-3">
+                  <div className="flex flex-col-reverse justify-end border-l border-track pl-4">
+                    <dt className="text-caption text-fg-muted">{tx("Paiement", "Payment")}</dt>
+                    <dd className="text-heading-md text-fg">{tx("100 % à la signature", "100% on signing")}</dd>
+                  </div>
+                </dl>
+                <div className="rounded-xl bg-emerald-dim p-6">
+                  <p className="text-eyebrow uppercase text-emerald">{tx("Garantie de valeur", "Value guarantee")}</p>
+                  <p className="mt-2 text-heading-md text-emerald">
                     {tx(
                       "Pilote remboursé sur la 1re année de Plateforme si signature dans les 90 jours après la restitution.",
                       "Pilot fully refunded on Year 1 Platform subscription if signed within 90 days of debrief."
                     )}
                   </p>
-                  <p className="text-white/80 text-sm leading-relaxed">
+                  <p className="mt-2 text-body-sm text-fg-strong">
                     {tx(
-                      "2 900 € HT déduits automatiquement de la premiere facture annuelle Plateforme. Aucune démarche supplémentaire.",
+                      "2 900 € HT déduits automatiquement de la première facture annuelle Plateforme. Aucune démarche supplémentaire.",
                       "€2,900 ex-VAT automatically deducted from the first annual Platform invoice. No extra steps needed."
                     )}
                   </p>
                 </div>
-
-                {/* Sous-titre mission senior */}
-                <div className="rounded-2xl bg-white border border-gray-100 shadow-sm p-6 lg:p-7">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-500 mb-3">
-                    {tx("Composition de la mission", "Engagement composition")}
-                  </p>
-                  <p className="text-[14.5px] text-gray-600 leading-[1.78]">
+                <div>
+                  <p className="text-eyebrow uppercase text-fg-muted">{tx("Composition de la mission", "Engagement composition")}</p>
+                  <p className="mt-2 text-body-sm text-fg-strong">
                     {tx(
-                      "Jour 1 : Audit inventaire et notation d'obsolescence. Jour 2 : Plan ITAD priorisé + kick-off Plateforme. Jour 3 : Restitution orale et remise du livrable écrit. Equipe : un senior ITAM, un expert carbone, un consultant cyber.",
+                      "Jour 1 : Audit inventaire et notation d'obsolescence. Jour 2 : Plan ITAD priorisé + kick-off Plateforme. Jour 3 : Restitution orale et remise du livrable écrit. Équipe : un senior ITAM, un expert carbone, un consultant cyber.",
                       "Day 1: Inventory audit and obsolescence scoring. Day 2: Prioritised ITAD plan + Platform kickoff. Day 3: Oral debrief and written deliverable handover. Team: one senior ITAM, one carbon expert, one cyber consultant."
                     )}
                   </p>
                 </div>
+                <ButtonLink href="/reserver?offre=pilote-audit-3j" size="lg" fullWidth>
+                  {tx("Réserver le Pilote 3 jours", "Book the 3-day Pilot")}
+                </ButtonLink>
               </div>
-            </FadeIn>
+            </article>
           </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          SÉPARATION VISUELLE, transition vers sur-devis
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full bg-gradient-to-b from-white via-[#F1F5F9] to-[#0F1115] py-16 lg:py-20">
-        <div className="container mx-auto px-4 text-center">
-          <FadeIn>
-            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-white shadow-lg shadow-gray-200/50 border border-gray-100">
-              <div className="w-2 h-2 rounded-full bg-[#10B981]" />
-              <span className="text-sm font-semibold text-[#0F172A]">
-                {tx(
-                  "Au-delà de Waki Box : Plateforme et Service ITAD, étude personnalisée",
-                  "Beyond Waki Box: Platform and ITAD Service, bespoke study"
-                )}
-              </span>
-              <div className="w-2 h-2 rounded-full bg-[#F59E0B]" />
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S7 (PLATEFORME & ITAD SUR DEVIS) fond #0F1115, cartes éditoriales
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        id="sur-devis"
-        className="relative w-full overflow-hidden bg-[#0F1115] py-20 lg:py-28"
-      >
-        <GhostNumber n="07" isDark={true} align="left" />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 55% at 50% 30%, rgba(16,185,129,0.10) 0%, transparent 60%)",
-          }}
-        />
-
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-3xl mb-16">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#6EE7B7] mb-4">
-                {tx("Étude personnalisée, ancres établies", "Bespoke study, anchors established")}
-              </p>
-              <h2
-                className="text-white font-bold tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-              >
-                {tx(
-                  "Plateforme et Service ITAD, étude personnalisée.",
-                  "Platform and ITAD Service, bespoke study."
-                )}
-              </h2>
-              <p className="text-gray-300 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
-                {tx(
-                  "Ancres de départ : Plateforme à partir de 2 500 € HT/mois (base 500 postes), ITAD à partir de 15 € HT/poste. Trente minutes de cadrage pour caler le devis sur votre parc et vos contraintes, livré sous 48 heures.",
-                  "Starting anchors: Platform from €2,500 HT/month (base 500 devices), ITAD from €15 HT/device. Thirty minutes to scope the quote to your fleet and constraints, delivered within 48 hours."
-                )}
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-6xl">
-            {devisCards.map((card) => {
-              const CardIcon = card.icon;
-              return (
-                <FadeIn key={card.slug}>
-                  <article className="group relative h-full bg-white/[0.04] hover:bg-white/[0.07] border border-white/10 hover:border-white/20 rounded-2xl overflow-hidden transition-all duration-300">
-                    {/* Photo */}
-                    <div className="relative aspect-[16/8] overflow-hidden">
-                      <Image
-                        src={card.photo}
-                        alt={card.photoAlt}
-                        fill
-                        loading="lazy"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0F1115]/85 via-[#0F1115]/40 to-transparent" />
-                      <div
-                        className="absolute top-5 left-5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md"
-                        style={{ backgroundColor: `${card.accent}E6` }}
-                      >
-                        <CardIcon className="h-4 w-4 text-white" aria-hidden="true" />
-                        <span className="text-[11px] font-bold text-white uppercase tracking-wider">
-                          {card.kicker}
-                        </span>
-                      </div>
-                      <span
-                        className="absolute top-5 right-5 px-3 py-1.5 rounded-full backdrop-blur-md text-[11px] font-bold text-white uppercase tracking-wider"
-                        style={{ backgroundColor: `${card.accent}CC`, border: `1px solid ${card.accent}` }}
-                      >
-                        {card.priceBadge}
-                      </span>
-                    </div>
-
-                    {/* Body */}
-                    <div className="p-6 lg:p-8">
-                      <h3 className="text-2xl lg:text-[1.7rem] font-bold text-white tracking-tight leading-tight mb-3">
-                        {card.title}
-                      </h3>
-                      <div
-                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4 text-sm font-bold"
-                        style={{ color: card.accent, backgroundColor: `${card.accent}18`, border: `1px solid ${card.accent}40` }}
-                      >
-                        {card.anchorNote}
-                      </div>
-                      <p className="text-gray-300 text-[14.5px] leading-[1.78] mb-6">
-                        {card.body}
-                      </p>
-
-                      <ul className="space-y-2.5 mb-8 pb-8 border-b border-white/10">
-                        {card.bullets.map((b, j) => (
-                          <li key={j} className="flex items-start gap-3 text-[13.5px] text-gray-400 leading-snug">
-                            <CheckCircle2 className="h-4 w-4 flex-shrink-0 mt-0.5" style={{ color: card.accent }} aria-hidden="true" />
-                            <span>{b}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      <div className="flex flex-col sm:flex-row gap-3">
-                        <Link
-                          href={card.ctaHref}
-                          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
-                          style={{ backgroundColor: card.accent, boxShadow: `0 4px 16px ${card.accent}30` }}
-                        >
-                          {card.ctaLabel}
-                          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                        </Link>
-                        <Link
-                          href={card.secondaryHref}
-                          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white bg-white/8 hover:bg-white/12 border border-white/15 hover:border-white/25 transition-colors"
-                        >
-                          {card.secondaryLabel}
-                        </Link>
-                      </div>
-                    </div>
-                  </article>
-                </FadeIn>
-              );
-            })}
+      {/* ═══════════ 11. SUR DEVIS #sur-devis — night ═══════════ */}
+      <section id="sur-devis" className="bg-bg-card py-16 text-fg lg:py-24" aria-labelledby="sur-devis-title">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
+            <SectionHeader
+              id="sur-devis-title"
+              tone="dark"
+              eyebrow={tx("Plateforme et Service ITAD · Grilles publiques", "Platform and ITAD Service · Public grids")}
+              title={tx("Plateforme et Service ITAD\u00a0: les prix, palier par palier.", "Platform and ITAD Service: prices, tier by tier.")}
+              intro={tx(
+                "Les grilles ci-dessous sont nos prix publics hors taxes. Trente minutes de cadrage suffisent pour un devis détaillé sur votre parc et vos contraintes, livré sous 48 heures.",
+                "The grids below are our public prices, excluding VAT. Thirty minutes of scoping is enough for a detailed quote on your fleet and constraints, delivered within 48 hours."
+              )}
+            />
           </div>
-
-          {/* ITAD service quick nav */}
-          <FadeIn>
-            <div className="mt-14 max-w-6xl">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-5">
-                {tx("Cinq missions ITAD couvertes", "Five ITAD engagements covered")}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {itadServices.map((svc) => {
-                  const SvcIcon = svc.icon;
-                  return (
-                    <Link
-                      key={svc.slug}
-                      href={`/services/${svc.slug}`}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 hover:border-[#10B981]/40 text-[12px] font-semibold text-gray-300 hover:text-white transition-all"
-                    >
-                      <SvcIcon className="h-3.5 w-3.5 text-[#6EE7B7]" aria-hidden="true" />
-                      {svc.name}
-                    </Link>
-                  );
-                })}
+          <div className="grid gap-6 lg:grid-cols-2">
+            {devisCards.map((card) => (
+              <div key={card.slug} className="reveal">
+                <article className="flex h-full flex-col overflow-hidden rounded-xl border border-track bg-bg">
+                  <div className="relative aspect-[16/8] border-b border-track">
+                    <MediaSlot fill id={`tarifs-devis-${card.slug}`} alt={card.photoAlt} fallback={card.slug === "plateforme" ? <DashboardMock state="erasure" compact /> : <LifecycleDiagram active={1} />} />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6 lg:p-8">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <Tag variant="dark" icon={<card.icon className="h-3.5 w-3.5" aria-hidden="true" />}>
+                        {card.kicker}
+                      </Tag>
+                      <Tag variant="dark">{card.priceBadge}</Tag>
+                    </div>
+                    <h3 className="mt-4 font-display text-display-sm text-fg">{card.title}</h3>
+                    <TierGrid tiers={card.tiers} lang={lang} caption={tx(`Grille ${card.kicker}`, `${card.kicker} grid`)} />
+                    <p className="mt-4 text-body-sm text-fg-muted">{card.body}</p>
+                    <ul className="mt-6 flex-1 space-y-2 border-t border-track pt-6">
+                      {card.bullets.map((b, j) => (
+                        <li key={j} className="flex items-start gap-2 text-body-sm text-fg-muted">
+                          <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                      <ButtonLink href={card.ctaHref} tone="dark">
+                        {card.ctaLabel}
+                      </ButtonLink>
+                      <ButtonLink href={card.secondaryHref} tone="dark" variant="secondary">
+                        {card.secondaryLabel}
+                      </ButtonLink>
+                    </div>
+                  </div>
+                </article>
               </div>
-            </div>
-          </FadeIn>
+            ))}
+          </div>
+          <div className="mt-12">
+            <p className="text-eyebrow uppercase text-fg-muted">{tx("Cinq missions ITAD couvertes", "Five ITAD engagements covered")}</p>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {itadServices.map((svc) => (
+                <li key={svc.slug}>
+                  <Link
+                    href={`/services/${svc.slug}`}
+                    className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-track px-4 text-body-sm font-medium text-fg-muted transition-colors hover:border-white/30 hover:text-fg"
+                  >
+                    <svc.icon className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+                    {svc.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S8 (FAQ TARIFAIRE) fond blanc
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-white py-20 lg:py-28">
-        <GhostNumber n="08" isDark={false} align="left" />
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto">
-              <div className="flex items-center gap-3 mb-3">
-                <HelpCircle className="w-5 h-5 text-[#047857]" aria-hidden="true" />
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857]">
-                  {tx("Questions fréquentes", "Frequently asked questions")}
-                </p>
-              </div>
-              <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-12"
-                style={{ fontSize: "clamp(1.7rem, 3.2vw, 2.4rem)", lineHeight: 1.1 }}
-              >
-                {tx(
-                  "Tarifs publics, devis sur mesure, engagement clair.",
-                  "Public pricing, tailored quotes, clear commitments."
-                )}
-              </h2>
-
-              <div>
-                {faqItems.map((item, i) => (
-                  <FAQItem key={i} q={item.q} a={item.a} />
-                ))}
-              </div>
-            </div>
-          </FadeIn>
+      {/* ═══════════ 12. FAQ ═══════════ */}
+      <Section tone="paper">
+        <div className="mx-auto max-w-[720px]">
+          <div className="reveal">
+            <SectionHeader
+              eyebrow={tx("Questions fréquentes", "Frequently asked questions")}
+              title={tx("Tarifs publics, devis sur mesure, engagement clair.", "Public pricing, tailored quotes, clear commitments.")}
+            />
+          </div>
+          <Accordion defaultOpen={null} items={faqItems.map((f) => ({ question: f.q, answer: f.a }))} />
         </div>
-      </section>
+      </Section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S9 (CTA DOUBLE FINAL + CROSS-LINKS) fond #10B981
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#10B981]">
-        <div
-          className="absolute inset-0 pointer-events-none opacity-30"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 80% 0%, rgba(255,255,255,0.25) 0%, transparent 55%)",
-          }}
-        />
-
-        <div className="container mx-auto px-4 py-20 lg:py-24 relative z-10">
-          <FadeIn>
-            <div className="max-w-4xl mx-auto text-center">
-              <h2
-                className="text-white font-black tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-              >
-                {tx("Prêt à passer à l'action ?", "Ready to take the next step?")}
-              </h2>
-              <p className="text-white/90 text-[1.05rem] lg:text-[1.15rem] leading-[1.65] max-w-2xl mx-auto mb-10">
-                {tx(
-                  "Réservez Waki Box dès aujourd'hui, ou demandez un devis Plateforme / ITAD sous 48 heures.",
-                  "Book Waki Box today, or request a Platform / ITAD quote within 48 hours."
-                )}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link
-                  href="/reserver?offre=waki-box-confort"
-                  className="inline-flex items-center justify-center gap-2 bg-[#0F1115] hover:bg-[#022C22] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
-                >
-                  {tx("Réserver Waki Box", "Book Waki Box")}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <Link
-                  href="/reserver?offre=demo-conseil"
-                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/40 hover:border-white/60 font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-sm"
-                >
-                  {tx("Demander un devis", "Request a quote")}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </div>
-
-              {/* Cross-links */}
-              <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 mt-10 text-white/85 text-[13px]">
-                <Link
-                  href="/cas-usages"
-                  className="inline-flex items-center gap-1.5 hover:text-white underline-offset-4 hover:underline transition-colors"
-                >
-                  {tx("Voir 8 cas clients chiffrés", "See 8 quantified client cases")}
-                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                </Link>
-                <span className="text-white/40" aria-hidden="true">·</span>
-                <Link
-                  href="/secteurs"
-                  className="inline-flex items-center gap-1.5 hover:text-white underline-offset-4 hover:underline transition-colors"
-                >
-                  {tx("Explorer 16 fiches sectorielles", "Explore 16 sector profiles")}
-                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                </Link>
-                <span className="text-white/40" aria-hidden="true">·</span>
-                <Link
-                  href="/plateforme"
-                  className="inline-flex items-center gap-1.5 hover:text-white underline-offset-4 hover:underline transition-colors"
-                >
-                  {tx("Découvrir la plateforme", "Discover the platform")}
-                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                </Link>
-              </div>
-
-              {/* Trust line */}
-              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 mt-10 text-white/80 text-xs">
-                <span className="inline-flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
-                  {tx("Réponse sous 24 heures ouvrées", "Response within 24 business hours")}
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
-                  {tx("NDA signé sur demande", "NDA signed on request")}
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
-                  {tx("Aucun engagement avant signature", "No commitment before signing")}
-                </span>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-    </main>
+      {/* ═══════════ 13. CTA UNIQUE ═══════════ */}
+      <CtaSection
+        title={tx("Prêt à passer à l'action ?", "Ready to take the next step?")}
+        subtitle={tx(
+          "Réservez Waki Box dès aujourd'hui, ou demandez un devis Plateforme / ITAD sous 48 heures.",
+          "Book Waki Box today, or request a Platform / ITAD quote within 48 hours."
+        )}
+        primaryLabel={tx("Réserver Waki Box", "Book Waki Box")}
+        primaryHref="/reserver?offre=waki-box-confort"
+        secondaryLabel={tx("Demander un devis", "Request a quote")}
+        secondaryHref="/reserver?offre=demo-conseil"
+        reassurance={[
+          tx("Réponse sous 24 heures ouvrées", "Response within 24 business hours"),
+          tx("NDA signé sur demande", "NDA signed on request"),
+          tx("Aucun engagement avant signature", "No commitment before signing"),
+        ].join(" · ")}
+        footnote={
+          <p className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            <Link href="/cas-usages" className="font-medium text-emerald hover:text-fg">
+              {tx("Voir 8 cas clients chiffrés", "See 8 quantified client cases")} →
+            </Link>
+            <Link href="/secteurs" className="font-medium text-emerald hover:text-fg">
+              {tx("Explorer 16 fiches sectorielles", "Explore 16 sector profiles")} →
+            </Link>
+            <Link href="/plateforme" className="font-medium text-emerald hover:text-fg">
+              {tx("Découvrir la plateforme", "Discover the platform")} →
+            </Link>
+          </p>
+        }
+      />
+    </div>
   );
 }

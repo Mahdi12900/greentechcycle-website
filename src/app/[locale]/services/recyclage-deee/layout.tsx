@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { SITE_URL as SITE } from "@/lib/site";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 
-const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
 export async function generateMetadata({
   params,
@@ -11,12 +12,12 @@ export async function generateMetadata({
   const isEn = locale === "en";
 
   const title = isEn
-    ? "Professional R2v3 WEEE Recycling | From €15 ex-VAT/device | GreenTechCycle"
-    : "Recyclage DEEE professionnel R2v3 | A partir de 15 € HT/poste | GreenTechCycle";
+    ? "Professional WEEE Recycling | From €19 ex-VAT/device | GreenTechCycle"
+    : "Recyclage DEEE professionnel | À partir de 19 € HT/poste | GreenTechCycle";
 
   const description = isEn
-    ? "Regulatory WEEE recycling certified R2v3 and ISO 14001. Tracking slips, CSRD reporting, sovereign traceability. From €15 ex-VAT/device."
-    : "Recyclage DEEE réglementaire certifié R2v3 et ISO 14001. Bordereaux de suivi, reporting CSRD, traçabilité souveraine. A partir de 15 € HT/poste.";
+    ? "Regulatory WEEE recycling. Tracking slips, CSRD reporting, sovereign traceability. From €19 ex-VAT/device."
+    : "Recyclage DEEE réglementaire. Bordereaux de suivi, reporting CSRD, traçabilité souveraine. À partir de 19 € HT/poste.";
 
   return {
     title,
@@ -29,8 +30,8 @@ export async function generateMetadata({
         "x-default": `${SITE}/fr/services/recyclage-deee`,
       },
     },
-    openGraph: { title, description, type: "website" },
-    twitter: { card: "summary_large_image", title, description },
+    openGraph: { title, description, type: "website", url: `${SITE}/${locale}/services/recyclage-deee`, images: [DEFAULT_OG_IMAGE] },
+    twitter: { card: "summary_large_image", title, description, images: [DEFAULT_OG_IMAGE] },
   };
 }
 

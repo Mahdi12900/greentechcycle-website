@@ -1,74 +1,99 @@
 "use client";
 
+import ContactChannels from "@/components/ContactChannels";
 import { useState, useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   X,
   Calendar,
   FileText,
-  Sparkles,
+  LayoutGrid,
   Send,
-  Phone,
-  Mail,
   UserRound,
+  MessageCircle,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
+import { useSiteUi } from "@/components/SiteUiContext";
 
 /* ------------------------------------------------------------------ */
-/*  Premium Sales Assistant Widget, "Sophie Martin"                  */
+/*  Assistant commercial « Sophie Martin » — DESIGN.md §6.10           */
+/*  - Desktop (lg+) : bouton rond compact fixe + panneau 380 px.        */
+/*  - Mobile        : le bouton vit dans MobileActionBar ; le panneau   */
+/*                    s'ouvre en feuille plein écran modale.            */
+/*  - Bulle « Besoin d'aide ? » : desktop, 1×/session, 2 boutons frères */
+/*    (jamais un bouton dans un bouton — axe nested-interactive).       */
 /* ------------------------------------------------------------------ */
+
+export const CHAT_PANEL_ID = "gtc-chat-panel";
+const BUBBLE_SESSION_KEY = "gtc-chat-bubble-seen";
+const BUBBLE_DELAY_MS = 20_000;
+const BUBBLE_DURATION_MS = 12_000;
 
 export default function SalesAssistantWidget() {
-  const [open, setOpen] = useState(false);
+  const { chatOpen: open, setChatOpen: setOpen } = useSiteUi();
   const [showBubble, setShowBubble] = useState(false);
-  const [bubbleDismissed, setBubbleDismissed] = useState(false);
   const [userMessage, setUserMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [messages, setMessages] = useState<
-    { from: "sophie" | "user"; text: string }[]
-  >([]);
+  const [messages, setMessages] = useState<{ from: "sophie" | "user"; text: string }[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
   const locale = useLocale();
   const pathname = usePathname();
+  const reduceMotion = useReducedMotion();
   const tx = (fr: string, en: string) => (locale === "en" ? en : fr);
 
-  // Hide widget on /reserver page (form already present)
-  if (pathname?.includes("/reserver")) {
-    return null;
-  }
+  // Pas de widget sur /reserver (le formulaire est déjà la conversion).
+  const hidden = Boolean(pathname?.includes("/reserver"));
 
-  /* ---- Auto-bubble after 4s, auto-collapse on mobile after 5s ---- */
+  /* ---- Bulle d'invitation : desktop uniquement, une fois par session ---- */
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!open && !bubbleDismissed) setShowBubble(true);
-    }, 4000);
-    return () => clearTimeout(timer);
-  }, [open, bubbleDismissed]);
+    if (hidden || open) return;
+    if (typeof window === "undefined") return;
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
+    try {
+      if (sessionStorage.getItem(BUBBLE_SESSION_KEY)) return;
+    } catch {
+      /* stockage indisponible : on affiche quand même une fois */
+    }
+    const show = setTimeout(() => {
+      setShowBubble(true);
+      try {
+        sessionStorage.setItem(BUBBLE_SESSION_KEY, "1");
+      } catch {
+        /* noop */
+      }
+    }, BUBBLE_DELAY_MS);
+    return () => clearTimeout(show);
+  }, [hidden, open]);
 
-  /* ---- Auto-collapse bubble on mobile (<768px) after 5s ---- */
   useEffect(() => {
     if (!showBubble) return;
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-    if (!isMobile) return;
-    const collapseTimer = setTimeout(() => {
-      setShowBubble(false);
-      setBubbleDismissed(true);
-    }, 5000);
-    return () => clearTimeout(collapseTimer);
+    const hide = setTimeout(() => setShowBubble(false), BUBBLE_DURATION_MS);
+    return () => clearTimeout(hide);
   }, [showBubble]);
 
-  /* ---- Hide bubble when panel opens ---- */
+  /* ---- Ouverture : masque la bulle, focus sur Fermer, Échap ferme ---- */
   useEffect(() => {
-    if (open) {
-      setShowBubble(false);
-      setBubbleDismissed(true);
-    }
-  }, [open]);
+    if (!open) return;
+    setShowBubble(false);
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    // Feuille modale plein écran sur mobile : on bloque le défilement de la page.
+    const isMobile = !window.matchMedia("(min-width: 1024px)").matches;
+    const prevOverflow = document.body.style.overflow;
+    if (isMobile) document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open, setOpen]);
 
-  /* ---- Typing indicator on first open ---- */
+  /* ---- Indicateur de saisie au premier affichage ---- */
   useEffect(() => {
     if (open && messages.length === 0) {
       setIsTyping(true);
@@ -78,23 +103,23 @@ export default function SalesAssistantWidget() {
           {
             from: "sophie",
             text: tx(
-              "Bonjour ! 👋 Je suis Sophie, votre conseillère GreenTechCycle. Comment puis-je vous aider aujourd'hui ?",
-              "Hello! 👋 I'm Sophie, your GreenTechCycle advisor. How can I help you today?"
+              "Bonjour ! Je suis Sophie, votre conseillère GreenTechCycle. Comment puis-je vous aider aujourd'hui ?",
+              "Hello! I'm Sophie, your GreenTechCycle advisor. How can I help you today?"
             ),
           },
         ]);
-      }, 1500);
+      }, reduceMotion ? 0 : 1200);
       return () => clearTimeout(t);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  /* ---- Scroll messages to bottom ---- */
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isTyping]);
+    messagesEndRef.current?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+  }, [messages, isTyping, reduceMotion]);
 
-  /* ---- Send user message ---- */
+  if (hidden) return null;
+
   const handleSend = () => {
     const trimmed = userMessage.trim();
     if (!trimmed) return;
@@ -108,176 +133,104 @@ export default function SalesAssistantWidget() {
         {
           from: "sophie",
           text: tx(
-            "Merci pour votre message ! Un conseiller vous recontactera très rapidement. En attendant, n'hésitez pas à explorer nos actions rapides ci-dessous. 😊",
-            "Thanks for your message! An advisor will get back to you shortly. Meanwhile, feel free to explore our quick actions below. 😊"
+            "Merci pour votre message ! Un conseiller vous recontactera très rapidement. En attendant, n'hésitez pas à explorer nos actions rapides ci-dessous.",
+            "Thanks for your message! An advisor will get back to you shortly. Meanwhile, feel free to explore our quick actions below."
           ),
         },
       ]);
-    }, 2000);
+    }, 1500);
   };
 
-  /* ---- Quick actions ---- */
   const quickActions = [
-    {
-      icon: Calendar,
-      label: tx("Réserver ma démo (30 min)", "Book my demo (30 min)"),
-      href: "/demo",
-    },
-    {
-      icon: FileText,
-      label: tx("Demander l'audit gratuit", "Request free audit"),
-      href: "/contact",
-    },
-    {
-      icon: Sparkles,
-      label: tx("Découvrir nos services", "Discover our services"),
-      href: "/services",
-    },
-    {
-      icon: UserRound,
-      label: tx("Parler à un expert", "Talk to an expert"),
-      href: "/contact",
-    },
+    { icon: Calendar, label: tx("Réserver ma démo (30 min)", "Book my demo (30 min)"), href: "/demo" },
+    { icon: FileText, label: tx("Demander l'audit gratuit", "Request free audit"), href: "/contact" },
+    { icon: LayoutGrid, label: tx("Découvrir nos services", "Discover our services"), href: "/services" },
+    { icon: UserRound, label: tx("Parler à un expert", "Talk to an expert"), href: "/contact" },
   ];
+
+  const panelMotion = reduceMotion
+    ? { initial: false as const, animate: { opacity: 1 }, exit: { opacity: 0 } }
+    : {
+        initial: { opacity: 0, y: 16 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: 16 },
+        transition: { duration: 0.2, ease: "easeOut" as const },
+      };
 
   return (
     <>
-      {/* ============================================================ */}
-      {/*  Chat Panel                                                  */}
-      {/* ============================================================ */}
+      {/* ============================ Panneau ============================ */}
       <AnimatePresence>
         {open && (
           <motion.div
             key="panel"
-            initial={{ opacity: 0, y: 32, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 32, scale: 0.95 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed z-[60] bottom-24 right-4 lg:bottom-28 lg:right-6 w-[calc(100vw-2rem)] max-w-[380px] overflow-hidden rounded-2xl bg-white shadow-2xl shadow-black/15 ring-1 ring-black/[0.06]"
+            id={CHAT_PANEL_ID}
+            {...panelMotion}
             role="dialog"
-            aria-label={tx(
-              "Assistant commercial GreenTechCycle",
-              "GreenTechCycle sales assistant"
-            )}
+            aria-modal="true"
+            aria-label={tx("Assistant commercial GreenTechCycle", "GreenTechCycle sales assistant")}
+            className="fixed z-[70] inset-0 h-[100dvh] flex flex-col bg-bg-card lg:inset-auto lg:bottom-24 lg:right-6 lg:h-auto lg:w-[380px] lg:max-h-[70vh] lg:rounded-2xl lg:border lg:border-track lg:shadow-float overflow-hidden"
           >
-            {/* ---- Header ---- */}
-            <div className="relative bg-gradient-to-br from-[#047857] via-[#0B4633] to-[#1E40AF] px-5 pt-5 pb-5 text-white">
+            {/* En-tête */}
+            <div
+              className="flex items-center gap-3 border-b border-track bg-bg px-4 py-3 text-fg"
+              style={{ paddingTop: "max(0.75rem, env(safe-area-inset-top))" }}
+            >
+              {/* Pas de photo (DESIGN.md v2 §7.1) : monogramme + point d'état émeraude */}
+              <div className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-track bg-bg-card font-mono text-caption text-fg" aria-hidden="true">
+                SM
+                <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-bg bg-emerald shadow-glow-dot" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-body-sm font-semibold leading-tight">Sophie Martin</p>
+                <p className="text-caption text-fg-muted">
+                  {tx("Conseillère GreenTechCycle · En ligne", "GreenTechCycle advisor · Online")}
+                </p>
+              </div>
               <button
+                ref={closeRef}
                 type="button"
                 onClick={() => setOpen(false)}
-                className="absolute top-3 right-3 rounded-full p-1.5 text-white/60 hover:text-white hover:bg-white/10 transition-all duration-200"
-                aria-label={tx("Fermer", "Close")}
+                className="flex h-11 w-11 items-center justify-center rounded-lg text-fg hover:bg-white/10 focus-visible:outline-emerald"
+                aria-label={tx("Fermer l'assistant", "Close assistant")}
               >
-                <X className="h-5 w-5" />
+                <X className="h-5 w-5" aria-hidden="true" />
               </button>
-              <div className="flex items-center gap-3.5">
-                <div className="relative flex-shrink-0">
-                  <div className="h-12 w-12 rounded-full overflow-hidden ring-[2.5px] ring-white/40 shadow-lg">
-                    <Image
-                      src="/images/sophie-martin.jpg"
-                      alt="Sophie Martin"
-                      width={48}
-                      height={48}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  {/* Online badge */}
-                  <span className="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full bg-[#047857] ring-2 ring-[#047857]" />
-                </div>
-                <div>
-                  <p className="font-semibold text-[15px] leading-tight">
-                    Sophie Martin
-                  </p>
-                  <p className="text-[12px] text-white/70 mt-0.5">
-                    {tx(
-                      "Conseillère GreenTechCycle",
-                      "GreenTechCycle Advisor"
-                    )}
-                  </p>
-                  <div className="flex items-center gap-1.5 mt-1">
-                    <span className="h-2 w-2 rounded-full bg-[#047857] animate-pulse" />
-                    <span className="text-[11px] text-emerald-300 font-medium">
-                      {tx("En ligne", "Online")}
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
 
-            {/* ---- Messages area ---- */}
-            <div className="px-4 pt-4 pb-2 max-h-[240px] overflow-y-auto custom-scrollbar space-y-3">
+            {/* Messages */}
+            <div className="flex-1 space-y-3 overflow-y-auto px-4 pt-4 pb-2 custom-scrollbar lg:max-h-[240px] lg:flex-none" aria-live="polite">
               {messages.map((msg, i) =>
                 msg.from === "sophie" ? (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex items-start gap-2.5"
-                  >
-                    <div className="h-7 w-7 rounded-full overflow-hidden flex-shrink-0 mt-0.5 ring-1 ring-slate-100">
-                      <Image
-                        src="/images/sophie-martin.jpg"
-                        alt="Sophie"
-                        width={28}
-                        height={28}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <div className="bg-slate-50 border border-slate-100 rounded-2xl rounded-tl-md px-3.5 py-2.5 text-[13px] text-slate-700 leading-relaxed max-w-[85%]">
+                  <div key={i} className="flex">
+                    <div className="max-w-[85%] rounded-xl rounded-tl-sm border border-track bg-bg px-3 py-2 text-body-sm text-fg-strong">
                       {msg.text}
                     </div>
-                  </motion.div>
+                  </div>
                 ) : (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: 12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex justify-end"
-                  >
-                    <div className="bg-gradient-to-br from-[#047857] to-[#047857] text-white rounded-2xl rounded-tr-md px-3.5 py-2.5 text-[13px] leading-relaxed max-w-[85%]">
+                  <div key={i} className="flex justify-end">
+                    <div className="max-w-[85%] rounded-xl rounded-tr-sm bg-emerald px-3 py-2 text-body-sm text-bg">
                       {msg.text}
                     </div>
-                  </motion.div>
+                  </div>
                 )
               )}
-
-              {/* Typing indicator */}
-              <AnimatePresence>
-                {isTyping && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    className="flex items-start gap-2.5"
-                  >
-                    <div className="h-7 w-7 rounded-full overflow-hidden flex-shrink-0 mt-0.5 ring-1 ring-slate-100">
-                      <Image
-                        src="/images/sophie-martin.jpg"
-                        alt="Sophie"
-                        width={28}
-                        height={28}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <div className="bg-slate-50 border border-slate-100 rounded-2xl rounded-tl-md px-4 py-3 flex items-center gap-1">
-                      <span className="typing-dot" />
-                      <span className="typing-dot animation-delay-200" />
-                      <span className="typing-dot animation-delay-400" />
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {isTyping && (
+                <div className="flex" aria-label={tx("Sophie écrit…", "Sophie is typing…")}>
+                  <div className="flex items-center gap-1 rounded-xl rounded-tl-sm border border-track bg-bg px-4 py-3">
+                    <span className="typing-dot" />
+                    <span className="typing-dot animation-delay-200" />
+                    <span className="typing-dot animation-delay-400" />
+                  </div>
+                </div>
+              )}
               <div ref={messagesEndRef} />
             </div>
 
-            {/* ---- Quick actions ---- */}
-            <div className="px-4 py-3 space-y-1.5">
-              <p className="text-[10px] uppercase tracking-widest font-semibold text-slate-400 mb-1.5">
-                {tx("Actions rapides", "Quick actions")}
-              </p>
-              <div className="grid grid-cols-2 gap-1.5">
+            {/* Actions rapides */}
+            <div className="px-4 py-3">
+              <p className="mb-2 text-eyebrow uppercase text-fg-muted">{tx("Actions rapides", "Quick actions")}</p>
+              <div className="grid grid-cols-2 gap-2">
                 {quickActions.map((a) => {
                   const Icon = a.icon;
                   return (
@@ -285,11 +238,9 @@ export default function SalesAssistantWidget() {
                       key={a.label}
                       href={a.href}
                       onClick={() => setOpen(false)}
-                      className="flex items-center gap-2 px-3 py-2.5 rounded-xl border border-slate-100 text-[12px] font-medium text-slate-700 hover:border-emerald-200 hover:bg-emerald-50/50 hover:text-[#047857] transition-all duration-200 group"
+                      className="group flex min-h-[44px] items-center gap-2 rounded-lg border border-track px-3 py-2 text-caption font-medium text-fg-strong transition-colors hover:border-track-strong hover:text-emerald"
                     >
-                      <span className="h-7 w-7 flex-shrink-0 rounded-lg bg-emerald-50 flex items-center justify-center text-[#047857] group-hover:bg-emerald-100 transition-colors">
-                        <Icon className="h-3.5 w-3.5" />
-                      </span>
+                      <Icon className="h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                       <span className="leading-tight">{a.label}</span>
                     </Link>
                   );
@@ -297,161 +248,101 @@ export default function SalesAssistantWidget() {
               </div>
             </div>
 
-            {/* ---- Input area ---- */}
-            <div className="px-4 pb-4 pt-2">
-              <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 focus-within:ring-2 focus-within:ring-emerald-500/30 focus-within:border-emerald-400 transition-all">
+            {/* Saisie */}
+            <div className="px-4 pb-4 pt-1">
+              <div className="flex items-center gap-2 rounded-lg border border-track bg-bg px-3 py-1 focus-within:border-emerald focus-within:ring-2 focus-within:ring-emerald/25">
+                <label htmlFor="gtc-chat-input" className="sr-only">
+                  {tx("Votre message", "Your message")}
+                </label>
                 <input
+                  id="gtc-chat-input"
                   type="text"
                   value={userMessage}
                   onChange={(e) => setUserMessage(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                  placeholder={tx(
-                    "Écrivez votre message…",
-                    "Type your message…"
-                  )}
-                  className="flex-1 bg-transparent text-[13px] text-slate-700 placeholder:text-slate-400 outline-none"
+                  placeholder={tx("Écrivez votre message…", "Type your message…")}
+                  className="h-10 flex-1 bg-transparent text-body-sm text-fg placeholder:text-fg-muted focus:outline-none"
                 />
                 <button
                   type="button"
                   onClick={handleSend}
                   disabled={!userMessage.trim()}
-                  className="h-8 w-8 rounded-lg bg-gradient-to-br from-[#047857] to-[#047857] text-white flex items-center justify-center hover:shadow-md hover:shadow-emerald-500/25 transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none"
+                  aria-label={tx("Envoyer", "Send")}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald text-bg transition-colors hover:bg-emerald-hover disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  <Send className="h-3.5 w-3.5" />
+                  <Send className="h-4 w-4" aria-hidden="true" />
                 </button>
               </div>
             </div>
 
-            {/* ---- Footer contacts ---- */}
-            <div className="px-4 py-2.5 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between text-[11px]">
-              <a
-                href="tel:+33186652210"
-                className="inline-flex items-center gap-1.5 text-slate-500 hover:text-[#047857] font-medium transition-colors"
-              >
-                <Phone className="h-3 w-3" />
-                +33 1 86 65 22 10
-              </a>
-              <a
-                href="mailto:contact@greentechcycle.fr"
-                className="inline-flex items-center gap-1.5 text-slate-500 hover:text-[#047857] font-medium transition-colors"
-              >
-                <Mail className="h-3 w-3" />
-                Email
-              </a>
+            {/* Contacts */}
+            <div
+              className="flex items-center justify-between border-t border-track bg-bg-card px-4 py-3 text-caption"
+              style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
+            >
+              <ContactChannels variant="pills" formHref="/contact#formulaire" />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* ============================================================ */}
-      {/*  Auto-bubble "Besoin d'aide ?"                               */}
-      {/* ============================================================ */}
+      {/* ====================== Bulle (desktop) ====================== */}
       <AnimatePresence>
         {showBubble && !open && (
           <motion.div
-            key="autobubble"
-            initial={{ opacity: 0, y: 10, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.9 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed z-[59] bottom-[5.5rem] right-4 lg:bottom-[6.5rem] lg:right-6"
+            key="bubble"
+            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed bottom-24 right-6 z-[59] hidden lg:block"
           >
-            <button
-              type="button"
-              onClick={() => {
-                setShowBubble(false);
-                setBubbleDismissed(true);
-                setOpen(true);
-              }}
-              className="relative bg-white shadow-xl shadow-black/10 ring-1 ring-black/[0.06] rounded-2xl rounded-br-md px-4 py-3 text-[13px] text-slate-700 font-medium hover:shadow-2xl transition-shadow cursor-pointer max-w-[220px]"
-            >
-              <span>
-                {tx(
-                  "Besoin d'aide ? Échangeons ! 💬",
-                  "Need help? Let's chat! 💬"
-                )}
-              </span>
-              {/* Close mini button */}
-              <span
-                role="button"
-                tabIndex={0}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowBubble(false);
-                  setBubbleDismissed(true);
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.stopPropagation();
-                    setShowBubble(false);
-                    setBubbleDismissed(true);
-                  }
-                }}
-                className="absolute -top-2 -left-2 h-5 w-5 rounded-full bg-slate-200 hover:bg-slate-300 flex items-center justify-center transition-colors"
-                aria-label={tx("Fermer", "Close")}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setOpen(true)}
+                className="max-w-[240px] rounded-xl rounded-br-sm border border-track bg-bg py-3 pl-4 pr-10 text-left text-body-sm font-medium text-fg shadow-float transition-colors hover:border-track-strong"
               >
-                <X className="h-3 w-3 text-slate-600" />
-              </span>
-            </button>
+                {tx("Besoin d'aide ? Échangeons !", "Need help? Let's chat!")}
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowBubble(false)}
+                className="absolute right-1 top-1 flex h-8 w-8 items-center justify-center rounded-lg text-fg-muted hover:bg-white/[0.04] hover:text-fg"
+                aria-label={tx("Fermer l'invitation", "Dismiss")}
+              >
+                <X className="h-4 w-4" aria-hidden="true" />
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* ============================================================ */}
-      {/*  Floating Avatar Button                                      */}
-      {/* ============================================================ */}
-      <motion.button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-label={tx(
-          "Ouvrir l'assistant commercial",
-          "Open sales assistant"
-        )}
-        aria-expanded={open}
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{
-          delay: 0.6,
-          type: "spring",
-          stiffness: 200,
-          damping: 18,
-        }}
-        whileHover={{ scale: 1.07 }}
-        whileTap={{ scale: 0.93 }}
-        className="fixed z-[60] bottom-4 right-4 lg:bottom-6 lg:right-6 h-[48px] w-[48px] md:h-[60px] md:w-[60px] rounded-full shadow-xl shadow-emerald-900/25 ring-[3px] ring-white flex items-center justify-center overflow-hidden group"
-        style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 1rem)" }}
-      >
-        {/* Photo avatar */}
-        <div className="absolute inset-0 rounded-full overflow-hidden">
-          <Image
-            src="/images/sophie-martin.jpg"
-            alt="Sophie Martin"
-            width={60}
-            height={60}
-            className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-          {/* Dark overlay when open */}
-          <AnimatePresence>
-            {open && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="absolute inset-0 bg-[#047857]/80 flex items-center justify-center"
-              >
-                <X className="h-6 w-6 text-white" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* Online badge */}
-        {!open && (
-          <span className="absolute -bottom-0.5 -right-0.5 h-4 w-4 rounded-full bg-[#047857] ring-[2.5px] ring-white z-10">
-            <span className="absolute inset-0 rounded-full bg-[#047857] animate-ping opacity-60" />
-          </span>
-        )}
-      </motion.button>
+      {/* ============== Bouton compact (desktop ; mobile → MobileActionBar) ============== */}
+      {!open && (
+        <ChatLauncher className="fixed bottom-6 right-6 z-[60] hidden lg:flex" />
+      )}
     </>
+  );
+}
+
+/**
+ * Bouton rond d'ouverture du chat (§6.10). Réutilisé par MobileActionBar.
+ */
+export function ChatLauncher({ className = "", size = "lg" }: { className?: string; size?: "md" | "lg" }) {
+  const { chatOpen, toggleChat } = useSiteUi();
+  const locale = useLocale();
+  const dims = size === "lg" ? "h-12 w-12" : "h-11 w-11";
+  return (
+    <button
+      type="button"
+      onClick={toggleChat}
+      aria-label={locale === "en" ? "Open the sales assistant" : "Ouvrir l'assistant commercial"}
+      aria-expanded={chatOpen}
+      aria-controls={CHAT_PANEL_ID}
+      className={`${dims} flex-shrink-0 items-center justify-center rounded-full bg-emerald text-bg shadow-glow-dot transition-colors hover:bg-emerald-hover ${className}`}
+    >
+      <MessageCircle className="h-[22px] w-[22px]" strokeWidth={1.75} aria-hidden="true" />
+    </button>
   );
 }

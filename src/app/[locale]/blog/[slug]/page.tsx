@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import GeometryField from "@/components/visuals/GeometryField";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogArticles, getArticleBySlug, getAllSlugs } from "@/lib/blog-data";
@@ -7,6 +8,7 @@ import { getArticleContent } from "@/lib/blog-content";
 import { Calendar, Clock, ArrowLeft, Share2, User } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SchemaOrg from "@/components/SchemaOrg";
+import { SITE_URL as SITE } from "@/lib/site";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -21,8 +23,7 @@ export async function generateMetadata({
   const article = getArticleBySlug(slug);
   if (!article) return {};
 
-  const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
-
+  
   return {
     title: article.title,
     description: article.description,
@@ -83,26 +84,26 @@ export default async function BlogArticlePage({
     "@type": "Article",
     headline: article.title,
     description: article.description,
-    image: `https://greentechcycle.fr${article.image}`,
+    image: `${SITE}${article.image}`,
     datePublished: article.publishedAt,
     dateModified: article.updatedAt,
     author: {
       "@type": "Organization",
       name: "GreenTechCycle",
-      url: "https://greentechcycle.fr",
+      url: `${SITE}`,
     },
     publisher: {
       "@type": "Organization",
       name: "GreenTechCycle",
-      url: "https://greentechcycle.fr",
+      url: `${SITE}`,
       logo: {
         "@type": "ImageObject",
-        url: "https://greentechcycle.fr/logo/logo-primary.svg",
+        url: `${SITE}/logo/logo-primary.svg`,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://greentechcycle.fr/${locale}/blog/${slug}`,
+      "@id": `${SITE}/${locale}/blog/${slug}`,
     },
   };
 
@@ -112,20 +113,19 @@ export default async function BlogArticlePage({
   return (
     <>
       <SchemaOrg data={schemaData} />
-      <main className="min-h-screen">
+      <div className="min-h-screen">
         {/* Hero */}
-        <section className="relative bg-gradient-to-br from-[#047857] to-[#1E40AF] py-20 md:py-28">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(16,185,129,0.15),_transparent_50%)]" />
-          <div className="container mx-auto px-4 relative z-10">
+        <section className="relative bg-bg-card py-16 lg:py-24">
+          <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
             <Breadcrumbs items={breadcrumbs} dark />
             <div className="max-w-3xl">
-              <span className="inline-block bg-[#047857] text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">
+              <span className="inline-block bg-emerald text-bg text-sm font-semibold px-4 py-1 rounded-full mb-4">
                 {article.category}
               </span>
-              <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              <h1 className="text-display-lg text-fg mb-6">
                 {article.title}
               </h1>
-              <div className="flex flex-wrap items-center gap-6 text-gray-300 text-sm">
+              <div className="flex flex-wrap items-center gap-6 text-fg-muted text-sm">
                 <span className="flex items-center gap-2">
                   <User className="h-4 w-4" />
                   {article.author}
@@ -148,38 +148,31 @@ export default async function BlogArticlePage({
         </section>
 
         {/* Article Content */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
+        <section className="bg-bg-card py-12 lg:py-16">
+          <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
               {/* Featured Image */}
-              <div className="relative aspect-[16/9] rounded-2xl overflow-hidden mb-10 shadow-lg">
-                <Image
-                  src={article.image}
-                  alt={article.imageAlt}
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 768px"
-                />
+              <div className="relative aspect-[16/9] rounded-2xl overflow-hidden mb-10">
+                <MediaSlot fill id={`blog-${slug}`} alt={article.imageAlt} fallback={<GeometryField />} />
               </div>
 
               {/* Content */}
               <div
-                className="prose prose-lg prose-slate max-w-none prose-headings:text-[#0F172A] prose-headings:font-bold prose-a:text-[#047857] prose-a:no-underline hover:prose-a:underline prose-strong:text-[#0F172A] prose-li:text-gray-700"
+                className="prose"
                 dangerouslySetInnerHTML={{ __html: content }}
               />
 
               {/* Share & Back */}
-              <div className="flex items-center justify-between mt-12 pt-8 border-t border-gray-200">
+              <div className="flex items-center justify-between mt-12 pt-8 border-t border-track">
                 <Link
                   href={`/${locale}/blog`}
-                  className="inline-flex items-center gap-2 text-[#047857] font-semibold hover:text-[#047857] transition-colors"
+                  className="inline-flex items-center gap-2 text-emerald font-semibold hover:text-emerald transition-colors"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Retour au blog
                 </Link>
                 <button
-                  className="inline-flex items-center gap-2 text-gray-500 hover:text-[#047857] transition-colors"
+                  className="inline-flex items-center gap-2 text-fg-muted hover:text-emerald transition-colors"
                   aria-label="Partager cet article"
                 >
                   <Share2 className="h-4 w-4" />
@@ -191,25 +184,25 @@ export default async function BlogArticlePage({
         </section>
 
         {/* Related Articles */}
-        <section className="py-16 bg-[#F8FAFC]">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-bold text-[#0F172A] mb-8">Articles connexes</h2>
+        <section className="bg-bg-card py-12 lg:py-16">
+          <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+            <h2 className="text-display-md text-fg mb-8">Articles connexes</h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-3xl">
               {related.map((rel) => (
                 <Link
                   key={rel.slug}
                   href={`/${locale}/blog/${rel.slug}`}
-                  className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow"
+                  className="bg-bg-card rounded-xl p-6 border border-track hover:border-track-strong transition-shadow"
                 >
-                  <span className="text-xs font-semibold text-[#047857]">{rel.category}</span>
-                  <h3 className="text-lg font-bold text-[#0F172A] mt-2 line-clamp-2">{rel.title}</h3>
-                  <p className="text-sm text-gray-600 mt-2 line-clamp-2">{rel.description}</p>
+                  <span className="text-xs font-semibold text-emerald">{rel.category}</span>
+                  <h3 className="text-heading-md text-fg mt-2 line-clamp-2">{rel.title}</h3>
+                  <p className="text-sm text-fg-strong mt-2 line-clamp-2">{rel.description}</p>
                 </Link>
               ))}
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

@@ -12,11 +12,11 @@ export default function CybersecuritePage() {
 
   const data: ServicePageData = {
     slug: "cybersecurite-itad",
-    eyebrow: tx("05 (Niveau Défense", "05) Defence-grade"),
+    eyebrow: tx("05 · Niveau Défense", "05 · Defence-grade"),
     title: tx("Cybersécurité ITAD", "ITAD cybersecurity"),
     subtitle: tx(
-      "Les autres acteurs traitent la sécurité comme une case à cocher. Pour nous, c'est la colonne vertébrale du métier : huissier, scellés numérotés, GPS, vidéosurveillance archivée dix ans, registre signé eIDAS.",
-      "Other ITAD vendors treat security as a checkbox. For us, it is the spine of the trade: bailiff, numbered seals, GPS, video surveillance archived for ten years, eIDAS-signed register."
+      "Les autres acteurs traitent la sécurité comme une case à cocher. Pour nous, c'est la colonne vertébrale du métier : huissier, scellés numérotés, GPS, vidéosurveillance archivée dix ans, registre horodaté chaîné (SHA-256).",
+      "Other ITAD vendors treat security as a checkbox. For us, it is the spine of the trade: bailiff, numbered seals, GPS, video surveillance archived for ten years, timestamped chained register (SHA-256)."
     ),
     description: tx(
       "Quand un actif sort de vos locaux, vous transférez une responsabilité. Si une donnée fuit en chemin, c'est votre nom qui apparaît dans la presse, pas celui du transporteur. Notre protocole de chaîne de garde a été conçu avec d'anciens RSSI bancaires et de défense pour produire un dossier juridiquement opposable. Procès-verbal d'huissier, vérification d'identité des intervenants, vérification d'antécédents annuelle, scellés inviolables, suivi GPS, vidéosurveillance haute définition. Huit contrôles imbriqués générant un dossier de preuves complet.",
@@ -27,19 +27,19 @@ export default function CybersecuritePage() {
       "The protocol is neither a marketing document nor an internal charter: it is an industrial sequence, audited every year by an external firm, written into our contracts. Here is how it unfolds."
     ),
     deliveryNarrative: tx(
-      "Vous repartez avec un dossier opposable devant un tribunal, pas avec une attestation sur l'honneur. Acte d'huissier authentique, vidéos horodatées, registre cryptographique chaîné, la totalité scellée dans un PDF signé eIDAS.",
-      "You leave with a court-admissible dossier, not a self-attested certificate. Authentic bailiff record, timestamped videos, chained cryptographic register, all sealed in an eIDAS-signed PDF."
+      "Vous repartez avec un dossier opposable devant un tribunal, pas avec une attestation sur l'honneur. Acte d'huissier authentique, vidéos horodatées, registre cryptographique chaîné, la totalité scellée dans un PDF horodaté avec empreinte SHA-256.",
+      "You leave with a court-admissible dossier, not a self-attested certificate. Authentic bailiff record, timestamped videos, chained cryptographic register, all sealed in a PDF timestamped with a SHA-256 fingerprint."
     ),
     icon: Shield,
     badge: tx("Niveau Défense", "Defence-grade"),
     image:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=80",
+      "/images/cybersecurity.jpg",
     imageAlt: tx(
       "Salle de supervision cybersécurité sous éclairage tamisé",
       "Cybersecurity supervision room under low-key lighting"
     ),
     imageSecondary:
-      "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=1600&q=80",
+      "/photos/server-technician.jpg",
     imageSecondaryAlt: tx(
       "Convoyage sécurisé d'équipements informatiques",
       "Secure convoy of IT equipment"
@@ -51,13 +51,13 @@ export default function CybersecuritePage() {
       tx("Scellés physiques numérotés inviolables", "Tamper-evident numbered physical seals"),
       tx("Traçabilité GPS temps réel du convoi", "Real-time GPS convoy tracking"),
       tx("Vidéosurveillance haute définition archivée 10 ans (AES-256)", "HD video archived 10 years (AES-256)"),
-      tx("Registre horodaté signé eIDAS", "eIDAS-signed timestamped register"),
+      tx("Registre horodaté chaîné (SHA-256)", "Timestamped chained register (SHA-256)"),
       tx("Preuves cryptographiques chaînées SHA-256", "SHA-256 chained cryptographic proofs"),
     ],
     proof: [
-      { value: "100", unit: "%", label: tx("intervenants vérifiés", "verified operators"), color: "#10B981" },
-      { value: "10", unit: tx("ans", "yrs"), label: tx("archivage des preuves", "evidence archival"), color: "#0EA5E9" },
-      { value: "<500", unit: "m", label: tx("alerte écart GPS", "GPS deviation alert"), color: "#F59E0B" },
+      { value: "100", unit: "%", label: tx("intervenants vérifiés", "verified operators") },
+      { value: "10", unit: tx("ans", "yrs"), label: tx("archivage des preuves", "evidence archival") },
+      { value: "<500", unit: "m", label: tx("alerte écart GPS", "GPS deviation alert") },
     ],
     methodology: {
       title: tx("Huit contrôles, un seul dossier opposable", "Eight controls, one admissible dossier"),
@@ -87,24 +87,24 @@ export default function CybersecuritePage() {
         {
           title: tx("Constitution du dossier de preuves", "Evidence file build-up"),
           desc: tx(
-            "Procès-verbal d'huissier, scans d'identité, photos de scellés, journal GPS, vidéos horodatées, registre cryptographique, l'ensemble est consolidé dans un PDF signé eIDAS, archivé dix ans, accessible à tout moment.",
-            "Bailiff report, ID scans, seal photos, GPS log, timestamped videos, cryptographic register, all consolidated in an eIDAS-signed PDF, archived for ten years, accessible at any time."
+            "Procès-verbal d'huissier, scans d'identité, photos de scellés, journal GPS, vidéos horodatées, registre cryptographique, l'ensemble est consolidé dans un PDF horodaté avec empreinte SHA-256, archivé dix ans, accessible à tout moment.",
+            "Bailiff report, ID scans, seal photos, GPS log, timestamped videos, cryptographic register, all consolidated in a PDF timestamped with a SHA-256 fingerprint, archived for ten years, accessible at any time."
           ),
         },
       ],
     },
     deliverables: [
-      tx("Dossier de preuves PDF signé eIDAS", "eIDAS-signed evidence file PDF"),
+      tx("Dossier de preuves PDF horodaté avec empreinte SHA-256", "Evidence file PDF timestamped with a SHA-256 fingerprint"),
       tx("Procès-verbal d'huissier (acte authentique)", "Bailiff report (authentic record)"),
       tx("Vidéos horodatées des opérations", "Timestamped operation videos"),
-      tx("Registre cryptographique blockchain", "Blockchain cryptographic register"),
+      tx("Registre cryptographique chaîné (SHA-256)", "Chained cryptographic register (SHA-256)"),
     ],
     sla: [
       { metric: tx("Intervenants vérifiés", "Verified operators"), value: "100 %" },
       { metric: tx("Archivage des preuves", "Evidence archival"), value: tx("10 ans", "10 yrs") },
       { metric: tx("Alerte écart GPS", "GPS deviation alert"), value: "< 500 m" },
     ],
-    certifications: ["R2v3", "ISO 27001", "eIDAS", "NIST 800-88", "HMG IS5"],
+    certifications: ["ISO 27001 (en cours)", "NIST 800-88", "HMG IS5"],
     quote: {
       text: tx(
         "Quand l'inspection ACPR est arrivée, j'ai posé un seul PDF sur la table. Quinze minutes plus tard, le sujet était clos. C'est ce niveau de preuve que nous attendions depuis dix ans.",

@@ -1,5 +1,6 @@
 "use client";
 
+import { KPIS, formatKpi } from "@/content/kpis";
 import { RefreshCcw } from "lucide-react";
 import { useLocale } from "next-intl";
 import ServicePageTemplate from "../ServicePageTemplate";
@@ -12,7 +13,7 @@ export default function ReconditionnementPage() {
 
   const data: ServicePageData = {
     slug: "reconditionnement-valorisation",
-    eyebrow: tx("03 (Valorisation", "03) Value recovery"),
+    eyebrow: tx("03 · Valorisation", "03 · Value recovery"),
     title: tx("Reconditionnement et valorisation", "Refurbishment and value recovery"),
     subtitle: tx(
       "Un poste de quatre ans n'est pas un déchet : c'est un budget mal lu. Notre atelier remet en état, classe, vend ou cède chaque actif éligible, et reverse une part contractuelle de la valeur récupérée.",
@@ -23,8 +24,8 @@ export default function ReconditionnementPage() {
       "Every eligible asset goes through our refurbishment line. Hardware diagnostic, cosmetic restoration, replacement of failing components, firmware update, functional test battery, A/B/C quality grade. Equipment is then placed on three channels according to your policy: business resale, internal store for your employees, or charitable transfer to approved associations with tax deduction. The share of residual value returned is contractually fixed before the first mission, no surprise at year end."
     ),
     narrative: tx(
-      "La valorisation ne se résume pas à un prix de revente. Elle exige une chaîne industrielle : diagnostic, pièces de rechange en stock, formation des techniciens, contrôle qualité, garantie. Voici comment nous obtenons un taux de réemploi moyen de 72 %.",
-      "Value recovery isn't just a resale price. It requires an industrial chain: diagnostic, spare parts in stock, technician training, quality control, warranty. Here is how we sustain a 72% average reuse rate."
+      "La valorisation ne se résume pas à un prix de revente. Elle exige une chaîne industrielle : diagnostic, pièces de rechange en stock, formation des techniciens, contrôle qualité, garantie. Voici comment nous obtenons un taux de réemploi moyen de " + formatKpi("reuse", "fr") + ".",
+      "Value recovery isn't just a resale price. It requires an industrial chain: diagnostic, spare parts in stock, technician training, quality control, warranty. Here is how we sustain a " + formatKpi("reuse", "en") + " average reuse rate."
     ),
     deliveryNarrative: tx(
       "Le rapport trimestriel n'est pas un PowerPoint marketing : il détaille chaque actif, chaque grade, chaque prix de cession, chaque tonne de CO₂ évitée. Vos directions financière et RSE l'utilisent directement, sans retraitement.",
@@ -38,7 +39,7 @@ export default function ReconditionnementPage() {
       "GreenTechCycle engineers inspecting laptops before refurbishment"
     ),
     imageSecondary:
-      "https://images.unsplash.com/photo-1593104547489-5cfb3839a3b5?auto=format&fit=crop&w=1600&q=80",
+      "/photos/service-reconditionnement.jpg",
     imageSecondaryAlt: tx(
       "Atelier de reconditionnement d'ordinateurs portables",
       "Laptop refurbishment workshop"
@@ -52,9 +53,9 @@ export default function ReconditionnementPage() {
       tx("Mesure du CO₂ évité par réemploi", "Avoided CO₂ measurement through reuse"),
     ],
     proof: [
-      { value: "+40", unit: "%", label: tx("valeur récupérée moyenne", "average recovered value"), color: "#10B981" },
-      { value: "72", unit: "%", label: tx("taux de réemploi mesuré", "measured reuse rate"), color: "#0EA5E9" },
-      { value: "12", unit: tx("mois", "mo"), label: tx("garantie sur le matériel", "equipment warranty"), color: "#F59E0B" },
+      { value: "+40", unit: "%", label: tx("valeur récupérée moyenne", "average recovered value") },
+      { value: String(KPIS.reuse.value), unit: "%", label: tx("taux de réemploi mesuré", "measured reuse rate") },
+      { value: "12", unit: tx("mois", "mo"), label: tx("garantie sur le matériel", "equipment warranty") },
     ],
     methodology: {
       title: tx("De la palette qui arrive au chèque qui repart", "From incoming pallet to outgoing payment"),
@@ -99,14 +100,14 @@ export default function ReconditionnementPage() {
     ],
     sla: [
       { metric: tx("Délai de reconditionnement", "Refurbishment turnaround"), value: tx("10 jours", "10 days") },
-      { metric: tx("Taux de réemploi moyen", "Average reuse rate"), value: "72 %" },
+      { metric: tx("Taux de réemploi moyen", "Average reuse rate"), value: tx(formatKpi("reuse", "fr"), formatKpi("reuse", "en")) },
       { metric: tx("Garantie équipements", "Equipment warranty"), value: tx("12 mois", "12 mo") },
     ],
-    certifications: ["R2v3", "ISO 14001", "Boavizta member"],
+    certifications: ["Boavizta member"],
     quote: {
       text: tx(
-        "638 000 € reversés sur 4 200 postes en deux ans. Notre direction financière a découvert que la fin de vie IT pouvait devenir une ligne de produits.",
-        "€638,000 returned on 4,200 laptops in two years. Our finance team discovered that IT end of life could become a revenue line."
+        "Notre direction financière a découvert que la fin de vie IT pouvait devenir une ligne de produits.",
+        "Our finance team discovered that IT end of life could become a revenue line."
       ),
       name: "Catherine M.",
       role: tx("DAF, distribution spécialisée", "CFO, specialty retail"),
@@ -130,7 +131,7 @@ export default function ReconditionnementPage() {
     ctaPrimaryLabel: tx("Réserver une cession", "Book a transfer"),
     ctaSecondaryLabel: tx("Voir les cas d'usages", "See use cases"),
     ctaSecondaryHref: "/cas-usages",
-    pricingAnchor: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+    pricingAnchor: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
     pricingHref: "/tarifs",
     isEn,
   };

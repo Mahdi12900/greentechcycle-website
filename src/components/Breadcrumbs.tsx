@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { SITE_URL } from "@/lib/site";
 
 interface BreadcrumbItem {
   label: string;
@@ -12,10 +13,9 @@ interface BreadcrumbsProps {
 }
 
 export default function Breadcrumbs({ items, dark = false }: BreadcrumbsProps) {
-  const textColor = dark ? "text-gray-300" : "text-gray-600";
-  const activeColor = dark ? "text-white" : "text-[#0F172A]";
-  const hoverColor = dark ? "hover:text-white" : "hover:text-[#047857]";
-  const separatorColor = dark ? "text-gray-500" : "text-gray-400";
+  const textColor = dark ? "text-fg-muted" : "text-fg-strong";
+  const activeColor = dark ? "text-fg" : "text-fg";
+  const hoverColor = dark ? "hover:text-fg" : "hover:text-emerald";
 
   const schemaData = {
     "@context": "https://schema.org",
@@ -24,7 +24,7 @@ export default function Breadcrumbs({ items, dark = false }: BreadcrumbsProps) {
       "@type": "ListItem",
       position: index + 1,
       name: item.label,
-      item: `https://greentechcycle.fr${item.href}`,
+      item: `${SITE_URL}${item.href}`,
     })),
   };
 
@@ -34,24 +34,18 @@ export default function Breadcrumbs({ items, dark = false }: BreadcrumbsProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
-      <ol className="flex flex-wrap items-center gap-1 text-sm">
+      <ol className="flex flex-wrap items-center gap-1 text-caption">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           return (
-            <li key={item.href} className="flex items-center gap-1">
-              {index === 0 && <Home className={`h-3.5 w-3.5 ${textColor}`} />}
-              {index > 0 && (
-                <ChevronRight className={`h-3.5 w-3.5 ${separatorColor}`} aria-hidden="true" />
-              )}
+            <li key={`${item.href}-${index}`} className="flex items-center gap-1">
+              {index > 0 && <ChevronRight className={`h-3.5 w-3.5 ${textColor}`} aria-hidden="true" />}
               {isLast ? (
-                <span className={`font-medium ${activeColor} line-clamp-1 max-w-[200px]`} aria-current="page">
+                <span className={`line-clamp-1 max-w-[240px] font-medium ${activeColor}`} aria-current="page">
                   {item.label}
                 </span>
               ) : (
-                <Link
-                  href={item.href}
-                  className={`${textColor} ${hoverColor} transition-colors`}
-                >
+                <Link href={item.href} className={`${textColor} ${hoverColor} transition-colors`}>
                   {item.label}
                 </Link>
               )}

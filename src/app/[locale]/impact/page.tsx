@@ -1,14 +1,10 @@
 "use client";
 
+import DashboardMock from "@/components/visuals/DashboardMock";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-import {
-  FadeIn,
-  StaggerContainer,
-  StaggerItem,
-  ScaleIn,
-} from "@/components/motion";
+
 import {
   ArrowRight,
   ArrowDownRight,
@@ -33,9 +29,13 @@ import {
 } from "lucide-react";
 import RelatedArticles from "@/components/RelatedArticles";
 import CtaSection from "@/components/CtaSection";
+import { ButtonLink } from "@/components/ui/Button";
+import Tag from "@/components/ui/Tag";
+import { Stat, StatRow } from "@/components/ui/Stat";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SchemaOrg from "@/components/SchemaOrg";
 import CarbonCalculator from "@/components/CarbonCalculator";
+import { SITE_URL } from "@/lib/site";
 
 // ---------------------------------------------------------------------------
 // Type helpers (mirroring messages/*.json structure for the Impact namespace)
@@ -138,7 +138,7 @@ export default function ImpactPage() {
     "@type": "WebPage",
     name: t("hero.title"),
     description: t("hero.subtitle"),
-    url: "https://greentechcycle.fr/impact",
+    url: `${SITE_URL}/impact`,
     inLanguage: "fr-FR",
     about: [
       { "@type": "Thing", name: "Bilan carbone IT" },
@@ -149,7 +149,7 @@ export default function ImpactPage() {
     publisher: {
       "@type": "Organization",
       name: "GreenTechCycle",
-      url: "https://greentechcycle.fr",
+      url: `${SITE_URL}`,
     },
   };
 
@@ -161,331 +161,242 @@ export default function ImpactPage() {
         "@type": "ListItem",
         position: 1,
         name: t("breadcrumb.home"),
-        item: "https://greentechcycle.fr/",
+        item: `${SITE_URL}/`,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: t("breadcrumb.current"),
-        item: "https://greentechcycle.fr/impact",
+        item: `${SITE_URL}/impact`,
       },
     ],
   };
 
   return (
-    <main className="min-h-screen bg-light">
+    <div className="bg-bg-card">
       <SchemaOrg data={pageSchema} />
       <SchemaOrg data={breadcrumbSchema} />
 
       {/* =====================================================================
           SECTION 1 (HERO ÉDITORIAL) split sombre + photo droite
           ===================================================================== */}
-      <section
-        className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
-        aria-labelledby="impact-hero"
-      >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 12% 10%, rgba(16,185,129,0.18) 0%, transparent 60%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 88% 90%, rgba(34,197,94,0.10) 0%, transparent 55%)",
-          }}
-        />
-
-        {/* Numéro fantôme XXL */}
-        <div
-          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-          style={{
-            fontSize: "clamp(8rem, 22vw, 18rem)",
-            color: "rgba(255,255,255,0.04)",
-            right: "0.5rem",
-            bottom: "-0.1em",
-          }}
-          aria-hidden="true"
-        >
-          78
-        </div>
-
-        <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-16 pb-12 lg:py-20">
-          <div className="text-white/80 mb-6">
-            <Breadcrumbs
-              dark
-              items={[
-                { label: t("breadcrumb.home"), href: "/" },
-                { label: t("breadcrumb.current"), href: "/impact" },
-              ]}
-            />
-          </div>
-
-          <FadeIn>
-            <div className="flex items-center gap-3 mb-8">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
-                <span
-                  className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
-                  style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
-                />
-                {t("hero.eyebrow")}
-              </span>
-            </div>
-
-            <h1
-              id="impact-hero"
-              className="text-white font-black tracking-tight mb-6"
-              style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
-            >
-              {t("hero.title")}
-            </h1>
-
-            <p className="text-gray-300 text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-8">
-              {t("hero.subtitle")}
-            </p>
-
-            <div className="flex flex-wrap gap-2 mb-8">
-              {heroChips.map((chip) => (
-                <span
-                  key={chip}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/15 text-[11px] font-medium text-gray-300"
-                >
-                  <CheckCircle2 className="w-3 h-3 text-[#10B981]" />
-                  {chip}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 mb-10">
-              <Link
-                href="#calculator"
-                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
-              >
-                {t("hero.ctaPrimary")}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/reserver?offre=methodologie-csrd"
-                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
-              >
-                <Download className="w-4 h-4" />
-                {t("hero.ctaSecondary")}
-              </Link>
-            </div>
-
-            <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-2xl">
-              {heroKpis.map((kpi, i) => (
-                <StaggerItem key={i}>
-                  <div className="h-full bg-white/[0.04] backdrop-blur border border-white/10 rounded-xl p-4">
-                    <div className="text-xl md:text-2xl font-black text-[#10B981] mb-1 tracking-tight tabular-nums">
-                      {kpi.value}
-                    </div>
-                    <p className="text-[11px] text-gray-300 leading-snug mb-2">
-                      {kpi.label}
-                    </p>
-                    <p className="text-[9px] text-gray-500 italic leading-snug">
-                      {kpi.source}
-                    </p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-          </FadeIn>
-        </div>
-
-        <div className="relative w-full lg:w-[45%] min-h-[42vh] lg:min-h-0 overflow-hidden flex-shrink-0">
-          <Image
-            src="/photos/impact-sustainability.jpg"
-            alt="Forêt et infrastructure énergétique, symbole de la décarbonation du numérique d'entreprise"
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 45vw"
+      <section className="bg-bg py-16 lg:py-24" aria-labelledby="impact-hero">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { label: t("breadcrumb.home"), href: "/" },
+              { label: t("breadcrumb.current"), href: "/impact" },
+            ]}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/85 via-[#0F172A]/25 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F172A]/55 to-transparent" />
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="reveal min-w-0 lg:col-span-7">
+              <p className="text-eyebrow uppercase text-fg-muted">{t("hero.eyebrow")}</p>
+              <h1 id="impact-hero" className="mt-3 max-w-[20ch] text-display-lg text-fg">{t("hero.title")}</h1>
+              <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("hero.subtitle")}</p>
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {heroChips.map((chip) => (
+                  <li key={chip}><Tag variant="neutral">{chip}</Tag></li>
+                ))}
+              </ul>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="#calculator" size="lg">{t("hero.ctaPrimary")}</ButtonLink>
+                <ButtonLink href="/reserver?offre=methodologie-csrd" variant="secondary" size="lg">
+                  <Download className="h-4 w-4" aria-hidden="true" />
+                  {t("hero.ctaSecondary")}
+                </ButtonLink>
+              </div>
+            </div>
+            <div className="reveal lg:col-span-5">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
+                <MediaSlot fill id="impact-hero" alt="Forêt et infrastructure énergétique, symbole de la décarbonation du numérique d'entreprise" fallback={<DashboardMock state="reporting" />} />
+              </div>
+            </div>
+          </div>
+          <div className="mt-12 border-t border-track pt-8">
+            <StatRow>
+              {heroKpis.map((kpi, i) => (
+                <Stat key={i} value={kpi.value} label={kpi.label} source={kpi.source} />
+              ))}
+            </StatRow>
+          </div>
         </div>
       </section>
 
       {/* =====================================================================
           SECTION 2, WEIGHT OF DIGITAL
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-white">
+      <section className="px-6 bg-bg-card py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider">
+          <div className="reveal">
+            <span className="block text-eyebrow uppercase text-fg-muted">
               {t("weight.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-fg max-w-4xl">
               {t("weight.title")}
             </h2>
-            <p className="mt-5 text-lg text-dark/70 max-w-3xl leading-relaxed">
+            <p className="mt-5 text-lg text-fg-strong max-w-3xl leading-relaxed">
               {t("weight.lead")}
             </p>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="reveal-stagger mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             {weightStats.map((stat, i) => (
-              <StaggerItem key={i}>
-                <div className="h-full bg-gradient-to-br from-light to-white rounded-2xl p-7 border border-gray-100 shadow-sm hover:shadow-lg transition-shadow">
+              <div key={i} className="reveal">
+                <div className="h-full rounded-2xl p-7 border border-track hover:border-track-strong transition-shadow bg-bg-card">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="text-4xl md:text-5xl font-bold text-primary leading-none">
+                    <div className="text-4xl md:text-5xl font-semibold text-emerald leading-none">
                       {stat.value}
                     </div>
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-dim flex items-center justify-center text-emerald">
                       {i === 0 && <Factory className="w-5 h-5" />}
                       {i === 1 && <Recycle className="w-5 h-5" />}
                       {i === 2 && <LineChart className="w-5 h-5" />}
                     </div>
                   </div>
-                  <h3 className="text-base font-semibold text-dark mb-2 leading-snug">
+                  <h3 className="text-heading-md text-fg mb-2">
                     {stat.title}
                   </h3>
-                  <p className="text-sm text-dark/70 leading-relaxed mb-4">
+                  <p className="text-sm text-fg-strong leading-relaxed mb-4">
                     {stat.desc}
                   </p>
-                  <p className="text-[11px] text-dark/40 italic border-t border-gray-100 pt-3">
+                  <p className="text-caption text-fg-strong italic border-t border-track pt-3">
                     Source : {stat.source}
                   </p>
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
 
-          <FadeIn>
-            <div className="mt-10 bg-secondary/5 border-l-4 border-secondary rounded-r-xl p-6 md:p-8">
-              <h3 className="text-base font-semibold text-dark flex items-center gap-2 mb-2">
-                <Sparkles className="w-4 h-4 text-secondary" />
+          <div className="reveal">
+            <div className="mt-10 bg-bg/5 border-l-4 border-emerald rounded-r-xl p-6 md:p-8">
+              <h3 className="text-heading-md text-fg flex items-center gap-2 mb-2">
+                <Sparkles className="w-4 h-4 text-emerald" />
                 {t("weight.analogy.title")}
               </h3>
-              <p className="text-dark/75 leading-relaxed">
+              <p className="text-fg-strong leading-relaxed">
                 {t("weight.analogy.desc")}
               </p>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* =====================================================================
           SECTION 3, METHODOLOGY
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-gradient-to-b from-light to-white">
+      <section className="px-6 bg-bg-card py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold uppercase tracking-wider">
+          <div className="reveal">
+            <span className="block text-eyebrow uppercase text-fg-muted">
               {t("methodology.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-fg max-w-4xl">
               {t("methodology.title")}
             </h2>
-            <p className="mt-5 text-lg text-dark/70 max-w-3xl leading-relaxed">
+            <p className="mt-5 text-lg text-fg-strong max-w-3xl leading-relaxed">
               {t("methodology.lead")}
             </p>
-          </FadeIn>
+          </div>
 
           {/* Scopes */}
           <div className="mt-14">
-            <FadeIn>
-              <h3 className="text-xl md:text-2xl font-bold text-dark flex items-center gap-2 mb-3">
-                <Layers className="w-5 h-5 text-primary" />
+            <div className="reveal">
+              <h3 className="text-heading-lg text-fg flex items-center gap-2 mb-3">
+                <Layers className="w-5 h-5 text-emerald" />
                 {t("methodology.scopeTitle")}
               </h3>
-              <p className="text-dark/70 leading-relaxed max-w-3xl">
+              <p className="text-fg-strong leading-relaxed max-w-3xl">
                 {t("methodology.scopeIntro")}
               </p>
-            </FadeIn>
-            <StaggerContainer className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            </div>
+            <div className="reveal-stagger mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
               {scopes.map((scope, i) => (
-                <StaggerItem key={i}>
-                  <div className="h-full bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-primary text-white text-xs font-bold mb-4">
+                <div key={i} className="reveal">
+                  <div className="h-full bg-bg-card rounded-2xl p-6 border border-track">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald text-bg text-xs font-semibold mb-4">
                       {scope.code}
                     </div>
-                    <h4 className="text-lg font-bold text-dark mb-2">
+                    <h4 className="text-lg font-semibold text-fg mb-2">
                       {scope.title}
                     </h4>
-                    <p className="text-sm text-dark/70 leading-relaxed">
+                    <p className="text-sm text-fg-strong leading-relaxed">
                       {scope.desc}
                     </p>
                   </div>
-                </StaggerItem>
+                </div>
               ))}
-            </StaggerContainer>
+            </div>
           </div>
 
           {/* Frameworks */}
           <div className="mt-16">
-            <FadeIn>
-              <h3 className="text-xl md:text-2xl font-bold text-dark flex items-center gap-2 mb-6">
-                <BookOpen className="w-5 h-5 text-secondary" />
+            <div className="reveal">
+              <h3 className="text-heading-lg text-fg flex items-center gap-2 mb-6">
+                <BookOpen className="w-5 h-5 text-emerald" />
                 {t("methodology.frameworksTitle")}
               </h3>
-            </FadeIn>
-            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            </div>
+            <div className="reveal-stagger grid grid-cols-1 md:grid-cols-2 gap-4">
               {frameworks.map((fw, i) => (
-                <StaggerItem key={i}>
-                  <div className="h-full bg-white rounded-xl p-5 border border-gray-100 hover:border-primary/30 transition-colors flex gap-4">
-                    <div className="shrink-0 w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                <div key={i} className="reveal">
+                  <div className="h-full bg-bg-card rounded-xl p-5 border border-track hover:border-emerald/30 transition-colors flex gap-4">
+                    <div className="shrink-0 w-9 h-9 rounded-lg bg-emerald-dim flex items-center justify-center text-emerald">
                       <ClipboardCheck className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-dark text-sm mb-1">
+                      <h4 className="font-semibold text-fg text-sm mb-1">
                         {fw.name}
                       </h4>
-                      <p className="text-xs text-dark/65 leading-relaxed">
+                      <p className="text-xs text-fg-strong leading-relaxed">
                         {fw.desc}
                       </p>
                     </div>
                   </div>
-                </StaggerItem>
+                </div>
               ))}
-            </StaggerContainer>
+            </div>
           </div>
 
           {/* Boundary */}
-          <FadeIn>
-            <div className="mt-14 bg-dark text-white rounded-2xl p-7 md:p-10 relative overflow-hidden">
-              <div className="absolute -top-12 -right-12 w-72 h-72 bg-primary/20 rounded-full blur-3xl" />
+          <div className="reveal">
+            <div className="mt-14 bg-bg-card text-fg rounded-2xl p-7 md:p-10 relative overflow-hidden">
               <div className="relative z-10">
-                <h3 className="text-xl md:text-2xl font-bold flex items-center gap-2 mb-3">
-                  <Globe className="w-5 h-5 text-primary-300" />
+                <h3 className="text-heading-lg flex items-center gap-2 mb-3">
+                  <Globe className="w-5 h-5 text-emerald" />
                   {t("methodology.boundaryTitle")}
                 </h3>
-                <p className="text-white/80 leading-relaxed max-w-4xl">
+                <p className="text-fg leading-relaxed max-w-4xl">
                   {t("methodology.boundaryDesc")}
                 </p>
               </div>
             </div>
-          </FadeIn>
+          </div>
 
           {/* Indicators */}
           <div className="mt-16">
-            <FadeIn>
-              <h3 className="text-xl md:text-2xl font-bold text-dark flex items-center gap-2 mb-6">
-                <Gauge className="w-5 h-5 text-primary" />
+            <div className="reveal">
+              <h3 className="text-heading-lg text-fg flex items-center gap-2 mb-6">
+                <Gauge className="w-5 h-5 text-emerald" />
                 {t("methodology.indicatorsTitle")}
               </h3>
-            </FadeIn>
-            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            </div>
+            <div className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
               {indicators.map((ind, i) => (
-                <StaggerItem key={i}>
-                  <div className="h-full bg-white rounded-xl p-5 border border-gray-100 text-center">
-                    <div className="text-xs font-bold text-primary uppercase tracking-wider mb-1">
+                <div key={i} className="reveal">
+                  <div className="h-full bg-bg-card rounded-xl p-5 border border-track text-center">
+                    <div className="text-fg-muted uppercase mb-1 text-eyebrow">
                       {ind.unit}
                     </div>
-                    <h4 className="text-sm font-semibold text-dark mb-2">
+                    <h4 className="text-sm font-semibold text-fg mb-2">
                       {ind.label}
                     </h4>
-                    <p className="text-xs text-dark/60 leading-snug">
+                    <p className="text-xs text-fg-strong leading-snug">
                       {ind.desc}
                     </p>
                   </div>
-                </StaggerItem>
+                </div>
               ))}
-            </StaggerContainer>
+            </div>
           </div>
         </div>
       </section>
@@ -495,87 +406,72 @@ export default function ImpactPage() {
           ===================================================================== */}
       <section
         id="calculator"
-        className="py-20 md:py-24 px-6 bg-white scroll-mt-24"
+        className="px-6 bg-bg-card scroll-mt-24 py-16 lg:py-24"
       >
         <div className="max-w-6xl mx-auto">
-          <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider">
+          <div className="reveal">
+            <span className="block text-eyebrow uppercase text-fg-muted">
               {t("calculator.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-fg max-w-4xl">
               {t("calculator.title")}
             </h2>
-            <p className="mt-5 text-lg text-dark/70 max-w-3xl leading-relaxed">
+            <p className="mt-5 text-lg text-fg-strong max-w-3xl leading-relaxed">
               {t("calculator.subtitle")}
             </p>
-          </FadeIn>
+          </div>
 
-          <ScaleIn>
+          <div className="reveal-scale">
             <div className="mt-10">
               <CarbonCalculator />
             </div>
-          </ScaleIn>
+          </div>
         </div>
       </section>
 
       {/* =====================================================================
           MID-PAGE CTA (after calculator)
           ===================================================================== */}
-      <section className="py-12 md:py-16 px-6 bg-gradient-to-r from-primary/10 via-secondary/5 to-accent/10 border-y border-primary/10">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn>
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] items-center gap-8">
-              <div>
-                <h3 className="text-2xl md:text-3xl font-bold text-dark mb-2 leading-tight">
-                  {t("midCta.title")}
-                </h3>
-                <p className="text-dark/70 leading-relaxed">
-                  {t("midCta.subtitle")}
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/demo"
-                  className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors whitespace-nowrap"
-                >
-                  {t("midCta.primary")}
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  href="/reserver?offre=esrs-pack"
-                  className="inline-flex items-center justify-center gap-2 border-2 border-primary/30 text-primary hover:bg-primary hover:text-white font-semibold px-6 py-3 rounded-xl transition-colors whitespace-nowrap"
-                >
-                  <Download className="w-4 h-4" />
-                  {t("midCta.secondary")}
-                </Link>
-              </div>
+      <section className="border-y border-track bg-bg py-12 lg:py-16" aria-label={t("midCta.title")}>
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-6 lg:grid-cols-[1fr_auto]">
+            <div>
+              <h3 className="text-heading-lg text-fg">{t("midCta.title")}</h3>
+              <p className="mt-2 max-w-[65ch] text-body text-fg-strong">{t("midCta.subtitle")}</p>
             </div>
-          </FadeIn>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/demo" variant="secondary">{t("midCta.primary")}</ButtonLink>
+              <ButtonLink href="/reserver?offre=esrs-pack" variant="ghost">
+                <Download className="h-4 w-4" aria-hidden="true" />
+                {t("midCta.secondary")}
+              </ButtonLink>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* =====================================================================
           SECTION 5, COMPARISON NEW vs REFURBISHED
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-light">
+      <section className="px-6 bg-bg-card py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-semibold uppercase tracking-wider">
+          <div className="reveal">
+            <span className="block text-eyebrow uppercase text-amber">
               {t("comparison.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-fg max-w-4xl">
               {t("comparison.title")}
             </h2>
-            <p className="mt-5 text-lg text-dark/70 max-w-3xl leading-relaxed">
+            <p className="mt-5 text-lg text-fg-strong max-w-3xl leading-relaxed">
               {t("comparison.lead")}
             </p>
-          </FadeIn>
+          </div>
 
-          <FadeIn>
-            <div className="mt-10 overflow-x-auto bg-white rounded-2xl border border-gray-100 shadow-sm">
+          <div className="reveal">
+            <div className="mt-10 overflow-x-auto bg-bg-card rounded-2xl border border-track" tabIndex={0} role="region" aria-label={`${t("comparison.title")} (tableau)`}>
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-dark text-white">
+                  <tr className="bg-bg-card text-fg">
                     {comparisonHeaders.map((h, i) => (
                       <th
                         key={i}
@@ -590,29 +486,27 @@ export default function ImpactPage() {
                   {comparisonRows.map((row, i) => (
                     <tr
                       key={i}
-                      className={`${
-                        i % 2 === 0 ? "bg-white" : "bg-light"
-                      } border-b border-gray-100 last:border-0`}
+                      className={`${ i % 2 === 0 ? "bg-bg-card" : "bg-bg-card" } border-b border-track last:border-0`}
                     >
-                      <td className="px-4 md:px-6 py-4 font-semibold text-dark whitespace-nowrap">
+                      <td className="px-4 md:px-6 py-4 font-semibold text-fg whitespace-nowrap">
                         {row.category}
                       </td>
-                      <td className="px-4 md:px-6 py-4 text-dark/70 tabular-nums">
+                      <td className="px-4 md:px-6 py-4 text-fg-strong tabular-nums">
                         {row.newCo2}
                       </td>
-                      <td className="px-4 md:px-6 py-4 text-primary font-semibold tabular-nums">
+                      <td className="px-4 md:px-6 py-4 text-emerald font-semibold tabular-nums">
                         {row.refurbCo2}
                       </td>
                       <td className="px-4 md:px-6 py-4">
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-emerald-dim text-emerald text-xs font-semibold">
                           <ArrowDownRight className="w-3 h-3" />
                           {row.savings}
                         </span>
                       </td>
-                      <td className="px-4 md:px-6 py-4 text-dark/70 tabular-nums">
+                      <td className="px-4 md:px-6 py-4 text-fg-strong tabular-nums">
                         {row.water}
                       </td>
-                      <td className="px-4 md:px-6 py-4 text-dark/70 tabular-nums">
+                      <td className="px-4 md:px-6 py-4 text-fg-strong tabular-nums">
                         {row.weee}
                       </td>
                     </tr>
@@ -620,39 +514,39 @@ export default function ImpactPage() {
                 </tbody>
               </table>
             </div>
-          </FadeIn>
+          </div>
 
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <FadeIn>
-              <div className="h-full bg-white rounded-2xl p-6 border border-gray-100">
-                <h3 className="text-base font-semibold text-dark flex items-center gap-2 mb-3">
-                  <FileText className="w-4 h-4 text-secondary" />
+            <div className="reveal">
+              <div className="h-full bg-bg-card rounded-2xl p-6 border border-track">
+                <h3 className="text-heading-md text-fg flex items-center gap-2 mb-3">
+                  <FileText className="w-4 h-4 text-emerald" />
                   {t("comparison.footnoteTitle")}
                 </h3>
-                <p className="text-sm text-dark/70 leading-relaxed">
+                <p className="text-sm text-fg-strong leading-relaxed">
                   {t("comparison.footnoteBody")}
                 </p>
               </div>
-            </FadeIn>
-            <FadeIn>
-              <div className="h-full bg-white rounded-2xl p-6 border border-gray-100">
-                <h3 className="text-base font-semibold text-dark flex items-center gap-2 mb-3">
-                  <Database className="w-4 h-4 text-primary" />
+            </div>
+            <div className="reveal">
+              <div className="h-full bg-bg-card rounded-2xl p-6 border border-track">
+                <h3 className="text-heading-md text-fg flex items-center gap-2 mb-3">
+                  <Database className="w-4 h-4 text-emerald" />
                   {t("comparison.sourcesTitle")}
                 </h3>
                 <ul className="space-y-2">
                   {comparisonSources.map((src, i) => (
                     <li
                       key={i}
-                      className="flex gap-2 text-sm text-dark/70 leading-relaxed"
+                      className="flex gap-2 text-sm text-fg-strong leading-relaxed"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald shrink-0 mt-0.5" />
                       <span>{src}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </FadeIn>
+            </div>
           </div>
         </div>
       </section>
@@ -660,25 +554,25 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 6, ESRS E5 MAPPING
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-white">
+      <section className="px-6 bg-bg-card py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold uppercase tracking-wider">
+          <div className="reveal">
+            <span className="block text-eyebrow uppercase text-fg-muted">
               {t("esrs.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-fg max-w-4xl">
               {t("esrs.title")}
             </h2>
-            <p className="mt-5 text-lg text-dark/70 max-w-3xl leading-relaxed">
+            <p className="mt-5 text-lg text-fg-strong max-w-3xl leading-relaxed">
               {t("esrs.lead")}
             </p>
-          </FadeIn>
+          </div>
 
-          <FadeIn>
-            <div className="mt-10 overflow-x-auto bg-light rounded-2xl border border-gray-100 shadow-sm">
+          <div className="reveal">
+            <div className="mt-10 overflow-x-auto bg-bg-card rounded-2xl border border-track" tabIndex={0} role="region" aria-label={`${t("esrs.title")} (tableau)`}>
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-secondary text-white">
+                  <tr className="bg-bg-card text-fg">
                     {esrsHeaders.map((h, i) => (
                       <th
                         key={i}
@@ -693,26 +587,26 @@ export default function ImpactPage() {
                   {esrsRows.map((row, i) => (
                     <tr
                       key={i}
-                      className="bg-white border-b border-gray-100 last:border-0 hover:bg-light/50 transition-colors"
+                      className="bg-bg-card border-b border-track last:border-0 hover:bg-white/[0.03] transition-colors"
                     >
                       <td className="px-4 md:px-5 py-4 align-top">
-                        <span className="inline-flex items-center px-2 py-1 rounded-md bg-secondary text-white text-xs font-bold">
+                        <span className="inline-flex items-center px-2 py-1 rounded-md bg-bg-card text-fg text-xs font-semibold">
                           {row.code}
                         </span>
                       </td>
-                      <td className="px-4 md:px-5 py-4 align-top font-semibold text-dark">
+                      <td className="px-4 md:px-5 py-4 align-top font-semibold text-fg">
                         {row.name}
                       </td>
-                      <td className="px-4 md:px-5 py-4 align-top text-dark/70 leading-snug">
+                      <td className="px-4 md:px-5 py-4 align-top text-fg-strong leading-snug">
                         {row.evidence}
                       </td>
-                      <td className="px-4 md:px-5 py-4 align-top text-dark/70 whitespace-nowrap">
-                        <span className="inline-flex items-center gap-1 text-xs font-mono bg-light px-2 py-1 rounded">
+                      <td className="px-4 md:px-5 py-4 align-top text-fg-strong whitespace-nowrap">
+                        <span className="inline-flex items-center gap-1 text-xs font-mono bg-bg-card px-2 py-1 rounded">
                           {row.format}
                         </span>
                       </td>
                       <td className="px-4 md:px-5 py-4 align-top whitespace-nowrap">
-                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-amber-500/10 text-amber-700 text-xs font-semibold">
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-amber/10 text-amber text-xs font-semibold">
                           {row.deadline}
                         </span>
                       </td>
@@ -721,103 +615,103 @@ export default function ImpactPage() {
                 </tbody>
               </table>
             </div>
-          </FadeIn>
+          </div>
 
-          <FadeIn>
-            <div className="mt-8 bg-gradient-to-br from-secondary/5 to-primary/5 rounded-2xl p-6 md:p-8 border border-secondary/20 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-6 items-center">
+          <div className="reveal">
+            <div className="mt-8 rounded-2xl p-6 md:p-8 border border-track grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-6 items-center bg-bg/5">
               <div>
-                <h3 className="text-lg font-bold text-dark flex items-center gap-2 mb-2">
-                  <BarChart3 className="w-5 h-5 text-secondary" />
+                <h3 className="text-heading-md text-fg flex items-center gap-2 mb-2">
+                  <BarChart3 className="w-5 h-5 text-emerald" />
                   {t("esrs.exportTitle")}
                 </h3>
-                <p className="text-sm text-dark/70 leading-relaxed">
+                <p className="text-sm text-fg-strong leading-relaxed">
                   {t("esrs.exportDesc")}
                 </p>
               </div>
               <Link
                 href="/reserver?offre=esrs-pack"
-                className="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-5 py-3 rounded-xl transition-colors whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 bg-bg-card hover:bg-bg/90 text-fg font-semibold px-5 py-3 rounded-xl transition-colors whitespace-nowrap"
               >
                 <Download className="w-4 h-4" />
                 {t("esrs.exportLink")}
               </Link>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* =====================================================================
           SECTION 7, PROOF & CERTIFICATIONS
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-gradient-to-b from-light to-white">
+      <section className="px-6 bg-bg-card py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider">
+          <div className="reveal">
+            <span className="block text-eyebrow uppercase text-fg-muted">
               {t("proof.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-fg max-w-4xl">
               {t("proof.title")}
             </h2>
-            <p className="mt-5 text-lg text-dark/70 max-w-3xl leading-relaxed">
+            <p className="mt-5 text-lg text-fg-strong max-w-3xl leading-relaxed">
               {t("proof.lead")}
             </p>
-          </FadeIn>
+          </div>
 
           <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div>
-              <FadeIn>
-                <h3 className="text-xl md:text-2xl font-bold text-dark flex items-center gap-2 mb-6">
-                  <Shield className="w-5 h-5 text-primary" />
+              <div className="reveal">
+                <h3 className="text-heading-lg text-fg flex items-center gap-2 mb-6">
+                  <Shield className="w-5 h-5 text-emerald" />
                   {t("proof.methodsTitle")}
                 </h3>
-              </FadeIn>
-              <StaggerContainer className="space-y-3">
+              </div>
+              <div className="reveal-stagger space-y-3">
                 {methods.map((m, i) => (
-                  <StaggerItem key={i}>
-                    <div className="bg-white rounded-xl p-5 border border-gray-100 flex gap-4 hover:border-primary/30 transition-colors">
-                      <div className="shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                  <div key={i} className="reveal">
+                    <div className="bg-bg-card rounded-xl p-5 border border-track flex gap-4 hover:border-emerald/30 transition-colors">
+                      <div className="shrink-0 w-10 h-10 rounded-lg bg-emerald-dim flex items-center justify-center text-emerald">
                         <Trophy className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-dark text-sm mb-1">
+                        <h4 className="font-semibold text-fg text-sm mb-1">
                           {m.name}
                         </h4>
-                        <p className="text-xs text-dark/65 leading-relaxed">
+                        <p className="text-xs text-fg-strong leading-relaxed">
                           {m.desc}
                         </p>
                       </div>
                     </div>
-                  </StaggerItem>
+                  </div>
                 ))}
-              </StaggerContainer>
+              </div>
             </div>
 
             <div>
-              <FadeIn>
-                <h3 className="text-xl md:text-2xl font-bold text-dark flex items-center gap-2 mb-6">
-                  <Globe className="w-5 h-5 text-secondary" />
+              <div className="reveal">
+                <h3 className="text-heading-lg text-fg flex items-center gap-2 mb-6">
+                  <Globe className="w-5 h-5 text-emerald" />
                   {t("proof.ecosystemTitle")}
                 </h3>
-              </FadeIn>
-              <StaggerContainer className="space-y-3">
+              </div>
+              <div className="reveal-stagger space-y-3">
                 {ecosystem.map((e, i) => (
-                  <StaggerItem key={i}>
-                    <div className="bg-white rounded-xl p-5 border border-gray-100 flex gap-4 hover:border-secondary/30 transition-colors">
-                      <div className="shrink-0 w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+                  <div key={i} className="reveal">
+                    <div className="bg-bg-card rounded-xl p-5 border border-track flex gap-4 hover:border-track-strong transition-colors">
+                      <div className="shrink-0 w-10 h-10 rounded-lg bg-bg/10 flex items-center justify-center text-emerald">
                         <CheckCircle2 className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-dark text-sm mb-1">
+                        <h4 className="font-semibold text-fg text-sm mb-1">
                           {e.name}
                         </h4>
-                        <p className="text-xs text-dark/65 leading-relaxed">
+                        <p className="text-xs text-fg-strong leading-relaxed">
                           {e.desc}
                         </p>
                       </div>
                     </div>
-                  </StaggerItem>
+                  </div>
                 ))}
-              </StaggerContainer>
+              </div>
             </div>
           </div>
         </div>
@@ -826,103 +720,101 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 8, CASES
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-white">
+      <section className="px-6 bg-bg-card py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-semibold uppercase tracking-wider">
+          <div className="reveal">
+            <span className="block text-eyebrow uppercase text-amber">
               {t("cases.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-fg max-w-4xl">
               {t("cases.title")}
             </h2>
-            <p className="mt-5 text-lg text-dark/70 max-w-3xl leading-relaxed">
+            <p className="mt-5 text-lg text-fg-strong max-w-3xl leading-relaxed">
               {t("cases.lead")}
             </p>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="reveal-stagger mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
             {caseItems.map((c, i) => (
-              <StaggerItem key={i}>
-                <div className="h-full bg-gradient-to-br from-light to-white rounded-2xl p-7 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col">
+              <div key={i} className="reveal">
+                <div className="h-full rounded-2xl p-7 border border-track hover:border-track-strong transition-colors flex flex-col bg-bg-card">
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="w-9 h-9 rounded-lg bg-primary text-white flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-lg bg-emerald text-bg flex items-center justify-center">
                       {i === 0 && <Target className="w-4 h-4" />}
                       {i === 1 && <Leaf className="w-4 h-4" />}
                       {i === 2 && <ClipboardCheck className="w-4 h-4" />}
                     </div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-primary">
+                    <span className="uppercase text-fg-muted text-eyebrow">
                       {c.sector}
                     </span>
                   </div>
-                  <p className="text-xs text-dark/60 mb-3">{c.scope}</p>
-                  <p className="text-2xl md:text-3xl font-bold text-dark leading-tight">
+                  <p className="text-xs text-fg-strong mb-3">{c.scope}</p>
+                  <p className="text-2xl md:text-3xl font-semibold text-fg leading-tight">
                     {c.metric}
                   </p>
-                  <p className="text-sm font-semibold text-secondary mt-1 mb-4">
-                    {c.money}
-                  </p>
-                  <p className="text-sm text-dark/70 leading-relaxed flex-1">
+                  {c.money ? <p className="text-sm font-semibold text-emerald mt-1 mb-4">{c.money}</p> : <div className="mb-4" />}
+                  <p className="text-sm text-fg-strong leading-relaxed flex-1">
                     {c.context}
                   </p>
                   <Link
                     href={c.ctaHref}
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-600 transition-colors"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald hover:text-emerald-hover transition-colors"
                   >
                     {c.ctaLabel}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
       {/* =====================================================================
           SECTION 9, RESOURCES
           ===================================================================== */}
-      <section className="py-20 md:py-24 px-6 bg-light">
+      <section className="px-6 bg-bg-card py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold uppercase tracking-wider">
+          <div className="reveal">
+            <span className="block text-eyebrow uppercase text-fg-muted">
               {t("resources.eyebrow")}
             </span>
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight max-w-4xl">
+            <h2 className="text-display-md mt-4 text-fg max-w-4xl">
               {t("resources.title")}
             </h2>
-            <p className="mt-5 text-lg text-dark/70 max-w-3xl leading-relaxed">
+            <p className="mt-5 text-lg text-fg-strong max-w-3xl leading-relaxed">
               {t("resources.lead")}
             </p>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="reveal-stagger mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {resources.map((r, i) => (
-              <StaggerItem key={i}>
-                <div className="h-full bg-white rounded-2xl p-6 border border-gray-100 hover:border-primary/30 hover:shadow-md transition-all flex flex-col">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
+              <div key={i} className="reveal">
+                <div className="h-full bg-bg-card rounded-2xl p-6 border border-track hover:border-emerald/30 hover:border-track-strong transition-colors flex flex-col">
+                  <div className="w-10 h-10 rounded-lg bg-emerald-dim text-emerald flex items-center justify-center mb-4">
                     {i === 0 && <FileText className="w-5 h-5" />}
                     {i === 1 && <Database className="w-5 h-5" />}
                     {i === 2 && <BookOpen className="w-5 h-5" />}
                     {i === 3 && <BarChart3 className="w-5 h-5" />}
                     {i === 4 && <Sparkles className="w-5 h-5" />}
                   </div>
-                  <h3 className="text-base font-bold text-dark mb-2 leading-snug">
+                  <h3 className="text-heading-md text-fg mb-2">
                     {r.title}
                   </h3>
-                  <p className="text-sm text-dark/70 leading-relaxed flex-1">
+                  <p className="text-sm text-fg-strong leading-relaxed flex-1">
                     {r.desc}
                   </p>
                   <Link
                     href={r.href}
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-600 transition-colors"
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald hover:text-emerald-hover transition-colors"
                   >
                     {r.label}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
@@ -948,6 +840,6 @@ export default function ImpactPage() {
         variant="audit"
         tone="gradient"
       />
-    </main>
+    </div>
   );
 }

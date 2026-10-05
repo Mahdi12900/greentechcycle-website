@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { FadeIn } from "@/components/motion";
+
 import ReservationForm from "@/components/reservation/ReservationForm";
 import { ChevronLeft, ShieldCheck, Clock, Mail } from "lucide-react";
 
@@ -244,75 +244,67 @@ function ReserverInner() {
   };
 
   return (
-    <main className="overflow-hidden bg-white">
+    <div className="overflow-hidden bg-bg-card">
       {/* Hero · sombre court */}
-      <section className="relative bg-[#0F172A] overflow-hidden border-b border-white/5">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 60% at 80% 20%, rgba(16,185,129,0.16) 0%, transparent 60%)",
-          }}
-        />
-        <div className="container mx-auto px-4 relative z-10 py-16 lg:py-24">
-          <FadeIn>
+      <section className="relative bg-bg-card overflow-hidden border-b border-track">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-24">
+          <div className="reveal">
             <div className="max-w-3xl">
               <Link
                 href="/"
-                className="inline-flex items-center gap-1.5 text-[12px] font-medium text-gray-400 hover:text-white transition-colors mb-7"
+                className="inline-flex items-center gap-1.5 text-caption font-medium text-fg-muted hover:text-fg transition-colors mb-7"
               >
                 <ChevronLeft className="h-3.5 w-3.5" aria-hidden="true" />
                 GreenTechCycle
               </Link>
 
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-300 uppercase mb-6">
+              <span className="block mb-6 text-eyebrow uppercase text-fg-muted">
                 <span
-                  className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
+                  className="w-1.5 h-1.5 rounded-full bg-emerald"
                   style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
                 />
                 {eyebrow}
               </span>
 
               <h1
-                className="text-white font-black tracking-tight mb-5"
-                style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)", lineHeight: 1.05 }}
+                className="text-display-lg text-fg mb-5"
               >
                 {headline}
               </h1>
-              <p className="text-gray-300 text-base lg:text-lg leading-[1.7] max-w-2xl">
+              <p className="text-fg-muted text-base lg:text-lg max-w-2xl">
                 {subtitle}
               </p>
 
               {offerSlug && (
-                <div className="mt-7 max-w-xl rounded-2xl bg-[#10B981]/10 border border-[#10B981]/30 p-4 lg:p-5">
-                  <div className="flex flex-wrap items-center gap-2 text-[12px] text-[#6EE7B7] font-medium mb-3">
-                    <span className="text-[#6EE7B7] font-bold uppercase tracking-wider text-[10px]">
+                <div className="mt-7 max-w-xl rounded-2xl bg-emerald-dim border border-emerald/30 p-4 lg:p-5">
+                  <div className="flex flex-wrap items-center gap-2 text-caption text-emerald font-medium mb-3">
+                    <span className="text-fg-muted uppercase text-eyebrow">
                       {t("summary.offerLabel")}
                     </span>
-                    <span className="text-white text-[13px] font-semibold">{offerLabelDisplay}</span>
+                    <span className="text-fg text-body-sm font-semibold">{offerLabelDisplay}</span>
                   </div>
                   {pricing && (
-                    <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-[12px]">
+                    <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-caption">
                       <div className="flex flex-col">
-                        <dt className="text-gray-400 uppercase tracking-wider text-[10px] font-semibold">
+                        <dt className="text-fg-muted uppercase text-eyebrow">
                           {labels.price}
                         </dt>
-                        <dd className="text-white font-bold tabular-nums">{pricing.price[lang]}</dd>
+                        <dd className="text-fg font-semibold tabular-nums">{pricing.price[lang]}</dd>
                       </div>
                       {pricing.setup && (
                         <div className="flex flex-col">
-                          <dt className="text-gray-400 uppercase tracking-wider text-[10px] font-semibold">
+                          <dt className="text-fg-muted uppercase text-eyebrow">
                             {labels.setup}
                           </dt>
-                          <dd className="text-white font-bold tabular-nums">{pricing.setup[lang]}</dd>
+                          <dd className="text-fg font-semibold tabular-nums">{pricing.setup[lang]}</dd>
                         </div>
                       )}
                       {pricing.engagement && (
                         <div className="flex flex-col">
-                          <dt className="text-gray-400 uppercase tracking-wider text-[10px] font-semibold">
+                          <dt className="text-fg-muted uppercase text-eyebrow">
                             {labels.engagement}
                           </dt>
-                          <dd className="text-white font-bold">{pricing.engagement[lang]}</dd>
+                          <dd className="text-fg font-semibold">{pricing.engagement[lang]}</dd>
                         </div>
                       )}
                     </dl>
@@ -320,13 +312,13 @@ function ReserverInner() {
                 </div>
               )}
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* Form */}
-      <section className="bg-[#F8FAFC] py-16 lg:py-24">
-        <div className="container mx-auto px-4">
+      <section className="bg-bg-card py-12 lg:py-16">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <ReservationForm offerSlug={offerSlug} />
 
           {/* Reassurance bar */}
@@ -340,23 +332,23 @@ function ReserverInner() {
               return (
                 <div
                   key={i}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white border border-gray-100"
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-bg-card border border-track"
                 >
-                  <Icon className="h-4 w-4 text-[#10B981] flex-shrink-0" aria-hidden="true" />
-                  <span className="text-[12px] font-medium text-gray-600">{item.label}</span>
+                  <Icon className="h-4 w-4 text-emerald flex-shrink-0" aria-hidden="true" />
+                  <span className="text-caption font-medium text-fg-strong">{item.label}</span>
                 </div>
               );
             })}
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
 
 export default function ReserverPage() {
   return (
-    <Suspense fallback={<div className="min-h-[60vh] bg-[#F8FAFC]" />}>
+    <Suspense fallback={<div className="min-h-[60vh] bg-bg-card" />}>
       <ReserverInner />
     </Suspense>
   );

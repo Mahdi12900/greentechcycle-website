@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
+import { LEGAL } from "@/lib/contact";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import TrustBar from "@/components/TrustBar";
 import CookieBanner from "@/components/CookieBanner";
-import StickyCTA from "@/components/StickyCTA";
+import MobileActionBar from "@/components/MobileActionBar";
 import ExitPopup from "@/components/ExitPopup";
 import SchemaOrg from "@/components/SchemaOrg";
 import SalesAssistantWidget from "@/components/SalesAssistantWidget";
+import { fontDisplay, fontMono, fontSans } from "@/app/fonts";
+import { SiteUiProvider } from "@/components/SiteUiContext";
+import { SITE_URL as SITE } from "@/lib/site";
 
-const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -33,23 +35,21 @@ export async function generateMetadata({
       template: "%s | GreenTechCycle",
     },
     description: isEn
-      ? "GreenTechCycle, unified ITAD platform. Certified erasure, blockchain traceability, ESG/CSRD reporting and carbon footprint for responsible IT asset management."
-      : "GreenTechCycle, plateforme ITAD unifiée. Effacement certifié, traçabilité blockchain, reporting ESG/CSRD et bilan carbone pour une gestion responsable de vos actifs IT.",
+      ? "GreenTechCycle, unified ITAD platform. Attested erasure, timestamped traceability (SHA-256), ESG/CSRD reporting and carbon footprint for responsible IT asset management."
+      : "GreenTechCycle, plateforme ITAD unifiée. Effacement attesté, traçabilité horodatée (SHA-256), reporting ESG/CSRD et bilan carbone pour une gestion responsable de vos actifs IT.",
     icons: {
       icon: { url: "/favicon.svg", type: "image/svg+xml" },
       apple: "/icon.svg",
     },
     keywords: [
       "ITAD",
-      "effacement certifié",
+      "effacement NIST 800-88",
       "NIST 800-88",
-      "traçabilité blockchain",
+      "traçabilité horodatée (SHA-256)",
       "reporting CSRD",
       "bilan carbone IT",
       "économie circulaire",
       "reconditionnement IT",
-      "R2v3",
-      "ISO 14001",
       "RGPD",
       "France",
       "recyclage IT",
@@ -65,8 +65,8 @@ export async function generateMetadata({
         ? "GreenTechCycle | Unified ITAD Platform"
         : "GreenTechCycle | Plateforme ITAD unifiée",
       description: isEn
-        ? "Certified erasure, blockchain traceability and CSRD reporting. The platform that unifies your ITAD."
-        : "Effacement certifié, traçabilité blockchain et reporting CSRD. La plateforme qui unifie votre ITAD.",
+        ? "Attested erasure, timestamped traceability (SHA-256) and CSRD reporting. The platform that unifies your ITAD."
+        : "Effacement attesté, traçabilité horodatée (SHA-256) et reporting CSRD. La plateforme qui unifie votre ITAD.",
       images: [
         {
           url: "/photos/team-collab.jpg",
@@ -82,8 +82,8 @@ export async function generateMetadata({
         ? "GreenTechCycle | Unified ITAD Platform"
         : "GreenTechCycle | Plateforme ITAD unifiée",
       description: isEn
-        ? "Certified erasure, blockchain traceability and CSRD reporting. The platform that unifies your ITAD."
-        : "Effacement certifié, traçabilité blockchain et reporting CSRD. La plateforme qui unifie votre ITAD.",
+        ? "Attested erasure, timestamped traceability (SHA-256) and CSRD reporting. The platform that unifies your ITAD."
+        : "Effacement attesté, traçabilité horodatée (SHA-256) et reporting CSRD. La plateforme qui unifie votre ITAD.",
       images: ["/photos/team-collab.jpg"],
     },
     robots: { index: true, follow: true },
@@ -117,13 +117,19 @@ export default async function LocaleLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "GreenTechCycle",
-    url: "https://greentechcycle.fr",
-    logo: "https://greentechcycle.fr/logo/logo-primary.svg",
+    url: `${SITE}`,
+    logo: `${SITE}/logo/logo-primary.svg`,
     description:
-      "Plateforme ITAD unifiée : effacement certifié, traçabilité blockchain, reporting ESG/CSRD et bilan carbone pour la gestion responsable des actifs IT.",
+      "Plateforme ITAD unifiée : effacement attesté, traçabilité horodatée (SHA-256), reporting ESG/CSRD et bilan carbone pour la gestion responsable des actifs IT.",
+    // Entité légale : fiche Pappers lue le 2026-10-04 (src/lib/contact.ts)
+    legalName: LEGAL.name,
+    identifier: { "@type": "PropertyValue", propertyID: "SIREN", value: LEGAL.siren.replace(/\s/g, "") },
     address: {
       "@type": "PostalAddress",
-      addressCountry: "FR",
+      streetAddress: LEGAL.street,
+      postalCode: LEGAL.postalCode,
+      addressLocality: LEGAL.city,
+      addressCountry: LEGAL.country,
     },
     sameAs: [
       "https://www.linkedin.com/company/greentechcycle",
@@ -141,7 +147,7 @@ export default async function LocaleLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "GreenTechCycle",
-    url: "https://greentechcycle.fr",
+    url: `${SITE}`,
     description:
       "Plateforme ITAD unifiée pour la gestion responsable des actifs IT en fin de vie.",
     inLanguage: ["fr", "en"],
@@ -152,7 +158,7 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={`dark ${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`}>
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" href="/icon.svg" />
@@ -161,14 +167,15 @@ export default async function LocaleLayout({
         <SchemaOrg data={organizationSchema} />
         <SchemaOrg data={websiteSchema} />
         <NextIntlClientProvider messages={messages}>
+          <SiteUiProvider>
           <Header />
-          <TrustBar />
-          <main className="pt-[calc(4rem+1.75rem)] lg:pt-[calc(5rem+1.75rem)]">{children}</main>
+          <main id="contenu" className="pt-16 pb-20 lg:pt-[72px] lg:pb-0">{children}</main>
           <Footer />
           <CookieBanner />
-          <StickyCTA />
+          <MobileActionBar />
           <ExitPopup />
           <SalesAssistantWidget />
+          </SiteUiProvider>
         </NextIntlClientProvider>
       </body>
     </html>

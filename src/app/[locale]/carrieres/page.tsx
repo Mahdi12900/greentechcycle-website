@@ -1,164 +1,173 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { EMAILS, PREFILL } from "@/lib/contact";
 import { Link } from "@/i18n/navigation";
-import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/motion";
+
 import { Target, Eye, Award, Lightbulb, Mail, ArrowRight, Sparkles, Heart, Rocket } from "lucide-react";
 import RelatedArticles from "@/components/RelatedArticles";
 
 export default function CareersPage() {
   const t = useTranslations("Careers");
+  const isEn = useLocale() === "en";
 
   const values = [
-    { icon: Target, color: "bg-primary/10 text-primary" },
-    { icon: Eye, color: "bg-accent/10 text-accent" },
-    { icon: Award, color: "bg-secondary/10 text-secondary" },
-    { icon: Lightbulb, color: "bg-amber-100 text-amber-600" },
+    { icon: Target, color: "bg-emerald-dim text-emerald" },
+    { icon: Eye, color: "bg-emerald-dim text-emerald" },
+    { icon: Award, color: "bg-bg/10 text-emerald" },
+    { icon: Lightbulb, color: "bg-amber-dim text-amber" },
   ];
 
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-primary via-dark to-secondary py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(16,185,129,0.18),_transparent_55%)]" />
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute -bottom-20 -left-20 w-[28rem] h-[28rem] bg-secondary/20 rounded-full blur-3xl animate-pulse-slower" />
-        <div className="container-max mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs font-medium tracking-wider uppercase mb-6">
-                <Rocket className="h-4 w-4 text-accent" />
+      <section className="bg-bg-card py-16 text-fg lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
+          <div className="reveal">
+            <div className="max-w-3xl ">
+              <span className="block mb-6 text-eyebrow uppercase text-fg-muted">
                 Nous recrutons
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+              <h1 className="text-display-lg text-fg mb-6">
                 {t("hero.title")}
               </h1>
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed">
+              <p className="text-lg md:text-xl text-fg leading-relaxed">
                 {t("hero.subtitle")}
               </p>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* Mission */}
-      <section className="py-20 bg-white">
-        <div className="container-max mx-auto px-4">
-          <FadeIn>
+      <section className="bg-bg-card py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-dark mb-8">
+              <h2 className="text-display-md text-fg mb-8">
                 {t("mission.title")}
               </h2>
-              <p className="text-lg md:text-xl text-dark/70 leading-relaxed">
+              <p className="text-lg md:text-xl text-fg-strong leading-relaxed">
                 {t("mission.description")}
               </p>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-light">
-        <div className="container-max mx-auto px-4">
-          <FadeIn>
+      <section className="bg-bg-card py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-bold text-dark">{t("values.title")}</h2>
+              <h2 className="text-display-md text-fg">{t("values.title")}</h2>
             </div>
-          </FadeIn>
+          </div>
 
-          <StaggerContainer>
+          <div className="reveal-stagger">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {values.map((item, index) => {
                 const Icon = item.icon;
                 return (
-                  <StaggerItem key={index}>
-                    <div className="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow h-full">
+                  <div key={index} className="reveal">
+                    <div className="bg-bg-card rounded-2xl p-8 text-center hover:border-track-strong transition-shadow h-full">
                       <div className={`w-16 h-16 ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-6`}>
                         <Icon className="w-8 h-8" />
                       </div>
-                      <h3 className="text-lg font-bold text-dark mb-3">
+                      <h3 className="text-heading-md text-fg mb-3">
                         {t(`values.items.${index}.title`)}
                       </h3>
-                      <p className="text-dark/60 text-sm leading-relaxed">
+                      <p className="text-fg-strong text-sm leading-relaxed">
                         {t(`values.items.${index}.desc`)}
                       </p>
+                      {/* Valeur « Innovation » : contact du lab R&D / partenariats (lab.rd@) */}
+                      {index === 3 && (
+                        <a
+                          href={`mailto:${EMAILS.lab}?subject=${encodeURIComponent(isEn ? PREFILL.en.labSubject : PREFILL.fr.labSubject)}`}
+                          className="mt-4 inline-flex min-h-[44px] items-center gap-2 text-caption font-semibold text-emerald underline-offset-4 hover:underline"
+                        >
+                          <Mail className="h-4 w-4" aria-hidden="true" />
+                          {isEn ? "R&D lab or partnership: " : "Lab R&D ou partenariat : "}
+                          {EMAILS.lab}
+                        </a>
+                      )}
                     </div>
-                  </StaggerItem>
+                  </div>
                 );
               })}
             </div>
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
       {/* Spontaneous Application */}
-      <section className="py-20 bg-white">
-        <div className="container-max mx-auto px-4">
-          <FadeIn>
+      <section className="bg-bg-card py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
             <div className="max-w-3xl mx-auto text-center">
-              <ScaleIn>
-                <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-8">
-                  <Mail className="w-10 h-10 text-accent" />
+              <div className="reveal-scale">
+                <div className="w-20 h-20 bg-emerald-dim rounded-full flex items-center justify-center mx-auto mb-8">
+                  <Mail className="w-10 h-10 text-emerald" />
                 </div>
-              </ScaleIn>
-              <h2 className="text-3xl md:text-4xl font-bold text-dark mb-6">
+              </div>
+              <h2 className="text-display-md text-fg mb-6">
                 {t("spontaneous.title")}
               </h2>
-              <p className="text-dark/70 text-lg mb-8 leading-relaxed">
+              <p className="text-fg-strong text-lg mb-8 leading-relaxed">
                 {t("spontaneous.description")}
               </p>
               <a
                 href={`mailto:${t("spontaneous.email")}`}
-                className="inline-flex items-center gap-3 bg-accent hover:bg-accent/90 text-white font-semibold px-8 py-4 rounded-lg transition-all shadow-lg shadow-accent/25"
+                className="inline-flex items-center gap-3 bg-emerald hover:bg-emerald/90 text-bg font-semibold px-8 py-4 rounded-lg transition-colors"
               >
                 <Mail className="w-5 h-5" />
                 {t("spontaneous.cta")}
                 <ArrowRight className="w-5 h-5" />
               </a>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       <RelatedArticles
-        title="Explorez notre vision"
-        subtitle="Nos publications sur la décarbonisation IT, l'économie circulaire et la conformité reflètent la culture GreenTechCycle."
+        title={{ fr: "Explorez notre vision", en: "Explore our vision" }}
+        subtitle={{ fr: "Nos publications sur la décarbonisation IT, l'économie circulaire et la conformité reflètent la culture GreenTechCycle.", en: "Our publications on IT decarbonisation, the circular economy and compliance reflect the GreenTechCycle culture." }}
         limit={3}
         tone="light"
       />
 
       {/* Final CTA */}
-      <section className="relative py-20 md:py-24 bg-gradient-to-br from-primary via-dark to-secondary overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(16,185,129,0.12),_transparent_55%)]" />
-        <div className="absolute -top-10 -left-10 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="container-max mx-auto px-4 text-center relative z-10">
-          <FadeIn>
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-accent text-white mb-6 shadow-lg shadow-accent/30">
+      <section className="relative overflow-hidden bg-bg-card py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="reveal">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald text-bg mb-6">
               <Heart className="h-7 w-7" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+            <h2 className="text-display-md text-fg mb-4">
               {t("hero.title")}
             </h2>
-            <p className="text-white/75 max-w-2xl mx-auto mb-8">
-              Rejoignez une équipe engagée pour transformer la gestion des actifs IT en levier de décarbonisation.
+            <p className="text-fg-muted max-w-2xl mx-auto mb-8">
+              {isEn
+                ? "Join a committed team turning IT asset management into a lever for decarbonisation."
+                : "Rejoignez une équipe engagée pour transformer la gestion des actifs IT en levier de décarbonisation."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href={`mailto:${t("spontaneous.email")}`}
-                className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-600 text-white font-semibold px-8 py-4 rounded-xl transition-all shadow-lg shadow-accent/30 hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 bg-emerald hover:bg-emerald-hover text-bg font-semibold px-8 py-4 rounded-xl transition-colors"
               >
                 <Mail className="h-5 w-5" />
                 {t("spontaneous.cta")}
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white/40 hover:border-white/80 text-white font-semibold px-8 py-4 rounded-xl transition-all hover:bg-white/10 backdrop-blur-sm"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white/40 hover:border-white/80 text-fg font-semibold px-8 py-4 rounded-xl transition-colors hover:bg-white/10"
               >
                 <Sparkles className="h-5 w-5" />
                 Contacter les RH
               </Link>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
     </>

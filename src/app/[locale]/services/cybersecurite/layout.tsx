@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { SITE_URL as SITE } from "@/lib/site";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 
-const SITE = "https://cst-greentechcycle--979dplvl.cloud-station.app";
 
 export async function generateMetadata({
   params,
@@ -15,8 +16,8 @@ export async function generateMetadata({
     : "Cybersécurité du parc IT, NIS2 et DORA | GreenTechCycle";
 
   const description = isEn
-    ? "ITAD cybersecurity: secure decommissioning, NIS2 and DORA compliance, certified erasure and blockchain traceability for critical IT infrastructure."
-    : "Cybersécurité ITAD : décommissionnement sécurisé, conformité NIS2 et DORA, effacement certifié et traçabilité blockchain pour les infrastructures IT critiques.";
+    ? "ITAD cybersecurity: secure decommissioning, NIS2 and DORA compliance, attested erasure and timestamped traceability (SHA-256) for critical IT infrastructure."
+    : "Cybersécurité ITAD : décommissionnement sécurisé, conformité NIS2 et DORA, effacement attesté et traçabilité horodatée (SHA-256) pour les infrastructures IT critiques.";
 
   return {
     title,
@@ -29,8 +30,8 @@ export async function generateMetadata({
         "x-default": `${SITE}/fr/services/cybersecurite`,
       },
     },
-    openGraph: { title, description, type: "website" },
-    twitter: { card: "summary_large_image", title, description },
+    openGraph: { title, description, type: "website", url: `${SITE}/${locale}/services/cybersecurite`, images: [DEFAULT_OG_IMAGE] },
+    twitter: { card: "summary_large_image", title, description, images: [DEFAULT_OG_IMAGE] },
   };
 }
 

@@ -1,26 +1,24 @@
 "use client";
 
+import GeometryField from "@/components/visuals/GeometryField";
+import LifecycleDiagram from "@/components/visuals/LifecycleDiagram";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
-import { Link } from "@/i18n/navigation";
-import { FadeIn, StaggerContainer, StaggerItem, CountUp } from "@/components/motion";
-import {
-  ArrowRight,
-  ArrowDown,
-  ChevronRight,
-  Quote,
-  ShieldCheck,
-  Leaf,
-  Users,
-  Eye,
-  Award,
-  CheckCircle2,
-} from "lucide-react";
+import { CountUp } from "@/components/motion";
+import { Gauge } from "@/components/kpi/Kpi";
+import { ArrowDown, Check, ShieldCheck, Leaf, Users, Eye, Award, UserRound } from "lucide-react";
+import CtaSection from "@/components/CtaSection";
+import { ButtonLink } from "@/components/ui/Button";
+import Section from "@/components/ui/Section";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Pictogram from "@/components/ui/Pictogram";
+import Tag from "@/components/ui/Tag";
+import { Stat } from "@/components/ui/Stat";
 
 /**
- * /pourquoi-gtc, refonte éditoriale (vague 4)
- * Registre manifeste fondateur. Hero narratif provocant, sections alternées,
- * numéros XXL ghost, prose narrative, citations magazine, conversion verte.
+ * /pourquoi-gtc — DESIGN.md §10.7 : hero paper, manifeste (cream), fondateur
+ * (forest), 5 convictions en liste à filets, engagements (night), citation,
+ * CTA unique. Ancres conservées.
  */
 export default function PourquoiGtcPage() {
   const t = useTranslations("WhyGTC");
@@ -48,525 +46,200 @@ export default function PourquoiGtcPage() {
   }[];
 
   const convictionIcons = [Leaf, ShieldCheck, Users, Eye, Award];
+  const figureMatch = t("hero.figure").match(/^(\d+)(\s.+)$/);
+  const heroFigure = figureMatch ? { n: parseInt(figureMatch[1], 10), rest: figureMatch[2] } : null;
 
   return (
-    <main className="overflow-hidden bg-white">
-      {/* ═══════════════ Bandeau urgence ═══════════════ */}
-      <div className="bg-[#0F172A] text-white py-3 px-4 border-b border-white/5">
-        <div className="container mx-auto flex items-center justify-center gap-3 text-xs sm:text-sm font-medium text-center">
-          <Leaf className="h-4 w-4 flex-shrink-0 text-[#10B981]" aria-hidden="true" />
-          <p className="leading-snug text-gray-300">{t("urgency.text")}</p>
-        </div>
-      </div>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S1 (HERO MANIFESTE) sombre, provocation chiffrée 50 millions de tonnes
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        className="relative w-full min-h-screen flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
-        aria-labelledby="why-hero"
-      >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 12% 10%, rgba(16,185,129,0.18) 0%, transparent 60%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 88% 90%, rgba(34,197,94,0.10) 0%, transparent 55%)",
-          }}
-        />
-
-        <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-24">
-          <FadeIn>
-            <div className="flex items-center gap-3 mb-10">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
-                <span
-                  className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
-                  style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
-                />
-                {t("hero.eyebrow")}
-              </span>
+    <div>
+      {/* ═══ HERO manifeste (paper) — bandeau d'urgence → notice ═══ */}
+      <section className="bg-bg py-16 lg:py-24" aria-labelledby="why-hero">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="reveal min-w-0 lg:col-span-7">
+              <Tag variant="brand" icon={<Leaf className="h-3.5 w-3.5" aria-hidden="true" />}>{t("urgency.text")}</Tag>
+              <p className="mt-6 text-eyebrow uppercase text-fg-muted">{t("hero.eyebrow")}</p>
+              <h1 id="why-hero" className="mt-3 max-w-[20ch] text-display-lg text-fg">
+                <span className="block text-display-xl text-emerald">
+                  {/* « 50 millions » : le nombre monte au défilement, le texte reste lisible sans JS */}
+                  {heroFigure ? (
+                    <>
+                      <CountUp end={heroFigure.n} />
+                      {heroFigure.rest}
+                    </>
+                  ) : (
+                    t("hero.figure")
+                  )}
+                </span>
+                <span className="mt-2 block">{t("hero.title")}</span>
+              </h1>
+              <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("hero.subtitle")}</p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="/reserver?offre=audit-decommissionnement" size="lg">{t("hero.cta1")}</ButtonLink>
+                <ButtonLink href="#manifeste" variant="secondary" size="lg">{t("hero.cta2")}</ButtonLink>
+              </div>
+              <p className="mt-6 max-w-[65ch] text-caption italic text-fg-muted">{t("hero.source")}</p>
+              <a href="#manifeste" className="mt-4 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-fg-muted hover:text-fg">
+                <ArrowDown className="h-4 w-4" aria-hidden="true" />
+                {t("hero.scrollLabel")}
+              </a>
             </div>
-
-            <h1
-              id="why-hero"
-              className="text-white font-black tracking-tight mb-6"
-              style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
-            >
-              <span
-                className="block text-[#10B981] mb-2"
-                style={{ fontSize: "clamp(3.5rem, 9vw, 7.5rem)" }}
-              >
-                {t("hero.figure")}
-              </span>
-              <span className="block">{t("hero.title")}</span>
-            </h1>
-
-            <p className="text-gray-300 text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-10">
-              {t("hero.subtitle")}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 mb-10">
-              <Link
-                href="/reserver?offre=audit-decommissionnement"
-                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
-              >
-                {t("hero.cta1")}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="#manifeste"
-                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
-              >
-                {t("hero.cta2")}
-                <ChevronRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
+            <div className="reveal lg:col-span-5">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
+                <MediaSlot fill id="pourquoi-hero" alt="Équipe GreenTechCycle en atelier de tri et reconditionnement, lumière naturelle" fallback={<LifecycleDiagram />} />
+              </div>
             </div>
-
-            <p className="text-[11px] text-gray-500 italic max-w-xl mb-6">
-              {t("hero.source")}
-            </p>
-
-            <a
-              href="#manifeste"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-300 text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
-            >
-              <ArrowDown
-                className="h-4 w-4 transition-transform group-hover:translate-y-1"
-                aria-hidden="true"
-              />
-              {t("hero.scrollLabel")}
-            </a>
-          </FadeIn>
-        </div>
-
-        <div className="relative w-full lg:w-[45%] min-h-[52vh] lg:min-h-0 overflow-hidden flex-shrink-0">
-          <Image
-            src="/photos/team-workshop.jpg"
-            alt="Équipe GreenTechCycle en atelier de tri et reconditionnement, lumière naturelle"
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 45vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/85 via-[#0F172A]/25 to-transparent" />
+          </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S2 (MANIFESTE PROSE) fond clair
-         ════════════════════════════════════════════════════════════════ */}
+      {/* ═══ MANIFESTE (cream) ═══ */}
       <div id="expertise" aria-hidden="true" className="sr-only" />
-      <section className="py-24 lg:py-28 bg-white" id="manifeste">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-3xl">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
-                {t("manifesto.eyebrow")}
-              </p>
-              <h2
-                className="text-[#0F172A] font-bold tracking-tight leading-[1.05] mb-8"
-                style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)" }}
-              >
-                {t("manifesto.title")}
-              </h2>
-              <div className="space-y-5">
-                <p className="text-gray-700 text-lg leading-[1.78]">
-                  {t("manifesto.body1")}
-                </p>
-                <p className="text-gray-700 text-lg leading-[1.78]">
-                  {t("manifesto.body2")}
-                </p>
-                <p className="text-gray-700 text-lg leading-[1.78]">
-                  {t("manifesto.body3")}
-                </p>
-              </div>
+      <Section id="manifeste" tone="cream" bordered>
+        <div className="reveal">
+          <SectionHeader eyebrow={t("manifesto.eyebrow")} title={t("manifesto.title")}>
+            <div className="mt-6 max-w-[65ch] space-y-4 text-body-lg text-fg-strong">
+              <p>{t("manifesto.body1")}</p>
+              <p>{t("manifesto.body2")}</p>
+              <p>{t("manifesto.body3")}</p>
             </div>
-          </FadeIn>
+          </SectionHeader>
         </div>
-      </section>
+      </Section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S3 (LE MOT DU FONDATEUR) section split sombre, photo + citation magazine
-         ════════════════════════════════════════════════════════════════ */}
-      <section id="fondateur" className="relative w-full overflow-hidden bg-[#0F172A]">
-        <div className="flex flex-col lg:flex-row min-h-[80vh]">
-          <div className="relative w-full lg:w-[42%] min-h-[50vw] lg:min-h-0 overflow-hidden flex-shrink-0">
-            <Image
-              src="/photos/founder-portrait.jpg"
-              alt="Portrait éditorial du fondateur de GreenTechCycle"
-              fill
-              loading="lazy"
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 42vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#0F172A]/70" />
-            <div
-              className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-              style={{
-                fontSize: "clamp(8rem, 22vw, 18rem)",
-                color: "rgba(255,255,255,0.04)",
-                right: "0.5rem",
-                bottom: "-0.1em",
-              }}
-              aria-hidden="true"
-            >
-              00
+      {/* ═══ MOT DU FONDATEUR (forest) ═══ */}
+      <Section id="fondateur" tone="forest">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
+              <MediaSlot fill id="pourquoi-fondateur" alt="Portrait éditorial du fondateur de GreenTechCycle" fallback={<GeometryField icon={UserRound} />} />
             </div>
           </div>
-
-          <div className="relative w-full lg:flex-1 flex items-center px-6 sm:px-10 lg:px-14 xl:px-18 py-14 lg:py-20 text-white">
-            <div className="max-w-xl w-full">
-              <FadeIn>
-                <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-4">
-                  {t("founder.eyebrow")}
-                </p>
-                <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold leading-[1.1] tracking-tight mb-8">
-                  {t("founder.title")}
-                </h2>
-                <Quote
-                  className="h-10 w-10 text-[#10B981] mb-5 opacity-80"
-                  aria-hidden="true"
-                />
-                <blockquote className="text-xl lg:text-2xl text-white leading-[1.45] font-medium mb-8">
-                  &ldquo;{t("founder.quote")}&rdquo;
-                </blockquote>
-                <div className="border-l-4 border-[#10B981] pl-5 mb-6">
-                  <p className="font-bold text-white text-base leading-tight">
-                    {t("founder.name")}
-                  </p>
-                  <p className="text-gray-400 text-sm mt-0.5">
-                    {t("founder.role")}
-                  </p>
-                </div>
-                <p className="text-sm text-gray-300 leading-relaxed">
-                  {t("founder.bio")}
-                </p>
-              </FadeIn>
-            </div>
+          <div className="reveal lg:col-span-7">
+            <SectionHeader tone="dark" eyebrow={t("founder.eyebrow")} title={t("founder.title")} />
+            <figure>
+              <blockquote className="font-display text-display-sm text-fg">&laquo;&nbsp;{t("founder.quote")}&nbsp;&raquo;</blockquote>
+              <figcaption className="mt-6 text-caption text-fg-muted">
+                <span className="font-semibold text-fg">{t("founder.name")}</span> · {t("founder.role")}
+              </figcaption>
+            </figure>
           </div>
         </div>
-      </section>
+      </Section>
 
+      {/* ═══ 5 CONVICTIONS (paper, liste à filets) ═══ */}
       <div id="ethique" aria-hidden="true" className="sr-only" />
-      {/* ════════════════════════════════════════════════════════════════
-          S4 (LES 5 CONVICTIONS) sections alternées
-         ════════════════════════════════════════════════════════════════ */}
-      {convictions.map((c, index) => {
-        const photoOnLeft = index % 2 === 0;
-        const isDark = index === 2;
-        const number = String(index + 1).padStart(2, "0");
-        const Icon = convictionIcons[index] ?? Leaf;
-        const accent =
-          index === 0
-            ? "#10B981"
-            : index === 1
-            ? "#0EA5E9"
-            : index === 2
-            ? "#F59E0B"
-            : index === 3
-            ? "#10B981"
-            : "#0EA5E9";
-
-        let bg = "bg-white";
-        if (isDark) bg = "bg-[#022C22] text-white";
-        else if (index % 2 === 1) bg = "bg-[#F8FAFC]";
-
-        const textColor = isDark ? "text-white" : "text-[#0F172A]";
-        const subText = isDark ? "text-gray-300" : "text-gray-600";
-        const border = isDark ? "border-white/10" : "border-gray-100";
-
-        return (
-          <section
-            key={c.slug}
-            id={c.slug}
-            className={`relative w-full overflow-hidden ${bg}`}
-            aria-labelledby={`conv-${c.slug}`}
-          >
-            <div
-              className={`flex flex-col lg:flex-row min-h-[78vh] ${
-                !photoOnLeft ? "lg:flex-row-reverse" : ""
-              }`}
-            >
-              <div className="relative w-full lg:w-[48%] min-h-[56vw] lg:min-h-0 overflow-hidden flex-shrink-0">
-                <Image
-                  src={c.photo}
-                  alt={c.photoAlt}
-                  fill
-                  loading="lazy"
-                  className="object-cover transition-transform duration-[1400ms] hover:scale-[1.04]"
-                  sizes="(max-width: 1024px) 100vw, 48vw"
-                />
-                <div
-                  className={`absolute inset-0 ${
-                    isDark
-                      ? photoOnLeft
-                        ? "bg-gradient-to-r from-transparent via-transparent to-[#022C22]/70"
-                        : "bg-gradient-to-l from-transparent via-transparent to-[#022C22]/70"
-                      : photoOnLeft
-                      ? "bg-gradient-to-r from-transparent to-white/15"
-                      : "bg-gradient-to-l from-transparent to-white/15"
-                  }`}
-                />
-                <div
-                  className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-                  style={{
-                    fontSize: "clamp(8rem, 22vw, 18rem)",
-                    color: isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.035)",
-                    right: photoOnLeft ? "0.5rem" : "auto",
-                    left: photoOnLeft ? "auto" : "0.5rem",
-                    bottom: "-0.1em",
-                  }}
-                  aria-hidden="true"
-                >
-                  {number}
-                </div>
-                <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/92 backdrop-blur-sm shadow-lg">
-                  <Icon className="h-3.5 w-3.5 text-[#0F172A]" aria-hidden="true" />
-                  <span className="text-[11px] font-semibold text-[#0F172A] tracking-wide uppercase">
-                    {c.eyebrow}
-                  </span>
-                </div>
-              </div>
-
-              <div className="relative w-full lg:flex-1 flex items-center px-6 sm:px-10 lg:px-14 xl:px-18 py-14 lg:py-20">
-                <div
-                  className="absolute top-0 left-0 w-[3px] h-full"
-                  style={{ backgroundColor: accent }}
-                  aria-hidden="true"
-                />
-                <div className="max-w-xl w-full">
-                  <FadeIn>
-                    <div className="flex items-center gap-4 mb-6">
-                      <span
-                        className="text-5xl lg:text-6xl font-black leading-none tracking-tighter tabular-nums"
-                        style={{ color: accent }}
-                      >
-                        {number}
-                      </span>
-                      <span
-                        className="flex-1 h-[1px] opacity-25"
-                        style={{ backgroundColor: accent }}
-                        aria-hidden="true"
-                      />
-                    </div>
-
-                    <h2
-                      id={`conv-${c.slug}`}
-                      className={`text-3xl sm:text-4xl lg:text-[2.5rem] font-bold leading-[1.1] tracking-tight mb-5 ${textColor}`}
-                    >
-                      {c.title}
-                    </h2>
-
-                    <p
-                      className={`text-[1.0rem] lg:text-[1.05rem] leading-[1.78] mb-8 ${subText}`}
-                    >
-                      {c.body}
-                    </p>
-
-                    <div className={`pb-6 mb-6 border-b ${border}`}>
-                      <p
-                        className="text-3xl lg:text-4xl font-black tracking-tight leading-none tabular-nums mb-1"
-                        style={{ color: accent }}
-                      >
-                        {c.proofValue}
-                      </p>
-                      <p
-                        className={`text-[12px] font-semibold uppercase tracking-wider ${
-                          isDark ? "text-gray-300" : "text-[#0F172A]"
-                        }`}
-                      >
-                        {c.proofLabel}
-                      </p>
-                      <p
-                        className={`text-[11px] mt-1 ${
-                          isDark ? "text-gray-400" : "text-gray-500"
-                        }`}
-                      >
-                        {c.proofDetail}
-                      </p>
-                    </div>
-
-                    <ul className="space-y-2.5">
-                      {c.bullets.map((b, i) => (
-                        <li
-                          key={i}
-                          className={`flex items-start gap-3 text-[14px] leading-relaxed ${subText}`}
-                        >
-                          <CheckCircle2
-                            className="h-4 w-4 flex-shrink-0 mt-0.5"
-                            style={{ color: accent }}
-                            aria-hidden="true"
-                          />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </FadeIn>
-                </div>
-              </div>
-            </div>
-          </section>
-        );
-      })}
-
-      {/* ════════════════════════════════════════════════════════════════
-          S5 (ENGAGEMENTS CHIFFRÉS) bandeau preuves
-         ════════════════════════════════════════════════════════════════ */}
-      <section id="engagement" className="bg-[#0F172A] relative overflow-hidden border-t border-white/5">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(16,185,129,0.09) 0%, transparent 65%)",
-          }}
-        />
-        <div className="container mx-auto px-4 relative z-10 py-16 lg:py-20">
-          <FadeIn>
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
-                {t("commitments.eyebrow")}
-              </p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1]">
-                {t("commitments.title")}
-              </h2>
-            </div>
-          </FadeIn>
-          <StaggerContainer className="grid grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
-            {commitments.map((c, i) => {
-              const accents = [
-                "#10B981",
-                "#0EA5E9",
-                "#F59E0B",
-                "#10B981",
-                "#0EA5E9",
-                "#F59E0B",
-              ];
-              const accent = accents[i % accents.length];
-              const numericValue = parseFloat(c.metric.replace(/[^0-9.]/g, ""));
-              const showCount = !Number.isNaN(numericValue) && numericValue > 0;
+      <section className="bg-bg py-16 lg:py-24" aria-label={t("manifesto.eyebrow")}>
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <ol className="divide-y divide-track border-y border-track">
+            {convictions.map((c, index) => {
+              const Icon = convictionIcons[index] ?? Leaf;
+              const photoRight = index % 2 === 0;
               return (
-                <StaggerItem key={i}>
-                  <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-7 backdrop-blur-sm hover:bg-white/[0.07] transition-all">
-                    <p
-                      className="font-black tracking-tighter leading-none mb-3 tabular-nums"
-                      style={{
-                        fontSize: "clamp(2.2rem, 4.5vw, 3.5rem)",
-                        color: accent,
-                      }}
-                    >
-                      {showCount ? (
-                        <>
-                          <CountUp
-                            end={numericValue}
-                            decimals={c.metric.includes(",") || c.metric.includes(".") ? 1 : 0}
-                          />
-                          <span className="text-base ml-1 font-semibold opacity-80">
-                            {c.suffix}
-                          </span>
-                        </>
-                      ) : (
-                        c.metric
-                      )}
-                    </p>
-                    <p className="text-sm text-gray-300 leading-snug mb-3">
-                      {c.label}
-                    </p>
-                    <p className="text-[10px] text-gray-500 italic leading-snug">
-                      {c.source}
-                    </p>
+                <li key={c.slug} id={c.slug} aria-labelledby={`conv-${c.slug}`} className="py-12 lg:py-16">
+                  <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+                    <div className={`lg:col-span-6 ${photoRight ? "" : "lg:order-2"}`}>
+                      <div className="flex items-center gap-3">
+                        <Pictogram icon={Icon} />
+                        <p className="text-eyebrow uppercase text-fg-muted">{String(index + 1).padStart(2, "0")} · {c.eyebrow}</p>
+                      </div>
+                      <h2 id={`conv-${c.slug}`} className="mt-4 max-w-[24ch] text-display-md text-fg">{c.title}</h2>
+                      <p className="mt-4 max-w-[65ch] text-body text-fg-strong">{c.body}</p>
+                      <div className="mt-6 border-t border-track pt-6">
+                        <Stat value={c.proofValue} label={c.proofLabel} source={c.proofDetail} />
+                      </div>
+                      <ul className="mt-6 space-y-2">
+                        {c.bullets.map((b, i) => (
+                          <li key={i} className="flex items-start gap-2 text-body-sm text-fg-strong">
+                            <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className={`lg:col-span-6 ${photoRight ? "" : "lg:order-1"}`}>
+                      <div className="relative aspect-[3/2] overflow-hidden rounded-2xl border border-track">
+                        <MediaSlot fill id={`pourquoi-${c.slug}`} alt={c.photoAlt} fallback={<GeometryField icon={convictionIcons[index] ?? Leaf} />} />
+                      </div>
+                    </div>
                   </div>
-                </StaggerItem>
+                </li>
               );
             })}
-          </StaggerContainer>
+          </ol>
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S6 (CITATION MAGAZINE) fond sombre intercalé
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative py-24 lg:py-28 bg-[#022C22] text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-25">
-          <Image
-            src="/photos/diverse-team.jpg"
-            alt=""
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
+      {/* ═══ ENGAGEMENTS CHIFFRÉS (night) ═══ */}
+      <Section id="engagement" tone="night">
+        <div className="reveal">
+          <SectionHeader tone="dark" eyebrow={t("commitments.eyebrow")} title={t("commitments.title")} />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-[#022C22]/95 via-[#022C22]/92 to-[#0F172A]/95" />
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-4xl mx-auto">
-              <Quote
-                className="h-12 w-12 text-[#10B981] mb-6 opacity-80"
-                aria-hidden="true"
-              />
-              <blockquote
-                className="text-white font-medium tracking-tight leading-[1.3] mb-8"
-                style={{ fontSize: "clamp(1.6rem, 3.2vw, 2.4rem)" }}
-              >
-                &ldquo;{t("editorialQuote.quote")}&rdquo;
-              </blockquote>
-              <div className="border-l-4 border-[#10B981] pl-5">
-                <p className="font-bold text-white text-base leading-tight">
-                  {t("editorialQuote.name")}
-                </p>
-                <p className="text-gray-400 text-sm mt-0.5">
-                  {t("editorialQuote.role")}
-                </p>
+        {/* Engagements : les pourcentages deviennent des jauges qui se remplissent au
+            défilement (valeur finale dans le HTML) ; les autres restent des compteurs. */}
+        <div className="reveal-stagger grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {commitments.map((c, i) => {
+            // « 99,2 » → 99.2 (virgule décimale française)
+            const numericValue = parseFloat(c.metric.replace(/\s/g, "").replace(",", "."));
+            const decimals = /[,.]/.test(c.metric) ? 1 : 0;
+            const isNumber = !Number.isNaN(numericValue);
+            const isPercent = isNumber && c.suffix.trim() === "%";
+            return (
+              <div key={i} className="reveal">
+                {isPercent ? (
+                  <Gauge
+                    value={numericValue}
+                    display={<CountUp end={numericValue} decimals={decimals} suffix={c.suffix} />}
+                    label={c.label}
+                    source={c.source}
+                  />
+                ) : (
+                  <Stat
+                    tone="dark"
+                    value={
+                      isNumber && numericValue > 0 ? (
+                        <>
+                          <CountUp end={numericValue} decimals={decimals} />
+                          <span className="ml-1 font-sans text-body text-fg-muted">{c.suffix}</span>
+                        </>
+                      ) : (
+                        <>
+                          {c.metric}
+                          <span className="ml-1 font-sans text-body text-fg-muted">{c.suffix}</span>
+                        </>
+                      )
+                    }
+                    label={c.label}
+                    source={c.source}
+                  />
+                )}
               </div>
-            </div>
-          </FadeIn>
+            );
+          })}
         </div>
-      </section>
+      </Section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S7, CONVERSION FOND VERT PLEIN
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-24 bg-[#10B981] text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.15),_transparent_60%)] pointer-events-none" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <FadeIn>
-              <p className="text-sm font-semibold tracking-[0.18em] text-white/80 uppercase mb-4">
-                {t("conversion.eyebrow")}
-              </p>
-              <h2
-                className="font-bold tracking-tight leading-[1.05] mb-5"
-                style={{ fontSize: "clamp(2rem, 4.5vw, 3.25rem)" }}
-              >
-                {t("conversion.title")}
-              </h2>
-              <p className="text-white/85 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
-                {t("conversion.subtitle")}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link
-                  href="/reserver?offre=audit-decommissionnement"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-[#0F172A] hover:bg-[#F8FAFC] font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 text-sm"
-                >
-                  {t("conversion.cta1")}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <Link
-                  href="/cas-usages"
-                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/40 font-semibold px-7 py-4 rounded-xl transition-all duration-300 backdrop-blur-sm text-sm"
-                >
-                  {t("conversion.cta2")}
-                </Link>
-              </div>
-            </FadeIn>
-          </div>
+      {/* ═══ CITATION (paper) ═══ */}
+      <Section tone="paper">
+        <div className="reveal">
+          <figure className="max-w-[65ch] border-l-2 border-emerald pl-6">
+            <blockquote className="font-display text-display-sm text-fg">&laquo;&nbsp;{t("editorialQuote.quote")}&nbsp;&raquo;</blockquote>
+            <figcaption className="mt-6 text-caption text-fg-muted">
+              <span className="font-semibold text-fg-strong">{t("editorialQuote.name")}</span> · {t("editorialQuote.role")}
+            </figcaption>
+          </figure>
         </div>
-      </section>
-    </main>
+      </Section>
+
+      {/* ═══ CTA UNIQUE ═══ */}
+      <CtaSection
+        eyebrow={t("conversion.eyebrow")}
+        title={t("conversion.title")}
+        subtitle={t("conversion.subtitle")}
+        primaryLabel={t("conversion.cta1")}
+        primaryHref="/reserver?offre=audit-decommissionnement"
+        secondaryLabel={t("conversion.cta2")}
+        secondaryHref="/cas-usages"
+      />
+    </div>
   );
 }

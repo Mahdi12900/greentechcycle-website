@@ -1,10 +1,13 @@
 "use client";
 
+import FilmPlayer from "@/components/visuals/FilmPlayer";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/motion";
-import Image from "next/image";
-import { Play, Monitor, BarChart3, Layout, Layers, Send, CheckCircle } from "lucide-react";
+
+import { Button, ButtonLink } from "@/components/ui/Button";
+import Section from "@/components/ui/Section";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { Monitor, Send, CheckCircle } from "lucide-react";
 
 export default function DemoPage() {
   const t = useTranslations("Demo");
@@ -32,213 +35,103 @@ export default function DemoPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const label = "block text-body-sm font-medium text-fg";
+  const field =
+    "mt-2 h-11 w-full rounded-lg border border-track bg-bg px-3 text-body text-fg placeholder:text-fg-muted focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25";
+
   return (
-    <main className="min-h-screen bg-light">
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-primary to-dark py-24 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <FadeIn>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              {t("hero.title")}
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto">
-              {t("hero.subtitle")}
-            </p>
-          </FadeIn>
+    <div>
+      {/* Hero : titre + vidéo de présentation en grand, juste sous le titre */}
+      <section className="bg-bg pb-16 pt-12 lg:pb-24 lg:pt-16" aria-labelledby="demo-title">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
+            <h1 id="demo-title" className="max-w-[20ch] text-display-lg text-fg">{t("hero.title")}</h1>
+            <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("hero.subtitle")}</p>
+          </div>
+          <figure className="mx-auto mt-10 max-w-[1100px]" aria-labelledby="demo-video-title">
+            <h2 id="demo-video-title" className="mb-4 text-display-sm text-fg">{t("video.title")}</h2>
+            <FilmPlayer id="brand-film" placement="demo" />
+            <figcaption className="mt-3 text-caption text-fg-muted">{t("video.placeholder")}</figcaption>
+          </figure>
+          <div className="mt-10">
+            <ButtonLink href="#demo-form" size="lg">{t("form.submit")}</ButtonLink>
+          </div>
         </div>
       </section>
 
-      {/* Video Placeholder */}
-      <section className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-dark text-center mb-8">
-              {t("video.title")}
-            </h2>
-            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl group">
-              <Image
-                src="/images/hero-dashboard.jpg"
-                alt="Aperçu de la plateforme GreenTechCycle - Demandez une démo"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 1024px"
-              />
-              <div className="absolute inset-0 bg-dark/40 group-hover:bg-dark/30 transition-colors duration-300" />
-              <button
-                className="absolute inset-0 flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-accent/40 rounded-2xl"
-                aria-label="Lire la vidéo de démonstration"
-              >
-                <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center shadow-lg shadow-accent/40 group-hover:scale-110 transition-transform duration-300">
-                  <Play className="w-8 h-8 text-white ml-1" fill="white" aria-hidden="true" />
-                </div>
-              </button>
-              <div className="absolute bottom-4 left-4 text-white/60 text-sm">
-                {t("video.placeholder")}
+      {/* Écrans de la plateforme */}
+      <Section tone="paper">
+        <div className="reveal">
+          <SectionHeader title={t("screenshots.title")} />
+        </div>
+        <div className="reveal-stagger grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {screenshotItems.map((item, index) => (
+            <div key={index} className="reveal h-full">
+              <div className="flex h-full flex-col items-center justify-center rounded-xl border border-track bg-bg-card p-8 text-center">
+                <Monitor className="h-8 w-8 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+                <p className="mt-3 text-body-sm font-medium text-fg">{item}</p>
               </div>
             </div>
-          </FadeIn>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      {/* Screenshots */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-dark text-center mb-16">
-              {t("screenshots.title")}
-            </h2>
-          </FadeIn>
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {screenshotItems.map((item, index) => (
-              <StaggerItem key={index}>
-                <div className="bg-dark rounded-xl overflow-hidden shadow-xl border border-white/10">
-                  <div className="h-8 bg-dark/80 flex items-center px-4 gap-2 border-b border-white/10">
-                    <div className="w-3 h-3 rounded-full bg-red-500" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
-                  </div>
-                  <div className="p-4 h-56 flex items-center justify-center">
-                    <div className="text-center">
-                      <Monitor className="w-10 h-10 text-accent mx-auto mb-3" />
-                      <p className="text-white/70 text-sm font-medium">{item}</p>
-                    </div>
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* Form Section */}
-      <section className="py-20 px-6 bg-gradient-to-b from-light to-white">
-        <div className="max-w-3xl mx-auto">
-          <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-dark text-center mb-4">
-              {t("form.title")}
-            </h2>
-            <p className="text-center text-dark/60 mb-12">
-              {t("form.subtitle")}
-            </p>
-          </FadeIn>
-
-          {submitted ? (
-            <ScaleIn>
-              <div className="bg-white rounded-2xl shadow-xl p-12 text-center">
-                <CheckCircle className="w-16 h-16 text-accent mx-auto mb-6" />
-                <p className="text-lg text-dark">
-                  {t("form.success")}
-                </p>
+      {/* Formulaire §6.16 */}
+      <section id="demo-form" className="border-t border-track bg-bg-card py-16 lg:py-24" aria-labelledby="demo-form-title">
+        <div className="mx-auto max-w-[calc(720px+4rem)] px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
+            <SectionHeader id="demo-form-title" title={t("form.title")} intro={t("form.subtitle")} />
+          </div>
+          <div className="rounded-xl border border-track bg-bg p-6 lg:p-8">
+            {submitted ? (
+              <div className="flex items-start gap-3" role="status">
+                <CheckCircle className="h-6 w-6 flex-shrink-0 text-emerald" aria-hidden="true" />
+                <p className="text-body text-fg">{t("form.success")}</p>
               </div>
-            </ScaleIn>
-          ) : (
-            <FadeIn>
-              <form
-                onSubmit={handleSubmit}
-                className="bg-white rounded-2xl shadow-xl p-8 md:p-12 space-y-6"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div>
-                    <label className="block text-sm font-medium text-dark mb-2">
-                      {t("form.fields.name")}
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
-                    />
+                    <label htmlFor="demo-name" className={label}>{t("form.fields.name")}</label>
+                    <input id="demo-name" type="text" name="name" autoComplete="name" value={formData.name} onChange={handleChange} required className={field} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-dark mb-2">
-                      {t("form.fields.company")}
-                    </label>
-                    <input
-                      type="text"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
-                    />
+                    <label htmlFor="demo-company" className={label}>{t("form.fields.company")}</label>
+                    <input id="demo-company" type="text" name="company" autoComplete="organization" value={formData.company} onChange={handleChange} required className={field} />
                   </div>
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div>
-                    <label className="block text-sm font-medium text-dark mb-2">
-                      {t("form.fields.email")}
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
-                    />
+                    <label htmlFor="demo-email" className={label}>{t("form.fields.email")}</label>
+                    <input id="demo-email" type="email" name="email" autoComplete="email" value={formData.email} onChange={handleChange} required className={field} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-dark mb-2">
-                      {t("form.fields.phone")}
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all"
-                    />
+                    <label htmlFor="demo-phone" className={label}>{t("form.fields.phone")}</label>
+                    <input id="demo-phone" type="tel" name="phone" autoComplete="tel" value={formData.phone} onChange={handleChange} className={field} />
                   </div>
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium text-dark mb-2">
-                    {t("form.fields.equipment")}
-                  </label>
-                  <select
-                    name="equipment"
-                    value={formData.equipment}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all bg-white"
-                  >
+                  <label htmlFor="demo-equipment" className={label}>{t("form.fields.equipment")}</label>
+                  <select id="demo-equipment" name="equipment" value={formData.equipment} onChange={handleChange} required className={field}>
                     <option value="">--</option>
                     {equipmentOptions.map((option, index) => (
-                      <option key={index} value={option}>
-                        {option}
-                      </option>
+                      <option key={index} value={option}>{option}</option>
                     ))}
                   </select>
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium text-dark mb-2">
-                    {t("form.fields.message")}
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all resize-none"
-                  />
+                  <label htmlFor="demo-message" className={label}>{t("form.fields.message")}</label>
+                  <textarea id="demo-message" name="message" value={formData.message} onChange={handleChange} rows={4} className={`${field} h-auto resize-y py-3`} />
                 </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-accent/25"
-                >
-                  <Send className="w-5 h-5" />
+                <Button type="submit" size="lg" className="w-full sm:w-auto">
+                  <Send className="h-4 w-4" aria-hidden="true" />
                   {t("form.submit")}
-                </button>
+                </Button>
               </form>
-            </FadeIn>
-          )}
+            )}
+          </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

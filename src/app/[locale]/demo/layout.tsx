@@ -1,21 +1,24 @@
 import type { Metadata } from "next";
+import { pageMetadata, type LocaleParams, type PageCopy } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Démo | Découvrez la plateforme ITAD en action",
-  description:
-    "Réservez une démonstration personnalisée de la plateforme GreenTechCycle. Découvrez le tableau de bord ITAD, la traçabilité blockchain et le comptes-rendus ESG en temps réel.",
-  keywords: ["démo ITAD", "démonstration plateforme", "essai gratuit", "tableau de bord ITAD"],
-  openGraph: {
-    title: "Réservez une démo | GreenTechCycle",
-    description: "Démonstration personnalisée de la plateforme ITAD avec traçabilité blockchain et comptes-rendus ESG.",
-    type: "website",
+const META_COPY: PageCopy = {
+  fr: {
+    title: "Démo | La plateforme ITAD en action",
+    description:
+      "Réservez une démonstration de la plateforme GreenTechCycle et regardez le film de 2:54 : tableau de bord ITAD, traçabilité horodatée, reporting CSRD.",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Réservez une démo | GreenTechCycle",
-    description: "Découvrez la plateforme ITAD GreenTechCycle en action.",
+  en: {
+    title: "Demo | The ITAD platform in action",
+    description:
+      "Book a demo of the GreenTechCycle platform and watch the 2:54 film: ITAD dashboard, timestamped traceability, CSRD reporting.",
   },
 };
+
+/* Métadonnées par langue (audit final B3) : titre, description, canonical, hreflang, Open Graph */
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/demo", META_COPY);
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

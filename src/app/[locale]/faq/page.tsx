@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+
 import { ChevronDown, HelpCircle, Sparkles, Users, TrendingUp, Shield } from "lucide-react";
 import { useState } from "react";
 import RelatedArticles from "@/components/RelatedArticles";
@@ -42,32 +42,32 @@ export default function FAQPage() {
   };
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-primary to-dark py-24 md:py-32">
+      <section className="relative bg-bg-card py-16 lg:py-24">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
+          <div className="reveal">
             <div className="max-w-3xl mx-auto text-center">
-              <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <HelpCircle className="w-8 h-8 text-accent" />
+              <div className="w-16 h-16 bg-emerald/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <HelpCircle className="w-8 h-8 text-emerald" />
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              <h1 className="text-display-lg text-fg mb-6">
                 {t("hero.title")}
               </h1>
-              <p className="text-lg md:text-xl text-white/80">
+              <p className="text-lg md:text-xl text-fg">
                 {t("hero.subtitle")}
               </p>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* Tabs + Accordion */}
-      <section className="py-20 bg-light">
-        <div className="container mx-auto px-4 max-w-4xl">
+      <section className="bg-bg-card py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 max-w-4xl">
           {/* Tab Navigation */}
-          <FadeIn>
+          <div className="reveal">
             <div className="flex flex-wrap justify-center gap-2 mb-12">
               {TABS.map((tab) => {
                 const TabIcon = tabIcons[tab];
@@ -75,11 +75,7 @@ export default function FAQPage() {
                   <button
                     key={tab}
                     onClick={() => handleTabChange(tab)}
-                    className={`inline-flex items-center gap-2 px-5 md:px-6 py-3 rounded-full font-medium text-sm md:text-base transition-all ${
-                      activeTab === tab
-                        ? "bg-primary text-white shadow-lg shadow-primary/25"
-                        : "bg-white text-dark/70 hover:bg-primary/5 hover:text-primary border border-gray-200"
-                    }`}
+                    className={`inline-flex items-center gap-2 px-5 md:px-6 py-3 rounded-full font-medium text-sm md:text-base transition-colors ${ activeTab === tab ? "bg-emerald text-bg" : "bg-bg-card text-fg-strong hover:bg-emerald/5 hover:text-emerald border border-track" }`}
                   >
                     <TabIcon className="h-4 w-4" />
                     {tabLabels[tab]}
@@ -87,47 +83,43 @@ export default function FAQPage() {
                 );
               })}
             </div>
-          </FadeIn>
+          </div>
 
           {/* Accordion */}
-          <StaggerContainer>
+          <div className="reveal-stagger">
             <div className="space-y-3">
               {questions.map((item, index) => (
-                <StaggerItem key={`${activeTab}-${index}`}>
-                  <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div key={`${activeTab}-${index}`} className="reveal">
+                  <div className="bg-bg-card rounded-xl border border-track overflow-hidden">
                     <button
                       onClick={() => toggleQuestion(index)}
-                      className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-gray-50 transition-colors"
+                      className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-white/[0.04] transition-colors"
                     >
-                      <span className="font-medium text-dark pr-4 text-sm md:text-base">
+                      <span className="font-medium text-fg pr-4 text-sm md:text-base">
                         {item.q}
                       </span>
                       <ChevronDown
-                        className={`w-5 h-5 text-primary shrink-0 transition-transform duration-300 ${
-                          openIndex === index ? "rotate-180" : ""
-                        }`}
+                        className={`w-5 h-5 text-emerald shrink-0 transition-transform duration-150 ${ openIndex === index ? "rotate-180" : "" }`}
                       />
                     </button>
                     <div
-                      className={`overflow-hidden transition-all duration-300 ${
-                        openIndex === index ? "max-h-96" : "max-h-0"
-                      }`}
+                      className={`overflow-hidden transition-colors duration-150 ${ openIndex === index ? "max-h-96" : "max-h-0" }`}
                     >
-                      <div className="px-5 md:px-6 pb-5 md:pb-6 text-dark/70 text-sm md:text-base leading-relaxed border-t border-gray-100 pt-4">
+                      <div className="px-5 md:px-6 pb-5 md:pb-6 text-fg-strong text-sm md:text-base leading-relaxed border-t border-track pt-4">
                         {item.a}
                       </div>
                     </div>
                   </div>
-                </StaggerItem>
+                </div>
               ))}
             </div>
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
       <RelatedArticles
-        title="Articles recommandés"
-        subtitle="Approfondissez vos questions avec nos guides sur la conformité, la sécurité et l'économie circulaire IT."
+        title={{ fr: "Articles recommandés", en: "Recommended articles" }}
+        subtitle={{ fr: "Approfondissez vos questions avec nos guides sur la conformité, la sécurité et l'économie circulaire IT.", en: "Dig deeper with our guides on compliance, security and the circular IT economy." }}
         limit={3}
         tone="light"
       />
@@ -142,6 +134,6 @@ export default function FAQPage() {
         variant="contact"
         tone="dark"
       />
-    </main>
+    </div>
   );
 }

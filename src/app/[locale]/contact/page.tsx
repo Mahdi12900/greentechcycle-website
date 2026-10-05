@@ -2,18 +2,21 @@
 
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
-import { Link } from "@/i18n/navigation";
-import { FadeIn, ScaleIn } from "@/components/motion";
+import { useLocale, useTranslations } from "next-intl";
+
+import { Button, TextLink } from "@/components/ui/Button";
+import Section from "@/components/ui/Section";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Tag from "@/components/ui/Tag";
+import ContactChannels from "@/components/ContactChannels";
+import { CONTACT_TOPICS, LEGAL, isContactTopic, mailtoHref, type ContactTopic } from "@/lib/contact";
+import { getSectorDef } from "@/data/sectors";
+import { getSectorName } from "@/data/sectors-i18n";
 import {
   ArrowDown,
   Send,
   CheckCircle2,
-  Quote,
   MapPin,
-  Phone,
-  Mail,
   ShieldCheck,
   Clock,
   Leaf,
@@ -21,12 +24,13 @@ import {
 } from "lucide-react";
 
 /**
- * /contact : refonte éditoriale (vague 4)
- * Formulaire qualifié pré-rempli via ?offre=<slug>. Pattern hero sombre,
- * sections alternées, prose narrative, conversion verte.
+ * /contact — DESIGN.md §10.6. Formulaire qualifié pré-rempli via ?offre=<slug>.
+ * Hero court paper → formulaire #formulaire (cream) → voies directes (night).
+ * Le bandeau d'urgence devient une notice ; la section « conversion verte » est coupée.
  */
 function ContactInner() {
   const t = useTranslations("Contact");
+  const locale = useLocale();
   const searchParams = useSearchParams();
 
   type Offer = {
@@ -39,6 +43,18 @@ function ContactInner() {
   const offers = t.raw("offers") as Offer[];
 
   const initialOffer = (searchParams?.get("offre") ?? "audit-decommissionnement").trim();
+  // Sujet → destinataire (src/lib/contact.ts) : ?sujet=support|lab pré-sélectionne le sujet
+  const sujetParam = searchParams?.get("sujet");
+  const [topic, setTopic] = useState<ContactTopic>(isContactTopic(sujetParam) ? sujetParam : "commercial");
+  // ?secteur=<slug> (page /lab, programmes pilotes) : pré-remplit le message avec le secteur.
+  // Seuls les 16 slugs de src/data/sectors.ts sont acceptés.
+  const secteurParam = searchParams?.get("secteur");
+  const sectorName = secteurParam && getSectorDef(secteurParam) ? getSectorName(locale, secteurParam) : null;
+  const sectorPrefill = sectorName
+    ? locale === "en"
+      ? `Sector: ${sectorName}. We would like to discuss a GreenTechCycle Lab pilot programme.`
+      : `Secteur : ${sectorName}. Nous souhaitons échanger sur un programme pilote GreenTechCycle Lab.`
+    : "";
 
   const [form, setForm] = useState({
     offre: initialOffer,
@@ -49,11 +65,12 @@ function ContactInner() {
     fleet: "1000-5000",
     phone: "",
     timeline: "1-3-mois",
-    message: "",
+    message: sectorPrefill,
     consent: false,
   });
   const [submitted, setSubmitted] = useState(false);
   const [pending, setPending] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   // Synchronise quand le param URL change
   useEffect(() => {
@@ -67,511 +84,353 @@ function ContactInner() {
   const selectedOffer =
     offers.find((o) => o.slug === form.offre) ?? offers[0];
 
-  function handleSubmit(e: React.FormEvent) {
+  // Envoi réel : /api/reservation enregistre la demande et l'envoie par email
+  // (Resend, si RESEND_API_KEY est configurée côté serveur).
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.consent) return;
+    if (!form.consent || pending) return;
     setPending(true);
-    setTimeout(() => {
-      setPending(false);
+    setFailed(false);
+    try {
+      const res = await fetch("/api/reservation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          company: form.company,
+          size: form.fleet,
+          persona: form.role,
+          needs: `Échéance : ${form.timeline}${sectorName ? ` · Secteur : ${sectorName}` : ""}`,
+          message: form.message,
+          consent: form.consent,
+          offerSlug: topic === "commercial" ? form.offre : null,
+          topic,
+          source: "contact",
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { success?: boolean };
+      if (!res.ok || !data.success) throw new Error("submit_failed");
       setSubmitted(true);
-    }, 700);
+    } catch {
+      setFailed(true);
+    } finally {
+      setPending(false);
+    }
   }
 
-  return (
-    <main className="overflow-hidden bg-white">
-      {/* ═══════════════ Bandeau urgence ═══════════════ */}
-      <div className="bg-[#0F172A] text-white py-3 px-4 border-b border-white/5">
-        <div className="container mx-auto flex items-center justify-center gap-3 text-xs sm:text-sm font-medium text-center">
-          <CalendarCheck className="h-4 w-4 flex-shrink-0 text-[#10B981]" aria-hidden="true" />
-          <p className="leading-snug text-gray-300">{t("urgency.text")}</p>
-        </div>
-      </div>
+  const isEn = locale === "en";
+  const tx = (fr: string, en: string) => (isEn ? en : fr);
+  const label = "block text-body-sm font-medium text-fg";
+  const field =
+    "mt-2 h-11 w-full rounded-lg border border-track bg-bg px-3 text-body text-fg placeholder:text-fg-muted focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25";
 
-      {/* ════════════════════════════════════════════════════════════════
-          S1 (HERO) split sombre, photo équipe à droite
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        className="relative w-full min-h-[78vh] flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
-        aria-labelledby="contact-hero"
-      >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 12% 10%, rgba(16,185,129,0.18) 0%, transparent 60%)",
-          }}
-        />
-        <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-16 pb-12 lg:py-20">
-          <FadeIn>
-            <div className="flex items-center gap-3 mb-8">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
-                <span
-                  className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
-                  style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
-                />
-                {t("hero.eyebrow")}
-              </span>
-            </div>
-            <h1
-              id="contact-hero"
-              className="text-white font-black tracking-tight mb-6"
-              style={{ fontSize: "clamp(2.2rem, 5.2vw, 4.5rem)", lineHeight: 1.05 }}
-            >
+  return (
+    <div>
+      {/* ═══════════════ HERO court (paper) ═══════════════ */}
+      <section className="bg-bg py-16 lg:py-24" aria-labelledby="contact-hero">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
+            <Tag variant="brand" icon={<CalendarCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
+              {t("urgency.text")}
+            </Tag>
+            <p className="mt-6 text-eyebrow uppercase text-fg-muted">{t("hero.eyebrow")}</p>
+            <h1 id="contact-hero" className="mt-3 max-w-[24ch] text-display-lg text-fg">
               {t("hero.title")}
             </h1>
-            <p className="text-gray-300 text-base lg:text-[1.1rem] leading-[1.72] max-w-xl mb-8">
-              {t("hero.subtitle")}
-            </p>
-
-            <div className="flex flex-wrap gap-x-6 gap-y-3 mb-8 pb-8 border-b border-white/10">
-              <span className="flex items-center gap-2 text-xs text-gray-400">
-                <Clock className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+            <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">{t("hero.subtitle")}</p>
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-caption text-fg-strong">
+              <li className="inline-flex items-center gap-2">
+                <Clock className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                 {t("hero.trust1")}
-              </span>
-              <span className="flex items-center gap-2 text-xs text-gray-400">
-                <ShieldCheck className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+              </li>
+              <li className="inline-flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                 {t("hero.trust2")}
-              </span>
-              <span className="flex items-center gap-2 text-xs text-gray-400">
-                <Leaf className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+              </li>
+              <li className="inline-flex items-center gap-2">
+                <Leaf className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
                 {t("hero.trust3")}
-              </span>
-            </div>
-
+              </li>
+            </ul>
             <a
               href="#formulaire"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-300 text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
+              className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-fg-muted hover:text-fg"
             >
-              <ArrowDown
-                className="h-4 w-4 transition-transform group-hover:translate-y-1"
-                aria-hidden="true"
-              />
+              <ArrowDown className="h-4 w-4" aria-hidden="true" />
               {t("hero.scrollLabel")}
             </a>
-          </FadeIn>
-        </div>
-
-        <div className="relative w-full lg:w-[45%] min-h-[42vh] lg:min-h-0 overflow-hidden flex-shrink-0">
-          <Image
-            src="/photos/team-collab.jpg"
-            alt="Équipe GreenTechCycle en réunion d'atterrissage avec un client grand compte"
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 45vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/85 via-[#0F172A]/25 to-transparent" />
-
-          <div className="absolute bottom-8 right-5 sm:right-8 max-w-[280px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-gray-100 hidden sm:block">
-            <Quote className="h-6 w-6 text-[#0EA5E9] mb-3" aria-hidden="true" />
-            <p className="text-[12px] text-[#0F172A] leading-snug font-medium mb-3">
-              &ldquo;{t("hero.floatQuote")}&rdquo;
-            </p>
-            <div className="flex items-center gap-2.5 pt-3 border-t border-gray-100">
-              <div className="w-7 h-7 rounded-full bg-[#0EA5E9]/12 flex items-center justify-center flex-shrink-0">
-                <ShieldCheck className="h-3.5 w-3.5 text-[#0EA5E9]" aria-hidden="true" />
-              </div>
-              <div>
-                <p className="text-[11px] font-bold text-[#0F172A] leading-none">
-                  {t("hero.floatName")}
-                </p>
-                <p className="text-[10px] text-gray-500 mt-0.5 leading-tight">
-                  {t("hero.floatRole")}
-                </p>
-              </div>
-            </div>
+            {/* Voies directes : WhatsApp / email (si configurés) / formulaire */}
+            <ContactChannels variant="pills" className="mt-6" />
           </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S2 (FORMULAIRE QUALIFIÉ) clair, panneau d'offre à gauche
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-24 bg-[#F8FAFC]" id="formulaire">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-3xl mb-12">
-              <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
-                {t("form.eyebrow")}
-              </p>
-              <h2
-                className="text-[#0F172A] font-bold tracking-tight leading-[1.05] mb-4"
-                style={{ fontSize: "clamp(2rem, 4.5vw, 3.25rem)" }}
-              >
-                {t("form.title")}
-              </h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                {t("form.subtitle")}
-              </p>
-            </div>
-          </FadeIn>
+      {/* ═══════════════ FORMULAIRE #formulaire (cream) ═══════════════ */}
+      <section className="border-t border-track bg-bg-card py-16 lg:py-24" id="formulaire" aria-labelledby="form-title">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
+            <SectionHeader id="form-title" eyebrow={t("form.eyebrow")} title={t("form.title")} intro={t("form.subtitle")} />
+          </div>
 
-          <div className="grid lg:grid-cols-[360px_1fr] gap-8 lg:gap-12 max-w-6xl">
-            {/* Panneau de l'offre sélectionnée */}
-            <FadeIn>
-              <aside className="bg-[#0F172A] text-white rounded-2xl p-7 lg:sticky lg:top-24">
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-3">
-                  {t("form.selectedOfferLabel")}
-                </p>
-                <h3 className="text-xl font-bold leading-tight mb-3 tracking-tight">
-                  {selectedOffer.name}
-                </h3>
-                <p className="text-sm text-gray-300 leading-relaxed mb-5">
-                  {selectedOffer.pitch}
-                </p>
-                <div className="flex items-center gap-2 mb-5 text-xs text-[#10B981]">
-                  <Clock className="h-4 w-4" aria-hidden="true" />
-                  <span className="font-semibold">{selectedOffer.duration}</span>
-                </div>
-                <div className="border-t border-white/10 pt-5">
-                  <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2">
-                    {t("form.nextStepLabel")}
+          <div className="grid items-start gap-8 lg:grid-cols-[360px_1fr] lg:gap-12">
+            {/* Panneau de l'offre — collant uniquement en lg+ (seule barre fixe : le header) */}
+            <div className="rounded-xl border border-track bg-bg p-6 lg:sticky lg:top-24" aria-live="polite">
+              {topic === "commercial" ? (
+                <>
+                  <p className="text-eyebrow uppercase text-fg-muted">{t("form.selectedOfferLabel")}</p>
+                  <h3 className="mt-3 text-heading-lg text-fg">{selectedOffer.name}</h3>
+                  <p className="mt-2 text-body-sm text-fg-strong">{selectedOffer.pitch}</p>
+                  <p className="mt-4 inline-flex items-center gap-2 text-caption font-semibold text-emerald">
+                    <Clock className="h-4 w-4" aria-hidden="true" />
+                    {selectedOffer.duration}
                   </p>
-                  <p className="text-sm text-gray-200 leading-relaxed">
-                    {selectedOffer.nextStep}
-                  </p>
-                </div>
-              </aside>
-            </FadeIn>
-
-            {/* Formulaire */}
-            <FadeIn>
-              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-7 lg:p-9">
-                {submitted ? (
-                  <div className="text-center py-12">
-                    <ScaleIn>
-                      <div className="w-16 h-16 mx-auto rounded-full bg-[#10B981]/10 flex items-center justify-center mb-4">
-                        <CheckCircle2 className="w-8 h-8 text-[#10B981]" />
-                      </div>
-                    </ScaleIn>
-                    <p className="text-xl font-bold text-[#0F172A] mb-2 tracking-tight">
-                      {t("form.successTitle")}
-                    </p>
-                    <p className="text-gray-600 text-sm leading-relaxed max-w-md mx-auto">
-                      {t("form.successBody")}
-                    </p>
+                  <div className="mt-6 border-t border-track pt-4">
+                    <p className="text-eyebrow uppercase text-fg-muted">{t("form.nextStepLabel")}</p>
+                    <p className="mt-2 text-body-sm text-fg-strong">{selectedOffer.nextStep}</p>
                   </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
+                </>
+              ) : (
+                <>
+                  <p className="text-eyebrow uppercase text-fg-muted">{tx("Objet de votre demande", "Your request")}</p>
+                  <h3 className="mt-3 text-heading-lg text-fg">{CONTACT_TOPICS[topic].label[isEn ? "en" : "fr"]}</h3>
+                  <p className="mt-2 text-body-sm text-fg-strong">
+                    {tx("Votre message est transmis directement à", "Your message goes straight to")}{" "}
+                    <span className="font-mono text-emerald">{CONTACT_TOPICS[topic].recipient}</span>
+                  </p>
+                </>
+              )}
+              <figure className="mt-6 border-t border-track pt-4">
+                <blockquote className="text-body-sm text-fg">&laquo;&nbsp;{t("hero.floatQuote")}&nbsp;&raquo;</blockquote>
+                <figcaption className="mt-2 text-caption text-fg-muted">
+                  <span className="font-semibold text-fg-strong">{t("hero.floatName")}</span> · {t("hero.floatRole")}
+                </figcaption>
+              </figure>
+            </div>
+
+            {/* Formulaire §6.16 */}
+            <div className="rounded-xl border border-track bg-bg p-6 lg:p-8">
+              {submitted ? (
+                <div className="py-12 text-center" role="status">
+                  <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-dim text-emerald">
+                    <CheckCircle2 className="h-6 w-6" aria-hidden="true" />
+                  </span>
+                  <p className="mt-4 font-display text-display-sm text-fg">{t("form.successTitle")}</p>
+                  <p className="mx-auto mt-2 max-w-md text-body-sm text-fg-strong">{t("form.successBody")}</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <fieldset>
+                    <legend className={label}>{tx("Objet de votre demande", "What is your request about?")}</legend>
+                    <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                      {(Object.keys(CONTACT_TOPICS) as ContactTopic[]).map((k) => (
+                        <label
+                          key={k}
+                          className={`flex min-h-[44px] cursor-pointer items-center gap-3 rounded-lg border px-3 py-2 text-body-sm transition-colors ${
+                            topic === k ? "border-emerald bg-emerald-dim text-fg" : "border-track bg-bg text-fg-strong hover:border-track-strong"
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="topic"
+                            value={k}
+                            checked={topic === k}
+                            onChange={() => setTopic(k)}
+                            className="h-4 w-4 flex-shrink-0 accent-emerald"
+                          />
+                          {CONTACT_TOPICS[k].label[isEn ? "en" : "fr"]}
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+
+                  {topic === "commercial" && (
+                  <div>
+                    <label htmlFor="offre" className={label}>
+                      {t("form.fields.offer")}
+                    </label>
+                    <select id="offre" value={form.offre} onChange={(e) => setForm({ ...form, offre: e.target.value })} className={field}>
+                      {offers.map((o) => (
+                        <option key={o.slug} value={o.slug}>
+                          {o.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  )}
+
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div>
-                      <label
-                        htmlFor="offre"
-                        className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
-                      >
-                        {t("form.fields.offer")}
+                      <label htmlFor="name" className={label}>
+                        {t("form.fields.name")} <span aria-hidden="true">*</span>
                       </label>
-                      <select
-                        id="offre"
-                        value={form.offre}
-                        onChange={(e) => setForm({ ...form, offre: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none bg-white"
-                      >
-                        {offers.map((o) => (
-                          <option key={o.slug} value={o.slug}>
-                            {o.name}
-                          </option>
-                        ))}
+                      <input id="name" type="text" required autoComplete="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={field} />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className={label}>
+                        {t("form.fields.email")} <span aria-hidden="true">*</span>
+                      </label>
+                      <input id="email" type="email" required autoComplete="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={field} />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="company" className={label}>
+                        {t("form.fields.company")} <span aria-hidden="true">*</span>
+                      </label>
+                      <input id="company" type="text" required autoComplete="organization" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} className={field} />
+                    </div>
+                    <div>
+                      <label htmlFor="role" className={label}>
+                        {t("form.fields.role")} <span aria-hidden="true">*</span>
+                      </label>
+                      <select id="role" value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} className={field}>
+                        <option value="DSI">{tx("DSI / Direction informatique", "CIO / IT department")}</option>
+                        <option value="RSSI">{tx("RSSI / Sécurité", "CISO / Security")}</option>
+                        <option value="RSE">{tx("Direction RSE", "CSR department")}</option>
+                        <option value="DAF">{tx("DAF / Achats", "CFO / Procurement")}</option>
+                        <option value="DG">{tx("Direction générale", "Executive management")}</option>
+                        <option value="Autre">{t("form.fields.roleOther")}</option>
                       </select>
                     </div>
+                  </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label
-                          htmlFor="name"
-                          className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
-                        >
-                          {t("form.fields.name")} *
-                        </label>
-                        <input
-                          id="name"
-                          type="text"
-                          required
-                          value={form.name}
-                          onChange={(e) => setForm({ ...form, name: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none"
-                        />
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="email"
-                          className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
-                        >
-                          {t("form.fields.email")} *
-                        </label>
-                        <input
-                          id="email"
-                          type="email"
-                          required
-                          value={form.email}
-                          onChange={(e) => setForm({ ...form, email: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label
-                          htmlFor="company"
-                          className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
-                        >
-                          {t("form.fields.company")} *
-                        </label>
-                        <input
-                          id="company"
-                          type="text"
-                          required
-                          value={form.company}
-                          onChange={(e) => setForm({ ...form, company: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none"
-                        />
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="role"
-                          className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
-                        >
-                          {t("form.fields.role")} *
-                        </label>
-                        <select
-                          id="role"
-                          value={form.role}
-                          onChange={(e) => setForm({ ...form, role: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none bg-white"
-                        >
-                          <option value="DSI">DSI / Direction informatique</option>
-                          <option value="RSSI">RSSI / Sécurité</option>
-                          <option value="RSE">Direction RSE</option>
-                          <option value="DAF">DAF / Achats</option>
-                          <option value="DG">Direction générale</option>
-                          <option value="Autre">{t("form.fields.roleOther")}</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label
-                          htmlFor="fleet"
-                          className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
-                        >
-                          {t("form.fields.fleet")} *
-                        </label>
-                        <select
-                          id="fleet"
-                          value={form.fleet}
-                          onChange={(e) => setForm({ ...form, fleet: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none bg-white"
-                        >
-                          <option value="0-500">{t("form.fields.fleetSmall")}</option>
-                          <option value="500-1000">500, 1 000</option>
-                          <option value="1000-5000">1 000, 5 000</option>
-                          <option value="5000-20000">5 000, 20 000</option>
-                          <option value="20000+">{t("form.fields.fleetLarge")}</option>
-                        </select>
-                        {(form.fleet === "5000-20000" || form.fleet === "20000+") && (
-                          <p className="mt-2 text-xs font-semibold text-[#10B981] bg-[#10B981]/10 border border-[#10B981]/20 rounded-lg px-3 py-2 flex items-center gap-2">
-                            <Clock className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
-                            {t("form.fields.leadScoringMessage")}
-                          </p>
-                        )}
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="timeline"
-                          className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
-                        >
-                          {t("form.fields.timeline")} *
-                        </label>
-                        <select
-                          id="timeline"
-                          value={form.timeline}
-                          onChange={(e) => setForm({ ...form, timeline: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none bg-white"
-                        >
-                          <option value="immediat">{t("form.fields.timelineNow")}</option>
-                          <option value="1-3-mois">{t("form.fields.timeline13")}</option>
-                          <option value="3-6-mois">{t("form.fields.timeline36")}</option>
-                          <option value="exploration">{t("form.fields.timelineExplore")}</option>
-                        </select>
-                      </div>
-                    </div>
-
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div>
-                      <label
-                        htmlFor="phone"
-                        className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
-                      >
-                        {t("form.fields.phone")}
+                      <label htmlFor="fleet" className={label}>
+                        {t("form.fields.fleet")} <span aria-hidden="true">*</span>
                       </label>
-                      <input
-                        id="phone"
-                        type="tel"
-                        value={form.phone}
-                        onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none"
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="message"
-                        className="block text-xs font-semibold text-[#0F172A] tracking-wider uppercase mb-1.5"
-                      >
-                        {t("form.fields.message")}
-                      </label>
-                      <textarea
-                        id="message"
-                        rows={4}
-                        value={form.message}
-                        onChange={(e) => setForm({ ...form, message: e.target.value })}
-                        placeholder={t("form.fields.messagePlaceholder")}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#10B981] focus:border-[#10B981] outline-none resize-none"
-                      />
-                    </div>
-
-                    <label className="flex items-start gap-3 text-xs text-gray-600 leading-relaxed cursor-pointer">
-                      <input
-                        type="checkbox"
-                        required
-                        checked={form.consent}
-                        onChange={(e) => setForm({ ...form, consent: e.target.checked })}
-                        className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#10B981] focus:ring-[#10B981]"
-                      />
-                      <span>{t("form.consent")}</span>
-                    </label>
-
-                    <button
-                      type="submit"
-                      disabled={pending || !form.consent}
-                      className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
-                    >
-                      {pending ? (
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      ) : (
-                        <Send className="h-4 w-4" aria-hidden="true" />
+                      <select id="fleet" value={form.fleet} onChange={(e) => setForm({ ...form, fleet: e.target.value })} className={field}>
+                        <option value="0-500">{t("form.fields.fleetSmall")}</option>
+                        <option value="500-1000">{tx("500 à 1 000", "500 to 1,000")}</option>
+                        <option value="1000-5000">{tx("1 000 à 5 000", "1,000 to 5,000")}</option>
+                        <option value="5000-20000">{tx("5 000 à 20 000", "5,000 to 20,000")}</option>
+                        <option value="20000+">{t("form.fields.fleetLarge")}</option>
+                      </select>
+                      {(form.fleet === "5000-20000" || form.fleet === "20000+") && (
+                        <p className="mt-2 flex items-center gap-2 rounded-lg bg-emerald-dim px-3 py-2 text-caption font-semibold text-emerald">
+                          <Clock className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
+                          {t("form.fields.leadScoringMessage")}
+                        </p>
                       )}
-                      {t("form.submit")}
-                    </button>
-                  </form>
-                )}
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
+                    </div>
+                    <div>
+                      <label htmlFor="timeline" className={label}>
+                        {t("form.fields.timeline")} <span aria-hidden="true">*</span>
+                      </label>
+                      <select id="timeline" value={form.timeline} onChange={(e) => setForm({ ...form, timeline: e.target.value })} className={field}>
+                        <option value="immediat">{t("form.fields.timelineNow")}</option>
+                        <option value="1-3-mois">{t("form.fields.timeline13")}</option>
+                        <option value="3-6-mois">{t("form.fields.timeline36")}</option>
+                        <option value="exploration">{t("form.fields.timelineExplore")}</option>
+                      </select>
+                    </div>
+                  </div>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S3 (COORDONNÉES & VOIES DIRECTES) split sombre
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#0F172A] text-white">
-        <div className="flex flex-col lg:flex-row min-h-[60vh]">
-          <div className="relative w-full lg:w-[42%] min-h-[40vh] lg:min-h-0 overflow-hidden flex-shrink-0">
-            <Image
-              src="/photos/corporate-meeting.jpg"
-              alt="Réunion de cadrage avec une direction informatique grand compte"
-              fill
-              loading="lazy"
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 42vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0F172A]/70" />
-          </div>
-          <div className="relative w-full lg:flex-1 flex items-center px-6 sm:px-10 lg:px-14 xl:px-18 py-14 lg:py-20">
-            <div className="max-w-xl w-full">
-              <FadeIn>
-                <p className="text-sm font-semibold tracking-[0.18em] text-[#10B981] uppercase mb-4">
-                  {t("info.eyebrow")}
-                </p>
-                <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold leading-[1.1] tracking-tight mb-8">
-                  {t("info.title")}
-                </h2>
-                <p className="text-gray-300 text-base leading-[1.78] mb-10">
-                  {t("info.body")}
-                </p>
-                <ul className="space-y-5">
-                  <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
+                  <div>
+                    <label htmlFor="phone" className={label}>
+                      {t("form.fields.phone")}
+                    </label>
+                    <input id="phone" type="tel" autoComplete="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={field} />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className={label}>
+                      {t("form.fields.message")}
+                    </label>
+                    <textarea
+                      id="message"
+                      rows={4}
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      placeholder={t("form.fields.messagePlaceholder")}
+                      className={`${field} h-auto resize-y py-3`}
+                    />
+                  </div>
+
+                  <label className="flex cursor-pointer items-start gap-3 text-body-sm text-fg-strong">
+                    <input
+                      type="checkbox"
+                      required
+                      checked={form.consent}
+                      onChange={(e) => setForm({ ...form, consent: e.target.checked })}
+                      className="mt-0.5 h-5 w-5 flex-shrink-0 accent-emerald"
+                    />
+                    <span>{t("form.consent")}</span>
+                  </label>
+
+                  <Button type="submit" size="lg" disabled={pending || !form.consent} className="w-full sm:w-auto">
+                    {pending ? (
+                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" aria-hidden="true" />
+                    ) : (
+                      <Send className="h-4 w-4" aria-hidden="true" />
+                    )}
+                    {t("form.submit")}
+                  </Button>
+                  {failed && (
+                    <div role="alert" className="rounded-lg border border-danger/40 bg-danger/10 p-4 text-body-sm text-fg">
+                      <p className="font-semibold">
+                        {tx("L'envoi n'a pas abouti. Vos réponses sont conservées : réessayez, ou passez par un canal direct.", "Sending failed. Your answers are kept: try again, or use a direct channel.")}
+                      </p>
+                      {mailtoHref(tx("Demande via le site", "Website request"), "", CONTACT_TOPICS[topic].recipient) && (
+                        <a
+                          href={mailtoHref(tx("Demande via le site", "Website request"), "", CONTACT_TOPICS[topic].recipient) as string}
+                          className="mt-2 inline-flex min-h-[44px] items-center font-mono text-caption text-emerald underline underline-offset-4"
+                        >
+                          {CONTACT_TOPICS[topic].recipient}
+                        </a>
+                      )}
+                      <ContactChannels variant="pills" formHref={null} className="mt-3" />
                     </div>
-                    <p className="text-sm text-gray-200 whitespace-pre-line leading-relaxed pt-1.5">
-                      {t("info.address")}
-                    </p>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                      <Phone className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
-                    </div>
-                    <a
-                      href="tel:+33186652210"
-                      className="text-sm text-gray-200 hover:text-[#10B981] transition-colors pt-1.5"
-                    >
-                      {t("info.phone")}
-                    </a>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                      <Mail className="h-4 w-4 text-[#10B981]" aria-hidden="true" />
-                    </div>
-                    <a
-                      href="mailto:contact@greentechcycle.fr"
-                      className="text-sm text-gray-200 hover:text-[#10B981] transition-colors pt-1.5"
-                    >
-                      {t("info.email")}
-                    </a>
-                  </li>
-                </ul>
-              </FadeIn>
+                  )}
+                </form>
+              )}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S4, CONVERSION FOND VERT PLEIN
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 lg:py-24 bg-[#10B981] text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.15),_transparent_60%)] pointer-events-none" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <FadeIn>
-              <p className="text-sm font-semibold tracking-[0.18em] text-white/80 uppercase mb-4">
-                {t("conversion.eyebrow")}
-              </p>
-              <h2
-                className="font-bold tracking-tight leading-[1.05] mb-5"
-                style={{ fontSize: "clamp(2rem, 4.5vw, 3.25rem)" }}
-              >
-                {t("conversion.title")}
-              </h2>
-              <p className="text-white/85 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
-                {t("conversion.subtitle")}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link
-                  href="/cas-usages"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-[#0F172A] hover:bg-[#F8FAFC] font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 text-sm"
-                >
-                  {t("conversion.cta1")}
-                </Link>
-                <Link
-                  href="/plateforme"
-                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/40 font-semibold px-7 py-4 rounded-xl transition-all duration-300 backdrop-blur-sm text-sm"
-                >
-                  {t("conversion.cta2")}
-                </Link>
-              </div>
-            </FadeIn>
+      {/* ═══════════════ COORDONNÉES & VOIES DIRECTES (3 colonnes) ═══════════════
+          forest plutôt que night : la section précède le footer (night) et §4.3
+          interdit deux sections night consécutives. */}
+      <Section tone="forest">
+        <div className="reveal">
+          <SectionHeader tone="dark" eyebrow={t("info.eyebrow")} title={t("info.title")} intro={t("info.body")} />
+        </div>
+        <ContactChannels />
+        <div className="reveal mt-3 flex items-start gap-4 rounded-xl border border-track bg-bg-card p-5">
+          <MapPin className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+          <div>
+            <p className="text-eyebrow uppercase text-fg-muted">{tx("Siège social", "Registered office")}</p>
+            <p className="mt-2 whitespace-pre-line text-body text-fg">{t("info.address")}</p>
+            <p className="mt-2 font-mono text-caption text-fg-muted">SIREN {LEGAL.siren} · {LEGAL.rcs}</p>
           </div>
         </div>
-      </section>
-    </main>
+
+        {/* Ancienne S4 « conversion verte » coupée (la page est déjà la conversion) :
+            ses deux liens de découverte restent accessibles ici. */}
+        <div className="mt-12 border-t border-track pt-8">
+          <p className="text-eyebrow uppercase text-fg-muted">{t("conversion.eyebrow")}</p>
+          <p className="mt-2 max-w-[65ch] text-body-sm text-fg-muted">{t("conversion.subtitle")}</p>
+          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+            <TextLink href="/cas-usages" tone="dark">
+              {t("conversion.cta1")}
+            </TextLink>
+            <TextLink href="/plateforme" tone="dark">
+              {t("conversion.cta2")}
+            </TextLink>
+          </div>
+        </div>
+      </Section>
+    </div>
   );
 }
 
 export default function ContactPage() {
   return (
-    <Suspense fallback={<main className="min-h-screen bg-white" />}>
+    <Suspense fallback={<div className="min-h-screen bg-bg" />}>
       <ContactInner />
     </Suspense>
   );

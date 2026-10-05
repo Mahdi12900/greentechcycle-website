@@ -1,9 +1,9 @@
 "use client";
 
-import { Cpu, ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { Cpu, ArrowRight, CheckCircle2 } from "lucide-react";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { FadeIn } from "@/components/motion";
+
 import ServicePageTemplate from "../ServicePageTemplate";
 import type { ServicePageData } from "../ServicePageTemplate";
 
@@ -14,11 +14,11 @@ export default function WakiBoxPage() {
 
   const data: ServicePageData = {
     slug: "wakibox",
-    eyebrow: tx("06 (Collecte connectée", "06) Connected collection"),
+    eyebrow: tx("06 · Suivi DEEE connecté", "06 · Connected WEEE tracking"),
     title: "WakiBox",
     subtitle: tx(
-      "Une borne installée dans le hall, et la collecte se fait toute seule. Détection automatique par RFID, pesée intégrée, alerte de remplissage en temps réel et un brin de ludification : pour multiplier par trois le geste utile.",
-      "A kiosk in your lobby, and collection happens on its own. Automatic RFID detection, integrated weighing, real-time fill alerts and a touch of gamification, to triple the useful gesture."
+      "L'enlèvement de vos DEEE peut être gratuit auprès des éco-organismes agréés à partir de 500 kg. WakiBox apporte ce qui manque : le suivi en temps réel. Détection automatique par RFID, pesée intégrée, alertes de remplissage et reporting prêt pour la CSRD.",
+      "Pick-up of your WEEE can be free through approved producer responsibility organisations from 500 kg. WakiBox adds what is missing: real-time tracking. Automatic RFID detection, integrated weighing, fill alerts and CSRD-ready reporting."
     ),
     description: tx(
       "WakiBox est notre borne de collecte connectée, conçue pour les organisations multi-sites qui veulent rendre la collecte des équipements en fin de vie aussi simple que poser un colis. Chaque borne est reliée à la console GreenTechCycle. Elle détecte automatiquement les dépôts par RFID, pèse l'équipement, le classe, et alerte la logistique quand le seuil de remplissage est atteint. Une application embarquée transforme le geste en classement convivial entre services, badges, défis, retours visibles. Résultat : un taux de collecte multiplié par trois face aux bacs passifs, un pilotage centralisé, et des données de flux injectées directement dans votre rapport CSRD.",
@@ -40,7 +40,7 @@ export default function WakiBoxPage() {
       "WakiBox connected collection kiosk installed in office premises"
     ),
     imageSecondary:
-      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1600&q=80",
+      "/photos/service-wakibox.jpg",
     imageSecondaryAlt: tx(
       "Équipe en entreprise utilisant un dispositif de collecte connecté",
       "Team using a connected collection device in a workplace"
@@ -54,9 +54,9 @@ export default function WakiBoxPage() {
       tx("Animation interne pour encourager le réemploi", "Internal engagement to drive reuse"),
     ],
     proof: [
-      { value: "x3", label: tx("vs bacs passifs", "vs passive bins"), color: "#10B981" },
-      { value: "99,5", unit: "%", label: tx("disponibilité borne mesurée", "measured kiosk uptime"), color: "#0EA5E9" },
-      { value: "48", unit: "h", label: tx("collecte après alerte", "collection after alert"), color: "#F59E0B" },
+      { value: "x3", label: tx("vs bacs passifs", "vs passive bins") },
+      { value: "99,5", unit: "%", label: tx("disponibilité borne mesurée", "measured kiosk uptime") },
+      { value: "48", unit: "h", label: tx("collecte après alerte", "collection after alert") },
     ],
     methodology: {
       title: tx("De l'étude d'implantation au pilotage central", "From site survey to central monitoring"),
@@ -103,7 +103,7 @@ export default function WakiBoxPage() {
       { metric: tx("Délai de collecte après alerte", "Collection after alert"), value: tx("48 h", "48h") },
       { metric: tx("Support et maintenance", "Support and maintenance"), value: tx("J+1", "Day 1") },
     ],
-    certifications: ["R2v3", "CE", "RoHS"],
+    certifications: ["CE", "RoHS"],
     quote: {
       text: tx(
         "En six mois, nos 142 magasins ont collecté 18 tonnes d'équipements en fin de vie. Avant WakiBox, on en récupérait à peine quatre. Le geste est devenu naturel.",
@@ -145,7 +145,6 @@ export default function WakiBoxPage() {
         "1 box, plateforme basique, rapport trimestriel.",
         "1 box, basic platform, quarterly report."
       ),
-      accent: "#0EA5E9",
     },
     {
       name: "Confort",
@@ -157,7 +156,6 @@ export default function WakiBoxPage() {
         "Jusqu'à 3 box, rapport CSRD ESRS E5, alertes temps réel.",
         "Up to 3 boxes, CSRD ESRS E5 report, real-time alerts."
       ),
-      accent: "#10B981",
       popular: true,
     },
     {
@@ -170,7 +168,6 @@ export default function WakiBoxPage() {
         "Multi-sites, responsable dédié, intégration API, SLA 48 h.",
         "Multi-site, dedicated manager, API integration, 48h SLA."
       ),
-      accent: "#F59E0B",
     },
   ];
 
@@ -179,70 +176,67 @@ export default function WakiBoxPage() {
       <ServicePageTemplate data={data} />
 
       {/* ── Pricing summary section inserted before the conversion CTA ── */}
-      <section className="relative w-full overflow-hidden bg-[#F8FAFC] py-20 lg:py-28 -mt-px">
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
+      <section className="relative w-full overflow-hidden bg-bg-card -mt-px py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
+          <div className="reveal">
             <div className="max-w-3xl mb-14">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
+              <p className="uppercase text-fg-muted mb-4 text-eyebrow">
                 {tx("Tarifs WakiBox", "WakiBox pricing")}
               </p>
               <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
+                className="text-display-md text-fg mb-6"
               >
                 {tx("À partir de 39 € HT/mois.", "From €39 ex-VAT/month.")}
               </h2>
-              <p className="text-gray-700 text-[1.02rem] lg:text-[1.08rem] leading-[1.78]">
+              <p className="text-fg-strong text-body lg:text-body-lg">
                 {tx(
                   "Trois plans, un programme pilote à 19 € pour les premiers signataires, et des options à la carte. Tous les détails sur la page tarifs.",
                   "Three plans, a €19 pilot programme for early signers, and à la carte options. Full details on the pricing page."
                 )}
               </p>
             </div>
-          </FadeIn>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mb-10">
             {plans.map((plan, i) => (
-              <FadeIn key={plan.slug}>
-                <div className={`relative bg-white border ${plan.popular ? "border-[#10B981] shadow-lg" : "border-gray-200"} rounded-2xl p-7 h-full flex flex-col`}>
+              <div key={plan.slug} className="reveal">
+                <div className={`relative h-full flex flex-col rounded-xl border bg-bg p-6 ${plan.popular ? "border-emerald" : "border-track"}`}>
                   {plan.popular && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#10B981] text-white text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full flex items-center gap-1">
-                      <Sparkles className="h-3 w-3" aria-hidden="true" />
+                    <div className="absolute -top-3 left-6 inline-flex h-7 items-center rounded-full bg-emerald-dim px-3 text-caption font-semibold text-emerald">
                       {tx("Le plus populaire", "Most popular")}
                     </div>
                   )}
-                  <h3 className="text-lg font-bold text-[#0F172A] mb-2">{plan.name}</h3>
+                  <h3 className="text-heading-md text-fg mb-2">{plan.name}</h3>
                   <div className="flex items-end gap-1 mb-1">
-                    <span className="text-3xl font-black tabular-nums" style={{ color: plan.accent }}>
+                    <span className="font-display text-display-md tabular-nums text-emerald">
                       {plan.price}
                     </span>
-                    <span className="text-sm text-gray-500 mb-1">€ HT/mois</span>
+                    <span className="text-sm text-fg-muted mb-1">€ HT/{tx("mois", "month")}</span>
                   </div>
-                  <p className="text-xs text-gray-500 mb-4">
+                  <p className="text-xs text-fg-muted mb-4">
                     {tx("Mise en service", "Setup")} {plan.setup} € HT · {plan.engagement}
                   </p>
-                  <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-5">{plan.pitch}</p>
+                  <p className="text-sm text-fg-strong leading-relaxed flex-1 mb-5">{plan.pitch}</p>
                   <Link
                     href={`/reserver?offre=${plan.slug}`}
-                    className="block w-full text-center rounded-xl px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-90"
-                    style={{ backgroundColor: plan.accent }}
+                    className={`inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg px-5 text-body-sm font-semibold transition-colors ${plan.popular ? "bg-emerald text-bg hover:bg-emerald-hover" : "border border-track bg-bg text-fg hover:border-track-strong hover:bg-white/[0.04]"}`}
                   >
                     {tx("Réserver", "Book now")}
                     <ArrowRight className="inline h-4 w-4 ml-1" />
                   </Link>
                 </div>
-              </FadeIn>
+              </div>
             ))}
           </div>
 
           {/* Pilote encart */}
-          <FadeIn>
-            <div className="max-w-5xl bg-[#10B981]/10 border border-[#10B981]/25 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+          <div className="reveal">
+            <div className="max-w-5xl bg-emerald-dim border border-emerald/25 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
               <div className="flex-1">
-                <p className="text-xs font-bold uppercase tracking-wider text-[#047857] mb-1">
+                <p className="uppercase text-fg-muted mb-1 text-eyebrow">
                   {tx("Programme pilote", "Pilot programme")}
                 </p>
-                <p className="text-[#0F172A] font-bold leading-snug">
+                <p className="text-fg font-semibold leading-snug">
                   {tx(
                     "3 premiers signataires : mise en service offerte + 19 € HT/mois pendant 6 mois",
                     "First 3 signers: free setup + €19 ex-VAT/month for 6 months"
@@ -251,23 +245,23 @@ export default function WakiBoxPage() {
               </div>
               <Link
                 href="/reserver?offre=waki-box-pilote"
-                className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-5 py-2.5 rounded-xl transition-all text-sm flex-shrink-0"
+                className="inline-flex items-center gap-2 bg-emerald hover:bg-emerald-hover text-bg font-semibold px-5 py-2.5 rounded-xl transition-colors text-sm flex-shrink-0"
               >
                 {tx("Candidater au pilote", "Apply for the pilot")}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
-          </FadeIn>
+          </div>
 
-          <FadeIn>
+          <div className="reveal">
             <Link
               href="/tarifs"
-              className="inline-flex items-center gap-2 text-[#047857] hover:text-[#065F46] font-semibold text-sm group"
+              className="inline-flex items-center gap-2 text-emerald hover:text-emerald-hover font-semibold text-sm group"
             >
               {tx("Voir tous les tarifs, add-ons et FAQ tarifaire", "View all pricing, add-ons and pricing FAQ")}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
-          </FadeIn>
+          </div>
         </div>
       </section>
     </>

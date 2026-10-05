@@ -1,35 +1,39 @@
 import type { Metadata } from "next";
+import { pageMetadata, type LocaleParams, type PageCopy } from "@/lib/seo";
+import GeometryField from "@/components/visuals/GeometryField";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import Link from "next/link";
-import Image from "next/image";
-import { blogArticles } from "@/lib/blog-data";
+import { blogArticles, localizeArticle } from "@/lib/blog-data";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SchemaOrg from "@/components/SchemaOrg";
+import { SITE_URL } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Blog ITAD & Recyclage IT",
-  description:
-    "Articles et guides sur l'ITAD, le recyclage IT, la conformité CSRD/NIS2, la sécurité des données et l'économie circulaire pour les entreprises.",
-  keywords: ["blog ITAD", "recyclage IT", "CSRD", "NIS2", "DEEE", "économie circulaire IT", "sécurité données"],
-  openGraph: {
-    title: "Blog ITAD & Recyclage IT | GreenTechCycle",
+const META_COPY: PageCopy = {
+  fr: {
+    title: "Blog ITAD & recyclage IT",
     description:
-      "Articles et guides sur l'ITAD, le recyclage IT, la conformité et l'économie circulaire pour les entreprises.",
-    type: "website",
+      "Articles et guides sur l'ITAD, le recyclage IT, la conformité CSRD/NIS2, la sécurité des données et l'économie circulaire pour les entreprises.",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Blog ITAD & Recyclage IT | GreenTechCycle",
+  en: {
+    title: "ITAD & IT recycling blog",
     description:
-      "Articles et guides sur l'ITAD, le recyclage IT, la conformité et l'économie circulaire pour les entreprises.",
+      "Articles and guides on ITAD, IT recycling, CSRD/NIS2 compliance, data security and the circular economy for businesses.",
   },
 };
 
+/* Métadonnées par langue (audit final B3) : titre, description, canonical, hreflang, Open Graph */
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/blog", META_COPY);
+}
+
 export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  const isEn = locale === "en";
 
   const breadcrumbs = [
-    { label: "Accueil", href: `/${locale}` },
+    { label: isEn ? "Home" : "Accueil", href: `/${locale}` },
     { label: "Blog", href: `/${locale}/blog` },
   ];
 
@@ -38,11 +42,11 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
     "@type": "Blog",
     name: "Blog GreenTechCycle",
     description: "Articles sur l'ITAD, le recyclage IT et la conformité réglementaire",
-    url: `https://greentechcycle.fr/${locale}/blog`,
+    url: `${SITE_URL}/${locale}/blog`,
     publisher: {
       "@type": "Organization",
       name: "GreenTechCycle",
-      url: "https://greentechcycle.fr",
+      url: `${SITE_URL}`,
     },
     blogPost: blogArticles.map((article) => ({
       "@type": "BlogPosting",
@@ -51,66 +55,56 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
       datePublished: article.publishedAt,
       dateModified: article.updatedAt,
       author: { "@type": "Organization", name: "GreenTechCycle" },
-      url: `https://greentechcycle.fr/${locale}/blog/${article.slug}`,
+      url: `${SITE_URL}/${locale}/blog/${article.slug}`,
     })),
   };
 
   return (
     <>
       <SchemaOrg data={schemaData} />
-      <main className="min-h-screen">
+      <div className="min-h-screen">
         {/* Hero */}
-        <section className="relative bg-[#0F172A] py-24 md:py-32 overflow-hidden">
+        <section className="relative bg-bg-card overflow-hidden py-16 lg:py-24">
           <div className="absolute inset-0">
-            <Image
-              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=2400&q=80"
-              alt="Consultation IT et analyse de données"
-              fill
-              className="object-cover opacity-15"
-              priority
-            />
+            <MediaSlot fill id="blog-hero" alt={isEn ? "IT consulting and data analysis" : "Consultation IT et analyse de données"} fallback={<GeometryField />} />
           </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
             <Breadcrumbs items={breadcrumbs} dark />
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Blog ITAD & Recyclage IT
+            <h1 className="text-display-lg text-fg mb-6">
+              {isEn ? "ITAD & IT recycling blog" : "Blog ITAD & Recyclage IT"}
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl">
-              Guides, analyses et actualités sur la gestion responsable des actifs IT, la conformité réglementaire et l&apos;économie circulaire.
+            <p className="text-xl text-fg-muted max-w-2xl">
+              {isEn
+                ? "Guides, analyses and news on responsible IT asset management, regulatory compliance and the circular economy. Articles are written in French."
+                : "Guides, analyses et actualités sur la gestion responsable des actifs IT, la conformité réglementaire et l'économie circulaire."}
             </p>
           </div>
         </section>
 
         {/* Articles Grid */}
-        <section className="py-16 bg-[#F8FAFC]">
-          <div className="container mx-auto px-4">
+        <section className="bg-bg-card py-12 lg:py-16">
+          <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogArticles.map((article) => (
+              {blogArticles.map((a) => localizeArticle(a, locale)).map((article) => (
                 <article
                   key={article.slug}
-                  className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+                  className="bg-bg-card rounded-2xl overflow-hidden hover:border-track-strong transition-shadow duration-150 border border-track"
                 >
                   <Link href={`/${locale}/blog/${article.slug}`}>
                     <div className="relative aspect-[16/9]">
-                      <Image
-                        src={article.image}
-                        alt={article.imageAlt}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
+                      <MediaSlot fill id={`blog-card-${article.slug}`} alt={article.imageAlt} fallback={<GeometryField />} />
                       <div className="absolute top-4 left-4">
-                        <span className="bg-[#047857] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                        <span className="bg-emerald text-bg text-xs font-semibold px-3 py-1 rounded-full">
                           {article.category}
                         </span>
                       </div>
                     </div>
                   </Link>
                   <div className="p-6">
-                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                    <div className="flex items-center gap-4 text-sm text-fg-muted mb-3">
                       <span className="flex items-center gap-1">
                         <Calendar className="h-4 w-4" />
-                        {new Date(article.publishedAt).toLocaleDateString("fr-FR", {
+                        {new Date(article.publishedAt).toLocaleDateString(isEn ? "en-GB" : "fr-FR", {
                           day: "numeric",
                           month: "long",
                           year: "numeric",
@@ -120,20 +114,21 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                         <Clock className="h-4 w-4" />
                         {article.readingTime}
                       </span>
+                      {isEn && <span>Article in French</span>}
                     </div>
                     <Link href={`/${locale}/blog/${article.slug}`}>
-                      <h2 className="text-lg font-bold text-[#0F172A] mb-2 hover:text-[#047857] transition-colors line-clamp-2">
+                      <h2 className="text-display-md text-fg mb-2 hover:text-emerald transition-colors line-clamp-2">
                         {article.title}
                       </h2>
                     </Link>
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                    <p className="text-fg-strong text-sm mb-4 line-clamp-3">
                       {article.description}
                     </p>
                     <Link
                       href={`/${locale}/blog/${article.slug}`}
-                      className="inline-flex items-center gap-1 text-[#047857] font-semibold text-sm hover:text-[#047857] transition-colors"
+                      className="inline-flex items-center gap-1 text-emerald font-semibold text-sm hover:text-emerald transition-colors"
                     >
-                      Lire l&apos;article
+                      {isEn ? "Read the article" : "Lire l'article"}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>
@@ -142,7 +137,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

@@ -1,7 +1,8 @@
 import { blogArticles } from "@/lib/blog-data";
+import { SITE_URL } from "@/lib/site";
 
 export async function GET() {
-  const base = "https://greentechcycle.fr";
+  const base = `${SITE_URL}`;
 
   const items = blogArticles
     .map(
@@ -13,7 +14,7 @@ export async function GET() {
       <description><![CDATA[${article.description}]]></description>
       <pubDate>${new Date(article.publishedAt).toUTCString()}</pubDate>
       <category>${article.category}</category>
-      <author>contact@greentechcycle.fr (${article.author})</author>
+      <author>sales@greentechcycle.fr (${article.author})</author>
     </item>`
     )
     .join("");

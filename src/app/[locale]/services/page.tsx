@@ -1,11 +1,13 @@
 "use client";
 
+import { KPIS, formatKpi, formatKpiValue } from "@/content/kpis";
+import GeometryField from "@/components/visuals/GeometryField";
+import LifecycleDiagram from "@/components/visuals/LifecycleDiagram";
+import MediaSlot from "@/components/visuals/MediaSlot";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
+
 import {
-  ArrowRight,
   ArrowDown,
   ArrowUpRight,
   ClipboardList,
@@ -14,17 +16,20 @@ import {
   Recycle,
   Shield,
   Cpu,
-  CheckCircle2,
-  Quote,
-  Award,
   FileCheck,
-  Leaf,
   Users,
 } from "lucide-react";
+import CertificationStrip from "@/components/CertificationStrip";
+import CtaSection from "@/components/CtaSection";
+import { ButtonLink } from "@/components/ui/Button";
+import Section from "@/components/ui/Section";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Pictogram from "@/components/ui/Pictogram";
+import Tag from "@/components/ui/Tag";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   /services, page hub éditoriale premium
-   Inspiration directe : home + cas-usages (refonte 2026).
+   /services — DESIGN.md §10.7 : hero split paper, CertificationStrip, grille
+   régulière 2×3, citation forest, pilote + conversion fusionnés en un CTA.
 ───────────────────────────────────────────────────────────────────────────── */
 
 type ServiceCard = {
@@ -41,7 +46,6 @@ type ServiceCard = {
   imageAlt: string;
   bookLabel: string;
   proof: { value: string; unit?: string; label: string }[];
-  accent: string;
   pricingNote?: string;
   pricingHref?: string;
 };
@@ -49,6 +53,7 @@ type ServiceCard = {
 export default function ServicesPage() {
   const locale = useLocale();
   const isEn = locale === "en";
+  const lang = isEn ? "en" : "fr";
   function tx<T>(fr: T, en: T): T {
     return isEn ? en : fr;
   }
@@ -80,7 +85,6 @@ export default function ServicesPage() {
         { value: "5", unit: tx("jours", "days"), label: tx("livrable garanti", "guaranteed delivery") },
         { value: "99,2", unit: "%", label: tx("précision moyenne", "average accuracy") },
       ],
-      accent: "#10B981",
     },
     {
       slug: "effacement-securise",
@@ -93,8 +97,8 @@ export default function ServicesPage() {
         "It isn't the machine that worries you, it's the files."
       ),
       body: tx(
-        "NIST 800-88, DoD 5220.22-M, IEEE 2883-2022 selon le support et la sensibilité. Chaque actif reçoit un certificat individuel signé eIDAS, archivé dix ans. Un audit interne est déclenché sur chaque lot, pas besoin de vérifier seul.",
-        "NIST 800-88, DoD 5220.22-M, IEEE 2883-2022 depending on the medium and sensitivity. Every asset gets an eIDAS-signed individual certificate, archived ten years. An internal audit is triggered on every batch, no need to check alone."
+        "NIST 800-88, DoD 5220.22-M, IEEE 2883-2022 selon le support et la sensibilité. Chaque actif reçoit un certificat individuel horodaté (empreinte SHA-256), archivé dix ans. Un audit interne est déclenché sur chaque lot, pas besoin de vérifier seul.",
+        "NIST 800-88, DoD 5220.22-M, IEEE 2883-2022 depending on the medium and sensitivity. Every asset gets a timestamped individual certificate (SHA-256 fingerprint), archived ten years. An internal audit is triggered on every batch, no need to check alone."
       ),
       badge: tx("Certificat sous 24 h", "Certificate within 24h"),
       icon: ShieldCheck,
@@ -108,8 +112,7 @@ export default function ServicesPage() {
         { value: "24", unit: "h", label: tx("certificat délivré", "certificate delivered") },
         { value: "99,97", unit: "%", label: tx("réussite mesurée", "measured success rate") },
       ],
-      accent: "#0EA5E9",
-      pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+      pricingNote: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
       pricingHref: "/tarifs",
     },
     {
@@ -136,10 +139,9 @@ export default function ServicesPage() {
       bookLabel: tx("Réserver une cession", "Book a transfer"),
       proof: [
         { value: "+40", unit: "%", label: tx("valeur récupérée", "recovered value") },
-        { value: "72", unit: "%", label: tx("taux de réemploi", "reuse rate") },
+        { value: String(KPIS.reuse.value), unit: "%", label: tx("taux de réemploi", "reuse rate") },
       ],
-      accent: "#F59E0B",
-      pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+      pricingNote: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
       pricingHref: "/tarifs",
     },
     {
@@ -159,7 +161,7 @@ export default function ServicesPage() {
       badge: tx("100 % traçable", "100% traceable"),
       icon: Recycle,
       image:
-        "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+        "/photos/tech-datacenter.jpg",
       imageAlt: tx(
         "Carte électronique en gros plan prête au démantèlement DEEE",
         "Close-up of an electronic board ready for WEEE dismantling"
@@ -169,8 +171,7 @@ export default function ServicesPage() {
         { value: "98,1", unit: "%", label: tx("matière valorisée", "material recovery") },
         { value: "0", unit: "%", label: tx("mise en décharge", "landfill rate") },
       ],
-      accent: "#10B981",
-      pricingNote: tx("À partir de 15 € HT/poste", "Starting at €15 HT/device"),
+      pricingNote: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
       pricingHref: "/tarifs",
     },
     {
@@ -184,13 +185,13 @@ export default function ServicesPage() {
         "If data leaks in transit, it's your name that hits the press."
       ),
       body: tx(
-        "Procès-verbal d'huissier, scellés numérotés, suivi GPS, vidéosurveillance archivée dix ans, registre signé eIDAS. Huit contrôles imbriqués, un dossier opposable devant un tribunal.",
-        "Bailiff report, numbered seals, GPS tracking, video surveillance archived ten years, eIDAS-signed register. Eight interlocked controls, a court-admissible dossier."
+        "Procès-verbal d'huissier, scellés numérotés, suivi GPS, vidéosurveillance archivée dix ans, registre horodaté chaîné (SHA-256). Huit contrôles imbriqués, un dossier opposable devant un tribunal.",
+        "Bailiff report, numbered seals, GPS tracking, video surveillance archived ten years, timestamped chained register (SHA-256). Eight interlocked controls, a court-admissible dossier."
       ),
       badge: tx("Niveau Défense", "Defence-grade"),
       icon: Shield,
       image:
-        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
+        "/photos/hp-atelier-itad.jpg",
       imageAlt: tx(
         "Console cryptographique de supervision cybersécurité",
         "Cryptographic supervision console for cybersecurity"
@@ -200,7 +201,6 @@ export default function ServicesPage() {
         { value: "100", unit: "%", label: tx("intervenants vérifiés", "verified operators") },
         { value: "10", unit: tx("ans", "yrs"), label: tx("archivage des preuves", "evidence archival") },
       ],
-      accent: "#0EA5E9",
     },
     {
       slug: "wakibox",
@@ -228,679 +228,291 @@ export default function ServicesPage() {
         { value: "x3", label: tx("vs bacs passifs", "vs passive bins") },
         { value: "99,5", unit: "%", label: tx("disponibilité borne", "kiosk uptime") },
       ],
-      accent: "#F59E0B",
       pricingNote: tx("À partir de 39 € HT/mois", "From €39 ex-VAT/month"),
       pricingHref: "/tarifs",
     },
   ];
 
   const heroFigures = [
-    { v: "38 000+", l: tx("certificats NIST 800-88 émis", "NIST 800-88 certificates issued"), color: "#10B981" },
-    { v: "6 200", unit: "tCO₂e", l: tx("évitées en quatre ans", "avoided in four years"), color: "#0EA5E9" },
-    { v: "72 h", l: tx("réponse audit garantie", "guaranteed audit response"), color: "#F59E0B" },
+    // Registre unique src/content/kpis.ts
+    { v: formatKpi("assets", lang), l: KPIS.assets.label[lang] },
+    { v: formatKpiValue("carbon", lang), unit: "tCO₂e", l: KPIS.carbon.label[lang] },
+    { v: "72 h", l: tx("réponse audit garantie", "guaranteed audit response") },
   ];
 
-  const trustBadges = [
-    { icon: Award, label: "R2v3" },
-    { icon: ShieldCheck, label: "ISO 27001" },
-    { icon: Leaf, label: "ISO 14001" },
-    { icon: FileCheck, label: "NIST 800-88" },
-    { icon: Shield, label: "eIDAS" },
+  const singleContact = [
+    {
+      icon: FileCheck,
+      title: tx("Un seul contrat", "A single contract"),
+      body: tx(
+        "Cadre légal unique, prix unique, responsabilité unique. Les avenants tiennent en deux pages.",
+        "Single legal framework, single price, single responsibility. Amendments fit on two pages."
+      ),
+    },
+    {
+      icon: ShieldCheck,
+      title: tx("Une seule preuve", "A single proof"),
+      body: tx(
+        "Le bordereau de collecte, le certificat d'effacement et le rapport CSRD partagent la même empreinte.",
+        "The collection slip, erasure certificate and CSRD report share the same footprint."
+      ),
+    },
+    {
+      icon: Users,
+      title: tx("Une équipe nommée", "A named team"),
+      body: tx(
+        "Trois interlocuteurs habilités : ingénieur d'affaires, chef de projet, référent RSSI. Pas de standard.",
+        "Three named experts: account engineer, project lead, CISO contact. No call centre."
+      ),
+    },
   ];
 
   return (
-    <main className="overflow-hidden bg-white">
-
-      {/* Bandeau d'urgence */}
-      <div className="bg-[#0F172A] text-white py-3 px-4 border-b border-white/5">
-        <div className="container mx-auto flex items-center justify-center gap-3 text-sm font-medium text-center">
-          <ShieldCheck className="h-4 w-4 flex-shrink-0 text-[#10B981]" aria-hidden="true" />
-          <p className="text-xs leading-snug text-gray-300">
-            {tx(
-              <>
-                <span className="font-semibold text-white">Six services intégrés</span>, un seul interlocuteur, {" "}
-                <span className="font-semibold text-white">une chaîne de preuves opposable</span>
-              </>,
-              <>
-                <span className="font-semibold text-white">Six integrated services</span>, one point of contact, {" "}
-                <span className="font-semibold text-white">an admissible evidence chain</span>
-              </>
-            )}
-          </p>
-          <Link
-            href="/reserver"
-            className="hidden sm:inline-flex items-center gap-1 text-[#10B981] hover:text-[#34D399] font-semibold text-xs transition-colors"
-          >
-            {tx("Réserver", "Book")} <ArrowRight className="h-3 w-3" aria-hidden="true" />
-          </Link>
-        </div>
-      </div>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S1 (HERO ÉDITORIAL) split sombre, content gauche, photo droite
-         ════════════════════════════════════════════════════════════════ */}
-      <section
-        className="relative w-full min-h-[88vh] flex flex-col lg:flex-row overflow-hidden bg-[#0F172A]"
-        aria-labelledby="services-hero-title"
-      >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 12% 18%, rgba(16,185,129,0.18) 0%, transparent 60%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 88% 88%, rgba(14,165,233,0.12) 0%, transparent 55%)",
-          }}
-        />
-
-        <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-10 lg:px-16 xl:px-20 pt-20 pb-16 lg:py-24">
-          <FadeIn>
-            <div className="flex items-center gap-3 mb-10">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-[11px] font-semibold tracking-[0.1em] text-gray-400 uppercase">
-                <span
-                  className="w-1.5 h-1.5 rounded-full bg-[#10B981]"
-                  style={{ animation: "pulse 2s cubic-bezier(0.4,0,0.6,1) infinite" }}
-                />
-                {tx("Six services, une seule chaîne", "Six services, one chain")}
-              </span>
+    <div>
+      {/* ═══════════ HERO split (paper) — l'ancien bandeau d'urgence devient une notice ═══════════ */}
+      <section className="bg-bg py-16 lg:py-24" aria-labelledby="services-hero-title">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="reveal min-w-0 lg:col-span-7">
+              <Tag variant="brand">
+                {tx(
+                  "Six services intégrés, un seul interlocuteur, une chaîne de preuves opposable",
+                  "Six integrated services, one point of contact, an admissible evidence chain"
+                )}
+              </Tag>
+              <p className="mt-6 text-eyebrow uppercase text-fg-muted">{tx("Six services, une seule chaîne", "Six services, one chain")}</p>
+              <h1 id="services-hero-title" className="mt-3 max-w-[20ch] text-display-lg text-fg">
+                {tx(
+                  <>
+                    L&apos;ITAD n&apos;est pas un produit. <br className="hidden sm:block" />
+                    C&apos;est une chaîne de preuves.
+                  </>,
+                  <>
+                    ITAD is not a product. <br className="hidden sm:block" />
+                    It is a chain of evidence.
+                  </>
+                )}
+              </h1>
+              <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">
+                {tx(
+                  "Audit, effacement, reconditionnement, recyclage, sécurité, collecte connectée. Six métiers, un seul interlocuteur, une seule donnée, versée jour après jour à votre rapport CSRD et à votre dossier RSSI.",
+                  "Audit, erasure, refurbishment, recycling, security, connected collection. Six trades, one point of contact, one dataset, fed day after day into your CSRD report and your CISO file."
+                )}
+              </p>
+              <dl className="mt-8 grid max-w-[560px] grid-cols-3 border-y border-track py-6">
+                {heroFigures.map((item, i) => (
+                  <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-track pl-4" : "pr-4"}`}>
+                    <dt className="mt-1 text-caption text-fg-muted">{item.l}</dt>
+                    <dd className="font-display text-display-sm tabular-nums text-emerald">
+                      {item.v}
+                      {item.unit && <span className="ml-1 font-sans text-body-sm text-fg-strong">{item.unit}</span>}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="/reserver" size="lg">
+                  {tx("Réserver un créneau", "Book a slot")}
+                </ButtonLink>
+                <ButtonLink href="/cas-usages" variant="secondary" size="lg">
+                  {tx("Voir les cas clients", "See client cases")}
+                </ButtonLink>
+              </div>
+              <a
+                href="#services-grille"
+                className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-fg-muted hover:text-fg"
+              >
+                <ArrowDown className="h-4 w-4" aria-hidden="true" />
+                {tx("Découvrir les six métiers", "Discover the six trades")}
+              </a>
             </div>
-
-            <h1
-              id="services-hero-title"
-              className="text-white font-black tracking-tight mb-8"
-              style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.75rem)", lineHeight: 1.02 }}
-            >
-              {tx(
-                <>L'ITAD n'est pas <span className="text-[#10B981]">un produit</span>.<br/>C'est une chaîne de preuves.</>,
-                <>ITAD is not <span className="text-[#10B981]">a product</span>.<br/>It is a chain of evidence.</>
-              )}
-            </h1>
-
-            <p className="text-gray-300 text-base lg:text-[1.12rem] leading-[1.72] max-w-xl mb-10">
-              {tx(
-                "Audit, effacement, reconditionnement, recyclage, sécurité, collecte connectée. Six métiers, un seul interlocuteur, une seule donnée, versée jour après jour à votre rapport CSRD et à votre dossier RSSI.",
-                "Audit, erasure, refurbishment, recycling, security, connected collection. Six trades, one point of contact, one dataset, fed day after day into your CSRD report and your CISO file."
-              )}
-            </p>
-
-            <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10 pb-10 border-b border-white/8">
-              {heroFigures.map((item, i) => (
-                <div key={i} className="flex flex-col">
-                  <span
-                    className="text-3xl lg:text-4xl font-black tracking-tight leading-none tabular-nums"
-                    style={{ color: item.color }}
-                  >
-                    {item.v}
-                    {item.unit && (
-                      <span className="text-base ml-1 font-semibold opacity-80">
-                        {item.unit}
-                      </span>
+            <div className="reveal lg:col-span-5">
+              <figure>
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
+                  <MediaSlot fill id="services-hero" alt={tx(
+                      "Atelier ITAD GreenTechCycle : équipe en intervention sur du matériel informatique",
+                      "GreenTechCycle ITAD workshop, team operating on IT equipment"
+                    )} fallback={<LifecycleDiagram />} />
+                </div>
+                <figcaption className="mt-6 border-l-2 border-emerald pl-4">
+                  <p className="text-body-sm text-fg">
+                    {tx(
+                      "« Six prestataires devenus un seul. Notre comité d'audit a soufflé. »",
+                      "« Six vendors became one. Our audit committee finally exhaled. »"
                     )}
-                  </span>
-                  <span className="text-xs text-gray-500 mt-1.5 font-medium">{item.l}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 mb-10">
-              <Link
-                href="/reserver"
-                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-[#10B981]/25 hover:-translate-y-0.5 text-sm"
-              >
-                {tx("Réserver un créneau", "Book a slot")}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="/cas-usages"
-                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/12 text-white border border-white/20 hover:border-white/35 font-semibold px-7 py-4 rounded-xl transition-all duration-300 text-sm"
-              >
-                {tx("Voir les cas clients", "See client cases")}
-              </Link>
-            </div>
-
-            <a
-              href="#services-grille"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-300 text-[11px] font-medium tracking-[0.1em] uppercase transition-colors group"
-            >
-              <ArrowDown
-                className="h-4 w-4 transition-transform group-hover:translate-y-1"
-                aria-hidden="true"
-              />
-              {tx("Découvrir les six métiers", "Discover the six trades")}
-            </a>
-          </FadeIn>
-        </div>
-
-        <div className="relative w-full lg:w-[45%] min-h-[52vh] lg:min-h-0 overflow-hidden flex-shrink-0">
-          <Image
-            src="/photos/hp-atelier-itad.jpg"
-            alt={tx(
-              "Atelier ITAD GreenTechCycle : équipe en intervention sur du matériel informatique",
-              "GreenTechCycle ITAD workshop, team operating on IT equipment"
-            )}
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 45vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/85 via-[#0F172A]/25 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#0F172A]/55 to-transparent" />
-
-          {/* Floating quote card */}
-          <div className="absolute bottom-8 right-5 sm:right-8 max-w-[280px] bg-white/96 backdrop-blur-lg rounded-2xl p-5 shadow-2xl ring-1 ring-gray-100 hidden sm:block">
-            <Quote className="h-6 w-6 text-[#0EA5E9] mb-3" aria-hidden="true" />
-            <p className="text-[12px] text-[#0F172A] leading-snug font-medium mb-3">
-              {tx(
-                "« Six prestataires devenus un seul. Notre comité d'audit a soufflé. »",
-                "« Six vendors became one. Our audit committee finally exhaled. »"
-              )}
-            </p>
-            <div className="flex items-center gap-2.5 pt-3 border-t border-gray-100">
-              <div className="w-7 h-7 rounded-full bg-[#0EA5E9]/12 flex items-center justify-center flex-shrink-0">
-                <Users className="h-3.5 w-3.5 text-[#0EA5E9]" aria-hidden="true" />
-              </div>
-              <div>
-                <p className="text-[11px] font-bold text-[#0F172A] leading-none">Sophie L.</p>
-                <p className="text-[10px] text-gray-500 mt-0.5 leading-tight">
-                  {tx("DSI, groupe industriel coté", "CIO, listed industrial group")}
-                </p>
-              </div>
+                  </p>
+                  <p className="mt-2 text-caption text-fg-muted">
+                    <span className="font-semibold text-fg-strong">Sophie L.</span> · {tx("DSI, groupe industriel coté", "CIO, listed industrial group")}
+                  </p>
+                </figcaption>
+              </figure>
             </div>
           </div>
+          <CertificationStrip className="mt-12 border-t border-track pt-6" />
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S2 (BANDEAU CERTIFICATIONS) fond #0F172A
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="bg-[#0F172A] py-10 border-t border-white/5">
-        <div className="container mx-auto px-4">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500 text-center mb-6">
-            {tx("Certifications et référentiels appliqués", "Applied certifications and frameworks")}
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
-            {trustBadges.map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300"
-              >
-                <Icon className="h-4 w-4 text-[#6EE7B7]" aria-hidden="true" />
-                <span className="text-xs font-semibold tracking-wide">{label}</span>
-              </div>
-            ))}
+      {/* ═══════════ GRILLE 6 SERVICES (2 × 3 régulière) ═══════════ */}
+      <section id="services-grille" className="border-t border-track bg-bg-card py-16 lg:py-24" aria-labelledby="services-grille-title">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
+          <div className="reveal">
+            <SectionHeader
+              id="services-grille-title"
+              eyebrow={tx("Six métiers", "Six trades")}
+              title={tx("Audit, effacement, valorisation, recyclage, sécurité, collecte.", "Audit, erasure, recovery, recycling, security, collection.")}
+            />
           </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S2b (PILOTE GTC - PORTE D'ENTREE SENIOR 3 JOURS)
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="bg-[#F8FAFC] py-12 lg:py-14 border-b border-gray-100">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="max-w-6xl mx-auto rounded-2xl bg-white border border-[#10B981]/30 shadow-sm hover:shadow-lg transition-shadow duration-300 p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
-              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#10B981]/15 flex items-center justify-center">
-                <ClipboardList className="h-6 w-6 text-[#10B981]" aria-hidden="true" />
-              </div>
-              <div className="flex-1">
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="inline-flex px-2.5 py-1 rounded-full bg-[#10B981]/12 text-[#047857] text-[10px] font-bold uppercase tracking-wider">
-                    {tx("Porte d'entrée senior", "Senior entry point")}
-                  </span>
-                  <span className="text-[#10B981] text-base font-black tabular-nums">
-                    {tx("2 900 € HT / 3 jours", "€2,900 ex-VAT / 3 days")}
-                  </span>
-                </div>
-                <h2 className="text-[#0F172A] text-xl font-bold tracking-tight mb-2">
-                  {tx("Pilote GTC - Audit & démarrage 3 jours", "GTC Pilot - Audit & 3-day kickoff")}
-                </h2>
-                <p className="text-gray-600 text-sm leading-relaxed max-w-2xl">
-                  {tx(
-                    "Diagnostic parc IT, plan ITAD priorisé et démarrage Plateforme. Mission senior conduite par notre équipe ITAM, carbone et cyber. Pilote remboursé sur la 1re année de Plateforme si signature dans les 90 jours apres la restitution.",
-                    "IT fleet diagnostic, prioritised ITAD action plan and Platform kickoff. Senior engagement by our ITAM, carbon and cyber team. Pilot refunded on Year 1 Platform subscription if signed within 90 days of debrief."
-                  )}
-                </p>
-              </div>
-              <div className="flex-shrink-0">
-                <Link
-                  href="/reserver?offre=pilote-audit-3j"
-                  className="inline-flex items-center gap-2 bg-[#10B981] hover:bg-[#0E9F6E] text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#10B981]/25 text-sm whitespace-nowrap"
-                >
-                  {tx("Réserver le Pilote", "Book the Pilot")}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <p className="text-[11px] text-gray-400 text-center mt-2">
-                  <Link href="/tarifs#pilote" className="underline hover:text-[#047857] transition-colors">
-                    {tx("Détails et garantie remboursement", "Details and refund guarantee")}
-                  </Link>
-                </p>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S3 (GRILLE ÉDITORIALE 6 SERVICES) alternance fond/photo
-         ════════════════════════════════════════════════════════════════ */}
-      <div id="services-grille">
-        {services.map((s, i) => {
-          const photoOnLeft = i % 2 === 0;
-          const isDark = i === 2 || i === 5;
-          let bgStyle: string;
-          if (isDark) bgStyle = "bg-[#0F172A]";
-          else if (i % 2 === 1) bgStyle = "bg-[#F8FAFC]";
-          else bgStyle = "bg-white";
-
-          const textColor = isDark ? "text-white" : "text-[#0F172A]";
-          const subTextColor = isDark ? "text-gray-300" : "text-gray-700";
-          const Icon = s.icon;
-
-          return (
-            <section
-              key={s.slug}
-              id={`service-${s.slug}`}
-              className={`relative w-full overflow-hidden ${bgStyle}`}
-              aria-labelledby={`service-title-${s.slug}`}
-            >
-              <div
-                className={`flex flex-col lg:flex-row min-h-[78vh] ${
-                  !photoOnLeft ? "lg:flex-row-reverse" : ""
-                }`}
-              >
-                {/* Photo */}
-                <div className="relative w-full lg:w-[46%] min-h-[50vw] lg:min-h-0 overflow-hidden flex-shrink-0">
-                  <Image
-                    src={s.image}
-                    alt={s.imageAlt}
-                    fill
-                    loading="lazy"
-                    className="object-cover transition-transform duration-[1400ms] hover:scale-[1.04]"
-                    sizes="(max-width: 1024px) 100vw, 46vw"
-                  />
-                  <div
-                    className={`absolute inset-0 ${
-                      isDark
-                        ? photoOnLeft
-                          ? "bg-gradient-to-r from-transparent via-transparent to-[#0F172A]/70"
-                          : "bg-gradient-to-l from-transparent via-transparent to-[#0F172A]/70"
-                        : photoOnLeft
-                        ? "bg-gradient-to-r from-transparent to-white/15"
-                        : "bg-gradient-to-l from-transparent to-white/15"
-                    }`}
-                  />
-                  {/* Ghost number */}
-                  <div
-                    className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-                    style={{
-                      fontSize: "clamp(8rem, 22vw, 18rem)",
-                      color: isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.035)",
-                      right: photoOnLeft ? "0.5rem" : "auto",
-                      left: photoOnLeft ? "auto" : "0.5rem",
-                      bottom: "-0.1em",
-                    }}
-                    aria-hidden="true"
+          <div className="reveal-stagger grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {services.map((s) => {
+              const Icon = s.icon;
+              return (
+                <div key={s.slug} className="reveal h-full">
+                  <article
+                    id={`service-${s.slug}`}
+                    aria-labelledby={`service-title-${s.slug}`}
+                    className="flex h-full flex-col overflow-hidden rounded-xl border border-track bg-bg"
                   >
-                    {s.num}
-                  </div>
-                  {/* Badge */}
-                  <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/92 backdrop-blur-sm shadow-lg">
-                    <Icon className="h-3.5 w-3.5 text-[#0F172A]" aria-hidden="true" />
-                    <span className="text-[11px] font-semibold text-[#0F172A] tracking-wide uppercase">
-                      {s.eyebrow}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="relative w-full lg:flex-1 flex items-center px-6 sm:px-10 lg:px-14 xl:px-18 py-14 lg:py-20">
-                  <div
-                    className="absolute top-0 left-0 w-[3px] h-full"
-                    style={{ backgroundColor: s.accent }}
-                    aria-hidden="true"
-                  />
-
-                  <div className="max-w-xl w-full">
-                    <FadeIn>
-                      <div className="flex items-center gap-4 mb-6">
-                        <span
-                          className="text-5xl lg:text-6xl font-black leading-none tracking-tighter tabular-nums"
-                          style={{ color: s.accent }}
-                        >
-                          {s.num}
+                    <div className="relative aspect-[16/10] border-b border-track">
+                      <MediaSlot fill id={`services-${s.slug}`} alt={s.imageAlt} fallback={<GeometryField icon={s.icon} />} />
+                    </div>
+                    <div className="flex flex-1 flex-col p-6">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="inline-flex items-center gap-2 text-eyebrow uppercase text-fg-muted">
+                          <Icon className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+                          {s.num} · {s.eyebrow}
                         </span>
-                        <span
-                          className="flex-1 h-[1px] opacity-25"
-                          style={{ backgroundColor: s.accent }}
-                          aria-hidden="true"
-                        />
-                        <span
-                          className={`text-[10px] font-semibold uppercase tracking-[0.15em] ${
-                            isDark ? "text-gray-400" : "text-gray-500"
-                          }`}
-                        >
-                          {s.badge}
-                        </span>
+                        <Tag variant="brand">{s.badge}</Tag>
                       </div>
-
-                      <h2
-                        id={`service-title-${s.slug}`}
-                        className={`text-3xl sm:text-4xl lg:text-[2.5rem] font-bold leading-[1.1] tracking-tight mb-4 ${textColor}`}
-                      >
+                      <h2 id={`service-title-${s.slug}`} className="mt-4 font-sans text-heading-lg text-fg">
                         {s.title}
                       </h2>
-
-                      <p
-                        className={`text-[1.05rem] lg:text-[1.1rem] font-medium italic mb-5 ${
-                          isDark ? "text-gray-200" : "text-gray-600"
-                        }`}
-                      >
-                        {s.pitch}
-                      </p>
-
-                      <p className={`text-[1rem] lg:text-[1.02rem] leading-[1.78] mb-8 ${subTextColor}`}>
-                        {s.body}
-                      </p>
-
-                      {/* Proof */}
-                      <div
-                        className={`grid grid-cols-2 gap-4 mb-8 pb-8 border-b ${
-                          isDark ? "border-white/10" : "border-gray-200"
-                        }`}
-                      >
+                      <p className="mt-2 text-body-sm italic text-fg">{s.pitch}</p>
+                      <p className="mt-3 flex-1 text-body-sm text-fg-strong">{s.body}</p>
+                      <dl className="mt-6 grid grid-cols-2 border-t border-track pt-4">
                         {s.proof.map((p, j) => (
-                          <div key={j} className="flex flex-col gap-1">
-                            <span
-                              className="text-2xl lg:text-[1.9rem] font-black tracking-tight leading-none tabular-nums"
-                              style={{ color: s.accent }}
-                            >
+                          <div key={j} className={`flex flex-col-reverse justify-end ${j > 0 ? "border-l border-track pl-4" : "pr-4"}`}>
+                            <dt className="text-caption text-fg-muted">{p.label}</dt>
+                            <dd className="font-display text-display-sm tabular-nums text-emerald">
                               {p.value}
-                              {p.unit && (
-                                <span className="text-sm ml-1 font-semibold opacity-80">
-                                  {p.unit}
-                                </span>
-                              )}
-                            </span>
-                            <span
-                              className={`text-[11px] leading-snug ${
-                                isDark ? "text-gray-400" : "text-gray-500"
-                              }`}
-                            >
-                              {p.label}
-                            </span>
+                              {p.unit && <span className="ml-1 font-sans text-body-sm text-fg-strong">{p.unit}</span>}
+                            </dd>
                           </div>
                         ))}
-                      </div>
-
-                      {/* Pricing note */}
+                      </dl>
                       {s.pricingNote && (
-                        <div className={`mb-8 pb-8 border-b ${isDark ? "border-white/10" : "border-gray-200"}`}>
-                          <Link
-                            href={s.pricingHref ?? "/tarifs"}
-                            className="inline-flex items-center gap-3 group"
-                          >
-                            <span
-                              className="text-xl lg:text-2xl font-black tracking-tight tabular-nums"
-                              style={{ color: s.accent }}
-                            >
-                              {s.pricingNote}
-                            </span>
-                            <span
-                              className={`text-sm font-medium underline underline-offset-4 decoration-1 transition-opacity group-hover:opacity-80 ${
-                                isDark ? "text-gray-300" : "text-gray-600"
-                              }`}
-                            >
-                              {tx("Voir les tarifs", "View pricing")}
-                            </span>
+                        <p className="mt-4 text-body-sm">
+                          <span className="font-semibold tabular-nums text-emerald">{s.pricingNote}</span>{" "}
+                          <Link href={s.pricingHref ?? "/tarifs"} className="text-emerald underline underline-offset-4 hover:text-emerald-hover">
+                            {tx("Voir les tarifs", "View pricing")}
                           </Link>
-                        </div>
+                        </p>
                       )}
-
-                      {/* CTAs */}
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 flex-wrap">
-                        <Link
-                          href={`/reserver?offre=${s.slug}`}
-                          className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${
-                            isDark
-                              ? "bg-white text-[#0F172A] hover:bg-gray-100 hover:shadow-white/20"
-                              : "text-white hover:opacity-90"
-                          }`}
-                          style={
-                            isDark
-                              ? {}
-                              : {
-                                  backgroundColor: s.accent,
-                                  boxShadow: `0 4px 16px ${s.accent}30`,
-                                }
-                          }
-                        >
+                      <div className="mt-6 flex flex-wrap items-center gap-4">
+                        <ButtonLink href={`/reserver?offre=${s.slug}`} variant="secondary">
                           {s.bookLabel}
-                          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                        </Link>
-                        <Link
-                          href={s.href}
-                          className={`text-sm font-medium underline underline-offset-4 decoration-1 transition-opacity hover:opacity-80 inline-flex items-center gap-1 ${
-                            isDark ? "text-gray-300" : "text-gray-600"
-                          }`}
-                        >
+                        </ButtonLink>
+                        <Link href={s.href} className="group inline-flex min-h-[44px] items-center gap-1 text-body-sm font-medium text-emerald hover:text-emerald-hover">
                           {tx("Lire la fiche complète", "Read the full sheet")}
-                          <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                         </Link>
                       </div>
-                    </FadeIn>
-                  </div>
-                </div>
-              </div>
-            </section>
-          );
-        })}
-      </div>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S4 (CITATION MAGAZINE) fond #022C22
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#022C22] py-20 lg:py-28">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(16,185,129,0.10) 0%, transparent 65%)",
-          }}
-        />
-        <div className="container mx-auto px-4 relative z-10">
-          <FadeIn>
-            <div className="max-w-4xl mx-auto text-center">
-              <Quote className="h-10 w-10 text-[#10B981] mx-auto mb-8" aria-hidden="true" />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#6EE7B7] mb-6">
-                {tx("Témoignage RSSI", "CISO testimonial")}
-              </p>
-              <blockquote
-                className="text-white font-medium italic mb-10"
-                style={{ fontSize: "clamp(1.4rem, 2.6vw, 2rem)", lineHeight: 1.4 }}
-              >
-                {tx(
-                  "« GreenTechCycle a transformé notre ITAD en ligne de défense. Quand l'inspection ACPR est arrivée, j'ai posé un seul PDF sur la table. Quinze minutes plus tard, le sujet était clos. »",
-                  "« GreenTechCycle turned our ITAD into a line of defence. When the regulatory inspection arrived, I put a single PDF on the table. Fifteen minutes later, the topic was closed. »"
-                )}
-              </blockquote>
-              <footer className="text-sm text-gray-300">
-                <span className="font-semibold text-white">Marc B.</span>
-                <span className="mx-2 text-gray-500">·</span>
-                <span className="italic text-gray-400">{tx("RSSI, banque CAC 40", "CISO, CAC 40 bank")}</span>
-              </footer>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          S5 (POURQUOI UN INTERLOCUTEUR UNIQUE) fond clair, ghost 07
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-white py-20 lg:py-28">
-        <div
-          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-          style={{
-            fontSize: "clamp(8rem, 22vw, 18rem)",
-            color: "rgba(0,0,0,0.035)",
-            right: "0.5rem",
-            bottom: "-0.1em",
-          }}
-          aria-hidden="true"
-        >
-          07
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-5xl">
-            <FadeIn>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#047857] mb-4">
-                {tx("Pourquoi un seul interlocuteur change tout", "Why a single point of contact changes everything")}
-              </p>
-              <h2
-                className="text-[#0F172A] font-bold tracking-tight mb-8"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-              >
-                {tx(
-                  "Six prestataires éparpillés, c'est six dossiers à recoller au moindre audit.",
-                  "Six scattered vendors means six dossiers to reassemble at the slightest audit."
-                )}
-              </h2>
-              <p className="text-gray-700 text-[1.02rem] lg:text-[1.1rem] leading-[1.78] mb-10 max-w-3xl">
-                {tx(
-                  "La plupart de nos clients arrivaient avec un assemblage hérité : un transporteur ici, un broyeur là, un brocanteur de matériel reconditionné, un cabinet pour le rapport carbone. Quand l'autorité demande la chaîne complète, plus personne n'arrive à recoller les bordereaux. GreenTechCycle a été conçu pour produire une preuve unique, la même donnée nourrit la console DSI, le dossier RSSI et le rapport CSRD.",
-                  "Most of our clients arrived with an inherited patchwork: a carrier here, a shredder there, a refurbished hardware reseller, an external firm for the carbon report. When the regulator asks for the full chain, nobody can put the slips back together. GreenTechCycle was built to produce a single proof, the same data feeds the CIO console, the CISO file and the CSRD report."
-                )}
-              </p>
-            </FadeIn>
-
-            <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: FileCheck,
-                  title: tx("Un seul contrat", "A single contract"),
-                  body: tx(
-                    "Cadre légal unique, prix unique, responsabilité unique. Les avenants tiennent en deux pages.",
-                    "Single legal framework, single price, single responsibility. Amendments fit on two pages."
-                  ),
-                },
-                {
-                  icon: ShieldCheck,
-                  title: tx("Une seule preuve", "A single proof"),
-                  body: tx(
-                    "Le bordereau de collecte, le certificat d'effacement et le rapport CSRD partagent la même empreinte.",
-                    "The collection slip, erasure certificate and CSRD report share the same footprint."
-                  ),
-                },
-                {
-                  icon: Users,
-                  title: tx("Une équipe nommée", "A named team"),
-                  body: tx(
-                    "Trois interlocuteurs habilités : ingénieur d'affaires, chef de projet, référent RSSI. Pas de standard.",
-                    "Three named experts: account engineer, project lead, CISO contact. No call centre."
-                  ),
-                },
-              ].map((b, i) => (
-                <StaggerItem key={i}>
-                  <div className="bg-[#F8FAFC] rounded-2xl p-7 border border-gray-100 h-full hover:border-[#047857]/30 transition-colors">
-                    <div className="w-11 h-11 rounded-xl bg-[#047857]/10 flex items-center justify-center mb-5">
-                      <b.icon className="h-5 w-5 text-[#047857]" aria-hidden="true" />
                     </div>
-                    <h3 className="text-base font-bold text-[#0F172A] mb-3 tracking-tight">
-                      {b.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-[1.7]">{b.body}</p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+                  </article>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════════
-          S6 (ENCART CONVERSION) fond #10B981
-         ════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden bg-[#10B981]">
-        <div
-          className="absolute inset-0 pointer-events-none opacity-30"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 80% 0%, rgba(255,255,255,0.25) 0%, transparent 55%)",
-          }}
-        />
-        <div
-          className="absolute select-none pointer-events-none font-black tracking-tighter leading-none"
-          style={{
-            fontSize: "clamp(8rem, 22vw, 18rem)",
-            color: "rgba(255,255,255,0.06)",
-            right: "0.5rem",
-            bottom: "-0.1em",
-          }}
-          aria-hidden="true"
-        >
-          08
+      {/* ═══════════ CITATION (forest) ═══════════ */}
+      <Section tone="forest">
+        <div className="reveal">
+          <figure className="max-w-[65ch]">
+            <p className="text-eyebrow uppercase text-fg-muted">{tx("Témoignage RSSI", "CISO testimonial")}</p>
+            <blockquote className="mt-4 font-display text-display-sm text-fg">
+              {tx(
+                "« GreenTechCycle a transformé notre ITAD en ligne de défense. Quand l'inspection ACPR est arrivée, j'ai posé un seul PDF sur la table. Quinze minutes plus tard, le sujet était clos. »",
+                "« GreenTechCycle turned our ITAD into a line of defence. When the regulatory inspection arrived, I put a single PDF on the table. Fifteen minutes later, the topic was closed. »"
+              )}
+            </blockquote>
+            <figcaption className="mt-6 text-caption text-fg-muted">
+              <span className="font-semibold text-fg">Marc B.</span> · {tx("RSSI, banque CAC 40", "CISO, CAC 40 bank")}
+            </figcaption>
+          </figure>
         </div>
+      </Section>
 
-        <div className="container mx-auto px-4 py-20 lg:py-24 relative z-10">
-          <FadeIn>
-            <div className="max-w-4xl">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-5">
-                {tx("Passer à l'action", "Take the next step")}
-              </p>
-              <h2
-                className="text-white font-black tracking-tight mb-6"
-                style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", lineHeight: 1.08 }}
-              >
-                {tx(
-                  "Trente minutes avec un expert senior. Un plan d'action chiffré sous 48 heures.",
-                  "Thirty minutes with a senior expert. A quoted action plan within 48 hours."
-                )}
-              </h2>
-              <p className="text-white/90 text-[1.05rem] lg:text-[1.15rem] leading-[1.65] max-w-2xl mb-10">
-                {tx(
-                  "Pas d'appel commercial scripté, pas de questionnaire en ligne. Un échange direct avec un ingénieur qui a déjà piloté une mission équivalente, banque, santé, distribution, industrie ou administration.",
-                  "No scripted sales call, no online form maze. A direct conversation with an engineer who has already run an equivalent mission, banking, healthcare, retail, industry or public administration."
-                )}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/reserver"
-                  className="inline-flex items-center justify-center gap-2 bg-[#0F172A] hover:bg-[#022C22] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 text-sm"
-                >
-                  {tx("Réserver un créneau", "Book a slot")}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <Link
-                  href="/cas-usages"
-                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/40 hover:border-white/60 font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-sm"
-                >
-                  {tx("Voir les cas clients", "See client cases")}
-                </Link>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-x-8 gap-y-2 mt-12 text-white/80 text-xs">
-                <span className="inline-flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
-                  {tx("Réponse sous 24 heures ouvrées", "Response within 24 business hours")}
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
-                  {tx("NDA signé sur demande", "NDA signed on request")}
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
-                  {tx("Aucun engagement", "No commitment")}
-                </span>
+      {/* ═══════════ POURQUOI UN INTERLOCUTEUR UNIQUE ═══════════ */}
+      <Section tone="paper">
+        <div className="reveal">
+          <SectionHeader
+            eyebrow={tx("Pourquoi un seul interlocuteur change tout", "Why a single point of contact changes everything")}
+            title={tx(
+              "Six prestataires éparpillés, c'est six dossiers à recoller au moindre audit.",
+              "Six scattered vendors means six dossiers to reassemble at the slightest audit."
+            )}
+            intro={tx(
+              "La plupart de nos clients arrivaient avec un assemblage hérité : un transporteur ici, un broyeur là, un brocanteur de matériel reconditionné, un cabinet pour le rapport carbone. Quand l'autorité demande la chaîne complète, plus personne n'arrive à recoller les bordereaux. GreenTechCycle a été conçu pour produire une preuve unique, la même donnée nourrit la console DSI, le dossier RSSI et le rapport CSRD.",
+              "Most of our clients arrived with an inherited patchwork: a carrier here, a shredder there, a refurbished hardware reseller, an external firm for the carbon report. When the regulator asks for the full chain, nobody can put the slips back together. GreenTechCycle was built to produce a single proof, the same data feeds the CIO console, the CISO file and the CSRD report."
+            )}
+          />
+        </div>
+        <div className="reveal-stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {singleContact.map((b) => (
+            <div key={b.title} className="reveal h-full">
+              <div className="h-full rounded-xl border border-track bg-bg p-6">
+                <Pictogram icon={b.icon} />
+                <h3 className="mt-4 text-heading-md text-fg">{b.title}</h3>
+                <p className="mt-2 text-body-sm text-fg-strong">{b.body}</p>
               </div>
             </div>
-          </FadeIn>
+          ))}
         </div>
-      </section>
-    </main>
+      </Section>
+
+      {/* ═══════════ CTA UNIQUE (S2b pilote + S6 conversion fusionnés) ═══════════ */}
+      <CtaSection
+        eyebrow={tx("Passer à l'action", "Take the next step")}
+        title={tx(
+          "Trente minutes avec un expert senior. Un plan d'action chiffré sous 48 heures.",
+          "Thirty minutes with a senior expert. A quoted action plan within 48 hours."
+        )}
+        subtitle={tx(
+          "Pas d'appel commercial scripté, pas de questionnaire en ligne. Un échange direct avec un ingénieur qui a déjà piloté une mission équivalente, banque, santé, distribution, industrie ou administration.",
+          "No scripted sales call, no online form maze. A direct conversation with an engineer who has already run an equivalent mission, banking, healthcare, retail, industry or public administration."
+        )}
+        primaryLabel={tx("Réserver un créneau", "Book a slot")}
+        primaryHref="/reserver"
+        secondaryLabel={tx("Réserver le Pilote 3 jours", "Book the 3-day Pilot")}
+        secondaryHref="/reserver?offre=pilote-audit-3j"
+        reassurance={[
+          tx("Réponse sous 24 heures ouvrées", "Response within 24 business hours"),
+          tx("NDA signé sur demande", "NDA signed on request"),
+          tx("Aucun engagement", "No commitment"),
+        ].join(" · ")}
+        footnote={
+          <div className="mx-auto max-w-[65ch]">
+            <p>
+              <span className="font-semibold text-fg">
+                {tx("Pilote GTC - Audit & démarrage 3 jours", "GTC Pilot - Audit & 3-day kickoff")} · {tx("2 900 € HT / 3 jours", "€2,900 ex-VAT / 3 days")}
+              </span>{" "}
+              {tx(
+                "Diagnostic parc IT, plan ITAD priorisé et démarrage Plateforme. Mission senior conduite par notre équipe ITAM, carbone et cyber. Pilote remboursé sur la 1re année de Plateforme si signature dans les 90 jours après la restitution.",
+                "IT fleet diagnostic, prioritised ITAD action plan and Platform kickoff. Senior engagement by our ITAM, carbon and cyber team. Pilot refunded on Year 1 Platform subscription if signed within 90 days of debrief."
+              )}
+            </p>
+            <p className="mt-3 flex flex-wrap justify-center gap-x-6 gap-y-2">
+              <Link href="/tarifs#pilote" className="font-medium text-emerald hover:text-fg">
+                {tx("Détails et garantie remboursement", "Details and refund guarantee")} →
+              </Link>
+              <Link href="/cas-usages" className="font-medium text-emerald hover:text-fg">
+                {tx("Voir les cas clients", "See client cases")} →
+              </Link>
+            </p>
+          </div>
+        }
+      />
+    </div>
   );
 }
