@@ -29,6 +29,18 @@ export interface MailMessage {
 let smtp: Transporter | null = null;
 
 export function mailTransport(): MailTransport {
+  // DIAGNOSTIC TEMPORAIRE (go-live, 2026-10-05) — présence/longueur uniquement,
+  // jamais de valeur. À retirer dès le diagnostic terminé (reports/go-live-gtc.md §23).
+  console.log(
+    "[mailer][diag]",
+    JSON.stringify({
+      host: !!process.env.SMTP_HOST,
+      user: !!process.env.SMTP_USER,
+      passSet: !!process.env.SMTP_PASS,
+      passLen: process.env.SMTP_PASS?.length ?? 0,
+      resend: !!process.env.RESEND_API_KEY,
+    })
+  );
   if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) return "smtp";
   if (process.env.RESEND_API_KEY) return "resend";
   return "none";
