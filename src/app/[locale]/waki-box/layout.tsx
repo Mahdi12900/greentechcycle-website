@@ -3,14 +3,14 @@ import { pageMetadata, type LocaleParams, type PageCopy } from "@/lib/seo";
 
 const META_COPY: PageCopy = {
   fr: {
-    title: "Waki Box | Le suivi DEEE connecté, prêt CSRD ESRS E5",
+    title: "Waki Box | Suivi DEEE connecté, ESRS E5",
     description:
-      "Waki Box : suivi DEEE connecté en temps réel. Bornes avec capteurs, alertes de remplissage, pesée par flux et exports ESRS E5. Trois plans dès 39 € HT/mois et un programme pilote.",
+      "Waki Box : suivi DEEE connecté en temps réel, alertes de remplissage et exports ESRS E5. Dès 39 € HT/mois.",
   },
   en: {
-    title: "Waki Box | Connected WEEE tracking, CSRD ESRS E5 ready",
+    title: "Waki Box | Connected WEEE tracking, ESRS E5",
     description:
-      "Waki Box: real-time connected WEEE tracking. Kiosks with sensors, fill alerts, per-stream weighing and ESRS E5 exports. Three plans from €39 ex-VAT/month and a pilot programme.",
+      "Waki Box: real-time connected WEEE tracking, fill alerts and ESRS E5 exports. From €39 ex-VAT/month.",
   },
 };
 

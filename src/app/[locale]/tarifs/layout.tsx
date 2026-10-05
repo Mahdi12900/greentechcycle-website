@@ -17,8 +17,8 @@ export async function generateMetadata({
     : "Tarifs Waki Box, Plateforme et Service ITAD | GreenTechCycle";
 
   const description = isEn
-    ? "Public, transparent pricing: Waki Box from €39 ex-VAT/month, GTC Platform from €1,400 ex-VAT/month (up to 200 assets), ITAD Service from €19 ex-VAT/device and €55 ex-VAT/unit for servers and racks."
-    : "Prix publics et transparents : Waki Box dès 39 € HT/mois, Plateforme GTC dès 1 400 € HT/mois (jusqu'à 200 actifs), Service ITAD dès 19 € HT/poste et 55 € HT/unité pour les serveurs et baies.";
+    ? "Public, transparent pricing: Waki Box from €39 ex-VAT/month, Platform from €1,400 ex-VAT/month, ITAD Service from €19 ex-VAT/device (€55 for complex units)."
+    : "Prix publics et transparents : Waki Box dès 39 € HT/mois, Plateforme dès 1 400 € HT/mois, Service ITAD dès 19 € HT/poste (55 € HT/unité complexe).";
 
   return {
     title: { absolute: titleStr },

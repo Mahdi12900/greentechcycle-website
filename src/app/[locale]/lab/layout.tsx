@@ -12,12 +12,12 @@ export async function generateMetadata({
   const isEn = locale === "en";
 
   const title = isEn
-    ? "GreenTechCycle Lab | Applied R&D for proof, security and circular IT"
-    : "GreenTechCycle Lab | R&D appliquée : preuve, sécurité et IT circulaire";
+    ? "GreenTechCycle Lab | Applied R&D"
+    : "GreenTechCycle Lab | R&D appliquée";
 
   const description = isEn
-    ? "GreenTechCycle Lab, GreenTechCycle's applied R&D lab: mission, red lines, the five dimensions of proof, refusal policy, data and AI governance, eight research programmes and pilot programmes open to organisations in every sector."
-    : "GreenTechCycle Lab, le laboratoire de R&D appliquée de GreenTechCycle : mission, lignes rouges, cinq dimensions de la preuve, politique de refus, gouvernance des données et de l'IA, huit programmes de recherche et programmes pilotes ouverts aux organisations de chaque secteur.";
+    ? "GreenTechCycle's applied R&D lab: eight research programmes, data and AI governance, and pilot programmes by sector."
+    : "Le laboratoire de R&D appliquée de GreenTechCycle : huit programmes de recherche, gouvernance des données et de l'IA, programmes pilotes par secteur.";
 
   return {
     title,

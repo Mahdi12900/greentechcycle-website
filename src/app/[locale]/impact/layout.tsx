@@ -4,14 +4,14 @@ import { SITE_URL } from "@/lib/site";
 
 const META_COPY: PageCopy = {
   fr: {
-    title: "Bilan carbone IT et empreinte numérique | ESRS E5",
+    title: "Bilan carbone IT | ESRS E5",
     description:
-      "Calculez l'empreinte carbone de votre parc IT selon GHG Protocol, ADEME Bilan Carbone v8 et ISO 14064-1. Mapping CSRD ESRS E5 direct, comparatif neuf vs reconditionné, méthodologie auditable.",
+      "Calculez l'empreinte carbone de votre parc IT selon GHG Protocol et ADEME. Mapping CSRD ESRS E5, comparatif neuf vs reconditionné.",
   },
   en: {
-    title: "IT carbon footprint and digital impact | ESRS E5",
+    title: "IT carbon footprint | ESRS E5",
     description:
-      "Measure your IT fleet's carbon footprint with the GHG Protocol, ADEME Bilan Carbone v8 and ISO 14064-1. Direct CSRD ESRS E5 mapping, new vs refurbished comparison, auditable methodology.",
+      "Measure your IT fleet's carbon footprint with the GHG Protocol and ADEME. CSRD ESRS E5 mapping, new vs refurbished comparison.",
   },
 };
 

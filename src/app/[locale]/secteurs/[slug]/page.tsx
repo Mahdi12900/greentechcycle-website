@@ -5,8 +5,11 @@ import { ALL_SECTOR_SLUGS, getSectorDef } from "@/data/sectors";
 import type { SectorSlug } from "@/data/sectors";
 import { getSectorContent } from "@/data/sectors-i18n";
 import SectorDetailPage from "./SectorDetailPage";
+import { SECTOR_VIDEOS } from "@/data/sector-videos";
 import { SITE_URL as SITE } from "@/lib/site";
-import { DEFAULT_OG_IMAGE } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, videoObjectSchema } from "@/lib/seo";
+import { SLOT_VIDEOS } from "@/content/media-slots";
+import SchemaOrg from "@/components/SchemaOrg";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Static params - generate all 16 slugs
@@ -72,5 +75,15 @@ export default async function SectorPage({
   const sectorDef = getSectorDef(slug);
   if (!sectorDef) notFound();
 
-  return <SectorDetailPage slug={slug as SectorSlug} />;
+  // VideoObject de la vidéo cas client du secteur, s'il y en a une (plan SEO du 2026-10-05)
+  const lang = locale === "en" ? "en" : "fr";
+  const videoId = SECTOR_VIDEOS[slug];
+  const videoSpec = videoId ? SLOT_VIDEOS[videoId] : undefined;
+
+  return (
+    <>
+      {videoSpec && <SchemaOrg data={videoObjectSchema(videoSpec, lang)} />}
+      <SectorDetailPage slug={slug as SectorSlug} />
+    </>
+  );
 }

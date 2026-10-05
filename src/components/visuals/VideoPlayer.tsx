@@ -109,9 +109,21 @@ export default function VideoPlayer({
 
   return (
     <div ref={boxRef} data-media-slot={id} data-video-ready data-state={state} className="group absolute inset-0 bg-bg">
+      {/* Poster réel en <img> (plan SEO du 2026-10-05, reports/seo-plan-gtc.md §2.2.4) : l'attribut
+          `poster` du <video> n'est pas indexable par Google Images, cet <img> l'est. Masqué aux
+          lecteurs d'écran : la vidéo porte déjà le même intitulé via aria-label/aria-describedby. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={spec.poster}
+        alt={isEn ? `${title} — video preview` : `${title} — aperçu vidéo`}
+        aria-hidden="true"
+        decoding="async"
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
       <video
         ref={ref}
-        className="h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover"
         playsInline
         preload="none"
         poster={spec.poster}

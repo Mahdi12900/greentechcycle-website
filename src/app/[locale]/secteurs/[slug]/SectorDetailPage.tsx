@@ -1,6 +1,7 @@
 "use client";
 
 import { VideoFigure } from "@/components/visuals/VideoPlayer";
+import { SECTOR_VIDEOS } from "@/data/sector-videos";
 import GeometryField from "@/components/visuals/GeometryField";
 import MediaSlot from "@/components/visuals/MediaSlot";
 import { useLocale } from "next-intl";
@@ -52,13 +53,8 @@ const anchors = {
    → forest (#argumentaire) → paper (#objections) → cream (autres secteurs)
    → forest (CTA unique) → night (footer)
 ───────────────────────────────────────────────────────────────────────────── */
-/** Secteur → vidéo de cas client (registre SLOT_VIDEOS) */
-const SECTOR_VIDEOS: Record<string, string> = {
-  finance: "case-banque",
-  sante: "case-chu",
-  energie: "case-energie",
-  "medias-audiovisuel": "case-tf1",
-};
+// SECTOR_VIDEOS est dans src/data/sector-videos.ts (module neutre, importable aussi par le
+// composant serveur page.tsx pour le VideoObject JSON-LD — voir le commentaire là-bas).
 
 export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
   const locale = useLocale();

@@ -49,6 +49,23 @@ const STATIC_PAGES: [string, MetadataRoute.Sitemap[number]["changeFrequency"], n
   ["/mentions-legales", "yearly", 0.3],
 ];
 
+/**
+ * hreflang par URL du sitemap (plan SEO du 2026-10-05, reports/seo-plan-gtc.md §2.2.8) :
+ * en plus des balises `<link rel="alternate" hreflang>` déjà posées dans le `<head>` de chaque
+ * page, Next.js peut générer les mêmes équivalences directement dans sitemap.xml
+ * (`<xhtml:link>`). Ce n'est pas indispensable pour Google (l'un des deux canaux suffit), mais
+ * c'est une bonne pratique de robustesse à faible effort, explicitement recommandée par le plan.
+ */
+function alternates(path: string) {
+  return {
+    languages: {
+      fr: `${BASE}/fr${path}`,
+      en: `${BASE}/en${path}`,
+      "x-default": `${BASE}/fr${path}`,
+    },
+  };
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   /* Static pages (FR + EN mirror) */
   const staticEntries = LOCALES.flatMap((locale) =>
@@ -57,6 +74,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: NOW,
       changeFrequency,
       priority,
+      alternates: alternates(path),
     }))
   );
 
@@ -67,6 +85,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: NOW,
       changeFrequency: "monthly" as const,
       priority: 0.8,
+      alternates: alternates(`/secteurs/${slug}`),
     }))
   );
 
@@ -77,6 +96,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(article.updatedAt),
       changeFrequency: "monthly" as const,
       priority: 0.6,
+      alternates: alternates(`/blog/${article.slug}`),
     }))
   );
 

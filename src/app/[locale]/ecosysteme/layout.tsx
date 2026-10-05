@@ -3,7 +3,7 @@ import { pageMetadata, type LocaleParams, type PageCopy } from "@/lib/seo";
 
 const META_COPY: PageCopy = {
   fr: {
-    title: "Écosystème & intégrations | API, SSO, connecteurs",
+    title: "Écosystème & intégrations | API, SSO",
     description:
       "Connecteurs ServiceNow, GLPI, Intune, JAMF et SAP, API REST documentée et authentification SSO/MFA : GreenTechCycle s'intègre à votre système d'information.",
   },

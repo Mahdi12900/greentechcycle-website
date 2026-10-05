@@ -114,9 +114,21 @@ const FilmPlayer = forwardRef<FilmPlayerHandle, { id: string; placement: string;
     return (
       <div ref={boxRef} data-film={id} data-state={state} className={className}>
         <div className={`group relative aspect-video overflow-hidden bg-bg ${frameClassName}`}>
+          {/* Poster réel en <img> (plan SEO du 2026-10-05) : indexable par Google Images, contrairement
+              à l'attribut `poster` seul. Masqué aux lecteurs d'écran : la vidéo porte déjà le même
+              intitulé via aria-label/aria-describedby. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={spec.poster}
+            alt={isEn ? `${title} — film preview` : `${title} — aperçu du film`}
+            aria-hidden="true"
+            decoding="async"
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-contain"
+          />
           <video
             ref={videoRef}
-            className="h-full w-full object-contain"
+            className="absolute inset-0 h-full w-full object-contain"
             playsInline
             preload="none"
             controls={state === "playing"}
