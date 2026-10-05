@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Logo from "@/components/Logo";
-import { Mail, MessageCircle, MapPin, Linkedin, Twitter, ArrowUpRight, Send } from "lucide-react";
+import { Mail, MessageCircle, Linkedin, Twitter, ArrowUpRight, Send } from "lucide-react";
 import { EMAILS, PREFILL, mailtoHref, whatsappHref } from "@/lib/contact";
 import CertificationStrip from "@/components/CertificationStrip";
 
@@ -107,10 +107,6 @@ export default function Footer() {
           <div>
             <h2 className="text-eyebrow uppercase text-fg font-sans tracking-[0.12em]">{t("contact.title")}</h2>
             <ul className="mt-6 space-y-3 text-body-sm">
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-                <span className="whitespace-pre-line">{t("contact.address")}</span>
-              </li>
               {mail && (
                 <li>
                   <a href={mail} className="inline-flex items-center gap-3 hover:text-fg">

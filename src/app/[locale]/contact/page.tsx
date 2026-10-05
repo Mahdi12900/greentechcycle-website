@@ -16,7 +16,7 @@ import {
   ArrowDown,
   Send,
   CheckCircle2,
-  MapPin,
+  Building2,
   ShieldCheck,
   Clock,
   Leaf,
@@ -401,10 +401,10 @@ function ContactInner() {
         </div>
         <ContactChannels />
         <div className="reveal mt-3 flex items-start gap-4 rounded-xl border border-track bg-bg-card p-5">
-          <MapPin className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+          <Building2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
           <div>
-            <p className="text-eyebrow uppercase text-fg-muted">{tx("Siège social", "Registered office")}</p>
-            <p className="mt-2 whitespace-pre-line text-body text-fg">{t("info.address")}</p>
+            <p className="text-eyebrow uppercase text-fg-muted">{tx("Identité légale", "Legal identity")}</p>
+            <p className="mt-2 text-body text-fg">{LEGAL.name}</p>
             <p className="mt-2 font-mono text-caption text-fg-muted">SIREN {LEGAL.siren} · {LEGAL.rcs}</p>
           </div>
         </div>
