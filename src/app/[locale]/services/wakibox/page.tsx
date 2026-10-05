@@ -176,7 +176,7 @@ export default function WakiBoxPage() {
       <ServicePageTemplate data={data} />
 
       {/* ── Pricing summary section inserted before the conversion CTA ── */}
-      <section className="relative w-full overflow-hidden bg-bg-card -mt-px py-16 lg:py-24">
+      <section className="relative w-full overflow-hidden bg-bg-card -mt-px py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-3xl mb-14">

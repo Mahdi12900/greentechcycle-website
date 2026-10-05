@@ -52,7 +52,7 @@ export default function PourquoiGtcPage() {
   return (
     <div>
       {/* ═══ HERO manifeste (paper) — bandeau d'urgence → notice ═══ */}
-      <section className="bg-bg py-16 lg:py-24" aria-labelledby="why-hero">
+      <section className="bg-bg py-12 lg:py-16" aria-labelledby="why-hero">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
@@ -128,7 +128,7 @@ export default function PourquoiGtcPage() {
 
       {/* ═══ 5 CONVICTIONS (paper, liste à filets) ═══ */}
       <div id="ethique" aria-hidden="true" className="sr-only" />
-      <section className="bg-bg py-16 lg:py-24" aria-label={t("manifesto.eyebrow")}>
+      <section className="bg-bg py-12 lg:py-16" aria-label={t("manifesto.eyebrow")}>
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <ol className="divide-y divide-track border-y border-track">
             {convictions.map((c, index) => {

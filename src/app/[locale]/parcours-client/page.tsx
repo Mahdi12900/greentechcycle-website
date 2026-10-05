@@ -40,7 +40,7 @@ export default function ClientJourneyPage({
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-bg-card py-16 text-fg lg:py-24">
+      <section className="bg-bg-card py-12 text-fg lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-4xl ">
@@ -56,7 +56,7 @@ export default function ClientJourneyPage({
       </section>
 
       {/* Timeline Section */}
-      <section className="bg-bg-card py-16 lg:py-24">
+      <section className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <h2 id="journey-steps-title" className="sr-only">{tx("Les étapes du parcours client", "The client journey steps")}</h2>
           {/* Desktop Timeline (Horizontal) */}

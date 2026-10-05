@@ -64,7 +64,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
       <SchemaOrg data={schemaData} />
       <div className="min-h-screen">
         {/* Hero */}
-        <section className="relative bg-bg-card overflow-hidden py-16 lg:py-24">
+        <section className="relative bg-bg-card overflow-hidden py-12 lg:py-16">
           <div className="absolute inset-0">
             <MediaSlot fill id="blog-hero" alt={isEn ? "IT consulting and data analysis" : "Consultation IT et analyse de données"} fallback={<GeometryField />} />
           </div>

@@ -247,7 +247,7 @@ function ReserverInner() {
     <div className="overflow-hidden bg-bg-card">
       {/* Hero · sombre court */}
       <section className="relative bg-bg-card overflow-hidden border-b border-track">
-        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-24">
+        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10 py-12 lg:py-16">
           <div className="reveal">
             <div className="max-w-3xl">
               <Link

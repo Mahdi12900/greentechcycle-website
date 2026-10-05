@@ -59,7 +59,7 @@ export default function CtaSection({
       : reassurance;
 
   return (
-    <section id={id} className={`relative overflow-hidden border-t border-track bg-bg py-16 text-fg lg:py-24 ${className}`}>
+    <section id={id} className={`relative overflow-hidden border-t border-track bg-bg py-12 text-fg lg:py-16 ${className}`}>
       {/* Section « lumineuse » (§5.1, §6.12) : halo émeraude + grille de points */}
       <div className="fx-halo pointer-events-none absolute inset-0" aria-hidden="true" />
       <div className="fx-dots pointer-events-none absolute inset-0 fx-fade" aria-hidden="true" />

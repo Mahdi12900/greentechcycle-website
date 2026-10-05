@@ -18,12 +18,19 @@ const TONES: Record<SectionTone, string> = {
   mint: "bg-bg-card text-fg border-y border-track",
 };
 
-const SPACING: Record<SectionSpacing, string> = {
-  standard: "py-16 lg:py-24",
-  dense: "py-12 lg:py-16",
-  hero: "py-16 lg:py-24",
-  "hero-home": "py-16 lg:py-32",
-  none: "",
+/**
+ * Espacement resserré le 2026-10-05 (reports/espacement-sections-gtc.md) : py-16 lg:py-24
+ * → py-12 lg:py-16 partout, pour couper de moitié le vide cumulé à chaque frontière entre
+ * sections. `noTop` sert à `collapseTop` ci-dessous : quand deux sections de même fond se
+ * suivent sans bordure, la deuxième peut retirer son padding haut (le bas de la précédente
+ * suffit à les séparer), au lieu d'additionner les deux paddings.
+ */
+const SPACING: Record<SectionSpacing, { all: string; noTop: string }> = {
+  standard: { all: "py-12 lg:py-16", noTop: "pb-12 lg:pb-16" },
+  dense: { all: "py-12 lg:py-16", noTop: "pb-12 lg:pb-16" },
+  hero: { all: "py-12 lg:py-16", noTop: "pb-12 lg:pb-16" },
+  "hero-home": { all: "py-14 lg:py-20", noTop: "pb-14 lg:pb-20" },
+  none: { all: "", noTop: "" },
 };
 
 /** v2 : tout est sombre ; conservé pour compatibilité. */
@@ -47,6 +54,7 @@ export default function Section({
   containerClassName = "",
   narrow = false,
   bordered = false,
+  collapseTop = false,
   children,
   "aria-labelledby": labelledBy,
   "aria-label": label,
@@ -58,6 +66,8 @@ export default function Section({
   containerClassName?: string;
   narrow?: boolean;
   bordered?: boolean;
+  /** Retire le padding haut (la section précédente, même fond et sans bordure, fournit déjà l'espace) */
+  collapseTop?: boolean;
   children: ReactNode;
   "aria-labelledby"?: string;
   "aria-label"?: string;
@@ -67,7 +77,7 @@ export default function Section({
       id={id}
       aria-labelledby={labelledBy}
       aria-label={label}
-      className={`${TONES[tone]} ${SPACING[spacing]} ${bordered ? "border-y border-track" : ""} ${className}`}
+      className={`${TONES[tone]} ${collapseTop ? SPACING[spacing].noTop : SPACING[spacing].all} ${bordered ? "border-y border-track" : ""} ${className}`}
     >
       {tone === "forest" && <div className="fx-halo pointer-events-none absolute inset-0" aria-hidden="true" />}
       <Container narrow={narrow} className={`relative ${containerClassName}`}>

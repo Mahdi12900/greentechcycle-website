@@ -270,7 +270,7 @@ export default function ServicesPage() {
   return (
     <div>
       {/* ═══════════ HERO split (paper) — l'ancien bandeau d'urgence devient une notice ═══════════ */}
-      <section className="bg-bg py-16 lg:py-24" aria-labelledby="services-hero-title">
+      <section className="bg-bg py-12 lg:py-16" aria-labelledby="services-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
@@ -353,7 +353,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ═══════════ GRILLE 6 SERVICES (2 × 3 régulière) ═══════════ */}
-      <section id="services-grille" className="border-t border-track bg-bg-card py-16 lg:py-24" aria-labelledby="services-grille-title">
+      <section id="services-grille" className="border-t border-track bg-bg-card py-12 lg:py-16" aria-labelledby="services-grille-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <SectionHeader

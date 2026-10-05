@@ -44,7 +44,7 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative bg-bg-card py-16 lg:py-24">
+      <section className="relative bg-bg-card py-12 lg:py-16">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
@@ -64,7 +64,7 @@ export default function FAQPage() {
       </section>
 
       {/* Tabs + Accordion */}
-      <section className="bg-bg-card py-16 lg:py-24">
+      <section className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 max-w-4xl">
           {/* Tab Navigation */}
           <div className="reveal">

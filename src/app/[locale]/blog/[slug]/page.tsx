@@ -115,7 +115,7 @@ export default async function BlogArticlePage({
       <SchemaOrg data={schemaData} />
       <div className="min-h-screen">
         {/* Hero */}
-        <section className="relative bg-bg-card py-16 lg:py-24">
+        <section className="relative bg-bg-card py-12 lg:py-16">
           <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
             <Breadcrumbs items={breadcrumbs} dark />
             <div className="max-w-3xl">

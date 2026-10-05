@@ -270,7 +270,7 @@ export default function CasUsagesPage() {
   return (
     <div>
       {/* ═══ HERO paper ═══ */}
-      <section className="bg-bg py-16 lg:py-24" aria-labelledby="hero-editorial-title">
+      <section className="bg-bg py-12 lg:py-16" aria-labelledby="hero-editorial-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
@@ -415,7 +415,7 @@ export default function CasUsagesPage() {
       </Section>
 
       {/* ═══ CAS PHARE TF1 (forest, featured) ═══ */}
-      <section id="cas-tf1-media" className="bg-bg-card py-16 text-fg lg:py-24" aria-labelledby="tf1-featured-title">
+      <section id="cas-tf1-media" className="bg-bg-card py-12 text-fg lg:py-16" aria-labelledby="tf1-featured-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
@@ -463,7 +463,7 @@ export default function CasUsagesPage() {
       </section>
 
       {/* ═══ 8 CAS SECTORIELS — grille régulière 2 colonnes ═══ */}
-      <section className="bg-bg-card py-16 lg:py-24" aria-label={tx("Cas clients sectoriels", "Sector client cases")}>
+      <section className="bg-bg-card py-12 lg:py-16" aria-label={tx("Cas clients sectoriels", "Sector client cases")}>
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-2">
             {cases.map((c, i) => (

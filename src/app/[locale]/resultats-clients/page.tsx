@@ -67,7 +67,7 @@ export default function ResultatsClientsPage() {
   return (
     <div className="overflow-hidden bg-bg-card">
       {/* Hero */}
-      <section className="bg-bg-card py-16 text-fg lg:py-24">
+      <section className="bg-bg-card py-12 text-fg lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-4xl ">
@@ -103,7 +103,7 @@ export default function ResultatsClientsPage() {
       </section>
 
       {/* Global metrics */}
-      <section className="bg-bg-card py-16 lg:py-24">
+      <section className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="text-center max-w-3xl mx-auto mb-14">
@@ -141,7 +141,7 @@ export default function ResultatsClientsPage() {
       </section>
 
       {/* Case results grid */}
-      <section className="bg-bg-card py-16 lg:py-24">
+      <section className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="max-w-3xl mb-14">
@@ -211,7 +211,7 @@ export default function ResultatsClientsPage() {
       </section>
 
       {/* Trust & CTA */}
-      <section className="relative overflow-hidden bg-bg-card py-16 lg:py-24">
+      <section className="relative overflow-hidden bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-4xl mx-auto text-center">

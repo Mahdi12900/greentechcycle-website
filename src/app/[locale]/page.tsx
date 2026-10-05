@@ -158,7 +158,8 @@ export default function HomePage() {
       {/* ==========================================================
           1–2. HERO — notice CSRD intégrée, split 7/5, preuve chiffrée
          ========================================================== */}
-      <section className="relative overflow-hidden bg-bg py-16 lg:py-32" aria-labelledby="hero-title">
+      {/* Padding resserré le 2026-10-05 : 128px → 80px desktop (reports/espacement-sections-gtc.md) */}
+      <section className="relative overflow-hidden bg-bg py-14 lg:py-20" aria-labelledby="hero-title">
         {/* Fond vidéo : teaser muet 10 s du film v3 (registre SLOT_VIDEOS) ; poster rendu côté
             serveur (LCP), vidéo chargée après `load`, poster seul en mouvement réduit / Save-Data */}
         <VideoBackground id="home-hero-background" />
@@ -595,7 +596,8 @@ export default function HomePage() {
       {/* ==========================================================
           13. TARIFS #pricing — 3 plans Waki Box + pilotes + ancres
          ========================================================== */}
-      <Section id="pricing" tone="paper">
+      {/* Même fond que la section forest précédente, sans bordure : padding haut retiré */}
+      <Section id="pricing" tone="paper" collapseTop>
         <div className="reveal">
           <SectionHeader eyebrow={t("pricingTeaser.eyebrow")} title={t("pricingTeaser.title")} intro={t("pricingTeaser.subtitle")} />
         </div>

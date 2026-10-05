@@ -48,7 +48,9 @@ export default function ScrollStory({
           <li
             key={i}
             id={s.id}
-            className={`relative py-10 lg:flex lg:min-h-[70vh] lg:items-center lg:py-0 ${i > 0 ? "border-t border-track lg:border-t-0" : ""}`}
+            // Distance de défilement par étape resserrée le 2026-10-05 (70vh → 50vh,
+            // reports/espacement-sections-gtc.md) : moins de défilement "mort" entre deux états.
+            className={`relative py-10 lg:flex lg:min-h-[50vh] lg:items-center lg:py-0 ${i > 0 ? "border-t border-track lg:border-t-0" : ""}`}
           >
             {(s.extraIds ?? []).map((x) => (
               <span key={x} id={x} className="absolute top-0" aria-hidden="true" />

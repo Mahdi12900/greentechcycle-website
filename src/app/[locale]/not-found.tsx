@@ -14,7 +14,7 @@ export default function NotFound() {
   ];
 
   return (
-    <section className="bg-bg py-16 lg:py-24">
+    <section className="bg-bg py-12 lg:py-16">
       <div className="mx-auto max-w-[calc(720px+4rem)] px-5 sm:px-6 lg:px-8">
         <Logo size="lg" markOnly />
         <p className="mt-8 text-eyebrow uppercase text-fg-muted">404</p>

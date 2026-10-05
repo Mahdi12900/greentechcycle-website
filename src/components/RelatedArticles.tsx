@@ -69,7 +69,7 @@ export default function RelatedArticles({
   const bgClass = tone === "light" ? "bg-bg-card" : "bg-bg";
 
   return (
-    <section className={`py-16 lg:py-24 ${bgClass} ${className}`}>
+    <section className={`py-12 lg:py-16 ${bgClass} ${className}`}>
       <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
         <div className="reveal">
           <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between lg:mb-12">

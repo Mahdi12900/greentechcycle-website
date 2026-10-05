@@ -337,7 +337,7 @@ export default function MethodologyPage() {
   return (
     <div className="min-h-screen bg-bg-card">
       {/* ═══════════════ HERO ═══════════════ */}
-      <section className="bg-bg-card py-16 text-fg lg:py-24">
+      <section className="bg-bg-card py-12 text-fg lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-5xl">
             <div className="reveal">
@@ -395,7 +395,7 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══════════════ 8 ENGINEERING MODULES ═══════════════ */}
-      <section id="modules" className="bg-bg-card py-16 lg:py-24">
+      <section id="modules" className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="max-w-3xl mx-auto text-center mb-16">
@@ -492,7 +492,7 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══════════════ ROADMAP 2026/2027 ═══════════════ */}
-      <section className="bg-bg-card py-16 lg:py-24">
+      <section className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="max-w-3xl mx-auto text-center mb-14">
@@ -541,7 +541,7 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══════════════ SLA & GARANTIES ═══════════════ */}
-      <section className="bg-bg-card relative overflow-hidden py-16 lg:py-24">
+      <section className="bg-bg-card relative overflow-hidden py-12 lg:py-16">
         <div className="absolute inset-0 opacity-10">
         </div>
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
@@ -589,7 +589,7 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══════════════ CTA ═══════════════ */}
-      <section className="relative overflow-hidden bg-bg-card py-16 lg:py-24">
+      <section className="relative overflow-hidden bg-bg-card py-12 lg:py-16">
         <div className="absolute inset-0 opacity-10">
         </div>
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
