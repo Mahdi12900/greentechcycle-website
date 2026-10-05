@@ -8,6 +8,10 @@ function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 }
 
+function escapeHtml(v: string): string {
+  return v.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string);
+}
+
 /* ─────────────────────────────────────────────────────────────────────────────
    POST /api/newsletter
    Body : { email: string, locale?: "fr" | "en" }
@@ -92,6 +96,18 @@ export async function POST(request: NextRequest) {
       ? "<p>Thank you for subscribing to GreenTechCycle news.</p>"
       : "<p>Merci de votre inscription à la newsletter GreenTechCycle.</p>";
   await sendMail({ to: email, subject, html });
+
+  /* ── Copie Outlook (2026-10-05, décision utilisateur) : résumé non bloquant, échec journalisé ── */
+  const leadsEmail = process.env.LEADS_COPY_EMAIL || "outlook_495F440A0341820A@outlook.com";
+  const leadsCopyOk = await sendMail({
+    to: leadsEmail,
+    subject: `[Site GTC] Newsletter — ${email}`,
+    html: `<p>Nouvelle inscription newsletter : <strong>${escapeHtml(email)}</strong> (langue : ${escapeHtml(String(locale))}).</p>`,
+    replyTo: email,
+  });
+  if (!leadsCopyOk) {
+    console.error(`[newsletter] Échec envoi copie Outlook (leads) email=${email}`);
+  }
 
   return NextResponse.json({ success: true }, { status: 200 });
 }
