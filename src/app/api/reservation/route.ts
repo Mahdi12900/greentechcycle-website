@@ -27,6 +27,12 @@ import { isValidFutureSlot } from "@/lib/slots";
      "site-reserver" et "demo"), optionnel pour les demandes génériques
      (contact, simulateurs). Quand il est présent, une invitation .ics
      (METHOD:REQUEST) est jointe aux deux emails.
+   - Copies Outlook (2026-10-05, décision utilisateur) : toute demande déclenche
+     aussi une copie vers LEADS_COPY_EMAIL (compte Outlook.com connecté), avec
+     tous les champs et Reply-To le prospect, pour que l'utilisateur voie tout
+     dans sa boîte ; une démo déclenche en plus une copie .ics séparée vers
+     BOOKING_CALENDAR_EMAIL pour l'ajout automatique à l'agenda Outlook.com.
+     Les deux copies sont non bloquantes (échec journalisé, jamais remonté).
 ───────────────────────────────────────────────────────────────────────── */
 
 export const runtime = "nodejs";
@@ -191,10 +197,22 @@ type EmailOutcome = {
   internal: boolean;
   confirmation: boolean;
   calendarCopy: boolean;
+  leadsCopy: boolean;
 };
 
 /** outlook_495F440A0341820A@outlook.com : compte Outlook.com connecté par l'utilisateur (2026-10-05). */
 const DEFAULT_BOOKING_CALENDAR_EMAIL = "outlook_495F440A0341820A@outlook.com";
+/** Même compte, par défaut : copie de toute demande commerciale pour que l'utilisateur les voie dans Outlook. */
+const DEFAULT_LEADS_COPY_EMAIL = "outlook_495F440A0341820A@outlook.com";
+
+/** Catégorie lisible pour le préfixe de sujet de la copie Outlook (toujours l'une de ces 5 étiquettes). */
+function leadCategory(record: StoredReservation): string {
+  if (record.offerSlug === "waki-box-pilote") return "Pilote WakiBox";
+  if (record.topic === "support") return "Support";
+  if (record.topic === "lab") return "Lab";
+  if (APPOINTMENT_SOURCES.has(record.source)) return "Démo";
+  return "Contact commercial";
+}
 
 /**
  * Envoie l'email interne (sales@/support@/lab.rd@) puis, s'il réussit, l'email de
@@ -205,7 +223,7 @@ const DEFAULT_BOOKING_CALENDAR_EMAIL = "outlook_495F440A0341820A@outlook.com";
 async function sendBookingEmails(record: StoredReservation): Promise<EmailOutcome> {
   if (mailTransport() === "none") {
     console.error("[reservation] Aucun transport e-mail configuré (SMTP_* ou RESEND_API_KEY)");
-    return { ok: false, stage: "internal", reason: "no_transport", internal: false, confirmation: false, calendarCopy: false };
+    return { ok: false, stage: "internal", reason: "no_transport", internal: false, confirmation: false, calendarCopy: false, leadsCopy: false };
   }
 
   const internalRecipient = process.env.CONTACT_EMAIL || CONTACT_TOPICS[record.topic].recipient;
@@ -291,7 +309,7 @@ async function sendBookingEmails(record: StoredReservation): Promise<EmailOutcom
   });
   if (!internalOk) {
     console.error(`[reservation] Échec envoi email interne id=${record.id} to=${internalRecipient}`);
-    return { ok: false, stage: "internal", reason: "send_failed", internal: false, confirmation: false, calendarCopy: false };
+    return { ok: false, stage: "internal", reason: "send_failed", internal: false, confirmation: false, calendarCopy: false, leadsCopy: false };
   }
 
   // Copie agenda (Outlook.com) : uniquement pour un vrai rendez-vous (ics présent). Ne doit jamais
@@ -318,8 +336,23 @@ async function sendBookingEmails(record: StoredReservation): Promise<EmailOutcom
     }
   }
 
+  // Copie Outlook de toute demande commerciale (démo, contact, lab, pilote WakiBox, devis…) pour que
+  // l'utilisateur les voie toutes dans sa boîte connectée. Reply-To le prospect pour répondre direct
+  // depuis Outlook. Ne doit jamais faire échouer la réservation — échec simplement journalisé.
+  const leadsEmail = process.env.LEADS_COPY_EMAIL || DEFAULT_LEADS_COPY_EMAIL;
+  const leadsCopy = await sendMail({
+    to: leadsEmail,
+    subject: `[Site GTC] ${leadCategory(record)} — ${record.company || record.name}`,
+    html: internalHtml,
+    replyTo: record.email || undefined,
+    attachments: icsAttachment,
+  });
+  if (!leadsCopy) {
+    console.error(`[reservation] Échec envoi copie Outlook (leads) id=${record.id} to=${leadsEmail}`);
+  }
+
   if (!record.email) {
-    return { ok: true, internal: true, confirmation: false, calendarCopy };
+    return { ok: true, internal: true, confirmation: false, calendarCopy, leadsCopy };
   }
 
   const confirmationOk = await sendMail({
@@ -331,10 +364,10 @@ async function sendBookingEmails(record: StoredReservation): Promise<EmailOutcom
   });
   if (!confirmationOk) {
     console.error(`[reservation] Échec envoi confirmation prospect id=${record.id} to=${record.email}`);
-    return { ok: false, stage: "confirmation", reason: "send_failed", internal: true, confirmation: false, calendarCopy };
+    return { ok: false, stage: "confirmation", reason: "send_failed", internal: true, confirmation: false, calendarCopy, leadsCopy };
   }
 
-  return { ok: true, internal: true, confirmation: true, calendarCopy };
+  return { ok: true, internal: true, confirmation: true, calendarCopy, leadsCopy };
 }
 
 export async function POST(req: Request) {
@@ -382,6 +415,7 @@ export async function POST(req: Request) {
     emailInternal: emailOutcome.internal,
     emailConfirmation: emailOutcome.confirmation,
     calendarCopy: emailOutcome.calendarCopy,
+    leadsCopy: emailOutcome.leadsCopy,
     emailOk: emailOutcome.ok,
     ...(emailOutcome.ok ? {} : { emailFailureStage: emailOutcome.stage, emailFailureReason: emailOutcome.reason }),
   });
