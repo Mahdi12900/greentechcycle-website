@@ -3,10 +3,11 @@
 import GeometryField from "@/components/visuals/GeometryField";
 import LifecycleDiagram from "@/components/visuals/LifecycleDiagram";
 import MediaSlot from "@/components/visuals/MediaSlot";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { CountUp } from "@/components/motion";
 import { Gauge } from "@/components/kpi/Kpi";
-import { ArrowDown, Check, ShieldCheck, Leaf, Users, Eye, Award, UserRound } from "lucide-react";
+import { ArrowDown, Check, ShieldCheck, Leaf, Users, Eye, Award, UserRound, Globe } from "lucide-react";
+import { SERVICE_AREAS } from "@/lib/contact";
 import CtaSection from "@/components/CtaSection";
 import { ButtonLink } from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
@@ -22,6 +23,7 @@ import { Stat } from "@/components/ui/Stat";
  */
 export default function PourquoiGtcPage() {
   const t = useTranslations("WhyGTC");
+  const isEn = useLocale() === "en";
 
   type Conviction = {
     slug: string;
@@ -78,6 +80,11 @@ export default function PourquoiGtcPage() {
                 <ButtonLink href="#manifeste" variant="secondary" size="lg">{t("hero.cta2")}</ButtonLink>
               </div>
               <p className="mt-6 max-w-[65ch] text-caption italic text-fg-muted">{t("hero.source")}</p>
+              {/* Zones d'intervention (décision utilisateur, 2026-10-05) : src/lib/contact.ts */}
+              <p className="mt-3 flex items-center gap-2 text-caption text-fg-muted">
+                <Globe className="h-3.5 w-3.5 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
+                {SERVICE_AREAS.text[isEn ? "en" : "fr"]}
+              </p>
               <a href="#manifeste" className="mt-4 inline-flex min-h-[44px] items-center gap-2 text-caption font-medium uppercase tracking-[0.12em] text-fg-muted hover:text-fg">
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
                 {t("hero.scrollLabel")}
