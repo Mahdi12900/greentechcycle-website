@@ -95,7 +95,6 @@
     "tagline": "Your trusted partner for responsible and secure management of end-of-life IT assets.",
     "contact": {
       "title": "Contact us",
-      "address": "Registered office (WAKI CLOUD SOLUTION)\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
       "email": "support@greentechcycle.fr"
     },
     "cta": "Request free audit",
@@ -2001,7 +2000,6 @@
       "eyebrow": "Direct channels",
       "title": "If you would rather write or call before filling a form.",
       "body": "Our team answers emails and calls personally, no automated switchboard, no random routing. Urgent and confidential requests are handled with the same responsiveness as formal ones.",
-      "address": "WAKI CLOUD SOLUTION\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
       "email": "sales@greentechcycle.fr"
     },
     "conversion": {
@@ -2171,7 +2169,7 @@
       "content": {
         "editor": {
           "title": "Website Publisher",
-          "text": "The GreenTechCycle website is published by WAKI CLOUD SOLUTION, SASU (French single-shareholder simplified joint-stock company) with share capital of €5,150.00\nSIREN: 891 123 952\nRCS: 891 123 952 R.C.S. Meaux\nRegistered office: 3 rue des Tournelles, 77174 Villeneuve-Saint-Denis, France\nPublication director: Mahdi B., President"
+          "text": "The GreenTechCycle website is published by WAKI CLOUD SOLUTION, SASU (French single-shareholder simplified joint-stock company) with share capital of €5,150.00\nSIREN: 891 123 952\nRCS: 891 123 952 R.C.S. Meaux\nPublication director: Mahdi B., President"
         },
         "hosting": {
           "title": "Hosting",
@@ -2233,7 +2231,7 @@
         },
         "controller": {
           "title": "Data Controller",
-          "text": "WAKI CLOUD SOLUTION (GreenTechCycle)\n3 rue des Tournelles, 77174 Villeneuve-Saint-Denis\nDPO: support@greentechcycle.fr"
+          "text": "WAKI CLOUD SOLUTION (GreenTechCycle)\nSIREN: 891 123 952\nDPO: support@greentechcycle.fr"
         },
         "data": {
           "title": "Data Collected",

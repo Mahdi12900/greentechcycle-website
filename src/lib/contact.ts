@@ -4,6 +4,12 @@
  * LEGAL : uniquement ce qu'indique la fiche Pappers lue le 2026-10-04
  * (https://www.pappers.fr/entreprise/waki-cloud-solution-891123952). Rien d'autre.
  *
+ * Décision utilisateur (go-live, 2026-10-05) : l'adresse du siège social
+ * (rue/code postal/ville) est retirée de l'intégralité du site — footer, page
+ * contact, mentions légales, politique de confidentialité, JSON-LD
+ * Organization — malgré le rappel que les mentions légales l'exigent
+ * normalement. Nom de la société et SIREN conservés.
+ *
  * Canaux : WhatsApp = +33 7 45 01 32 39 par défaut (variable d'environnement
  * prioritaire) ; emails sales / support / lab.rd / noreply (voir EMAILS).
  * Aucun téléphone n'est publié tant qu'il n'est pas confirmé.
@@ -15,10 +21,6 @@ export const LEGAL = {
   siren: "891 123 952",
   rcs: "891 123 952 R.C.S. Meaux",
   capital: { fr: "5 150,00 €", en: "€5,150.00" },
-  street: "3 rue des Tournelles",
-  postalCode: "77174",
-  city: "Villeneuve-Saint-Denis",
-  country: "FR",
   source: "https://www.pappers.fr/entreprise/waki-cloud-solution-891123952",
   readOn: "2026-10-04",
 } as const;

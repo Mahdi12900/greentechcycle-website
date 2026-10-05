@@ -122,15 +122,9 @@ export default async function LocaleLayout({
     description:
       "Plateforme ITAD unifiée : effacement attesté, traçabilité horodatée (SHA-256), reporting ESG/CSRD et bilan carbone pour la gestion responsable des actifs IT.",
     // Entité légale : fiche Pappers lue le 2026-10-04 (src/lib/contact.ts)
+    // Adresse du siège social volontairement omise (décision utilisateur, go-live 2026-10-05).
     legalName: LEGAL.name,
     identifier: { "@type": "PropertyValue", propertyID: "SIREN", value: LEGAL.siren.replace(/\s/g, "") },
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: LEGAL.street,
-      postalCode: LEGAL.postalCode,
-      addressLocality: LEGAL.city,
-      addressCountry: LEGAL.country,
-    },
     sameAs: [
       "https://www.linkedin.com/company/greentechcycle",
       "https://twitter.com/greentechcycle",

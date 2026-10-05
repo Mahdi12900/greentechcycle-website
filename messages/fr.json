@@ -95,7 +95,6 @@
     "tagline": "Votre partenaire de confiance pour la gestion responsable et sécurisée de vos actifs informatiques en fin de vie.",
     "contact": {
       "title": "Nous contacter",
-      "address": "Siège social (WAKI CLOUD SOLUTION)\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
       "email": "support@greentechcycle.fr"
     },
     "cta": "Demander l'audit gratuit",
@@ -2001,7 +2000,6 @@
       "eyebrow": "Voies directes",
       "title": "Si vous préférez écrire ou téléphoner avant de remplir un formulaire.",
       "body": "Notre équipe répond personnellement aux courriels et aux appels, pas de standard automatisé, pas d'attribution aléatoire. Nous prenons en charge les demandes urgentes et confidentielles avec la même réactivité que les demandes formelles.",
-      "address": "WAKI CLOUD SOLUTION\n3 rue des Tournelles\n77174 Villeneuve-Saint-Denis, France",
       "email": "sales@greentechcycle.fr"
     },
     "conversion": {
@@ -2171,7 +2169,7 @@
       "content": {
         "editor": {
           "title": "Éditeur du site",
-          "text": "Le site GreenTechCycle est édité par WAKI CLOUD SOLUTION, SASU (société par actions simplifiée unipersonnelle) au capital de 5 150,00 €\nSIREN : 891 123 952\nRCS : 891 123 952 R.C.S. Meaux\nSiège social : 3 rue des Tournelles, 77174 Villeneuve-Saint-Denis, France\nDirecteur de la publication : Mahdi B., Président"
+          "text": "Le site GreenTechCycle est édité par WAKI CLOUD SOLUTION, SASU (société par actions simplifiée unipersonnelle) au capital de 5 150,00 €\nSIREN : 891 123 952\nRCS : 891 123 952 R.C.S. Meaux\nDirecteur de la publication : Mahdi B., Président"
         },
         "hosting": {
           "title": "Hébergement",
@@ -2233,7 +2231,7 @@
         },
         "controller": {
           "title": "Responsable du traitement",
-          "text": "WAKI CLOUD SOLUTION (GreenTechCycle)\n3 rue des Tournelles, 77174 Villeneuve-Saint-Denis\nDPO : support@greentechcycle.fr"
+          "text": "WAKI CLOUD SOLUTION (GreenTechCycle)\nSIREN : 891 123 952\nDPO : support@greentechcycle.fr"
         },
         "data": {
           "title": "Données collectées",
