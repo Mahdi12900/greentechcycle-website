@@ -63,7 +63,7 @@ export default function PlateformePage() {
   return (
     <div>
       {/* ═══════════════ HERO split (paper) ═══════════════ */}
-      <section className="bg-bg py-16 lg:py-24" aria-labelledby="plateforme-hero">
+      <section className="bg-bg py-12 lg:py-16" aria-labelledby="plateforme-hero">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
@@ -129,7 +129,7 @@ export default function PlateformePage() {
       </section>
 
       {/* ═══════════════ PARCOURS 5 CHAPITRES (#parcours / #modules) ═══════════════ */}
-      <section id="parcours" className="border-t border-track bg-bg-card py-16 lg:py-24" aria-labelledby="parcours-title">
+      <section id="parcours" className="border-t border-track bg-bg-card py-12 lg:py-16" aria-labelledby="parcours-title">
         <span id="modules" className="block" aria-hidden="true" />
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           {/* Ancienne S2 « promesse » condensée en en-tête du parcours */}

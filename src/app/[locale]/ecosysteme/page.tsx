@@ -146,7 +146,7 @@ export default function EcosystemPage({
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-bg-card py-16 text-fg lg:py-24">
+      <section className="bg-bg-card py-12 text-fg lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-4xl ">
@@ -186,7 +186,7 @@ export default function EcosystemPage({
       </section>
 
       {/* Native Integrations */}
-      <section className="bg-bg-card py-16 lg:py-24">
+      <section className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="text-center mb-16">
@@ -233,7 +233,7 @@ export default function EcosystemPage({
       </section>
 
       {/* Open API Section */}
-      <section id="api" className="bg-bg-card py-16 lg:py-24">
+      <section id="api" className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
             <div className="reveal min-w-0">
@@ -289,7 +289,7 @@ export default function EcosystemPage({
       </section>
 
       {/* SSO / Auth Section */}
-      <section className="bg-bg-card py-16 lg:py-24">
+      <section className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="text-center mb-16">
@@ -326,7 +326,7 @@ export default function EcosystemPage({
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden bg-bg-card py-16 lg:py-24">
+      <section className="relative overflow-hidden bg-bg-card py-12 lg:py-16">
         <div className="absolute inset-0 opacity-10">
         </div>
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">

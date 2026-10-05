@@ -80,7 +80,7 @@ export default function SecteursHubPage() {
   return (
     <div>
       {/* 1. HERO clair */}
-      <section className="border-b border-track bg-bg-card py-16 lg:py-24" aria-labelledby="secteurs-title">
+      <section className="border-b border-track bg-bg-card py-12 lg:py-16" aria-labelledby="secteurs-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <p className="mb-3 text-eyebrow uppercase text-fg-muted">

@@ -68,7 +68,7 @@ export default function WakiBoxPage() {
   return (
     <div>
       {/* ═══ HERO paper — bandeau d'urgence → notice ═══ */}
-      <section className="bg-bg py-16 lg:py-24" aria-labelledby="waki-hero-title">
+      <section className="bg-bg py-12 lg:py-16" aria-labelledby="waki-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
@@ -153,7 +153,7 @@ export default function WakiBoxPage() {
       </Section>
 
       {/* ═══ 3 PLANS #waki-plans (paper) ═══ */}
-      <section id="waki-plans" className="bg-bg py-16 lg:py-24" aria-labelledby="plans-title">
+      <section id="waki-plans" className="bg-bg py-12 lg:py-16" aria-labelledby="plans-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <SectionHeader id="plans-title" eyebrow={t("plans.eyebrow")} title={t("plans.title")} intro={t("plans.subtitle")} />

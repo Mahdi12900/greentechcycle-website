@@ -53,7 +53,7 @@ export default function SecurityPage({
   return (
     <div className="min-h-screen bg-bg-card">
       {/* Hero */}
-      <section className="bg-bg-card py-16 text-fg lg:py-24">
+      <section className="bg-bg-card py-12 text-fg lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <h1 className="text-display-lg text-fg mb-6">
@@ -67,7 +67,7 @@ export default function SecurityPage({
       </section>
 
       {/* Erasure Levels */}
-      <section className="px-6 py-16 lg:py-24">
+      <section className="px-6 py-12 lg:py-16">
         <div className="max-w-6xl mx-auto">
           <div className="reveal">
             <h2 className="text-display-md text-fg text-center mb-16">
@@ -97,7 +97,7 @@ export default function SecurityPage({
       </section>
 
       {/* Chain of Custody */}
-      <section className="px-6 bg-bg-card py-16 lg:py-24">
+      <section className="px-6 bg-bg-card py-12 lg:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="reveal">
             <h2 className="text-display-md text-fg text-center mb-4">
@@ -133,7 +133,7 @@ export default function SecurityPage({
       </section>
 
       {/* Certifications */}
-      <section className="px-6 bg-bg-card py-16 lg:py-24">
+      <section className="px-6 bg-bg-card py-12 lg:py-16">
         <div className="max-w-6xl mx-auto">
           <div className="reveal">
             <h2 className="text-display-md text-fg text-center mb-16">
@@ -156,7 +156,7 @@ export default function SecurityPage({
       </section>
 
       {/* Architecture */}
-      <section className="px-6 bg-bg-card py-16 lg:py-24">
+      <section className="px-6 bg-bg-card py-12 lg:py-16">
         <div className="max-w-6xl mx-auto">
           <div className="reveal">
             <h2 className="text-display-md text-fg text-center mb-16">

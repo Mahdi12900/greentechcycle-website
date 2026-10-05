@@ -1015,7 +1015,7 @@ export default function RegulationPage() {
   return (
     <div>
       {/* ═══════════════ HERO (paper) ═══════════════ */}
-      <section className="bg-bg py-16 lg:py-24" aria-labelledby="reg-hero-title">
+      <section className="bg-bg py-12 lg:py-16" aria-labelledby="reg-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <p className="text-eyebrow uppercase text-fg-muted">{tx("Expertise IT · Métier · Réglementaire", "Expertise IT · Business · Regulatory")}</p>
@@ -1070,7 +1070,7 @@ export default function RegulationPage() {
       />
 
       {/* ═══════════════ TRANSVERSAL REGULATIONS ═══════════════ */}
-      <section id="transversal" className="relative overflow-hidden bg-bg py-16 lg:py-24">
+      <section id="transversal" className="relative overflow-hidden bg-bg py-12 lg:py-16">
 
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative">
           <div className="reveal">
@@ -1143,7 +1143,7 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ REGULATIONS BY SECTOR ═══════════════ */}
-      <section id="sectors" className="bg-bg-card py-16 lg:py-24">
+      <section id="sectors" className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
@@ -1178,7 +1178,7 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ TIMELINE 2024→2028 ═══════════════ */}
-      <section id="calendrier" className="relative bg-bg-card overflow-hidden py-16 lg:py-24">
+      <section id="calendrier" className="relative bg-bg-card overflow-hidden py-12 lg:py-16">
         {/* Decorative backgrounds */}
 
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
@@ -1253,7 +1253,7 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ ENJEUX & CRISES ACTUELLES ═══════════════ */}
-      <section id="enjeux" className="bg-bg py-16 lg:py-24">
+      <section id="enjeux" className="bg-bg py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">
@@ -1303,7 +1303,7 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ PROPOSITION DE VALEUR GTC ═══════════════ */}
-      <section id="reponse-gtc" className="relative overflow-hidden bg-bg-card py-16 lg:py-24">
+      <section id="reponse-gtc" className="relative overflow-hidden bg-bg-card py-12 lg:py-16">
 
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative">
           <div className="reveal">
@@ -1389,7 +1389,7 @@ export default function RegulationPage() {
       </section>
 
       {/* ═══════════════ BLOG / RESSOURCES ═══════════════ */}
-      <section id="ressources" className="bg-bg py-16 lg:py-24">
+      <section id="ressources" className="bg-bg py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="mb-10 max-w-[720px] lg:mb-12">

@@ -21,7 +21,7 @@ export default function CareersPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-bg-card py-16 text-fg lg:py-24">
+      <section className="bg-bg-card py-12 text-fg lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-3xl ">
@@ -40,7 +40,7 @@ export default function CareersPage() {
       </section>
 
       {/* Mission */}
-      <section className="bg-bg-card py-16 lg:py-24">
+      <section className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="max-w-4xl mx-auto text-center">
@@ -56,7 +56,7 @@ export default function CareersPage() {
       </section>
 
       {/* Values */}
-      <section className="bg-bg-card py-16 lg:py-24">
+      <section className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="text-center mb-14">
@@ -101,7 +101,7 @@ export default function CareersPage() {
       </section>
 
       {/* Spontaneous Application */}
-      <section className="bg-bg-card py-16 lg:py-24">
+      <section className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <div className="max-w-3xl mx-auto text-center">
@@ -137,7 +137,7 @@ export default function CareersPage() {
       />
 
       {/* Final CTA */}
-      <section className="relative overflow-hidden bg-bg-card py-16 lg:py-24">
+      <section className="relative overflow-hidden bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="reveal">
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald text-bg mb-6">

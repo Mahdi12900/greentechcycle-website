@@ -46,7 +46,7 @@ export default function LabPage() {
   return (
     <div>
       {/* ═══ HERO ═══ */}
-      <section className="relative overflow-hidden bg-bg py-16 lg:py-24" aria-labelledby="lab-title">
+      <section className="relative overflow-hidden bg-bg py-12 lg:py-16" aria-labelledby="lab-title">
         <div className="fx-halo pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="fx-dots fx-fade pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto max-w-site px-5 sm:px-6 lg:px-8">

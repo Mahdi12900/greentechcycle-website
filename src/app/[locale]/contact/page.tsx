@@ -129,7 +129,7 @@ function ContactInner() {
   return (
     <div>
       {/* ═══════════════ HERO court (paper) ═══════════════ */}
-      <section className="bg-bg py-16 lg:py-24" aria-labelledby="contact-hero">
+      <section className="bg-bg py-12 lg:py-16" aria-labelledby="contact-hero">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <Tag variant="brand" icon={<CalendarCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
@@ -168,7 +168,7 @@ function ContactInner() {
       </section>
 
       {/* ═══════════════ FORMULAIRE #formulaire (cream) ═══════════════ */}
-      <section className="border-t border-track bg-bg-card py-16 lg:py-24" id="formulaire" aria-labelledby="form-title">
+      <section className="border-t border-track bg-bg-card py-12 lg:py-16" id="formulaire" aria-labelledby="form-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <SectionHeader id="form-title" eyebrow={t("form.eyebrow")} title={t("form.title")} intro={t("form.subtitle")} />

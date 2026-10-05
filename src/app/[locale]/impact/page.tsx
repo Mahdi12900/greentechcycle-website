@@ -180,7 +180,7 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 1 (HERO ÉDITORIAL) split sombre + photo droite
           ===================================================================== */}
-      <section className="bg-bg py-16 lg:py-24" aria-labelledby="impact-hero">
+      <section className="bg-bg py-12 lg:py-16" aria-labelledby="impact-hero">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <Breadcrumbs
             items={[
@@ -225,7 +225,7 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 2, WEIGHT OF DIGITAL
           ===================================================================== */}
-      <section className="px-6 bg-bg-card py-16 lg:py-24">
+      <section className="px-6 bg-bg-card py-12 lg:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="reveal">
             <span className="block text-eyebrow uppercase text-fg-muted">
@@ -284,7 +284,7 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 3, METHODOLOGY
           ===================================================================== */}
-      <section className="px-6 bg-bg-card py-16 lg:py-24">
+      <section className="px-6 bg-bg-card py-12 lg:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="reveal">
             <span className="block text-eyebrow uppercase text-fg-muted">
@@ -406,7 +406,7 @@ export default function ImpactPage() {
           ===================================================================== */}
       <section
         id="calculator"
-        className="px-6 bg-bg-card scroll-mt-24 py-16 lg:py-24"
+        className="px-6 bg-bg-card scroll-mt-24 py-12 lg:py-16"
       >
         <div className="max-w-6xl mx-auto">
           <div className="reveal">
@@ -453,7 +453,7 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 5, COMPARISON NEW vs REFURBISHED
           ===================================================================== */}
-      <section className="px-6 bg-bg-card py-16 lg:py-24">
+      <section className="px-6 bg-bg-card py-12 lg:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="reveal">
             <span className="block text-eyebrow uppercase text-amber">
@@ -554,7 +554,7 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 6, ESRS E5 MAPPING
           ===================================================================== */}
-      <section className="px-6 bg-bg-card py-16 lg:py-24">
+      <section className="px-6 bg-bg-card py-12 lg:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="reveal">
             <span className="block text-eyebrow uppercase text-fg-muted">
@@ -643,7 +643,7 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 7, PROOF & CERTIFICATIONS
           ===================================================================== */}
-      <section className="px-6 bg-bg-card py-16 lg:py-24">
+      <section className="px-6 bg-bg-card py-12 lg:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="reveal">
             <span className="block text-eyebrow uppercase text-fg-muted">
@@ -720,7 +720,7 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 8, CASES
           ===================================================================== */}
-      <section className="px-6 bg-bg-card py-16 lg:py-24">
+      <section className="px-6 bg-bg-card py-12 lg:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="reveal">
             <span className="block text-eyebrow uppercase text-amber">
@@ -773,7 +773,7 @@ export default function ImpactPage() {
       {/* =====================================================================
           SECTION 9, RESOURCES
           ===================================================================== */}
-      <section className="px-6 bg-bg-card py-16 lg:py-24">
+      <section className="px-6 bg-bg-card py-12 lg:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="reveal">
             <span className="block text-eyebrow uppercase text-fg-muted">

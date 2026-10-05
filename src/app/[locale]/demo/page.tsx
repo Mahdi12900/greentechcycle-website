@@ -77,7 +77,7 @@ export default function DemoPage() {
       </Section>
 
       {/* Formulaire §6.16 */}
-      <section id="demo-form" className="border-t border-track bg-bg-card py-16 lg:py-24" aria-labelledby="demo-form-title">
+      <section id="demo-form" className="border-t border-track bg-bg-card py-12 lg:py-16" aria-labelledby="demo-form-title">
         <div className="mx-auto max-w-[calc(720px+4rem)] px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <SectionHeader id="demo-form-title" title={t("form.title")} intro={t("form.subtitle")} />

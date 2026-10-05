@@ -93,7 +93,7 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
   return (
     <div>
       {/* 1. HERO — halo émeraude + grille de points (DESIGN.md v2 §2) */}
-      <section className="relative overflow-hidden bg-bg py-16 text-fg lg:py-24" aria-labelledby="sector-title">
+      <section className="relative overflow-hidden bg-bg py-12 text-fg lg:py-16" aria-labelledby="sector-title">
         <div className="fx-halo pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="fx-dots fx-fade pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto max-w-site px-5 sm:px-6 lg:px-8">
@@ -256,8 +256,8 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
         </div>
       </Section>
 
-      {/* 9. ARGUMENTAIRE — citation sur forest */}
-      <Section id="argumentaire" tone="forest">
+      {/* 9. ARGUMENTAIRE — citation sur forest (même fond que personas, sans bordure : padding haut retiré) */}
+      <Section id="argumentaire" tone="forest" collapseTop>
         <div className="reveal">
           <figure className="max-w-[65ch]">
             <p className="text-eyebrow uppercase text-fg-muted">{isFr ? "Argumentaire" : "Value proposition"}</p>
@@ -267,8 +267,8 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
         </div>
       </Section>
 
-      {/* 10. OBJECTIONS — accordéon */}
-      <Section id="objections" tone="paper">
+      {/* 10. OBJECTIONS — accordéon (même fond que argumentaire, sans bordure : padding haut retiré) */}
+      <Section id="objections" tone="paper" collapseTop>
         <div className="max-w-[720px]">
           <div className="reveal">
             <SectionHeader

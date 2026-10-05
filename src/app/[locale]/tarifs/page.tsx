@@ -830,7 +830,7 @@ export default function TarifsPage() {
   return (
     <div>
       {/* ═══════════ 1. HERO cream ═══════════ */}
-      <section className="border-b border-track bg-bg-card py-16 lg:py-24" aria-labelledby="tarifs-hero-title">
+      <section className="border-b border-track bg-bg-card py-12 lg:py-16" aria-labelledby="tarifs-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="reveal min-w-0 lg:col-span-7">
@@ -988,7 +988,7 @@ export default function TarifsPage() {
       </Section>
 
       {/* ═══════════ 3. 3 PLANS WAKI BOX #plans (+ comparatif intégré) ═══════════ */}
-      <section id="plans" className="bg-bg-card py-16 lg:py-24" aria-labelledby="plans-title">
+      <section id="plans" className="bg-bg-card py-12 lg:py-16" aria-labelledby="plans-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <SectionHeader
@@ -1273,7 +1273,7 @@ export default function TarifsPage() {
       </Section>
 
       {/* ═══════════ 9. PILOTE GTC 3 JOURS #pilote — carte unique ═══════════ */}
-      <section id="pilote" className="bg-bg-card py-16 lg:py-24" aria-labelledby="pilote-title">
+      <section id="pilote" className="bg-bg-card py-12 lg:py-16" aria-labelledby="pilote-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <article className="grid gap-10 rounded-xl border border-track bg-bg p-6 lg:grid-cols-12 lg:gap-16 lg:p-10">
@@ -1373,8 +1373,8 @@ export default function TarifsPage() {
         </div>
       </section>
 
-      {/* ═══════════ 11. SUR DEVIS #sur-devis — night ═══════════ */}
-      <section id="sur-devis" className="bg-bg-card py-16 text-fg lg:py-24" aria-labelledby="sur-devis-title">
+      {/* ═══════════ 11. SUR DEVIS #sur-devis — night (même fond que Pilote, sans bordure : padding haut retiré) ═══════════ */}
+      <section id="sur-devis" className="bg-bg-card pb-12 text-fg lg:pb-16" aria-labelledby="sur-devis-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <div className="reveal">
             <SectionHeader

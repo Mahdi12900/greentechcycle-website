@@ -94,7 +94,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-track bg-bg text-fg-muted">
-      <div className="container-max px-5 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div className="container-max px-5 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* Haut : marque + contact + newsletter */}
         <div className="grid grid-cols-1 gap-12 border-b border-track pb-12 mb-12 lg:grid-cols-3">
           <div>

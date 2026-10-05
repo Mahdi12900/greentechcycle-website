@@ -27,7 +27,7 @@ export default function LegalPageLayout({
   return (
     <>
       {/* Hero court, cream (DESIGN.md §10.7) */}
-      <section className="border-b border-track bg-bg-card py-16 lg:py-24">
+      <section className="border-b border-track bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-[calc(720px+4rem)] px-5 sm:px-6 lg:px-8">
           <Breadcrumbs
             items={[
@@ -50,7 +50,7 @@ export default function LegalPageLayout({
       </section>
 
       {/* Contenu — colonne de lecture 720 px */}
-      <section className="bg-bg py-16 lg:py-24">
+      <section className="bg-bg py-12 lg:py-16">
         <div className="mx-auto max-w-[calc(720px+4rem)] px-5 sm:px-6 lg:px-8">{children}</div>
       </section>
     </>

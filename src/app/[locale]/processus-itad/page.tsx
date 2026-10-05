@@ -18,7 +18,7 @@ export default function ProcessITADPage() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="bg-bg-card py-16 text-fg lg:py-24">
+      <section className="bg-bg-card py-12 text-fg lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="max-w-3xl ">
@@ -34,7 +34,7 @@ export default function ProcessITADPage() {
       </section>
 
       {/* Timeline Section */}
-      <section className="bg-bg-card py-16 lg:py-24" aria-labelledby="process-steps-title">
+      <section className="bg-bg-card py-12 lg:py-16" aria-labelledby="process-steps-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
           <h2 id="process-steps-title" className="sr-only">{tx("Les étapes du processus ITAD", "The ITAD process steps")}</h2>
           <div className="relative max-w-5xl mx-auto">
@@ -127,7 +127,7 @@ export default function ProcessITADPage() {
       />
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden bg-bg-card py-16 lg:py-24">
+      <section className="relative overflow-hidden bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="reveal">
             <div className="text-center max-w-3xl mx-auto">
