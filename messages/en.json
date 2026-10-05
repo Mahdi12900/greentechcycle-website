@@ -1379,7 +1379,8 @@
         "email": "Professional email",
         "phone": "Phone",
         "equipment": "Number of IT devices",
-        "message": "Message (optional)"
+        "message": "Message (optional)",
+        "appointment": "Preferred date and time (Europe/Paris)"
       },
       "equipmentOptions": [
         "Less than 100",
@@ -1389,7 +1390,15 @@
         "More than 10,000"
       ],
       "submit": "Request my demo",
-      "success": "Thank you! Our team will contact you within 24h."
+      "success": "Thank you! Our team will contact you within 24h.",
+      "appointmentHint": "30-minute meeting, Paris time, at least 24 hours ahead.",
+      "consent": "I agree that GreenTechCycle uses these details to call me back.",
+      "required": "Required field",
+      "errorEmail": "Invalid email address",
+      "errorAppointment": "Choose an available slot",
+      "submitting": "Sending…",
+      "errorTitle": "Something went wrong.",
+      "errorBody": "Please try again in a moment, or email us directly at sales@greentechcycle.fr."
     }
   },
   "Security": {
@@ -1651,7 +1660,8 @@
       "methodTitle": "How we calculate",
       "methodToggle": "View calculation methodology",
       "methodBody": "Avoided emissions = Σ (devices × renewal rate × (EF_new − EF_refurbished)). ADEME Base Empreinte v23 emission factors (May 2024): new laptop 169 kgCO₂e manufacturing + 25 kgCO₂e/yr usage; refurbished laptop 17 kgCO₂e refurbishment. New desktop 265 + 50/yr; refurbished ~30. New 1U server 1,500 + 1,200/yr; refurbished ~150. New smartphone 57 + 7/yr; refurbished ~6. Car-km equivalent: 0.193 kgCO₂e/km (ADEME 2024 average combustion car). Assumptions documented in /docs/carbon-methodology-sources.md.",
-      "disclaimer": "Indicative estimate. Final calculations integrating your energy mix, actual usage durations and activity-data quality are produced under an ISO 14064-1 auditable assessment."
+      "disclaimer": "Indicative estimate. Final calculations integrating your energy mix, actual usage durations and activity-data quality are produced under an ISO 14064-1 auditable assessment.",
+      "emailError": "Could not send right now. Please try again or email sales@greentechcycle.fr."
     },
     "comparison": {
       "eyebrow": "Section 5",
@@ -3129,12 +3139,14 @@
         "company": "Company name",
         "sector": "Industry sector",
         "parkSize": "Fleet size (number of devices)",
-        "challenge": "Primary challenge (compliance, value, CSRD...)"
+        "challenge": "Primary challenge (compliance, value, CSRD...)",
+        "email": "Work email"
       },
       "cta": "Receive a comparable case + ROI estimate within 48h",
       "privacy": "Data processed in accordance with GDPR, never sold. Response within 48 business hours.",
       "successTitle": "Request sent!",
-      "successBody": "Our team will contact you within 48h with a comparable case and a personalised ROI estimate."
+      "successBody": "Our team will contact you within 48h with a comparable case and a personalised ROI estimate.",
+      "error": "Could not send right now. Please try again or email sales@greentechcycle.fr."
     },
     "testimonials": {
       "eyebrow": "They say it better than us",
@@ -3600,7 +3612,7 @@
       "step1Title": "Your details",
       "step2Title": "Your organisation",
       "step3Title": "Your need",
-      "step4Title": "Preferred slots",
+      "step4Title": "Choose a slot",
       "labels": {
         "name": "Full name",
         "email": "Work email",
@@ -3611,8 +3623,8 @@
         "sites": "Site or sites involved",
         "needs": "Estimated volumes or specific needs",
         "message": "Free message (optional)",
-        "slots": "Pick up to three slots",
-        "consent": "I agree that GreenTechCycle uses these details to call me back."
+        "consent": "I agree that GreenTechCycle uses these details to call me back.",
+        "appointment": "Appointment date and time (Europe/Paris)"
       },
       "placeholders": {
         "name": "First and last name",
@@ -3671,40 +3683,15 @@
           "label": "Other role"
         }
       ],
-      "slots": [
-        {
-          "value": "matin-30min",
-          "label": "Morning · 30-minute slot"
-        },
-        {
-          "value": "midi-30min",
-          "label": "Lunchtime · 30 minutes"
-        },
-        {
-          "value": "apresmidi-30min",
-          "label": "Afternoon · 30 minutes"
-        },
-        {
-          "value": "fin-journee-30min",
-          "label": "End of day · 30 minutes"
-        },
-        {
-          "value": "visio-1h",
-          "label": "Deep-dive video call · 1 hour"
-        },
-        {
-          "value": "rappel-rapide",
-          "label": "Quick phone callback · 10 minutes"
-        }
-      ],
       "next": "Next step",
       "previous": "Previous step",
       "submit": "Send request",
       "submitting": "Sending…",
       "required": "Required field",
       "errorEmail": "Invalid email address",
-      "errorSlot": "Pick at least one slot",
-      "stepCounter": "Step {current} of {total}"
+      "errorSlot": "Choose an available slot",
+      "stepCounter": "Step {current} of {total}",
+      "appointmentHint": "30-minute meeting, Paris time, at least 24 hours ahead."
     },
     "summary": {
       "title": "Your request summary",
@@ -3716,11 +3703,6 @@
       "body": "A GreenTechCycle lead will call you back within 24 working hours with a personalised proposal and a confirmed time slot.",
       "cta": "Back to home",
       "ref": "Your request reference"
-    },
-    "fallback": {
-      "title": "Thank you for your interest.",
-      "body": "Your request has been saved locally. We will get back to you within 24 working hours.",
-      "mailtoLabel": "If you prefer, write to us directly"
     },
     "reassurance": {
       "responseTime": "Reply within 24 working hours",

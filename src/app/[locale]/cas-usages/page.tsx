@@ -36,6 +36,8 @@ import {
   Send,
   CheckCircle2,
   MonitorPlay,
+  AlertTriangle,
+  Loader2,
 } from "lucide-react";
 import CtaSection from "@/components/CtaSection";
 import { Button, ButtonLink, TextLink } from "@/components/ui/Button";
@@ -216,11 +218,40 @@ export default function CasUsagesPage() {
     cta: string; ctaHref: string; ctaSecondary: string; scrollTarget: string;
   };
 
-  const [formData, setFormData] = useState({ company: "", sector: "", challenge: "" });
+  const [formData, setFormData] = useState({ company: "", sector: "", challenge: "", email: "" });
   const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+  const [submitFailed, setSubmitFailed] = useState(false);
+  const emailIsValid = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (!emailIsValid(formData.email) || submitting) return;
+    setSubmitting(true);
+    setSubmitFailed(false);
+    try {
+      const res = await fetch("/api/reservation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.email.split("@")[0] || formData.company || "Visiteur",
+          email: formData.email,
+          company: formData.company,
+          needs: `Secteur : ${formData.sector}`,
+          message: `Défi principal : ${formData.challenge}`,
+          consent: true,
+          topic: "commercial",
+          source: "cas-usages-cta",
+        }),
+      });
+      const json = (await res.json().catch(() => ({}))) as { success?: boolean };
+      if (!res.ok || !json.success) throw new Error("submit_failed");
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Cas d'usages CTA submit failed", err);
+      setSubmitFailed(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const differentiators = [
@@ -626,18 +657,19 @@ export default function CasUsagesPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="mt-6" noValidate>
-                  <div className="grid gap-4 md:grid-cols-3">
+                  <div className="grid gap-4 md:grid-cols-2">
                     {[
-                      { id: "conv-company", label: t("conversion.fields.company"), placeholder: tx("Votre entreprise", "Your company"), key: "company" as const },
-                      { id: "conv-sector", label: t("conversion.fields.sector"), placeholder: tx("Banque, Santé, Retail…", "Banking, Healthcare, Retail…"), key: "sector" as const },
-                      { id: "conv-challenge", label: t("conversion.fields.challenge"), placeholder: tx("CSRD, NIS2, valeur…", "CSRD, NIS2, value…"), key: "challenge" as const },
+                      { id: "conv-company", label: t("conversion.fields.company"), placeholder: tx("Votre entreprise", "Your company"), key: "company" as const, type: "text" },
+                      { id: "conv-email", label: t("conversion.fields.email"), placeholder: tx("vous@entreprise.fr", "you@company.com"), key: "email" as const, type: "email" },
+                      { id: "conv-sector", label: t("conversion.fields.sector"), placeholder: tx("Banque, Santé, Retail…", "Banking, Healthcare, Retail…"), key: "sector" as const, type: "text" },
+                      { id: "conv-challenge", label: t("conversion.fields.challenge"), placeholder: tx("CSRD, NIS2, valeur…", "CSRD, NIS2, value…"), key: "challenge" as const, type: "text" },
                     ].map((f) => (
                       <div key={f.id}>
                         <label htmlFor={f.id} className="block text-body-sm font-medium text-fg">{f.label}</label>
                         <input
                           id={f.id}
-                          type="text"
-                          required
+                          type={f.type}
+                          required={f.key === "email"}
                           value={formData[f.key]}
                           onChange={(e) => setFormData((d) => ({ ...d, [f.key]: e.target.value }))}
                           placeholder={f.placeholder}
@@ -648,11 +680,21 @@ export default function CasUsagesPage() {
                   </div>
                   <div className="mt-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
                     <p className="max-w-[40ch] text-caption italic text-fg-muted">{t("conversion.privacy")}</p>
-                    <Button type="submit">
-                      <Send className="h-4 w-4" aria-hidden="true" />
+                    <Button type="submit" disabled={submitting}>
+                      {submitting ? (
+                        <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                      ) : (
+                        <Send className="h-4 w-4" aria-hidden="true" />
+                      )}
                       {t("conversion.cta")}
                     </Button>
                   </div>
+                  {submitFailed && (
+                    <div className="mt-4 flex items-start gap-3 rounded-xl border border-danger bg-amber-dim px-4 py-3">
+                      <AlertTriangle className="h-5 w-5 flex-shrink-0 text-danger" aria-hidden="true" />
+                      <p className="text-caption text-fg-strong leading-relaxed">{t("conversion.error")}</p>
+                    </div>
+                  )}
                 </form>
               )}
             </div>

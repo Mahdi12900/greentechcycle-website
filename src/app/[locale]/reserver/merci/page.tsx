@@ -12,9 +12,6 @@ function MerciInner() {
   const t = useTranslations("reserver");
   const sp = useSearchParams();
   const ref = sp?.get("ref") ?? null;
-  const mode = sp?.get("mode") ?? null;
-
-  const isFallback = mode === "fallback";
 
   return (
     <div className="bg-bg-card">
@@ -29,11 +26,11 @@ function MerciInner() {
               <h1
                 className="text-display-lg mb-6"
               >
-                {isFallback ? t("fallback.title") : t("success.title")}
+                {t("success.title")}
               </h1>
 
               <p className="text-fg-muted text-base lg:text-lg mb-10">
-                {isFallback ? t("fallback.body") : t("success.body")}
+                {t("success.body")}
               </p>
 
               {ref && (

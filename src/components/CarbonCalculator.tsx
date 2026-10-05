@@ -135,6 +135,8 @@ export default function CarbonCalculator() {
   const [methodOpen, setMethodOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitFailed, setSubmitFailed] = useState(false);
 
   const update = <K extends keyof FleetState>(key: K, value: number) =>
     setFleet((prev) => ({ ...prev, [key]: Math.max(0, value) }));
@@ -195,11 +197,33 @@ export default function CarbonCalculator() {
       maximumFractionDigits: decimals,
     });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !email.includes("@")) return;
-    // No backend call, front-end stub for MVP.
-    setSubmitted(true);
+    if (!email || !email.includes("@") || submitting) return;
+    setSubmitting(true);
+    setSubmitFailed(false);
+    try {
+      const res = await fetch("/api/reservation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: email.split("@")[0] || "Visiteur",
+          email,
+          consent: true,
+          topic: "commercial",
+          source: "carbon-calculator",
+          message: `Demande de rapport carbone personnalisé (simulateur /impact). Parc simulé : ${fleet.laptops} laptops, ${fleet.desktops} desktops, ${fleet.servers} serveurs, ${fleet.smartphones} smartphones. CO₂ évité estimé : ${formatNumber(results.avoidedTco2, 1)} tCO₂e/an.`,
+        }),
+      });
+      const json = (await res.json().catch(() => ({}))) as { success?: boolean };
+      if (!res.ok || !json.success) throw new Error("submit_failed");
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Carbon calculator email submit failed", err);
+      setSubmitFailed(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   // ---------------------------------------------------------------------------
@@ -355,26 +379,32 @@ export default function CarbonCalculator() {
               {t("emailSuccess")}
             </p>
           ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col sm:flex-row gap-2 w-full lg:w-auto"
-            >
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={t("emailPlaceholder")}
-                className="flex-1 lg:w-72 px-4 py-3 rounded-lg border border-track focus:border-emerald focus:ring-2 focus:ring-emerald/25 outline-none text-sm"
-              />
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center gap-2 bg-emerald hover:bg-emerald-hover text-bg font-semibold px-5 py-3 rounded-lg transition-colors text-sm"
+            <div>
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col sm:flex-row gap-2 w-full lg:w-auto"
               >
-                {t("emailSubmit")}
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </form>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={t("emailPlaceholder")}
+                  className="flex-1 lg:w-72 px-4 py-3 rounded-lg border border-track focus:border-emerald focus:ring-2 focus:ring-emerald/25 outline-none text-sm"
+                />
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="inline-flex items-center justify-center gap-2 bg-emerald hover:bg-emerald-hover disabled:opacity-60 disabled:cursor-not-allowed text-bg font-semibold px-5 py-3 rounded-lg transition-colors text-sm"
+                >
+                  {t("emailSubmit")}
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </form>
+              {submitFailed && (
+                <p className="mt-2 text-xs text-danger">{t("emailError")}</p>
+              )}
+            </div>
           )}
         </div>
       </div>
