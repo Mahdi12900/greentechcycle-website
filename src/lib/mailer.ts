@@ -18,12 +18,20 @@ import { EMAILS } from "@/lib/contact";
 
 export type MailTransport = "smtp" | "resend" | "none";
 
+export interface MailAttachment {
+  filename: string;
+  /** Contenu brut (texte), encodé en base64 automatiquement pour le transport qui l'exige (Resend). */
+  content: string;
+  contentType: string;
+}
+
 export interface MailMessage {
   to: string;
   subject: string;
   html: string;
   /** Réponse directe au demandeur depuis la boîte interne */
   replyTo?: string;
+  attachments?: MailAttachment[];
 }
 
 let smtp: Transporter | null = null;
@@ -66,7 +74,18 @@ export async function sendMail(message: MailMessage): Promise<boolean> {
 
   if (transport === "smtp") {
     try {
-      await smtpTransporter().sendMail({ from, to: message.to, subject: message.subject, html: message.html, replyTo: message.replyTo });
+      await smtpTransporter().sendMail({
+        from,
+        to: message.to,
+        subject: message.subject,
+        html: message.html,
+        replyTo: message.replyTo,
+        attachments: message.attachments?.map((a) => ({
+          filename: a.filename,
+          content: a.content,
+          contentType: a.contentType,
+        })),
+      });
       return true;
     } catch (err) {
       console.error("[mailer] SMTP send failed", err instanceof Error ? err.message : err);
@@ -84,6 +103,14 @@ export async function sendMail(message: MailMessage): Promise<boolean> {
         subject: message.subject,
         html: message.html,
         ...(message.replyTo ? { reply_to: message.replyTo } : {}),
+        ...(message.attachments?.length
+          ? {
+              attachments: message.attachments.map((a) => ({
+                filename: a.filename,
+                content: Buffer.from(a.content, "utf8").toString("base64"),
+              })),
+            }
+          : {}),
       }),
     });
     if (!res.ok) {

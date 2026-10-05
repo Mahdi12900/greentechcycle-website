@@ -1,9 +1,9 @@
 "use client";
 
-import { EMAILS } from "@/lib/contact";
 import { useState, useMemo } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
+import SlotPicker from "@/components/reservation/SlotPicker";
 
 import {
   ArrowRight,
@@ -25,7 +25,7 @@ type FormState = {
   sites: string;
   needs: string;
   message: string;
-  slots: string[];
+  appointmentStart: string;
   consent: boolean;
 };
 
@@ -41,11 +41,10 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
 
   const sizes = t.raw("form.sizes") as SelectOption[];
   const personas = t.raw("form.personas") as SelectOption[];
-  const slots = t.raw("form.slots") as SelectOption[];
 
   const [step, setStep] = useState<number>(1);
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const [submitState, setSubmitState] = useState<"idle" | "success" | "fallback" | "error">("idle");
+  const [submitState, setSubmitState] = useState<"idle" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [data, setData] = useState<FormState>({
     name: "",
@@ -57,7 +56,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
     sites: "",
     needs: "",
     message: "",
-    slots: [],
+    appointmentStart: "",
     consent: false,
   });
 
@@ -72,15 +71,6 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
         return n;
       });
     }
-  };
-
-  const toggleSlot = (slotValue: string) => {
-    setData((d) => {
-      const exists = d.slots.includes(slotValue);
-      if (exists) return { ...d, slots: d.slots.filter((s) => s !== slotValue) };
-      if (d.slots.length >= 3) return d;
-      return { ...d, slots: [...d.slots, slotValue] };
-    });
   };
 
   const validateStep = (s: number): boolean => {
@@ -100,7 +90,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       if (!data.needs.trim()) next.needs = t("form.required");
     }
     if (s === 4) {
-      if (data.slots.length === 0) next.slots = t("form.errorSlot");
+      if (!data.appointmentStart) next.appointmentStart = t("form.errorSlot");
       if (!data.consent) next.consent = t("form.required");
     }
     setErrors(next);
@@ -124,13 +114,12 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, offerSlug, source: "site-reserver" }),
       });
-      const json = (await res.json()) as { success: boolean; reservation_id?: string; mode?: string };
+      const json = (await res.json()) as { success: boolean; reservation_id?: string };
       if (json.success && json.reservation_id) {
-        const mode = json.mode === "fallback" ? "&mode=fallback" : "";
-        router.push(`/reserver/merci?ref=${json.reservation_id}${mode}`);
+        router.push(`/reserver/merci?ref=${json.reservation_id}`);
         return;
       }
-      setSubmitState("fallback");
+      setSubmitState("error");
     } catch (err) {
       console.error("Reservation submit failed", err);
       setSubmitState("error");
@@ -284,37 +273,22 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
         </div>
       )}
 
-      {/* Step 4, créneaux + consent */}
+      {/* Step 4, créneau réel + consent */}
       {step === 4 && (
         <div className="reveal">
           <h2 className="text-heading-lg text-fg mb-2">
             {t("form.step4Title")}
           </h2>
-          <p className="text-body-sm text-fg-muted mb-6">{t("form.labels.slots")}</p>
-          <div className="grid sm:grid-cols-2 gap-3 mb-6">
-            {slots.map((s) => {
-              const checked = data.slots.includes(s.value);
-              const disabled = !checked && data.slots.length >= 3;
-              return (
-                <label
-                  key={s.value}
-                  className={`flex items-start gap-3 px-4 py-3 rounded-xl border cursor-pointer transition ${ checked ? "bg-emerald/8 border-emerald/40" : disabled ? "bg-bg-card border-track cursor-not-allowed opacity-60" : "bg-bg-card border-track hover:border-emerald/30" }`}
-                >
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    disabled={disabled}
-                    onChange={() => toggleSlot(s.value)}
-                    className="mt-0.5 h-4 w-4 accent-emerald"
-                  />
-                  <span className="text-body-sm text-fg leading-snug">{s.label}</span>
-                </label>
-              );
-            })}
-          </div>
-          {errors.slots && <p className="text-xs text-danger mb-4">{errors.slots}</p>}
+          <p className="text-body-sm text-fg-muted mb-6">{t("form.appointmentHint")}</p>
+          <SlotPicker
+            id="r-appointment"
+            label={t("form.labels.appointment")}
+            value={data.appointmentStart}
+            onChange={(iso) => update("appointmentStart", iso)}
+            error={errors.appointmentStart}
+          />
 
-          <label className="flex items-start gap-3 mt-4 cursor-pointer">
+          <label className="flex items-start gap-3 mt-6 cursor-pointer">
             <input
               type="checkbox"
               checked={data.consent}
@@ -329,26 +303,7 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
         </div>
       )}
 
-      {/* Status banners */}
-      {submitState === "fallback" && (
-        <div className="mt-6 flex items-start gap-3 px-5 py-4 rounded-xl bg-amber-dim border border-amber/30">
-          <AlertTriangle
-            className="h-5 w-5 text-amber flex-shrink-0 mt-0.5"
-            aria-hidden="true"
-          />
-          <div>
-            <p className="text-body-sm font-semibold text-fg mb-1">{t("fallback.title")}</p>
-            <p className="text-caption text-fg-strong leading-relaxed">{t("fallback.body")}</p>
-            <a
-              href={`mailto:${EMAILS.sales}`}
-              className="inline-flex items-center gap-1 text-caption font-semibold text-fg underline underline-offset-4 mt-1"
-            >
-              {t("fallback.mailtoLabel")}
-              <ArrowRight className="h-3 w-3" aria-hidden="true" />
-            </a>
-          </div>
-        </div>
-      )}
+      {/* Status banner */}
       {submitState === "error" && (
         <div className="mt-6 flex items-start gap-3 px-5 py-4 rounded-xl bg-amber-dim border border-danger">
           <AlertTriangle className="h-5 w-5 text-danger flex-shrink-0 mt-0.5" aria-hidden="true" />
