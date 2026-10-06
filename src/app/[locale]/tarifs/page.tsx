@@ -95,10 +95,13 @@ function ComparisonTable({
         {caption}
         <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180 lg:hidden" aria-hidden="true" />
       </summary>
-      <div className="overflow-x-auto rounded-xl border border-track">
+      {/* overflow-x-auto réservé au mobile : un ancêtre en overflow devient le contexte de
+          positionnement de ses descendants, ce qui empêchait `position: sticky` de s'accrocher
+          au scroll de la page sur desktop (reports/qa-affichage-gtc.md §2). */}
+      <div className="overflow-x-auto rounded-xl border border-track md:overflow-visible">
         <table className="w-full min-w-[480px] border-collapse text-body-sm">
           <caption className="sr-only">{caption}</caption>
-          <thead className="sticky top-16 z-10 bg-bg-card lg:top-[72px]">
+          <thead className="sticky top-16 z-10 bg-bg-card xl:top-[72px]">
             <tr>
               <th scope="col" className="px-4 py-3 text-left text-eyebrow uppercase text-fg-muted">
                 {isEn ? "Criteria" : "Critère"}
@@ -1610,6 +1613,7 @@ export default function TarifsPage() {
         </div>
         <div className="reveal">
           <Table
+            sticky
             caption={tx("Modules complémentaires Waki Box", "Waki Box add-on modules")}
             head={[
               tx("Module", "Module"),

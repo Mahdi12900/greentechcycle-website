@@ -165,7 +165,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <SiteUiProvider>
           <Header />
-          <main id="contenu" className="pt-16 pb-20 lg:pt-[72px] lg:pb-0">{children}</main>
+          <main id="contenu" className="pt-16 pb-20 xl:pt-[72px] lg:pb-0">{children}</main>
           <Footer />
           <CookieBanner />
           <MobileActionBar />

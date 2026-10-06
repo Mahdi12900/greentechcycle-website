@@ -647,7 +647,8 @@
       "valueLabel": "Valeur résiduelle non récupérée",
       "carbonLabel": "Émissions évitables",
       "cta": "Réserver ma démo (30 min)",
-      "disclaimer": "Estimation indicative basée sur les moyennes constatées (cohorte 2025). Résultat précis après audit."
+      "disclaimer": "Estimation indicative basée sur les moyennes constatées (cohorte 2025). Résultat précis après audit.",
+      "resultHint": "Exemple pour {count} postes — modifiez le nombre ci-dessus pour votre propre parc."
     },
     "anchorNav": {
       "items": [
@@ -3150,7 +3151,7 @@
     },
     "testimonials": {
       "eyebrow": "Ils en parlent mieux que nous",
-      "title": "Verbatims clients, 4 personas",
+      "title": "Verbatims clients, 3 personas",
       "consentNote": "Témoignages recueillis avec accord écrit des personnes concernées. Identités complètes disponibles sous NDA à la demande.",
       "items": [
         {

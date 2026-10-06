@@ -171,13 +171,15 @@ export default function Header() {
       } ${hidden ? "-translate-y-full" : "translate-y-0"}`}
     >
       <div className="container-max px-5 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between gap-6 lg:h-[72px]">
+        <div className="flex h-16 items-center justify-between gap-6 xl:h-[72px]">
           <Link href="/" className="flex flex-shrink-0 items-center" aria-label="GreenTechCycle — accueil">
             <Logo />
           </Link>
 
-          {/* Navigation desktop */}
-          <nav ref={navRef} className="hidden items-center gap-1 lg:flex" aria-label={locale === "en" ? "Main navigation" : "Navigation principale"}>
+          {/* Navigation desktop — bascule à xl (1280px) : à lg (1024px) le menu complet + CTA
+              débordait de 167px (reports/qa-affichage-gtc.md §1), le panneau mobile prend le relais
+              jusqu'à xl. */}
+          <nav ref={navRef} className="hidden items-center gap-1 xl:flex" aria-label={locale === "en" ? "Main navigation" : "Navigation principale"}>
             {navItems.map((item) => {
               const open = openMenu === item.key;
               const active = isActiveGroup(item.key);
@@ -238,7 +240,7 @@ export default function Header() {
           </nav>
 
           {/* Droite */}
-          <div className="hidden items-center gap-2 lg:flex">
+          <div className="hidden items-center gap-2 xl:flex">
             <button
               type="button"
               onClick={switchLocale}
@@ -261,7 +263,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-lg text-fg lg:hidden"
+            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-lg text-fg xl:hidden"
             aria-label={
               mobileOpen
                 ? locale === "en" ? "Close menu" : "Fermer le menu"
@@ -279,7 +281,7 @@ export default function Header() {
       {mobileOpen && (
         <nav
           id="mobile-menu"
-          className="fixed inset-x-0 bottom-0 top-16 flex flex-col border-t border-track bg-bg lg:hidden"
+          className="fixed inset-x-0 bottom-0 top-16 flex flex-col border-t border-track bg-bg xl:hidden"
           aria-label={locale === "en" ? "Mobile menu" : "Menu mobile"}
         >
           <div className="flex-1 overflow-y-auto px-5 py-6">

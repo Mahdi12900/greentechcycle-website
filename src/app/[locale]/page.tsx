@@ -125,8 +125,9 @@ export default function HomePage() {
   const tx = (fr: string, en: string) => (isEn ? en : fr);
   const numberLocale = isEn ? "en-GB" : "fr-FR";
 
-  // ROI calculator state
-  const [fleetSize, setFleetSize] = useState("");
+  // ROI calculator state — pré-rempli avec un exemple (100 postes) pour que le résultat et
+  // le CTA soient visibles dès le chargement (reports/qa-affichage-gtc.md §3, stopgap).
+  const [fleetSize, setFleetSize] = useState("100");
   const fleet = parseInt(fleetSize) || 0;
 
   // « 78 % » isolé en chiffre-argument (display-xl), le reste en texte courant.
@@ -715,6 +716,7 @@ export default function HomePage() {
               {fleet > 0 && (
                 <div className="mt-8" aria-live="polite">
                   <p className="text-eyebrow uppercase text-fg-muted">{t("roiCalculator.resultTitle")}</p>
+                  <p className="mt-1 text-caption text-fg-muted">{t("roiCalculator.resultHint", { count: fleet })}</p>
                   <dl className="mt-3 divide-y divide-track border-y border-track">
                     <div className="flex items-baseline justify-between gap-4 py-3">
                       <dt className="text-body-sm text-fg-strong">{t("roiCalculator.riskLabel")}</dt>
