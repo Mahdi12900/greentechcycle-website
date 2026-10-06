@@ -33,7 +33,7 @@ export default function SectionNav({
   useEffect(() => {
     const el = sentinelRef.current;
     if (!el) return;
-    const headerH = () => (window.matchMedia("(min-width: 1024px)").matches ? 72 : 64);
+    const headerH = () => (window.matchMedia("(min-width: 1280px)").matches ? 72 : 64);
     let io: IntersectionObserver | null = null;
     const observe = () => {
       io?.disconnect();

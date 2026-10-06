@@ -225,13 +225,16 @@
       }
     }
   }
+  /* Pas d'opacity:0 (reports/qa-affichage-gtc.md §4) : un saut de scroll instantané, une
+     capture plein-page automatisée ou un rendu sans timeline résolue ne doivent jamais
+     laisser de zone vide — seul un léger déplacement s'anime, le contenu reste visible. */
   @keyframes reveal-up {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: none; }
+    from { transform: translateY(8px); }
+    to { transform: none; }
   }
   @keyframes reveal-scale {
-    from { opacity: 0; transform: scale(0.96); }
-    to { opacity: 1; transform: none; }
+    from { transform: scale(0.98); }
+    to { transform: none; }
   }
   @keyframes parallax-slow {
     from { transform: translateY(40px); }

@@ -647,7 +647,8 @@
       "valueLabel": "Unrecovered residual value",
       "carbonLabel": "Avoidable emissions",
       "cta": "Book my demo (30 min)",
-      "disclaimer": "Indicative estimate based on observed averages (2025 cohort). Precise result after audit."
+      "disclaimer": "Indicative estimate based on observed averages (2025 cohort). Precise result after audit.",
+      "resultHint": "Example for {count} devices — change the number above for your own fleet."
     },
     "anchorNav": {
       "items": [
@@ -3150,7 +3151,7 @@
     },
     "testimonials": {
       "eyebrow": "They say it better than us",
-      "title": "Client verbatims, 4 personas",
+      "title": "Client verbatims, 3 personas",
       "consentNote": "Testimonials collected with written consent. Full identities available under NDA upon request.",
       "items": [
         {

@@ -14,6 +14,7 @@ export default function Table({
   emphasis = [],
   caption,
   className = "",
+  sticky = false,
 }: {
   head: ReactNode[];
   rows: ReactNode[][];
@@ -23,6 +24,8 @@ export default function Table({
   emphasis?: number[];
   caption?: ReactNode;
   className?: string;
+  /** En-tête collant au scroll sur desktop (défilement horizontal réservé au mobile, bug fix §2) */
+  sticky?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [overflow, setOverflow] = useState(false);
@@ -50,14 +53,14 @@ export default function Table({
           const el = e.currentTarget;
           setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4);
         }}
-        className={`relative overflow-x-auto ${overflow ? `scroll-hint ${atEnd ? "is-end" : ""}` : ""}`}
+        className={`relative overflow-x-auto ${sticky ? "md:overflow-visible" : ""} ${overflow ? `scroll-hint ${atEnd ? "is-end" : ""}` : ""}`}
         tabIndex={overflow ? 0 : undefined}
         role={overflow ? "region" : undefined}
         aria-label={overflow && typeof caption === "string" ? `${caption} (tableau défilant)` : undefined}
       >
         <table className="w-full border-collapse text-body-sm">
           {caption && <caption className="sr-only">{caption}</caption>}
-          <thead>
+          <thead className={sticky ? "sticky top-16 z-10 xl:top-[72px]" : undefined}>
             <tr className="bg-bg-card">
               {head.map((h, i) => (
                 <th key={i} scope="col" className={`whitespace-nowrap px-4 py-3 text-eyebrow uppercase text-fg-muted lg:px-6 ${align(i)}`}>

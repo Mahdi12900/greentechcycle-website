@@ -105,8 +105,11 @@ export default function DashboardMock({
           ))}
         </div>
 
-        {/* Graphique + radar */}
-        <div className={`grid min-h-0 flex-1 gap-2 ${compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-[1.6fr_1fr]"}`}>
+        {/* Graphique + radar — bascule à xl (pas sm) : ce composant est souvent rendu dans une
+            colonne de demi-largeur de page (hero 2 colonnes), donc un seuil basé sur la largeur
+            de la fenêtre (sm=640px) déclenchait le 2-colonnes bien avant que le conteneur réel
+            soit assez large, provoquant un chevauchement à 1024px (reports/qa-affichage-gtc.md §7) */}
+        <div className={`grid min-h-0 flex-1 gap-2 ${compact ? "grid-cols-1" : "grid-cols-1 xl:grid-cols-[1.6fr_1fr]"}`}>
           <div className="flex min-h-[120px] flex-col rounded-xl border border-track bg-bg p-3">
             <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-fg-muted">IT assets</p>
             <svg viewBox="0 0 240 100" preserveAspectRatio="none" className="viz-grow mt-2 h-full min-h-[80px] w-full flex-1">
@@ -151,9 +154,9 @@ export default function DashboardMock({
           )}
         </div>
 
-        {/* Flux de certificats + activité */}
+        {/* Flux de certificats + activité — même raison qu'au-dessus : xl, pas sm */}
         {!compact && (
-          <div className="grid gap-2 sm:grid-cols-[1fr_1.2fr]">
+          <div className="grid gap-2 xl:grid-cols-[1fr_1.2fr]">
             <div className="rounded-xl border border-track bg-bg p-3">
               <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-fg-muted">{tx("Flux certificats", "Certificate flow")}</p>
               <svg viewBox="0 0 200 40" preserveAspectRatio="none" className="mt-2 h-10 w-full">
