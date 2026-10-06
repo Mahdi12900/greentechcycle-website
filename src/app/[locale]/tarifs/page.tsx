@@ -18,6 +18,7 @@
 import { useLocale } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Check, Mail } from "lucide-react";
+import { track } from "@/lib/analytics";
 
 import CertificationStrip from "@/components/CertificationStrip";
 import CtaSection from "@/components/CtaSection";
@@ -155,6 +156,13 @@ export default function TarifsPage() {
     setActiveTab(id as ProductTabId);
     if (typeof window !== "undefined") window.history.replaceState(null, "", `#${id}`);
   }, []);
+  // tab_view : l'onglet affiché au chargement (deep link ou défaut) compte aussi comme une vue.
+  const trackedTab = useRef<string | null>(null);
+  useEffect(() => {
+    if (trackedTab.current === activeTab) return;
+    trackedTab.current = activeTab;
+    track("tab_view", { tab: activeTab, page: "tarifs" });
+  }, [activeTab]);
 
   const [billing, setBilling] = useState<Billing>("annual");
   const perMonth = tx("/mois", "/month");

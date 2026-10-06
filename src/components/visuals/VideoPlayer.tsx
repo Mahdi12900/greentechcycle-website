@@ -4,6 +4,9 @@ import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { useLocale } from "next-intl";
 import { Play, Volume2, VolumeX } from "lucide-react";
 import { SLOT_VIDEOS } from "@/content/media-slots";
+import { track } from "@/lib/analytics";
+
+const MILESTONES = [25, 50, 75] as const;
 
 /** 33.7 → « 0:34 » */
 export function formatDuration(s?: number) {
@@ -31,6 +34,9 @@ function motionAllowed() {
  *   les ~6 premières secondes, sauf `prefers-reduced-motion` ou Save-Data (poster seul).
  *   Rien n'est téléchargé tant que le cadre n'est pas visible.
  * - Pas de sous-titres (décision utilisateur) : titre accessible + description masquée.
+ * - Mesure GA4 (src/lib/analytics.ts, consentement requis) : video_start, video_progress
+ *   (25/50/75), video_complete, avec `video_title`. Jamais déclenché par l'aperçu muet en
+ *   boucle (entrée dans le viewport) : seule la lecture complète, volontaire, est mesurée.
  */
 export default function VideoPlayer({
   id,
@@ -49,6 +55,13 @@ export default function VideoPlayer({
   const [state, setState] = useState<"idle" | "preview" | "playing">("idle");
   const [muted, setMuted] = useState(false);
   const descId = useId();
+  // Mesure (lecture complète, volontaire, pas l'aperçu muet en boucle à l'entrée dans le viewport)
+  const fired = useRef(new Set<string>());
+  const once = (key: string, fn: () => void) => {
+    if (fired.current.has(key)) return;
+    fired.current.add(key);
+    fn();
+  };
 
   // Aperçu muet à l'entrée dans le viewport (vidéos de cas)
   useEffect(() => {
@@ -91,6 +104,7 @@ export default function VideoPlayer({
     v.controls = true;
     setMuted(false);
     setState("playing");
+    once("start", () => track("video_start", { video_title: title }));
     const p = v.play();
     if (p) p.catch(() => {
       // Si le son est refusé (politique navigateur), on relance en muet : l'image bouge quand même
@@ -131,11 +145,24 @@ export default function VideoPlayer({
         aria-describedby={spec.description ? descId : undefined}
         onTimeUpdate={(e) => {
           const v = e.currentTarget;
-          // Aperçu : boucle sur les 6 premières secondes
-          if (v.dataset.mode === "preview" && v.currentTime > 6) v.currentTime = 0;
+          // Aperçu : boucle sur les 6 premières secondes, jamais mesuré (pas une lecture volontaire)
+          if (v.dataset.mode === "preview") {
+            if (v.currentTime > 6) v.currentTime = 0;
+            return;
+          }
+          if (!spec.duration) return;
+          const pct = (v.currentTime / spec.duration) * 100;
+          for (const m of MILESTONES) {
+            if (pct >= m) once(String(m), () => track("video_progress", { video_title: title, percent: m }));
+          }
         }}
         onVolumeChange={(e) => state === "playing" && setMuted(e.currentTarget.muted)}
-        onEnded={() => setState("playing")}
+        onEnded={() => {
+          setState("playing");
+          if (ref.current?.dataset.mode === "playing") {
+            once("100", () => track("video_complete", { video_title: title, percent: 100 }));
+          }
+        }}
       >
         {spec.sources.map((s) => (
           <source key={s.src} src={s.src} type={s.type} />

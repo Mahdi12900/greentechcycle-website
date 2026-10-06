@@ -179,20 +179,21 @@
     "bottomLinks": {
       "legal": "Mentions légales",
       "privacy": "Confidentialité",
-      "cookies": "Cookies"
+      "cookies": "Cookies",
+      "manageCookies": "Gérer mes cookies"
     }
   },
   "CookieBanner": {
     "title": "Préférences de cookies",
-    "description": "Nous utilisons des cookies pour améliorer votre expérience. Vous pouvez personnaliser vos préférences ci-dessous.",
+    "description": "Nous utilisons des cookies, dont Google Analytics 4 pour la mesure d'audience. Vous pouvez tout accepter, tout refuser (aussi simple l'un que l'autre) ou personnaliser vos préférences ci-dessous.",
     "categories": {
       "necessary": {
         "title": "Strictement nécessaires",
         "desc": "Indispensables au fonctionnement du site"
       },
       "analytics": {
-        "title": "Analytiques",
-        "desc": "Nous aident à améliorer le site"
+        "title": "Mesure d'audience (Google Analytics 4)",
+        "desc": "Statistiques de visite anonymisées, pour améliorer le site. Aucun cookie déposé sans votre accord."
       },
       "functional": {
         "title": "Fonctionnels",
@@ -2254,12 +2255,12 @@
           "text": "Conformément au RGPD, vous disposez des droits suivants :\n• Droit d'accès à vos données\n• Droit de rectification\n• Droit à l'effacement\n• Droit à la portabilité\n• Droit d'opposition\n• Droit à la limitation du traitement\n\nPour exercer vos droits : support@greentechcycle.fr"
         },
         "cookies": {
-          "title": "Cookies",
-          "text": "Consultez notre politique de cookies dédiée pour plus d'informations sur l'utilisation des cookies."
+          "title": "Cookies et mesure d'audience",
+          "text": "GreenTechCycle utilise Google Analytics 4 (Google Ireland Limited) pour mesurer l'audience du site : pages vues, provenance du trafic, usage des fonctionnalités (configurateur, onglets tarifs, vidéos). Finalité : améliorer le site et son contenu, aucun usage publicitaire. Google agit comme sous-traitant au sens du RGPD.\nAucun cookie de mesure n'est déposé avant votre consentement explicite, recueilli via la bannière cookies (catégorie « Mesure d'audience ») ; votre choix est conservé 6 mois. Les données collectées par Google Analytics 4 sont conservées 14 mois, puis supprimées automatiquement.\nLorsque des données sont transférées vers les États-Unis (hébergement Google), ce transfert est encadré par le cadre de protection des données UE-États-Unis (EU-US Data Privacy Framework), auquel Google est adhérent.\nVous pouvez retirer votre consentement à tout moment via le lien « Gérer mes cookies » en pied de page, sans effet sur la licéité du traitement effectué avant le retrait. Voir aussi notre politique de cookies dédiée."
         },
         "transfers": {
           "title": "Transferts de données",
-          "text": "Aucune donnée n'est transférée hors de l'Union européenne. Nos sous-traitants sont tous situés dans l'UE et soumis à des clauses contractuelles strictes."
+          "text": "Les données sont hébergées et traitées par des sous-traitants situés dans l'Union européenne, à l'exception de la mesure d'audience (Google Analytics 4, voir « Cookies et mesure d'audience ») : les données concernées peuvent être traitées par Google aux États-Unis, sous réserve des garanties du cadre de protection des données UE-États-Unis (EU-US Data Privacy Framework)."
         },
         "update": {
           "title": "Mise à jour",
@@ -2281,8 +2282,8 @@
             "text": "Indispensables au fonctionnement du site. Ils ne peuvent pas être désactivés. Exemples : session, préférences de langue, sécurité."
           },
           "analytics": {
-            "title": "Cookies analytiques",
-            "text": "Nous permettent de mesurer l'audience du site et d'améliorer son fonctionnement. Outil utilisé : Matomo (hébergé en France)."
+            "title": "Cookies de mesure d'audience",
+            "text": "Nous permettent de mesurer l'audience du site et d'améliorer son fonctionnement. Outil utilisé : Google Analytics 4 (Google Ireland Limited), qui agit comme sous-traitant. Déposé uniquement après votre consentement explicite."
           },
           "functional": {
             "title": "Cookies fonctionnels",
@@ -2295,11 +2296,12 @@
         },
         "management": {
           "title": "Gestion de vos préférences",
-          "text": "Vous pouvez modifier vos préférences à tout moment en cliquant sur le lien « Gestion des cookies » en bas de page ou via les paramètres de votre navigateur."
+          "text": "Vous pouvez modifier vos préférences à tout moment en cliquant sur le lien « Gestion des cookies » en bas de page ou via les paramètres de votre navigateur.",
+          "cta": "Gérer mes cookies"
         },
         "duration": {
           "title": "Durée de conservation",
-          "text": "Les cookies sont conservés pour une durée maximale de 13 mois conformément aux recommandations de la CNIL."
+          "text": "Les cookies de mesure d'audience sont conservés au maximum 13 mois (recommandation CNIL) ; les données associées sont conservées 14 mois dans Google Analytics 4. Votre choix de consentement est conservé 6 mois, puis vous est à nouveau demandé."
         }
       }
     }

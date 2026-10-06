@@ -78,20 +78,21 @@ export function ButtonLink({
   children,
   arrow,
   external = false,
+  onClick,
   ...style
-}: StyleProps & { href: string; children: ReactNode; arrow?: boolean; external?: boolean }) {
+}: StyleProps & { href: string; children: ReactNode; arrow?: boolean; external?: boolean; onClick?: () => void }) {
   const showArrow = arrow ?? (style.variant ?? "primary") === "primary";
   const cls = buttonClasses(style);
   if (external || href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:")) {
     return (
-      <a href={href} className={cls} {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+      <a href={href} onClick={onClick} className={cls} {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
         {children}
         {showArrow && <Arrow />}
       </a>
     );
   }
   return (
-    <Link href={href} className={cls}>
+    <Link href={href} onClick={onClick} className={cls}>
       {children}
       {showArrow && <Arrow />}
     </Link>

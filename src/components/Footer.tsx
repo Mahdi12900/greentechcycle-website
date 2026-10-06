@@ -4,9 +4,11 @@ import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Logo from "@/components/Logo";
-import { Mail, MessageCircle, Linkedin, Twitter, ArrowUpRight, Send, Globe } from "lucide-react";
+import { Mail, MessageCircle, Linkedin, Twitter, ArrowUpRight, Send, Globe, Cookie } from "lucide-react";
 import { EMAILS, PREFILL, SERVICE_AREAS, mailtoHref, whatsappHref } from "@/lib/contact";
 import CertificationStrip from "@/components/CertificationStrip";
+import { OPEN_COOKIE_SETTINGS_EVENT } from "@/components/CookieBanner";
+import { track } from "@/lib/analytics";
 
 export default function Footer() {
   const t = useTranslations("Footer");
@@ -171,6 +173,7 @@ export default function Footer() {
                     if (res.ok) {
                       setSuccess(true);
                       setEmail("");
+                      track("newsletter_signup", { location: "footer" });
                     } else {
                       setError(true);
                     }
@@ -242,6 +245,16 @@ export default function Footer() {
               <Link href="/mentions-legales" className="text-caption hover:text-fg">{t("bottomLinks.legal")}</Link>
               <Link href="/confidentialite" className="text-caption hover:text-fg">{t("bottomLinks.privacy")}</Link>
               <Link href="/cookies" className="text-caption hover:text-fg">{t("bottomLinks.cookies")}</Link>
+              {/* Rouvre la bannière avec le choix déjà fait : changer d'avis doit être aussi
+                  simple que le premier choix (pas de nouvelle page, pas de ré-saisie). */}
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new Event(OPEN_COOKIE_SETTINGS_EVENT))}
+                className="inline-flex items-center gap-1.5 text-caption hover:text-fg"
+              >
+                <Cookie className="h-3.5 w-3.5" aria-hidden="true" />
+                {t("bottomLinks.manageCookies")}
+              </button>
               <span className="h-4 w-px bg-track" aria-hidden="true" />
               <a href="https://linkedin.com/company/greentechcycle" target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center hover:text-fg" aria-label="LinkedIn">
                 <Linkedin className="h-4 w-4" aria-hidden="true" />

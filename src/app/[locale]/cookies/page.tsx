@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Cookie, ShieldCheck, BarChart3, Sparkles, Megaphone } from "lucide-react";
 import LegalPageLayout from "@/components/LegalPageLayout";
 import CtaSection from "@/components/CtaSection";
+import { OPEN_COOKIE_SETTINGS_EVENT } from "@/components/CookieBanner";
 
 export default function CookiesPage() {
   const locale = useLocale();
@@ -77,9 +78,17 @@ function CookiesContent({ locale }: { locale: string }) {
               <h2 className="text-display-md text-fg mb-3">
                 {t("content.management.title")}
               </h2>
-              <p className="text-fg-strong whitespace-pre-line leading-relaxed">
+              <p className="text-fg-strong whitespace-pre-line leading-relaxed mb-5">
                 {t("content.management.text")}
               </p>
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new Event(OPEN_COOKIE_SETTINGS_EVENT))}
+                className="inline-flex h-11 items-center gap-2 rounded-lg bg-emerald px-5 text-body-sm font-semibold text-bg transition-colors hover:bg-emerald-hover"
+              >
+                <Cookie className="h-4 w-4" aria-hidden="true" />
+                {t("content.management.cta")}
+              </button>
             </div>
           </div>
 

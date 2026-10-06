@@ -12,6 +12,7 @@ import ContactChannels from "@/components/ContactChannels";
 import { CONTACT_TOPICS, LEGAL, SERVICE_AREAS, isContactTopic, mailtoHref, type ContactTopic } from "@/lib/contact";
 import { getSectorDef } from "@/data/sectors";
 import { getSectorName } from "@/data/sectors-i18n";
+import { track } from "@/lib/analytics";
 import {
   ArrowDown,
   Send,
@@ -219,6 +220,8 @@ function ContactForm() {
       const data = (await res.json().catch(() => ({}))) as { success?: boolean };
       if (!res.ok || !data.success) throw new Error("submit_failed");
       setSubmitted(true);
+      track("contact_form_submit", { topic });
+      if (topic === "lab") track("lab_pilot_apply", { sector: secteurParam ?? "" });
     } catch {
       setFailed(true);
     } finally {

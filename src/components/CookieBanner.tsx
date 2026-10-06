@@ -5,6 +5,11 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { X } from "lucide-react";
 import { useSiteUi } from "@/components/SiteUiContext";
+import { getStoredConsent, saveConsent } from "@/lib/analytics";
+
+/** Événement global : rouvre la bannière avec les choix déjà enregistrés (lien « Gérer mes
+ * cookies » du pied de page et de la page /cookies — `window.dispatchEvent(new Event(OPEN_COOKIE_SETTINGS_EVENT))`). */
+export const OPEN_COOKIE_SETTINGS_EVENT = "gtc:cookie-settings:open";
 
 export default function CookieBanner() {
   const t = useTranslations("CookieBanner");
@@ -20,24 +25,42 @@ export default function CookieBanner() {
   }, [visible, setOverlay]);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && !localStorage.getItem("gtc-cookies")) {
+    const stored = getStoredConsent();
+    if (!stored) {
       const timer = setTimeout(() => setVisible(true), 1500);
       return () => clearTimeout(timer);
     }
   }, []);
 
+  // « Gérer mes cookies » (pied de page, page /cookies) : rouvre la bannière, préférences
+  // déjà faites pré-cochées — modifier son choix doit être aussi facile que l'accepter.
+  useEffect(() => {
+    function reopen() {
+      const stored = getStoredConsent();
+      setPrefs({
+        analytics: stored?.analytics ?? false,
+        functional: stored?.functional ?? false,
+        marketing: stored?.marketing ?? false,
+      });
+      setShowDetails(true);
+      setVisible(true);
+    }
+    window.addEventListener(OPEN_COOKIE_SETTINGS_EVENT, reopen);
+    return () => window.removeEventListener(OPEN_COOKIE_SETTINGS_EVENT, reopen);
+  }, []);
+
   function accept() {
-    localStorage.setItem("gtc-cookies", JSON.stringify({ necessary: true, analytics: true, functional: true, marketing: true }));
+    saveConsent({ analytics: true, functional: true, marketing: true });
     setVisible(false);
   }
 
   function reject() {
-    localStorage.setItem("gtc-cookies", JSON.stringify({ necessary: true, analytics: false, functional: false, marketing: false }));
+    saveConsent({ analytics: false, functional: false, marketing: false });
     setVisible(false);
   }
 
   function save() {
-    localStorage.setItem("gtc-cookies", JSON.stringify({ necessary: true, ...prefs }));
+    saveConsent(prefs);
     setVisible(false);
   }
 
@@ -91,10 +114,12 @@ export default function CookieBanner() {
         )}
 
         <div className="flex flex-wrap items-center gap-2">
+          {/* Accepter / Refuser : même taille, même poids visuel (plein, pas de hiérarchie
+              bouton plein vs. contour) — refuser doit être aussi simple et visible qu'accepter. */}
           <button type="button" onClick={accept} className="h-11 rounded-lg bg-emerald px-5 text-body-sm font-semibold text-bg transition-colors hover:bg-emerald-hover">
             {t("acceptAll")}
           </button>
-          <button type="button" onClick={reject} className="h-11 rounded-lg border border-track bg-bg px-5 text-body-sm font-semibold text-fg transition-colors hover:border-track-strong hover:bg-white/[0.04]">
+          <button type="button" onClick={reject} className="h-11 rounded-lg bg-fg px-5 text-body-sm font-semibold text-bg transition-colors hover:bg-white">
             {t("rejectAll")}
           </button>
           {showDetails ? (
