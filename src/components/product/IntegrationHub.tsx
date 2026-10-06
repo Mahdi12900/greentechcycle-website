@@ -16,7 +16,7 @@ export default function IntegrationHub({ className = "" }: { className?: string 
     { name: "SAP", role: tx("ERP · immobilisations, achats", "ERP · fixed assets, purchasing") },
     { name: "Oracle", role: tx("ERP · finance, inventaire", "ERP · finance, inventory") },
     { name: "ServiceNow", role: tx("ITSM / CMDB · actifs, tickets", "ITSM / CMDB · assets, tickets") },
-    { name: tx("Autres ITSM, ERP, CMDB", "Other ITSM, ERP, CMDB"), role: tx("ex. Workday, Octopus", "e.g. Workday, Octopus") },
+    { name: tx("Autres ITSM, ERP, CMDB", "Other ITSM, ERP, CMDB"), role: tx("ex. GLPI, Intune, JAMF, EasyVista", "e.g. GLPI, Intune, JAMF, EasyVista") },
   ];
 
   const outputs = [

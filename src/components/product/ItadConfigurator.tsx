@@ -154,7 +154,7 @@ export default function ItadConfigurator({ idPrefix = "cfg" }: { idPrefix?: stri
               const id = `${idPrefix}-${c.id}`;
               return (
                 <li key={c.id} className="flex flex-wrap items-center gap-3 px-3 py-2.5 sm:flex-nowrap">
-                  <label htmlFor={id} className="min-w-0 flex-1">
+                  <label htmlFor={id} className="min-w-0 flex-1 basis-full sm:basis-auto">
                     <span className="block text-body-sm font-medium text-fg">{c.label[lang]}</span>
                     <span className="block text-caption text-fg-muted">
                       {c.unit != null ? `${tx("dès", "from")} ${eur(c.unit)} HT / ${tx("unité", "unit")}` : onQuoteLabel}
@@ -171,7 +171,7 @@ export default function ItadConfigurator({ idPrefix = "cfg" }: { idPrefix?: stri
                       min={0}
                       value={qty[c.id]}
                       onChange={(e) => setCat(c.id, Number(e.target.value))}
-                      className="h-10 w-20 rounded-lg border border-track bg-bg-card px-2 text-center text-body-sm tabular-nums text-fg focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25"
+                      className="h-10 w-16 rounded-lg border border-track bg-bg-card px-1 text-center text-body-sm tabular-nums text-fg focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25"
                     />
                     <button type="button" onClick={() => setCat(c.id, qty[c.id] + 1)} className="flex h-10 w-10 items-center justify-center rounded-lg border border-track text-fg-strong hover:text-fg" aria-label={`${tx("Ajouter un", "Add one")} — ${c.label[lang]}`}>
                       <Plus className="h-4 w-4" aria-hidden="true" />
