@@ -50,6 +50,9 @@ import Accordion from "@/components/ui/Accordion";
 import FilterTabs from "@/components/ui/FilterTabs";
 import AssetIntelligence from "@/components/product/AssetIntelligence";
 import ItadConfigurator from "@/components/product/ItadConfigurator";
+import { WAKI_PLANS, WAKI_SETUP_BANDS, eur } from "@/content/pricing";
+
+const wakiPlan = (slug: string) => WAKI_PLANS.find((p) => `waki-box-${p.id}` === slug) ?? WAKI_PLANS[0];
 
 /**
  * Accueil — architecture « Épuré » (DESIGN.md §10.1).
@@ -649,11 +652,14 @@ export default function HomePage() {
                   {plan.popular && <Tag variant="brand">{t("pricingTeaser.popularLabel")}</Tag>}
                 </div>
                 <p className="mt-4 flex items-baseline gap-1">
-                  <span className="font-display text-display-md tabular-nums text-emerald">{plan.price}</span>
+                  <span className="font-display text-display-md tabular-nums text-emerald">{wakiPlan(plan.slug).monthly}</span>
                   <span className="text-body-sm text-fg-muted">€ HT/{tx("mois", "month")}</span>
                 </p>
                 <p className="mt-1 text-caption text-fg-muted">
-                  {t("pricingTeaser.setupLabel")} {plan.setup} € HT
+                  {t("pricingTeaser.setupLabel")}{" "}
+                  {wakiPlan(plan.slug).setup != null
+                    ? `${eur(wakiPlan(plan.slug).setup!, isEn ? "en" : "fr")} HT`
+                    : `${eur(WAKI_SETUP_BANDS[0].price, isEn ? "en" : "fr")} HT ${tx("par borne", "per kiosk")}`}
                 </p>
                 <p className="mt-4 flex-1 text-body-sm text-fg-strong">{plan.pitch}</p>
                 <div className="mt-6">

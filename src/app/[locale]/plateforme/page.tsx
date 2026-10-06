@@ -16,6 +16,10 @@ import Tag from "@/components/ui/Tag";
 import { Stat, StatRow } from "@/components/ui/Stat";
 import Accordion from "@/components/ui/Accordion";
 import AssetIntelligence from "@/components/product/AssetIntelligence";
+import { PS_PACKAGES, TRIAL, edition, editionMonthly, eur } from "@/content/pricing";
+
+const ESS = edition("essentials").bands;
+const PILOT3 = PS_PACKAGES.find((p) => p.id === "pilote-3j")!;
 
 /**
  * /plateforme — architecture « Épuré » (DESIGN.md §10.4).
@@ -142,29 +146,31 @@ export default function PlateformePage() {
                 <p className="text-body text-fg">
                   {isEn ? (
                     <>
-                      The GTC SaaS platform is accessible <strong className="font-semibold text-emerald">from €1,400 ex-VAT/month</strong>{" "}
-                      (Essential tier, up to 200 assets), then from €2,500 ex-VAT/month for 201 to 2,000 assets. Pricing adapts to your modules and SLA.{" "}
+                      Start with a <strong className="font-semibold text-emerald">free {TRIAL.days}-day trial</strong>, then from{" "}
+                      {eur(ESS[0]!, "en")} ex-VAT per asset per month (Essentials), graduated over 9 bands: {eur(editionMonthly("essentials", 200)!, "en")} ex-VAT/month
+                      for 200 assets, {eur(editionMonthly("essentials", 500)!, "en")} for 500. OT/IoT, connectors and compliance are add-on modules.{" "}
                       <Link href="/tarifs" className="font-semibold text-emerald underline underline-offset-4 hover:text-emerald-hover">
                         View pricing
                       </Link>{" "}
                       - or start with a{" "}
                       <Link href="/tarifs#pilote" className="font-semibold text-emerald underline underline-offset-4 hover:text-emerald-hover">
-                        3-day Pilot at €2,900 ex-VAT
+                        3-day Pilot at {eur(PILOT3.amount!, "en")} ex-VAT
                       </Link>
-                      , refunded on Year 1 if signed within 90 days.
+                      , deductible from a Platform contract signed within 90 days.
                     </>
                   ) : (
                     <>
-                      La plateforme GTC SaaS est accessible <strong className="font-semibold text-emerald">à partir de 1 400 € HT/mois</strong>{" "}
-                      (palier Essentiel, jusqu&apos;à 200 actifs), puis à partir de 2 500 € HT/mois de 201 à 2 000 actifs. La tarification s&apos;affine selon vos modules et votre SLA.{" "}
+                      Commencez par un <strong className="font-semibold text-emerald">essai gratuit de {TRIAL.days} jours</strong>, puis à partir de{" "}
+                      {eur(ESS[0]!, "fr")} HT par actif et par mois (Essentials), dégressif sur 9 tranches : {eur(editionMonthly("essentials", 200)!, "fr")} HT/mois
+                      pour 200 actifs, {eur(editionMonthly("essentials", 500)!, "fr")} pour 500. OT/IoT, connecteurs et conformité sont des modules.{" "}
                       <Link href="/tarifs" className="font-semibold text-emerald underline underline-offset-4 hover:text-emerald-hover">
                         Voir les tarifs
                       </Link>{" "}
                       - ou démarrez par un{" "}
                       <Link href="/tarifs#pilote" className="font-semibold text-emerald underline underline-offset-4 hover:text-emerald-hover">
-                        Pilote 3 j à 2 900 € HT
+                        Pilote 3 j à {eur(PILOT3.amount!, "fr")} HT
                       </Link>
-                      , remboursé sur la 1re année si signature sous 90 j.
+                      , déductible d&apos;un contrat Plateforme signé sous 90 j.
                     </>
                   )}
                 </p>

@@ -1,371 +1,117 @@
 "use client";
 
 /**
- * /tarifs — architecture « Épuré » (DESIGN.md §10.5).
+ * /tarifs — liste de prix publique complète (publiée le 2026-10-06), présentation inspirée de JFrog.
+ * Source unique : src/content/pricing.ts (reports/price-book-gtc.xlsx, feuilles Liste_publique,
+ * Tarif_par_tranche, Collecte_valeur). Ordre de la feuille Page_Tarifs :
  *
- *   1  Hero cream : « Tarifs Waki Box, la seule brique GTC à prix public. »
- *   2  3 briques GTC + « trois portes d'entrée » (fusion du doublon S6d)
- *   3  3 plans Waki Box #plans — grille régulière, comparatif intégré aux cartes
- *   4  Programme pilote Waki Box — section leaf-100
- *   6  Modules complémentaires — tableau
- *   7  Comparateur interactif — carte unique
- *   8  Bundles RSE — 2 cartes
- *   9  Pilote GTC 3 jours #pilote — carte unique (ancre conservée : liée depuis /plateforme)
- *  11  Sur devis #sur-devis — night, 2 cartes éditoriales
- *  12  FAQ — accordéon
- *  13  CTA unique
+ *   En-tête + essai gratuit
+ *   Onglet Plateforme   : éditions + bascule Annuel/Mensuel, tarif par tranche, exemples, calculateur,
+ *                         matrice fonctionnelle, modules à la carte, Pack Conformité et crédits IA
+ *   Onglet Services ITAD: niveaux E1/E2/E3, prix par catégorie et tranche, frais, configurateur,
+ *                         preuve P1–P4, reporting, collecte (règle de valeur, C1–C4, options)
+ *   Onglet Waki Box     : plans, mise en service par borne, offre pilote, options, bundles
+ *   Commun              : support & SLA, Customer Success, services professionnels, conditions,
+ *                         contacter les ventes, FAQ
  */
 
-import CertificateCard from "@/components/visuals/CertificateCard";
-import DashboardMock from "@/components/visuals/DashboardMock";
-import GeometryField from "@/components/visuals/GeometryField";
-import MediaSlot from "@/components/visuals/MediaSlot";
 import { useLocale } from "next-intl";
-import { Link } from "@/i18n/navigation";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Check, Mail } from "lucide-react";
 
-import {
-  ArrowRight,
-  Check,
-  Minus,
-  ChevronDown,
-  Rocket,
-  Users,
-  Building2,
-  ShieldCheck,
-  FileCheck,
-  Search,
-  RefreshCcw,
-  Recycle,
-  Lock,
-  Box,
-  Monitor,
-  Wrench,
-  Star,
-  Zap,
-  Megaphone,
-  GraduationCap,
-  Microscope,
-  Clock,
-} from "lucide-react";
 import CertificationStrip from "@/components/CertificationStrip";
 import CtaSection from "@/components/CtaSection";
 import { ButtonLink, TextLink } from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
-import Pictogram from "@/components/ui/Pictogram";
 import Tag from "@/components/ui/Tag";
 import Table from "@/components/ui/Table";
 import Accordion from "@/components/ui/Accordion";
 import FilterTabs from "@/components/ui/FilterTabs";
 import ItadConfigurator from "@/components/product/ItadConfigurator";
-import { ITAD_TIERS, PLATFORM_TIERS, PRICE_ANCHORS } from "@/content/pricing";
-import { PLATFORM_COMPARISON, ITAD_COMPARISON, WAKIBOX_COMPARISON, type CompGroup } from "@/content/pricing-comparison";
+import {
+  BandTable,
+  BillingToggle,
+  FeatureMatrix,
+  Mark,
+  PlatformCalculator,
+  PriceList,
+  withBilling,
+  type Billing,
+} from "@/components/pricing/PricingBlocks";
+import {
+  AI_CREDITS,
+  COLLECTION_CLASSES,
+  COLLECTION_EXTRAS,
+  COLLECTION_VALUE_RULE,
+  COMPLIANCE_CONTENTS,
+  COMPLIANCE_PACKS,
+  CSM_TIERS,
+  DAY_RATES,
+  EDITIONS,
+  ERASURE_LEVELS,
+  EXAMPLE_QUANTITIES,
+  FREE_TIER,
+  ITAD_FEES,
+  ITAD_GROUPS,
+  MODULES,
+  MULTI_YEAR_DISCOUNT,
+  ONBOARDING_GUARDRAILS,
+  OT_BANDS,
+  OT_MIN_ASSETS,
+  PARCEL_OPTION,
+  PROOF_LEVELS,
+  PS_PACKAGES,
+  REPORTING,
+  SERVICE_CREDITS,
+  SEVERITY_MATRIX,
+  SUPPORT_TIERS,
+  TRIAL,
+  WAKI_ADDONS,
+  WAKI_BUNDLES,
+  WAKI_EXTRA_KIOSK,
+  WAKI_PLANS,
+  WAKI_SETUP_BANDS,
+  editionMonthly,
+  eur,
+  graduatedTotal,
+  itadLine,
+  num,
+  otMonthly,
+  type EditionId,
+} from "@/content/pricing";
+import { PRICING_FAQ } from "@/content/pricing-faq";
 
-/* ── 3 onglets produit (JFrog-inspired, reports/revue-section-gtc.md) ──────── */
+const LAB_PILOT = PS_PACKAGES.find((p) => p.id === "lab")!;
+
+/* ── Onglets produit + liens profonds ─────────────────────────────────────── */
 const PRODUCT_TAB_IDS = ["plateforme", "service-itad", "waki-box"] as const;
 type ProductTabId = (typeof PRODUCT_TAB_IDS)[number];
-/** Ancres historiques conservées : elles sélectionnent l'onglet qui les contient. */
-const LEGACY_HASH_TO_TAB: Record<string, ProductTabId> = {
-  plans: "waki-box",
-  pilote: "plateforme",
+/** Ancres (historiques et nouvelles) qui vivent dans un onglet : elles le sélectionnent. */
+const HASH_TO_TAB: Record<string, ProductTabId> = {
   "sur-devis": "plateforme",
+  editions: "plateforme",
+  "tarif-par-tranche": "plateforme",
+  modules: "plateforme",
+  conformite: "plateforme",
   configurateur: "service-itad",
+  "prix-itad": "service-itad",
+  preuve: "service-itad",
+  collecte: "service-itad",
+  plans: "waki-box",
 };
 function tabFromHash(hash: string): ProductTabId | null {
   const h = hash.replace("#", "");
   if ((PRODUCT_TAB_IDS as readonly string[]).includes(h)) return h as ProductTabId;
-  return LEGACY_HASH_TO_TAB[h] ?? null;
+  return HASH_TO_TAB[h] ?? null;
 }
 
-/* ── Tableau comparatif détaillé, groupé par catégorie (src/content/pricing-comparison.ts) ──
-   En-tête collant desktop (overflow-x réservé au mobile, cf. reports/qa-affichage-gtc.md §2),
-   repliable sur mobile via <details>. */
-function ComparisonTable({
-  caption,
-  columns,
-  highlightIndex,
-  groups,
-  isEn,
-}: {
-  caption: string;
-  columns: string[];
-  highlightIndex?: number;
-  groups: CompGroup[];
-  isEn: boolean;
-}) {
-  const lang = isEn ? "en" : "fr";
-  const total = groups.reduce((n, g) => n + g.rows.length, 0);
-  return (
-    <details open className="group mt-10">
-      <summary className="mb-3 flex cursor-pointer list-none items-center gap-2 text-eyebrow uppercase text-fg-muted lg:pointer-events-none">
-        {caption} · {total} {isEn ? "criteria" : "critères"}
-        <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180 lg:hidden" aria-hidden="true" />
-      </summary>
-      <div className="relative overflow-x-auto rounded-xl border border-track md:overflow-visible">
-        <table className="w-full min-w-[560px] border-collapse text-body-sm">
-          <caption className="sr-only">{caption}</caption>
-          <thead className="sticky top-16 z-10 bg-bg-card xl:top-[72px]">
-            <tr>
-              <th scope="col" className="w-[40%] px-4 py-3 text-left text-eyebrow uppercase text-fg-muted">
-                {isEn ? "Criteria" : "Critère"}
-              </th>
-              {columns.map((name, i) => (
-                <th
-                  key={name}
-                  scope="col"
-                  className={`border-l border-track px-4 py-3 text-left text-eyebrow uppercase ${i === highlightIndex ? "bg-emerald-dim text-emerald" : "text-fg-muted"}`}
-                >
-                  {name}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          {groups.map((g) => (
-            <tbody key={g.title.fr}>
-              <tr className="border-t border-track bg-bg">
-                <th scope="colgroup" colSpan={columns.length + 1} className="px-4 pb-2 pt-5 text-left text-eyebrow uppercase text-emerald">
-                  {g.title[lang]}
-                </th>
-              </tr>
-              {g.rows.map((row) => (
-                <tr key={row.label.fr} className="border-t border-track">
-                  <th scope="row" className="px-4 py-2.5 text-left align-top font-normal text-fg-strong">{row.label[lang]}</th>
-                  {row.values.map((v, i) => {
-                    const val = v[lang];
-                    return (
-                      <td key={i} className={`border-l border-track px-4 py-2.5 align-top ${i === highlightIndex ? "bg-white/[0.02] font-medium text-fg" : "text-fg-strong"}`}>
-                        {val === "✓" ? (
-                          <>
-                            <Check className="h-4 w-4 text-emerald" aria-hidden="true" />
-                            <span className="sr-only">{isEn ? "Included" : "Inclus"}</span>
-                          </>
-                        ) : val === "—" ? (
-                          <>
-                            <Minus className="h-4 w-4 text-fg-muted" aria-hidden="true" />
-                            <span className="sr-only">{isEn ? "Not included" : "Non inclus"}</span>
-                          </>
-                        ) : val === "Sur devis" || val === "On quote" ? (
-                          <span className="text-fg-muted">{val}</span>
-                        ) : (
-                          val
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          ))}
-        </table>
-      </div>
-      <p className="mt-3 text-caption text-fg-muted">
-        {isEn
-          ? "✓ included · — not included · \"On quote\": scoped in the detailed quote. Prices ex-VAT."
-          : "✓ inclus · — non inclus · « Sur devis » : cadré dans le devis détaillé. Prix HT."}
-      </p>
-    </details>
-  );
-}
-
-/* ── Comparateur interactif (carte unique, §10.5-7) ─────────────────────── */
-function PlanComparator({ isEn }: { isEn: boolean }) {
-  function tx<T>(fr: T, en: T): T {
-    return isEn ? en : fr;
-  }
-  const numberLocale = isEn ? "en-GB" : "fr-FR";
-
-  const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
-  const [selectedPlan, setSelectedPlan] = useState<"essentiel" | "confort" | "premium">("confort");
-  const [checkedAddons, setCheckedAddons] = useState<Set<string>>(new Set());
-
-  const plans = {
-    essentiel: { price: 39, setup: 150, name: "Essentiel" },
-    confort: { price: 79, setup: 290, name: "Confort" },
-    premium: { price: 149, setup: 490, name: "Premium" },
-  };
-
-  const addonList = [
-    { slug: "box-supplementaire", name: tx("Borne supplémentaire", "Additional kiosk"), price: 32, recurrence: tx("/mois", "/month"), monthlyContrib: 32 },
-    { slug: "intervention-urgence", name: tx("Intervention urgence", "Emergency intervention"), price: 120, recurrence: tx("one-shot", "one-shot"), monthlyContrib: 0 },
-    { slug: "animation-rse", name: tx("Animation événement RSE", "RSE event facilitation"), price: 750, recurrence: tx("/jour", "/day"), monthlyContrib: 0 },
-    { slug: "rapport-csrd", name: tx("Reporting CSRD ESRS E5", "CSRD ESRS E5 reporting"), price: 990, recurrence: tx("/an", "/year"), monthlyContrib: Math.round(990 / 12) },
-    { slug: "kit-signaletique", name: tx("Kit signalétique RSE", "RSE signage kit"), price: 350, recurrence: tx("one-shot", "one-shot"), monthlyContrib: 0 },
-    { slug: "audit-terrain", name: tx("Audit terrain DEEE", "WEEE field audit"), price: 1800, recurrence: tx("/jour", "/day"), monthlyContrib: 0 },
-    { slug: "formation", name: tx("Formation collaborateurs 2 h", "Employees training 2h"), price: 590, recurrence: tx("one-shot", "one-shot"), monthlyContrib: 0 },
-  ];
-
-  const plan = plans[selectedPlan];
-  const annualFactor = billing === "annual" ? 0.85 : 1;
-  const baseMonthly = Math.round(plan.price * annualFactor);
-  const addonMonthlyContrib = Array.from(checkedAddons).reduce((sum, slug) => {
-    const a = addonList.find((x) => x.slug === slug);
-    return sum + (a ? a.monthlyContrib : 0);
-  }, 0);
-  const totalMonthly = baseMonthly + addonMonthlyContrib;
-  const totalAnnual = totalMonthly * 12;
-
-  const bundle =
-    selectedPlan === "premium"
-      ? { name: tx("Bundle Premium Conformité", "Premium Compliance Bundle"), price: 2990, saving: 740 }
-      : selectedPlan === "confort"
-      ? { name: tx("Bundle Confort RSE Essentiel", "Essential RSE Comfort Bundle"), price: 990, saving: 150 }
-      : null;
-
-  const toggleAddon = (slug: string) => {
-    setCheckedAddons((prev) => {
-      const next = new Set(prev);
-      if (next.has(slug)) next.delete(slug);
-      else next.add(slug);
-      return next;
-    });
-  };
-
-  const perMonth = tx("/mois", "/mo");
-
-  return (
-    <div className="rounded-xl border border-track bg-bg p-6 lg:p-8">
-      {/* Facturation : contrôle segmenté */}
-      <div role="radiogroup" aria-label={tx("Facturation", "Billing")} className="inline-flex rounded-lg border border-track bg-bg-card p-1">
-        {(["monthly", "annual"] as const).map((b) => (
-          <button
-            key={b}
-            type="button"
-            role="radio"
-            aria-checked={billing === b}
-            onClick={() => setBilling(b)}
-            className={`inline-flex h-10 items-center gap-2 rounded-md px-4 text-body-sm font-semibold transition-colors ${
-              billing === b ? "bg-bg text-fg shadow-float" : "text-fg-strong hover:text-fg"
-            }`}
-          >
-            {b === "monthly" ? tx("Mensuel", "Monthly") : tx("Annuel", "Annual")}
-            {b === "annual" && <span className="rounded bg-amber-dim px-2 text-caption font-semibold text-amber">-15%</span>}
-          </button>
-        ))}
-      </div>
-
-      {/* Choix du plan */}
-      <div role="radiogroup" aria-label={tx("Plan Waki Box", "Waki Box plan")} className="mt-6 grid gap-3 sm:grid-cols-3">
-        {(Object.entries(plans) as [keyof typeof plans, (typeof plans)[keyof typeof plans]][]).map(([key, p]) => {
-          const isSelected = selectedPlan === key;
-          return (
-            <button
-              key={key}
-              type="button"
-              role="radio"
-              aria-checked={isSelected}
-              onClick={() => setSelectedPlan(key)}
-              className={`rounded-xl border p-4 text-left transition-colors ${
-                isSelected ? "border-emerald bg-white/[0.03]" : "border-track bg-bg hover:border-track-strong"
-              }`}
-            >
-              <span className="flex items-center justify-between gap-2">
-                <span className="text-eyebrow uppercase text-fg-muted">Plan {p.name}</span>
-                {key === "confort" && <Tag variant="brand">{tx("Le plus choisi", "Most chosen")}</Tag>}
-              </span>
-              <span className="mt-2 block font-display text-display-sm tabular-nums text-emerald">
-                {billing === "annual" ? Math.round(p.price * 0.85) : p.price}
-                <span className="ml-1 font-sans text-body-sm text-fg-muted">€ HT{perMonth}</span>
-              </span>
-              {billing === "annual" && (
-                <span className="mt-1 block text-caption text-fg-muted">
-                  {tx(
-                    `soit ${Math.round(p.price * 0.85 * 12).toLocaleString(numberLocale)} € HT/an`,
-                    `i.e. €${Math.round(p.price * 0.85 * 12).toLocaleString(numberLocale)} ex-VAT/year`
-                  )}
-                </span>
-              )}
-              <span className="mt-1 block text-caption text-fg-muted">
-                {tx("Mise en service", "Setup")} : {p.setup} € HT
-              </span>
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
-        {/* Modules à cocher */}
-        <fieldset>
-          <legend className="text-eyebrow uppercase text-fg-muted">{tx("Modules à ajouter (optionnel)", "Add-on modules (optional)")}</legend>
-          <div className="mt-3 divide-y divide-track rounded-xl border border-track">
-            {addonList.map((addon) => {
-              const checked = checkedAddons.has(addon.slug);
-              return (
-                <label key={addon.slug} className={`flex cursor-pointer items-start gap-3 px-4 py-3 transition-colors ${checked ? "bg-white/[0.03]" : "hover:bg-white/[0.04]"}`}>
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={() => toggleAddon(addon.slug)}
-                    className="mt-0.5 h-5 w-5 flex-shrink-0 cursor-pointer accent-emerald"
-                  />
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-body-sm font-medium text-fg">{addon.name}</span>
-                    <span className="block text-caption text-fg-muted">
-                      <span className="font-semibold tabular-nums text-fg-strong">{addon.price.toLocaleString(numberLocale)} € HT</span>{" "}
-                      {addon.recurrence === "one-shot" ? <span className="italic">{tx("one-shot", "one-time")}</span> : addon.recurrence}
-                    </span>
-                  </span>
-                </label>
-              );
-            })}
-          </div>
-        </fieldset>
-
-        {/* Total dynamique */}
-        <div className="space-y-4">
-          <div className="rounded-xl bg-bg-card p-6 text-fg" aria-live="polite">
-            <p className="text-eyebrow uppercase text-fg-muted">{tx("Estimation mensuelle", "Monthly estimate")}</p>
-            <dl className="mt-4 space-y-2 border-b border-track pb-4 text-body-sm">
-              <div className="flex justify-between gap-4">
-                <dt className="text-fg-muted">Waki Box {plan.name}</dt>
-                <dd className="tabular-nums">{baseMonthly} € HT{perMonth}</dd>
-              </div>
-              {addonMonthlyContrib > 0 && (
-                <div className="flex justify-between gap-4">
-                  <dt className="text-fg-muted">{tx("Modules récurrents", "Recurring modules")}</dt>
-                  <dd className="tabular-nums">+{addonMonthlyContrib} € HT{perMonth}</dd>
-                </div>
-              )}
-            </dl>
-            <div className="mt-4 flex items-end justify-between gap-4">
-              <p className="text-caption text-fg-muted">{tx("Total récurrent", "Recurring total")}</p>
-              <p className="font-display text-display-sm tabular-nums text-emerald">
-                {totalMonthly}
-                <span className="ml-1 font-sans text-body-sm text-fg-muted">€ HT{perMonth}</span>
-              </p>
-            </div>
-            {billing === "annual" && (
-              <p className="mt-1 text-right text-caption text-fg-muted">
-                {tx("soit", "i.e.")} {totalAnnual.toLocaleString(numberLocale)} € HT{tx("/an", "/year")}
-              </p>
-            )}
-            <div className="mt-4 flex justify-between gap-4 border-t border-track pt-4 text-body-sm">
-              <span className="text-fg-muted">{tx("Mise en service (one-shot)", "Setup (one-time)")}</span>
-              <span className="tabular-nums">{plan.setup} € HT</span>
-            </div>
-          </div>
-
-          {bundle && (
-            <div className="rounded-xl border border-track bg-white/[0.03] p-4">
-              <p className="text-eyebrow uppercase text-fg-muted">{tx("Bundle suggéré", "Suggested bundle")}</p>
-              <p className="mt-1 text-body-sm font-semibold text-fg">{bundle.name}</p>
-              <p className="mt-2 text-heading-md tabular-nums text-emerald">
-                {bundle.price.toLocaleString(numberLocale)} € HT <span className="text-caption font-normal text-fg-muted">one-shot</span>
-              </p>
-              <p className="mt-1 text-caption font-semibold text-emerald">
-                {tx(`Économie : ${bundle.saving} €`, `Saving: €${bundle.saving}`)} (-{Math.round((bundle.saving / (bundle.price + bundle.saving)) * 100)}%)
-              </p>
-            </div>
-          )}
-
-          <ButtonLink href={`/reserver?offre=waki-box-${selectedPlan}`} size="lg" fullWidth>
-            {tx("Réserver Waki Box", "Book Waki Box")} {plan.name}
-          </ButtonLink>
-        </div>
-      </div>
-    </div>
-  );
-}
+const Bullet = ({ children }: { children: React.ReactNode }) => (
+  <li className="flex items-start gap-2 text-body-sm text-fg-strong">
+    <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
+    <span>{children}</span>
+  </li>
+);
 
 export default function TarifsPage() {
   const locale = useLocale();
@@ -374,35 +120,34 @@ export default function TarifsPage() {
   function tx<T>(fr: T, en: T): T {
     return isEn ? en : fr;
   }
+  const e = (n: number) => eur(n, lang);
+  const HT = tx("HT", "ex-VAT");
 
-  /* ── Onglets produit : filtrent la page, URL hash pour les liens profonds ──── */
-  // Valeur initiale identique au rendu serveur : lire le hash ici créait un écart d'hydratation
-  // (attributs `hidden` du serveur conservés) ; l'effet ci-dessous bascule l'onglet après montage.
+  /* ── Onglets : valeur initiale identique au rendu serveur (pas d'écart d'hydratation) ── */
   const [activeTab, setActiveTab] = useState<ProductTabId>("plateforme");
+  const pendingAnchor = useRef<string | null>(null);
+  const [anchorTick, setAnchorTick] = useState(0);
   useEffect(() => {
     const onHash = () => {
-      const next = tabFromHash(window.location.hash);
-      if (!next) return;
-      setActiveTab(next);
-      // La cible d'ancre (ex. #configurateur, #plans) n'est visible qu'une fois l'onglet affiché :
-      // le saut natif du navigateur a déjà eu lieu, on le refait après le rendu (effet ci-dessous).
       const id = window.location.hash.slice(1);
-      if (id && !(PRODUCT_TAB_IDS as readonly string[]).includes(id)) pendingAnchor.current = id;
+      if (!id) return;
+      const next = tabFromHash(window.location.hash);
+      if (next) setActiveTab(next);
+      // La cible n'est visible qu'après le rendu de l'onglet ; le routeur remet aussi le défilement
+      // en haut après l'hydratation : on refait le saut une fois la cible affichée.
+      if (!(PRODUCT_TAB_IDS as readonly string[]).includes(id)) pendingAnchor.current = id;
       setAnchorTick((n) => n + 1);
     };
     onHash();
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
-  const pendingAnchor = useRef<string | null>(null);
-  const [anchorTick, setAnchorTick] = useState(0);
   useEffect(() => {
     const id = pendingAnchor.current;
     if (!id) return;
     const el = document.getElementById(id);
-    if (!el || el.offsetParent === null) return; // onglet pas encore affiché : on attend le rendu suivant
+    if (!el || el.offsetParent === null) return;
     pendingAnchor.current = null;
-    // Différé : le routeur remet le défilement en haut juste après l'hydratation.
     const t = window.setTimeout(() => document.getElementById(id)?.scrollIntoView(), 120);
     return () => window.clearTimeout(t);
   }, [activeTab, anchorTick]);
@@ -410,1277 +155,1000 @@ export default function TarifsPage() {
     setActiveTab(id as ProductTabId);
     if (typeof window !== "undefined") window.history.replaceState(null, "", `#${id}`);
   }, []);
-  const productTabItems = [
+
+  const [billing, setBilling] = useState<Billing>("annual");
+  const perMonth = tx("/mois", "/month");
+
+  /* ── Éditions : contenu cumulatif (Bon / Mieux / Meilleur) ─────────────── */
+  const editionCards: Record<EditionId, { audience: string; cumulative: string | null; bullets: string[]; cta: string; href: string }> = {
+    essentials: {
+      audience: tx("Inventaire et fin de support, jusqu'à 2 000 actifs", "Inventory and end-of-support, up to 2,000 assets"),
+      cumulative: null,
+      bullets: tx(
+        ["Inventaire IT : postes, serveurs, réseau, mobiles", "Import CSV / API générique", "Indicateurs âge et fin de support (EoL / EoS)", "5 utilisateurs nommés", "Résidence des données dans l'UE", "Support Standard et CSM mutualisé inclus"],
+        ["IT inventory: endpoints, servers, network, mobile", "CSV import / generic API", "Age and end-of-life / end-of-support indicators", "5 named users", "EU data residency", "Standard support and pooled CSM included"]
+      ),
+      cta: tx("Démarrer l'essai gratuit", "Start the free trial"),
+      href: "/reserver?offre=essai-asset-management",
+    },
+    professional: {
+      audience: tx("Renouvellements et intégration ERP / ITSM", "Renewals and ERP / ITSM integration"),
+      cumulative: tx("Tout Essentials, plus :", "Everything in Essentials, plus:"),
+      bullets: tx(
+        ["Planification des renouvellements", "1 connecteur natif SAP, Oracle ou ServiceNow inclus", "25 utilisateurs nommés, SSO SAML", "Export du journal d'audit vers votre SIEM", "Jusqu'à 50 000 actifs"],
+        ["Renewal planning", "1 native SAP, Oracle or ServiceNow connector included", "25 named users, SAML SSO", "Audit log export to your SIEM", "Up to 50,000 assets"]
+      ),
+      cta: tx("Parler à un commercial", "Talk to sales"),
+      href: "/reserver?offre=plateforme-professional",
+    },
+    enterprise: {
+      audience: tx("Grands parcs, prévision et gouvernance", "Large fleets, forecasting and governance"),
+      cumulative: tx("Tout Professional, plus :", "Everything in Professional, plus:"),
+      bullets: tx(
+        ["Risque de panne et prévision budgétaire", "Jusqu'à 5 connecteurs natifs inclus", "Utilisateurs illimités, SSO + SCIM", "Environnement sandbox", "Localisation contractuelle des données", "CSM dédié inclus si ARR ≥ 60 000 €"],
+        ["Failure risk and budget forecasting", "Up to 5 native connectors included", "Unlimited users, SSO + SCIM", "Sandbox environment", "Contractual data location", "Dedicated CSM included if ARR ≥ €60,000"]
+      ),
+      cta: tx("Parler à un commercial", "Talk to sales"),
+      href: "/reserver?offre=plateforme-enterprise",
+    },
+  };
+  const editionMeta = (id: EditionId) =>
+    ({
+      essentials: tx("Minimum 100 actifs facturés · plafond 2 000 actifs", "Minimum 100 assets billed · capped at 2,000 assets"),
+      professional: tx("Minimum 2 500 € HT/mois · jusqu'à 50 000 actifs", "Minimum €2,500 ex-VAT/month · up to 50,000 assets"),
+      enterprise: tx("Minimum 2 000 actifs facturés · au-delà de 50 000 : nous contacter", "Minimum 2,000 assets billed · above 50,000: contact us"),
+    })[id];
+  const editionExample = (id: EditionId) => {
+    const q = id === "enterprise" ? 2000 : id === "professional" ? 500 : 200;
+    const m = editionMonthly(id, q)!;
+    return tx(`${num(q, lang)} actifs : ${e(Math.round(withBilling(m, billing)))} HT/mois`, `${num(q, lang)} assets: ${e(Math.round(withBilling(m, billing)))} ex-VAT/month`);
+  };
+
+  /* ── Exemples de totaux mensuels ───────────────────────────────────────── */
+  const exampleRows = EXAMPLE_QUANTITIES.map((q) => {
+    const cell = (v: number | null) => (v == null ? <span className="text-fg-muted">—</span> : e(Math.round(withBilling(v, billing))));
+    const ess = editionMonthly("essentials", q);
+    const pro = editionMonthly("professional", q);
+    const ent = q >= 2000 ? editionMonthly("enterprise", q) : null;
+    const otv = q >= OT_MIN_ASSETS ? otMonthly(q) : null;
+    const ws = graduatedTotal(q, itadLine("ws-e1").bands)!;
+    return [
+      num(q, lang),
+      cell(ess),
+      cell(pro),
+      cell(ent),
+      cell(otv),
+      <span key="ws" className="whitespace-nowrap">
+        {e(ws)} <span className="text-caption text-fg-muted">({eur(ws / q, lang, { decimals: true })}/{tx("poste", "device")})</span>
+      </span>,
+    ];
+  });
+
+  /* ── Waki Box ──────────────────────────────────────────────────────────── */
+  const wakiFeatures: Record<string, string[]> = {
+    essentiel: tx(
+      ["1 borne Waki Box installée et configurée", "Plateforme de suivi, 1 utilisateur", "Rapport trimestriel de flux DEEE", "Support par courriel"],
+      ["1 Waki Box kiosk installed and configured", "Monitoring platform, 1 user", "Quarterly WEEE flow report", "Email support"]
+    ),
+    confort: tx(
+      ["2 bornes Waki Box incluses", "Plateforme complète, 5 utilisateurs", "Rapport mensuel + export CSRD ESRS E5", "Alertes de remplissage en temps réel"],
+      ["2 Waki Box kiosks included", "Full platform, 5 users", "Monthly report + CSRD ESRS E5 export", "Real-time fill alerts"]
+    ),
+    premium: tx(
+      ["4 bornes incluses, multi-sites", "Intégration ERP / SIRH par API", "Responsable de compte dédié", "Mise en service dégressive dès 5 bornes"],
+      ["4 kiosks included, multi-site", "ERP / HRIS integration via API", "Dedicated account manager", "Setup price decreases from 5 kiosks"]
+    ),
+  };
+  const wakiAudience: Record<string, string> = {
+    essentiel: tx("TPE / PME, un site", "Small business, one site"),
+    confort: tx("PME / ETI, un ou deux espaces", "Mid-market, one or two areas"),
+    premium: tx("ETI / grands comptes, multi-sites", "Enterprise, multi-site"),
+  };
+
+  /* ── FAQ (src/content/pricing-faq.ts, partagée avec le JSON-LD) ───────── */
+  const faqItems = PRICING_FAQ[lang];
+
+  const tabItems = [
     { id: "plateforme", label: tx("Plateforme", "Platform") },
-    { id: "service-itad", label: tx("Service ITAD", "ITAD Service") },
+    { id: "service-itad", label: tx("Services ITAD et collecte", "ITAD services and pick-up") },
     { id: "waki-box", label: "Waki Box" },
   ];
-
-  /* ── 3 briques GTC ─────────────────────────────────────────────────────── */
-  const briques = [
-    {
-      icon: Monitor,
-      tag: tx("Brique 1", "Brick 1"),
-      name: tx("Plateforme GTC SaaS", "GTC SaaS Platform"),
-      pitch: tx(
-        "Console unifiée d'inventaire, audit, effacement et reporting CSRD. Tarification adaptée au volume d'actifs et au niveau d'intégration.",
-        "Unified console for inventory, audit, erasure and CSRD reporting. Pricing scales with asset volume and integration depth."
-      ),
-      price: PRICE_ANCHORS.platform[lang],
-      subline: tx(
-        "Essentiel jusqu'à 200 actifs, Standard de 201 à 2 000, Grand compte au-delà : grille complète plus bas.",
-        "Essential up to 200 assets, Standard from 201 to 2,000, Enterprise beyond: full grid below."
-      ),
-      ctaLabel: tx("Voir la plateforme", "Explore the platform"),
-      ctaHref: "/plateforme",
-      photo: "/photos/hp-datacenter-green.jpg",
-      photoAlt: tx(
-        "Salle serveurs sécurisée : Plateforme GTC SaaS",
-        "Secure server room : GTC SaaS platform"
-      ),
-    },
-    {
-      icon: Box,
-      tag: tx("Brique 2 (tarif complet)", "Brick 2 (full pricing)"),
-      name: "Waki Box",
-      pitch: tx(
-        "Le suivi en temps réel de vos flux DEEE : bornes connectées, pesée, alertes et reporting prêt pour la CSRD. Vous payez la mesure et la preuve, pas l'enlèvement. Trois plans publics, un programme pilote.",
-        "Real-time tracking of your WEEE flows: connected kiosks, weighing, alerts and CSRD-ready reporting. You pay for measurement and proof, not for pick-up. Three public plans, one pilot programme."
-      ),
-      price: tx("Dès 39 € HT/mois", "From €39 ex-VAT/month"),
-      ctaLabel: tx("Voir les plans Waki Box", "See Waki Box plans"),
-      ctaHref: "#plans",
-      featured: true,
-      photo: "/photos/ewaste-recycling.jpg",
-      photoAlt: tx(
-        "Collecte DEEE connectée en entreprise avec Waki Box",
-        "Connected WEEE collection at a workplace with Waki Box"
-      ),
-    },
-    {
-      icon: Wrench,
-      tag: tx("Brique 3", "Brick 3"),
-      name: tx("Service ITAD", "ITAD Service"),
-      pitch: tx(
-        "Audit de parc, effacement selon NIST 800-88, reconditionnement, recyclage DEEE réglementaire. Mission cadrée selon volume, sécurité et conformité.",
-        "Fleet audit, NIST 800-88 erasure, refurbishment, regulatory WEEE recycling. Engagement scoped by volume, security and compliance."
-      ),
-      price: PRICE_ANCHORS.itad[lang],
-      subline: tx(
-        "Serveur, baie ou équipement complexe : à partir de 55 € HT/unité. Prix dégressif selon volume et logistique.",
-        "Server, rack or complex equipment: from €55 ex-VAT/unit. Tiered pricing based on volume and logistics."
-      ),
-      ctaLabel: tx("Voir le service ITAD", "Explore the ITAD service"),
-      ctaHref: "/services/recyclage-deee",
-      photo: "/photos/hp-atelier-itad.jpg",
-      photoAlt: tx(
-        "Atelier de reconditionnement et effacement attesté",
-        "Refurbishment and attested erasure workshop"
-      ),
-    },
+  const quickLinks = [
+    { href: "#editions", label: tx("Éditions", "Editions") },
+    { href: "#modules", label: tx("Modules", "Modules") },
+    { href: "#prix-itad", label: tx("Services ITAD", "ITAD services") },
+    { href: "#collecte", label: tx("Collecte", "Pick-up") },
+    { href: "#plans", label: "Waki Box" },
+    { href: "#support", label: tx("Support et SLA", "Support & SLA") },
+    { href: "#services-pro", label: tx("Services pro", "Professional services") },
+    { href: "#faq", label: "FAQ" },
   ];
 
-  /* ── Plans data ────────────────────────────────────────────────────────── */
-  const plans = [
-    {
-      slug: "waki-box-essentiel",
-      num: "01",
-      name: "Essentiel",
-      icon: Rocket,
-      audience: tx(
-        "TPE / PME, 10 à 50 collaborateurs",
-        "SMB, 10 to 50 employees"
-      ),
-      price: "39",
-      setup: "150",
-      engagement: tx("12 mois", "12 months"),
-      tagline: tx(
-        "Une seule borne, une seule console, un premier pas vers la traçabilité DEEE sans complexité.",
-        "One kiosk, one console, a first step toward WEEE traceability without complexity."
-      ),
-      photo: "/photos/server-technician.jpg",
-      photoAlt: tx(
-        "Technicien IT vérifiant un équipement, plan Essentiel",
-        "IT technician checking equipment : Essential plan"
-      ),
-      features: tx(
-        [
-          "1 borne Waki Box installée et configurée",
-          "Plateforme de suivi basique, 1 utilisateur",
-          "Rapport trimestriel de flux DEEE",
-          "Support par courriel : J+2",
-        ],
-        [
-          "1 Waki Box kiosk installed and configured",
-          "Basic monitoring platform, 1 user",
-          "Quarterly WEEE flow report",
-          "Email support : D+2",
-        ]
-      ),
-    },
-    {
-      slug: "waki-box-confort",
-      num: "02",
-      name: "Confort",
-      icon: Users,
-      popular: true,
-      audience: tx(
-        "PME / ETI, 50 à 300 collaborateurs",
-        "Mid-market, 50 to 300 employees"
-      ),
-      price: "79",
-      setup: "290",
-      engagement: tx("12 mois", "12 months"),
-      tagline: tx(
-        "Jusqu'à trois bornes, cinq utilisateurs, des alertes temps réel et un export CSRD prêt à signer.",
-        "Up to three kiosks, five users, real-time alerts and a CSRD export ready to sign."
-      ),
-      photo: "/photos/hp-dsi-strategy.jpg",
-      photoAlt: tx(
-        "DSI consulte la console Waki Box, plan Confort",
-        "CIO reviewing the Waki Box console : Comfort plan"
-      ),
-      features: tx(
-        [
-          "Jusqu'à 3 bornes Waki Box",
-          "Plateforme complète, 5 utilisateurs",
-          "Rapport mensuel + export CSRD ESRS E5",
-          "Alertes de remplissage en temps réel",
-          "Support prioritaire : J+1",
-        ],
-        [
-          "Up to 3 Waki Box kiosks",
-          "Full platform, 5 users",
-          "Monthly report + CSRD ESRS E5 export",
-          "Real-time fill alerts",
-          "Priority support : D+1",
-        ]
-      ),
-    },
-    {
-      slug: "waki-box-premium",
-      num: "03",
-      name: "Premium",
-      icon: Building2,
-      audience: tx(
-        "ETI / grands comptes, 300+ collaborateurs",
-        "Enterprise, 300+ employees"
-      ),
-      price: tx("dès 149", "from 149"),
-      setup: tx("490 / borne", "490 / kiosk"),
-      engagement: tx("24 mois", "24 months"),
-      tagline: tx(
-        "Bornes illimitées, multi-sites, un responsable de compte dédié, une intégration ERP/SIRH par API et un délai de collecte garanti à 48 heures : pour les organisations qui ne transigent pas.",
-        "Unlimited kiosks, multi-site, a dedicated account manager, ERP/HRIS integration via API and a 48-hour collection SLA, for organisations that don't compromise."
-      ),
-      photo: "/photos/tech-datacenter.jpg",
-      photoAlt: tx(
-        "Équipe IT pilotant un parc multi-sites, plan Premium",
-        "IT team operating a multi-site fleet : Premium plan"
-      ),
-      features: tx(
-        [
-          "Bornes illimitées, multi-sites",
-          "Responsable de compte dédié",
-          "Intégration ERP / SIRH par API",
-          "Délai de collecte 48 h garanti",
-          "Support dédié, réponse 4 h",
-        ],
-        [
-          "Unlimited kiosks, multi-site",
-          "Dedicated account manager",
-          "ERP / HRIS integration via API",
-          "48h collection SLA guaranteed",
-          "Dedicated support, 4h SLA",
-        ]
-      ),
-    },
-  ];
-
-  /* ── Add-ons ───────────────────────────────────────────────────────────── */
-  const addons = [
-    {
-      slug: "box-supplementaire",
-      icon: Box,
-      recurrence: tx("mensuel", "monthly"),
-      name: tx("Borne supplémentaire", "Additional kiosk"),
-      desc: tx(
-        "Box DEEE additionnelle pour étendre la couverture sur un site multi-bureaux ou un volume croissant. Sans engagement supplémentaire.",
-        "Additional WEEE kiosk to extend coverage across a multi-office site or growing volume. No extra commitment."
-      ),
-      price: tx("32 € HT/mois", "€32 ex-VAT/month"),
-    },
-    {
-      slug: "intervention-urgence",
-      icon: Zap,
-      recurrence: tx("one-shot", "one-time"),
-      name: tx("Intervention urgence", "Emergency intervention"),
-      desc: tx(
-        "Collecte ponctuelle non programmée à la demande, dans un délai de 5 jours ouvrés. Idéal pour les pics d'activité ou les déménagements.",
-        "Unscheduled on-demand collection, within 5 business days. Ideal for activity peaks or relocations."
-      ),
-      price: tx("120 € HT", "€120 ex-VAT"),
-    },
-    {
-      slug: "animation-rse",
-      icon: Megaphone,
-      recurrence: tx("par jour", "per day"),
-      name: tx("Animation événement RSE", "RSE event facilitation"),
-      desc: tx(
-        "Atelier de sensibilisation collaborateurs sur le tri DEEE et l'économie circulaire. Animé par un expert GreenTechCycle.",
-        "Employee awareness workshop on WEEE sorting and the circular economy. Facilitated by a GreenTechCycle expert."
-      ),
-      price: tx("750 € HT/jour", "€750 ex-VAT/day"),
-    },
-    {
-      slug: "rapport-csrd-esrs",
-      icon: FileCheck,
-      recurrence: tx("annuel", "annual"),
-      name: tx("Reporting CSRD ESRS E5", "CSRD ESRS E5 reporting"),
-      desc: tx(
-        "Export annuel prêt audit, conforme au standard ESRS E5 (économie circulaire et utilisation des ressources). Livrable prêt à intégrer au rapport groupe.",
-        "Audit-ready annual export, compliant with ESRS E5 (circular economy and resource use). Deliverable ready for the group report."
-      ),
-      price: tx("990 € HT/an", "€990 ex-VAT/year"),
-    },
-    {
-      slug: "kit-signaletique-rse",
-      icon: Star,
-      recurrence: tx("one-shot", "one-time"),
-      name: tx("Kit signalétique RSE", "RSE signage kit"),
-      desc: tx(
-        "Pack one-shot d'affiches, stickers et supports de communication pour valoriser votre démarche auprès des collaborateurs et visiteurs.",
-        "One-shot pack of posters, stickers and communication materials to promote your approach to employees and visitors."
-      ),
-      price: tx("350 € HT", "€350 ex-VAT"),
-    },
-    {
-      slug: "audit-terrain-deee",
-      icon: Search,
-      recurrence: tx("par jour", "per day"),
-      name: tx("Audit terrain DEEE", "WEEE field audit"),
-      desc: tx(
-        "Audit sur site par un consultant senior, analyse des flux DEEE, recommandations de mise en conformité, livrable structuré.",
-        "On-site audit by a senior consultant, WEEE flow analysis, compliance recommendations, structured deliverable."
-      ),
-      price: tx("1 800 € HT/jour", "€1,800 ex-VAT/day"),
-    },
-    {
-      slug: "formation-collaborateurs",
-      icon: GraduationCap,
-      recurrence: tx("par session", "per session"),
-      name: tx("Formation collaborateurs", "Employee training"),
-      desc: tx(
-        "Session présentielle ou visio, jusqu'à 15 participants, certificat de présence, éligible OPCO. Durée : 2 heures.",
-        "In-person or remote session, up to 15 participants, attendance certificate, OPCO-eligible. Duration: 2 hours."
-      ),
-      price: tx("590 € HT", "€590 ex-VAT"),
-    },
-  ];
-
-  /* ── Plateforme + ITAD sur devis (cartes éditoriales) ──────────────────── */
-  const devisCards = [
-    {
-      slug: "plateforme",
-      kicker: tx("Plateforme GTC SaaS", "GTC SaaS Platform"),
-      priceBadge: tx("Dès 1 400 € HT/mois", "From €1,400 ex-VAT/month"),
-      tiers: PLATFORM_TIERS,
-      title: tx(
-        "Une console unifiée, une intégration au cas par cas.",
-        "A unified console, integrated case by case."
-      ),
-      body: tx(
-        "Trois paliers selon le nombre d'actifs gérés. Dans les paliers Standard et Grand compte, le prix s'affine selon les utilisateurs concurrents, les connecteurs ERP/SIRH activés et le niveau de SLA exigé.",
-        "Three tiers based on the number of managed assets. In the Standard and Enterprise tiers, the price adapts to concurrent users, active ERP/HRIS connectors and the required SLA."
-      ),
-      bullets: tx(
-        [
-          "Inventaire IT, jusqu'à 50 000 actifs unitaires",
-          "Connecteurs ServiceNow, SAP, Workday, Octopus",
-          "Disponibilité 99,9 %, hébergement souverain",
-          "Conformité RGPD native, journal d'audit immuable",
-        ],
-        [
-          "IT inventory, up to 50,000 individual assets",
-          "ServiceNow, SAP, Workday, Octopus connectors",
-          "99.9% availability, sovereign hosting",
-          "Native GDPR compliance, tamper-proof audit log",
-        ]
-      ),
-      photo: "/photos/hp-rssi-boardroom.jpg",
-      photoAlt: tx(
-        "Salle de décision stratégique : étude personnalisée Plateforme GTC",
-        "Strategic decision room : bespoke GTC Platform study"
-      ),
-      icon: Monitor,
-      ctaLabel: tx("Demander un devis Plateforme", "Request a Platform quote"),
-      ctaHref: "/reserver?offre=demo-conseil&brique=plateforme",
-      secondaryLabel: tx("Voir la plateforme", "Explore the platform"),
-      secondaryHref: "/plateforme",
-    },
-    {
-      slug: "itad",
-      kicker: tx("Service ITAD", "ITAD Service"),
-      priceBadge: tx("Dès 19 € HT/poste", "From €19 ex-VAT/device"),
-      tiers: ITAD_TIERS,
-      title: tx(
-        "Audit, effacement, valorisation, recyclage. Cadré sur mesure.",
-        "Audit, erasure, value recovery, recycling. Scoped to fit."
-      ),
-      body: tx(
-        "Deux prix unitaires publics, effacement selon NIST 800-88 r2 compris. Le total de la mission dépend du volume, du niveau de sécurité exigé et des contraintes réglementaires sectorielles : le devis détaillé vous est remis sous 48 heures.",
-        "Two public unit prices, NIST 800-88 r2 erasure included. The total for an engagement depends on volume, the required security level and sector-specific regulatory constraints: the detailed quote is delivered within 48 hours."
-      ),
-      bullets: tx(
-        [
-          "Audit et inventaire, cartographie exhaustive",
-          "Effacement selon NIST 800-88 r2 unitaire",
-          "Reconditionnement et revente, valeur récupérée",
-          "Recyclage DEEE réglementaire avec bordereaux",
-        ],
-        [
-          "Audit and inventory, exhaustive mapping",
-          "Per-unit NIST 800-88 r2 erasure",
-          "Refurbishment and resale, value recovered",
-          "Regulatory WEEE recycling with tracking slips",
-        ]
-      ),
-      photo: "/photos/service-reconditionnement.jpg",
-      photoAlt: tx(
-        "Atelier de reconditionnement et valorisation ITAD",
-        "ITAD refurbishment and value recovery workshop"
-      ),
-      icon: Wrench,
-      ctaLabel: tx("Demander un devis ITAD", "Request an ITAD quote"),
-      ctaHref: "/reserver?offre=demo-conseil&brique=itad",
-      secondaryLabel: tx("Voir le service ITAD", "Explore the ITAD service"),
-      secondaryHref: "/services/recyclage-deee",
-    },
-  ];
-
-  /* ── 3 cartes paliers Plateforme, message cumulatif (JFrog "Everything in X, plus:") ──
-     Contenu dérivé de l'existant : les 4 bullets devisCards[plateforme] + la phrase
-     « le prix s'affine selon les utilisateurs concurrents, les connecteurs ERP/SIRH
-     activés et le niveau de SLA exigé » (ci-dessus), répartie par palier plutôt que
-     laissée générique — aucune fonctionnalité nouvelle inventée. */
-  const platformTierCards = [
-    {
-      id: "essentiel",
-      name: tx("Essentiel", "Essential"),
-      price: PLATFORM_TIERS[0].price[lang],
-      scope: PLATFORM_TIERS[0].scope[lang],
-      cumulativeLabel: null as string | null,
-      bullets: tx(
-        [
-          "Inventaire IT jusqu'à 200 actifs",
-          "Connecteurs ServiceNow, SAP, Workday, Octopus",
-          "Disponibilité 99,9 %, hébergement souverain",
-          "Conformité RGPD native, journal d'audit immuable",
-        ],
-        [
-          "IT inventory up to 200 assets",
-          "ServiceNow, SAP, Workday, Octopus connectors",
-          "99.9% availability, sovereign hosting",
-          "Native GDPR compliance, tamper-proof audit log",
-        ]
-      ),
-      ctaLabel: tx("Réserver une démo", "Book a demo"),
-      ctaHref: "/reserver?offre=plateforme-essentiel",
-      popular: false,
-    },
-    {
-      id: "standard",
-      name: "Standard",
-      price: PLATFORM_TIERS[1].price[lang],
-      scope: PLATFORM_TIERS[1].scope[lang],
-      cumulativeLabel: tx("Tout Essentiel, plus :", "Everything in Essential, plus:"),
-      bullets: tx(
-        ["Inventaire jusqu'à 2 000 actifs", "Utilisateurs concurrents élargis", "Connecteurs ERP/SIRH activables"],
-        ["Inventory up to 2,000 assets", "Expanded concurrent users", "ERP/HRIS connectors activatable"]
-      ),
-      ctaLabel: tx("Réserver une démo", "Book a demo"),
-      ctaHref: "/reserver?offre=plateforme-standard",
-      popular: true,
-    },
-    {
-      id: "grand-compte",
-      name: tx("Grand compte", "Enterprise"),
-      price: PLATFORM_TIERS[2].price[lang],
-      scope: PLATFORM_TIERS[2].scope[lang],
-      cumulativeLabel: tx("Tout Standard, plus :", "Everything in Standard, plus:"),
-      bullets: tx(
-        ["Au-delà de 2 000 actifs, tarif dégressif par actif", "Niveau de SLA sur mesure", "Devis détaillé sous 48 heures"],
-        ["Beyond 2,000 assets, tiered per-asset pricing", "SLA tailored to your needs", "Detailed quote within 48 hours"]
-      ),
-      ctaLabel: tx("Parler à un commercial", "Talk to sales"),
-      ctaHref: "/reserver?offre=demo-conseil&brique=plateforme",
-      popular: false,
-    },
-  ];
-
-  /* ── 2 cartes paliers Service ITAD (poste / équipement complexe) ──────────── */
-  const itadTierCards = [
-    {
-      id: "poste",
-      name: tx("Poste de travail", "Workstation"),
-      price: ITAD_TIERS[0].price[lang],
-      scope: ITAD_TIERS[0].scope[lang],
-      bullets: tx(
-        ["Audit et inventaire inclus", "Effacement NIST 800-88 r2 unitaire", "Certificat d'effacement nominatif"],
-        ["Audit and inventory included", "Per-unit NIST 800-88 r2 erasure", "Named erasure certificate"]
-      ),
-    },
-    {
-      id: "complexe",
-      name: tx("Serveur et équipement complexe", "Server and complex equipment"),
-      price: ITAD_TIERS[1].price[lang],
-      scope: ITAD_TIERS[1].scope[lang],
-      bullets: tx(
-        ["Tout Poste de travail, plus :", "Serveurs, baies et équipements complexes", "Décommissionnement de datacenter"],
-        ["Everything in Workstation, plus:", "Servers, racks and complex equipment", "Datacentre decommissioning"]
-      ),
-    },
-  ];
-  /* ── ITAD services list (preserved as quick navigation) ────────────────── */
-  const itadServices = [
-    { slug: "audit-inventaire", icon: Search, name: tx("Audit et inventaire de parc", "Fleet audit and inventory") },
-    { slug: "effacement-securise", icon: Lock, name: tx("Effacement sécurisé", "Secure erasure") },
-    { slug: "reconditionnement-valorisation", icon: RefreshCcw, name: tx("Reconditionnement et valorisation", "Refurbishment and value recovery") },
-    { slug: "recyclage-deee", icon: Recycle, name: tx("Recyclage DEEE réglementaire", "Regulatory WEEE recycling") },
-    { slug: "cybersecurite", icon: ShieldCheck, name: tx("Cybersécurité ITAD", "ITAD cybersecurity") },
-  ];
-
-  /* ── FAQ ────────────────────────────────────────────────────────────────── */
-  const faqItems = tx(
-    [
-      { q: "Quel palier choisir ?", a: "Pour la Plateforme GTC SaaS : Essentiel convient jusqu'à 200 actifs gérés, Standard de 201 à 2 000 actifs, Grand compte au-delà de 2 000 actifs (tarif dégressif par actif, puis devis). Pour Waki Box : Essentiel pour une TPE/PME de 10 à 50 collaborateurs avec une seule box, Confort pour une PME/ETI de 50 à 300 collaborateurs avec jusqu'à 3 box, Premium pour une ETI ou un grand compte de 300 collaborateurs et plus avec des box illimitées multi-sites. En cas de doute, le diagnostic DEEE Flash (gratuit, 2 minutes) ou la démo conseil (30 minutes) vous orientent sans engagement." },
-      { q: "Pourquoi certains prix sont-ils indiqués « à partir de » ?", a: "Waki Box est une offre packagée : le tarif affiché est le tarif final. La Plateforme GTC SaaS et le Service ITAD ont aussi une grille publique : Plateforme Essentiel à 1 400 € HT/mois jusqu'à 200 actifs, Standard à partir de 2 500 € HT/mois de 201 à 2 000 actifs, Grand compte à partir de 4,20 € HT/actif/mois au-delà ; ITAD à partir de 19 € HT/poste et 55 € HT/unité pour les serveurs, baies et équipements complexes. « À partir de » signifie que le prix peut évoluer selon les modules, les connecteurs, le SLA ou la logistique : le devis détaillé, remis sous 48 heures, le précise ligne par ligne." },
-      { q: "Les prix Waki Box affichés sont-ils HT ou TTC ?", a: "Tous les prix sont exprimés hors taxes (HT). La TVA applicable en France métropolitaine est de 20 %. Les factures mentionnent le montant HT, la TVA et le total TTC." },
-      { q: "Puis-je résilier avant la fin de mon engagement ?", a: "L'engagement initial (12 ou 24 mois selon le plan) est ferme. Au-delà, le contrat est reconduit tacitement par période de 12 mois, résiliable avec un préavis de 3 mois avant chaque échéance." },
-      { q: "Les tarifs Waki Box sont-ils indexés ?", a: "Une indexation annuelle est prévue, plafonnée à 3 % et basée sur l'indice INSEE des prix à la consommation. Toute révision est notifiée 60 jours avant application." },
-      { q: "Quels modes de paiement acceptez-vous ?", a: "Prélèvement SEPA (recommandé), carte bancaire et virement. Le prélèvement SEPA est mis en place lors de la signature du contrat pour un règlement automatique mensuel." },
-      { q: "Existe-t-il des remises pour les grands volumes Waki Box ?", a: "Oui. Le plan Premium intègre des conditions tarifaires dégressives à partir de dix bornes. Contactez-nous pour un devis personnalisé incluant la volumétrie exacte." },
-      { q: "Puis-je combiner Waki Box, Plateforme GTC et services ITAD ?", a: "Absolument. De nombreux clients associent un plan Waki Box pour la collecte au quotidien avec un abonnement Plateforme pour le pilotage parc et des missions ITAD ponctuelles. Les trois briques s'articulent dans une seule relation contractuelle." },
-      { q: "Sous quel délai recevrai-je un devis Plateforme ou ITAD ?", a: "48 heures ouvrées après un échange initial de cadrage de 30 minutes. Le devis détaille le périmètre, les hypothèses retenues, les options et la grille de prix unitaire, pas de chiffrage opaque." },
-      { q: "Le Pilote GTC à 2 900 € HT est-il vraiment remboursé si je signe la Plateforme ?", a: "Oui. Si vous signez un abonnement Plateforme GTC SaaS dans les 90 jours suivant la restitution écrite du Pilote, les 2 900 € HT sont automatiquement déduits de votre première facture annuelle. Cette garantie est inscrite dans le contrat Pilote. Aucune démarche supplémentaire n'est nécessaire de votre côté." },
-    ],
-    [
-      { q: "Which tier should I choose?", a: "For the GTC SaaS Platform: Essential fits up to 200 managed assets, Standard 201 to 2,000 assets, Enterprise beyond 2,000 assets (tiered per-asset pricing, then a custom quote). For Waki Box: Essentiel suits an SMB of 10 to 50 employees with one kiosk, Confort a mid-market company of 50 to 300 employees with up to 3 kiosks, Premium an enterprise of 300+ employees with unlimited multi-site kiosks. If unsure, the free 2-minute WEEE Flash diagnostic or the 30-minute advisory demo can guide you with no commitment." },
-      { q: "Why are some prices shown as \"from\"?", a: "Waki Box is a packaged offering: the displayed price is the final price. The GTC SaaS Platform and the ITAD Service also have a public grid: Platform Essential at €1,400 ex-VAT/month up to 200 assets, Standard from €2,500 ex-VAT/month for 201 to 2,000 assets, Enterprise from €4.20 ex-VAT/asset/month beyond that; ITAD from €19 ex-VAT/device and €55 ex-VAT/unit for servers, racks and complex equipment. \"From\" means the price can change with modules, connectors, SLA or logistics: the detailed quote, delivered within 48 hours, specifies it line by line." },
-      { q: "Are Waki Box prices shown ex-VAT or inc-VAT?", a: "All prices are shown excluding VAT (ex-VAT). The applicable VAT rate in mainland France is 20%. Invoices detail the ex-VAT amount, VAT and total inc-VAT." },
-      { q: "Can I cancel before the end of my commitment?", a: "The initial commitment (12 or 24 months depending on plan) is firm. After that, the contract auto-renews for 12-month periods, cancellable with 3 months' notice before each renewal date." },
-      { q: "Are Waki Box prices indexed?", a: "Annual indexation is capped at 3%, based on the INSEE consumer price index. Any revision is notified 60 days before application." },
-      { q: "What payment methods do you accept?", a: "SEPA direct debit (recommended), credit card and wire transfer. SEPA direct debit is set up at contract signing for automatic monthly billing." },
-      { q: "Are volume discounts available on Waki Box?", a: "Yes. The Premium plan includes tiered pricing from ten kiosks upward. Contact us for a custom quote with your exact volume." },
-      { q: "Can I combine Waki Box, GTC Platform and ITAD services?", a: "Absolutely. Many clients pair a Waki Box plan for day-to-day collection with a Platform subscription for fleet management, plus one-off ITAD engagements. All three bricks fit within a single contractual relationship." },
-      { q: "How quickly will I receive a Platform or ITAD quote?", a: "Within 48 business hours of a 30-minute scoping call. The quote details scope, assumptions, options and unit pricing, no opaque numbers." },
-      { q: "Is the GTC Pilot at €2,900 ex-VAT truly refunded if I sign the Platform?", a: "Yes. If you sign a GTC SaaS Platform subscription within 90 days of the written debrief, the €2,900 ex-VAT is automatically deducted from your first annual invoice. This guarantee is written into the Pilot contract. No extra steps required on your side." },
-    ]
+  const subHead = (eyebrow: string, title: string, intro?: string, id?: string) => (
+    <div className="mb-6">
+      <p className="text-eyebrow uppercase text-emerald">{eyebrow}</p>
+      <h3 id={id} className="mt-2 max-w-[32ch] font-display text-display-sm text-fg">
+        {title}
+      </h3>
+      {intro && <p className="mt-3 max-w-[70ch] text-body text-fg-strong">{intro}</p>}
+    </div>
   );
-
-
-
-  /* « Trois portes d'entrée » (ancienne S6d), fusionnées avec les 3 briques */
-  const entryPoints = [
-    {
-      icon: Microscope,
-      tag: tx("Gratuit", "Free"),
-      meta: tx("2 minutes", "2 minutes"),
-      title: tx("Diagnostic DEEE Flash", "WEEE Flash Diagnostic"),
-      desc: tx(
-        "Évaluez la maturité DEEE de votre organisation en 5 questions. Vous repartez avec un score, une recommandation de formule, et un point d'entrée pour aller plus loin.",
-        "Assess your organisation's WEEE maturity in 5 questions. You leave with a score, a formula recommendation, and a starting point to go further."
-      ),
-      note: tx("Sans inscription. Résultat instantané.", "No sign-up. Instant result."),
-      cta: tx("Lancer le diagnostic", "Start the diagnostic"),
-      href: "/reserver?offre=diagnostic-flash",
-    },
-    {
-      icon: Clock,
-      tag: tx("Recommandé", "Recommended"),
-      meta: tx("30 minutes", "30 minutes"),
-      title: tx("Démo conseil", "Advisory demo"),
-      desc: tx(
-        "Un appel avec un expert GreenTechCycle pour cadrer votre besoin, identifier les leviers de valeur, et vous proposer un plan d'action concret.",
-        "A call with a GreenTechCycle expert to frame your need, identify value levers, and provide a concrete action plan."
-      ),
-      note: tx("Aucun engagement. Restitution écrite envoyée après l'appel.", "No commitment. Written summary sent after the call."),
-      cta: tx("Réserver la démo", "Book the demo"),
-      href: "/reserver?offre=demo-conseil",
-      featured: true,
-    },
-    {
-      icon: Rocket,
-      tag: tx("1er mois offert", "1st month free"),
-      meta: tx("puis 39 € HT/mois", "then €39 HT/mo"),
-      title: tx("Pilote Waki Box", "Waki Box Pilot"),
-      desc: tx(
-        "Installez votre première box dans un site pilote, testez la collecte connectée, mesurez votre impact sur 3 mois. Désengagement à tout moment.",
-        "Install your first kiosk at a pilot site, test connected collection, measure your impact over 3 months. Cancel anytime."
-      ),
-      note: tx("Sans frais d'installation. Box installée sous 10 jours.", "No installation fee. Box installed within 10 days."),
-      cta: tx("Démarrer le pilote", "Start the pilot"),
-      href: "/reserver?offre=pilote-waki-box",
-    },
-  ];
-
-  const bundles = [
-    {
-      name: tx("Bundle Confort RSE Essentiel", "Essential RSE Comfort Bundle"),
-      plan: tx("Avec plan Confort (79 € HT/mois)", "With Comfort plan (€79 HT/month)"),
-      price: "990",
-      saving: tx("Économie 150 € vs séparé", "Saving €150 vs separate"),
-      pitch: tx("Lancez votre démarche DEEE en 30 jours, clés en main.", "Launch your WEEE approach in 30 days, turnkey."),
-      items: tx(
-        ["Kit signalétique RSE : 350 € HT (inclus)", "Formation collaborateurs 2 h : 590 € HT (inclus)", "Diagnostic DEEE Flash : offert"],
-        ["RSE signage kit: €350 HT (included)", "Employee training 2h: €590 HT (included)", "WEEE Flash diagnostic: free"]
-      ),
-      href: "/reserver?offre=waki-box-confort&bundle=confort-rse-essentiel",
-    },
-    {
-      name: tx("Bundle Premium Conformité", "Premium Compliance Bundle"),
-      plan: tx("Avec plan Premium (dès 149 € HT/mois)", "With Premium plan (from €149 HT/month)"),
-      price: isEn ? "2,990" : "2 990",
-      saving: tx("Économie 740 € (-20 %) vs séparé", "Saving €740 (-20%) vs separate"),
-      pitch: tx(
-        "Conformité CSRD et DEEE auditée, documentée, formée, en un seul contrat.",
-        "CSRD and WEEE compliance audited, documented, trained, in a single contract."
-      ),
-      items: tx(
-        [
-          "Audit terrain DEEE : 1 800 € HT/jour (inclus)",
-          "Reporting CSRD ESRS E5 : 990 € HT/an (inclus)",
-          "Formation collaborateurs 2 h : 590 € HT (inclus)",
-          "Kit signalétique RSE : 350 € HT (inclus)",
-        ],
-        [
-          "WEEE field audit: €1,800 HT/day (included)",
-          "CSRD ESRS E5 reporting: €990 HT/year (included)",
-          "Employee training 2h: €590 HT (included)",
-          "RSE signage kit: €350 HT (included)",
-        ]
-      ),
-      href: "/reserver?offre=waki-box-premium&bundle=premium-conformite",
-    },
-  ];
 
   return (
     <div>
-      {/* ═══════════ 1. HERO cream ═══════════ */}
+      {/* ═══════════ EN-TÊTE + ESSAI GRATUIT ═══════════ */}
       <section className="border-b border-track bg-bg-card py-12 lg:py-16" aria-labelledby="tarifs-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
-            <div className="reveal min-w-0 lg:col-span-7">
+          <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
+            <div className="min-w-0 lg:col-span-7">
               <div className="flex flex-wrap gap-2">
-                <Tag variant="brand">{tx("Prix publics, transparents", "Public, transparent prices")}</Tag>
-                <Tag variant="neutral">
-                  {PRICE_ANCHORS.platformShort[lang]} · {PRICE_ANCHORS.itadShort[lang]}
-                </Tag>
+                <Tag variant="brand">{tx("Liste de prix publique", "Public price list")}</Tag>
+                <Tag variant="neutral">{tx("Prix HT, engagement annuel", "Ex-VAT, annual commitment")}</Tag>
               </div>
               <h1 id="tarifs-hero-title" className="mt-6 max-w-[20ch] text-display-lg text-fg">
-                {tx(
-                  <>
-                    Nos prix sont publics.{" "}
-                    <br className="hidden sm:block" />
-                    Pour chaque brique.
-                  </>,
-                  <>
-                    Our prices are public.{" "}
-                    <br className="hidden sm:block" />
-                    For every brick.
-                  </>
-                )}
+                {tx("Des prix publics pour chaque brique.", "Public prices for every building block.")}
               </h1>
               <p className="mt-6 max-w-[65ch] text-body-lg text-fg-strong">
                 {tx(
-                  "Waki Box dès 39 € HT/mois, Plateforme GTC SaaS dès 1 400 € HT/mois, Service ITAD dès 19 € HT/poste. Trois plans Waki Box, un programme pilote et les grilles Plateforme et ITAD ci-dessous.",
-                  "Waki Box from €39 ex-VAT/month, GTC SaaS Platform from €1,400 ex-VAT/month, ITAD Service from €19 ex-VAT/device. Three Waki Box plans, one pilot programme and the Platform and ITAD grids below."
+                  "Plateforme d'asset management au prix par actif, dégressif sur 9 tranches. Services ITAD au prix par appareil et par niveau d'effacement. Collecte selon la taille du lot, offerte quand la valeur de vos équipements la finance. Waki Box par borne. Le devis reprend ces lignes, sans surprise.",
+                  "Asset management platform priced per asset, graduated over 9 bands. ITAD services priced per device and erasure level. Pick-up priced by lot size, free when your equipment's value covers it. Waki Box per kiosk. The quote uses these same lines, no surprises."
                 )}
               </p>
-              {/* Différenciateur : prix affichés, quand le marché répond « sur devis » */}
-              <p className="mt-4 flex max-w-[65ch] items-start gap-2 text-body-sm text-fg-strong">
-                <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
-                <span>
-                  <strong className="font-semibold text-fg">{tx("Prix publics, transparents.", "Public, transparent prices.")}</strong>{" "}
-                  {tx(
-                    "Là où le marché de l'ITAD répond le plus souvent « sur devis », nous affichons nos prix : vous calibrez votre budget avant le premier échange.",
-                    "Where the ITAD market usually answers \"price on request\", we show our prices: you can size your budget before the first call."
-                  )}
-                </span>
+              <nav aria-label={tx("Aller à une section des tarifs", "Jump to a pricing section")} className="mt-6">
+                <ul className="flex flex-wrap gap-2">
+                  {quickLinks.map((l) => (
+                    <li key={l.href}>
+                      <a
+                        href={l.href}
+                        className="inline-flex min-h-[40px] items-center rounded-full border border-track px-3.5 text-body-sm font-medium text-fg-strong transition-colors hover:border-track-strong hover:text-fg"
+                      >
+                        {l.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+
+            {/* Essai gratuit Asset Management */}
+            <aside aria-labelledby="trial-title" className="rounded-2xl border border-emerald-line bg-bg p-6 lg:col-span-5 lg:p-8">
+              <Tag variant="brand">{tx("Gratuit, sans carte bancaire", "Free, no credit card")}</Tag>
+              <h2 id="trial-title" className="mt-4 font-display text-display-sm text-fg">
+                {tx(`Essai gratuit Asset Management : ${TRIAL.days} jours`, `Free Asset Management trial: ${TRIAL.days} days`)}
+              </h2>
+              <ul className="mt-5 space-y-2">
+                <Bullet>{tx(`Jusqu'à ${TRIAL.maxAssets} actifs IT et ${TRIAL.users} utilisateurs`, `Up to ${TRIAL.maxAssets} IT assets and ${TRIAL.users} users`)}</Bullet>
+                <Bullet>{tx("Import CSV + 1 connecteur générique ; SAP, Oracle et ServiceNow en démonstration", "CSV import + 1 generic connector; SAP, Oracle and ServiceNow in demo")}</Bullet>
+                <Bullet>{tx(`Une prolongation de ${TRIAL.extensionDays} jours possible`, `One ${TRIAL.extensionDays}-day extension available`)}</Bullet>
+                <Bullet>{tx("Support par e-mail en heures ouvrées", "Email support in business hours")}</Bullet>
+              </ul>
+              <p className="mt-5 border-t border-track pt-4 text-body-sm text-fg-strong">
+                <strong className="font-semibold text-fg">{tx("Ensuite : palier gratuit permanent.", "Then: permanent free tier.")}</strong>{" "}
+                {tx(
+                  `${FREE_TIER.assets} actifs, ${FREE_TIER.users} utilisateur, lecture seule — ou passez à une édition.`,
+                  `${FREE_TIER.assets} assets, ${FREE_TIER.users} user, read-only — or move to an edition.`
+                )}
               </p>
-              <dl className="mt-8 grid max-w-[560px] grid-cols-3 border-y border-track py-6">
-                {[
-                  { v: "3", l: tx("plans Waki Box publics", "public Waki Box plans") },
-                  { v: "1", l: tx("programme pilote, 1er mois offert", "pilot: 1st month free") },
-                  { v: "48 h", l: tx("devis détaillé Plateforme & ITAD", "detailed Platform & ITAD quote") },
-                ].map((item, i) => (
-                  <div key={i} className={`flex flex-col-reverse justify-end ${i > 0 ? "border-l border-track pl-4" : "pr-4"}`}>
-                    <dt className="mt-1 text-caption text-fg-muted">{item.l}</dt>
-                    <dd className="font-display text-display-sm tabular-nums text-emerald">{item.v}</dd>
-                  </div>
-                ))}
-              </dl>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="#plans" size="lg">
-                  {tx("Voir les plans Waki Box", "See Waki Box plans")}
+              <p className="mt-2 text-caption text-fg-muted">
+                {tx("Hors essai : OT/IoT, Pack Conformité, CSRD et IA.", "Not in the trial: OT/IoT, Compliance pack, CSRD and AI.")}
+              </p>
+              <div className="mt-6 flex flex-col gap-3">
+                <ButtonLink href="/reserver?offre=essai-asset-management" size="lg" fullWidth>
+                  {tx("Démarrer l'essai gratuit", "Start the free trial")}
                 </ButtonLink>
-                <ButtonLink href="#sur-devis" variant="secondary" size="lg">
-                  {tx("Grilles Plateforme et ITAD", "Platform and ITAD grids")}
+                <ButtonLink href="/reserver?offre=demo-conseil" variant="secondary" size="lg" fullWidth>
+                  {tx("Parler à un commercial", "Talk to sales")}
                 </ButtonLink>
               </div>
-            </div>
-            <div className="reveal lg:col-span-5">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
-                <MediaSlot fill id="tarifs-hero" alt={tx("Borne Waki Box de collecte connectée installée en entreprise", "Waki Box connected collection kiosk installed at a workplace")} fallback={<DashboardMock state="reporting" compact />} />
-              </div>
-            </div>
+            </aside>
           </div>
           <CertificationStrip className="mt-12 border-t border-track pt-6" />
         </div>
       </section>
 
-      {/* ═══════════ 2. 3 BRIQUES GTC + portes d'entrée ═══════════ */}
-      <Section tone="paper">
-        <div className="reveal">
-          <SectionHeader
-            eyebrow={tx("Comment lire nos tarifs", "How to read our pricing")}
-            title={tx("Trois briques GTC. Trois grilles publiques.", "Three GTC bricks. Three public grids.")}
-            intro={tx(
-              "Waki Box affiche ses plans complets (dès 39 € HT/mois). La Plateforme GTC SaaS part de 1 400 € HT/mois (jusqu'à 200 actifs), le Service ITAD de 19 € HT/poste (55 € HT/unité pour les serveurs et baies). Le devis détaillé précise ensuite les options propres à votre parc.",
-              "Waki Box shows its full plans (from €39 ex-VAT/month). The GTC SaaS Platform starts at €1,400 ex-VAT/month (up to 200 assets), the ITAD Service at €19 ex-VAT/device (€55 ex-VAT/unit for servers and racks). The detailed quote then specifies the options for your fleet."
-            )}
-          />
-        </div>
-        <div className="reveal-stagger grid gap-6 md:grid-cols-3">
-          {briques.map((b) => {
-            const isFeatured = "featured" in b && b.featured;
-            return (
-              <div key={b.name} className="reveal h-full">
-                <div className={`flex h-full flex-col overflow-hidden rounded-xl border bg-bg ${isFeatured ? "border-emerald" : "border-track"}`}>
-                  <div className="relative aspect-[16/10] border-b border-track">
-                    <MediaSlot fill id={`tarifs-brique-${b.name}`} alt={b.photoAlt} fallback={<GeometryField icon={b.icon} />} />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <div className="flex items-center justify-between gap-3">
-                      <p className="text-eyebrow uppercase text-fg-muted">{b.tag}</p>
-                      {isFeatured && <Tag variant="brand">{tx("Tarifs publics ci-dessous", "Public pricing below")}</Tag>}
-                    </div>
-                    <h3 className="mt-3 text-heading-lg text-fg">{b.name}</h3>
-                    <p className="mt-2 flex-1 text-body-sm text-fg-strong">{b.pitch}</p>
-                    <div className="mt-6 border-t border-track pt-4">
-                      <p className="text-body font-semibold tabular-nums text-emerald">{b.price}</p>
-                      {"subline" in b && b.subline && <p className="mt-1 text-caption text-fg-muted">{b.subline as string}</p>}
-                      {b.ctaHref.startsWith("#") ? (
-                        <a href={b.ctaHref} className="group mt-4 inline-flex items-center gap-1 text-body-sm font-medium text-emerald hover:text-emerald-hover">
-                          {b.ctaLabel}
-                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                        </a>
-                      ) : (
-                        <TextLink href={b.ctaHref} className="mt-4">
-                          {b.ctaLabel}
-                        </TextLink>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Trois portes d'entrée (fusion S6d) */}
-        <div className="mt-12 border-t border-track pt-12">
-          <p className="text-eyebrow uppercase text-fg-muted">{tx("Première étape", "First step")}</p>
-          <h3 className="mt-2 text-display-sm text-fg">{tx("Trois portes d'entrée.", "Three entry points.")}</h3>
-          <p className="mt-3 max-w-[65ch] text-body text-fg-strong">
-            {tx(
-              "Choisissez la première étape qui colle à votre calendrier. Chaque parcours commence par une réservation. Nous validons le périmètre ensemble avant le moindre engagement contractuel.",
-              "Choose the first step that fits your calendar. Each journey starts with a booking. We validate the scope together before any contractual commitment."
-            )}
-          </p>
-          <ul className="mt-8 grid gap-6 md:grid-cols-3">
-            {entryPoints.map((e) => (
-              <li key={e.title} className={`flex flex-col rounded-xl border p-6 ${e.featured ? "border-emerald bg-white/[0.03]" : "border-track bg-bg"}`}>
-                <div className="flex items-center gap-3">
-                  <Pictogram icon={e.icon} />
-                  <Tag variant={e.featured ? "brand" : "neutral"}>{e.tag}</Tag>
-                  <span className="text-caption text-fg-muted">{e.meta}</span>
-                </div>
-                <h4 className="mt-4 text-heading-md text-fg">{e.title}</h4>
-                <p className="mt-2 flex-1 text-body-sm text-fg-strong">{e.desc}</p>
-                <p className="mt-4 border-t border-track pt-4 text-caption italic text-fg-muted">{e.note}</p>
-                <div className="mt-4">
-                  {e.featured ? (
-                    <ButtonLink href={e.href} fullWidth>
-                      {e.cta}
-                    </ButtonLink>
-                  ) : (
-                    <TextLink href={e.href}>{e.cta}</TextLink>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Section>
-
-      {/* ═══════════ ONGLETS PRODUIT — filtrent la page sur une seule offre ═══════════ */}
-      <div className="border-t border-track bg-bg py-8 lg:py-10">
+      {/* ═══════════ ONGLETS PRODUIT ═══════════ */}
+      <div className="bg-bg pt-8 lg:pt-10">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <p className="mb-4 text-eyebrow uppercase text-fg-muted">
-            {tx("Choisissez une offre", "Choose an offer")}
-          </p>
-          <FilterTabs items={productTabItems} active={activeTab} onChange={selectTab} label={tx("Offres GreenTechCycle", "GreenTechCycle offers")} />
+          <FilterTabs items={tabItems} active={activeTab} onChange={selectTab} label={tx("Offres GreenTechCycle", "GreenTechCycle offers")} />
         </div>
       </div>
 
       {/* ═══════════ ONGLET PLATEFORME ═══════════ */}
       <div id="panel-plateforme" role="tabpanel" aria-labelledby="tab-plateforme" hidden={activeTab !== "plateforme"}>
-        <Section id="sur-devis" tone="paper" collapseTop>
-          <div className="reveal">
+        <Section id="editions" tone="paper" className="scroll-mt-24">
+          <span id="sur-devis" className="block scroll-mt-24" aria-hidden="true" />
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeader
-              eyebrow={tx("Plateforme GTC SaaS", "GTC SaaS Platform")}
-              title={devisCards[0].title}
-              intro={devisCards[0].body}
+              className="!mb-0"
+              eyebrow={tx("Plateforme GTC · Asset Management", "GTC Platform · Asset Management")}
+              title={tx("Trois éditions. Un prix par actif qui baisse avec le volume.", "Three editions. A per-asset price that falls with volume.")}
+              intro={tx(
+                "Prix par actif IT et par mois, sur 9 tranches progressives, en engagement annuel. En facturation mensuelle sans engagement : +20 %.",
+                "Price per IT asset per month, over 9 graduated bands, on an annual commitment. Monthly billing with no commitment: +20%."
+              )}
             />
+            <BillingToggle billing={billing} onChange={setBilling} lang={lang} />
           </div>
-          <div className="reveal-stagger grid gap-6 lg:grid-cols-3">
-            {platformTierCards.map((card) => (
-              <div key={card.id} className="reveal h-full">
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            {EDITIONS.map((ed) => {
+              const card = editionCards[ed.id];
+              const first = ed.bands[0]!;
+              const last = [...ed.bands].reverse().find((b) => b != null)!;
+              return (
                 <article
-                  aria-labelledby={`platform-tier-${card.id}`}
-                  className={`relative flex h-full flex-col rounded-xl border bg-bg p-6 lg:p-8 ${card.popular ? "border-emerald" : "border-track"}`}
+                  key={ed.id}
+                  aria-labelledby={`edition-${ed.id}`}
+                  className={`relative flex h-full flex-col rounded-xl border bg-bg p-6 lg:p-8 ${ed.recommended ? "border-emerald" : "border-track"}`}
                 >
-                  {card.popular && (
-                    <span className="absolute -top-3 left-6 rounded-full bg-emerald px-3 py-1 text-caption font-semibold text-bg">
-                      {tx("Recommandé", "Recommended")}
-                    </span>
+                  {ed.recommended && (
+                    <span className="absolute -top-3 left-6 rounded-full bg-emerald px-3 py-1 text-caption font-semibold text-bg">{tx("Recommandé", "Recommended")}</span>
                   )}
-                  <h3 id={`platform-tier-${card.id}`} className="font-display text-display-sm text-fg">
-                    {card.name}
+                  <h3 id={`edition-${ed.id}`} className="font-display text-display-sm text-fg">
+                    {ed.name}
                   </h3>
-                  <p className="mt-1 text-caption text-fg-muted">{card.scope}</p>
-                  <p className="mt-4 font-display text-display-md tabular-nums text-emerald">{card.price}</p>
-                  {card.cumulativeLabel && (
-                    <p className="mt-6 text-eyebrow uppercase text-fg-muted">{card.cumulativeLabel}</p>
-                  )}
-                  <ul className={`space-y-2 ${card.cumulativeLabel ? "mt-3" : "mt-6"} flex-1`}>
-                    {card.bullets.map((b, i) => (
-                      <li key={i} className="flex items-start gap-2 text-body-sm text-fg-strong">
-                        <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
-                        <span>{b}</span>
-                      </li>
+                  <p className="mt-1 text-caption text-fg-muted">{card.audience}</p>
+                  <p className="mt-5 font-display text-display-md tabular-nums text-emerald">
+                    {eur(withBilling(first, billing), lang, { decimals: true })}
+                    <span className="ml-1 font-sans text-body-sm text-fg-muted">
+                      {HT} / {tx("actif", "asset")}
+                      {perMonth}
+                    </span>
+                  </p>
+                  <p className="mt-1 text-body-sm text-fg-strong">
+                    {tx("de 1 à 50 actifs, puis jusqu'à", "for 1–50 assets, then down to")} {eur(withBilling(last, billing), lang, { decimals: true })}
+                  </p>
+                  <p className="mt-3 rounded-lg border border-track px-3 py-2 text-caption text-fg-strong">
+                    {tx("Exemple", "Example")} · {editionExample(ed.id)}
+                  </p>
+                  <p className="mt-2 text-caption text-fg-muted">{editionMeta(ed.id)}</p>
+                  {card.cumulative && <p className="mt-6 text-eyebrow uppercase text-fg-muted">{card.cumulative}</p>}
+                  <ul className={`flex-1 space-y-2 ${card.cumulative ? "mt-3" : "mt-6"}`}>
+                    {card.bullets.map((b) => (
+                      <Bullet key={b}>{b}</Bullet>
                     ))}
                   </ul>
                   <div className="mt-8">
-                    <ButtonLink href={card.ctaHref} variant={card.popular ? "primary" : "secondary"} fullWidth>
-                      {card.ctaLabel}
+                    <ButtonLink href={card.href} variant={ed.recommended ? "primary" : "secondary"} fullWidth>
+                      {card.cta}
                     </ButtonLink>
                   </div>
                 </article>
-              </div>
-            ))}
+              );
+            })}
           </div>
-          <ComparisonTable
-            caption={tx("Comparatif détaillé des paliers Plateforme", "Detailed Platform tier comparison")}
-            columns={[tx("Essentiel", "Essential"), "Standard", tx("Grand compte", "Enterprise")]}
-            highlightIndex={1}
-            groups={PLATFORM_COMPARISON}
-            isEn={isEn}
-          />
-          <div className="mt-6">
-            <TextLink href="/plateforme">{devisCards[0].secondaryLabel}</TextLink>
+
+          {/* Tarif par tranche */}
+          <div id="tarif-par-tranche" className="mt-14 scroll-mt-24">
+            {subHead(
+              tx("Tarif par tranche", "Banded pricing"),
+              tx("Plus le parc est grand, moins l'actif coûte.", "The bigger the fleet, the less each asset costs."),
+              tx(
+                "Chaque tranche est facturée à son propre prix, comme un barème d'impôt : jamais d'effet de seuil. Exemple Essentials à 500 actifs : 50 × 8,50 + 100 × 7,00 + 100 × 5,50 + 250 × 3,30 = 2 500 € HT/mois.",
+                "Each band is billed at its own price, like a tax scale: never a threshold effect. Example, Essentials at 500 assets: 50 × €8.50 + 100 × €7.00 + 100 × €5.50 + 250 × €3.30 = €2,500 ex-VAT/month."
+              )
+            )}
+            <BandTable
+              caption={tx("Prix par actif et par mois, par tranche (€ HT)", "Price per asset per month, by band (€ ex-VAT)")}
+              firstColLabel={tx("€ HT / actif / mois", "€ ex-VAT / asset / month")}
+              lang={lang}
+              billing={billing}
+              rows={[
+                ...EDITIONS.map((ed) => ({
+                  label: ed.name,
+                  bands: ed.bands,
+                  note: editionMeta(ed.id),
+                })),
+                {
+                  label: tx("Module OT/IoT Visibility", "OT/IoT Visibility module"),
+                  bands: OT_BANDS,
+                  note: tx("Par actif OT ; minimum 500 actifs OT", "Per OT asset; minimum 500 OT assets"),
+                },
+              ]}
+            />
+
+            <h4 className="mt-10 text-heading-lg text-fg">{tx("Exemples de totaux mensuels", "Example monthly totals")}</h4>
+            <p className="mt-2 max-w-[70ch] text-body-sm text-fg-muted">
+              {billing === "monthly"
+                ? tx("Plateforme en facturation mensuelle sans engagement (+20 %) ; services ITAD en une fois.", "Platform billed monthly with no commitment (+20%); ITAD services one-off.")
+                : tx("Plateforme en engagement annuel, prix par mois ; services ITAD en une fois.", "Platform on annual commitment, price per month; ITAD services one-off.")}
+            </p>
+            <Table
+              className="mt-4"
+              caption={tx("Exemples de totaux au prix liste", "Example totals at list price")}
+              head={[
+                tx("Quantité", "Quantity"),
+                "Essentials",
+                "Professional",
+                "Enterprise",
+                "OT/IoT",
+                tx("Postes E1, une fois", "E1 devices, one-off"),
+              ]}
+              numeric={[0, 1, 2, 3, 4, 5]}
+              emphasis={[2]}
+              rows={exampleRows}
+            />
+            <p className="mt-3 text-caption text-fg-muted">
+              {tx(
+                "— : hors périmètre de l'édition (Essentials plafonné à 2 000 actifs ; Enterprise à partir de 2 000 actifs ; OT/IoT à partir de 500 actifs). Professional : minimum 2 500 € HT/mois.",
+                "— : outside the edition's range (Essentials capped at 2,000 assets; Enterprise from 2,000 assets; OT/IoT from 500 assets). Professional: minimum €2,500 ex-VAT/month."
+              )}
+            </p>
+
+            <h4 className="mt-10 text-heading-lg text-fg">{tx("Calculez votre total", "Work out your total")}</h4>
+            <div className="mt-4">
+              <PlatformCalculator lang={lang} billing={billing} idPrefix="tarifs-calc" />
+            </div>
+          </div>
+
+          {/* Matrice fonctionnelle */}
+          <div className="mt-14">
+            {subHead(tx("Comparatif", "Comparison"), tx("Ce que contient chaque édition.", "What each edition includes."))}
+            <FeatureMatrix lang={lang} caption={tx("Comparatif fonctionnel des éditions", "Edition feature comparison")} />
           </div>
         </Section>
 
-        {/* Pilote GTC 3 jours #pilote — kickoff Plateforme, conservé ici (ancre historique conservée) */}
-        <section id="pilote" className="bg-bg-card py-12 lg:py-16" aria-labelledby="pilote-title">
-          <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-            <div className="reveal">
-              <article className="grid gap-10 rounded-xl border border-track bg-bg p-6 lg:grid-cols-12 lg:gap-12 lg:p-10">
-                <div className="lg:col-span-7">
-                  <p className="text-eyebrow uppercase text-fg-muted">{tx("Porte d'entrée 4", "Entry point 4")}</p>
-                  <h2 id="pilote-title" className="mt-3 max-w-[24ch] text-display-md text-fg">
-                    {tx("Pilote GTC - Audit & démarrage 3 jours.", "GTC Pilot - Audit & 3-day kickoff.")}
-                  </h2>
-                  <div className="mt-4 max-w-[65ch] space-y-4 text-body text-fg-strong">
-                    <p>
-                      {tx(
-                        "Avant de s'engager sur douze mois, certaines organisations préfèrent mesurer concrètement la valeur GTC sur leur propre parc. Le Pilote GTC répond à ce besoin : trois jours, une équipe senior, un livrable structuré.",
-                        "Before committing to twelve months, some organisations prefer to measure GTC's value concretely against their own fleet. The GTC Pilot meets that need: three days, a senior team, a structured deliverable."
-                      )}
-                    </p>
-                    <p>
-                      {tx(
-                        "Le diagnostic couvre la découverte de parc (asset discovery et notation d'obsolescence), la rédaction d'un plan d'action ITAD priorisé, le lancement de la Plateforme (paramétrage de la première branche), et une restitution écrite. Mission conduite par notre équipe ITAM, carbone et cyber.",
-                        "The diagnostic covers fleet discovery (asset discovery and obsolescence scoring), drafting a prioritised ITAD action plan, Platform kickoff (first branch configuration), and a written debrief. Delivered by our ITAM, carbon and cyber team."
-                      )}
-                    </p>
-                    <p>
-                      {tx(
-                        "Le Pilote se déroule sur site ou en hybride selon la taille du parc. À l'issue des trois jours, vous disposez d'une feuille de route signée, prête à présenter en comité de direction.",
-                        "The Pilot takes place on site or in hybrid mode depending on fleet size. After three days, you have a signed roadmap, ready to present to your executive committee."
-                      )}
-                    </p>
-                  </div>
-                  <p className="mt-8 text-eyebrow uppercase text-fg-muted">{tx("Inclus dans la mission", "Included in the engagement")}</p>
-                  <ul className="mt-3 space-y-2">
+        {/* Modules à la carte */}
+        <Section id="modules" tone="cream" className="scroll-mt-24">
+          <SectionHeader
+            eyebrow={tx("Modules à la carte", "Add-on modules")}
+            title={tx("Ajoutez seulement ce dont vous avez besoin.", "Add only what you need.")}
+            intro={tx("Chaque module se greffe sur n'importe quelle édition, avec sa propre métrique.", "Each module plugs into any edition, with its own metric.")}
+          />
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {MODULES.map((m) => (
+              <li key={m.id} className="flex flex-col rounded-xl border border-track bg-bg p-5">
+                <p className="text-heading-md text-fg">{m.name[lang]}</p>
+                <p className="mt-3 font-display text-display-sm tabular-nums text-emerald">
+                  {m.id === "ot" ? `${tx("dès", "from")} ` : ""}
+                  {eur(m.amount!, lang)}
+                  <span className="ml-1 font-sans text-caption text-fg-muted">{HT}</span>
+                </p>
+                <p className="text-caption text-fg-muted">{m.unit[lang]}</p>
+                {m.note && <p className="mt-3 text-body-sm text-fg-strong">{m.note[lang]}</p>}
+              </li>
+            ))}
+            <li className="flex flex-col rounded-xl border border-track bg-bg p-5">
+              <p className="text-heading-md text-fg">{tx("Pilote GreenTechCycle Lab", "GreenTechCycle Lab pilot")}</p>
+              <p className="mt-3 font-display text-display-sm tabular-nums text-emerald">
+                {e(LAB_PILOT.amount!)}
+                <span className="ml-1 font-sans text-caption text-fg-muted">{HT}</span>
+              </p>
+              <p className="text-caption text-fg-muted">{tx("forfait, 8 semaines", "fixed fee, 8 weeks")}</p>
+              <p className="mt-3 text-body-sm text-fg-strong">
+                {tx("Pilote encadré d'un programme de R&D GTC, sans déploiement automatique de code de recherche.", "Supervised pilot of a GTC R&D programme, with no automatic deployment of research code.")}
+              </p>
+            </li>
+          </ul>
+
+          {/* Pack Conformité + IA */}
+          <div id="conformite" className="mt-14 scroll-mt-24">
+            {subHead(
+              tx("Pack Conformité et assistant IA", "Compliance pack and AI assistant"),
+              tx("Vos preuves prêtes pour l'auditeur, crédits IA inclus.", "Your evidence auditor-ready, AI credits included."),
+              tx(
+                "L'IA a un coût réel : chaque édition inclut un volume de crédits, le dépassement est facturé au crédit. 1 crédit = 1 question d'audit traitée avec citation des preuves.",
+                "AI has a real cost: each edition includes a volume of credits, and overage is billed per credit. 1 credit = 1 audit question handled with the evidence cited."
+              )
+            )}
+            <div className="grid gap-6 lg:grid-cols-12 [&>*]:min-w-0">
+              <div className="lg:col-span-4">
+                <p className="text-eyebrow uppercase text-fg-muted">{tx("Dans chaque pack", "In every pack")}</p>
+                <ul className="mt-3 space-y-2">
+                  {COMPLIANCE_CONTENTS.map((c) => (
+                    <Bullet key={c.fr}>{c[lang]}</Bullet>
+                  ))}
+                </ul>
+              </div>
+              <div className="min-w-0 lg:col-span-8">
+                <Table
+                  caption={tx("Éditions du Pack Conformité", "Compliance pack editions")}
+                  head={[tx("Édition", "Edition"), "Essentials", "Professional", "Enterprise"]}
+                  emphasis={[2]}
+                  rows={[
+                    [
+                      tx("Prix", "Price"),
+                      ...COMPLIANCE_PACKS.map((p) =>
+                        p.amount != null ? (
+                          <span key={p.id} className="whitespace-nowrap font-semibold text-emerald">
+                            {e(p.amount)} {HT}/{tx("an", "yr")}
+                          </span>
+                        ) : (
+                          <a key={p.id} href="#contact-ventes" className="font-semibold text-emerald underline-offset-4 hover:underline">
+                            {tx("Nous contacter", "Contact us")}
+                          </a>
+                        )
+                      ),
+                    ],
+                    [tx("Crédits IA inclus / an", "AI credits included / yr"), ...COMPLIANCE_PACKS.map((p) => (p.aiCredits != null ? num(p.aiCredits, lang) : tx("Sur mesure", "Custom")))],
+                    [tx("Entités", "Entities"), ...COMPLIANCE_PACKS.map((p) => p.entities[lang])],
+                    [tx("Référentiels", "Frameworks"), ...COMPLIANCE_PACKS.map((p) => p.frameworks[lang])],
+                    [tx("Sièges auditeur", "Auditor seats"), ...COMPLIANCE_PACKS.map((p) => p.auditorSeats[lang])],
+                    [tx("Modèles de politiques", "Policy templates"), ...COMPLIANCE_PACKS.map((p) => p.templates[lang])],
+                    [tx("Exports de preuves", "Evidence exports"), ...COMPLIANCE_PACKS.map((p) => p.exports[lang])],
+                    [tx("Revue consultant", "Consultant review"), ...COMPLIANCE_PACKS.map((p) => <Mark key={p.id} value={p.review[lang]} lang={lang} />)],
+                  ]}
+                />
+                <div className="mt-4 rounded-xl border border-track bg-bg p-4">
+                  <p className="text-body-sm text-fg">
+                    <strong className="font-semibold">{tx("Crédits IA supplémentaires", "Additional AI credits")}</strong> :{" "}
+                    <span className="font-semibold tabular-nums text-emerald">
+                      {e(AI_CREDITS.overagePer1000)} {HT}
+                    </span>{" "}
+                    {tx("par 1 000 crédits", "per 1,000 credits")} ·{" "}
                     {tx(
-                      [
-                        "Audit inventaire : asset discovery + notation d'obsolescence",
-                        "Plan d'action ITAD personnalisé et priorisé",
-                        "Démarrage Plateforme : paramétrage de la première branche",
-                        "Restitution écrite remise sous 5 jours ouvrés",
-                      ],
-                      [
-                        "Inventory audit: asset discovery + obsolescence scoring",
-                        "Personalised and prioritised ITAD action plan",
-                        "Platform kickoff: first branch configuration",
-                        "Written debrief delivered within 5 business days",
-                      ]
-                    ).map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-body-sm text-fg-strong">
-                        <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                      `packs prépayés −${AI_CREDITS.prepaidDiscounts[0] * 100} % / −${AI_CREDITS.prepaidDiscounts[1] * 100} %`,
+                      `prepaid packs −${AI_CREDITS.prepaidDiscounts[0] * 100}% / −${AI_CREDITS.prepaidDiscounts[1] * 100}%`
+                    )}
+                  </p>
+                  <p className="mt-1 text-caption text-fg-muted">
+                    {tx("Crédits annuels non reportables ; alerte à 80 % de consommation ; chaque réponse est un brouillon à valider.", "Annual credits do not roll over; alert at 80% usage; every answer is a draft for you to approve.")}
+                  </p>
                 </div>
-                <div className="space-y-6 lg:col-span-5">
-                  <dl className="grid grid-cols-2 gap-4 border-y border-track py-6">
-                    <div className="flex flex-col-reverse justify-end">
-                      <dt className="text-caption text-fg-muted">
-                        {tx("Mission forfaitaire", "Fixed-fee engagement")} · {tx("pour 3 jours", "for 3 days")}
-                      </dt>
-                      <dd className="font-display text-display-md tabular-nums text-emerald">
-                        {isEn ? "2,900" : "2 900"} <span className="font-sans text-body-sm text-fg-muted">€ HT</span>
-                      </dd>
-                    </div>
-                    <div className="flex flex-col-reverse justify-end border-l border-track pl-4">
-                      <dt className="text-caption text-fg-muted">{tx("Paiement", "Payment")}</dt>
-                      <dd className="text-heading-md text-fg">{tx("100 % à la signature", "100% on signing")}</dd>
-                    </div>
-                  </dl>
-                  <div className="rounded-xl bg-emerald-dim p-6">
-                    <p className="text-eyebrow uppercase text-emerald">{tx("Garantie de valeur", "Value guarantee")}</p>
-                    <p className="mt-2 text-heading-md text-emerald">
-                      {tx(
-                        "Pilote remboursé sur la 1re année de Plateforme si signature dans les 90 jours après la restitution.",
-                        "Pilot fully refunded on Year 1 Platform subscription if signed within 90 days of debrief."
-                      )}
-                    </p>
-                    <p className="mt-2 text-body-sm text-fg-strong">
-                      {tx(
-                        "2 900 € HT déduits automatiquement de la première facture annuelle Plateforme. Aucune démarche supplémentaire.",
-                        "€2,900 ex-VAT automatically deducted from the first annual Platform invoice. No extra steps needed."
-                      )}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-eyebrow uppercase text-fg-muted">{tx("Composition de la mission", "Engagement composition")}</p>
-                    <p className="mt-2 text-body-sm text-fg-strong">
-                      {tx(
-                        "Jour 1 : Audit inventaire et notation d'obsolescence. Jour 2 : Plan ITAD priorisé + kick-off Plateforme. Jour 3 : Restitution orale et remise du livrable écrit. Équipe : un senior ITAM, un expert carbone, un consultant cyber.",
-                        "Day 1: Inventory audit and obsolescence scoring. Day 2: Prioritised ITAD plan + Platform kickoff. Day 3: Oral debrief and written deliverable handover. Team: one senior ITAM, one carbon expert, one cyber consultant."
-                      )}
-                    </p>
-                  </div>
-                  <ButtonLink href="/reserver?offre=pilote-audit-3j" size="lg" fullWidth>
-                    {tx("Réserver le Pilote 3 jours", "Book the 3-day Pilot")}
-                  </ButtonLink>
-                </div>
-              </article>
+              </div>
             </div>
           </div>
-        </section>
+        </Section>
       </div>
 
-      {/* ═══════════ ONGLET SERVICE ITAD ═══════════ */}
+      {/* ═══════════ ONGLET SERVICES ITAD ET COLLECTE ═══════════ */}
       <div id="panel-service-itad" role="tabpanel" aria-labelledby="tab-service-itad" hidden={activeTab !== "service-itad"}>
-        <Section tone="paper" collapseTop>
-          <div className="reveal">
-            <SectionHeader
-              eyebrow={tx("Service ITAD", "ITAD Service")}
-              title={devisCards[1].title}
-              intro={devisCards[1].body}
-            />
-          </div>
-          <div className="reveal-stagger grid gap-6 md:grid-cols-2">
-            {itadTierCards.map((card) => (
-              <div key={card.id} className="reveal h-full">
-                <article aria-labelledby={`itad-tier-${card.id}`} className="flex h-full flex-col rounded-xl border border-track bg-bg p-6 lg:p-8">
-                  <h3 id={`itad-tier-${card.id}`} className="text-heading-lg text-fg">
-                    {card.name}
-                  </h3>
-                  <p className="mt-1 text-caption text-fg-muted">{card.scope}</p>
-                  <p className="mt-4 font-display text-display-md tabular-nums text-emerald">{card.price}</p>
-                  <ul className="mt-6 flex-1 space-y-2">
-                    {card.bullets.map((b, i) => (
-                      <li key={i} className="flex items-start gap-2 text-body-sm text-fg-strong">
-                        <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
+        <Section id="prix-itad" tone="paper" className="scroll-mt-24">
+          <SectionHeader
+            eyebrow={tx("Services ITAD", "ITAD services")}
+            title={tx("Un prix par appareil, par niveau d'effacement, dégressif.", "A price per device, per erasure level, graduated.")}
+            intro={tx(
+              "Effacement en atelier, certificat par numéro de série et preuve numérique P1 inclus. La tranche se lit sur la quantité de la catégorie commandée, avec la même tarification progressive que la plateforme.",
+              "Workshop erasure, certificate per serial number and P1 digital proof included. The band is read from the quantity ordered in the category, with the same graduated pricing as the platform."
+            )}
+          />
+
+          <ul className="grid gap-4 md:grid-cols-3">
+            {ERASURE_LEVELS.map((lv) => (
+              <li key={lv.id} className="rounded-xl border border-track bg-bg-card p-5">
+                <p className="font-mono text-caption uppercase tracking-[0.08em] text-emerald">{lv.id}</p>
+                <p className="mt-1 text-heading-md text-fg">{lv.name[lang]}</p>
+                <p className="mt-2 text-body-sm text-fg-strong">{lv.desc[lang]}</p>
+                <p className="mt-3 border-t border-track pt-3 text-caption text-fg-muted">
+                  {tx("Pour", "For")} : {lv.when[lang]}
+                </p>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-10 space-y-8">
+            {ITAD_GROUPS.map((g) => (
+              <div key={g.title.fr}>
+                <h3 className="mb-3 text-heading-lg text-fg">{g.title[lang]}</h3>
+                <BandTable
+                  caption={`${g.title[lang]} — ${tx("prix par appareil et par tranche (€ HT)", "price per device by band (€ ex-VAT)")}`}
+                  firstColLabel={tx("€ HT / unité", "€ ex-VAT / unit")}
+                  lang={lang}
+                  rows={g.lines.map((l) => ({ label: l.name[lang], bands: l.bands, note: `${tx("par", "per")} ${l.unit[lang]}` }))}
+                />
               </div>
             ))}
           </div>
-          {/* Configurateur ITAD (refonte v4) — remplace le calculateur express */}
-          <div id="configurateur" className="mt-12 scroll-mt-24 border-t border-track pt-10">
-            <p className="text-eyebrow uppercase text-emerald">{tx("Configurateur", "Configurator")}</p>
-            <h3 className="mt-2 max-w-[28ch] font-display text-display-sm text-fg">
-              {tx("Composez votre projet, voyez le prix ligne par ligne.", "Build your project, see the price line by line.")}
-            </h3>
-            <p className="mt-3 mb-8 max-w-[65ch] text-body text-fg-strong">
-              {tx(
-                "Prix publics HT ; tout ce qui n'a pas de prix public est indiqué « sur devis ». Téléchargez le récapitulatif ou envoyez-le pour recevoir le devis détaillé.",
-                "Public ex-VAT prices; anything without a public price is shown as \"on quote\". Download the summary or send it to get the detailed quote."
-              )}
-            </p>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                t: tx("Frais d'ouverture de lot", "Lot opening fee"),
+                p: e(ITAD_FEES.smallLot),
+                d: tx(`Lot de moins de ${ITAD_FEES.smallLotThreshold} appareils ; offert au-delà`, `Lot under ${ITAD_FEES.smallLotThreshold} devices; waived above`),
+              },
+              {
+                t: tx("Journée d'effacement sur site", "On-site erasure day"),
+                p: e(ITAD_FEES.onsiteDay),
+                d: tx("Par jour, 2 techniciens, en plus du prix par appareil ; aucun support ne quitte le site avant effacement", "Per day, 2 technicians, on top of the per-device price; no media leaves the site before erasure"),
+              },
+              {
+                t: tx("Mobilisation destruction sur site", "On-site destruction mobilisation"),
+                p: e(ITAD_FEES.e3Mobilisation),
+                d: tx("Par intervention de broyage E3 chez vous", "Per E3 shredding intervention at your site"),
+              },
+            ].map((f) => (
+              <div key={f.t} className="rounded-xl border border-track bg-bg p-5">
+                <p className="text-body-sm font-medium text-fg">{f.t}</p>
+                <p className="mt-2 font-display text-display-sm tabular-nums text-emerald">
+                  {f.p} <span className="font-sans text-caption text-fg-muted">{HT}</span>
+                </p>
+                <p className="mt-1 text-caption text-fg-muted">{f.d}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Configurateur */}
+          <div id="configurateur" className="mt-14 scroll-mt-24 border-t border-track pt-10">
+            {subHead(
+              tx("Configurateur", "Configurator"),
+              tx("Composez votre projet, voyez le prix ligne par ligne.", "Build your project, see the price line by line."),
+              tx(
+                "Prix liste HT, tarification progressive par catégorie. Téléchargez le récapitulatif ou envoyez-le pour recevoir le devis détaillé.",
+                "Ex-VAT list prices, graduated per category. Download the summary or send it to get the detailed quote."
+              )
+            )}
             <ItadConfigurator idPrefix="tarifs-cfg" />
           </div>
-          <ComparisonTable
-            caption={tx("Comparatif détaillé Service ITAD", "Detailed ITAD Service comparison")}
-            columns={[tx("Poste de travail", "Workstation"), tx("Équipement complexe", "Complex equipment")]}
-            groups={ITAD_COMPARISON}
-            isEn={isEn}
+        </Section>
+
+        {/* Preuve P1–P4 + reporting */}
+        <Section id="preuve" tone="cream" className="scroll-mt-24">
+          <SectionHeader
+            eyebrow={tx("Niveaux de preuve", "Proof levels")}
+            title={tx("Du certificat numérique au constat d'un officier public.", "From a digital certificate to a public officer's statement.")}
+            intro={tx(
+              "P1 est inclus dans chaque prix ITAD. Montez d'un niveau quand votre auditeur, votre régulateur ou un litige potentiel l'exige.",
+              "P1 is included in every ITAD price. Step up a level when your auditor, your regulator or a potential dispute requires it."
+            )}
           />
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={devisCards[1].ctaHref}>{devisCards[1].ctaLabel}</ButtonLink>
-            <ButtonLink href={devisCards[1].secondaryHref} variant="secondary">
-              {devisCards[1].secondaryLabel}
-            </ButtonLink>
+          <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {PROOF_LEVELS.map((p) => (
+              <li key={p.id} className={`flex flex-col rounded-xl border bg-bg p-5 ${p.id === "P3" ? "border-emerald-line" : "border-track"}`}>
+                <p className="text-heading-md text-fg">{p.name[lang]}</p>
+                <p className="mt-3 font-display text-display-sm tabular-nums text-emerald">
+                  {p.amount != null ? (
+                    <>
+                      {e(p.amount)} <span className="font-sans text-caption text-fg-muted">{HT}</span>
+                    </>
+                  ) : p.id === "P4" ? (
+                    <a href="#contact-ventes" className="underline-offset-4 hover:underline">
+                      {p.priceText![lang]}
+                    </a>
+                  ) : (
+                    p.priceText![lang]
+                  )}
+                </p>
+                <p className="text-caption text-fg-muted">{p.unit[lang]}</p>
+                {p.note && <p className="mt-1 text-caption text-fg-muted">{p.note[lang]}</p>}
+                <p className="mt-3 flex-1 text-body-sm text-fg-strong">{p.includes[lang]}</p>
+                <p className="mt-3 border-t border-track pt-3 text-caption text-fg-muted">
+                  {tx("Pour", "For")} : {p.when[lang]}
+                </p>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8 grid gap-4 md:grid-cols-2 [&>*]:min-w-0">
+            <div>
+              <p className="mb-3 text-eyebrow uppercase text-fg-muted">{tx("Reporting", "Reporting")}</p>
+              <PriceList items={REPORTING} lang={lang} />
+            </div>
+            <div>
+              <p className="mb-3 text-eyebrow uppercase text-fg-muted">{tx("Combinaisons recommandées", "Recommended combinations")}</p>
+              <ul className="divide-y divide-track rounded-xl border border-track bg-bg text-body-sm">
+                {[
+                  [tx("ETI / PME standard", "Standard mid-market"), "E1 · P1 · N1 · R1"],
+                  [tx("Données sensibles (RH, santé, juridique)", "Sensitive data (HR, health, legal)"), "E2 · P2 · N2 · R1 + R3"],
+                  [tx("Banque, assurance, secteur régulé", "Banking, insurance, regulated"), "E2 (+ E3) · P3 · N2 · R3"],
+                  [tx("Défense / OIV", "Defence / vital operators"), tx("E3 sur site · P4 · N3 · R3", "E3 on site · P4 · N3 · R3")],
+                ].map(([who, combo]) => (
+                  <li key={who} className="flex flex-wrap justify-between gap-x-4 gap-y-1 px-4 py-3">
+                    <span className="text-fg-strong">{who}</span>
+                    <span className="font-mono text-caption text-emerald">{combo}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="mt-12 border-t border-track pt-10">
-            <p className="text-eyebrow uppercase text-fg-muted">{tx("Cinq missions ITAD couvertes", "Five ITAD engagements covered")}</p>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {itadServices.map((svc) => (
-                <li key={svc.slug}>
-                  <Link
-                    href={`/services/${svc.slug}`}
-                    className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-track px-4 text-body-sm font-medium text-fg-muted transition-colors hover:border-track-strong hover:text-fg"
-                  >
-                    <svc.icon className="h-4 w-4 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-                    {svc.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        </Section>
+
+        {/* Collecte */}
+        <Section id="collecte" tone="paper" className="scroll-mt-24">
+          <SectionHeader
+            eyebrow={tx("Collecte", "Pick-up")}
+            title={tx("Collecte offerte quand la valeur de vos équipements la finance.", "Free pick-up when your equipment's value covers it.")}
+            intro={tx(
+              "Le prix d'une collecte dépend de trois choses : la valeur du matériel repris, la taille du lot (le véhicule et l'équipe) et le niveau de service (sécurité, distance, délai). D'où des prix « à partir de », détaillés ci-dessous.",
+              "A pick-up price depends on three things: the value of the equipment taken back, the lot size (vehicle and crew) and the service level (security, distance, lead time). Hence \"from\" prices, detailed below."
+            )}
+          />
+          <ol className="grid gap-4 md:grid-cols-3">
+            {[
+              {
+                n: "01",
+                t: tx("Nous estimons valeur et frais", "We estimate value and fees"),
+                d: tx("Au devis : valeur de rachat selon catégorie et état, frais de collecte selon lot, niveau, zone et délai.", "In the quote: buyback value by category and condition, pick-up fees by lot, level, zone and lead time."),
+              },
+              {
+                n: "02",
+                t: tx(`Valeur ≥ ${num(COLLECTION_VALUE_RULE.ratio, lang)} × frais : offerte`, `Value ≥ ${num(COLLECTION_VALUE_RULE.ratio, lang)} × fees: free`),
+                d: tx("Les frais sont déduits du rachat (rachat net de frais) ; vous recevez le solde. Jamais refacturée après audit.", "Fees are deducted from the buyback (buyback net of fees); you receive the balance. Never re-billed after audit."),
+              },
+              {
+                n: "03",
+                t: tx("Sinon : prix liste", "Otherwise: list price"),
+                d: tx("La collecte est facturée selon la grille ci-dessous et le rachat vous est payé après audit.", "The pick-up is billed per the grid below and the buyback is paid to you after audit."),
+              },
+            ].map((s) => (
+              <li key={s.n} className="rounded-xl border border-track bg-bg-card p-5">
+                <p className="font-mono text-caption text-emerald">{s.n}</p>
+                <p className="mt-1 text-heading-md text-fg">{s.t}</p>
+                <p className="mt-2 text-body-sm text-fg-strong">{s.d}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-4 rounded-xl border border-emerald-line bg-emerald-dim px-4 py-3 text-body-sm text-fg">
+            {tx(
+              `Règle simple : en Île-de-France, collecte standard offerte sans calcul dès ${COLLECTION_VALUE_RULE.simpleRuleDevices} appareils en bon état (grade A/B) par enlèvement. Appareils de moins de ${COLLECTION_VALUE_RULE.minDeviceValue} € : pas de crédit (recyclage).`,
+              `Simple rule: in Île-de-France, standard pick-up is free with no calculation from ${COLLECTION_VALUE_RULE.simpleRuleDevices} devices in good condition (grade A/B) per collection. Devices worth under €${COLLECTION_VALUE_RULE.minDeviceValue}: no credit (recycling).`
+            )}
+          </p>
+
+          <h3 className="mt-10 text-heading-lg text-fg">
+            {tx("Sinon, à partir de", "Otherwise, from")} {e(COLLECTION_CLASSES[0].z1Planned)} {HT} {tx("par intervention", "per intervention")}
+          </h3>
+          <p className="mt-2 max-w-[70ch] text-body-sm text-fg-muted">
+            {tx(
+              "Niveau N1 Standard : véhicule et équipe GTC dimensionnés sur le lot, audit et inventaire sur place, conditionnement, chargement. Planifiée = J+10, prioritaire = J+3, urgente = J+1.",
+              "N1 Standard level: GTC vehicle and crew sized to the lot, on-site audit and inventory, packing, loading. Planned = D+10, priority = D+3, urgent = D+1."
+            )}
+          </p>
+          <Table
+            className="mt-4"
+            caption={tx("Intervention de collecte par classe de lot (€ HT)", "Pick-up intervention by lot class (€ ex-VAT)")}
+            head={[
+              tx("Classe de lot", "Lot class"),
+              tx("Véhicule et équipe", "Vehicle and crew"),
+              tx("IDF planifiée", "Île-de-France planned"),
+              tx("IDF prioritaire", "Île-de-France priority"),
+              tx("IDF urgente", "Île-de-France urgent"),
+              "200–500 km",
+              tx("500–1 000 km", "500–1,000 km"),
+            ]}
+            numeric={[2, 3, 4, 5, 6]}
+            emphasis={[2]}
+            rows={COLLECTION_CLASSES.map((c) => [
+              <span key="c" className="block min-w-[150px]">
+                {c.id} · {c.name[lang]}
+                <span className="block text-caption font-normal text-fg-muted">
+                  ≤ {c.pallets} {tx("palettes", "pallets")}
+                </span>
+              </span>,
+              <span key="v" className="block min-w-[170px]">
+                {c.crew[lang]}
+              </span>,
+              e(c.z1Planned),
+              e(c.z1Priority),
+              e(c.z1Urgent),
+              e(c.z2a),
+              e(c.z2b),
+            ])}
+          />
+          <p className="mt-3 text-caption text-fg-muted">
+            {tx("Au-delà de 36 palettes : une journée C4 de plus par tranche de 36 palettes. Distances depuis l'Île-de-France, collecte planifiée.", "Beyond 36 pallets: one more C4 day per 36 pallets. Distances from Île-de-France, planned pick-up.")}
+          </p>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-2 [&>*]:min-w-0">
+            <div>
+              <p className="mb-3 text-eyebrow uppercase text-fg-muted">{tx("Niveau de service et éléments par palette", "Service level and per-pallet items")}</p>
+              <PriceList items={COLLECTION_EXTRAS} lang={lang} />
+            </div>
+            <div>
+              <p className="mb-3 text-eyebrow uppercase text-fg-muted">{tx("Option messagerie — palettes préparées par vous", "Carrier option — pallets prepared by you")}</p>
+              <Table
+                caption={tx("Option messagerie, prix par palette (€ HT)", "Carrier option, price per pallet (€ ex-VAT)")}
+                head={[tx("Zone", "Zone"), tx("1re palette", "1st pallet"), tx("Dès la 11e", "From the 11th"), tx("Prioritaire", "Priority"), tx("Urgente", "Urgent")]}
+                numeric={[1, 2, 3, 4]}
+                emphasis={[1]}
+                rows={PARCEL_OPTION.zones.map((z) => [z.name[lang], e(z.first), e(z.floor), e(z.priority), e(z.urgent)])}
+              />
+              <p className="mt-3 text-caption text-fg-muted">
+                {tx(
+                  `+ forfait d'expédition ${e(PARCEL_OPTION.shipmentFee)} HT par envoi. ≤ 200 km : ${PARCEL_OPTION.zones[0].steps!.fr}. Prioritaire et urgente : prix de la 1re palette. Pour les petits lots éloignés, quand c'est moins cher qu'une intervention.`,
+                  `+ shipping fee ${e(PARCEL_OPTION.shipmentFee)} ex-VAT per shipment. ≤ 200 km: ${PARCEL_OPTION.zones[0].steps!.en}. Priority and urgent: 1st-pallet price. For small, distant lots, when cheaper than an intervention.`
+                )}
+              </p>
+            </div>
           </div>
+          <p className="mt-6 text-body-sm text-fg-strong">
+            {tx("Intervention dédiée en Europe, Afrique du Sud ou pays du Golfe :", "Dedicated intervention in Europe, South Africa or the Gulf:")}{" "}
+            <a href="#contact-ventes" className="font-medium text-emerald underline-offset-4 hover:underline">
+              {tx("nous contacter", "contact us")}
+            </a>
+            .
+          </p>
         </Section>
       </div>
 
       {/* ═══════════ ONGLET WAKI BOX ═══════════ */}
       <div id="panel-waki-box" role="tabpanel" aria-labelledby="tab-waki-box" hidden={activeTab !== "waki-box"}>
-      {/* ═══════════ 3. 3 PLANS WAKI BOX #plans (+ comparatif intégré) ═══════════ */}
-      <section id="plans" className="bg-bg-card py-12 lg:py-16" aria-labelledby="plans-title">
-        <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <div className="reveal">
-            <SectionHeader
-              id="plans-title"
-              eyebrow={tx("Comparatif Waki Box", "Waki Box comparison")}
-              title={tx("Quel plan pour votre organisation ?", "Which plan for your organisation?")}
-              intro={tx(
-                "Trois plans publics. Le prix affiché est le prix final ; les différences chiffrées et les fonctions avancées sont détaillées dans chaque carte.",
-                "Three public plans. The displayed price is the final price; numeric differences and advanced features are detailed in each card."
-              )}
-            />
-          </div>
-          <div className="reveal-stagger grid gap-6 lg:grid-cols-3">
-            {plans.map((plan) => {
-              const popular = "popular" in plan && plan.popular;
+        <Section id="plans" tone="paper" className="scroll-mt-24">
+          <SectionHeader
+            eyebrow="Waki Box"
+            title={tx("Suivi DEEE connecté, au prix par borne.", "Connected WEEE tracking, priced per kiosk.")}
+            intro={tx(
+              "Bornes connectées, pesée, alertes et reporting prêt pour la CSRD. Prix final, sans « à partir de ».",
+              "Connected kiosks, weighing, alerts and CSRD-ready reporting. Final prices, no \"from\"."
+            )}
+          />
+          <div className="grid gap-6 lg:grid-cols-3">
+            {WAKI_PLANS.map((p) => {
+              const popular = p.id === "confort";
               return (
-                <div key={plan.slug} className="reveal h-full">
-                  <article
-                    aria-labelledby={`plan-title-${plan.slug}`}
-                    className={`flex h-full flex-col rounded-xl border bg-bg p-6 lg:p-8 ${popular ? "border-emerald" : "border-track"}`}
-                  >
-                    <div className="flex items-center justify-between gap-3">
-                      <Pictogram icon={plan.icon} />
-                      {popular && <Tag variant="brand">{tx("Le plus choisi", "Most chosen")}</Tag>}
+                <article key={p.id} aria-labelledby={`waki-${p.id}`} className={`flex h-full flex-col rounded-xl border bg-bg p-6 lg:p-8 ${popular ? "border-emerald" : "border-track"}`}>
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-eyebrow uppercase text-fg-muted">{wakiAudience[p.id]}</p>
+                    {popular && <Tag variant="brand">{tx("Le plus choisi", "Most chosen")}</Tag>}
+                  </div>
+                  <h3 id={`waki-${p.id}`} className="mt-2 font-display text-display-sm text-fg">
+                    Waki Box {p.name}
+                  </h3>
+                  <p className="mt-4 font-display text-display-md tabular-nums text-emerald">
+                    {e(p.monthly)}
+                    <span className="ml-1 font-sans text-body-sm text-fg-muted">
+                      {HT}
+                      {perMonth}
+                    </span>
+                  </p>
+                  <dl className="mt-4 grid grid-cols-3 gap-3 border-y border-track py-4 text-body-sm">
+                    <div>
+                      <dt className="text-caption text-fg-muted">{tx("Bornes", "Kiosks")}</dt>
+                      <dd className="font-semibold text-fg">{p.kiosks}</dd>
                     </div>
-                    <p className="mt-6 text-eyebrow uppercase text-fg-muted">
-                      {plan.num} · {plan.audience}
-                    </p>
-                    <h3 id={`plan-title-${plan.slug}`} className="mt-2 font-display text-display-sm text-fg">
-                      Waki Box {plan.name}
-                    </h3>
-                    <p className="mt-3 text-body-sm text-fg-strong">{plan.tagline}</p>
-
-                    <dl className="mt-6 grid grid-cols-3 gap-3 border-y border-track py-4">
-                      <div className="col-span-3 flex flex-col-reverse justify-end">
-                        <dt className="text-caption text-fg-muted">{tx("Abonnement mensuel", "Monthly subscription")}</dt>
-                        <dd className="font-display text-display-md tabular-nums text-emerald">
-                          {plan.price} <span className="font-sans text-body-sm text-fg-muted">€ HT/{tx("mois", "month")}</span>
-                        </dd>
-                      </div>
-                      <div className="col-span-2 flex flex-col-reverse justify-end">
-                        <dt className="text-caption text-fg-muted">{tx("Mise en service", "Installation")}</dt>
-                        <dd className="text-body-sm font-semibold tabular-nums text-fg">{plan.setup} € HT</dd>
-                      </div>
-                      <div className="flex flex-col-reverse justify-end">
-                        <dt className="text-caption text-fg-muted">{tx("Engagement", "Commitment")}</dt>
-                        <dd className="text-body-sm font-semibold text-fg">{plan.engagement}</dd>
-                      </div>
-                    </dl>
-
-                    <ul className="mt-6 flex-1 space-y-2">
-                      {plan.features.map((f, j) => (
-                        <li key={j} className="flex items-start gap-2 text-body-sm text-fg-strong">
-                          <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
-                          <span>{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="mt-8">
-                      <ButtonLink href={`/reserver?offre=${plan.slug}`} variant={popular ? "primary" : "secondary"} fullWidth>
-                        {tx("Réserver Waki Box", "Book Waki Box")} {plan.name}
-                      </ButtonLink>
+                    <div>
+                      <dt className="text-caption text-fg-muted">{tx("Mise en service", "Setup")}</dt>
+                      <dd className="font-semibold tabular-nums text-fg">
+                        {p.setup != null ? e(p.setup) : `${e(WAKI_SETUP_BANDS[0].price)}/${tx("borne", "kiosk")}`}
+                      </dd>
                     </div>
-                  </article>
-                </div>
+                    <div>
+                      <dt className="text-caption text-fg-muted">{tx("Engagement", "Commitment")}</dt>
+                      <dd className="font-semibold text-fg">
+                        {p.commitmentMonths} {tx("mois", "months")}
+                      </dd>
+                    </div>
+                  </dl>
+                  <ul className="mt-6 flex-1 space-y-2">
+                    {wakiFeatures[p.id].map((f) => (
+                      <Bullet key={f}>{f}</Bullet>
+                    ))}
+                  </ul>
+                  <div className="mt-8">
+                    <ButtonLink href={`/reserver?offre=waki-box-${p.id}`} variant={popular ? "primary" : "secondary"} fullWidth>
+                      {tx("Réserver Waki Box", "Book Waki Box")} {p.name}
+                    </ButtonLink>
+                  </div>
+                </article>
               );
             })}
           </div>
-          {/* Comparatif détaillé — remplace les blocs dupliqués dans chaque carte (une seule table, DESIGN.md « page plus courte ») */}
-          <ComparisonTable
-            caption={tx("Comparatif détaillé des plans Waki Box", "Detailed Waki Box plan comparison")}
-            columns={plans.map((p) => `Waki Box ${p.name}`)}
-            highlightIndex={1}
-            groups={WAKIBOX_COMPARISON}
-            isEn={isEn}
-          />
-        </div>
-      </section>
 
-      {/* ═══════════ 4. PROGRAMME PILOTE WAKI BOX (leaf-100) ═══════════ */}
-      <Section tone="mint">
-        <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
-          <div className="reveal lg:col-span-7">
-            <p className="text-eyebrow uppercase text-emerald">{tx("Programme pilote · 3 places", "Pilot programme · 3 spots")}</p>
-            <h2 className="mt-3 max-w-[24ch] text-display-md text-emerald">
-              {tx(
-                <>
-                  Premier mois offert,{" "}
-                  <br className="hidden sm:block" />
-                  puis 39 € HT/mois.
-                </>,
-                <>
-                  First month free,{" "}
-                  <br className="hidden sm:block" />
-                  then €39 HT/month.
-                </>
-              )}
-            </h2>
-            <p className="mt-4 max-w-[65ch] text-body-lg text-fg-strong">
-              {tx(
-                "Installez votre première box dans un site pilote, testez la collecte connectée, mesurez votre impact sur 3 mois. Désengagement à tout moment.",
-                "Install your first kiosk at a pilot site, test connected collection, measure your impact over 3 months. Cancel anytime."
-              )}
+          <div className="mt-10 grid gap-6 lg:grid-cols-2 [&>*]:min-w-0">
+            <div>
+              <p className="mb-3 text-eyebrow uppercase text-fg-muted">{tx("Bornes additionnelles et mise en service", "Additional kiosks and setup")}</p>
+              <Table
+                caption={tx("Mise en service par borne selon le nombre de bornes posées en une intervention", "Setup per kiosk by number of kiosks installed in one visit")}
+                head={[tx("Bornes posées en une intervention", "Kiosks installed in one visit"), tx("Mise en service / borne", "Setup / kiosk")]}
+                numeric={[1]}
+                emphasis={[1]}
+                rows={WAKI_SETUP_BANDS.map((b) => [b.max == null ? `${b.min}+` : `${b.min}–${b.max}`, e(b.price)])}
+              />
+              <p className="mt-3 text-caption text-fg-muted">
+                {tx(
+                  `Borne additionnelle : ${e(WAKI_EXTRA_KIOSK.monthly)} HT/mois, mise en service ${e(WAKI_EXTRA_KIOSK.setup)} HT. Grille de mise en service : Premium et bornes additionnelles. L'abonnement par borne n'est pas dégressif.`,
+                  `Additional kiosk: ${e(WAKI_EXTRA_KIOSK.monthly)} ex-VAT/month, setup ${e(WAKI_EXTRA_KIOSK.setup)} ex-VAT. Setup grid: Premium and additional kiosks. The per-kiosk subscription is not tiered.`
+                )}
+              </p>
+            </div>
+            <div className="rounded-xl border border-emerald-line bg-emerald-dim p-6">
+              <p className="text-eyebrow uppercase text-emerald">{tx("Offre pilote", "Pilot offer")}</p>
+              <p className="mt-2 font-display text-display-sm text-fg">
+                {tx(`1er mois offert sur Essentiel, puis ${e(WAKI_PLANS[0].monthly)} HT/mois.`, `1st month free on Essentiel, then ${e(WAKI_PLANS[0].monthly)} ex-VAT/month.`)}
+              </p>
+              <p className="mt-3 text-body-sm text-fg-strong">
+                {tx(
+                  "Installez une première borne dans un site pilote, mesurez vos flux DEEE, puis choisissez le plan qui vous convient.",
+                  "Install a first kiosk at a pilot site, measure your WEEE flows, then choose the plan that suits you."
+                )}
+              </p>
+              <div className="mt-5">
+                <ButtonLink href="/reserver?offre=pilote-waki-box">{tx("Démarrer le pilote", "Start the pilot")}</ButtonLink>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-2 [&>*]:min-w-0">
+            <div>
+              <p className="mb-3 text-eyebrow uppercase text-fg-muted">{tx("Options", "Options")}</p>
+              <PriceList items={WAKI_ADDONS} lang={lang} />
+            </div>
+            <div>
+              <p className="mb-3 text-eyebrow uppercase text-fg-muted">{tx("Bundles", "Bundles")}</p>
+              <ul className="space-y-4">
+                {WAKI_BUNDLES.map((b) => (
+                  <li key={b.id} className="rounded-xl border border-track bg-bg p-5">
+                    <div className="flex flex-wrap items-baseline justify-between gap-2">
+                      <p className="text-heading-md text-fg">{b.name[lang]}</p>
+                      <p className="font-display text-display-sm tabular-nums text-emerald">
+                        {e(b.amount)} <span className="font-sans text-caption text-fg-muted">{HT}</span>
+                      </p>
+                    </div>
+                    <p className="mt-1 text-body-sm text-fg-strong">{b.contents[lang]}</p>
+                    <p className="mt-2 text-caption text-fg-muted">
+                      {tx(`Au lieu de ${e(b.components)} HT séparément`, `Instead of ${e(b.components)} ex-VAT separately`)}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Section>
+      </div>
+
+      {/* ═══════════ SUPPORT & SLA ═══════════ */}
+      <Section id="support" tone="cream" className="scroll-mt-24">
+        <SectionHeader
+          eyebrow={tx("Support et SLA", "Support & SLA")}
+          title={tx("Trois niveaux de support, des engagements écrits.", "Three support levels, written commitments.")}
+          intro={tx(
+            "Standard est inclus dans chaque édition. Premium et Enterprise sont facturés en pourcentage de l'abonnement logiciel annuel, avec disponibilité garantie et crédits de service.",
+            "Standard is included in every edition. Premium and Enterprise are billed as a percentage of the annual software subscription, with guaranteed availability and service credits."
+          )}
+        />
+        <Table
+          caption={tx("Niveaux de support", "Support levels")}
+          head={["", ...SUPPORT_TIERS.map((s) => s.name)]}
+          emphasis={[2]}
+          rows={[
+            [tx("Prix", "Price"), ...SUPPORT_TIERS.map((s) => <span key={s.id} className="font-semibold text-emerald">{s.price[lang]}</span>)],
+            [tx("Canaux", "Channels"), ...SUPPORT_TIERS.map((s) => s.channels[lang])],
+            [tx("Horaires (heure de Paris)", "Hours (Paris time)"), ...SUPPORT_TIERS.map((s) => s.hours[lang])],
+            [tx("Disponibilité mensuelle", "Monthly availability"), ...SUPPORT_TIERS.map((s) => s.availability[lang])],
+            [tx("Contact nommé", "Named contact"), ...SUPPORT_TIERS.map((s) => <Mark key={s.id} value={s.contact[lang]} lang={lang} />)],
+            [tx("Revue de service", "Service review"), ...SUPPORT_TIERS.map((s) => <Mark key={s.id} value={s.review[lang]} lang={lang} />)],
+          ]}
+        />
+        <div className="mt-8 grid gap-6 lg:grid-cols-12">
+          <div className="min-w-0 lg:col-span-8">
+            <p className="mb-3 text-eyebrow uppercase text-fg-muted">{tx("Matrice de sévérité : première réponse · contournement", "Severity matrix: first response · workaround")}</p>
+            <Table
+              caption={tx("Délais par sévérité et niveau de support", "Response times by severity and support level")}
+              head={[tx("Sévérité", "Severity"), ...SUPPORT_TIERS.map((s) => s.name.split(" /")[0])]}
+              rows={SEVERITY_MATRIX.map((r) => [<span key="l" className="block min-w-[160px]">{r.label[lang]}</span>, ...r.values.map((v) => v[lang])])}
+            />
+          </div>
+          <div className="min-w-0 lg:col-span-4">
+            <p className="mb-3 text-eyebrow uppercase text-fg-muted">{tx("Crédits de service", "Service credits")}</p>
+            <Table
+              caption={tx("Crédits de service selon la disponibilité mensuelle", "Service credits by monthly availability")}
+              head={[tx("Disponibilité", "Availability"), "Premium", "Enterprise"]}
+              numeric={[1, 2]}
+              rows={SERVICE_CREDITS.map((r) => [r.label[lang], ...r.values.map((v, i) => <Mark key={i} value={v[lang]} lang={lang} />)])}
+            />
+            <p className="mt-3 text-caption text-fg-muted">
+              {tx("En % de la redevance mensuelle, plafonnés à 50 %, imputés sur la facture suivante.", "As % of the monthly fee, capped at 50%, credited on the next invoice.")}
             </p>
-            <ul className="mt-6 space-y-2">
-              {tx(
-                [
-                  "Sans frais d'installation (valeur 150 € offerts)",
-                  "Box installée sous 10 jours ouvrés",
-                  "Bascule vers le plan Essentiel, Confort ou Premium à l'issue",
-                  "Désengagement à tout moment, sans pénalité",
-                ],
-                [
-                  "No installation fee (€150 waived)",
-                  "Box installed within 10 business days",
-                  "Switch to Essentiel, Confort or Premium plan afterwards",
-                  "Cancel anytime, no penalty",
-                ]
-              ).map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-body-sm text-fg">
-                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
-                  <span>{item}</span>
-                </li>
-              ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ═══════════ CUSTOMER SUCCESS ═══════════ */}
+      <Section tone="paper" aria-labelledby="csm-title">
+        <SectionHeader
+          id="csm-title"
+          eyebrow="Customer Success"
+          title={tx("Un accompagnement qui grandit avec votre contrat.", "Success support that grows with your contract.")}
+        />
+        <ul className="grid gap-4 md:grid-cols-3">
+          {CSM_TIERS.map((c) => (
+            <li key={c.id} className="flex flex-col rounded-xl border border-track bg-bg-card p-5">
+              <p className="text-heading-md text-fg">{c.name[lang]}</p>
+              <p className="mt-2 text-body-sm font-semibold text-emerald">{c.price[lang]}</p>
+              <p className="text-caption text-fg-muted">{c.threshold[lang]}</p>
+              <p className="mt-3 text-body-sm text-fg-strong">{c.contents[lang]}</p>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* ═══════════ SERVICES PROFESSIONNELS ═══════════ */}
+      <Section id="services-pro" tone="cream" className="scroll-mt-24">
+        <SectionHeader
+          eyebrow={tx("Services professionnels", "Professional services")}
+          title={tx("Onboarding inclus, avec des garde-fous écrits.", "Onboarding included, with written guardrails.")}
+          intro={tx(
+            "Chaque édition inclut un onboarding guidé. Au-delà, des forfaits au prix fixe et des tarifs journaliers publics.",
+            "Every edition includes guided onboarding. Beyond that, fixed-price packages and public day rates."
+          )}
+        />
+        <div className="grid gap-8 lg:grid-cols-12 [&>*]:min-w-0">
+          <div className="lg:col-span-5">
+            <div className="rounded-xl border border-emerald-line bg-bg p-5">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-heading-md text-fg">{tx("Onboarding inclus", "Included onboarding")}</p>
+                <Tag variant="brand">{tx("0 €", "€0")}</Tag>
+              </div>
+              <dl className="mt-4 divide-y divide-track text-body-sm">
+                {ONBOARDING_GUARDRAILS.map((g) => (
+                  <div key={g.label.fr} className="grid gap-1 py-2.5 sm:grid-cols-[110px_1fr] sm:gap-3">
+                    <dt className="text-fg-muted">{g.label[lang]}</dt>
+                    <dd className="text-fg-strong">{g.value[lang]}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+          <div className="min-w-0 space-y-6 lg:col-span-7">
+            <div id="pilote" className="scroll-mt-24">
+              <p className="mb-3 text-eyebrow uppercase text-fg-muted">{tx("Forfaits", "Packages")}</p>
+              <PriceList items={PS_PACKAGES} lang={lang} />
+            </div>
+            <div>
+              <p className="mb-3 text-eyebrow uppercase text-fg-muted">{tx("Tarifs journaliers", "Day rates")}</p>
+              <PriceList items={DAY_RATES} lang={lang} />
+              <p className="mt-3 text-caption text-fg-muted">
+                {tx("Déplacements inclus en Île-de-France ; ailleurs au réel + 10 %.", "Travel included in Île-de-France; elsewhere at cost + 10%.")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* ═══════════ CONDITIONS + CONTACTER LES VENTES ═══════════ */}
+      <Section tone="paper" aria-labelledby="conditions-title">
+        <div className="grid gap-8 lg:grid-cols-2 [&>*]:min-w-0">
+          <div>
+            <p className="text-eyebrow uppercase text-fg-muted">{tx("Conditions", "Terms")}</p>
+            <h2 id="conditions-title" className="mt-2 font-display text-display-sm text-fg">
+              {tx("Remises et conditions, sans astérisque.", "Discounts and terms, no asterisks.")}
+            </h2>
+            <ul className="mt-5 space-y-2">
+              <Bullet>{tx("Engagement annuel par défaut ; mensuel sans engagement : +20 %", "Annual commitment by default; monthly with no commitment: +20%")}</Bullet>
+              <Bullet>
+                {tx(
+                  `Engagement 2 ans : −${MULTI_YEAR_DISCOUNT.twoYears * 100} % · 3 ans : −${MULTI_YEAR_DISCOUNT.threeYears * 100} % sur les abonnements`,
+                  `2-year commitment: −${MULTI_YEAR_DISCOUNT.twoYears * 100}% · 3 years: −${MULTI_YEAR_DISCOUNT.threeYears * 100}% on subscriptions`
+                )}
+              </Bullet>
+              <Bullet>{tx("Indexation annuelle plafonnée à 3 %", "Annual indexation capped at 3%")}</Bullet>
+              <Bullet>{tx("Prix HT ; TVA 20 % en France métropolitaine", "Prices ex-VAT; 20% VAT in mainland France")}</Bullet>
+              <Bullet>{tx("Déplacements hors Île-de-France au réel + 10 %", "Travel outside Île-de-France at cost + 10%")}</Bullet>
             </ul>
-            <div className="mt-8">
-              <ButtonLink href="/reserver?offre=pilote-waki-box" size="lg">
-                {tx("Démarrer le pilote", "Start a pilot")}
+          </div>
+          <div id="contact-ventes" className="scroll-mt-24 rounded-2xl border border-track bg-bg-card p-6 lg:p-8">
+            <p className="text-eyebrow uppercase text-emerald">{tx("Contacter les ventes", "Contact sales")}</p>
+            <h2 className="mt-2 font-display text-display-sm text-fg">{tx("Les cas qui méritent un échange.", "Cases that deserve a conversation.")}</h2>
+            <ul className="mt-5 space-y-2">
+              <Bullet>{tx("Plus de 50 000 actifs", "More than 50,000 assets")}</Bullet>
+              <Bullet>{tx("Secteur public et appels d'offres", "Public sector and tenders")}</Bullet>
+              <Bullet>{tx("International : Europe, Afrique du Sud, pays du Golfe", "International: Europe, South Africa, the Gulf")}</Bullet>
+              <Bullet>{tx("Partenaires et revendeurs", "Partners and resellers")}</Bullet>
+              <Bullet>{tx("Preuve P4 défense / classifié (via partenaire habilité)", "P4 defence / classified proof (via a cleared partner)")}</Bullet>
+              <Bullet>{tx("Transport dédié en Europe ; Pack Conformité Enterprise", "Dedicated transport in Europe; Compliance pack Enterprise")}</Bullet>
+            </ul>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/reserver?offre=demo-conseil">{tx("Parler à un commercial", "Talk to sales")}</ButtonLink>
+              <ButtonLink href="/contact?sujet=commercial" variant="secondary" arrow={false}>
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                {tx("Écrire à l'équipe", "Email the team")}
               </ButtonLink>
             </div>
           </div>
-          <div className="reveal lg:col-span-5">
-            <figure>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-track">
-                <MediaSlot fill id="tarifs-pilote" alt={tx("Signature d'un programme pilote Waki Box", "Signing a Waki Box pilot programme")} fallback={<CertificateCard />} />
-              </div>
-              <figcaption className="mt-4 flex items-baseline justify-between gap-4 border-t border-track pt-4">
-                <span className="text-eyebrow uppercase text-emerald">{tx("Offre pilote", "Pilot offer")}</span>
-                <span className="text-body-sm font-semibold text-emerald">
-                  {tx("1er mois offert", "1st month free")} · {tx("puis 39 € HT/mois", "then €39 HT/month")}
-                </span>
-              </figcaption>
-            </figure>
-          </div>
         </div>
       </Section>
 
-      {/* ═══════════ 6. MODULES COMPLÉMENTAIRES — tableau ═══════════ */}
-      <Section tone="paper">
-        <div className="reveal">
-          <SectionHeader
-            eyebrow={tx("Modules complémentaires", "Add-on modules")}
-            title={tx("Composez votre offre Waki Box sur mesure.", "Build your Waki Box offer to fit.")}
-            intro={tx(
-              "Sept modules à la carte, chacun se greffe sur n'importe quel plan. Facturation unitaire, sans engagement supplémentaire.",
-              "Seven à la carte modules, each plugs into any plan. Unit billing, no additional commitment."
-            )}
-          />
-        </div>
-        <div className="reveal">
-          <Table
-            sticky
-            caption={tx("Modules complémentaires Waki Box", "Waki Box add-on modules")}
-            head={[
-              tx("Module", "Module"),
-              tx("Description", "Description"),
-              tx("Récurrence", "Recurrence"),
-              tx("Prix", "Price"),
-              <span key="a" className="sr-only">{tx("Action", "Action")}</span>,
-            ]}
-            numeric={[3]}
-            emphasis={[3]}
-            rows={addons.map((addon) => [
-              <span key="n" className="flex items-center gap-3">
-                <addon.icon className="h-4 w-4 flex-shrink-0 text-emerald" strokeWidth={1.75} aria-hidden="true" />
-                {addon.name}
-              </span>,
-              <span key="d" className="block min-w-[240px] max-w-[52ch]">
-                {addon.desc}
-              </span>,
-              <Tag key="r" variant="neutral">
-                {addon.recurrence}
-              </Tag>,
-              <span key="p" className="whitespace-nowrap">
-                {addon.price}
-              </span>,
-              <Link
-                key="c"
-                href={`/reserver?offre=${addon.slug}`}
-                className="group inline-flex min-h-[44px] items-center gap-1 whitespace-nowrap font-medium text-emerald hover:text-emerald-hover"
-                aria-label={`${tx("Réserver", "Book")} : ${addon.name}`}
-              >
-                {tx("Réserver", "Book")}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-              </Link>,
-            ])}
-          />
-        </div>
-      </Section>
-
-      {/* ═══════════ 7. COMPARATEUR INTERACTIF — carte unique ═══════════ */}
-      <Section tone="cream">
-        <div className="reveal">
-          <SectionHeader
-            eyebrow={tx("Composez votre offre", "Build your offer")}
-            title={tx("Calculez votre budget en temps réel.", "Calculate your budget in real time.")}
-            intro={tx(
-              "Choisissez un plan, cochez les modules que vous souhaitez ajouter. Le total mensuel se met à jour instantanément, avec ou sans remise annuelle.",
-              "Choose a plan, tick the modules you want to add. The monthly total updates instantly, with or without the annual discount."
-            )}
-          />
-        </div>
-        <div className="reveal">
-          <PlanComparator isEn={isEn} />
-        </div>
-      </Section>
-
-      {/* ═══════════ 8. BUNDLES RSE ═══════════ */}
-      <Section tone="paper">
-        <div className="reveal">
-          <SectionHeader
-            eyebrow={tx("Bundles clés en main", "Turnkey bundles")}
-            title={tx("Deux bundles pour aller plus vite.", "Two bundles to move faster.")}
-            intro={tx(
-              "Des packs tout-en-un pensés pour des organisations qui veulent lancer ou consolider leur démarche DEEE et CSRD en un seul contrat, avec une économie immédiate.",
-              "All-in-one packs designed for organisations that want to launch or consolidate their WEEE and CSRD approach in a single contract, with an immediate saving."
-            )}
-          />
-        </div>
-        <div className="grid gap-6 lg:grid-cols-2">
-          {bundles.map((b) => (
-            <div key={b.name} className="reveal">
-              <article className="flex h-full flex-col rounded-xl border border-track bg-bg p-6 lg:p-8">
-                <p className="text-eyebrow uppercase text-fg-muted">{b.name}</p>
-                <p className="mt-2 text-body-sm font-medium text-fg-strong">{b.plan}</p>
-                <p className="mt-4 font-display text-display-md tabular-nums text-emerald">
-                  {b.price} <span className="font-sans text-body-sm text-fg-muted">€ HT one-shot</span>
-                </p>
-                <div className="mt-2">
-                  <Tag variant="brand">{b.saving}</Tag>
-                </div>
-                <p className="mt-6 text-body-sm italic text-fg-strong">{b.pitch}</p>
-                <ul className="mt-4 flex-1 space-y-2">
-                  {b.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-body-sm text-fg-strong">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-8">
-                  <ButtonLink href={b.href} variant="secondary">
-                    {tx("Choisir ce bundle", "Choose this bundle")}
-                  </ButtonLink>
-                </div>
-              </article>
-            </div>
-          ))}
-        </div>
-      </Section>
-      </div>
-
-
-      {/* ═══════════ 12. FAQ ═══════════ */}
-      <Section tone="paper">
-        <div className="mx-auto max-w-[720px]">
-          <div className="reveal">
-            <SectionHeader
-              eyebrow={tx("Questions fréquentes", "Frequently asked questions")}
-              title={tx("Tarifs publics, devis sur mesure, engagement clair.", "Public pricing, tailored quotes, clear commitments.")}
-            />
-          </div>
+      {/* ═══════════ FAQ ═══════════ */}
+      <Section id="faq" tone="cream" className="scroll-mt-24">
+        <div className="mx-auto max-w-[760px]">
+          <SectionHeader eyebrow={tx("Questions fréquentes", "Frequently asked questions")} title={tx("Comprendre nos tarifs.", "Understanding our pricing.")} />
           <Accordion defaultOpen={null} items={faqItems.map((f) => ({ question: f.q, answer: f.a }))} />
+          <div className="mt-6">
+            <TextLink href="/plateforme">{tx("Découvrir la plateforme", "Discover the platform")}</TextLink>
+          </div>
         </div>
       </Section>
 
-      {/* ═══════════ 13. CTA UNIQUE ═══════════ */}
       <CtaSection
-        title={tx("Prêt à passer à l'action ?", "Ready to take the next step?")}
+        title={tx("Commencez gratuitement, sur votre propre parc.", "Start free, on your own fleet.")}
         subtitle={tx(
-          "Réservez Waki Box dès aujourd'hui, ou demandez un devis Plateforme / ITAD sous 48 heures.",
-          "Book Waki Box today, or request a Platform / ITAD quote within 48 hours."
+          `Essai de ${TRIAL.days} jours sans carte bancaire, ou un devis détaillé ligne par ligne sous 48 heures ouvrées.`,
+          `${TRIAL.days}-day trial with no credit card, or a detailed line-by-line quote within 48 business hours.`
         )}
-        primaryLabel={tx("Réserver Waki Box", "Book Waki Box")}
-        primaryHref="/reserver?offre=waki-box-confort"
+        primaryLabel={tx("Démarrer l'essai gratuit", "Start the free trial")}
+        primaryHref="/reserver?offre=essai-asset-management"
         secondaryLabel={tx("Demander un devis", "Request a quote")}
         secondaryHref="/reserver?offre=demo-conseil"
-        reassurance={[
-          tx("Réponse sous 24 heures ouvrées", "Response within 24 business hours"),
-          tx("NDA signé sur demande", "NDA signed on request"),
-          tx("Aucun engagement avant signature", "No commitment before signing"),
-        ].join(" · ")}
-        footnote={
-          <p className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            <Link href="/cas-usages" className="font-medium text-emerald hover:text-fg">
-              {tx("Voir 8 cas clients chiffrés", "See 8 quantified client cases")} →
-            </Link>
-            <Link href="/secteurs" className="font-medium text-emerald hover:text-fg">
-              {tx("Explorer 16 fiches sectorielles", "Explore 16 sector profiles")} →
-            </Link>
-            <Link href="/plateforme" className="font-medium text-emerald hover:text-fg">
-              {tx("Découvrir la plateforme", "Discover the platform")} →
-            </Link>
-          </p>
-        }
+        reassurance={[tx("Prix HT publics", "Public ex-VAT prices"), tx("NDA signé sur demande", "NDA signed on request"), tx("Aucun engagement avant signature", "No commitment before signing")].join(" · ")}
       />
     </div>
   );

@@ -5,12 +5,12 @@ const META_COPY: PageCopy = {
   fr: {
     title: "Waki Box | Suivi DEEE connecté, ESRS E5",
     description:
-      "Waki Box : suivi DEEE connecté en temps réel, alertes de remplissage et exports ESRS E5. Dès 39 € HT/mois.",
+      "Waki Box : suivi DEEE connecté en temps réel, alertes de remplissage et exports ESRS E5. Dès 40 € HT/mois.",
   },
   en: {
     title: "Waki Box | Connected WEEE tracking, ESRS E5",
     description:
-      "Waki Box: real-time connected WEEE tracking, fill alerts and ESRS E5 exports. From €39 ex-VAT/month.",
+      "Waki Box: real-time connected WEEE tracking, fill alerts and ESRS E5 exports. From €40 ex-VAT/month.",
   },
 };
 

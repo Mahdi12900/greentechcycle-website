@@ -508,53 +508,53 @@
     "pricingTeaser": {
       "eyebrow": "Tarifs des trois briques GTC",
       "title": "Trois briques, trois grilles publiques.",
-      "subtitle": "Waki Box en trois plans complets, Plateforme GTC SaaS et Service ITAD avec leurs grilles. Prix publics, quand le marché répond « sur devis ».",
+      "subtitle": "Plateforme au prix par actif, services ITAD au prix par appareil, Waki Box par borne : des prix publics et dégressifs, quand le marché répond « sur devis ».",
       "popularLabel": "Le plus populaire",
       "bookCta": "Réserver ma démo (30 min)",
       "setupLabel": "Mise en service",
       "allPricingLink": "Voir tous les tarifs et options",
-      "platformBrick": "Plateforme GTC SaaS",
-      "platformAnchor": "À partir de 1 400 € HT/mois",
-      "platformDesc": "Essentiel jusqu'à 200 actifs. Standard dès 2 500 € HT/mois de 201 à 2 000 actifs, Grand compte au-delà.",
+      "platformBrick": "Plateforme GTC · Asset Management",
+      "platformAnchor": "Essai gratuit 90 jours, puis dès 8,50 € HT par actif/mois",
+      "platformDesc": "Dégressif sur 9 tranches : Essentials à 1 400 € HT/mois pour 200 actifs, 2 500 € HT/mois pour 500. Professional et Enterprise pour les renouvellements, connecteurs SAP / Oracle / ServiceNow et grands parcs.",
       "platformCta": "Voir les tarifs",
-      "itadBrick": "Service ITAD",
-      "itadAnchor": "À partir de 19 € HT/poste",
-      "itadDesc": "Effacement selon NIST 800-88 compris. Serveurs, baies et équipements complexes : 55 € HT/unité.",
+      "itadBrick": "Services ITAD",
+      "itadAnchor": "Poste effacé : 24,50 € HT de 1 à 50, jusqu'à 18 € HT",
+      "itadDesc": "Prix par catégorie (poste, serveur, réseau, mobile, OT, écran) et par niveau d'effacement E1 / E2 / E3, certificat par numéro de série inclus. Collecte offerte quand le rachat la finance.",
       "itadCta": "Voir les tarifs",
       "plans": [
         {
           "name": "Essentiel",
-          "price": "39",
-          "setup": "150",
-          "pitch": "Une box, une console, un premier pas vers la traçabilité DEEE.",
+          "price": "40",
+          "setup": "225",
+          "pitch": "1 borne, une console, un premier pas vers la traçabilité DEEE.",
           "slug": "waki-box-essentiel"
         },
         {
           "name": "Confort",
-          "price": "79",
-          "setup": "290",
-          "pitch": "Jusqu'à 3 box, rapport CSRD, alertes temps réel.",
+          "price": "76",
+          "setup": "305",
+          "pitch": "2 bornes, rapport CSRD, alertes temps réel.",
           "slug": "waki-box-confort",
           "popular": true
         },
         {
           "name": "Premium",
-          "price": "dès 149",
-          "setup": "490",
-          "pitch": "Multi-sites, responsable dédié, intégration ERP par API.",
+          "price": "147",
+          "setup": "105",
+          "pitch": "4 bornes multi-sites, responsable dédié, intégration ERP par API.",
           "slug": "waki-box-premium"
         }
       ],
       "pilot": {
         "label": "Programme pilote",
-        "headline": "Pilote Waki Box : premier mois offert, puis 39 € HT/mois. Box installée sous 10 jours.",
+        "headline": "Pilote Waki Box : premier mois offert sur Essentiel, puis 40 € HT/mois.",
         "cta": "Réserver ma démo (30 min)"
       },
       "piloteAudit": {
         "label": "Pilote packagé - Mission senior 3 jours",
         "headline": "Pilote GTC - Audit & démarrage 3 jours",
-        "subline": "Diagnostic parc IT + plan ITAD priorisé + démarrage Plateforme. Remboursé sur la 1re année si signature dans les 90 jours.",
-        "price": "À partir de 2 900 € HT",
+        "subline": "Diagnostic parc IT + plan ITAD priorisé + démarrage Plateforme. Déductible d'un contrat Plateforme signé sous 90 jours.",
+        "price": "2 800 € HT",
         "cta": "Réserver ma démo (30 min)"
       }
     },
@@ -944,7 +944,7 @@
           "name": "Audit blanc d'un site pilote",
           "pitch": "Nous prenons un site représentatif, nous y branchons la plateforme et nous restituons sous deux semaines un état des écarts, un potentiel de valorisation et une feuille de route opérationnelle.",
           "duration": "2 semaines · site pilote",
-          "price": "Forfait 9 800 € HT"
+          "price": "Audit terrain 1 600 € HT/jour, rapport inclus"
         },
         {
           "slug": "audit-decommissionnement",
@@ -1978,7 +1978,7 @@
         "slug": "audit-blanc-itad",
         "name": "Audit blanc d'un site pilote",
         "pitch": "Un site représentatif, deux semaines d'observation, un rapport d'écarts, un potentiel de valorisation et une feuille de route.",
-        "duration": "2 semaines · forfait 9 800 € HT",
+        "duration": "2 semaines · audit terrain 1 600 € HT/jour",
         "nextStep": "Nous calons une session de cadrage sous 5 jours ouvrés pour valider le périmètre et la date d'engagement."
       },
       {
@@ -3384,8 +3384,8 @@
           "slug": "waki-box-essentiel",
           "name": "Essentiel",
           "audience": "TPE & PME · 10 à 50 collaborateurs",
-          "price": "39 €",
-          "setupValue": "150 €",
+          "price": "40 €",
+          "setupValue": "225 €",
           "engagementValue": "12 mois",
           "tagline": "Démarrer la conformité DEEE proprement, sans complexité.",
           "features": [
@@ -3401,12 +3401,12 @@
           "slug": "waki-box-confort",
           "name": "Confort",
           "audience": "PME & ETI · 50 à 300 collaborateurs",
-          "price": "79 €",
-          "setupValue": "290 €",
+          "price": "76 €",
+          "setupValue": "305 €",
           "engagementValue": "12 mois",
           "tagline": "Le standard pour les organisations qui préparent la CSRD.",
           "features": [
-            "Jusqu'à 3 bornes Waki Box multi-flux",
+            "2 bornes Waki Box multi-flux incluses",
             "Tous flux acceptés : piles, batteries, câbles, ampoules, accessoires",
             "Plateforme complète · jusqu'à 5 utilisateurs",
             "Compte-rendu mensuel détaillé par flux et par site",
@@ -3418,16 +3418,16 @@
           "slug": "waki-box-premium",
           "name": "Premium",
           "audience": "ETI & grands comptes · 300 collaborateurs et plus",
-          "price": "à partir de 149 €",
-          "setupValue": "490 € par borne",
+          "price": "147 €",
+          "setupValue": "105 € par borne, dégressif",
           "engagementValue": "24 mois",
           "tagline": "Multi-sites, intégré au système d'information, accompagné.",
           "features": [
-            "Bornes Waki Box illimitées, multi-sites",
+            "4 bornes Waki Box incluses, multi-sites ; borne additionnelle 36 € HT/mois",
             "Plateforme complète · utilisateurs illimités, gestion multi-sites",
             "Responsable de compte attribué",
             "Intégration ERP / SIRH / outil RSE par interface API dédiée",
-            "Engagement de service collecte sous 48 heures ouvrées",
+            "Mise en service dégressive : 105 € par borne, 85 € dès 26 bornes",
             "Compte-rendu CSRD personnalisé et restitution annuelle direction"
           ]
         }
@@ -3435,11 +3435,11 @@
     },
     "pilot": {
       "eyebrow": "Programme pilote · ouvert jusqu'à épuisement",
-      "title": "Pilote Waki Box : premier mois offert, puis 39 € HT/mois.",
+      "title": "Pilote Waki Box : premier mois offert, puis 40 € HT/mois.",
       "body": "Installez votre première box dans un site pilote, testez la collecte connectée, mesurez votre impact sur 3 mois. Désengagement à tout moment. Box installée sous 10 jours ouvrés.",
       "bullets": [
-        "Sans frais d'installation (valeur 150 € offerts)",
-        "Premier mois offert, puis 39 € HT/mois",
+        "Plan Essentiel : 1 borne, mise en service 225 € HT",
+        "Premier mois offert, puis 40 € HT/mois",
         "Bascule vers le plan Essentiel, Confort ou Premium à l'issue",
         "Désengagement à tout moment, sans pénalité"
       ],
@@ -3459,43 +3459,43 @@
           "slug": "box-supplementaire",
           "name": "Borne Waki Box supplémentaire",
           "why": "Site additionnel ou flux séparé batteries / petits DEEE",
-          "price": "29 € / mois"
+          "price": "36 € / mois + 105 € de mise en service"
         },
         {
           "slug": "collecte-urgence",
-          "name": "Collecte d'urgence sous 24 heures",
+          "name": "Collecte urgente (J+1)",
           "why": "Saturation imprévue, déménagement, incident batterie",
-          "price": "90 € par collecte"
+          "price": "1 000 € (J+1, Île-de-France) · offerte si le rachat la finance"
         },
         {
           "slug": "animation-semaine-recyclage",
           "name": "Animation Semaine du recyclage",
           "why": "Sensibilisation collaborateurs, semaine européenne du développement durable",
-          "price": "350 € / jour"
+          "price": "970 € / jour"
         },
         {
           "slug": "rapport-csrd-dedie",
           "name": "Compte-rendu CSRD dédié",
           "why": "Restitution annuelle écrite, mappée ESRS E5, prête direction",
-          "price": "490 € / an"
+          "price": "990 € / entité / an"
         },
         {
           "slug": "kit-comm-customise",
           "name": "Kit communication personnalisé",
           "why": "Affichage aux couleurs de votre marque, signalétique sur mesure",
-          "price": "290 € · à la livraison"
+          "price": "200 € / kit"
         },
         {
           "slug": "audit-deee",
           "name": "Audit DEEE sur site",
           "why": "État des lieux complet avant déploiement multi-sites",
-          "price": "1 500 € / jour"
+          "price": "1 600 € / jour"
         },
         {
           "slug": "formation-equipes",
           "name": "Formation tri DEEE des équipes",
           "why": "Intégration des responsables de bureau, brief sécurité batteries lithium",
-          "price": "450 € / 2 heures"
+          "price": "590 € / 2 heures"
         }
       ],
       "footnote": "Toutes les options sont activables à tout moment, sans modification du contrat principal."
@@ -3594,7 +3594,7 @@
       "subtitleDefault": "Quelques informations pour qu'un responsable Waki Box ou ITAD vous rappelle avec une proposition adaptée à votre secteur, votre taille et votre niveau de maturité conformité.",
       "headlinePrefix": "Réserver le ",
       "pilotHeadline": "Candidater au programme pilote Waki Box.",
-      "pilotSubtitle": "Premier mois offert puis 39 € HT/mois. Sans frais d'installation. Box installée sous 10 jours.",
+      "pilotSubtitle": "Premier mois offert sur Essentiel, puis 40 € HT/mois. Mise en service 225 € HT. Box installée sous 10 jours.",
       "addonHeadline": "Réserver une option à la carte.",
       "addonSubtitle": "Précisez le contexte d'activation et le site concerné. Nous revenons vers vous avec un devis sous 24 heures ouvrées."
     },
@@ -3737,7 +3737,20 @@
       "esrs-pack": "Pack · Restitution ESRS E5",
       "csrd-pack": "Pack · Reporting CSRD complet",
       "audit-blanc-itad": "Atelier · Audit blanc ITAD",
-      "plateforme-info": "Documentation · Plateforme GreenTechCycle"
+      "plateforme-info": "Documentation · Plateforme GreenTechCycle",
+      "essai-asset-management": "Essai gratuit Asset Management (90 jours)",
+      "plateforme-essentials": "Plateforme — édition Essentials",
+      "plateforme-professional": "Plateforme — édition Professional",
+      "plateforme-enterprise": "Plateforme — édition Enterprise",
+      "demo-conseil": "Échange avec un commercial",
+      "pilote-waki-box": "Programme pilote Waki Box",
+      "diagnostic-flash": "Diagnostic DEEE Flash",
+      "intervention-urgence": "Collecte urgente",
+      "animation-rse": "Animation RSE",
+      "rapport-csrd-esrs": "Carbone et CSRD — Essentials",
+      "kit-signaletique-rse": "Kit signalétique",
+      "audit-terrain-deee": "Audit terrain ITAD / DEEE",
+      "formation-collaborateurs": "Formation collaborateurs (2 h)"
     }
   },
   "ResultatsClients": {

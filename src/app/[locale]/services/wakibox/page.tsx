@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 
 import ServicePageTemplate from "../ServicePageTemplate";
 import type { ServicePageData } from "../ServicePageTemplate";
+import { PRICE_ANCHORS, WAKI_PLANS, WAKI_SETUP_BANDS } from "@/content/pricing";
 
 export default function WakiBoxPage() {
   const locale = useLocale();
@@ -138,8 +139,8 @@ export default function WakiBoxPage() {
     {
       name: "Essentiel",
       slug: "waki-box-essentiel",
-      price: "39",
-      setup: "150",
+      price: String(WAKI_PLANS[0].monthly),
+      setup: tx(`${WAKI_PLANS[0].setup} € HT`, `€${WAKI_PLANS[0].setup} ex-VAT`),
       engagement: tx("12 mois", "12 months"),
       pitch: tx(
         "1 box, plateforme basique, rapport trimestriel.",
@@ -149,24 +150,24 @@ export default function WakiBoxPage() {
     {
       name: "Confort",
       slug: "waki-box-confort",
-      price: "79",
-      setup: "290",
+      price: String(WAKI_PLANS[1].monthly),
+      setup: tx(`${WAKI_PLANS[1].setup} € HT`, `€${WAKI_PLANS[1].setup} ex-VAT`),
       engagement: tx("12 mois", "12 months"),
       pitch: tx(
-        "Jusqu'à 3 box, rapport CSRD ESRS E5, alertes temps réel.",
-        "Up to 3 boxes, CSRD ESRS E5 report, real-time alerts."
+        "2 bornes, rapport CSRD ESRS E5, alertes temps réel.",
+        "2 kiosks, CSRD ESRS E5 report, real-time alerts."
       ),
       popular: true,
     },
     {
       name: "Premium",
       slug: "waki-box-premium",
-      price: tx("dès 149", "from 149"),
-      setup: tx("490 / borne", "490 / kiosk"),
+      price: String(WAKI_PLANS[2].monthly),
+      setup: tx(`${WAKI_SETUP_BANDS[0].price} € HT par borne`, `€${WAKI_SETUP_BANDS[0].price} ex-VAT per kiosk`),
       engagement: tx("24 mois", "24 months"),
       pitch: tx(
-        "Multi-sites, responsable dédié, intégration API, SLA 48 h.",
-        "Multi-site, dedicated manager, API integration, 48h SLA."
+        "4 bornes multi-sites, responsable dédié, intégration API.",
+        "4 multi-site kiosks, dedicated manager, API integration."
       ),
     },
   ];
@@ -186,12 +187,12 @@ export default function WakiBoxPage() {
               <h2
                 className="text-display-md text-fg mb-6"
               >
-                {tx("À partir de 39 € HT/mois.", "From €39 ex-VAT/month.")}
+                {tx(`${PRICE_ANCHORS.waki.fr}.`, `${PRICE_ANCHORS.waki.en}.`)}
               </h2>
               <p className="text-fg-strong text-body lg:text-body-lg">
                 {tx(
-                  "Trois plans, un programme pilote à 19 € pour les premiers signataires, et des options à la carte. Tous les détails sur la page tarifs.",
-                  "Three plans, a €19 pilot programme for early signers, and à la carte options. Full details on the pricing page."
+                  "Trois plans, une offre pilote avec le premier mois offert, et des options à la carte. Tous les détails sur la page tarifs.",
+                  "Three plans, a pilot offer with the first month free, and à la carte options. Full details on the pricing page."
                 )}
               </p>
             </div>
@@ -214,7 +215,7 @@ export default function WakiBoxPage() {
                     <span className="text-sm text-fg-muted mb-1">€ HT/{tx("mois", "month")}</span>
                   </div>
                   <p className="text-xs text-fg-muted mb-4">
-                    {tx("Mise en service", "Setup")} {plan.setup} € HT · {plan.engagement}
+                    {tx("Mise en service", "Setup")} {plan.setup} · {plan.engagement}
                   </p>
                   <p className="text-sm text-fg-strong leading-relaxed flex-1 mb-5">{plan.pitch}</p>
                   <Link
@@ -238,8 +239,8 @@ export default function WakiBoxPage() {
                 </p>
                 <p className="text-fg font-semibold leading-snug">
                   {tx(
-                    "3 premiers signataires : mise en service offerte + 19 € HT/mois pendant 6 mois",
-                    "First 3 signers: free setup + €19 ex-VAT/month for 6 months"
+                    `Offre pilote sur Essentiel : ${PRICE_ANCHORS.wakiPilot.fr}`,
+                    `Pilot offer on Essentiel: ${PRICE_ANCHORS.wakiPilot.en}`
                   )}
                 </p>
               </div>

@@ -4,6 +4,7 @@ import { ShieldCheck } from "lucide-react";
 import { useLocale } from "next-intl";
 import ServicePageTemplate from "../ServicePageTemplate";
 import type { ServicePageData } from "../ServicePageTemplate";
+import { PRICE_ANCHORS } from "@/content/pricing";
 
 export default function EffacementSecurisePage() {
   const locale = useLocale();
@@ -129,7 +130,7 @@ export default function EffacementSecurisePage() {
     ctaPrimaryLabel: tx("Réserver une mission", "Book a mission"),
     ctaSecondaryLabel: tx("Voir notre démarche de conformité", "See our compliance approach"),
     ctaSecondaryHref: "/securite",
-    pricingAnchor: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
+    pricingAnchor: tx(PRICE_ANCHORS.itad.fr, PRICE_ANCHORS.itad.en),
     pricingHref: "/tarifs",
     isEn,
   };
