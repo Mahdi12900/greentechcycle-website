@@ -70,7 +70,7 @@ export default function WakiBoxPage() {
       {/* ═══ HERO paper — bandeau d'urgence → notice ═══ */}
       <section className="bg-bg py-12 lg:py-16" aria-labelledby="waki-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="reveal min-w-0 lg:col-span-7">
               <Link
                 href="/reserver?offre=waki-box-pilote"
@@ -126,7 +126,7 @@ export default function WakiBoxPage() {
 
       {/* ═══ PROMESSE (cream) ═══ */}
       <Section tone="cream" bordered>
-        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">
             <div className="reveal">
               <SectionHeader eyebrow={t("promise.eyebrow")} title={t("promise.title")} intro={t("promise.subtitle")} />

@@ -123,7 +123,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
       {/* HERO split paper */}
       <section className="bg-bg py-12 lg:py-16" aria-labelledby="service-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="reveal min-w-0 lg:col-span-7">
               <div className="flex flex-wrap items-center gap-2">
                 <Tag variant="brand" icon={<Icon className="h-3.5 w-3.5" aria-hidden="true" />}>{data.badge}</Tag>
@@ -170,7 +170,7 @@ export default function ServicePageTemplate({ data }: { data: ServicePageData })
 
       {/* POURQUOI (cream) */}
       <Section tone="cream" bordered>
-        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="reveal lg:col-span-7">
             <SectionHeader eyebrow={L.pourquoi} title={data.title} intro={data.description} />
             <p className="text-eyebrow uppercase text-fg-muted">{L.benefits}</p>

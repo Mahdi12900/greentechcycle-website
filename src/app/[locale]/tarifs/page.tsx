@@ -951,7 +951,7 @@ export default function TarifsPage() {
       {/* ═══════════ 1. HERO cream ═══════════ */}
       <section className="border-b border-track bg-bg-card py-12 lg:py-16" aria-labelledby="tarifs-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="reveal min-w-0 lg:col-span-7">
               <div className="flex flex-wrap gap-2">
                 <Tag variant="brand">{tx("Prix publics, transparents", "Public, transparent prices")}</Tag>
@@ -1071,7 +1071,7 @@ export default function TarifsPage() {
         </div>
 
         {/* Trois portes d'entrée (fusion S6d) */}
-        <div className="mt-16 border-t border-track pt-12">
+        <div className="mt-12 border-t border-track pt-12">
           <p className="text-eyebrow uppercase text-fg-muted">{tx("Première étape", "First step")}</p>
           <h3 className="mt-2 text-display-sm text-fg">{tx("Trois portes d'entrée.", "Three entry points.")}</h3>
           <p className="mt-3 max-w-[65ch] text-body text-fg-strong">
@@ -1179,7 +1179,7 @@ export default function TarifsPage() {
         <section id="pilote" className="bg-bg-card py-12 lg:py-16" aria-labelledby="pilote-title">
           <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
             <div className="reveal">
-              <article className="grid gap-10 rounded-xl border border-track bg-bg p-6 lg:grid-cols-12 lg:gap-16 lg:p-10">
+              <article className="grid gap-10 rounded-xl border border-track bg-bg p-6 lg:grid-cols-12 lg:gap-12 lg:p-10">
                 <div className="lg:col-span-7">
                   <p className="text-eyebrow uppercase text-fg-muted">{tx("Porte d'entrée 4", "Entry point 4")}</p>
                   <h2 id="pilote-title" className="mt-3 max-w-[24ch] text-display-md text-fg">
@@ -1439,7 +1439,7 @@ export default function TarifsPage() {
 
       {/* ═══════════ 4. PROGRAMME PILOTE WAKI BOX (leaf-100) ═══════════ */}
       <Section tone="mint">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="reveal lg:col-span-7">
             <p className="text-eyebrow uppercase text-emerald">{tx("Programme pilote · 3 places", "Pilot programme · 3 spots")}</p>
             <h2 className="mt-3 max-w-[24ch] text-display-md text-emerald">

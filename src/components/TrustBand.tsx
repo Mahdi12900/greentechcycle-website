@@ -55,7 +55,7 @@ export default function TrustBand() {
         </p>
         <p className="mx-auto mt-2 max-w-[55ch] text-center text-body-sm text-fg-muted">{KPIS.clients.period[lang]}</p>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-16">
+        <div className="mt-12 grid gap-8 lg:grid-cols-12 lg:gap-12">
           <div
             role="tablist"
             aria-label={isEn ? "Sectors" : "Secteurs"}

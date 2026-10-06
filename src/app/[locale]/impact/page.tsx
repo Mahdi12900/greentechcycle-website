@@ -188,7 +188,7 @@ export default function ImpactPage() {
               { label: t("breadcrumb.current"), href: "/impact" },
             ]}
           />
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="reveal min-w-0 lg:col-span-7">
               <p className="text-eyebrow uppercase text-fg-muted">{t("hero.eyebrow")}</p>
               <h1 id="impact-hero" className="mt-3 max-w-[20ch] text-display-lg text-fg">{t("hero.title")}</h1>

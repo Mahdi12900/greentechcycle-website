@@ -180,7 +180,7 @@ export default function HomePage() {
             serveur (LCP), vidéo chargée après `load`, poster seul en mouvement réduit / Save-Data */}
         <VideoBackground id="home-hero-background" />
         <div className="relative mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="reveal min-w-0 lg:col-span-7">
               <Link
                 href="/reglementation"
@@ -351,7 +351,7 @@ export default function HomePage() {
           id={`panel-${currentSolutionStep.id}`}
           role="tabpanel"
           aria-labelledby={`tab-${currentSolutionStep.id}`}
-          className="mt-10 grid items-center gap-12 lg:grid-cols-12 lg:gap-16"
+          className="mt-10 grid items-center gap-8 lg:grid-cols-12 lg:gap-12"
         >
           <div className="reveal lg:col-span-6">
             <p className="text-eyebrow uppercase text-fg-muted">{`0${activeSolutionIndex + 1}`}</p>
@@ -374,7 +374,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-12">
+        <div className="mt-12 grid gap-12 lg:grid-cols-12">
           <div className="reveal min-w-0 lg:col-span-10 lg:col-start-2">
             <p className="text-eyebrow uppercase text-fg-muted">{t("comparison.eyebrow")}</p>
             <h3 className="mt-2 text-display-sm text-fg">{t("comparison.title")}</h3>
@@ -475,7 +475,7 @@ export default function HomePage() {
         </StatRow>
         <p className="mt-8 max-w-[65ch] text-caption italic text-fg-muted">{t("proof.footnote")}</p>
 
-        <div className="mt-16 flex flex-col gap-6 border-t border-track pt-12 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mt-12 flex flex-col gap-6 border-t border-track pt-12 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="mb-3 text-eyebrow uppercase text-fg-muted">{t("cases.eyebrow")}</p>
             <h3 className="max-w-[24ch] text-display-sm text-fg">{t("cases.title")}</h3>
@@ -562,7 +562,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        <div className="mt-16 border-t border-track pt-10">
+        <div className="mt-12 border-t border-track pt-10">
           <p className="text-eyebrow uppercase text-fg-muted">{t("sectorTrust.label")}</p>
           <h3 className="mt-2 max-w-[32ch] text-display-sm text-fg">{t("sectorTrust.title")}</h3>
           <ul className="mt-8 grid grid-cols-2 gap-y-8 lg:grid-cols-4">
@@ -613,7 +613,7 @@ export default function HomePage() {
           </figure>
         </div>
 
-        <div className="mt-16 border-t border-track pt-10">
+        <div className="mt-12 border-t border-track pt-10">
           <p className="text-eyebrow uppercase text-fg-muted">{t("testimonials.eyebrow")}</p>
           <h2 className="mt-2 max-w-[24ch] text-display-sm text-fg">{t("testimonials.title")}</h2>
           <div className="reveal-stagger mt-8 grid gap-6 md:grid-cols-3">
