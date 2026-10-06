@@ -347,7 +347,7 @@ export const ITAD_FEES = {
   smallLot: 170,
   smallLotThreshold: 50,
   /** Journée d'effacement sur site (2 techniciens), en plus du prix par appareil */
-  onsiteDay: 1140,
+  onsiteDay: 1200,
   /** Mobilisation par intervention de destruction E3 sur site */
   e3Mobilisation: 680,
 };
@@ -445,14 +445,14 @@ export interface CollectionClass {
 }
 
 export const COLLECTION_CLASSES: CollectionClass[] = [
-  { id: "C1", name: same("Très petit lot", "Very small lot"), pallets: 2, crew: same("Camionnette, 2 personnes, ½ journée", "Van, 2 people, half day"), z1Planned: 800, z1Priority: 880, z1Urgent: 1000, z2a: 2260, z2b: 3795 },
-  { id: "C2", name: same("Petit lot", "Small lot"), pallets: 6, crew: same("Camion 20 m³, 3 personnes, ½ journée", "20 m³ truck, 3 people, half day"), z1Planned: 1275, z1Priority: 1400, z1Urgent: 1590, z2a: 3410, z2b: 5620 },
-  { id: "C3", name: same("Lot moyen", "Medium lot"), pallets: 18, crew: same("1 poids lourd, 4 personnes, 1 journée", "1 HGV, 4 people, 1 day"), z1Planned: 2790, z1Priority: 3070, z1Urgent: 3490, z2a: 5600, z2b: 8485 },
-  { id: "C4", name: same("Grand lot", "Large lot"), pallets: 36, crew: same("2 poids lourds, 8 personnes, 08 h–19 h", "2 HGVs, 8 people, 8 am–7 pm"), z1Planned: 5545, z1Priority: 6100, z1Urgent: 6930, z2a: 11165, z2b: 16935 },
+  { id: "C1", name: same("Très petit lot", "Very small lot"), pallets: 2, crew: same("Camionnette, 2 personnes, ½ journée", "Van, 2 people, half day"), z1Planned: 700, z1Priority: 770, z1Urgent: 875, z2a: 2090, z2b: 3555 },
+  { id: "C2", name: same("Petit lot", "Small lot"), pallets: 6, crew: same("Camion 20 m³, 3 personnes, ½ journée", "20 m³ truck, 3 people, half day"), z1Planned: 1220, z1Priority: 1340, z1Urgent: 1525, z2a: 3380, z2b: 5610 },
+  { id: "C3", name: same("Lot moyen", "Medium lot"), pallets: 18, crew: same("1 poids lourd, 4 personnes, 1 journée", "1 HGV, 4 people, 1 day"), z1Planned: 2635, z1Priority: 2900, z1Urgent: 3295, z2a: 5375, z2b: 8185 },
+  { id: "C4", name: same("Grand lot", "Large lot"), pallets: 36, crew: same("2 poids lourds, 8 personnes, 08 h–19 h", "2 HGVs, 8 people, 8 am–7 pm"), z1Planned: 4940, z1Priority: 5435, z1Urgent: 6175, z2a: 10230, z2b: 15665 },
 ];
 
 export const COLLECTION_EXTRAS: PriceLine[] = [
-  { id: "N2", name: same("N2 — Sécurisée scellée", "N2 — Sealed & secured"), amount: 100, unit: same("par véhicule", "per vehicle"), note: same("Scellés numérotés, GPS, procès-verbal de prise en charge", "Numbered seals, GPS, handover report") },
+  { id: "N2", name: same("N2 — Sécurisée scellée", "N2 — Sealed & secured"), amount: 115, unit: same("par véhicule", "per vehicle"), note: same("Scellés numérotés, GPS, procès-verbal de prise en charge", "Numbered seals, GPS, handover report") },
   { id: "N3", name: same("N3 — Escorte", "N3 — Escort"), amount: 1110, unit: same("par convoi (≤ 2 véhicules) et par jour", "per convoy (≤ 2 vehicles) per day"), note: same("En plus du N2 : agent de sécurité en véhicule suiveur", "On top of N2: security officer in a follow vehicle") },
   { id: "conso", name: same("Consommables", "Consumables"), amount: 29, unit: same("par palette", "per pallet"), note: same("Palette, film, scotch, étiquettes", "Pallet, film, tape, labels") },
   { id: "dech", name: same("Mise en déchetterie", "Waste disposal"), amount: 58, unit: same("par palette de grade D", "per grade-D pallet"), note: same("Déchets sans valeur, filière DEEE", "Valueless waste, WEEE channel") },
