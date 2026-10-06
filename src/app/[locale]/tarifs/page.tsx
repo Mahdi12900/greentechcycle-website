@@ -836,8 +836,8 @@ export default function TarifsPage() {
       price: ITAD_TIERS[1].price[lang],
       scope: ITAD_TIERS[1].scope[lang],
       bullets: tx(
-        ["Tout Poste de travail, plus :", "Démontage et traçabilité composants", "Logistique sécurisée baie/datacenter"],
-        ["Everything in Workstation, plus:", "Teardown and component traceability", "Secure rack/datacentre logistics"]
+        ["Tout Poste de travail, plus :", "Serveurs, baies et équipements complexes", "Décommissionnement de datacenter"],
+        ["Everything in Workstation, plus:", "Servers, racks and complex equipment", "Datacentre decommissioning"]
       ),
     },
   ];
