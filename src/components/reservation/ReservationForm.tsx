@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import SlotPicker from "@/components/reservation/SlotPicker";
+import { track } from "@/lib/analytics";
 
 import {
   ArrowRight,
@@ -35,7 +36,9 @@ function emailIsValid(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-export default function ReservationForm({ offerSlug }: { offerSlug: string | null }) {
+const WAKIBOX_PILOT_OFFERS = new Set(["waki-box-pilote", "pilote-waki-box"]);
+
+export default function ReservationForm({ offerSlug, sector = null }: { offerSlug: string | null; sector?: string | null }) {
   const t = useTranslations("reserver");
   const isEn = useLocale() === "en";
 
@@ -116,6 +119,11 @@ export default function ReservationForm({ offerSlug }: { offerSlug: string | nul
       });
       const json = (await res.json()) as { success: boolean; reservation_id?: string };
       if (json.success && json.reservation_id) {
+        const topic = offerSlug ?? "demo-conseil";
+        track("generate_lead", { topic, sector: sector ?? undefined });
+        if (offerSlug && WAKIBOX_PILOT_OFFERS.has(offerSlug)) {
+          track("wakibox_pilot_apply", { sector: sector ?? undefined });
+        }
         router.push(`/reserver/merci?ref=${json.reservation_id}`);
         return;
       }

@@ -1,10 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 import { FileDown, Minus, Plus } from "lucide-react";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { KPIS } from "@/content/kpis";
+import { track } from "@/lib/analytics";
 import {
   COLLECTION_CLASSES,
   COLLECTION_VALUE_RULE,
@@ -100,6 +101,19 @@ export default function ItadConfigurator({ idPrefix = "cfg" }: { idPrefix?: stri
   const [options, setOptions] = useState({ pickup: true, onsite: false, csrd: false });
 
   const setCat = (id: CatId, v: number) => setQty((q) => ({ ...q, [id]: Math.max(0, Math.min(100000, Math.round(v) || 0)) }));
+
+  // configurator_use : une seule mesure par « rafale » d'interactions (0,8 s d'inactivité),
+  // pas un événement par clic/saisie. Le premier rendu (valeurs pré-remplies) n'est pas compté.
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
+    }
+    const t = window.setTimeout(() => track("configurator_use", { idPrefix }), 800);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [qty, age, sensitivity, proof, options]);
 
   const ageLabel: Record<Age, string> = { lt3: tx("Moins de 3 ans", "Under 3 years"), "3to5": tx("3 à 5 ans", "3 to 5 years"), gt5: tx("Plus de 5 ans", "Over 5 years") };
   const sensLabel: Record<Sensitivity, string> = {
@@ -394,7 +408,12 @@ ${options.csrd ? `<p>${esc(tx("Carbone et CSRD Essentials", "Carbon & CSRD Essen
         </div>
 
         <div className="mt-6 flex flex-col gap-3">
-          <ButtonLink href={quoteHref} size="lg" fullWidth>
+          <ButtonLink
+            href={quoteHref}
+            size="lg"
+            fullWidth
+            onClick={() => track("quote_request", { location: `configurator_${idPrefix}`, amount: Math.round(calc.oneOff) })}
+          >
             {tx("Recevoir un devis", "Get a quote")}
           </ButtonLink>
           <Button variant="secondary" size="lg" fullWidth onClick={printSummary} arrow={false}>

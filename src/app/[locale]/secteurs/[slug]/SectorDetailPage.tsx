@@ -328,9 +328,9 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
       <CtaSection
         title={content.cta.title}
         primaryLabel={content.cta.button}
-        primaryHref="/reserver?offre=demo-conseil"
+        primaryHref={`/reserver?offre=demo-conseil&secteur=${sectorDef.slug}`}
         secondaryLabel={isFr ? "Tester Waki Box — 1er mois offert" : "Try Waki Box — 1st month free"}
-        secondaryHref="/reserver?offre=pilote-waki-box"
+        secondaryHref={`/reserver?offre=pilote-waki-box&secteur=${sectorDef.slug}`}
         reassurance={
           isFr
             ? `Pilote Waki Box : ${PRICE_ANCHORS.wakiPilot.fr}. Inventaire automatisé et attestation inclus.`

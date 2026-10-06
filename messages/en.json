@@ -179,20 +179,21 @@
     "bottomLinks": {
       "legal": "Legal notice",
       "privacy": "Privacy",
-      "cookies": "Cookies"
+      "cookies": "Cookies",
+      "manageCookies": "Manage my cookies"
     }
   },
   "CookieBanner": {
     "title": "Cookie preferences",
-    "description": "We use cookies to improve your experience. You can customize your preferences below.",
+    "description": "We use cookies, including Google Analytics 4 for audience measurement. You can accept all, refuse all (just as easy either way) or customise your preferences below.",
     "categories": {
       "necessary": {
         "title": "Strictly necessary",
         "desc": "Essential for site operation"
       },
       "analytics": {
-        "title": "Analytics",
-        "desc": "Help us improve our site"
+        "title": "Audience measurement (Google Analytics 4)",
+        "desc": "Anonymised visit statistics, to improve the site. No cookie is set without your consent."
       },
       "functional": {
         "title": "Functional",
@@ -2254,12 +2255,12 @@
           "text": "Under GDPR, you have the following rights:\n• Right of access to your data\n• Right to rectification\n• Right to erasure\n• Right to data portability\n• Right to object\n• Right to restriction of processing\n\nTo exercise your rights: support@greentechcycle.fr"
         },
         "cookies": {
-          "title": "Cookies",
-          "text": "Please refer to our dedicated cookie policy for more information on cookie usage."
+          "title": "Cookies and Audience Measurement",
+          "text": "GreenTechCycle uses Google Analytics 4 (Google Ireland Limited) to measure site audience: page views, traffic sources, feature usage (configurator, pricing tabs, videos). Purpose: improving the site and its content, no advertising use. Google acts as a data processor under the GDPR.\nNo measurement cookie is set before your explicit consent, collected via the cookie banner (\"Audience measurement\" category); your choice is kept for 6 months. Data collected by Google Analytics 4 is kept for 14 months, then automatically deleted.\nWhen data is transferred to the United States (Google hosting), that transfer is covered by the EU-US Data Privacy Framework, to which Google is a certified participant.\nYou can withdraw your consent at any time via the \"Manage my cookies\" link in the footer, without affecting the lawfulness of processing carried out before withdrawal. See also our dedicated cookie policy."
         },
         "transfers": {
           "title": "Data Transfers",
-          "text": "No data is transferred outside the European Union. All our subcontractors are located within the EU and subject to strict contractual clauses."
+          "text": "Data is hosted and processed by subcontractors located in the European Union, with one exception for audience measurement (Google Analytics 4, see \"Cookies and Audience Measurement\"): the related data may be processed by Google in the United States, under the safeguards of the EU-US Data Privacy Framework."
         },
         "update": {
           "title": "Updates",
@@ -2281,8 +2282,8 @@
             "text": "Essential for site operation. Cannot be disabled. Examples: session, language preferences, security."
           },
           "analytics": {
-            "title": "Analytics Cookies",
-            "text": "Allow us to measure site traffic and improve its performance. Tool used: Matomo (hosted in France)."
+            "title": "Audience measurement cookies",
+            "text": "Allow us to measure site traffic and improve its performance. Tool used: Google Analytics 4 (Google Ireland Limited), acting as a data processor. Set only after your explicit consent."
           },
           "functional": {
             "title": "Functional Cookies",
@@ -2295,11 +2296,12 @@
         },
         "management": {
           "title": "Managing Your Preferences",
-          "text": "You can change your preferences at any time by clicking the 'Cookie settings' link at the bottom of the page or through your browser settings."
+          "text": "You can change your preferences at any time by clicking the 'Cookie settings' link at the bottom of the page or through your browser settings.",
+          "cta": "Manage my cookies"
         },
         "duration": {
           "title": "Retention Period",
-          "text": "Cookies are stored for a maximum of 13 months in accordance with CNIL recommendations."
+          "text": "Audience-measurement cookies are kept for a maximum of 13 months (CNIL recommendation); the associated data is kept for 14 months in Google Analytics 4. Your consent choice is kept for 6 months, after which you are asked again."
         }
       }
     }

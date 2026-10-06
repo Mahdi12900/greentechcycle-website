@@ -10,6 +10,8 @@ import MobileActionBar from "@/components/MobileActionBar";
 import ExitPopup from "@/components/ExitPopup";
 import SchemaOrg from "@/components/SchemaOrg";
 import SalesAssistantWidget from "@/components/SalesAssistantWidget";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import AnalyticsListeners from "@/components/AnalyticsListeners";
 import { fontDisplay, fontMono, fontSans } from "@/app/fonts";
 import { SiteUiProvider } from "@/components/SiteUiContext";
 import { SITE_URL as SITE } from "@/lib/site";
@@ -160,6 +162,7 @@ export default async function LocaleLayout({
         <link rel="apple-touch-icon" href="/icon.svg" />
       </head>
       <body className="font-sans">
+        <GoogleAnalytics />
         <SchemaOrg data={organizationSchema} />
         <SchemaOrg data={websiteSchema} />
         <NextIntlClientProvider messages={messages}>
@@ -171,6 +174,7 @@ export default async function LocaleLayout({
           <MobileActionBar />
           <ExitPopup />
           <SalesAssistantWidget />
+          <AnalyticsListeners />
           </SiteUiProvider>
         </NextIntlClientProvider>
       </body>

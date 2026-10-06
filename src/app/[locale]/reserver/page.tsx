@@ -229,6 +229,8 @@ function ReserverInner() {
   const sp = useSearchParams();
   const rawOffer = sp?.get("offre") ?? null;
   const offerSlug = rawOffer && KNOWN_OFFERS.has(rawOffer) ? rawOffer : null;
+  // ?secteur=<slug> (CTA des pages secteur) : dimension GA4 « sector » du lead généré.
+  const sector = sp?.get("secteur") ?? null;
 
   let eyebrow = t("hero.eyebrowDefault");
   let headline = t("hero.headlineDefault");
@@ -332,7 +334,7 @@ function ReserverInner() {
       {/* Form */}
       <section className="bg-bg-card py-12 lg:py-16">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <ReservationForm offerSlug={offerSlug} />
+          <ReservationForm offerSlug={offerSlug} sector={sector} />
 
           {/* Reassurance bar */}
           <div className="max-w-3xl mx-auto mt-8 grid sm:grid-cols-3 gap-3">

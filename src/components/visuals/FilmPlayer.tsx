@@ -29,8 +29,10 @@ const MILESTONES = [25, 50, 75] as const;
  * - Chapitres cliquables sous l'image (registre `chapters`), progression par chapitre.
  * - Pause ou fin : écran d'appel à l'action (réserver une démo, WhatsApp, e-mail commercial)
  *   par-dessus l'image, avec « Reprendre » / « Revoir ».
- * - Mesure : film_play, film_progress (25/50/75), film_complete, film_chapter, film_cta_click
- *   poussés dans `window.dataLayer` (src/lib/analytics.ts), avec `placement`.
+ * - Mesure GA4 (src/lib/analytics.ts, consentement requis) : video_start, video_progress
+ *   (25/50/75), video_complete — chacun avec `video_title` et `chapter` — puis cta_click
+ *   (ou whatsapp_click / email_click pour les deux canaux de contact de l'écran de pause),
+ *   avec `placement`.
  * - Pas de sous-titres (décision utilisateur) : description accessible masquée visuellement.
  */
 const FilmPlayer = forwardRef<FilmPlayerHandle, { id: string; placement: string; className?: string; frameClassName?: string }>(
@@ -57,6 +59,9 @@ const FilmPlayer = forwardRef<FilmPlayerHandle, { id: string; placement: string;
       fn();
     };
 
+    /** Chapitre atteint au temps `t` (toujours en anglais, cohérent avec la mesure). */
+    const chapterAt = (t: number) => chapters.reduce((acc, c) => (t >= c.start ? c.label.en : acc), "");
+
     const playFrom = useCallback(
       (t: number | null) => {
         const v = videoRef.current;
@@ -70,7 +75,9 @@ const FilmPlayer = forwardRef<FilmPlayerHandle, { id: string; placement: string;
         }
         v.muted = false;
         setState("playing");
-        once("play", () => track("film_play", { film: id, placement }));
+        once("play", () =>
+          track("video_start", { video_title: title, chapter: chapterAt(t ?? time), film: id, placement })
+        );
         v.play().catch(() => {
           // Son refusé par le navigateur : on relance en muet, l'utilisateur garde les contrôles
           v.muted = true;
@@ -105,7 +112,11 @@ const FilmPlayer = forwardRef<FilmPlayerHandle, { id: string; placement: string;
     if (!spec || spec.kind !== "player") return null;
 
     const current = chapters.reduce((acc, c, i) => (time >= c.start ? i : acc), 0);
-    const ctaClick = (cta: string) => track("film_cta_click", { film: id, placement, cta, state, time: Math.round(time) });
+    const ctaClick = (cta: string) => {
+      if (cta === "whatsapp") track("whatsapp_click", { location: `${placement}_video_cta` });
+      else if (cta === "email_sales") track("email_click", { location: `${placement}_video_cta` });
+      else track("cta_click", { label: cta, location: placement });
+    };
     const wa = whatsappHref(PREFILL[lang].whatsapp);
     const mail = mailtoHref(PREFILL[lang].subject, "", EMAILS.sales);
     const pill =
@@ -145,7 +156,9 @@ const FilmPlayer = forwardRef<FilmPlayerHandle, { id: string; placement: string;
             onPause={(e) => !e.currentTarget.ended && setState("paused")}
             onEnded={() => {
               setState("ended");
-              once("100", () => track("film_complete", { film: id, placement, percent: 100 }));
+              once("100", () =>
+                track("video_complete", { video_title: title, chapter: chapters[current]?.label.en ?? "", percent: 100, film: id, placement })
+              );
             }}
             onTimeUpdate={(e) => {
               const t = e.currentTarget.currentTime;
@@ -153,7 +166,10 @@ const FilmPlayer = forwardRef<FilmPlayerHandle, { id: string; placement: string;
               if (!duration) return;
               const pct = (t / duration) * 100;
               for (const m of MILESTONES) {
-                if (pct >= m) once(String(m), () => track("film_progress", { film: id, placement, percent: m }));
+                if (pct >= m)
+                  once(String(m), () =>
+                    track("video_progress", { video_title: title, chapter: chapterAt(t), percent: m, film: id, placement })
+                  );
               }
             }}
           >
@@ -219,14 +235,14 @@ const FilmPlayer = forwardRef<FilmPlayerHandle, { id: string; placement: string;
               <div className="flex flex-wrap items-center justify-center gap-2">
                 <span className="hidden text-caption text-fg-muted sm:inline">{isEn ? "Talk to sales:" : "Parler à un commercial :"}</span>
                 {wa && (
-                  <a href={wa} target="_blank" rel="noopener noreferrer" onClick={() => ctaClick("whatsapp")} className={pill}>
+                  <a href={wa} target="_blank" rel="noopener noreferrer" data-gtc-tracked onClick={() => ctaClick("whatsapp")} className={pill}>
                     <MessageCircle className="h-4 w-4" aria-hidden="true" />
                     WhatsApp
                     <span className="sr-only">{isEn ? "(opens in a new tab)" : "(nouvel onglet)"}</span>
                   </a>
                 )}
                 {mail && (
-                  <a href={mail} onClick={() => ctaClick("email_sales")} className={pill}>
+                  <a href={mail} data-gtc-tracked onClick={() => ctaClick("email_sales")} className={pill}>
                     <Mail className="h-4 w-4" aria-hidden="true" />
                     <span className="sm:hidden">E-mail</span>
                     <span className="hidden sm:inline">{EMAILS.sales}</span>
@@ -247,10 +263,7 @@ const FilmPlayer = forwardRef<FilmPlayerHandle, { id: string; placement: string;
                 <li key={c.start} className="min-w-0 flex-auto">
                   <button
                     type="button"
-                    onClick={() => {
-                      track("film_chapter", { film: id, placement, chapter: c.label.en, start: c.start });
-                      playFrom(c.start);
-                    }}
+                    onClick={() => playFrom(c.start)}
                     aria-current={isCurrent ? "step" : undefined}
                     aria-label={`${isEn ? "Chapter" : "Chapitre"} ${i + 1}${isEn ? ":" : " :"} ${c.label[lang]} (${formatDuration(c.start) || "0:00"})`}
                     className="block min-h-[44px] w-full rounded-md pt-2 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald"
