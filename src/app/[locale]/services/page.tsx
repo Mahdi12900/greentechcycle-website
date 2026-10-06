@@ -18,10 +18,11 @@ import {
   Cpu,
   FileCheck,
   Users,
+  Check,
 } from "lucide-react";
 import CertificationStrip from "@/components/CertificationStrip";
 import CtaSection from "@/components/CtaSection";
-import { ButtonLink } from "@/components/ui/Button";
+import { ButtonLink, TextLink } from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Pictogram from "@/components/ui/Pictogram";
@@ -424,6 +425,68 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* ═══════════ COUVERTURE IT & OT + CONFIGURATEUR (refonte v4) ═══════════ */}
+      <Section id="couverture" tone="paper" aria-labelledby="couverture-title">
+        <div className="reveal">
+          <SectionHeader
+            id="couverture-title"
+            eyebrow={tx("Couverture", "Coverage")}
+            title={tx("Tous vos équipements, IT comme OT.", "All your equipment, IT and OT alike.")}
+            intro={tx(
+              "Les six métiers s'appliquent au parc informatique comme aux équipements de terrain. Ce qui n'a pas de prix public est chiffré dans le devis détaillé.",
+              "The six trades apply to the IT estate and to field equipment alike. Anything without a public price is costed in the detailed quote."
+            )}
+          />
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            {
+              title: tx("Parc IT", "IT estate"),
+              items: [
+                tx("Postes fixes et portables — dès 19 € HT/poste", "Desktops and laptops — from €19 ex-VAT/device"),
+                tx("Serveurs et baies de stockage — dès 55 € HT/unité", "Servers and storage arrays — from €55 ex-VAT/unit"),
+                tx("Équipements réseau", "Network equipment"),
+                tx("Smartphones et tablettes — sur devis", "Smartphones and tablets — on quote"),
+              ],
+            },
+            {
+              title: tx("Parc OT et IoT", "OT and IoT estate"),
+              items: [
+                tx("Caméras de vidéoprotection", "CCTV cameras"),
+                tx("Contrôleurs de feux tricolores", "Traffic-light controllers"),
+                tx("Antennes et équipements télécom", "Antennas and telecom equipment"),
+                tx("Capteurs IoT, automates et PC industriels — sur devis", "IoT sensors, PLCs and industrial PCs — on quote"),
+              ],
+            },
+          ].map((card) => (
+            <div key={card.title} className="flex h-full flex-col rounded-xl border border-track bg-bg-card p-6">
+              <h3 className="text-heading-lg text-fg">{card.title}</h3>
+              <ul className="mt-4 flex-1 space-y-2.5">
+                {card.items.map((it) => (
+                  <li key={it} className="flex items-start gap-2.5 text-body-sm text-fg-strong">
+                    <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald" aria-hidden="true" />
+                    <span>{it}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          <div className="flex h-full flex-col rounded-xl border border-emerald-line bg-emerald-dim p-6">
+            <h3 className="text-heading-lg text-fg">{tx("Estimez votre projet", "Estimate your project")}</h3>
+            <p className="mt-3 flex-1 text-body-sm text-fg-strong">
+              {tx(
+                "Mix d'équipements, âge, sensibilité des données, options : prix indicatif ligne par ligne, réemploi et CO₂ évité en direct.",
+                "Device mix, age, data sensitivity, options: line-by-line indicative price, reuse and CO₂ avoided, live."
+              )}
+            </p>
+            <div className="mt-6 flex flex-col gap-3">
+              <ButtonLink href="/tarifs#configurateur">{tx("Ouvrir le configurateur", "Open the configurator")}</ButtonLink>
+              <TextLink href="/plateforme#it-ot">{tx("L'IT & OT dans la plateforme", "IT & OT in the platform")}</TextLink>
+            </div>
+          </div>
+        </div>
+      </Section>
 
       {/* ═══════════ CITATION (forest) ═══════════ */}
       <Section tone="forest">
