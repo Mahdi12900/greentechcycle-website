@@ -303,7 +303,7 @@ export default function CasUsagesPage() {
       {/* ═══ HERO paper ═══ */}
       <section className="bg-bg py-12 lg:py-16" aria-labelledby="hero-editorial-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="reveal min-w-0 lg:col-span-7">
               <Tag variant="brand" icon={<ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
                 {`${formatKpi("assets", lang)} ${KPIS.assets.label[lang]} · ${formatKpi("carbon", lang)} ${KPIS.carbon.label[lang]}`}
@@ -448,7 +448,7 @@ export default function CasUsagesPage() {
       {/* ═══ CAS PHARE TF1 (forest, featured) ═══ */}
       <section id="cas-tf1-media" className="bg-bg-card py-12 text-fg lg:py-16" aria-labelledby="tf1-featured-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="reveal min-w-0 lg:col-span-7">
               <div className="flex flex-wrap gap-2">
                 <Tag variant="dark" icon={<MonitorPlay className="h-3.5 w-3.5" aria-hidden="true" />}>{tf1.badge}</Tag>
@@ -551,7 +551,7 @@ export default function CasUsagesPage() {
             </div>
           </figure>
         </div>
-        <div className="mt-16 border-t border-track pt-10">
+        <div className="mt-12 border-t border-track pt-10">
           <SectionHeader tone="dark" id="testimonials-title" eyebrow={t("testimonials.eyebrow")} title={t("testimonials.title")} size="sm" />
           <div className="reveal-stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {testimonials.map((item, i) => (

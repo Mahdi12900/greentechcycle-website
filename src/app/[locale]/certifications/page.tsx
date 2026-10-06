@@ -63,7 +63,7 @@ export default function CompliancePage() {
               { label: tx("Conformité & démarche", "Compliance & approach"), href: `/${locale}/certifications` },
             ]}
           />
-          <div className="mt-8 grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="mt-8 grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="reveal min-w-0 lg:col-span-7">
               <Tag variant="dark" icon={<ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
                 {tx("Conformité & démarche", "Compliance & approach")}

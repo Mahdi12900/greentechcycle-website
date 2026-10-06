@@ -18,7 +18,9 @@
           "modules": "15 modules intégrés",
           "governance": "Gouvernance & RBAC",
           "mobile": "App mobile (PWA)",
-          "pricing": "Tarifs"
+          "pricing": "Tarifs",
+          "itot": "Parc IT & OT",
+          "integrations": "Intégrations SAP, Oracle, ServiceNow"
         }
       },
       "solutions": {
@@ -636,19 +638,6 @@
           "icon": "euro"
         }
       ]
-    },
-    "roiCalculator": {
-      "eyebrow": "Calculateur express",
-      "title": "Combien coûte votre non-conformité ITAD ?",
-      "inputLabel": "Nombre de postes IT en fin de vie",
-      "inputPlaceholder": "Ex : 500",
-      "resultTitle": "Estimation de vos risques",
-      "riskLabel": "Risque réglementaire RGPD",
-      "valueLabel": "Valeur résiduelle non récupérée",
-      "carbonLabel": "Émissions évitables",
-      "cta": "Réserver ma démo (30 min)",
-      "disclaimer": "Estimation indicative basée sur les moyennes constatées (cohorte 2025). Résultat précis après audit.",
-      "resultHint": "Exemple pour {count} postes — modifiez le nombre ci-dessus pour votre propre parc."
     },
     "anchorNav": {
       "items": [

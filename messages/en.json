@@ -18,7 +18,9 @@
           "modules": "15 integrated modules",
           "governance": "Governance & RBAC",
           "mobile": "Mobile app (PWA)",
-          "pricing": "Pricing"
+          "pricing": "Pricing",
+          "itot": "IT & OT fleet",
+          "integrations": "SAP, Oracle, ServiceNow integrations"
         }
       },
       "solutions": {
@@ -636,19 +638,6 @@
           "icon": "euro"
         }
       ]
-    },
-    "roiCalculator": {
-      "eyebrow": "Quick calculator",
-      "title": "How much is your ITAD non-compliance costing you?",
-      "inputLabel": "Number of end-of-life IT devices",
-      "inputPlaceholder": "E.g.: 500",
-      "resultTitle": "Estimated risks",
-      "riskLabel": "GDPR regulatory risk",
-      "valueLabel": "Unrecovered residual value",
-      "carbonLabel": "Avoidable emissions",
-      "cta": "Book my demo (30 min)",
-      "disclaimer": "Indicative estimate based on observed averages (2025 cohort). Precise result after audit.",
-      "resultHint": "Example for {count} devices — change the number above for your own fleet."
     },
     "anchorNav": {
       "items": [

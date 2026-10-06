@@ -35,7 +35,7 @@ export default function SectionHeader({
   const titleSize = { xl: "text-display-xl max-w-[18ch]", lg: "text-display-lg max-w-[18ch]", md: "text-display-md max-w-[24ch]", sm: "text-display-sm max-w-[32ch]" }[size];
   const centered = align === "center";
   return (
-    <div className={`mb-10 lg:mb-12 ${centered ? "mx-auto text-center" : ""} ${className}`}>
+    <div className={`mb-8 lg:mb-10 ${centered ? "mx-auto text-center" : ""} ${className}`}>
       {eyebrow && <p className={`mb-3 text-eyebrow uppercase ${eyebrowColor}`}>{eyebrow}</p>}
       <Tag id={id} className={`${titleSize} ${centered ? "mx-auto" : ""} font-display text-fg`}>
         {title}

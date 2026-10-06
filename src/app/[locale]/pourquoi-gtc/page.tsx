@@ -56,7 +56,7 @@ export default function PourquoiGtcPage() {
       {/* ═══ HERO manifeste (paper) — bandeau d'urgence → notice ═══ */}
       <section className="bg-bg py-12 lg:py-16" aria-labelledby="why-hero">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="reveal min-w-0 lg:col-span-7">
               <Tag variant="brand" icon={<Leaf className="h-3.5 w-3.5" aria-hidden="true" />}>{t("urgency.text")}</Tag>
               <p className="mt-6 text-eyebrow uppercase text-fg-muted">{t("hero.eyebrow")}</p>
@@ -115,7 +115,7 @@ export default function PourquoiGtcPage() {
 
       {/* ═══ MOT DU FONDATEUR (forest) ═══ */}
       <Section id="fondateur" tone="forest">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-track">
               <MediaSlot fill id="pourquoi-fondateur" alt="Portrait éditorial du fondateur de GreenTechCycle" fallback={<GeometryField icon={UserRound} />} />
@@ -143,7 +143,7 @@ export default function PourquoiGtcPage() {
               const photoRight = index % 2 === 0;
               return (
                 <li key={c.slug} id={c.slug} aria-labelledby={`conv-${c.slug}`} className="py-12 lg:py-16">
-                  <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+                  <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
                     <div className={`lg:col-span-6 ${photoRight ? "" : "lg:order-2"}`}>
                       <div className="flex items-center gap-3">
                         <Pictogram icon={Icon} />

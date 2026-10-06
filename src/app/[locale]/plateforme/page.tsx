@@ -15,6 +15,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import Tag from "@/components/ui/Tag";
 import { Stat, StatRow } from "@/components/ui/Stat";
 import Accordion from "@/components/ui/Accordion";
+import AssetIntelligence from "@/components/product/AssetIntelligence";
 
 /**
  * /plateforme — architecture « Épuré » (DESIGN.md §10.4).
@@ -65,7 +66,7 @@ export default function PlateformePage() {
       {/* ═══════════════ HERO split (paper) ═══════════════ */}
       <section className="bg-bg py-12 lg:py-16" aria-labelledby="plateforme-hero">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="reveal min-w-0 lg:col-span-7">
               {/* Ancien bandeau d'urgence → notice (§6.19) */}
               <Tag variant="brand" icon={<CalendarCheck className="h-3.5 w-3.5" aria-hidden="true" />}>
@@ -211,6 +212,35 @@ export default function PlateformePage() {
           />
         </div>
       </section>
+
+      {/* ═══════════════ CAPACITÉS v4 : parc IT & OT, intégrations, maintenance & legacy ═══════════════
+          (demande utilisateur 2026-10-06 ; visuels codés, valeurs étiquetées « exemple ») */}
+      <Section id="capacites" tone="paper" aria-labelledby="capacites-title">
+        <div className="reveal">
+          <SectionHeader
+            id="capacites-title"
+            eyebrow={isEn ? "Beyond ITAD" : "Au-delà de l'ITAD"}
+            title={isEn ? "One register for IT and OT. Plugged into your tools." : "Un référentiel unique IT et OT. Branché sur vos outils."}
+            intro={
+              isEn
+                ? "Asset management across every device type, integrations with SAP, Oracle and ServiceNow, and legacy indicators that turn maintenance into planned renewal."
+                : "L'asset management sur tous les types d'équipements, l'intégration à SAP, Oracle et ServiceNow, et des indicateurs legacy qui transforment la maintenance en renouvellement planifié."
+            }
+          />
+          <nav aria-label={isEn ? "Capabilities" : "Capacités"} className="-mt-4 mb-10 flex flex-wrap gap-2 lg:mb-12">
+            {[
+              ["it-ot", isEn ? "IT & OT fleet" : "Parc IT & OT"],
+              ["integrations", isEn ? "Integrations" : "Intégrations"],
+              ["maintenance", isEn ? "Maintenance & legacy" : "Maintenance & legacy"],
+            ].map(([id, label]) => (
+              <a key={id} href={`#${id}`} className="inline-flex min-h-[40px] items-center rounded-full border border-track px-4 text-body-sm text-fg-strong transition-colors hover:border-emerald hover:text-fg">
+                {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+        <AssetIntelligence variant="full" />
+      </Section>
 
       {/* ═══════════════ CITATION (forest) ═══════════════ */}
       <Section tone="forest">

@@ -58,7 +58,9 @@ import Tag from "@/components/ui/Tag";
 import Table from "@/components/ui/Table";
 import Accordion from "@/components/ui/Accordion";
 import FilterTabs from "@/components/ui/FilterTabs";
+import ItadConfigurator from "@/components/product/ItadConfigurator";
 import { ITAD_TIERS, PLATFORM_TIERS, PRICE_ANCHORS } from "@/content/pricing";
+import { PLATFORM_COMPARISON, ITAD_COMPARISON, WAKIBOX_COMPARISON, type CompGroup } from "@/content/pricing-comparison";
 
 /* ── 3 onglets produit (JFrog-inspired, reports/revue-section-gtc.md) ──────── */
 const PRODUCT_TAB_IDS = ["plateforme", "service-itad", "waki-box"] as const;
@@ -68,6 +70,7 @@ const LEGACY_HASH_TO_TAB: Record<string, ProductTabId> = {
   plans: "waki-box",
   pilote: "plateforme",
   "sur-devis": "plateforme",
+  configurateur: "service-itad",
 };
 function tabFromHash(hash: string): ProductTabId | null {
   const h = hash.replace("#", "");
@@ -75,75 +78,92 @@ function tabFromHash(hash: string): ProductTabId | null {
   return LEGACY_HASH_TO_TAB[h] ?? null;
 }
 
-/* ── Tableau comparatif réutilisable, en-tête collant desktop, repliable mobile ──── */
+/* ── Tableau comparatif détaillé, groupé par catégorie (src/content/pricing-comparison.ts) ──
+   En-tête collant desktop (overflow-x réservé au mobile, cf. reports/qa-affichage-gtc.md §2),
+   repliable sur mobile via <details>. */
 function ComparisonTable({
   caption,
   columns,
   highlightIndex,
-  rows,
+  groups,
   isEn,
 }: {
   caption: string;
   columns: string[];
   highlightIndex?: number;
-  rows: { label: string; values: string[] }[];
+  groups: CompGroup[];
   isEn: boolean;
 }) {
+  const lang = isEn ? "en" : "fr";
+  const total = groups.reduce((n, g) => n + g.rows.length, 0);
   return (
-    <details open className="group mt-8">
+    <details open className="group mt-10">
       <summary className="mb-3 flex cursor-pointer list-none items-center gap-2 text-eyebrow uppercase text-fg-muted lg:pointer-events-none">
-        {caption}
+        {caption} · {total} {isEn ? "criteria" : "critères"}
         <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180 lg:hidden" aria-hidden="true" />
       </summary>
-      {/* overflow-x-auto réservé au mobile : un ancêtre en overflow devient le contexte de
-          positionnement de ses descendants, ce qui empêchait `position: sticky` de s'accrocher
-          au scroll de la page sur desktop (reports/qa-affichage-gtc.md §2). */}
-      <div className="overflow-x-auto rounded-xl border border-track md:overflow-visible">
-        <table className="w-full min-w-[480px] border-collapse text-body-sm">
+      <div className="relative overflow-x-auto rounded-xl border border-track md:overflow-visible">
+        <table className="w-full min-w-[560px] border-collapse text-body-sm">
           <caption className="sr-only">{caption}</caption>
           <thead className="sticky top-16 z-10 bg-bg-card xl:top-[72px]">
             <tr>
-              <th scope="col" className="px-4 py-3 text-left text-eyebrow uppercase text-fg-muted">
+              <th scope="col" className="w-[40%] px-4 py-3 text-left text-eyebrow uppercase text-fg-muted">
                 {isEn ? "Criteria" : "Critère"}
               </th>
               {columns.map((name, i) => (
                 <th
                   key={name}
                   scope="col"
-                  className={`border-l border-track px-4 py-3 text-left text-eyebrow uppercase ${
-                    i === highlightIndex ? "text-emerald" : "text-fg-muted"
-                  }`}
+                  className={`border-l border-track px-4 py-3 text-left text-eyebrow uppercase ${i === highlightIndex ? "bg-emerald-dim text-emerald" : "text-fg-muted"}`}
                 >
                   {name}
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody>
-            {rows.map((row, ri) => (
-              <tr key={row.label} className={`border-t border-track ${ri % 2 === 1 ? "bg-white/[0.03]" : ""}`}>
-                <td className="px-4 py-3 align-top font-medium text-fg">{row.label}</td>
-                {row.values.map((v, i) => (
-                  <td
-                    key={i}
-                    className={`border-l border-track px-4 py-3 align-top ${
-                      i === highlightIndex ? "font-semibold text-fg" : "text-fg-strong"
-                    }`}
-                  >
-                    {v === "✓" ? (
-                      <Check className="h-4 w-4 text-emerald" aria-hidden="true" />
-                    ) : v === "—" ? (
-                      <Minus className="h-4 w-4 text-fg-muted" aria-hidden="true" />
-                    ) : (
-                      v
-                    )}
-                  </td>
-                ))}
+          {groups.map((g) => (
+            <tbody key={g.title.fr}>
+              <tr className="border-t border-track bg-bg">
+                <th scope="colgroup" colSpan={columns.length + 1} className="px-4 pb-2 pt-5 text-left text-eyebrow uppercase text-emerald">
+                  {g.title[lang]}
+                </th>
               </tr>
-            ))}
-          </tbody>
+              {g.rows.map((row) => (
+                <tr key={row.label.fr} className="border-t border-track">
+                  <th scope="row" className="px-4 py-2.5 text-left align-top font-normal text-fg-strong">{row.label[lang]}</th>
+                  {row.values.map((v, i) => {
+                    const val = v[lang];
+                    return (
+                      <td key={i} className={`border-l border-track px-4 py-2.5 align-top ${i === highlightIndex ? "bg-white/[0.02] font-medium text-fg" : "text-fg-strong"}`}>
+                        {val === "✓" ? (
+                          <>
+                            <Check className="h-4 w-4 text-emerald" aria-hidden="true" />
+                            <span className="sr-only">{isEn ? "Included" : "Inclus"}</span>
+                          </>
+                        ) : val === "—" ? (
+                          <>
+                            <Minus className="h-4 w-4 text-fg-muted" aria-hidden="true" />
+                            <span className="sr-only">{isEn ? "Not included" : "Non inclus"}</span>
+                          </>
+                        ) : val === "Sur devis" || val === "On quote" ? (
+                          <span className="text-fg-muted">{val}</span>
+                        ) : (
+                          val
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          ))}
         </table>
       </div>
+      <p className="mt-3 text-caption text-fg-muted">
+        {isEn
+          ? "✓ included · — not included · \"On quote\": scoped in the detailed quote. Prices ex-VAT."
+          : "✓ inclus · — non inclus · « Sur devis » : cadré dans le devis détaillé. Prix HT."}
+      </p>
     </details>
   );
 }
@@ -559,86 +579,6 @@ export default function TarifsPage() {
     },
   ];
 
-  /* ── Comparison rows (number-driven bars) ──────────────────────────────── */
-  const comparisonRows: {
-    label: string;
-    essentiel: { value: string; pct: number };
-    confort: { value: string; pct: number };
-    premium: { value: string; pct: number };
-  }[] = tx(
-    [
-      {
-        label: "Bornes incluses",
-        essentiel: { value: "1", pct: 10 },
-        confort: { value: "Jusqu'à 3", pct: 30 },
-        premium: { value: "Illimitées", pct: 100 },
-      },
-      {
-        label: "Utilisateurs plateforme",
-        essentiel: { value: "1", pct: 5 },
-        confort: { value: "5", pct: 25 },
-        premium: { value: "Illimité", pct: 100 },
-      },
-      {
-        label: "Collectes planifiées / mois",
-        essentiel: { value: "1", pct: 10 },
-        confort: { value: "2", pct: 20 },
-        premium: { value: "Illimité", pct: 100 },
-      },
-      {
-        label: "Délai de réponse support",
-        essentiel: { value: "Courriel J+2", pct: 33 },
-        confort: { value: "Prioritaire J+1", pct: 66 },
-        premium: { value: "Dédié, 4 h", pct: 100 },
-      },
-    ],
-    [
-      {
-        label: "Kiosks included",
-        essentiel: { value: "1", pct: 10 },
-        confort: { value: "Up to 3", pct: 30 },
-        premium: { value: "Unlimited", pct: 100 },
-      },
-      {
-        label: "Platform users",
-        essentiel: { value: "1", pct: 5 },
-        confort: { value: "5", pct: 25 },
-        premium: { value: "Unlimited", pct: 100 },
-      },
-      {
-        label: "Scheduled collections / month",
-        essentiel: { value: "1", pct: 10 },
-        confort: { value: "2", pct: 20 },
-        premium: { value: "Unlimited", pct: 100 },
-      },
-      {
-        label: "Support response time",
-        essentiel: { value: "Email D+2", pct: 33 },
-        confort: { value: "Priority D+1", pct: 66 },
-        premium: { value: "Dedicated, 4h", pct: 100 },
-      },
-    ]
-  );
-
-  const featureMatrix = tx(
-    [
-      { label: "Télémétrie LoRaWAN temps réel", essentiel: false, confort: true, premium: true },
-      { label: "Alertes de remplissage", essentiel: false, confort: true, premium: true },
-      { label: "Rapports CSRD ESRS E5", essentiel: false, confort: true, premium: true },
-      { label: "Intégration ERP / SIRH par API", essentiel: false, confort: false, premium: true },
-      { label: "Responsable de compte dédié", essentiel: false, confort: false, premium: true },
-      { label: "Délai de collecte 48 h garanti", essentiel: false, confort: false, premium: true },
-    ],
-    [
-      { label: "Real-time LoRaWAN telemetry", essentiel: false, confort: true, premium: true },
-      { label: "Fill-level alerts", essentiel: false, confort: true, premium: true },
-      { label: "CSRD ESRS E5 reports", essentiel: false, confort: true, premium: true },
-      { label: "ERP / HRIS integration via API", essentiel: false, confort: false, premium: true },
-      { label: "Dedicated account manager", essentiel: false, confort: false, premium: true },
-      { label: "48h collection SLA guaranteed", essentiel: false, confort: false, premium: true },
-    ]
-  );
-
   /* ── Add-ons ───────────────────────────────────────────────────────────── */
   const addons = [
     {
@@ -860,26 +800,6 @@ export default function TarifsPage() {
     },
   ];
 
-  const platformComparisonColumns = [tx("Essentiel", "Essential"), "Standard", tx("Grand compte", "Enterprise")];
-  const platformComparisonRows = tx(
-    [
-      { label: "Actifs gérés", values: ["Jusqu'à 200", "201 à 2 000", "Au-delà de 2 000"] },
-      { label: "Tarification", values: ["1 400 € HT/mois", "Dès 2 500 € HT/mois", "Dès 4,20 € HT/actif/mois"] },
-      { label: "Utilisateurs concurrents", values: ["Standard", "Élargis", "Sur devis"] },
-      { label: "Connecteurs ERP/SIRH", values: ["—", "Activables", "Activables"] },
-      { label: "Niveau de SLA", values: ["Standard", "Standard", "Sur mesure"] },
-      { label: "Disponibilité", values: ["99,9 %", "99,9 %", "99,9 %"] },
-    ],
-    [
-      { label: "Managed assets", values: ["Up to 200", "201 to 2,000", "Above 2,000"] },
-      { label: "Pricing", values: ["€1,400 ex-VAT/month", "From €2,500 ex-VAT/month", "From €4.20 ex-VAT/asset/month"] },
-      { label: "Concurrent users", values: ["Standard", "Expanded", "Custom quote"] },
-      { label: "ERP/HRIS connectors", values: ["—", "Activatable", "Activatable"] },
-      { label: "SLA level", values: ["Standard", "Standard", "Tailored"] },
-      { label: "Availability", values: ["99.9%", "99.9%", "99.9%"] },
-    ]
-  );
-
   /* ── 2 cartes paliers Service ITAD (poste / équipement complexe) ──────────── */
   const itadTierCards = [
     {
@@ -903,24 +823,6 @@ export default function TarifsPage() {
       ),
     },
   ];
-  const itadComparisonColumns = [tx("Poste de travail", "Workstation"), tx("Équipement complexe", "Complex equipment")];
-  const itadComparisonRows = tx(
-    [
-      { label: "Prix", values: ["19 € HT/poste", "55 € HT/unité"] },
-      { label: "Norme d'effacement", values: ["NIST 800-88 r2", "NIST 800-88 r2"] },
-      { label: "Audit et inventaire", values: ["✓", "✓"] },
-      { label: "Reconditionnement et revente", values: ["✓", "Selon valeur résiduelle"] },
-      { label: "Délai de devis détaillé", values: ["48 h", "48 h"] },
-    ],
-    [
-      { label: "Price", values: ["€19 ex-VAT/device", "€55 ex-VAT/unit"] },
-      { label: "Erasure standard", values: ["NIST 800-88 r2", "NIST 800-88 r2"] },
-      { label: "Audit and inventory", values: ["✓", "✓"] },
-      { label: "Refurbishment and resale", values: ["✓", "Depending on residual value"] },
-      { label: "Detailed quote turnaround", values: ["48h", "48h"] },
-    ]
-  );
-
   /* ── ITAD services list (preserved as quick navigation) ────────────────── */
   const itadServices = [
     { slug: "audit-inventaire", icon: Search, name: tx("Audit et inventaire de parc", "Fleet audit and inventory") },
@@ -959,7 +861,6 @@ export default function TarifsPage() {
   );
 
 
-  const planKeys = ["essentiel", "confort", "premium"] as const;
 
   /* « Trois portes d'entrée » (ancienne S6d), fusionnées avec les 3 briques */
   const entryPoints = [
@@ -1050,7 +951,7 @@ export default function TarifsPage() {
       {/* ═══════════ 1. HERO cream ═══════════ */}
       <section className="border-b border-track bg-bg-card py-12 lg:py-16" aria-labelledby="tarifs-hero-title">
         <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="reveal min-w-0 lg:col-span-7">
               <div className="flex flex-wrap gap-2">
                 <Tag variant="brand">{tx("Prix publics, transparents", "Public, transparent prices")}</Tag>
@@ -1170,7 +1071,7 @@ export default function TarifsPage() {
         </div>
 
         {/* Trois portes d'entrée (fusion S6d) */}
-        <div className="mt-16 border-t border-track pt-12">
+        <div className="mt-12 border-t border-track pt-12">
           <p className="text-eyebrow uppercase text-fg-muted">{tx("Première étape", "First step")}</p>
           <h3 className="mt-2 text-display-sm text-fg">{tx("Trois portes d'entrée.", "Three entry points.")}</h3>
           <p className="mt-3 max-w-[65ch] text-body text-fg-strong">
@@ -1264,9 +1165,9 @@ export default function TarifsPage() {
           </div>
           <ComparisonTable
             caption={tx("Comparatif détaillé des paliers Plateforme", "Detailed Platform tier comparison")}
-            columns={platformComparisonColumns}
+            columns={[tx("Essentiel", "Essential"), "Standard", tx("Grand compte", "Enterprise")]}
             highlightIndex={1}
-            rows={platformComparisonRows}
+            groups={PLATFORM_COMPARISON}
             isEn={isEn}
           />
           <div className="mt-6">
@@ -1278,7 +1179,7 @@ export default function TarifsPage() {
         <section id="pilote" className="bg-bg-card py-12 lg:py-16" aria-labelledby="pilote-title">
           <div className="mx-auto max-w-site px-5 sm:px-6 lg:px-8">
             <div className="reveal">
-              <article className="grid gap-10 rounded-xl border border-track bg-bg p-6 lg:grid-cols-12 lg:gap-16 lg:p-10">
+              <article className="grid gap-10 rounded-xl border border-track bg-bg p-6 lg:grid-cols-12 lg:gap-12 lg:p-10">
                 <div className="lg:col-span-7">
                   <p className="text-eyebrow uppercase text-fg-muted">{tx("Porte d'entrée 4", "Entry point 4")}</p>
                   <h2 id="pilote-title" className="mt-3 max-w-[24ch] text-display-md text-fg">
@@ -1407,10 +1308,24 @@ export default function TarifsPage() {
               </div>
             ))}
           </div>
+          {/* Configurateur ITAD (refonte v4) — remplace le calculateur express */}
+          <div id="configurateur" className="mt-12 scroll-mt-24 border-t border-track pt-10">
+            <p className="text-eyebrow uppercase text-emerald">{tx("Configurateur", "Configurator")}</p>
+            <h3 className="mt-2 max-w-[28ch] font-display text-display-sm text-fg">
+              {tx("Composez votre projet, voyez le prix ligne par ligne.", "Build your project, see the price line by line.")}
+            </h3>
+            <p className="mt-3 mb-8 max-w-[65ch] text-body text-fg-strong">
+              {tx(
+                "Prix publics HT ; tout ce qui n'a pas de prix public est indiqué « sur devis ». Téléchargez le récapitulatif ou envoyez-le pour recevoir le devis détaillé.",
+                "Public ex-VAT prices; anything without a public price is shown as \"on quote\". Download the summary or send it to get the detailed quote."
+              )}
+            </p>
+            <ItadConfigurator idPrefix="tarifs-cfg" />
+          </div>
           <ComparisonTable
             caption={tx("Comparatif détaillé Service ITAD", "Detailed ITAD Service comparison")}
-            columns={itadComparisonColumns}
-            rows={itadComparisonRows}
+            columns={[tx("Poste de travail", "Workstation"), tx("Équipement complexe", "Complex equipment")]}
+            groups={ITAD_COMPARISON}
             isEn={isEn}
           />
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -1516,16 +1431,7 @@ export default function TarifsPage() {
             caption={tx("Comparatif détaillé des plans Waki Box", "Detailed Waki Box plan comparison")}
             columns={plans.map((p) => `Waki Box ${p.name}`)}
             highlightIndex={1}
-            rows={[
-              ...comparisonRows.map((row) => ({
-                label: row.label,
-                values: planKeys.map((k) => row[k].value),
-              })),
-              ...featureMatrix.map((row) => ({
-                label: row.label,
-                values: planKeys.map((k) => (row[k] ? "✓" : "—")),
-              })),
-            ]}
+            groups={WAKIBOX_COMPARISON}
             isEn={isEn}
           />
         </div>
@@ -1533,7 +1439,7 @@ export default function TarifsPage() {
 
       {/* ═══════════ 4. PROGRAMME PILOTE WAKI BOX (leaf-100) ═══════════ */}
       <Section tone="mint">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="reveal lg:col-span-7">
             <p className="text-eyebrow uppercase text-emerald">{tx("Programme pilote · 3 places", "Pilot programme · 3 spots")}</p>
             <h2 className="mt-3 max-w-[24ch] text-display-md text-emerald">

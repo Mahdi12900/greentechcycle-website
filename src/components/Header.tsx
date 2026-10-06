@@ -29,6 +29,8 @@ export default function Header() {
     platform: [
       { href: "/plateforme", label: t("megaMenu.platform.items.overview") },
       { href: "/plateforme#modules", label: t("megaMenu.platform.items.modules") },
+      { href: "/plateforme#it-ot", label: t("megaMenu.platform.items.itot") },
+      { href: "/plateforme#integrations", label: t("megaMenu.platform.items.integrations") },
       { href: "/plateforme#governance", label: t("megaMenu.platform.items.governance") },
       { href: "/plateforme#mobile", label: t("megaMenu.platform.items.mobile") },
       { href: "/tarifs", label: t("megaMenu.platform.items.pricing") },

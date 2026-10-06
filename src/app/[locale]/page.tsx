@@ -48,6 +48,8 @@ import Pictogram from "@/components/ui/Pictogram";
 import { StatRow } from "@/components/ui/Stat";
 import Accordion from "@/components/ui/Accordion";
 import FilterTabs from "@/components/ui/FilterTabs";
+import AssetIntelligence from "@/components/product/AssetIntelligence";
+import ItadConfigurator from "@/components/product/ItadConfigurator";
 
 /**
  * Accueil — architecture « Épuré » (DESIGN.md §10.1).
@@ -123,12 +125,7 @@ export default function HomePage() {
   const isEn = locale === "en";
   const lang = isEn ? "en" : "fr";
   const tx = (fr: string, en: string) => (isEn ? en : fr);
-  const numberLocale = isEn ? "en-GB" : "fr-FR";
 
-  // ROI calculator state — pré-rempli avec un exemple (100 postes) pour que le résultat et
-  // le CTA soient visibles dès le chargement (reports/qa-affichage-gtc.md §3, stopgap).
-  const [fleetSize, setFleetSize] = useState("100");
-  const fleet = parseInt(fleetSize) || 0;
 
   // « 78 % » isolé en chiffre-argument (display-xl), le reste en texte courant.
   const proof = t("hero.proofStat");
@@ -183,7 +180,7 @@ export default function HomePage() {
             serveur (LCP), vidéo chargée après `load`, poster seul en mouvement réduit / Save-Data */}
         <VideoBackground id="home-hero-background" />
         <div className="relative mx-auto max-w-site px-5 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="reveal min-w-0 lg:col-span-7">
               <Link
                 href="/reglementation"
@@ -354,7 +351,7 @@ export default function HomePage() {
           id={`panel-${currentSolutionStep.id}`}
           role="tabpanel"
           aria-labelledby={`tab-${currentSolutionStep.id}`}
-          className="mt-10 grid items-center gap-12 lg:grid-cols-12 lg:gap-16"
+          className="mt-10 grid items-center gap-8 lg:grid-cols-12 lg:gap-12"
         >
           <div className="reveal lg:col-span-6">
             <p className="text-eyebrow uppercase text-fg-muted">{`0${activeSolutionIndex + 1}`}</p>
@@ -377,7 +374,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-12">
+        <div className="mt-12 grid gap-12 lg:grid-cols-12">
           <div className="reveal min-w-0 lg:col-span-10 lg:col-start-2">
             <p className="text-eyebrow uppercase text-fg-muted">{t("comparison.eyebrow")}</p>
             <h3 className="mt-2 text-display-sm text-fg">{t("comparison.title")}</h3>
@@ -423,6 +420,23 @@ export default function HomePage() {
       </Section>
 
       {/* ==========================================================
+          7 bis. ASSET MANAGEMENT IT & OT — intégrations, maintenance & legacy (refonte v4)
+         ========================================================== */}
+      <Section id="it-ot" tone="cream">
+        <div className="reveal">
+          <SectionHeader
+            eyebrow={tx("Un seul référentiel IT + OT", "One IT + OT register")}
+            title={tx("Voir tout le parc. Anticiper chaque fin de vie.", "See the whole fleet. Anticipate every end of life.")}
+            intro={tx(
+              "Des postes de travail aux caméras de rue, des serveurs aux contrôleurs de feux : GreenTechCycle relie vos outils existants et transforme l'inventaire en décisions de renouvellement, de réemploi et de maintenance.",
+              "From workstations to street cameras, from servers to traffic-light controllers: GreenTechCycle links your existing tools and turns inventory into renewal, reuse and maintenance decisions."
+            )}
+          />
+        </div>
+        <AssetIntelligence variant="tabs" />
+      </Section>
+
+      {/* ==========================================================
           8. CHAÎNE DE VALEUR — 5 étapes numérotées (night)
          ========================================================== */}
       <Section tone="night">
@@ -461,7 +475,7 @@ export default function HomePage() {
         </StatRow>
         <p className="mt-8 max-w-[65ch] text-caption italic text-fg-muted">{t("proof.footnote")}</p>
 
-        <div className="mt-16 flex flex-col gap-6 border-t border-track pt-12 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mt-12 flex flex-col gap-6 border-t border-track pt-12 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="mb-3 text-eyebrow uppercase text-fg-muted">{t("cases.eyebrow")}</p>
             <h3 className="max-w-[24ch] text-display-sm text-fg">{t("cases.title")}</h3>
@@ -548,7 +562,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        <div className="mt-16 border-t border-track pt-10">
+        <div className="mt-12 border-t border-track pt-10">
           <p className="text-eyebrow uppercase text-fg-muted">{t("sectorTrust.label")}</p>
           <h3 className="mt-2 max-w-[32ch] text-display-sm text-fg">{t("sectorTrust.title")}</h3>
           <ul className="mt-8 grid grid-cols-2 gap-y-8 lg:grid-cols-4">
@@ -599,7 +613,7 @@ export default function HomePage() {
           </figure>
         </div>
 
-        <div className="mt-16 border-t border-track pt-10">
+        <div className="mt-12 border-t border-track pt-10">
           <p className="text-eyebrow uppercase text-fg-muted">{t("testimonials.eyebrow")}</p>
           <h2 className="mt-2 max-w-[24ch] text-display-sm text-fg">{t("testimonials.title")}</h2>
           <div className="reveal-stagger mt-8 grid gap-6 md:grid-cols-3">
@@ -692,58 +706,20 @@ export default function HomePage() {
       </Section>
 
       {/* ==========================================================
-          14. CALCULATEUR ROI #fleet-size — carte unique sur cream
+          14. CONFIGURATEUR ITAD #configurateur — remplace le calculateur express (refonte v4)
          ========================================================== */}
-      <Section tone="cream">
-        <div className="mx-auto max-w-[720px]">
-          <div className="reveal">
-            <SectionHeader eyebrow={t("roiCalculator.eyebrow")} title={t("roiCalculator.title")} />
-            <Card pad="lg">
-              <label htmlFor="fleet-size" className="block text-body-sm font-medium text-fg">
-                {t("roiCalculator.inputLabel")}
-              </label>
-              <input
-                id="fleet-size"
-                type="number"
-                min="1"
-                inputMode="numeric"
-                value={fleetSize}
-                onChange={(e) => setFleetSize(e.target.value)}
-                placeholder={t("roiCalculator.inputPlaceholder")}
-                className="mt-2 h-12 w-full rounded-lg border border-track bg-bg px-3 text-body-lg tabular-nums text-fg placeholder:text-fg-muted focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25"
-              />
-
-              {fleet > 0 && (
-                <div className="mt-8" aria-live="polite">
-                  <p className="text-eyebrow uppercase text-fg-muted">{t("roiCalculator.resultTitle")}</p>
-                  <p className="mt-1 text-caption text-fg-muted">{t("roiCalculator.resultHint", { count: fleet })}</p>
-                  <dl className="mt-3 divide-y divide-track border-y border-track">
-                    <div className="flex items-baseline justify-between gap-4 py-3">
-                      <dt className="text-body-sm text-fg-strong">{t("roiCalculator.riskLabel")}</dt>
-                      <dd className="text-heading-md tabular-nums text-amber">{(fleet * 820).toLocaleString(numberLocale)} €</dd>
-                    </div>
-                    <div className="flex items-baseline justify-between gap-4 py-3">
-                      <dt className="text-body-sm text-fg-strong">{t("roiCalculator.valueLabel")}</dt>
-                      <dd className="text-heading-md tabular-nums text-emerald">{(fleet * 412).toLocaleString(numberLocale)} €</dd>
-                    </div>
-                    <div className="flex items-baseline justify-between gap-4 py-3">
-                      <dt className="text-body-sm text-fg-strong">{t("roiCalculator.carbonLabel")}</dt>
-                      <dd className="text-heading-md tabular-nums text-emerald">
-                        {((fleet * 150) / 1000).toLocaleString(numberLocale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })} tCO₂e
-                      </dd>
-                    </div>
-                  </dl>
-                  <div className="mt-6">
-                    <ButtonLink href="/demo" size="lg" fullWidth>
-                      {t("roiCalculator.cta")}
-                    </ButtonLink>
-                  </div>
-                </div>
-              )}
-              <p className="mt-4 text-caption italic text-fg-muted">{t("roiCalculator.disclaimer")}</p>
-            </Card>
-          </div>
+      <Section id="configurateur" tone="cream">
+        <div className="reveal">
+          <SectionHeader
+            eyebrow={tx("Configurateur ITAD", "ITAD configurator")}
+            title={tx("Estimez votre projet en une minute.", "Estimate your project in one minute.")}
+            intro={tx(
+              "Composez votre parc, indiquez son âge et la sensibilité des données : le prix indicatif, le réemploi et le CO₂ évité se calculent en direct, à partir de nos prix publics.",
+              "Build your fleet mix, set its age and data sensitivity: the indicative price, reuse and CO₂ avoided update live, from our public prices."
+            )}
+          />
         </div>
+        <ItadConfigurator idPrefix="home-cfg" />
       </Section>
 
       {/* ==========================================================

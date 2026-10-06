@@ -1,5 +1,6 @@
 "use client";
 
+import SectorOtHook, { OT_HOOK_SECTORS, type OtHookSector } from "@/components/product/SectorOtHook";
 import { VideoFigure } from "@/components/visuals/VideoPlayer";
 import { SECTOR_VIDEOS } from "@/data/sector-videos";
 import GeometryField from "@/components/visuals/GeometryField";
@@ -218,6 +219,13 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
       </Section>
 
       {/* 7. ROI — tableau sur cream */}
+      {/* Accroche IT & OT (refonte v4) : secteur public / collectivités, énergie, transport */}
+      {(OT_HOOK_SECTORS as string[]).includes(slug) && (
+        <Section id="it-ot" tone="paper" collapseTop>
+          <SectorOtHook sector={slug as OtHookSector} />
+        </Section>
+      )}
+
       <Section id="roi" tone="cream">
         <div className="reveal">
           <SectionHeader eyebrow="ROI" title={isFr ? "ROI attendu" : "Expected ROI"} />
