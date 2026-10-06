@@ -22,7 +22,7 @@ import GeometryField from "@/components/visuals/GeometryField";
 import MediaSlot from "@/components/visuals/MediaSlot";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 import {
   ArrowRight,
@@ -376,18 +376,36 @@ export default function TarifsPage() {
   }
 
   /* ── Onglets produit : filtrent la page, URL hash pour les liens profonds ──── */
-  const [activeTab, setActiveTab] = useState<ProductTabId>(() =>
-    typeof window === "undefined" ? "plateforme" : tabFromHash(window.location.hash) ?? "plateforme"
-  );
+  // Valeur initiale identique au rendu serveur : lire le hash ici créait un écart d'hydratation
+  // (attributs `hidden` du serveur conservés) ; l'effet ci-dessous bascule l'onglet après montage.
+  const [activeTab, setActiveTab] = useState<ProductTabId>("plateforme");
   useEffect(() => {
     const onHash = () => {
       const next = tabFromHash(window.location.hash);
-      if (next) setActiveTab(next);
+      if (!next) return;
+      setActiveTab(next);
+      // La cible d'ancre (ex. #configurateur, #plans) n'est visible qu'une fois l'onglet affiché :
+      // le saut natif du navigateur a déjà eu lieu, on le refait après le rendu (effet ci-dessous).
+      const id = window.location.hash.slice(1);
+      if (id && !(PRODUCT_TAB_IDS as readonly string[]).includes(id)) pendingAnchor.current = id;
+      setAnchorTick((n) => n + 1);
     };
     onHash();
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
+  const pendingAnchor = useRef<string | null>(null);
+  const [anchorTick, setAnchorTick] = useState(0);
+  useEffect(() => {
+    const id = pendingAnchor.current;
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (!el || el.offsetParent === null) return; // onglet pas encore affiché : on attend le rendu suivant
+    pendingAnchor.current = null;
+    // Différé : le routeur remet le défilement en haut juste après l'hydratation.
+    const t = window.setTimeout(() => document.getElementById(id)?.scrollIntoView(), 120);
+    return () => window.clearTimeout(t);
+  }, [activeTab, anchorTick]);
   const selectTab = useCallback((id: string) => {
     setActiveTab(id as ProductTabId);
     if (typeof window !== "undefined") window.history.replaceState(null, "", `#${id}`);
