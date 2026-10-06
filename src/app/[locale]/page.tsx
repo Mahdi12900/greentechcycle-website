@@ -1,7 +1,6 @@
 "use client";
 
 import DashboardMock, { type DashboardState } from "@/components/visuals/DashboardMock";
-import ScrollStory from "@/components/visuals/ScrollStory";
 import GeometryField from "@/components/visuals/GeometryField";
 import MediaSlot from "@/components/visuals/MediaSlot";
 import { useLocale, useTranslations } from "next-intl";
@@ -48,6 +47,7 @@ import Tag from "@/components/ui/Tag";
 import Pictogram from "@/components/ui/Pictogram";
 import { StatRow } from "@/components/ui/Stat";
 import Accordion from "@/components/ui/Accordion";
+import FilterTabs from "@/components/ui/FilterTabs";
 
 /**
  * Accueil — architecture « Épuré » (DESIGN.md §10.1).
@@ -159,6 +159,16 @@ export default function HomePage() {
   // Donnée structurée VideoObject du film de marque (plan SEO du 2026-10-05) : exposée une
   // fois pour toute la page (hero + section « le film » jouent la même vidéo "brand-film").
   const brandFilmSpec = SLOT_VIDEOS["brand-film"];
+
+  /* Onglets de la section Solution (JFrog-inspired, reports/revue-section-gtc.md §5) */
+  const solutionSteps = [
+    { id: "inventory", title: tx("Inventorier", "Inventory"), pillars: [0] },
+    { id: "erasure", title: tx("Effacer & certifier", "Erase & certify"), pillars: [1] },
+    { id: "reporting", title: tx("Valoriser & reporter", "Recover value & report"), pillars: [2, 3] },
+  ];
+  const [activeSolutionStep, setActiveSolutionStep] = useState(solutionSteps[0].id);
+  const activeSolutionIndex = Math.max(0, solutionSteps.findIndex((s) => s.id === activeSolutionStep));
+  const currentSolutionStep = solutionSteps[activeSolutionIndex];
 
   return (
     <div className="bg-bg">
@@ -329,36 +339,42 @@ export default function HomePage() {
         <p className="text-eyebrow uppercase text-fg-muted">
           {t("solution.diagramCenter")} · <span className="text-fg-strong">{t("solution.diagramCenterSub")}</span>
         </p>
-        {/* 3 étapes scénarisées — le tableau de bord change d'état au défilement (DESIGN.md v2 §8.5) */}
-        <ScrollStory
-          className="mt-2"
-          steps={[
-            { title: tx("Inventorier", "Inventory"), pillars: [0] },
-            { title: tx("Effacer & certifier", "Erase & certify"), pillars: [1] },
-            { title: tx("Valoriser & reporter", "Recover value & report"), pillars: [2, 3] },
-          ].map((step, n) => ({
-            eyebrow: `0${n + 1}`,
-            title: step.title,
-            body: (
-              <ul className="space-y-4">
-                {step.pillars.map((i) => (
-                  <li key={i} className="flex gap-4">
-                    <Pictogram icon={pillarIcons[i] || Server} />
-                    <div>
-                      <p className="text-heading-md text-fg">{solutionPillars[i]?.label}</p>
-                      <p className="mt-1 text-body-sm text-fg-strong">{solutionPillars[i]?.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            ),
-          }))}
-          renderVisual={(i) => (
+        {/* Onglets de services cliquables (JFrog-inspired, reports/revue-section-gtc.md §5) :
+            remplace le scroll épinglé par une sélection directe, même contenu existant. */}
+        <div className="mt-6">
+          <FilterTabs
+            items={solutionSteps.map((s) => ({ id: s.id, label: s.title }))}
+            active={activeSolutionStep}
+            onChange={setActiveSolutionStep}
+            label={t("solution.title")}
+          />
+        </div>
+        <div
+          id={`panel-${currentSolutionStep.id}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${currentSolutionStep.id}`}
+          className="mt-10 grid items-center gap-12 lg:grid-cols-12 lg:gap-16"
+        >
+          <div className="reveal lg:col-span-6">
+            <p className="text-eyebrow uppercase text-fg-muted">{`0${activeSolutionIndex + 1}`}</p>
+            <ul className="mt-4 space-y-4">
+              {currentSolutionStep.pillars.map((i) => (
+                <li key={i} className="flex gap-4">
+                  <Pictogram icon={pillarIcons[i] || Server} />
+                  <div>
+                    <p className="text-heading-md text-fg">{solutionPillars[i]?.label}</p>
+                    <p className="mt-1 text-body-sm text-fg-strong">{solutionPillars[i]?.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="reveal lg:col-span-6">
             <div className="h-full min-h-[300px] overflow-hidden rounded-2xl border border-track shadow-float">
-              <DashboardMock state={SOLUTION_STATES[i]} />
+              <DashboardMock state={SOLUTION_STATES[activeSolutionIndex]} />
             </div>
-          )}
-        />
+          </div>
+        </div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-12">
           <div className="reveal min-w-0 lg:col-span-10 lg:col-start-2">
