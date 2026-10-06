@@ -18,7 +18,9 @@
           "modules": "15 integrated modules",
           "governance": "Governance & RBAC",
           "mobile": "Mobile app (PWA)",
-          "pricing": "Pricing"
+          "pricing": "Pricing",
+          "itot": "IT & OT fleet",
+          "integrations": "SAP, Oracle, ServiceNow integrations"
         }
       },
       "solutions": {

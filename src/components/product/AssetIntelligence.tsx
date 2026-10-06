@@ -100,7 +100,7 @@ export default function AssetIntelligence({ variant = "tabs" }: { variant?: "tab
 
   if (variant === "full") {
     return (
-      <div className="space-y-16 lg:space-y-24">
+      <div className="space-y-14 lg:space-y-16">
         {caps.map((cap, i) => (
           <div key={cap.id} id={cap.id} className="scroll-mt-24 grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className={`lg:col-span-5 ${i % 2 === 1 ? "lg:order-2" : ""}`}>

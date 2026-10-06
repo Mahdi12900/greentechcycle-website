@@ -28,7 +28,7 @@ export default function IntegrationHub({ className = "" }: { className?: string 
 
   return (
     <figure className={`rounded-2xl border border-track bg-bg-card p-4 sm:p-6 ${className}`}>
-      <div className="grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1.1fr_auto_1.2fr] lg:gap-3">
+      <div className="grid items-stretch gap-4 lg:grid-cols-[1fr_auto_0.9fr_auto_1.2fr] lg:gap-3">
         {/* Systèmes en place */}
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-fg-muted">{tx("Vos systèmes en place", "Your existing systems")}</p>
@@ -47,7 +47,7 @@ export default function IntegrationHub({ className = "" }: { className?: string 
         </div>
 
         {/* Couche GTC */}
-        <div className="flex flex-col justify-center rounded-xl border border-emerald-line bg-emerald-dim p-4 text-center">
+        <div className="flex flex-col justify-center rounded-xl border border-emerald-line bg-emerald-dim p-4 text-center lg:self-center lg:py-8">
           <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-emerald">GreenTechCycle</p>
           <p className="mt-2 font-display text-heading-lg text-fg">{tx("Couche de valeur ajoutée", "Value-added layer")}</p>
           <p className="mt-2 text-caption text-fg-strong">
