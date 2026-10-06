@@ -159,6 +159,9 @@ function ContactForm() {
       : `Secteur : ${sectorName}. Nous souhaitons échanger sur un programme pilote GreenTechCycle Lab.`
     : "";
 
+  // ?config=<récapitulatif> : configuration envoyée par le configurateur ITAD (/tarifs, accueil)
+  const configPrefill = (searchParams?.get("config") ?? "").slice(0, 1500);
+
   const [form, setForm] = useState({
     offre: initialOffer,
     name: "",
@@ -168,7 +171,7 @@ function ContactForm() {
     fleet: "1000-5000",
     phone: "",
     timeline: "1-3-mois",
-    message: sectorPrefill,
+    message: configPrefill || sectorPrefill,
     consent: false,
   });
   const [submitted, setSubmitted] = useState(false);

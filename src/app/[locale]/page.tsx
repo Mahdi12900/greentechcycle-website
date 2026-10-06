@@ -48,6 +48,8 @@ import Pictogram from "@/components/ui/Pictogram";
 import { StatRow } from "@/components/ui/Stat";
 import Accordion from "@/components/ui/Accordion";
 import FilterTabs from "@/components/ui/FilterTabs";
+import AssetIntelligence from "@/components/product/AssetIntelligence";
+import ItadConfigurator from "@/components/product/ItadConfigurator";
 
 /**
  * Accueil — architecture « Épuré » (DESIGN.md §10.1).
@@ -123,12 +125,7 @@ export default function HomePage() {
   const isEn = locale === "en";
   const lang = isEn ? "en" : "fr";
   const tx = (fr: string, en: string) => (isEn ? en : fr);
-  const numberLocale = isEn ? "en-GB" : "fr-FR";
 
-  // ROI calculator state — pré-rempli avec un exemple (100 postes) pour que le résultat et
-  // le CTA soient visibles dès le chargement (reports/qa-affichage-gtc.md §3, stopgap).
-  const [fleetSize, setFleetSize] = useState("100");
-  const fleet = parseInt(fleetSize) || 0;
 
   // « 78 % » isolé en chiffre-argument (display-xl), le reste en texte courant.
   const proof = t("hero.proofStat");
@@ -423,6 +420,23 @@ export default function HomePage() {
       </Section>
 
       {/* ==========================================================
+          7 bis. ASSET MANAGEMENT IT & OT — intégrations, maintenance & legacy (refonte v4)
+         ========================================================== */}
+      <Section id="it-ot" tone="cream">
+        <div className="reveal">
+          <SectionHeader
+            eyebrow={tx("Un seul référentiel IT + OT", "One IT + OT register")}
+            title={tx("Voir tout le parc. Anticiper chaque fin de vie.", "See the whole fleet. Anticipate every end of life.")}
+            intro={tx(
+              "Des postes de travail aux caméras de rue, des serveurs aux contrôleurs de feux : GreenTechCycle relie vos outils existants et transforme l'inventaire en décisions de renouvellement, de réemploi et de maintenance.",
+              "From workstations to street cameras, from servers to traffic-light controllers: GreenTechCycle links your existing tools and turns inventory into renewal, reuse and maintenance decisions."
+            )}
+          />
+        </div>
+        <AssetIntelligence variant="tabs" />
+      </Section>
+
+      {/* ==========================================================
           8. CHAÎNE DE VALEUR — 5 étapes numérotées (night)
          ========================================================== */}
       <Section tone="night">
@@ -692,58 +706,20 @@ export default function HomePage() {
       </Section>
 
       {/* ==========================================================
-          14. CALCULATEUR ROI #fleet-size — carte unique sur cream
+          14. CONFIGURATEUR ITAD #configurateur — remplace le calculateur express (refonte v4)
          ========================================================== */}
-      <Section tone="cream">
-        <div className="mx-auto max-w-[720px]">
-          <div className="reveal">
-            <SectionHeader eyebrow={t("roiCalculator.eyebrow")} title={t("roiCalculator.title")} />
-            <Card pad="lg">
-              <label htmlFor="fleet-size" className="block text-body-sm font-medium text-fg">
-                {t("roiCalculator.inputLabel")}
-              </label>
-              <input
-                id="fleet-size"
-                type="number"
-                min="1"
-                inputMode="numeric"
-                value={fleetSize}
-                onChange={(e) => setFleetSize(e.target.value)}
-                placeholder={t("roiCalculator.inputPlaceholder")}
-                className="mt-2 h-12 w-full rounded-lg border border-track bg-bg px-3 text-body-lg tabular-nums text-fg placeholder:text-fg-muted focus:border-emerald focus:outline-none focus:ring-2 focus:ring-emerald/25"
-              />
-
-              {fleet > 0 && (
-                <div className="mt-8" aria-live="polite">
-                  <p className="text-eyebrow uppercase text-fg-muted">{t("roiCalculator.resultTitle")}</p>
-                  <p className="mt-1 text-caption text-fg-muted">{t("roiCalculator.resultHint", { count: fleet })}</p>
-                  <dl className="mt-3 divide-y divide-track border-y border-track">
-                    <div className="flex items-baseline justify-between gap-4 py-3">
-                      <dt className="text-body-sm text-fg-strong">{t("roiCalculator.riskLabel")}</dt>
-                      <dd className="text-heading-md tabular-nums text-amber">{(fleet * 820).toLocaleString(numberLocale)} €</dd>
-                    </div>
-                    <div className="flex items-baseline justify-between gap-4 py-3">
-                      <dt className="text-body-sm text-fg-strong">{t("roiCalculator.valueLabel")}</dt>
-                      <dd className="text-heading-md tabular-nums text-emerald">{(fleet * 412).toLocaleString(numberLocale)} €</dd>
-                    </div>
-                    <div className="flex items-baseline justify-between gap-4 py-3">
-                      <dt className="text-body-sm text-fg-strong">{t("roiCalculator.carbonLabel")}</dt>
-                      <dd className="text-heading-md tabular-nums text-emerald">
-                        {((fleet * 150) / 1000).toLocaleString(numberLocale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })} tCO₂e
-                      </dd>
-                    </div>
-                  </dl>
-                  <div className="mt-6">
-                    <ButtonLink href="/demo" size="lg" fullWidth>
-                      {t("roiCalculator.cta")}
-                    </ButtonLink>
-                  </div>
-                </div>
-              )}
-              <p className="mt-4 text-caption italic text-fg-muted">{t("roiCalculator.disclaimer")}</p>
-            </Card>
-          </div>
+      <Section id="configurateur" tone="cream">
+        <div className="reveal">
+          <SectionHeader
+            eyebrow={tx("Configurateur ITAD", "ITAD configurator")}
+            title={tx("Estimez votre projet en une minute.", "Estimate your project in one minute.")}
+            intro={tx(
+              "Composez votre parc, indiquez son âge et la sensibilité des données : le prix indicatif, le réemploi et le CO₂ évité se calculent en direct, à partir de nos prix publics.",
+              "Build your fleet mix, set its age and data sensitivity: the indicative price, reuse and CO₂ avoided update live, from our public prices."
+            )}
+          />
         </div>
+        <ItadConfigurator idPrefix="home-cfg" />
       </Section>
 
       {/* ==========================================================
