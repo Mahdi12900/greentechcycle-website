@@ -22,6 +22,7 @@ import Pictogram from "@/components/ui/Pictogram";
 import Tag from "@/components/ui/Tag";
 import Table from "@/components/ui/Table";
 import Accordion from "@/components/ui/Accordion";
+import { PRICE_ANCHORS } from "@/content/pricing";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Sticky nav anchor IDs and labels
@@ -69,21 +70,24 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
   /* Autres secteurs (6 chips) */
   const otherSectors = SECTORS.filter((s) => s.slug !== sectorDef.slug).slice(0, 6);
 
+  const pl = isFr ? "fr" : "en";
   const priceAnchors = [
     {
-      label: isFr ? "Plateforme GTC SaaS" : "GTC SaaS Platform",
-      price: isFr ? "À partir de 1 400 € HT/mois" : "From €1,400 ex-VAT/month",
-      note: isFr ? "Jusqu'à 200 actifs ; Standard dès 2 500 € HT/mois de 201 à 2 000" : "Up to 200 assets; Standard from €2,500 ex-VAT/month for 201 to 2,000",
+      label: isFr ? "Plateforme GTC" : "GTC Platform",
+      price: PRICE_ANCHORS.platform[pl],
+      note: `${PRICE_ANCHORS.trial[pl]} · ${PRICE_ANCHORS.platformExample[pl]}`,
     },
     {
       label: "Waki Box",
-      price: isFr ? "Dès 39 € HT/mois" : "From €39 HT/month",
+      price: PRICE_ANCHORS.waki[pl],
       note: isFr ? "3 plans publics, pilote 1er mois offert" : "3 public plans, pilot 1st month free",
     },
     {
-      label: isFr ? "Service ITAD" : "ITAD Service",
-      price: isFr ? "À partir de 19 € HT/poste" : "From €19 ex-VAT/device",
-      note: isFr ? "55 € HT/unité pour serveurs et baies, effacement NIST 800-88" : "€55 ex-VAT/unit for servers and racks, NIST 800-88 erasure",
+      label: isFr ? "Services ITAD" : "ITAD services",
+      price: PRICE_ANCHORS.itad[pl],
+      note: isFr
+        ? "Prix par catégorie (serveur, réseau, mobile, OT…) et niveau d'effacement E1 / E2 / E3"
+        : "Priced per category (server, network, mobile, OT…) and erasure level E1 / E2 / E3",
     },
   ];
 
@@ -329,8 +333,8 @@ export default function SectorDetailPage({ slug }: { slug: SectorSlug }) {
         secondaryHref="/reserver?offre=pilote-waki-box"
         reassurance={
           isFr
-            ? "Pilote Waki Box : 1er mois offert, puis 39 € HT/mois. Collecte, inventaire automatisé et attestation inclus. Résiliable à tout moment."
-            : "Waki Box pilot: 1st month free, then €39 ex-VAT/month. Collection, automated inventory and certificate included. Cancel anytime."
+            ? `Pilote Waki Box : ${PRICE_ANCHORS.wakiPilot.fr}. Inventaire automatisé et attestation inclus.`
+            : `Waki Box pilot: ${PRICE_ANCHORS.wakiPilot.en}. Automated inventory and certificate included.`
         }
         footnote={
           <div className="mx-auto mt-6 max-w-[880px]">

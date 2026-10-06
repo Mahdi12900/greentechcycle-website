@@ -12,12 +12,12 @@ export async function generateMetadata({
   const isEn = locale === "en";
 
   const title = isEn
-    ? "Professional WEEE Recycling | From €19 ex-VAT/device | GreenTechCycle"
-    : "Recyclage DEEE professionnel | À partir de 19 € HT/poste | GreenTechCycle";
+    ? "Professional WEEE Recycling | €24.50 to €18 ex-VAT per device | GreenTechCycle"
+    : "Recyclage DEEE professionnel | De 24,50 € à 18 € HT/poste | GreenTechCycle";
 
   const description = isEn
-    ? "Regulatory WEEE recycling. Tracking slips, CSRD reporting, sovereign traceability. From €19 ex-VAT/device."
-    : "Recyclage DEEE réglementaire. Bordereaux de suivi, reporting CSRD, traçabilité souveraine. À partir de 19 € HT/poste.";
+    ? "Regulatory WEEE recycling. Tracking slips, CSRD reporting, sovereign traceability. €24.50 to €18 ex-VAT per device."
+    : "Recyclage DEEE réglementaire. Bordereaux de suivi, reporting CSRD, traçabilité souveraine. De 24,50 € à 18 € HT/poste.";
 
   return {
     title,

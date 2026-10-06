@@ -508,53 +508,53 @@
     "pricingTeaser": {
       "eyebrow": "GTC three bricks pricing",
       "title": "Three bricks, three public grids.",
-      "subtitle": "Waki Box in three full plans, GTC SaaS Platform and ITAD Service with their grids. Public prices, where the market answers \"price on request\".",
+      "subtitle": "Platform priced per asset, ITAD services per device, Waki Box per kiosk: public, graduated prices, where the market answers \"on quote\".",
       "popularLabel": "Most popular",
       "bookCta": "Book my demo (30 min)",
       "setupLabel": "Setup",
       "allPricingLink": "View all pricing and options",
-      "platformBrick": "GTC SaaS Platform",
-      "platformAnchor": "From €1,400 ex-VAT/month",
-      "platformDesc": "Essential up to 200 assets. Standard from €2,500 ex-VAT/month for 201 to 2,000 assets, Enterprise beyond.",
+      "platformBrick": "GTC Platform · Asset Management",
+      "platformAnchor": "Free 90-day trial, then from €8.50 ex-VAT per asset/month",
+      "platformDesc": "Graduated over 9 bands: Essentials at €1,400 ex-VAT/month for 200 assets, €2,500 ex-VAT/month for 500. Professional and Enterprise for renewals, SAP / Oracle / ServiceNow connectors and large fleets.",
       "platformCta": "View pricing",
-      "itadBrick": "ITAD Service",
-      "itadAnchor": "From €19 ex-VAT/device",
-      "itadDesc": "NIST 800-88 erasure included. Servers, racks and complex equipment: €55 ex-VAT/unit.",
+      "itadBrick": "ITAD services",
+      "itadAnchor": "Device erasure: €24.50 ex-VAT for 1–50, down to €18 ex-VAT",
+      "itadDesc": "Priced per category (workstation, server, network, mobile, OT, screen) and erasure level E1 / E2 / E3, certificate per serial number included. Pick-up free when the buyback covers it.",
       "itadCta": "View pricing",
       "plans": [
         {
           "name": "Essentiel",
-          "price": "39",
-          "setup": "150",
-          "pitch": "One box, one console, a first step toward WEEE traceability.",
+          "price": "40",
+          "setup": "225",
+          "pitch": "1 kiosk, one console, a first step toward WEEE traceability.",
           "slug": "waki-box-essentiel"
         },
         {
           "name": "Confort",
-          "price": "79",
-          "setup": "290",
-          "pitch": "Up to 3 boxes, CSRD report, real-time alerts.",
+          "price": "76",
+          "setup": "305",
+          "pitch": "2 kiosks, CSRD report, real-time alerts.",
           "slug": "waki-box-confort",
           "popular": true
         },
         {
           "name": "Premium",
-          "price": "from 149",
-          "setup": "490",
-          "pitch": "Multi-site, dedicated manager, ERP integration via API.",
+          "price": "147",
+          "setup": "105",
+          "pitch": "4 multi-site kiosks, dedicated manager, ERP integration via API.",
           "slug": "waki-box-premium"
         }
       ],
       "pilot": {
         "label": "Pilot programme",
-        "headline": "Waki Box pilot: first month free, then €39 HT/month. Kiosk installed within 10 days.",
+        "headline": "Waki Box pilot: first month free on Essentiel, then €40 ex-VAT/month.",
         "cta": "Book my demo (30 min)"
       },
       "piloteAudit": {
         "label": "Packaged pilot - Senior 3-day engagement",
         "headline": "GTC Pilot - Audit & 3-day kickoff",
-        "subline": "IT fleet diagnostic + prioritised ITAD action plan + Platform kickoff. Refunded on Year 1 if signed within 90 days.",
-        "price": "Starting at €2,900 ex-VAT",
+        "subline": "IT fleet diagnostic + prioritised ITAD plan + Platform kickoff. Deductible from a Platform contract signed within 90 days.",
+        "price": "€2,800 ex-VAT",
         "cta": "Book my demo (30 min)"
       }
     },
@@ -944,7 +944,7 @@
           "name": "Mock audit on a pilot site",
           "pitch": "We pick one representative site, plug the platform in and deliver in two weeks a gap report, a value-recovery potential and an operational roadmap.",
           "duration": "2 weeks · pilot site",
-          "price": "Flat fee €9,800"
+          "price": "Field audit €1,600 ex-VAT/day, report included"
         },
         {
           "slug": "audit-decommissionnement",
@@ -1978,7 +1978,7 @@
         "slug": "audit-blanc-itad",
         "name": "Mock audit on a pilot site",
         "pitch": "One representative site, two weeks of observation, a gap report, a value-recovery potential and a roadmap.",
-        "duration": "2 weeks · €9,800 flat fee",
+        "duration": "2 weeks · field audit €1,600 ex-VAT/day",
         "nextStep": "We schedule a scoping session within 5 business days to confirm the perimeter and the engagement date."
       },
       {
@@ -3384,8 +3384,8 @@
           "slug": "waki-box-essentiel",
           "name": "Essential",
           "audience": "Small businesses · 10 to 50 employees",
-          "price": "€39",
-          "setupValue": "€150",
+          "price": "€40",
+          "setupValue": "€225",
           "engagementValue": "12 months",
           "tagline": "Get WEEE compliance off the ground cleanly, without complexity.",
           "features": [
@@ -3401,12 +3401,12 @@
           "slug": "waki-box-confort",
           "name": "Comfort",
           "audience": "Mid-market · 50 to 300 employees",
-          "price": "€79",
-          "setupValue": "€290",
+          "price": "€76",
+          "setupValue": "€305",
           "engagementValue": "12 months",
           "tagline": "The standard for organisations preparing for CSRD.",
           "features": [
-            "Up to 3 multi-stream Waki Box units",
+            "2 multi-stream Waki Box units included",
             "All streams accepted: batteries, cables, bulbs, accessories",
             "Full platform · up to 5 users",
             "Detailed monthly report per stream and per site",
@@ -3418,16 +3418,16 @@
           "slug": "waki-box-premium",
           "name": "Premium",
           "audience": "Mid-large groups · 300 employees and above",
-          "price": "from €149",
-          "setupValue": "€490 per unit",
+          "price": "€147",
+          "setupValue": "€105 per kiosk, tiered",
           "engagementValue": "24 months",
           "tagline": "Multi-site, integrated into your information system, supported.",
           "features": [
-            "Unlimited Waki Box units, multi-site",
+            "4 Waki Box units included, multi-site; extra unit €36 ex-VAT/month",
             "Full platform · unlimited users, multi-site governance",
             "Dedicated account manager",
             "ERP / HRIS / sustainability tool integration via dedicated API",
-            "48 working hours collection service-level agreement",
+            "Tiered setup: €105 per unit, €85 from 26 units",
             "Custom CSRD report and annual board readout"
           ]
         }
@@ -3435,11 +3435,11 @@
     },
     "pilot": {
       "eyebrow": "Pilot programme · open until full",
-      "title": "Waki Box pilot: first month free, then €39 HT/month.",
+      "title": "Waki Box pilot: first month free, then €40 ex-VAT/month.",
       "body": "Install your first kiosk at a pilot site, test connected collection, measure your impact over 3 months. Cancel anytime. Kiosk installed within 10 working days.",
       "bullets": [
-        "No installation fee (€150 waived)",
-        "First month free, then €39 HT/month",
+        "Essentiel plan: 1 kiosk, setup €225 ex-VAT",
+        "First month free, then €40 ex-VAT/month",
         "Switch to Essentiel, Confort or Premium plan afterwards",
         "Cancel anytime, no penalty"
       ],
@@ -3459,43 +3459,43 @@
           "slug": "box-supplementaire",
           "name": "Additional Waki Box unit",
           "why": "Extra site or separate stream for batteries / small WEEE",
-          "price": "€29 / month"
+          "price": "€36 / month + €105 setup"
         },
         {
           "slug": "collecte-urgence",
-          "name": "Emergency collection within 24 hours",
+          "name": "Urgent pick-up (D+1)",
           "why": "Unexpected saturation, move-out, battery incident",
-          "price": "€90 per pickup"
+          "price": "€1,000 (D+1, Île-de-France) · free if the buyback covers it"
         },
         {
           "slug": "animation-semaine-recyclage",
           "name": "Recycling Week activation",
           "why": "Employee engagement, European Sustainable Development Week",
-          "price": "€350 / day"
+          "price": "€970 / day"
         },
         {
           "slug": "rapport-csrd-dedie",
           "name": "Dedicated CSRD report",
           "why": "Annual written readout, ESRS E5 mapped, board ready",
-          "price": "€490 / year"
+          "price": "€990 / entity / year"
         },
         {
           "slug": "kit-comm-customise",
           "name": "Custom communication kit",
           "why": "Display in your brand colours, bespoke signage",
-          "price": "€290 · on delivery"
+          "price": "€200 / kit"
         },
         {
           "slug": "audit-deee",
           "name": "On-site WEEE audit",
           "why": "Full inventory before multi-site rollout",
-          "price": "€1,500 / day"
+          "price": "€1,600 / day"
         },
         {
           "slug": "formation-equipes",
           "name": "WEEE sorting training for teams",
           "why": "Office manager onboarding, lithium battery safety briefing",
-          "price": "€450 / 2 hours"
+          "price": "€590 / 2 hours"
         }
       ],
       "footnote": "All add-ons can be activated at any time, with no change to the main contract."
@@ -3594,7 +3594,7 @@
       "subtitleDefault": "A few details so a Waki Box or ITAD lead can call you back with a proposal tailored to your sector, size and compliance maturity.",
       "headlinePrefix": "Book the ",
       "pilotHeadline": "Apply to the Waki Box pilot programme.",
-      "pilotSubtitle": "First month free, then €39 HT/month. No installation fee. Kiosk installed within 10 days.",
+      "pilotSubtitle": "First month free on Essentiel, then €40 ex-VAT/month. Setup €225 ex-VAT. Kiosk installed within 10 days.",
       "addonHeadline": "Book an à la carte add-on.",
       "addonSubtitle": "Tell us about the activation context and the site involved. We come back with a quote within 24 working hours."
     },
@@ -3737,7 +3737,20 @@
       "esrs-pack": "Pack · ESRS E5 deliverable",
       "csrd-pack": "Pack · Full CSRD reporting",
       "audit-blanc-itad": "Workshop · ITAD mock audit",
-      "plateforme-info": "Documentation · GreenTechCycle platform"
+      "plateforme-info": "Documentation · GreenTechCycle platform",
+      "essai-asset-management": "Free Asset Management trial (90 days)",
+      "plateforme-essentials": "Platform — Essentials edition",
+      "plateforme-professional": "Platform — Professional edition",
+      "plateforme-enterprise": "Platform — Enterprise edition",
+      "demo-conseil": "Conversation with sales",
+      "pilote-waki-box": "Waki Box pilot programme",
+      "diagnostic-flash": "WEEE Flash diagnostic",
+      "intervention-urgence": "Urgent pick-up",
+      "animation-rse": "CSR event facilitation",
+      "rapport-csrd-esrs": "Carbon & CSRD — Essentials",
+      "kit-signaletique-rse": "Signage kit",
+      "audit-terrain-deee": "ITAD / WEEE field audit",
+      "formation-collaborateurs": "Employee training (2 h)"
     }
   },
   "ResultatsClients": {

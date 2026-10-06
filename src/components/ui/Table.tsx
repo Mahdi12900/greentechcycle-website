@@ -40,7 +40,13 @@ export default function Table({
     };
     check();
     window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
+    // Un tableau monté dans un onglet masqué mesure 0 : on remesure quand il devient visible.
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(check) : null;
+    ro?.observe(el);
+    return () => {
+      window.removeEventListener("resize", check);
+      ro?.disconnect();
+    };
   }, []);
 
   const align = (i: number) => (numeric.includes(i) ? "text-right tabular-nums" : "text-left");

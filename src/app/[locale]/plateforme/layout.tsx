@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { pageMetadata, type LocaleParams, type PageCopy } from "@/lib/seo";
 import SchemaOrg from "@/components/SchemaOrg";
 import { SITE_URL as SITE } from "@/lib/site";
+import { edition } from "@/content/pricing";
+
+const ESS = edition("essentials").bands;
 
 
 const META_COPY: PageCopy = {
@@ -36,16 +39,17 @@ const platformeSchema = {
   offers: {
     "@type": "Offer",
     priceCurrency: "EUR",
-    price: "2500",
+    price: String(ESS[0]),
     priceSpecification: {
       "@type": "UnitPriceSpecification",
-      price: "2500",
+      price: String(ESS[0]),
+      minPrice: String(ESS.filter((b) => b != null).at(-1)),
       priceCurrency: "EUR",
-      unitText: "mois",
-      referenceQuantity: { "@type": "QuantitativeValue", value: "1", unitText: "mois" },
+      valueAddedTaxIncluded: false,
+      unitText: "actif/mois",
     },
     availability: "https://schema.org/InStock",
-    url: `${SITE}/fr/reserver?offre=audit-decommissionnement`,
+    url: `${SITE}/fr/tarifs#editions`,
   },
   featureList: [
     "Tableau de bord temps réel multi-sites",

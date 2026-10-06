@@ -4,6 +4,7 @@ import { Recycle } from "lucide-react";
 import { useLocale } from "next-intl";
 import ServicePageTemplate from "../ServicePageTemplate";
 import type { ServicePageData } from "../ServicePageTemplate";
+import { PRICE_ANCHORS } from "@/content/pricing";
 
 export default function RecyclageDEEEPage() {
   const locale = useLocale();
@@ -130,7 +131,7 @@ export default function RecyclageDEEEPage() {
     ctaPrimaryLabel: tx("Réserver une collecte", "Book a collection"),
     ctaSecondaryLabel: tx("Voir l'impact carbone", "See carbon impact"),
     ctaSecondaryHref: "/impact",
-    pricingAnchor: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
+    pricingAnchor: tx(PRICE_ANCHORS.itad.fr, PRICE_ANCHORS.itad.en),
     pricingHref: "/tarifs",
     isEn,
   };

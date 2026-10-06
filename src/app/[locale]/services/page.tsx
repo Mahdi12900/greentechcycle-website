@@ -27,6 +27,7 @@ import Section from "@/components/ui/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Pictogram from "@/components/ui/Pictogram";
 import Tag from "@/components/ui/Tag";
+import { PRICE_ANCHORS, eur, itadLine } from "@/content/pricing";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    /services — DESIGN.md §10.7 : hero split paper, CertificationStrip, grille
@@ -113,7 +114,7 @@ export default function ServicesPage() {
         { value: "24", unit: "h", label: tx("certificat délivré", "certificate delivered") },
         { value: "99,97", unit: "%", label: tx("réussite mesurée", "measured success rate") },
       ],
-      pricingNote: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
+      pricingNote: tx(PRICE_ANCHORS.itad.fr, PRICE_ANCHORS.itad.en),
       pricingHref: "/tarifs",
     },
     {
@@ -142,7 +143,7 @@ export default function ServicesPage() {
         { value: "+40", unit: "%", label: tx("valeur récupérée", "recovered value") },
         { value: String(KPIS.reuse.value), unit: "%", label: tx("taux de réemploi", "reuse rate") },
       ],
-      pricingNote: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
+      pricingNote: tx(PRICE_ANCHORS.itad.fr, PRICE_ANCHORS.itad.en),
       pricingHref: "/tarifs",
     },
     {
@@ -172,7 +173,7 @@ export default function ServicesPage() {
         { value: "98,1", unit: "%", label: tx("matière valorisée", "material recovery") },
         { value: "0", unit: "%", label: tx("mise en décharge", "landfill rate") },
       ],
-      pricingNote: tx("À partir de 19 € HT/poste", "From €19 ex-VAT/device"),
+      pricingNote: tx(PRICE_ANCHORS.itad.fr, PRICE_ANCHORS.itad.en),
       pricingHref: "/tarifs",
     },
     {
@@ -229,7 +230,7 @@ export default function ServicesPage() {
         { value: "x3", label: tx("vs bacs passifs", "vs passive bins") },
         { value: "99,5", unit: "%", label: tx("disponibilité borne", "kiosk uptime") },
       ],
-      pricingNote: tx("À partir de 39 € HT/mois", "From €39 ex-VAT/month"),
+      pricingNote: tx(PRICE_ANCHORS.waki.fr, PRICE_ANCHORS.waki.en),
       pricingHref: "/tarifs",
     },
   ];
@@ -444,8 +445,8 @@ export default function ServicesPage() {
             {
               title: tx("Parc IT", "IT estate"),
               items: [
-                tx("Postes fixes et portables — dès 19 € HT/poste", "Desktops and laptops — from €19 ex-VAT/device"),
-                tx("Serveurs et baies de stockage — dès 55 € HT/unité", "Servers and storage arrays — from €55 ex-VAT/unit"),
+                tx(`Postes fixes et portables — ${PRICE_ANCHORS.itad.fr}`, `Desktops and laptops — ${PRICE_ANCHORS.itad.en}`),
+                tx(`Serveurs ${eur(itadLine("srv-e1").bands[0]!, "fr")} HT, baies de stockage ${eur(itadLine("storage").bands[0]!, "fr")} HT (tranche 1–50)`, `Servers ${eur(itadLine("srv-e1").bands[0]!, "en")} ex-VAT, storage arrays ${eur(itadLine("storage").bands[0]!, "en")} ex-VAT (1–50 band)`),
                 tx("Équipements réseau", "Network equipment"),
                 tx("Smartphones et tablettes — sur devis", "Smartphones and tablets — on quote"),
               ],
@@ -558,7 +559,7 @@ export default function ServicesPage() {
           <div className="mx-auto max-w-[65ch]">
             <p>
               <span className="font-semibold text-fg">
-                {tx("Pilote GTC - Audit & démarrage 3 jours", "GTC Pilot - Audit & 3-day kickoff")} · {tx("2 900 € HT / 3 jours", "€2,900 ex-VAT / 3 days")}
+                {tx("Pilote GTC - Audit & démarrage 3 jours", "GTC Pilot - Audit & 3-day kickoff")} · {tx(`${PRICE_ANCHORS.pilot3.fr} / 3 jours`, `${PRICE_ANCHORS.pilot3.en} / 3 days`)}
               </span>{" "}
               {tx(
                 "Diagnostic parc IT, plan ITAD priorisé et démarrage Plateforme. Mission senior conduite par notre équipe ITAM, carbone et cyber. Pilote remboursé sur la 1re année de Plateforme si signature dans les 90 jours après la restitution.",

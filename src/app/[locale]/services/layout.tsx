@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { pageMetadata, type LocaleParams, type PageCopy } from "@/lib/seo";
 import SchemaOrg from "@/components/SchemaOrg";
 import { SITE_URL as SITE } from "@/lib/site";
+import { itadLine } from "@/content/pricing";
+
+const WS_E1 = itadLine("ws-e1").bands;
 
 
 const META_COPY: PageCopy = {
@@ -54,11 +57,13 @@ const servicesItemListSchema = {
         offers: {
           "@type": "Offer",
           priceCurrency: "EUR",
-          price: "15",
+          price: String(WS_E1[0]),
           priceSpecification: {
             "@type": "UnitPriceSpecification",
-            price: "15",
+            price: String(WS_E1[0]),
+            minPrice: String(WS_E1[WS_E1.length - 1]),
             priceCurrency: "EUR",
+            valueAddedTaxIncluded: false,
             unitText: "poste",
           },
         },
