@@ -60,8 +60,11 @@ export function isoDuration(seconds: number): string {
  * n'avaient aucune donnée structurée, donc aucune chance d'apparaître dans Google Vidéos.
  * Les vidéos sont toutes en voix off anglaise (décision du 2026-10-04) : `inLanguage: "en"`,
  * quelle que soit la langue de la page qui les affiche. `uploadDate` est la date de mise en
- * ligne du nouveau site (2026-10-05) — la date de tournage réelle n'est pas connue, elle
- * n'est pas inventée. `name`/`description` suivent la langue de la page (fr ou en).
+ * ligne du nouveau site (2026-10-05, 09 h Europe/Paris) — la date de tournage réelle n'est
+ * pas connue, elle n'est pas inventée. Format datetime complet avec fuseau (+02:00, CEST) :
+ * Search Console signale « valeur de date et heure incorrecte » et « fuseau horaire manquant »
+ * sur une simple date ISO (« 2026-10-05 »), corrigé le 2026-10-07. `name`/`description`
+ * suivent la langue de la page (fr ou en).
  */
 export function videoObjectSchema(spec: SlotVideoSpec, lang: "fr" | "en") {
   const mp4 = spec.sources.find((s) => s.type === "video/mp4")?.src ?? spec.sources[0]?.src;
@@ -71,7 +74,7 @@ export function videoObjectSchema(spec: SlotVideoSpec, lang: "fr" | "en") {
     name: spec.title?.[lang] ?? "GreenTechCycle",
     description: spec.description?.[lang] ?? spec.title?.[lang] ?? "GreenTechCycle",
     thumbnailUrl: [absoluteUrl(spec.poster)],
-    uploadDate: "2026-10-05",
+    uploadDate: "2026-10-05T09:00:00+02:00",
     ...(spec.duration ? { duration: isoDuration(spec.duration) } : {}),
     contentUrl: absoluteUrl(mp4),
     inLanguage: "en",

@@ -4,7 +4,15 @@ export interface BlogArticle {
   description: string;
   keywords: string[];
   author: string;
+  /** ISO 8601 datetime AVEC fuseau (ex. "2026-03-15T09:00:00+01:00") — utilisé tel quel comme
+   * `datePublished` dans le JSON-LD Article (blog/page.tsx, blog/[slug]/page.tsx) : une date
+   * seule (sans heure/fuseau) déclenche les erreurs Search Console « valeur de date et heure
+   * incorrecte » / « fuseau horaire manquant » (corrigé le 2026-10-07, même cause que
+   * `uploadDate` dans src/lib/seo.ts). Heure 09:00 Europe/Paris par convention ; CET (+01:00)
+   * ou CEST (+02:00) selon la date (heure d'été du dernier dimanche de mars au dernier
+   * dimanche d'octobre). */
   publishedAt: string;
+  /** Même format que `publishedAt` ; sert de `dateModified`. */
   updatedAt: string;
   readingTime: string;
   category: string;
@@ -20,8 +28,8 @@ export const blogArticles: BlogArticle[] = [
       "Découvrez comment la directive CSRD impacte la gestion de vos actifs IT en fin de vie et comment l'ITAD s'intègre dans votre stratégie de reporting ESG.",
     keywords: ["CSRD", "ITAD", "reporting ESG", "actifs IT", "durabilité", "ESRS", "bilan carbone IT"],
     author: "GreenTechCycle",
-    publishedAt: "2026-03-15",
-    updatedAt: "2026-04-10",
+    publishedAt: "2026-03-15T09:00:00+01:00",
+    updatedAt: "2026-04-10T09:00:00+02:00",
     readingTime: "8 min",
     category: "Réglementation",
     image: "/photos/blog-csrd.jpg",
@@ -34,8 +42,8 @@ export const blogArticles: BlogArticle[] = [
       "Guide complet sur la sécurisation des données lors du retrait des équipements IT. Méthodes d'effacement NIST 800-88 et bonnes pratiques RGPD.",
     keywords: ["sécurité données", "effacement sécurisé", "NIST 800-88", "RGPD", "décommissionnement IT", "fin de vie"],
     author: "GreenTechCycle",
-    publishedAt: "2026-03-22",
-    updatedAt: "2026-04-08",
+    publishedAt: "2026-03-22T09:00:00+01:00",
+    updatedAt: "2026-04-08T09:00:00+02:00",
     readingTime: "10 min",
     category: "Sécurité",
     image: "/photos/blog-securite.jpg",
@@ -48,8 +56,8 @@ export const blogArticles: BlogArticle[] = [
       "La directive NIS2 renforce les exigences de cybersécurité. Découvrez ses implications pour la gestion du cycle de vie de vos actifs IT et la conformité ITAD.",
     keywords: ["NIS2", "conformité IT", "cybersécurité", "infrastructure informatique", "ITAD", "directive européenne"],
     author: "GreenTechCycle",
-    publishedAt: "2026-04-01",
-    updatedAt: "2026-04-15",
+    publishedAt: "2026-04-01T09:00:00+02:00",
+    updatedAt: "2026-04-15T09:00:00+02:00",
     readingTime: "9 min",
     category: "Conformité",
     image: "/photos/blog-nis2.jpg",
@@ -62,8 +70,8 @@ export const blogArticles: BlogArticle[] = [
       "Comment mettre en place une stratégie d'économie circulaire pour vos équipements IT. Reconditionnement, réemploi et valorisation pour réduire votre empreinte carbone.",
     keywords: ["économie circulaire IT", "reconditionnement", "réemploi", "valorisation", "empreinte carbone", "RSE"],
     author: "GreenTechCycle",
-    publishedAt: "2026-04-08",
-    updatedAt: "2026-04-18",
+    publishedAt: "2026-04-08T09:00:00+02:00",
+    updatedAt: "2026-04-18T09:00:00+02:00",
     readingTime: "9 min",
     category: "Durabilité",
     image: "/photos/blog-economie-circulaire.jpg",
@@ -76,8 +84,8 @@ export const blogArticles: BlogArticle[] = [
       "Tout savoir sur la réglementation DEEE en France. Obligations des entreprises, filières de traitement, sanctions et bonnes pratiques pour la gestion des déchets électroniques.",
     keywords: ["DEEE", "réglementation", "déchets électroniques", "obligations entreprises", "recyclage IT", "eco-organismes"],
     author: "GreenTechCycle",
-    publishedAt: "2026-04-15",
-    updatedAt: "2026-04-20",
+    publishedAt: "2026-04-15T09:00:00+02:00",
+    updatedAt: "2026-04-20T09:00:00+02:00",
     readingTime: "11 min",
     category: "Réglementation",
     image: "/photos/blog-deee.jpg",
