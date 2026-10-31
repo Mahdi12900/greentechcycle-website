@@ -11,6 +11,7 @@ import ExitPopup from "@/components/ExitPopup";
 import SchemaOrg from "@/components/SchemaOrg";
 import SalesAssistantWidget from "@/components/SalesAssistantWidget";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import SiteTracker from "@/components/SiteTracker";
 import AnalyticsListeners from "@/components/AnalyticsListeners";
 import { fontDisplay, fontMono, fontSans } from "@/app/fonts";
 import { SiteUiProvider } from "@/components/SiteUiContext";
@@ -163,6 +164,7 @@ export default async function LocaleLayout({
       </head>
       <body className="font-sans">
         <GoogleAnalytics />
+        <SiteTracker />
         <SchemaOrg data={organizationSchema} />
         <SchemaOrg data={websiteSchema} />
         <NextIntlClientProvider messages={messages}>
