@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { timingSafeEqual } from "crypto";
 
 /**
  * POST /api/admin/login — authentification du tableau de bord /admin.
@@ -21,7 +22,6 @@ export async function POST(request: NextRequest) {
     // comparaison simple à coût constant (Node crypto.timingSafeEqual via Buffer)
     (() => {
       try {
-        const { timingSafeEqual } = require("crypto");
         return timingSafeEqual(Buffer.from(given), Buffer.from(token));
       } catch {
         return false;
