@@ -11,6 +11,19 @@ import { timingSafeEqual } from "crypto";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+/**
+ * 303 avec Location RELATIF : derrière le reverse proxy CloudStation, request.url
+ * vaut http://0.0.0.0:3000/... (adresse interne du conteneur). Un Location absolu
+ * construit dessus renverrait le navigateur du fondateur vers 0.0.0.0:3000
+ * (connexion impossible). Un en-tête Location relatif (/pilotage/...) est
+ * conforme RFC 7231 et résolu par le navigateur contre l'hôte public.
+ */
+function seeOther(location: string): NextResponse {
+  const res = new NextResponse(null, { status: 303 });
+  res.headers.set("Location", location);
+  return res;
+}
+
 export async function POST(request: NextRequest) {
   const token = process.env.ADMIN_TOKEN;
   const form = await request.formData();
@@ -29,9 +42,9 @@ export async function POST(request: NextRequest) {
     })();
 
   if (!ok) {
-    return NextResponse.redirect(new URL("/pilotage/login?error=1", request.url), 303);
+    return seeOther("/pilotage/login?error=1");
   }
-  const res = NextResponse.redirect(new URL("/pilotage", request.url), 303);
+  const res = seeOther("/pilotage");
   res.cookies.set("gtc_admin", token, {
     httpOnly: true,
     sameSite: "lax",
