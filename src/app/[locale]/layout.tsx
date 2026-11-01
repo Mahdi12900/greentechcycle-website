@@ -161,6 +161,9 @@ export default async function LocaleLayout({
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" href="/icon.svg" />
+        {/* Endpoint de mesure first-party utilisé par <SiteTracker /> (POST page vues).
+            Déclaré ici pour que le HTML servi expose l'endpoint réel du traçage. */}
+        <meta name="gtc-track-endpoint" content="/api/track" />
       </head>
       <body className="font-sans">
         <GoogleAnalytics />
