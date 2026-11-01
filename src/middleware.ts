@@ -1,18 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Garde /admin au niveau MIDDLEWARE (2026-11-01, renforcé 2e tour).
+ * Garde des tableaux de bord au niveau MIDDLEWARE (2026-11-01, 3e tour).
  *
- * 1) Auth : le middleware intercepte TOUTES les requêtes "/admin/:path*"
- *    avant le routage et répond 307 → /admin/login si le cookie httpOnly
- *    « gtc_admin » ne correspond pas à ADMIN_TOKEN. /admin/login reste
- *    public. La vérification côté page reste en défense en profondeur.
- * 2) Anti-cache bordure : chaque réponse de la branche /admin (307 comme
- *    200 authentifié, login inclus) porte Cache-Control: no-store /
- *    CDN-Cache-Control: no-store. Objectif : aucun intermédiaire
- *    (proxy plateforme, edge CDN) ne doit conserver une copie d'une
- *    réponse /admin — l'ancienne page catch-all 200 était servie avec
- *    s-maxage=31536000 et a pu être stockée par un cache intermédiaire.
+ * Le tableau de bord vit désormais sous /pilotage (déplacé depuis /admin :
+ * l'adresse /admin était empoisonnée par un cache intermédiaire servant
+ * d'anciennes copies 200 malgré no-store — adresse neuve jamais cachée).
+ *
+ * 1) Auth : le middleware intercepte TOUTES les requêtes "/pilotage/:path*"
+ *    (et "/admin/:path*" en redirection) avant le routage. Cookie httpOnly
+ *    « gtc_admin » comparé à ADMIN_TOKEN ; sinon 307 → /pilotage/login.
+ *    /pilotage/login reste public.
+ * 2) /admin : plus aucune route applicative (le dossier a été déplacé) ;
+ *    le middleware répond 307 → /pilotage pour toute la branche, avant
+ *    tout routage. Une éventuelle copie stale 200 servie par un cache
+ *    bordure en amont échappe à ce contrôle (limitation connue).
+ * 3) Anti-cache bordure : chaque réponse (307 comme 200 authentifié,
+ *    login inclus) porte Cache-Control/CDN-Cache-Control: no-store.
  */
 
 const NO_STORE = {
@@ -27,10 +31,17 @@ function withNoStore(res: NextResponse): NextResponse {
   return res;
 }
 
-const PUBLIC_PATHS = ["/admin/login"];
+const PUBLIC_PATHS = ["/pilotage/login"];
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+
+  // Ancienne adresse : funnel vers la nouvelle (aucune route /admin restante).
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) {
+    const url = req.nextUrl.clone();
+    url.pathname = "/pilotage";
+    return withNoStore(NextResponse.redirect(url, 307));
+  }
 
   if (PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`))) {
     return withNoStore(NextResponse.next());
@@ -41,7 +52,7 @@ export function middleware(req: NextRequest) {
 
   if (!token || cookie !== token) {
     const url = req.nextUrl.clone();
-    url.pathname = "/admin/login";
+    url.pathname = "/pilotage/login";
     return withNoStore(NextResponse.redirect(url, 307));
   }
 
@@ -49,5 +60,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/pilotage/:path*", "/admin/:path*"],
 };

@@ -13,10 +13,10 @@ import { usePathname } from "next/navigation";
  *
  * RGPD : mesure d'audience first-party sans cookie ni identifiant stable
  * cross-session → hors consentement (cf. recommandations CNIL, périmètre strict).
- * Les pages /admin, /api et /_next ne sont pas trackées (ni côté client ni serveur).
+ * Les pages /admin, /pilotage, /api et /_next ne sont pas trackées (ni côté client ni serveur).
  */
 
-const SKIP = /^\/(admin|api|_next)(\/|$)/;
+const SKIP = /^\/(admin|pilotage|api|_next)(\/|$)/;
 
 export default function SiteTracker() {
   const pathname = usePathname();
