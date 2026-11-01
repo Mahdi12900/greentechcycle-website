@@ -67,13 +67,13 @@ export default async function AdminPage() {
     const p = typeof e.page === "string" ? (e.page as string).split("?")[0] : "?";
     pageCounts.set(p, (pageCounts.get(p) ?? 0) + 1);
   }
-  const topPages = [...pageCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8);
+  const topPages = Array.from(pageCounts.entries()).sort((a, b) => b[1] - a[1]).slice(0, 8);
   const utmCounts = new Map<string, number>();
   for (const e of todayEvents) {
     const u = e.utm_source;
     if (typeof u === "string" && u) utmCounts.set(u, (utmCounts.get(u) ?? 0) + 1);
   }
-  const topUtm = [...utmCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5);
+  const topUtm = Array.from(utmCounts.entries()).sort((a, b) => b[1] - a[1]).slice(0, 5);
 
   const convNews = sessionsToday.size > 0 ? ((newsletterToday.length / sessionsToday.size) * 100).toFixed(1) : "—";
   const convResa = sessionsToday.size > 0 ? ((reservationsToday.length / sessionsToday.size) * 100).toFixed(1) : "—";
