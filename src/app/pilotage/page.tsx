@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import SessionGuard from "./SessionGuard";
 
 /**
  * /pilotage — tableau de bord temps réel GreenTechCycle (2026-10-29, déplacé de /admin vers /pilotage le 2026-11-01).
@@ -86,6 +87,7 @@ export default async function AdminPage() {
 
   return (
     <main style={{ maxWidth: 1100, margin: "0 auto", padding: "24px 16px 48px" }}>
+      <SessionGuard />
       <meta httpEquiv="refresh" content="30" />
       <header style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 8, marginBottom: 18 }}>
         <h1 style={{ fontSize: 20, margin: 0 }}>GreenTechCycle — Pilotage <span style={{ color: "#22c55e", fontSize: 13 }}>● LIVE</span></h1>
