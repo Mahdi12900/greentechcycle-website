@@ -55,7 +55,7 @@ export default async function AdminPage() {
     rest(`site_events?select=session_id,page,created_at&created_at=gte.${fiveMinAgo}&order=created_at.desc&limit=500`),
     rest(`site_events?select=id,session_id,page,utm_source,created_at&created_at=gte.${todayStart}&order=created_at.desc&limit=2000`),
     rest(`newsletter_subscribers?select=email,subscribed_at&order=subscribed_at.desc&limit=50`),
-    rest(`reservations?select=nom,entreprise,source,status,rendez_vous,created_at&order=created_at.desc&limit=10`),
+    rest(`reservations?select=nom,email,telephone,entreprise,source,status,rendez_vous,created_at&order=created_at.desc&limit=10`),
   ]);
 
   const activeSessions = new Set(recentEvents.map((e) => e.session_id).filter(Boolean));
@@ -135,7 +135,7 @@ export default async function AdminPage() {
             {reservations.length === 0 && <tr><td style={td}>Aucune réservation.</td></tr>}
             {reservations.map((r, i) => (
               <tr key={i}>
-                <td style={td}>{String(r.entreprise ?? r.nom ?? "?")}<br /><span style={{ color: "#9ca3af", fontSize: 11 }}>{String(r.source ?? "")} · {String(r.status ?? "")}{r.rendez_vous ? ` · RDV ${fmtTime(r.rendez_vous)}` : ""}</span></td>
+                <td style={td}>{String(r.entreprise ?? r.nom ?? "?")}{r.email ? <><br /><a href={`mailto:${String(r.email)}`} style={{ color: "#22c55e" }}>{String(r.email)}</a></> : null}{r.telephone ? <><br /><a href={`tel:${String(r.telephone).replace(/\s+/g, "")}`} style={{ color: "#9ca3af" }}>{String(r.telephone)}</a></> : null}<br /><span style={{ color: "#9ca3af", fontSize: 11 }}>{String(r.source ?? "")} · {String(r.status ?? "")}{r.rendez_vous ? ` · RDV ${fmtTime(r.rendez_vous)}` : ""}</span></td>
                 <td style={{ ...td, textAlign: "right", color: "#9ca3af" }}>{fmtTime(r.created_at)}</td>
               </tr>
             ))}
